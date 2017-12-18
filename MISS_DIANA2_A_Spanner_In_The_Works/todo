@@ -1,0 +1,43 @@
+12/13/17 pick a name other than Saboteur
+12/13/17 create a map
+
+---
+{
+
+1/2 BUG: base looks like Artemis
+     DNTT
+
+1/2 BUG: Diana shouldn't move
+     DNTT
+
+1/2 ADD: basic events
+     DNTT add lose conditions
+                lose the base
+          DONE  lose the diana
+                lose all player ships
+     DNTT add win conditions
+                defeat the Arvonians
+                 * didn't work
+
+1/2 ADD: saboteur events
+        * event to add starbase sabotage
+            * halt production
+            * send comms message
+        * add GM event to mark bomb as defused
+        * make sabotage event occur multiple times
+        * add comms messages to reveal the saboteur
+        * add comms messages to communicate with the saboteur
+        * handle EMP'ing the station/diana
+        * make the saboteur escape on a shuttle/diana
+
+2/1 DO: write a mission intro that's a follow-up from the Diana Operation
+        The crippled TSN Diana is now undergoing reconstruction at DS1, but the recent mission to recover it
+        has attracted more attention from the Arvonian fleets which are now advancing on DS1.  Your mission
+        is to protect both DS1 and the Diana from the Arvonian invasion.
+
+---
+
+3/1 DO: pick a name for the Arvonian base
+    https://docs.google.com/viewer?a=v&pid=sites&srcid=ZGVmYXVsdGRvbWFpbnx0c25saW5ndWlzdGljc3xneDo3MmI3YjlkNmI0ZTUxYzFl
+
+}
