@@ -1,14 +1,41 @@
 12/13/17 pick a name other than Saboteur
 12/13/17 create a map
+12/17/17 BUG: base looks like Artemis
+12/17/17 Diana should be a Light Cruiser
+12/28/17 BUG: Diana shouldn't move
 
 ---
 {
 
-1/2 BUG: base looks like Artemis
-     DNTT
+1/2 ADD: N seconds after start
+            * send popup message saying incoming message from DS1
+            * send comms message from station to dock to receive orders
 
-1/2 BUG: Diana shouldn't move
-     DNTT
+1/2 ADD: when dock
+            * send comms message with mission orders 
+            * reveal Arvonians?
+
+1/2 ADD: N minutes after getting orders
+            * send comms message about bomb on station
+            * halt station production
+            * add GM button
+            * start bomb timer
+
+1/2 ADD: when GM button hit
+            * send comms message about bomb defused
+            * send big message to Diana about bomb defused
+            * remove GM button
+            * restore station production
+            * start sabotage timer
+            * cancel bomb timer
+
+1/2 ADD: when bomb timer expires
+            * destroy DS1
+            * send big message about DS1 lost
+            * start game end timer
+
+1/2 ADD: when game end timer expires
+            * end game (fail)
 
 1/2 ADD: basic events
      DNTT add lose conditions
@@ -20,15 +47,13 @@
                  * didn't work
 
 1/2 ADD: saboteur events
-        * event to add starbase sabotage
-            * halt production
-            * send comms message
-        * add GM event to mark bomb as defused
         * make sabotage event occur multiple times
         * add comms messages to reveal the saboteur
         * add comms messages to communicate with the saboteur
         * handle EMP'ing the station/diana
         * make the saboteur escape on a shuttle/diana
+
+---
 
 2/1 DO: write a mission intro that's a follow-up from the Diana Operation
         The crippled TSN Diana is now undergoing reconstruction at DS1, but the recent mission to recover it
