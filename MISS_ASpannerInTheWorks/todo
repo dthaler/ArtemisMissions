@@ -15,6 +15,7 @@
 01/01/18 FIX: change all "Houston Outpost" to "DS1" in the file
 01/01/18 FIX: add GM buttons to resend comms
 01/01/18 FIX: "DIANA2_" doesn't fit
+01/01/18 ADD: win conditions (defeat the Arvonians)
 
 ---
 {
@@ -22,9 +23,6 @@
 1/2 BUG: station production isn't halted while bomb is set
           * halt production when bomb set
           * restore production when defused
-
-1/2 ADD: win conditions (defeat the Arvonians)
-          * didn't work, probably because thinks enemies left includes neutrals
 
 1/2 ADD: saboteur events
           * add comms messages to reveal the saboteur
@@ -45,6 +43,8 @@
 
 2/2 FIX: find a way to prevent "Diana created spew"
 
+2/2 DO: have a bomb timer in the mission if you don't dock within some number of minutes
+
 ---
 
 3/1 DO: pick a name for the Arvonian base
@@ -55,8 +55,6 @@
            has attracted more attention from the Arvonian fleets which are now advancing on DS1.  Your mission
            is to protect both DS1 and the Diana from the Arvonian invasion.
 
-3/2 MAYBE: have a bomb timer in the mission
-
 3/2 MAYBE: should Diana be a player or NPC ship?
             NPC ship means AI can commandeer it
 
@@ -66,5 +64,6 @@ AME bugs:
     can have multiple comms types in a comms message (contrary to what mission file docs says)
     Station properties should not allow "with player slot"
     canBuild can be set to yes/no but doesn't have that for testing against
-
+    if_fleet_count is missing sideValue and countSurrendered options
+        and "when counting all enemies" isn't right for side 2 (Player)
 }
