@@ -18,6 +18,8 @@
 01/01/18 ADD: win conditions (defeat the Arvonians)
 01/01/18 FIX: explain station production blockage while bomb is set (71582 mins = -1 seconds)
 01/01/18 ADD: Diana AI activation
+01/02/18 ADD: lose if Diana goes off map
+01/02/18 FIX: don't sabotage again after saboteur escapes
 
 ---
 {
@@ -25,8 +27,6 @@
 1/2 ADD: saboteur events
           * add sci/comms messages to reveal the saboteur
           * add comms messages to communicate with the saboteur
-
-1/2 ADD: lose if Diana goes off map
 
 1/2 ADD: handle EMP'ing the diana
           perhaps opens up a way for SCI+COMMS to hack back in (a la ST:BC)
@@ -62,13 +62,4 @@
 
 2/2 DO: make Diana AI try to join nearest enemy fleet
 
----
-
-AME bugs:
-    can have multiple comms types in a comms message (contrary to what mission file docs says)
-    Station properties should not allow "with player slot"
-    canBuild can be set to yes/no but doesn't have that for testing against
-    if_fleet_count is missing sideValue and countSurrendered options
-        and "when counting all enemies" isn't right for side 2 (Player)
-    TARGET_THROTTLE value 2 is missing
 }

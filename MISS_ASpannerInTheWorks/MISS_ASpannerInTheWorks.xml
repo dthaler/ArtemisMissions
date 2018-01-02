@@ -17,12 +17,12 @@
     <set_object_property property="musicObjectMasterVolume" value="0.0" />
     <set_variable name="DockedRange" value="100.0" />
     <!--TODO: change the delay below to 300-->
-    <set_variable name="SabotageDelaySeconds" value="30.0" />
+    <set_variable name="SabotageDelaySeconds" value="10.0" />
     <big_message title="A Spanner in the Works" subtitle1="A Diana Series Mission by Dave Thaler" subtitle2="adventure for Artemis 2.6" />
   </start>
   <folder_arme name="Initialization" id_arme="6ef97816-b707-4333-8e81-c10c250bf89b" expanded_arme="" />
   <event name="Set PlayerShipCount" id_arme="bc8332b6-2265-42dc-89c6-64fc9326d561" parent_id_arme="6ef97816-b707-4333-8e81-c10c250bf89b">
-    <if_fleet_count comparator="GREATER" value="PlayerShipCount" sideValue="2" />
+    <if_fleet_count comparator="GREATER" value="PlayerShipCount" />
     <set_variable name="PlayerShipCount" value="PlayerShipCount + 1" />
   </event>
   <event name="Diana created" id_arme="519bff8f-c77c-4692-b182-acda4ba82a5b" parent_id_arme="6ef97816-b707-4333-8e81-c10c250bf89b">
@@ -72,7 +72,7 @@
   <event name="All enemies destroyed" id_arme="8cd2c901-c296-44f2-9e21-34a669cf027b" parent_id_arme="e829d865-90bd-4c1b-aabe-60c7d7cfe1a1">
     <if_not_exists name="AB1" />
     <if_variable name="GameOver" comparator="EQUALS" value="0.0" />
-    <if_fleet_count comparator="EQUALS" value="0.0" sideValue="1" />
+    <if_fleet_count comparator="EQUALS" value="0.0" />
     <log text="MISSION SUCCEEDED" />
     <set_variable name="GameOver" value="1.0" />
     <set_timer name="GameFinishedTimer" seconds="15" />
@@ -89,7 +89,7 @@
     <set_variable name="GameOver" value="1" />
     <set_timer name="GameFinishedTimer" seconds="15" />
   </event>
-  <event name="Lost Diana" id_arme="94bc79ae-5517-4033-afa4-2bfcf435e031" parent_id_arme="e829d865-90bd-4c1b-aabe-60c7d7cfe1a1">
+  <event name="Lost Diana" id_arme="df728465-db6c-46d4-bf37-05eebdf4c22d" parent_id_arme="e829d865-90bd-4c1b-aabe-60c7d7cfe1a1">
     <if_variable name="PlayerShipCount" comparator="GREATER" value="0" />
     <if_not_exists name="Diana" />
     <if_variable name="GameOver" comparator="EQUALS" value="0.0" />
@@ -99,12 +99,22 @@
     <big_message title="MISSION FAILED" subtitle1="The TSN Diana was destroyed" subtitle2="" />
     <incoming_comms_text from="Main Screen" type="SIDE">Mission Failed^The TSN Diana has been destroyed</incoming_comms_text>
   </event>
+  <event name="Diana Escaped" id_arme="94bc79ae-5517-4033-afa4-2bfcf435e031" parent_id_arme="e829d865-90bd-4c1b-aabe-60c7d7cfe1a1">
+    <if_variable name="PlayerShipCount" comparator="GREATER" value="0" />
+    <if_inside_sphere name="Diana" centerX="68960.0" centerY="0.0" centerZ="-2000.0" radius="2500" />
+    <if_variable name="GameOver" comparator="EQUALS" value="0.0" />
+    <log text="FAILED because the saboteur escaped" />
+    <set_variable name="GameOver" value="1.0" />
+    <set_timer name="GameFinishedTimer" seconds="15" />
+    <big_message title="MISSION FAILED" subtitle1="The saboteur escaped with the TSN Diana" subtitle2="" />
+    <incoming_comms_text from="Main Screen" type="SIDE">Mission Failed^The saboteur escaped with the TSN Diana</incoming_comms_text>
+  </event>
   <event name="DEBUG: EnemiesLeft" id_arme="b2cb0990-403d-4203-9f02-a732053e1d82" parent_id_arme="e829d865-90bd-4c1b-aabe-60c7d7cfe1a1">
-    <if_fleet_count comparator="LESS" value="EnemiesLeft" sideValue="1" />
+    <if_fleet_count comparator="LESS" value="EnemiesLeft" />
     <set_variable name="EnemiesLeft" value="EnemiesLeft - 1" />
   </event>
   <event name="DEBUG: EnemiesLeft" id_arme="4db1960c-adfd-46e2-9ed6-c621bb6619bf" parent_id_arme="e829d865-90bd-4c1b-aabe-60c7d7cfe1a1">
-    <if_fleet_count comparator="GREATER" value="EnemiesLeft" sideValue="1" />
+    <if_fleet_count comparator="GREATER" value="EnemiesLeft" />
     <set_variable name="EnemiesLeft" value="EnemiesLeft + 1" />
   </event>
   <folder_arme name="Task: Dock with DS1 to receive orders" id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6" expanded_arme="" />
@@ -218,6 +228,7 @@ protect both DS1 and the Diana from the Arvonian invasion.</incoming_comms_text>
   <folder_arme name="Sabotage" id_arme="06783d9d-3423-44f3-b6e3-28e8f836b4fd" expanded_arme="" />
   <event name="Bomb Set" id_arme="9c900198-e63b-4408-9a57-32ae99e1e2ae" parent_id_arme="06783d9d-3423-44f3-b6e3-28e8f836b4fd">
     <if_exists name="DS1" />
+    <if_object_property property="sideValue" name="Diana" comparator="EQUALS" value="2.0" />
     <if_variable name="BombsSet" comparator="EQUALS" value="BombsDefused" />
     <if_timer_finished name="SabotageDelay" />
     <log text="Bomb set!" />
@@ -297,17 +308,32 @@ protect both DS1 and the Diana from the Arvonian invasion.</incoming_comms_text>
     <set_variable name="DianaReadyToEscape" value="1.0" />
   </event>
   <event name="Diana AI activates" id_arme="5ab5a2dd-561e-4ac8-b49a-0b96d416144e" parent_id_arme="354d7eaa-5c2c-486e-81cb-5d977f7d5f55">
+    <if_exists name="Diana" />
     <if_object_property property="sideValue" name="Diana" comparator="EQUALS" value="2.0" />
     <if_timer_finished name="DianaEscapeTimer" />
     <log text="Diana AI activates" />
     <set_side_value value="1" name="Diana" />
     <set_object_property property="systemDamageImpulse" value="0.0" name="Diana" />
     <set_object_property property="exitPointX" value="68960.0" name="Diana" />
-    <set_object_property property="exitPointZ" value="0.0" name="Diana" />
+    <set_object_property property="exitPointZ" value="-2000.0" name="Diana" />
     <clear_ai name="Diana" />
     <add_ai type="TRY_TO_BECOME_LEADER" name="Diana" />
     <add_ai type="PROCEED_TO_EXIT" name="Diana" />
     <add_ai type="CHASE_ANGER" name="Diana" />
     <incoming_comms_text from="DS1" type="ALERT">Unauthorized undocking of the Diana detected!  The saboteur must be trying to escape!</incoming_comms_text>
+  </event>
+  <event name="DEBUG: Allow teleporting Diana" id_arme="8989b6b2-c483-4886-86e8-aa5f7e993d60" parent_id_arme="354d7eaa-5c2c-486e-81cb-5d977f7d5f55">
+    <if_exists name="Diana" />
+    <if_object_property property="sideValue" name="Diana" comparator="EQUALS" value="1.0" />
+    <if_variable name="TeleportDianaButton" comparator="EQUALS" value="0.0" />
+    <set_variable name="TeleportDianaButton" value="1.0" />
+    <set_gm_button text="Teleport Diana" />
+  </event>
+  <event name="DEBUG: Teleport Diana" id_arme="118da934-bff8-448f-a242-8cef087a2007" parent_id_arme="354d7eaa-5c2c-486e-81cb-5d977f7d5f55">
+    <if_gm_button text="Teleport Diana" />
+    <log text="Teleporting Diana" />
+    <set_object_property property="positionX" value="68940.0" name="Diana" />
+    <set_object_property property="positionY" value="0.0" name="Diana" />
+    <set_object_property property="positionZ" value="500.0" name="Diana" />
   </event>
 </mission_data>
