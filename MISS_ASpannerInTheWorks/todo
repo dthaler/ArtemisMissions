@@ -14,11 +14,10 @@
 01/01/18 ADD: periodically refresh GM buttons
 01/01/18 FIX: change all "Houston Outpost" to "DS1" in the file
 01/01/18 FIX: add GM buttons to resend comms
+01/01/18 FIX: "DIANA2_" doesn't fit
 
 ---
 {
-
-1/1 FIX: "DIANA2_" doesn't fit
 
 1/2 BUG: station production isn't halted while bomb is set
           * halt production when bomb set
