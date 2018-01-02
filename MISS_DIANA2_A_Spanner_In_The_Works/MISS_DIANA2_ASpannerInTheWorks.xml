@@ -1,4 +1,4 @@
-<mission_data version="1.0" background_id_arme="84327810-6e7d-41e7-9e71-391649f5b452" playerShipNames_arme="Artemis\Intrepid\Aegis\Horatio\Excalibur\Hera\Ceres\Diana">
+<mission_data version="2.6" background_id_arme="84327810-6e7d-41e7-9e71-391649f5b452" playerShipNames_arme="Artemis\Intrepid\Aegis\Horatio\Excalibur\Hera\Ceres\Diana">
   <start id_arme="84327810-6e7d-41e7-9e71-391649f5b452">
     <create count="200" type="asteroids" startX="90000.0" startY="0.0" startZ="38699.0" endX="10000.0" endY="0.0" endZ="28699.0" randomRange="20000" randomSeed="100" />
     <create count="200" type="asteroids" startX="90000.0" startY="200.0" startZ="38699.0" endX="10000.0" endY="200.0" endZ="28699.0" randomRange="20000" randomSeed="200" />
@@ -15,14 +15,32 @@
     <set_skybox_index index="10" />
     <set_object_property property="nebulaIsOpaque" value="1" />
     <set_object_property property="musicObjectMasterVolume" value="0.0" />
+    <set_variable name="DockedRange" value="100.0" />
+    <!--TODO: change the delay below to 300-->
+    <set_variable name="SabotageDelaySeconds" value="30.0" />
     <big_message title="A Spanner in the Works" subtitle1="A Diana Series Mission by Dave Thaler" subtitle2="adventure for Artemis 2.6" />
   </start>
-  <folder_arme name="Initialization" id_arme="6ef97816-b707-4333-8e81-c10c250bf89b" />
-  <event name="Artemis created" id_arme="3988b226-a101-44df-889f-28ca7521a4de" parent_id_arme="6ef97816-b707-4333-8e81-c10c250bf89b">
-    <if_timer_finished name="start_mission_timer" />
-    <if_variable name="SummonedForOrders" comparator="EQUALS" value="0.0" />
+  <folder_arme name="Initialization" id_arme="6ef97816-b707-4333-8e81-c10c250bf89b" expanded_arme="" />
+  <event name="Artemis created" id_arme="5b95164f-8448-47c5-8fbe-e7574e7b1e10" parent_id_arme="6ef97816-b707-4333-8e81-c10c250bf89b">
+    <if_variable name="ArtemisIsPlaying" comparator="EQUALS" value="0.0" />
     <if_exists name="Artemis" />
-    <set_timer name="start_mission_timer" seconds="5" />
+    <log text="Artemis is now playing" />
+    <set_variable name="PlayerShipCount" value="PlayerShipCount + 1" />
+    <set_variable name="ArtemisIsPlaying" value="1.0" />
+  </event>
+  <event name="Intrepid created" id_arme="9e1806d7-f567-48b0-85ad-67e845f13bb0" parent_id_arme="6ef97816-b707-4333-8e81-c10c250bf89b">
+    <if_variable name="IntrepidIsPlaying" comparator="EQUALS" value="0.0" />
+    <if_exists name="Intrepid" />
+    <log text="Intrepid is now playing" />
+    <set_variable name="PlayerShipCount" value="PlayerShipCount + 1" />
+    <set_variable name="IntrepidIsPlaying" value="1.0" />
+  </event>
+  <event name="Aegis created" id_arme="3988b226-a101-44df-889f-28ca7521a4de" parent_id_arme="6ef97816-b707-4333-8e81-c10c250bf89b">
+    <if_variable name="AegisIsPlaying" comparator="EQUALS" value="0.0" />
+    <if_exists name="Aegis" />
+    <log text="Aegis is now playing" />
+    <set_variable name="PlayerShipCount" value="PlayerShipCount + 1" />
+    <set_variable name="AegisIsPlaying" value="1.0" />
   </event>
   <event name="Diana created" id_arme="519bff8f-c77c-4692-b182-acda4ba82a5b" parent_id_arme="6ef97816-b707-4333-8e81-c10c250bf89b">
     <if_exists name="Diana" />
@@ -31,7 +49,7 @@
     <clear_ai name="Diana" />
     <set_special name="Diana" ship="-1" captain="-1" />
   </event>
-  <folder_arme name="Start/End Game Events" id_arme="e829d865-90bd-4c1b-aabe-60c7d7cfe1a1" />
+  <folder_arme name="Start/End Game Events" id_arme="e829d865-90bd-4c1b-aabe-60c7d7cfe1a1" expanded_arme="" />
   <event name="Start Title timer after first ship connects" id_arme="75a51448-2195-4afa-9ca8-864f45de62a0" parent_id_arme="e829d865-90bd-4c1b-aabe-60c7d7cfe1a1">
     <if_variable name="51362_1_titleTimerStarted" comparator="EQUALS" value="0" />
     <if_variable name="51362_1_gameShipsSpawned" comparator="GREATER" value="0" />
@@ -74,7 +92,7 @@
     <if_not_exists name="Hera" />
     <if_not_exists name="Ceres" />
     <if_variable name="GameOver" comparator="EQUALS" value="0.0" />
-    <if_variable name="51362_1_gameShipsSpawned" comparator="GREATER" value="0" />
+    <if_variable name="PlayerShipCount" comparator="GREATER" value="0" />
     <log text="FAILED because all player ships destroyed" />
     <set_variable name="GameOver" value="1.0" />
     <set_timer name="GameFinishedTimer" seconds="15" />
@@ -88,12 +106,17 @@
     <end_mission />
   </event>
   <event name="All enemies destroyed" id_arme="8cd2c901-c296-44f2-9e21-34a669cf027b" parent_id_arme="e829d865-90bd-4c1b-aabe-60c7d7cfe1a1">
+    <if_not_exists name="AB1" />
     <if_fleet_count comparator="EQUALS" value="0.0" />
-    <end_mission />
+    <log text="MISSION SUCCEEDED" />
+    <set_variable name="GameOver" value="1.0" />
+    <set_timer name="GameFinishedTimer" seconds="15" />
+    <big_message title="MISSION SUCCEEDED" subtitle1="All enemies have been destroyed" subtitle2="" />
+    <incoming_comms_text from="Main Screen" type="SIDE">Mission Succeeded^All enemy ships have been destroyed</incoming_comms_text>
   </event>
   <event name="Lost DS1" id_arme="b526982b-a60f-4850-8902-f0c9525953a5" parent_id_arme="e829d865-90bd-4c1b-aabe-60c7d7cfe1a1">
+    <if_variable name="PlayerShipCount" comparator="GREATER" value="0" />
     <if_not_exists name="DS1" />
-    <if_variable name="51362_1_gameShipsSpawned" comparator="GREATER" value="0" />
     <if_variable name="GameOver" comparator="EQUALS" value="0" />
     <log text="FAILED because all player bases destroyed" />
     <big_message title="MISSION FAILED" subtitle1="All player bases have been destroyed" subtitle2="" />
@@ -102,16 +125,23 @@
     <set_timer name="GameFinishedTimer" seconds="15" />
   </event>
   <event name="Lost Diana" id_arme="94bc79ae-5517-4033-afa4-2bfcf435e031" parent_id_arme="e829d865-90bd-4c1b-aabe-60c7d7cfe1a1">
+    <if_variable name="PlayerShipCount" comparator="GREATER" value="0" />
     <if_not_exists name="Diana" />
     <if_variable name="GameOver" comparator="EQUALS" value="0.0" />
-    <if_variable name="51362_1_gameShipsSpawned" comparator="GREATER" value="0" />
-    <log text="FAILED because all player ships destroyed" />
+    <log text="FAILED because the Diana was destroyed" />
     <set_variable name="GameOver" value="1.0" />
     <set_timer name="GameFinishedTimer" seconds="15" />
-    <big_message title="MISSION FAILED" subtitle1="All player ships have been destroyed" subtitle2="" />
-    <incoming_comms_text from="Main Screen" type="SIDE">Mission Failed^All player ships have been destroyed</incoming_comms_text>
+    <big_message title="MISSION FAILED" subtitle1="The TSN Diana was destroyed" subtitle2="" />
+    <incoming_comms_text from="Main Screen" type="SIDE">Mission Failed^The TSN Diana has been destroyed</incoming_comms_text>
   </event>
-  <folder_arme name="Player Ship initialization" id_arme="1bfb4f8d-8115-4526-b693-fe755c80eedc" />
+  <event name="DEBUG: EnemiesLeft" id_arme="b2cb0990-403d-4203-9f02-a732053e1d82" parent_id_arme="e829d865-90bd-4c1b-aabe-60c7d7cfe1a1">
+    <if_fleet_count comparator="LESS" value="EnemiesLeft" />
+    <set_variable name="EnemiesLeft" value="EnemiesLeft - 1" />
+  </event>
+  <event name="DEBUG: EnemiesLeft" id_arme="4db1960c-adfd-46e2-9ed6-c621bb6619bf" parent_id_arme="e829d865-90bd-4c1b-aabe-60c7d7cfe1a1">
+    <if_fleet_count comparator="GREATER" value="EnemiesLeft" />
+    <set_variable name="EnemiesLeft" value="EnemiesLeft + 1" />
+  </event>
   <folder_arme name="Task: Dock with DS1 to receive orders" id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6" expanded_arme="" />
   <event name="Prepare to summon ships" id_arme="b5f53049-5cf3-43b7-b98d-6a92f25d26f1" parent_id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6">
     <if_variable name="PlayerShipCount" comparator="GREATER" value="0.0" />
@@ -152,21 +182,23 @@
   <event name="Task Succeeded - 1 Ship Docked" id_arme="179e7ae6-25f8-46c5-8916-6995e3c73883" parent_id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6">
     <if_variable name="PlayerShipCount" comparator="EQUALS" value="1.0" />
     <if_variable name="TsnCommandGaveMission" comparator="EQUALS" value="0.0" />
-    <if_distance name1="Artemis" name2="Houston Outpost" comparator="LESS_EQUAL" value="DockedRange" />
-    <if_docked name="Houston Outpost" />
+    <if_distance name1="Artemis" name2="DS1" comparator="LESS_EQUAL" value="DockedRange" />
+    <if_docked name="DS1" />
     <log text="TSN Command issued mission orders" />
-    <incoming_comms_text from="TSN Command" type="SIDE">The TSN Diana recently went on a secret mission into enemy territory beyond the asteroid belt to scout out a recently discovered unstable wormhole. Unfortunately, all contact from the Diana has since been lost. Your mission is to find out what happened to her, and return her to a TSN station if possible.  If not, make sure she is destroyed.  We cannot risk her falling into enemy hands.</incoming_comms_text>
+    <incoming_comms_text from="DS1" type="SIDE">As a result of the recent Diana Operation, the Torgoth have moved their fleets elsewhere in the conflict^with the TSN.  The Arvonians, however, have advanced and taken Houston Outpost, but not before we managed^to tow the crippled TSN Diana back here to DS1 where it is now undergoing reconstruction.  A scout ship^reported that an Arvonian base has just appeared in the asteroid belt, presumably in preparation for an^assault on DS1.  Your mission is to protect both DS1 and the Diana from the Arvonian invasion.</incoming_comms_text>
+    <set_timer name="SabotageDelay" seconds="SabotageDelaySeconds" />
     <set_variable name="TsnCommandGaveMission" value="1.0" />
   </event>
   <event name="Task Succeeded - 2 Ships Docked" id_arme="3c75cb0b-7be9-4c70-b4da-c32d8d05e60c" parent_id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6">
     <if_variable name="PlayerShipCount" comparator="EQUALS" value="2.0" />
     <if_variable name="TsnCommandGaveMission" comparator="EQUALS" value="0.0" />
-    <if_distance name1="Artemis" name2="Houston Outpost" comparator="LESS_EQUAL" value="DockedRange*1.6" />
-    <if_distance name1="Intrepid" name2="Houston Outpost" comparator="LESS_EQUAL" value="DockedRange*1.6" />
-    <if_docked name="Houston Outpost" />
+    <if_distance name1="Artemis" name2="DS1" comparator="LESS_EQUAL" value="DockedRange*1.6" />
+    <if_distance name1="Intrepid" name2="DS1" comparator="LESS_EQUAL" value="DockedRange*1.6" />
+    <if_docked name="DS1" />
     <log text="TSN Command issued mission orders" />
-    <incoming_comms_text from="TSN Command" type="SIDE">The TSN Diana recently went on a secret mission into enemy territory beyond the asteroid belt to scout out a recently discovered unstable wormhole. Unfortunately, all contact from the Diana has since been lost. Your mission is to find out what happened to her, and return her to a TSN station if possible.  If not, make sure she is destroyed.  We cannot risk her falling into enemy hands.</incoming_comms_text>
+    <incoming_comms_text from="DS1" type="SIDE">As a result of the recent Diana Operation, the Torgoth have moved their fleets elsewhere in the conflict^with the TSN.  The Arvonians, however, have advanced and taken Houston Outpost, but not before we managed^to tow the crippled TSN Diana back here to DS1 where it is now undergoing reconstruction.  A scout ship^reported that an Arvonian base has just appeared in the asteroid belt, presumably in preparation for an^assault on DS1.  Your mission is to protect both DS1 and the Diana from the Arvonian invasion.</incoming_comms_text>
     <set_variable name="TsnCommandGaveMission" value="1.0" />
+    <set_timer name="SabotageDelay" seconds="SabotageDelaySeconds" />
   </event>
   <event name="Task Succeeded - 3 Ships Docked" id_arme="bee1aff2-7bd6-4346-a020-863841bbeb14" parent_id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6">
     <if_variable name="PlayerShipCount" comparator="GREATER_EQUAL" value="3.0" />
@@ -176,14 +208,16 @@
     <if_distance name1="Aegis" name2="DS1" comparator="LESS_EQUAL" value="DockedRange*1.6" />
     <if_docked name="DS1" />
     <log text="TSN Command issued mission orders" />
-    <incoming_comms_text from="TSN Command" type="SIDE">TBD</incoming_comms_text>
+    <incoming_comms_text from="TSN Command" type="SIDE">As a result of the recent Diana Operation, the Torgoth have moved their fleets elsewhere in the conflict^with the TSN.  The Arvonians, however, have advanced and taken Houston Outpost, but not before we managed^to tow the crippled TSN Diana back here to DS1 where it is now undergoing reconstruction.  A scout ship^reported that an Arvonian base has just appeared in the asteroid belt, presumably in preparation for an^assault on DS1.  Your mission is to protect both DS1 and the Diana from the Arvonian invasion.</incoming_comms_text>
     <set_variable name="TsnCommandGaveMission" value="1.0" />
+    <set_timer name="SabotageDelay" seconds="SabotageDelaySeconds" />
   </event>
   <event name="GM give mission" id_arme="c8c38a14-899f-4b30-9010-52298c0fde64" parent_id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6">
     <if_gm_button text="GM/Resend Comms/Give Mission" />
     <log text="GM gave mission" />
-    <incoming_comms_text from="TSN Command" type="SIDE">TBD</incoming_comms_text>
+    <incoming_comms_text from="TSN Command" type="SIDE">As a result of the recent Diana Operation, the Torgoth have moved their fleets elsewhere in the conflict^with the TSN.  The Arvonians, however, have advanced and taken Houston Outpost, but not before we managed^to tow the crippled TSN Diana back here to DS1 where it is now undergoing reconstruction.  A scout ship^reported that an Arvonian base has just appeared in the asteroid belt, presumably in preparation for an^assault on DS1.  Your mission is to protect both DS1 and the Diana from the Arvonian invasion.</incoming_comms_text>
     <set_variable name="TsnCommandGaveMission" value="1.0" />
+    <set_timer name="SabotageDelay" seconds="SabotageDelaySeconds" />
   </event>
   <event name="Mission Failed - Friendly Base Destroyed" id_arme="a179a5ff-c09e-45d6-b572-786529a3e479" parent_id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6">
     <if_variable name="GameStatus" comparator="EQUALS" value="1" />
@@ -200,5 +234,67 @@
     <log text="Did not receive missions orders in time" />
     <incoming_comms_text from="TSN Command" type="SIDE">You did not follow orders from TSN Command in time!</incoming_comms_text>
     <set_variable name="GameStatus" value="0" />
+  </event>
+  <folder_arme name="Sabotage" id_arme="06783d9d-3423-44f3-b6e3-28e8f836b4fd" expanded_arme="" />
+  <event name="Bomb Set" id_arme="9c900198-e63b-4408-9a57-32ae99e1e2ae" parent_id_arme="06783d9d-3423-44f3-b6e3-28e8f836b4fd">
+    <if_exists name="DS1" />
+    <if_variable name="BombsSet" comparator="EQUALS" value="BombsDefused" />
+    <if_timer_finished name="SabotageDelay" />
+    <log text="Bomb set!" />
+    <warning_popup_message message="Urgent message from DS1" consoles="M" />
+    <incoming_comms_text from="DS1" type="STATION">URGENT: Immediate assistance needed at DS1!  We must have a sabotaur at work.  We just discovered a bomb on our station in the production facility!  Please dock with us as soon as possible and send a team of explosives experts who can deal with it before it detonates and destroys this station!  All production has been paused in the meantime.</incoming_comms_text>
+    <set_gm_button text="Bomb defused" />
+    <set_gm_button text="Bomb detonated" />
+    <set_object_property property="canBuild" value="0" name="DS1" />
+    <set_timer name="SabotageDelay" seconds="SabotageDelaySeconds" />
+    <set_variable name="BombsSet" value="BombsSet + 1" integer="yes" />
+    <set_variable name="WelcomedArtemisAwayTeam" value="0.0" />
+    <set_variable name="WelcomedIntrepidAwayTeam" value="0.0" />
+    <set_variable name="WelcomedAegisAwayTeam" value="0.0" />
+  </event>
+  <event name="Artemis docked" id_arme="8aaa2492-326c-413c-a6ff-b38102c6a092" parent_id_arme="06783d9d-3423-44f3-b6e3-28e8f836b4fd">
+    <if_distance name1="Artemis" name2="DS1" comparator="LESS_EQUAL" value="DockedRange" />
+    <if_variable name="WelcomedArtemisAwayTeam" comparator="EQUALS" value="0.0" />
+    <if_object_property property="canBuild" name="DS1" comparator="EQUALS" value="0.0" />
+    <log text="Artemis docked at DS1 to defuse bomb" />
+    <set_variable name="WelcomedArtemisAwayTeam" value="1.0" />
+    <incoming_comms_text from="DS1" type="STATION">Glad to see you, Artemis. An Away Team of explosives experts should immediately disembark and head over to the production facility on our station.</incoming_comms_text>
+  </event>
+  <event name="Intrepid docked" id_arme="4e9c9d7f-1cb0-49b7-bb0d-5b8aedd79088" parent_id_arme="06783d9d-3423-44f3-b6e3-28e8f836b4fd">
+    <if_distance name1="Intrepid" name2="DS1" comparator="LESS_EQUAL" value="DockedRange" />
+    <if_variable name="WelcomedIntrepidAwayTeam" comparator="EQUALS" value="0.0" />
+    <if_object_property property="canBuild" name="DS1" comparator="EQUALS" value="0.0" />
+    <log text="Intrepid docked at DS1 to defuse bomb" />
+    <set_variable name="WelcomedIntrepidAwayTeam" value="1.0" />
+    <incoming_comms_text from="DS1" type="STATION">Glad to see you, Intrepid. An Away Team of explosives experts should immediately disembark and head over to the production facility on our station.</incoming_comms_text>
+  </event>
+  <event name="Aegis docked" id_arme="4138f4e7-048b-429a-8666-a49be7fe3fbf" parent_id_arme="06783d9d-3423-44f3-b6e3-28e8f836b4fd">
+    <if_distance name1="Aegis" name2="DS1" comparator="LESS_EQUAL" value="DockedRange" />
+    <if_variable name="WelcomedAegisAwayTeam" comparator="EQUALS" value="0.0" />
+    <if_object_property property="canBuild" name="DS1" comparator="EQUALS" value="0.0" />
+    <log text="Aegis docked at DS1 to defuse bomb" />
+    <set_variable name="WelcomedAegisAwayTeam" value="1.0" />
+    <incoming_comms_text from="DS1" type="STATION">Glad to see you, Aegis. An Away Team of explosives experts should immediately disembark and head over to the production facility on our station.</incoming_comms_text>
+  </event>
+  <event name="Bomb Defused" id_arme="552e39ad-0ac1-4fb8-abe1-490bed21d397" parent_id_arme="06783d9d-3423-44f3-b6e3-28e8f836b4fd">
+    <if_gm_button text="Bomb defused" />
+    <log text="Bomb defused" />
+    <clear_gm_button text="Bomb defused" />
+    <clear_gm_button text="Bomb detonated" />
+    <set_object_property property="canBuild" value="1" name="DS1" />
+    <set_variable name="BombsDefused" value="BombsDefused + 1" />
+    <incoming_comms_text from="DS1" type="STATION">Congratulations, the bomb has been defused and our production facility has resumed operation!</incoming_comms_text>
+    <!---->
+    <!--Schedule another sabotage attempt-->
+    <!---->
+    <set_timer name="SabotageDelay" seconds="SabotageDelaySeconds" />
+  </event>
+  <event name="Bomb Detonated" id_arme="486a7bdd-b0de-4d0e-ac93-723e5902f137" parent_id_arme="06783d9d-3423-44f3-b6e3-28e8f836b4fd">
+    <if_gm_button text="Bomb detonated" />
+    <log text="Bomb detonated!" />
+    <clear_gm_button text="Bomb detonated" />
+    <clear_gm_button text="Bomb defused" />
+    <destroy name="DS1" />
+    <warning_popup_message message="DS1 has been destroyed!" consoles="M" />
   </event>
 </mission_data>
