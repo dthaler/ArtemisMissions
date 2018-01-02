@@ -20,7 +20,7 @@
     <set_variable name="SabotageDelaySeconds" value="30.0" />
     <big_message title="A Spanner in the Works" subtitle1="A Diana Series Mission by Dave Thaler" subtitle2="adventure for Artemis 2.6" />
   </start>
-  <folder_arme name="Initialization" id_arme="6ef97816-b707-4333-8e81-c10c250bf89b" expanded_arme="" />
+  <folder_arme name="Initialization" id_arme="6ef97816-b707-4333-8e81-c10c250bf89b" />
   <event name="Set PlayerShipCount" id_arme="bc8332b6-2265-42dc-89c6-64fc9326d561" parent_id_arme="6ef97816-b707-4333-8e81-c10c250bf89b">
     <if_fleet_count comparator="GREATER" value="PlayerShipCount" sideValue="2" />
     <set_variable name="PlayerShipCount" value="PlayerShipCount + 1" />
@@ -30,7 +30,7 @@
     <if_object_property property="systemDamageImpulse" name="Diana" comparator="LESS" value="100.0" />
     <set_object_property property="systemDamageImpulse" value="100.0" name="Diana" />
     <clear_ai name="Diana" />
-    <set_special name="Diana" ship="-1" captain="-1" />
+    <set_ship_text name="Diana" scan_desc="The Diana is unmanned, and is undergoing reconstruction." />
   </event>
   <folder_arme name="Start/End Game Events" id_arme="e829d865-90bd-4c1b-aabe-60c7d7cfe1a1" expanded_arme="" />
   <event name="Start Title timer after first ship connects" id_arme="75a51448-2195-4afa-9ca8-864f45de62a0" parent_id_arme="e829d865-90bd-4c1b-aabe-60c7d7cfe1a1">
@@ -106,7 +106,7 @@
     <if_fleet_count comparator="GREATER" value="EnemiesLeft" sideValue="1" />
     <set_variable name="EnemiesLeft" value="EnemiesLeft + 1" />
   </event>
-  <folder_arme name="Task: Dock with DS1 to receive orders" id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6" expanded_arme="" />
+  <folder_arme name="Task: Dock with DS1 to receive orders" id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6" />
   <event name="Prepare to summon ships" id_arme="b5f53049-5cf3-43b7-b98d-6a92f25d26f1" parent_id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6">
     <if_variable name="PlayerShipCount" comparator="GREATER" value="0.0" />
     <if_variable name="TsnCommandSummonedShips" comparator="EQUALS" value="0.0" />
@@ -221,7 +221,7 @@ protect both DS1 and the Diana from the Arvonian invasion.</incoming_comms_text>
     <if_timer_finished name="SabotageDelay" />
     <log text="Bomb set!" />
     <warning_popup_message message="Urgent message from DS1" consoles="M" />
-    <incoming_comms_text from="DS1" type="STATION">URGENT: Immediate assistance needed at DS1!  We must have a sabotaur at work.  We just discovered a bomb on our station in the production facility!  Please dock with us as soon as possible and send a team of explosives experts who can deal with it before it detonates and destroys this station!  All production has been paused in the meantime.</incoming_comms_text>
+    <incoming_comms_text from="DS1" type="STATION">URGENT: Immediate assistance needed at DS1!  We must have a sabotaur at work.  We just discovered a bomb on our station in the production facility!  Please dock with us as soon as possible and send a team of explosives experts who can deal with it before it detonates and destroys this station!  We have deactivated our final step in building more missiles so no more will be produced until the bomb is deactivated.</incoming_comms_text>
     <set_gm_button text="Bomb defused" />
     <set_gm_button text="Bomb detonated" />
     <set_object_property property="canBuild" value="0" name="DS1" />

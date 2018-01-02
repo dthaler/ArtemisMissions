@@ -16,19 +16,23 @@
 01/01/18 FIX: add GM buttons to resend comms
 01/01/18 FIX: "DIANA2_" doesn't fit
 01/01/18 ADD: win conditions (defeat the Arvonians)
+01/01/18 FIX: explain station production blockage while bomb is set
 
 ---
 {
 
-1/2 BUG: station production isn't halted while bomb is set
-          * halt production when bomb set
-          * restore production when defused
-
 1/2 ADD: saboteur events
           * add comms messages to reveal the saboteur
           * add comms messages to communicate with the saboteur
-          * handle EMP'ing the station/diana
-          * make the saboteur escape on a shuttle/diana
+          * handle EMP'ing the diana
+          * make the saboteur escape on a shuttle/diana (Diana turns to enemy side)
+
+1/2 ADD: Diana AI
+          * goal is to bring the Diana back to AB1 if it exists (in which case you lose)
+          * set brain stack
+                TRY_TO_BECOME_LEADER
+                TARGET_THROTTLE ...
+                CHASE_ANGER
 
 ---
 
@@ -41,7 +45,7 @@
 
 2/2 FIX: reveal Arvonians after get mission
 
-2/2 FIX: find a way to prevent "Diana created spew"
+2/2 FIX: find a way to prevent "Diana created" spew
 
 2/2 DO: have a bomb timer in the mission if you don't dock within some number of minutes
 
@@ -57,6 +61,8 @@
 
 3/2 MAYBE: should Diana be a player or NPC ship?
             NPC ship means AI can commandeer it
+
+2/2 DO: make Diana AI try to join nearest enemy fleet
 
 ---
 
