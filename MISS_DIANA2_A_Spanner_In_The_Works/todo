@@ -10,43 +10,41 @@
 01/01/18 ADD: handle failure due to DS1 lost
 01/01/18 ADD: handle bomb detonation via GM button
 01/01/18 ADD: lose conditions
+01/01/18 FIX: Diana should be 99 away from DS1
+01/01/18 ADD: periodically refresh GM buttons
+01/01/18 FIX: change all "Houston Outpost" to "DS1" in the file
+01/01/18 FIX: add GM buttons to resend comms
 
 ---
 {
 
 1/1 FIX: "DIANA2_" doesn't fit
 
-1/1 FIX: change SabotageDelay to 300
-
-1/1 FIX: Diana should be 99 away from DS1
-
-1/1 FIX: add GM buttons to resend comms
-
-1/1 FIX: change all "Houston Outpost" to "DS1" in the file
-
 1/2 BUG: station production isn't halted while bomb is set
-            * halt production when bomb set
-            * restore production when defused
+          * halt production when bomb set
+          * restore production when defused
 
 1/2 ADD: win conditions (defeat the Arvonians)
-        * didn't work, probably because thinks enemies left includes neutrals
+          * didn't work, probably because thinks enemies left includes neutrals
 
 1/2 ADD: saboteur events
-     DNTT make sabotage event occur multiple times
-        * add comms messages to reveal the saboteur
-        * add comms messages to communicate with the saboteur
-        * handle EMP'ing the station/diana
-        * make the saboteur escape on a shuttle/diana
-
-1/2 ADD: periodically refresh GM buttons
+          * add comms messages to reveal the saboteur
+          * add comms messages to communicate with the saboteur
+          * handle EMP'ing the station/diana
+          * make the saboteur escape on a shuttle/diana
 
 ---
 
+2/1 FIX: change SabotageDelay to 300
+
 2/1 MAYBE: maybe change the station type to an industrial base?
+        rename to something like 'TSN Shipyard' or similar
 
 2/2 FIX: prevent players from creating Diana as a player ship
 
 2/2 FIX: reveal Arvonians after get mission
+
+2/2 FIX: find a way to prevent "Diana created spew"
 
 ---
 
@@ -63,9 +61,11 @@
 3/2 MAYBE: should Diana be a player or NPC ship?
             NPC ship means AI can commandeer it
 
-}
+---
 
 AME bugs:
     can have multiple comms types in a comms message (contrary to what mission file docs says)
     Station properties should not allow "with player slot"
     canBuild can be set to yes/no but doesn't have that for testing against
+
+}

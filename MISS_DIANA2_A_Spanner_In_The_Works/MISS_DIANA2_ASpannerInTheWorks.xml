@@ -7,8 +7,8 @@
     <create count="200" type="asteroids" startX="90000.0" startY="400.0" startZ="38699.0" endX="10000.0" endY="400.0" endZ="28699.0" randomRange="20000" randomSeed="500" />
     <create type="player" x="48206.0" y="0.0" z="87373.0" angle="0" name="Artemis" />
     <create type="station" x="27764.0" y="0.0" z="73016.0" angle="0" name="DS1" raceKeys="friendly" hullKeys="Deep Space Base base" />
+    <create type="neutral" x="27754.0" y="50.0" z="73016.0" angle="0" name="Diana" hullID="0" sideValue="2" />
     <create type="station" x="68960.0" y="0.0" z="20741.0" angle="0" name="AB1" raceKeys="enemy whalelover" hullKeys="base" sideValue="1" />
-    <create type="neutral" x="26311.0" y="0.0" z="73172.0" angle="0" name="Diana" hullID="0" sideValue="2" />
     <create type="enemy" x="60066.0" y="0.0" z="14499.0" angle="180" raceKeys="enemy whalelover" hullKeys="carrier" fleetnumber="1" />
     <create type="enemy" x="34630.0" y="0.0" z="33068.0" angle="180" raceKeys="enemy whalelover" hullKeys="carrier" fleetnumber="2" />
     <create type="enemy" x="78791.0" y="0.0" z="34473.0" angle="180" raceKeys="enemy whalelover" hullKeys="carrier" fleetnumber="3" />
@@ -148,6 +148,7 @@
     <if_variable name="TsnCommandSummonedShips" comparator="EQUALS" value="0.0" />
     <log text="Delaying before summoning ships" />
     <set_variable name="TsnCommandSummonedShips" value="1.0" />
+    <set_timer name="RefreshGMButtons" seconds="1" />
     <set_timer name="StartupDelayBeforeOrders" seconds="10" />
   </event>
   <event name="TSN Command summons ships" id_arme="db11b82c-2c75-4dfb-b2e1-fef7eb5c91b4" parent_id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6">
@@ -168,14 +169,14 @@
     <if_timer_finished name="StartupDelayBeforeOrders" />
     <log text="TSN Command summoned ships again" />
     <warning_popup_message message="Message from TSN Command" consoles="M" />
-    <incoming_comms_text from="TSN Command" type="SIDE ALERT">We repeat, all TSN ships in this sector are directed to dock at Houston Outpost immediately to receive new mission orders!</incoming_comms_text>
+    <incoming_comms_text from="TSN Command" type="SIDE ALERT">We repeat, all TSN ships in this sector are directed to dock at DS1 immediately to receive new mission orders!</incoming_comms_text>
     <set_variable name="TsnCommandSummonedShips" value="3.0" />
   </event>
   <event name="GM summons ships again" id_arme="92f4ecc2-d839-4ba1-b5f4-8d35ddfeeac1" parent_id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6">
-    <if_gm_button text="GM/Resend Comms/Houston Resummon Ships" />
+    <if_gm_button text="GM/Resend Comms/DS1 Resummon Ships" />
     <log text="TSN Command summoned ships again" />
     <warning_popup_message message="Message from TSN Command" consoles="M" />
-    <incoming_comms_text from="TSN Command" type="SIDE ALERT">We repeat, all TSN ships in this sector are directed to dock at Houston Outpost immediately to receive new mission orders!</incoming_comms_text>
+    <incoming_comms_text from="TSN Command" type="SIDE ALERT">We repeat, all TSN ships in this sector are directed to dock at DS1 immediately to receive new mission orders!</incoming_comms_text>
     <set_variable name="TsnCommandSummonedShips" value="3.0" />
     <set_timer name="ShipsDueAtCommandBase" seconds="300" />
   </event>
@@ -185,9 +186,12 @@
     <if_distance name1="Artemis" name2="DS1" comparator="LESS_EQUAL" value="DockedRange" />
     <if_docked name="DS1" />
     <log text="TSN Command issued mission orders" />
-    <incoming_comms_text from="DS1" type="SIDE">As a result of the recent Diana Operation, the Torgoth have moved their fleets elsewhere in the conflict^with the TSN.  The Arvonians, however, have advanced and taken Houston Outpost, but not before we managed^to tow the crippled TSN Diana back here to DS1 where it is now undergoing reconstruction.  A scout ship^reported that an Arvonian base has just appeared in the asteroid belt, presumably in preparation for an^assault on DS1.  Your mission is to protect both DS1 and the Diana from the Arvonian invasion.</incoming_comms_text>
+    <incoming_comms_text from="DS1" type="SIDE">As a result of the recent Diana Operation, the Torgoth have moved their fleets elsewhere in the conflict^with the TSN.  The Arvonians, however, have advanced and taken Houston Outpost, but not before we managed^to tow the crippled TSN Diana back here to DS1 where it is now undergoing reconstruction.  A scout ship^reported that an Arvonian base has just appeared in the asteroid belt, presumably in preparation for an^assault on DS1.  Your mission is to protect 
+both DS1 and the Diana from the Arvonian invasion.</incoming_comms_text>
     <set_timer name="SabotageDelay" seconds="SabotageDelaySeconds" />
     <set_variable name="TsnCommandGaveMission" value="1.0" />
+    <clear_gm_button text="GM/Resend Comms/Give Mission" />
+    <clear_gm_button text="GM/Resend Comms/DS1 Resummon Ships" />
   </event>
   <event name="Task Succeeded - 2 Ships Docked" id_arme="3c75cb0b-7be9-4c70-b4da-c32d8d05e60c" parent_id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6">
     <if_variable name="PlayerShipCount" comparator="EQUALS" value="2.0" />
@@ -196,9 +200,12 @@
     <if_distance name1="Intrepid" name2="DS1" comparator="LESS_EQUAL" value="DockedRange*1.6" />
     <if_docked name="DS1" />
     <log text="TSN Command issued mission orders" />
-    <incoming_comms_text from="DS1" type="SIDE">As a result of the recent Diana Operation, the Torgoth have moved their fleets elsewhere in the conflict^with the TSN.  The Arvonians, however, have advanced and taken Houston Outpost, but not before we managed^to tow the crippled TSN Diana back here to DS1 where it is now undergoing reconstruction.  A scout ship^reported that an Arvonian base has just appeared in the asteroid belt, presumably in preparation for an^assault on DS1.  Your mission is to protect both DS1 and the Diana from the Arvonian invasion.</incoming_comms_text>
+    <incoming_comms_text from="DS1" type="SIDE">As a result of the recent Diana Operation, the Torgoth have moved their fleets elsewhere in the conflict^with the TSN.  The Arvonians, however, have advanced and taken Houston Outpost, but not before we managed^to tow the crippled TSN Diana back here to DS1 where it is now undergoing reconstruction.  A scout ship^reported that an Arvonian base has just appeared in the asteroid belt, presumably in preparation for an^assault on DS1.  Your mission is to protect 
+both DS1 and the Diana from the Arvonian invasion.</incoming_comms_text>
     <set_variable name="TsnCommandGaveMission" value="1.0" />
     <set_timer name="SabotageDelay" seconds="SabotageDelaySeconds" />
+    <clear_gm_button text="GM/Resend Comms/Give Mission" />
+    <clear_gm_button text="GM/Resend Comms/DS1 Resummon Ships" />
   </event>
   <event name="Task Succeeded - 3 Ships Docked" id_arme="bee1aff2-7bd6-4346-a020-863841bbeb14" parent_id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6">
     <if_variable name="PlayerShipCount" comparator="GREATER_EQUAL" value="3.0" />
@@ -208,24 +215,22 @@
     <if_distance name1="Aegis" name2="DS1" comparator="LESS_EQUAL" value="DockedRange*1.6" />
     <if_docked name="DS1" />
     <log text="TSN Command issued mission orders" />
-    <incoming_comms_text from="TSN Command" type="SIDE">As a result of the recent Diana Operation, the Torgoth have moved their fleets elsewhere in the conflict^with the TSN.  The Arvonians, however, have advanced and taken Houston Outpost, but not before we managed^to tow the crippled TSN Diana back here to DS1 where it is now undergoing reconstruction.  A scout ship^reported that an Arvonian base has just appeared in the asteroid belt, presumably in preparation for an^assault on DS1.  Your mission is to protect both DS1 and the Diana from the Arvonian invasion.</incoming_comms_text>
+    <incoming_comms_text from="TSN Command" type="SIDE">As a result of the recent Diana Operation, the Torgoth have moved their fleets elsewhere in the conflict^with the TSN.  The Arvonians, however, have advanced and taken Houston Outpost, but not before we managed^to tow the crippled TSN Diana back here to DS1 where it is now undergoing reconstruction.  A scout ship^reported that an Arvonian base has just appeared in the asteroid belt, presumably in preparation for an^assault on DS1.  Your mission is to 
+protect both DS1 and the Diana from the Arvonian invasion.</incoming_comms_text>
     <set_variable name="TsnCommandGaveMission" value="1.0" />
     <set_timer name="SabotageDelay" seconds="SabotageDelaySeconds" />
+    <clear_gm_button text="GM/Resend Comms/Give Mission" />
+    <clear_gm_button text="GM/Resend Comms/DS1 Resummon Ships" />
   </event>
   <event name="GM give mission" id_arme="c8c38a14-899f-4b30-9010-52298c0fde64" parent_id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6">
     <if_gm_button text="GM/Resend Comms/Give Mission" />
     <log text="GM gave mission" />
-    <incoming_comms_text from="TSN Command" type="SIDE">As a result of the recent Diana Operation, the Torgoth have moved their fleets elsewhere in the conflict^with the TSN.  The Arvonians, however, have advanced and taken Houston Outpost, but not before we managed^to tow the crippled TSN Diana back here to DS1 where it is now undergoing reconstruction.  A scout ship^reported that an Arvonian base has just appeared in the asteroid belt, presumably in preparation for an^assault on DS1.  Your mission is to protect both DS1 and the Diana from the Arvonian invasion.</incoming_comms_text>
+    <incoming_comms_text from="TSN Command" type="SIDE">As a result of the recent Diana Operation, the Torgoth have moved their fleets elsewhere in the conflict^with the TSN.  The Arvonians, however, have advanced and taken Houston Outpost, but not before we managed^to tow the crippled TSN Diana back here to DS1 where it is now undergoing reconstruction.  A scout ship^reported that an Arvonian base has just appeared in the asteroid belt, presumably in preparation for an^assault on DS1.  Your mission is to 
+protect both DS1 and the Diana from the Arvonian invasion.</incoming_comms_text>
     <set_variable name="TsnCommandGaveMission" value="1.0" />
     <set_timer name="SabotageDelay" seconds="SabotageDelaySeconds" />
-  </event>
-  <event name="Mission Failed - Friendly Base Destroyed" id_arme="a179a5ff-c09e-45d6-b572-786529a3e479" parent_id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6">
-    <if_variable name="GameStatus" comparator="EQUALS" value="1" />
-    <if_variable name="TsnCommandGaveMission" comparator="EQUALS" value="0" />
-    <if_not_exists name="DS1" />
-    <log text="DS1 destroyed before giving orders" />
-    <incoming_comms_text from="TSN Command" type="SIDE">DS1 was destroyed!</incoming_comms_text>
-    <set_variable name="GameStatus" value="0" />
+    <clear_gm_button text="GM/Resend Comms/Give Mission" />
+    <clear_gm_button text="GM/Resend Comms/DS1 Resummon Ships" />
   </event>
   <event name="Mission Failed - Out of time" id_arme="875dc7e9-9018-49d1-8750-bd76aa7f387d" parent_id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6">
     <if_variable name="TsnCommandGaveMission" comparator="EQUALS" value="0" />
@@ -234,6 +239,16 @@
     <log text="Did not receive missions orders in time" />
     <incoming_comms_text from="TSN Command" type="SIDE">You did not follow orders from TSN Command in time!</incoming_comms_text>
     <set_variable name="GameStatus" value="0" />
+  </event>
+  <event name="Refresh GM buttons" id_arme="f1383e6f-ee03-4dce-872f-9f43586e0033" parent_id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6">
+    <if_exists name="DS1" />
+    <if_timer_finished name="RefreshGMButtons" />
+    <if_variable name="TsnCommandGaveMission" comparator="EQUALS" value="0.0" />
+    <clear_gm_button text="GM/Resend Comms/DS1 Resummon Ships" />
+    <clear_gm_button text="GM/Resend Comms/Give Mission" />
+    <set_gm_button text="GM/Resend Comms/DS1 Resummon Ships" />
+    <set_gm_button text="GM/Resend Comms/Give Mission" />
+    <set_timer name="RefreshGMButtons" seconds="10" />
   </event>
   <folder_arme name="Sabotage" id_arme="06783d9d-3423-44f3-b6e3-28e8f836b4fd" expanded_arme="" />
   <event name="Bomb Set" id_arme="9c900198-e63b-4408-9a57-32ae99e1e2ae" parent_id_arme="06783d9d-3423-44f3-b6e3-28e8f836b4fd">
@@ -251,6 +266,7 @@
     <set_variable name="WelcomedArtemisAwayTeam" value="0.0" />
     <set_variable name="WelcomedIntrepidAwayTeam" value="0.0" />
     <set_variable name="WelcomedAegisAwayTeam" value="0.0" />
+    <set_timer name="RefreshGMBombButtons" seconds="3" />
   </event>
   <event name="Artemis docked" id_arme="8aaa2492-326c-413c-a6ff-b38102c6a092" parent_id_arme="06783d9d-3423-44f3-b6e3-28e8f836b4fd">
     <if_distance name1="Artemis" name2="DS1" comparator="LESS_EQUAL" value="DockedRange" />
@@ -275,6 +291,16 @@
     <log text="Aegis docked at DS1 to defuse bomb" />
     <set_variable name="WelcomedAegisAwayTeam" value="1.0" />
     <incoming_comms_text from="DS1" type="STATION">Glad to see you, Aegis. An Away Team of explosives experts should immediately disembark and head over to the production facility on our station.</incoming_comms_text>
+  </event>
+  <event name="Refresh GM buttons" id_arme="b3049e32-14ce-4187-8b89-3322cce1a2f6" parent_id_arme="06783d9d-3423-44f3-b6e3-28e8f836b4fd">
+    <if_exists name="DS1" />
+    <if_variable name="BombsSet" comparator="GREATER" value="BombsDefused" />
+    <if_timer_finished name="RefreshGMButtons" />
+    <clear_gm_button text="Bomb defused" />
+    <clear_gm_button text="Bomb detonated" />
+    <set_gm_button text="Bomb defused" />
+    <set_gm_button text="Bomb detonated" />
+    <set_timer name="RefreshGMButtons" seconds="3" />
   </event>
   <event name="Bomb Defused" id_arme="552e39ad-0ac1-4fb8-abe1-490bed21d397" parent_id_arme="06783d9d-3423-44f3-b6e3-28e8f836b4fd">
     <if_gm_button text="Bomb defused" />
