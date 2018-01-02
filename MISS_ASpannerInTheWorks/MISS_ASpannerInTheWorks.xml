@@ -20,13 +20,14 @@
     <set_variable name="SabotageDelaySeconds" value="30.0" />
     <big_message title="A Spanner in the Works" subtitle1="A Diana Series Mission by Dave Thaler" subtitle2="adventure for Artemis 2.6" />
   </start>
-  <folder_arme name="Initialization" id_arme="6ef97816-b707-4333-8e81-c10c250bf89b" />
+  <folder_arme name="Initialization" id_arme="6ef97816-b707-4333-8e81-c10c250bf89b" expanded_arme="" />
   <event name="Set PlayerShipCount" id_arme="bc8332b6-2265-42dc-89c6-64fc9326d561" parent_id_arme="6ef97816-b707-4333-8e81-c10c250bf89b">
     <if_fleet_count comparator="GREATER" value="PlayerShipCount" sideValue="2" />
     <set_variable name="PlayerShipCount" value="PlayerShipCount + 1" />
   </event>
   <event name="Diana created" id_arme="519bff8f-c77c-4692-b182-acda4ba82a5b" parent_id_arme="6ef97816-b707-4333-8e81-c10c250bf89b">
     <if_exists name="Diana" />
+    <if_object_property property="sideValue" name="Diana" comparator="EQUALS" value="2.0" />
     <if_object_property property="systemDamageImpulse" name="Diana" comparator="LESS" value="100.0" />
     <set_object_property property="systemDamageImpulse" value="100.0" name="Diana" />
     <clear_ai name="Diana" />
@@ -106,7 +107,7 @@
     <if_fleet_count comparator="GREATER" value="EnemiesLeft" sideValue="1" />
     <set_variable name="EnemiesLeft" value="EnemiesLeft + 1" />
   </event>
-  <folder_arme name="Task: Dock with DS1 to receive orders" id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6" />
+  <folder_arme name="Task: Dock with DS1 to receive orders" id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6" expanded_arme="" />
   <event name="Prepare to summon ships" id_arme="b5f53049-5cf3-43b7-b98d-6a92f25d26f1" parent_id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6">
     <if_variable name="PlayerShipCount" comparator="GREATER" value="0.0" />
     <if_variable name="TsnCommandSummonedShips" comparator="EQUALS" value="0.0" />
@@ -286,5 +287,27 @@ protect both DS1 and the Diana from the Arvonian invasion.</incoming_comms_text>
     <clear_gm_button text="Bomb defused" />
     <destroy name="DS1" />
     <warning_popup_message message="DS1 has been destroyed!" consoles="M" />
+  </event>
+  <folder_arme name="Escape" id_arme="354d7eaa-5c2c-486e-81cb-5d977f7d5f55" expanded_arme="" />
+  <event name="Ready to escape" id_arme="3d4352b3-37f1-405a-b323-55357faac490" parent_id_arme="354d7eaa-5c2c-486e-81cb-5d977f7d5f55">
+    <if_variable name="DianaReadyToEscape" comparator="EQUALS" value="0.0" />
+    <if_variable name="BombsSet" comparator="EQUALS" value="2.0" />
+    <log text="Saboteur about to escape" />
+    <set_timer name="DianaEscapeTimer" seconds="30" />
+    <set_variable name="DianaReadyToEscape" value="1.0" />
+  </event>
+  <event name="Diana AI activates" id_arme="5ab5a2dd-561e-4ac8-b49a-0b96d416144e" parent_id_arme="354d7eaa-5c2c-486e-81cb-5d977f7d5f55">
+    <if_object_property property="sideValue" name="Diana" comparator="EQUALS" value="2.0" />
+    <if_timer_finished name="DianaEscapeTimer" />
+    <log text="Diana AI activates" />
+    <set_side_value value="1" name="Diana" />
+    <set_object_property property="systemDamageImpulse" value="0.0" name="Diana" />
+    <set_object_property property="exitPointX" value="68960.0" name="Diana" />
+    <set_object_property property="exitPointZ" value="0.0" name="Diana" />
+    <clear_ai name="Diana" />
+    <add_ai type="TRY_TO_BECOME_LEADER" name="Diana" />
+    <add_ai type="PROCEED_TO_EXIT" name="Diana" />
+    <add_ai type="CHASE_ANGER" name="Diana" />
+    <incoming_comms_text from="DS1" type="ALERT">Unauthorized undocking of the Diana detected!  The saboteur must be trying to escape!</incoming_comms_text>
   </event>
 </mission_data>
