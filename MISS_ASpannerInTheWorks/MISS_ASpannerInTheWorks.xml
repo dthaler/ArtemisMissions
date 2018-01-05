@@ -101,7 +101,7 @@
   </event>
   <event name="Diana Escaped" id_arme="94bc79ae-5517-4033-afa4-2bfcf435e031" parent_id_arme="e829d865-90bd-4c1b-aabe-60c7d7cfe1a1">
     <if_variable name="PlayerShipCount" comparator="GREATER" value="0" />
-    <if_inside_sphere name="Diana" centerX="68960.0" centerY="0.0" centerZ="-2000.0" radius="2500" />
+    <if_inside_sphere name="Diana" centerX="68960.0" centerY="0.0" centerZ="0.0" radius="2500" />
     <if_variable name="GameOver" comparator="EQUALS" value="0.0" />
     <log text="FAILED because the saboteur escaped" />
     <set_variable name="GameOver" value="1.0" />
@@ -312,15 +312,24 @@ protect both DS1 and the Diana from the Arvonian invasion.</incoming_comms_text>
     <if_object_property property="sideValue" name="Diana" comparator="EQUALS" value="2.0" />
     <if_timer_finished name="DianaEscapeTimer" />
     <log text="Diana AI activates" />
-    <set_side_value value="1" name="Diana" />
-    <set_object_property property="systemDamageImpulse" value="0.0" name="Diana" />
-    <set_object_property property="exitPointX" value="68960.0" name="Diana" />
-    <set_object_property property="exitPointZ" value="-2000.0" name="Diana" />
-    <clear_ai name="Diana" />
-    <add_ai type="TRY_TO_BECOME_LEADER" name="Diana" />
-    <add_ai type="PROCEED_TO_EXIT" name="Diana" />
-    <add_ai type="CHASE_ANGER" name="Diana" />
+    <!--Create a new ship that will become the Diana-->
+    <!--We use a new ship instead of changing the side on the existing one, in order to reset the scanned level to 1.-->
+    <create type="neutral" x="27754.0" y="50.0" z="73016.0" angle="0" name="Saboteur" hullID="0" sideValue="1" />
     <incoming_comms_text from="DS1" type="ALERT">Unauthorized undocking of the Diana detected!  The saboteur must be trying to escape!</incoming_comms_text>
+  </event>
+  <event name="Saboteur Diana created" id_arme="4348db9f-e7e7-4f47-a6bf-97663c7b37e7" parent_id_arme="354d7eaa-5c2c-486e-81cb-5d977f7d5f55">
+    <if_exists name="Diana" />
+    <if_exists name="Saboteur" />
+    <set_relative_position name2="Saboteur" distance="0" angle="0" name1="Diana" />
+    <add_ai type="CHASE_ANGER" name="Saboteur" />
+    <add_ai type="PROCEED_TO_EXIT" name="Saboteur" />
+    <add_ai type="TRY_TO_BECOME_LEADER" name="Saboteur" />
+    <clear_ai name="Saboteur" />
+    <set_object_property property="exitPointZ" value="0.0" name="Saboteur" />
+    <set_object_property property="exitPointX" value="68960.0" name="Saboteur" />
+    <set_object_property property="systemDamageImpulse" value="0.0" name="Saboteur" />
+    <destroy name="Diana" />
+    <set_ship_text name="Saboteur" newname="Diana" scan_desc="TBD second SCI scan" hailtext="TBD hailed reply" />
   </event>
   <event name="DEBUG: Allow teleporting Diana" id_arme="8989b6b2-c483-4886-86e8-aa5f7e993d60" parent_id_arme="354d7eaa-5c2c-486e-81cb-5d977f7d5f55">
     <if_exists name="Diana" />
