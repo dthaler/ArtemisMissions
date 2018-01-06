@@ -19,6 +19,7 @@
     <!--TODO: change the delay below to 300-->
     <set_variable name="SabotageDelaySeconds" value="10.0" />
     <big_message title="A Spanner in the Works" subtitle1="A Diana Series Mission by Dave Thaler" subtitle2="adventure for Artemis 2.6" />
+    <set_variable name="BestFrequency" randomIntLow="0" randomIntHigh="4" />
   </start>
   <folder_arme name="Initialization" id_arme="6ef97816-b707-4333-8e81-c10c250bf89b" expanded_arme="" />
   <event name="Set PlayerShipCount" id_arme="bc8332b6-2265-42dc-89c6-64fc9326d561" parent_id_arme="6ef97816-b707-4333-8e81-c10c250bf89b">
@@ -29,9 +30,76 @@
     <if_exists name="Diana" />
     <if_object_property property="sideValue" name="Diana" comparator="EQUALS" value="2.0" />
     <if_object_property property="systemDamageImpulse" name="Diana" comparator="LESS" value="100.0" />
+    <set_object_property property="systemDamageTurning" value="100.0" name="Diana" />
     <set_object_property property="systemDamageImpulse" value="100.0" name="Diana" />
     <clear_ai name="Diana" />
+    <set_object_property property="angle" value="3.14" name="Diana" />
     <set_ship_text name="Diana" scan_desc="The Diana is unmanned, and is undergoing reconstruction." />
+  </event>
+  <event name="Raise frequency A" id_arme="56e373d7-757d-4ee8-80f0-1a1fdfd92470" parent_id_arme="6ef97816-b707-4333-8e81-c10c250bf89b">
+    <if_exists name="Diana" />
+    <if_variable name="BestFrequency" comparator="NOT" value="0.0" />
+    <if_object_property property="shieldBandStrength0" name="Diana" comparator="LESS" value="0.6" />
+    <set_variable name="TempRandom" randomFloatLow="0.6" randomFloatHigh="0.85" />
+    <set_object_property property="shieldBandStrength0" value="TempRandom" name="Diana" />
+  </event>
+  <event name="Raise frequency B" id_arme="a536a299-19b2-4f8a-a284-eea0f0e4b4be" parent_id_arme="6ef97816-b707-4333-8e81-c10c250bf89b">
+    <if_exists name="Diana" />
+    <if_variable name="BestFrequency" comparator="NOT" value="1.0" />
+    <if_object_property property="shieldBandStrength1" name="Diana" comparator="LESS" value="0.6" />
+    <set_variable name="TempRandom" randomFloatLow="0.6" randomFloatHigh="0.85" />
+    <set_object_property property="shieldBandStrength1" value="TempRandom" name="Diana" />
+  </event>
+  <event name="Raise frequency C" id_arme="e8a54454-0838-4444-9361-9de10c992a38" parent_id_arme="6ef97816-b707-4333-8e81-c10c250bf89b">
+    <if_exists name="Diana" />
+    <if_variable name="BestFrequency" comparator="NOT" value="2.0" />
+    <if_object_property property="shieldBandStrength2" name="Diana" comparator="LESS" value="0.6" />
+    <set_variable name="TempRandom" randomFloatLow="0.6" randomFloatHigh="0.85" />
+    <set_object_property property="shieldBandStrength2" value="TempRandom" name="Diana" />
+  </event>
+  <event name="Raise frequency D" id_arme="ddc2a914-96b9-4977-9510-10e1c80f72f8" parent_id_arme="6ef97816-b707-4333-8e81-c10c250bf89b">
+    <if_exists name="Diana" />
+    <if_variable name="BestFrequency" comparator="NOT" value="3.0" />
+    <if_object_property property="shieldBandStrength3" name="Diana" comparator="LESS" value="0.6" />
+    <set_variable name="TempRandom" randomFloatLow="0.6" randomFloatHigh="0.85" />
+    <set_object_property property="shieldBandStrength3" value="TempRandom" name="Diana" />
+  </event>
+  <event name="Raise frequency E" id_arme="c2be3237-397a-47a4-914f-1bbde409b157" parent_id_arme="6ef97816-b707-4333-8e81-c10c250bf89b">
+    <if_exists name="Diana" />
+    <if_variable name="BestFrequency" comparator="NOT" value="4.0" />
+    <if_object_property property="shieldBandStrength4" name="Diana" comparator="LESS" value="0.6" />
+    <set_variable name="TempRandom" randomFloatLow="0.6" randomFloatHigh="0.85" />
+    <set_object_property property="shieldBandStrength4" value="TempRandom" name="Diana" />
+  </event>
+  <event name="Lower frequency A" id_arme="50be9f21-8f6d-405f-8e8c-e98a3756517f" parent_id_arme="6ef97816-b707-4333-8e81-c10c250bf89b">
+    <if_exists name="Diana" />
+    <if_variable name="BestFrequency" comparator="EQUALS" value="0.0" />
+    <if_object_property property="shieldBandStrength0" name="Diana" comparator="GREATER" value="0.5" />
+    <set_object_property property="shieldBandStrength0" value="0.5" name="Diana" />
+  </event>
+  <event name="Lower frequency B" id_arme="5749b266-8f7c-40a2-88a4-1f11d35295ef" parent_id_arme="6ef97816-b707-4333-8e81-c10c250bf89b">
+    <if_exists name="Diana" />
+    <if_variable name="BestFrequency" comparator="EQUALS" value="1.0" />
+    <if_object_property property="shieldBandStrength1" name="Diana" comparator="GREATER" value="0.5" />
+    <set_object_property property="shieldBandStrength1" value="0.5" name="Diana" />
+  </event>
+  <event name="Lower frequency C" id_arme="e04c0fb3-2579-4955-9e63-7c0f9ba45140" parent_id_arme="6ef97816-b707-4333-8e81-c10c250bf89b">
+    <if_exists name="Diana" />
+    <if_variable name="BestFrequency" comparator="EQUALS" value="2.0" />
+    <if_object_property property="shieldBandStrength2" name="Diana" comparator="GREATER" value="0.5" />
+    <set_object_property property="shieldBandStrength2" value="0.5" name="Diana" />
+  </event>
+  <event name="Lower frequency D" id_arme="c9bc2b97-e951-4d12-89cb-67e1cef2e04c" parent_id_arme="6ef97816-b707-4333-8e81-c10c250bf89b">
+    <if_exists name="Diana" />
+    <if_variable name="BestFrequency" comparator="EQUALS" value="3.0" />
+    <if_object_property property="shieldBandStrength3" name="Diana" comparator="GREATER" value="0.5" />
+    <set_object_property property="shieldBandStrength3" value="0.5" name="Diana" />
+  </event>
+  <event name="Lower frequency E" id_arme="6cdf3470-cbbb-438e-8243-ad94c96f8cc1" parent_id_arme="6ef97816-b707-4333-8e81-c10c250bf89b">
+    <if_exists name="Diana" />
+    <if_variable name="BestFrequency" comparator="EQUALS" value="4.0" />
+    <if_object_property property="shieldBandStrength4" name="Diana" comparator="GREATER" value="0.5" />
+    <set_object_property property="shieldBandStrength4" value="0.5" name="Diana" />
   </event>
   <folder_arme name="Start/End Game Events" id_arme="e829d865-90bd-4c1b-aabe-60c7d7cfe1a1" expanded_arme="" />
   <event name="Start Title timer after first ship connects" id_arme="75a51448-2195-4afa-9ca8-864f45de62a0" parent_id_arme="e829d865-90bd-4c1b-aabe-60c7d7cfe1a1">
@@ -113,7 +181,7 @@
     <if_fleet_count comparator="LESS" value="EnemiesLeft" />
     <set_variable name="EnemiesLeft" value="EnemiesLeft - 1" />
   </event>
-  <event name="DEBUG: EnemiesLeft" id_arme="4db1960c-adfd-46e2-9ed6-c621bb6619bf" parent_id_arme="e829d865-90bd-4c1b-aabe-60c7d7cfe1a1">
+  <event name="DEBUG: EnemiesLeft" id_arme="28ef45b1-86b1-4256-9be3-f3c00eee8283" parent_id_arme="e829d865-90bd-4c1b-aabe-60c7d7cfe1a1">
     <if_fleet_count comparator="GREATER" value="EnemiesLeft" />
     <set_variable name="EnemiesLeft" value="EnemiesLeft + 1" />
   </event>
@@ -320,16 +388,16 @@ protect both DS1 and the Diana from the Arvonian invasion.</incoming_comms_text>
   <event name="Saboteur Diana created" id_arme="4348db9f-e7e7-4f47-a6bf-97663c7b37e7" parent_id_arme="354d7eaa-5c2c-486e-81cb-5d977f7d5f55">
     <if_exists name="Diana" />
     <if_exists name="Saboteur" />
+    <log text="Saboteur Diana created" />
     <set_relative_position name2="Saboteur" distance="0" angle="0" name1="Diana" />
-    <add_ai type="CHASE_ANGER" name="Saboteur" />
-    <add_ai type="PROCEED_TO_EXIT" name="Saboteur" />
-    <add_ai type="TRY_TO_BECOME_LEADER" name="Saboteur" />
     <clear_ai name="Saboteur" />
     <set_object_property property="exitPointZ" value="0.0" name="Saboteur" />
     <set_object_property property="exitPointX" value="68960.0" name="Saboteur" />
-    <set_object_property property="systemDamageImpulse" value="0.0" name="Saboteur" />
     <destroy name="Diana" />
     <set_ship_text name="Saboteur" newname="Diana" scan_desc="TBD second SCI scan" hailtext="TBD hailed reply" />
+    <add_ai type="CHASE_ANGER" name="Diana" />
+    <add_ai type="PROCEED_TO_EXIT" name="Diana" />
+    <add_ai type="TRY_TO_BECOME_LEADER" name="Diana" />
   </event>
   <event name="DEBUG: Allow teleporting Diana" id_arme="8989b6b2-c483-4886-86e8-aa5f7e993d60" parent_id_arme="354d7eaa-5c2c-486e-81cb-5d977f7d5f55">
     <if_exists name="Diana" />

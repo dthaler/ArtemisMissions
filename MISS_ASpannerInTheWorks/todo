@@ -21,18 +21,48 @@
 01/02/18 ADD: lose if Diana goes off map
 01/02/18 FIX: don't sabotage again after saboteur escapes
 01/05/18 FIX: set scanned level back to 1 when saboteur escapes
+01/05/18 DO: Diana series backstory
+01/05/18            There was a small planet with an Arvonian research station
+01/05/18            trying to replicate Skaaran cloaking large enough to hide the whole planet.
+01/05/18            It failed and created a rift in the space-time continuum.  Somehow all the
+01/05/18            Arvnonians also died in the rupture or evacuated.  TSN scientists or spies
+01/05/18            learned about the evacuation, and decided to send in the Diana to try to
+01/05/18            investigate and pick up anything they could.   The Diana arrived, got caught in
+01/05/18            the anomaly (sending a distress signal) and crashes.  The crew learned about
+01/05/18            the whale attractor technology, and of results of the failed experiment (but
+01/05/18            not how to reproduce it).   The Arvonian AI in the research station survived
+01/05/18            unbeknownst to the crew and hid in the Diana which was easy to infiltrate.
+01/05/18            But when power went low, the AI hid and went dormant (like a flash drive), 
+01/05/18            to be awakened once power was restored.
+01/06/18 ADD: randomly compute shield band strengths (but one should be clearly lowest)
 
 ---
 {
 
+1/2 ADD: angle property on create is not working, use set_object_property to set angle after creation
+            angle   0 is S
+            angle  45 is SW
+            angle  90 is WNW
+            angle 180 is NE
+
 1/2 ADD: saboteur events
-          * add sci/comms messages to reveal the saboteur
+          * add sci/comms messages to reveal the saboteur is an AI (no life signs aboard)
           * add comms messages to communicate with the saboteur
 
-1/2 ADD: handle EMP'ing the diana
-          perhaps opens up a way for SCI+COMMS to hack back in (a la ST:BC)
+1/2 ADD: open up a way for SCI+COMMS to hack back in (a la ST:BC)
+                if can rotate shield frequency then;
+                    SCI scan to get lowest freq (A-E)
+                    COM can hack in that frequency (A-E)
+                need 3 sequential successes with no failures
+                once successful, impulse disabled
+          * when COM hacks correct frequency and not done
+                * recompute shield band strengths
+                * send COM message
+          * when COM hacks correct frequency and done:
+                * disable impulse, weapons
+                * send COM message
 
-1/2 ADD: angle property on create is not working, use set_object_property to set angle after creation
+1/2 ADD: handle EMP'ing the diana
 
 ---
 
@@ -49,11 +79,11 @@
 
 2/2 DO: have a bomb timer in the mission if you don't dock within some number of minutes
 
-2/2 DO: decide whether it should be an AI from Arvonia or an Alien entity from Elysia
-
 2/2 MAYBE: add a planet by DS1 for cosmetic reasons, maybe use a tiny nebula on top of it for atmosphere?
 
 ---
+
+3/1 DO: decide whether just 1 bomb sequence or 2
 
 3/1 DO: pick a name for the Arvonian base
     https://docs.google.com/viewer?a=v&pid=sites&srcid=ZGVmYXVsdGRvbWFpbnx0c25saW5ndWlzdGljc3xneDo3MmI3YjlkNmI0ZTUxYzFl
