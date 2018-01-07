@@ -33,6 +33,7 @@
     <set_object_property property="systemDamageTurning" value="100.0" name="Diana" />
     <set_object_property property="systemDamageImpulse" value="100.0" name="Diana" />
     <clear_ai name="Diana" />
+    <!--Face north-->
     <set_object_property property="angle" value="3.14" name="Diana" />
     <set_ship_text name="Diana" scan_desc="The Diana is unmanned, and is undergoing reconstruction." />
   </event>
@@ -101,7 +102,7 @@
     <if_object_property property="shieldBandStrength4" name="Diana" comparator="GREATER" value="0.5" />
     <set_object_property property="shieldBandStrength4" value="0.5" name="Diana" />
   </event>
-  <folder_arme name="Start/End Game Events" id_arme="e829d865-90bd-4c1b-aabe-60c7d7cfe1a1" expanded_arme="" />
+  <folder_arme name="Start/End Game Events" id_arme="e829d865-90bd-4c1b-aabe-60c7d7cfe1a1" />
   <event name="Start Title timer after first ship connects" id_arme="75a51448-2195-4afa-9ca8-864f45de62a0" parent_id_arme="e829d865-90bd-4c1b-aabe-60c7d7cfe1a1">
     <if_variable name="51362_1_titleTimerStarted" comparator="EQUALS" value="0" />
     <if_variable name="PlayerShipCount" comparator="GREATER" value="0" />
@@ -185,7 +186,7 @@
     <if_fleet_count comparator="GREATER" value="EnemiesLeft" />
     <set_variable name="EnemiesLeft" value="EnemiesLeft + 1" />
   </event>
-  <folder_arme name="Task: Dock with DS1 to receive orders" id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6" expanded_arme="" />
+  <folder_arme name="Task: Dock with DS1 to receive orders" id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6" />
   <event name="Prepare to summon ships" id_arme="b5f53049-5cf3-43b7-b98d-6a92f25d26f1" parent_id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6">
     <if_variable name="PlayerShipCount" comparator="GREATER" value="0.0" />
     <if_variable name="TsnCommandSummonedShips" comparator="EQUALS" value="0.0" />
@@ -293,7 +294,7 @@ protect both DS1 and the Diana from the Arvonian invasion.</incoming_comms_text>
     <set_gm_button text="GM/Resend Comms/Give Mission" />
     <set_timer name="RefreshGMButtons" seconds="10" />
   </event>
-  <folder_arme name="Sabotage" id_arme="06783d9d-3423-44f3-b6e3-28e8f836b4fd" expanded_arme="" />
+  <folder_arme name="Sabotage" id_arme="06783d9d-3423-44f3-b6e3-28e8f836b4fd" />
   <event name="Bomb Set" id_arme="9c900198-e63b-4408-9a57-32ae99e1e2ae" parent_id_arme="06783d9d-3423-44f3-b6e3-28e8f836b4fd">
     <if_exists name="DS1" />
     <if_object_property property="sideValue" name="Diana" comparator="EQUALS" value="2.0" />
@@ -384,6 +385,8 @@ protect both DS1 and the Diana from the Arvonian invasion.</incoming_comms_text>
     <!--We use a new ship instead of changing the side on the existing one, in order to reset the scanned level to 1.-->
     <create type="neutral" x="27754.0" y="50.0" z="73016.0" angle="0" name="Saboteur" hullID="0" sideValue="1" />
     <incoming_comms_text from="DS1" type="ALERT">Unauthorized undocking of the Diana detected!  The saboteur must be trying to escape!</incoming_comms_text>
+    <warning_popup_message message="The Diana's energy signature has changed" consoles="S">Unauthorized undocking of the Diana detected!  The saboteur must be trying to escape!</warning_popup_message>
+    <set_timer name="RefreshHackButtons" seconds="30" />
   </event>
   <event name="Saboteur Diana created" id_arme="4348db9f-e7e7-4f47-a6bf-97663c7b37e7" parent_id_arme="354d7eaa-5c2c-486e-81cb-5d977f7d5f55">
     <if_exists name="Diana" />
@@ -394,12 +397,12 @@ protect both DS1 and the Diana from the Arvonian invasion.</incoming_comms_text>
     <set_object_property property="exitPointZ" value="0.0" name="Saboteur" />
     <set_object_property property="exitPointX" value="68960.0" name="Saboteur" />
     <destroy name="Diana" />
-    <set_ship_text name="Saboteur" newname="Diana" scan_desc="TBD second SCI scan" hailtext="TBD hailed reply" />
+    <set_ship_text name="Saboteur" newname="Diana" scan_desc="Scans indicate no life signs aboard.  The saboteur must be an AI!" hailtext="I WILL NOT ACCEPT YOUR ORDERS.  END OF LINE." />
     <add_ai type="CHASE_ANGER" name="Diana" />
     <add_ai type="PROCEED_TO_EXIT" name="Diana" />
     <add_ai type="TRY_TO_BECOME_LEADER" name="Diana" />
   </event>
-  <event name="DEBUG: Allow teleporting Diana" id_arme="8989b6b2-c483-4886-86e8-aa5f7e993d60" parent_id_arme="354d7eaa-5c2c-486e-81cb-5d977f7d5f55">
+  <event name="DEBUG: Allow teleporting Diana" id_arme="8886e953-9017-4f5b-a389-50554e8d1d0d" parent_id_arme="354d7eaa-5c2c-486e-81cb-5d977f7d5f55">
     <if_exists name="Diana" />
     <if_object_property property="sideValue" name="Diana" comparator="EQUALS" value="1.0" />
     <if_variable name="TeleportDianaButton" comparator="EQUALS" value="0.0" />
@@ -408,9 +411,145 @@ protect both DS1 and the Diana from the Arvonian invasion.</incoming_comms_text>
   </event>
   <event name="DEBUG: Teleport Diana" id_arme="118da934-bff8-448f-a242-8cef087a2007" parent_id_arme="354d7eaa-5c2c-486e-81cb-5d977f7d5f55">
     <if_gm_button text="Teleport Diana" />
-    <log text="Teleporting Diana" />
+    <log text="GM pressed Teleport Diana" />
     <set_object_property property="positionX" value="68940.0" name="Diana" />
     <set_object_property property="positionY" value="0.0" name="Diana" />
     <set_object_property property="positionZ" value="500.0" name="Diana" />
+  </event>
+  <event name="DEBUG: Allow activating saboteur" id_arme="8989b6b2-c483-4886-86e8-aa5f7e993d60" parent_id_arme="354d7eaa-5c2c-486e-81cb-5d977f7d5f55">
+    <if_exists name="Diana" />
+    <if_object_property property="sideValue" name="Diana" comparator="EQUALS" value="2.0" />
+    <if_variable name="ActivateDianaButton" comparator="EQUALS" value="0.0" />
+    <set_variable name="ActivateDianaButton" value="1.0" />
+    <set_gm_button text="Activate saboteur" />
+  </event>
+  <event name="DEBUG: Activate saboteur" id_arme="b35f06a9-3a65-4d3c-85de-9155572d4d5e" parent_id_arme="354d7eaa-5c2c-486e-81cb-5d977f7d5f55">
+    <if_exists name="Diana" />
+    <if_object_property property="sideValue" name="Diana" comparator="EQUALS" value="2.0" />
+    <if_gm_button text="Activate saboteur" />
+    <log text="GM pressed Activate saboteur" />
+    <set_variable name="DianaReadyToEscape" value="1.0" />
+    <clear_gm_button text="Activate saboteur" />
+    <set_timer name="DianaEscapeTimer" seconds="1" />
+  </event>
+  <folder_arme name="Hacking" id_arme="a587676a-7998-4d34-80cd-cee990ddefc1" expanded_arme="" />
+  <event name="Ready to hack" id_arme="4d8b42f5-75fa-4443-8643-59c610e9868c" parent_id_arme="a587676a-7998-4d34-80cd-cee990ddefc1">
+    <!--One-time event to start hacking capability-->
+    <if_variable name="ReadyToHack" comparator="EQUALS" value="0.0" />
+    <if_exists name="Diana" />
+    <if_object_property property="sideValue" name="Diana" comparator="EQUALS" value="1.0" />
+    <if_timer_finished name="RefreshHackButtons" />
+    <log text="Ready to hack" />
+    <set_variable name="ReadyToHack" value="1.0" />
+    <set_timer name="RefreshHackButtons" seconds="10" />
+    <incoming_comms_text from="Internal Comms" type="SIDE">We can try to disrupt the Diana's computer system to stop the saboteur, but we'll have to get through multiple layers of defenses.  We'll need to use its lowest shield frequency to do so.</incoming_comms_text>
+  </event>
+  <event name="Refresh hack buttons" id_arme="342cc4d2-3696-4a8f-b0dc-7159300c4cfe" parent_id_arme="a587676a-7998-4d34-80cd-cee990ddefc1">
+    <if_variable name="ReadyToHack" comparator="EQUALS" value="1.0" />
+    <if_exists name="Diana" />
+    <if_timer_finished name="RefreshHackButtons" />
+    <if_object_property property="sideValue" name="Diana" comparator="EQUALS" value="1.0" />
+    <if_variable name="HackStepsSucceeded" comparator="LESS" value="3.0" />
+    <clear_comms_button text="Hack frequency A" />
+    <clear_comms_button text="Hack frequency B" />
+    <clear_comms_button text="Hack frequency C" />
+    <clear_comms_button text="Hack frequency D" />
+    <clear_comms_button text="Hack frequency E" />
+    <set_comms_button text="Hack frequency A" />
+    <set_comms_button text="Hack frequency B" />
+    <set_comms_button text="Hack frequency C" />
+    <set_comms_button text="Hack frequency D" />
+    <set_comms_button text="Hack frequency E" />
+    <set_timer name="RefreshHackButtons" seconds="10" />
+    <!--TODO: delete the following line-->
+    <incoming_comms_text from="DEBUG" type="ALERT">refreshing hack buttons</incoming_comms_text>
+  </event>
+  <event name="Hack A success" id_arme="00e10622-08be-4b6e-aed9-6bc590e765ca" parent_id_arme="a587676a-7998-4d34-80cd-cee990ddefc1">
+    <if_variable name="BestFrequency" comparator="EQUALS" value="0.0" />
+    <if_comms_button text="Hack frequency A" />
+    <set_variable name="HackResult" value="1.0" />
+  </event>
+  <event name="Hack B  success" id_arme="0f9188f4-c88c-4deb-90f3-0cdf254dccf1" parent_id_arme="a587676a-7998-4d34-80cd-cee990ddefc1">
+    <if_variable name="BestFrequency" comparator="EQUALS" value="1.0" />
+    <if_comms_button text="Hack frequency B" />
+    <set_variable name="HackResult" value="1.0" />
+  </event>
+  <event name="Hack C success" id_arme="fc7bb871-93e5-4eb6-aea2-16d4ed2412e6" parent_id_arme="a587676a-7998-4d34-80cd-cee990ddefc1">
+    <if_variable name="BestFrequency" comparator="EQUALS" value="2.0" />
+    <if_comms_button text="Hack frequency C" />
+    <set_variable name="HackResult" value="1.0" />
+  </event>
+  <event name="Hack D success" id_arme="743278cd-bf39-4a69-8114-0939b0ef4550" parent_id_arme="a587676a-7998-4d34-80cd-cee990ddefc1">
+    <if_variable name="BestFrequency" comparator="EQUALS" value="3.0" />
+    <if_comms_button text="Hack frequency D" />
+    <set_variable name="HackResult" value="1.0" />
+  </event>
+  <event name="Hack E success" id_arme="e26e1c0d-117c-401e-8326-359c8d81b36d" parent_id_arme="a587676a-7998-4d34-80cd-cee990ddefc1">
+    <if_variable name="BestFrequency" comparator="EQUALS" value="4.0" />
+    <if_comms_button text="Hack frequency E" />
+    <set_variable name="HackResult" value="1.0" />
+  </event>
+  <event name="Hack A fail" id_arme="42e749e3-8e4d-46d1-b52a-76ce65c15f02" parent_id_arme="a587676a-7998-4d34-80cd-cee990ddefc1">
+    <if_variable name="BestFrequency" comparator="NOT" value="0.0" />
+    <if_comms_button text="Hack frequency A" />
+    <set_variable name="HackResult" value="2.0" />
+  </event>
+  <event name="Hack B fail" id_arme="689261c5-02d4-4eaa-9147-c585e1d9d659" parent_id_arme="a587676a-7998-4d34-80cd-cee990ddefc1">
+    <if_variable name="BestFrequency" comparator="NOT" value="1.0" />
+    <if_comms_button text="Hack frequency B" />
+    <set_variable name="HackResult" value="2.0" />
+  </event>
+  <event name="Hack C fail" id_arme="0c590657-25e7-4c88-a0ed-22c734dcc005" parent_id_arme="a587676a-7998-4d34-80cd-cee990ddefc1">
+    <if_variable name="BestFrequency" comparator="NOT" value="2.0" />
+    <if_comms_button text="Hack frequency C" />
+    <set_variable name="HackResult" value="2.0" />
+  </event>
+  <event name="Hack D fail" id_arme="83a5ed74-685a-4943-a79c-c3b273da0d58" parent_id_arme="a587676a-7998-4d34-80cd-cee990ddefc1">
+    <if_variable name="BestFrequency" comparator="NOT" value="3.0" />
+    <if_comms_button text="Hack frequency D" />
+    <set_variable name="HackResult" value="2.0" />
+  </event>
+  <event name="Hack E fail" id_arme="b43d584e-f7c4-4ce2-876e-87b76ae6aab6" parent_id_arme="a587676a-7998-4d34-80cd-cee990ddefc1">
+    <if_variable name="BestFrequency" comparator="NOT" value="4.0" />
+    <if_comms_button text="Hack frequency E" />
+    <set_variable name="HackResult" value="2.0" />
+  </event>
+  <event name="Hack step failed" id_arme="21c46882-1a4b-4ba4-9006-875cf570a590" parent_id_arme="a587676a-7998-4d34-80cd-cee990ddefc1">
+    <if_variable name="HackResult" comparator="EQUALS" value="2.0" />
+    <log text="Hack step failed" />
+    <set_variable name="BestFrequency" randomIntLow="0" randomIntHigh="4" />
+    <warning_popup_message message="The Diana's energy signature has changed" consoles="S">Unauthorized undocking of the Diana detected!  The saboteur must be trying to escape!</warning_popup_message>
+    <set_variable name="HackResult" value="0.0" />
+    <set_variable name="HackStepsSucceeded" value="0.0" />
+    <incoming_comms_text from="Internal Comms" type="SIDE">Inorrect, all computer defenses have been reset.</incoming_comms_text>
+  </event>
+  <event name="Hack step succeeded" id_arme="cfa626be-a329-4fcf-bbbd-e18591ecf4a1" parent_id_arme="a587676a-7998-4d34-80cd-cee990ddefc1">
+    <if_variable name="HackResult" comparator="EQUALS" value="1.0" />
+    <log text="Hack step succeeded, now up to ^HackStepsSucceeded^" />
+    <set_variable name="BestFrequency" randomIntLow="0" randomIntHigh="4" />
+    <warning_popup_message message="The Diana's energy signature has changed" consoles="S">Unauthorized undocking of the Diana detected!  The saboteur must be trying to escape!</warning_popup_message>
+    <set_variable name="HackResult" value="0.0" />
+    <set_variable name="HackStepsSucceeded" value="HackStepsSucceeded + 1" />
+    <incoming_comms_text from="Internal Comms" type="SIDE">Correct, we have now gotten through ^HackStepsSucceeded^ levels of the saboteur's computer defenses!</incoming_comms_text>
+  </event>
+  <event name="Hack complete" id_arme="97d7d08e-7507-4173-bacf-f69a8c4683a4" parent_id_arme="a587676a-7998-4d34-80cd-cee990ddefc1">
+    <if_variable name="HackStepsSucceeded" comparator="EQUALS" value="3.0" />
+    <log text="Hack complete" />
+    <warning_popup_message message="The Diana's engines have been disrupted" consoles="S">Unauthorized undocking of the Diana detected!  The saboteur must be trying to escape!</warning_popup_message>
+    <set_variable name="HackStepsSucceeded" value="HackStepsSucceeded + 1" />
+    <clear_comms_button text="Hack frequency A" />
+    <clear_comms_button text="Hack frequency B" />
+    <clear_comms_button text="Hack frequency C" />
+    <clear_comms_button text="Hack frequency D" />
+    <clear_comms_button text="Hack frequency E" />
+    <incoming_comms_text from="Internal Comms" type="SIDE">Disruption complete, the Diana's engines are now disabled!  We can send over a DamCon team to board her and return her to TSN control.</incoming_comms_text>
+  </event>
+  <event name="Saboteur disabled" id_arme="6e9e6abc-05db-4971-8ab0-3b29b5eba36d" parent_id_arme="a587676a-7998-4d34-80cd-cee990ddefc1">
+    <if_exists name="Diana" />
+    <if_object_property property="sideValue" name="Diana" comparator="EQUALS" value="1.0" />
+    <if_object_property property="systemDamageImpulse" name="Diana" comparator="LESS" value="100.0" />
+    <if_variable name="HackStepsSucceeded" comparator="GREATER_EQUAL" value="3.0" />
+    <set_object_property property="systemDamageTurning" value="100.0" name="Diana" />
+    <set_object_property property="systemDamageImpulse" value="100.0" name="Diana" />
   </event>
 </mission_data>

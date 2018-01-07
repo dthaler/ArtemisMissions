@@ -35,38 +35,25 @@
 01/05/18            But when power went low, the AI hid and went dormant (like a flash drive), 
 01/05/18            to be awakened once power was restored.
 01/06/18 ADD: randomly compute shield band strengths (but one should be clearly lowest)
+01/06/18 ADD: comms message to reveal the saboteur is an AI
+01/06/18 ADD: a way for SCI+COMMS to hack back in (a la ST:BC)
 
 ---
 {
 
-1/2 ADD: angle property on create is not working, use set_object_property to set angle after creation
-            angle   0 is S
-            angle  45 is SW
-            angle  90 is WNW
-            angle 180 is NE
+1/2 ADD: a way to restore the Diana to friendly or neutral side
+            * surrender?
+            * send DamCon team over?
+            * send a player shuttle over?
 
-1/2 ADD: saboteur events
-          * add sci/comms messages to reveal the saboteur is an AI (no life signs aboard)
-          * add comms messages to communicate with the saboteur
-
-1/2 ADD: open up a way for SCI+COMMS to hack back in (a la ST:BC)
-                if can rotate shield frequency then;
-                    SCI scan to get lowest freq (A-E)
-                    COM can hack in that frequency (A-E)
-                need 3 sequential successes with no failures
-                once successful, impulse disabled
-          * when COM hacks correct frequency and not done
-                * recompute shield band strengths
-                * send COM message
-          * when COM hacks correct frequency and done:
-                * disable impulse, weapons
-                * send COM message
-
-1/2 ADD: handle EMP'ing the diana
+1/2 ADD: can we set taunt text?
+            * hail text doesn't work for enemy
 
 ---
 
 2/1 FIX: change SabotageDelay to 300
+
+2/2 ADD?: handle EMP'ing the diana
 
 2/1 MAYBE: maybe change the station type to an industrial base?
         rename to something like 'TSN Shipyard' or similar
