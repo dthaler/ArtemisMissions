@@ -97,6 +97,13 @@
     <if_object_property property="shieldBandStrength4" name="Diana" comparator="GREATER" value="0.5" />
     <set_object_property property="shieldBandStrength4" value="0.5" name="Diana" />
   </event>
+  <event name="Create Skaaran" id_arme="454afe64-1060-451d-8b4f-94d9363b2ed2" parent_id_arme="6ef97816-b707-4333-8e81-c10c250bf89b">
+    <if_difficulty comparator="GREATER" value="SkaaranCount + 1" />
+    <set_variable name="SkaaranX" randomFloatLow="10000.0" randomFloatHigh="90000.0" />
+    <set_variable name="SkaaranZ" randomIntLow="10000" randomIntHigh="40000" />
+    <create type="enemy" x="SkaaranX" y="0.0" z="SkaaranZ" angle="0" raceKeys="Skaraan enemy hasspecials" hullKeys="small" />
+    <set_variable name="SkaaranCount" value="SkaaranCount + 1" />
+  </event>
   <folder_arme name="Start/End Game Events" id_arme="e829d865-90bd-4c1b-aabe-60c7d7cfe1a1" />
   <event name="Start Title timer after first ship connects" id_arme="75a51448-2195-4afa-9ca8-864f45de62a0" parent_id_arme="e829d865-90bd-4c1b-aabe-60c7d7cfe1a1">
     <if_variable name="51362_1_titleTimerStarted" comparator="EQUALS" value="0" />
