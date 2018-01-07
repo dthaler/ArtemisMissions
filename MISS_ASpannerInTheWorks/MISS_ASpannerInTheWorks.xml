@@ -8,10 +8,6 @@
     <create type="player" x="48206.0" y="0.0" z="87373.0" angle="0" name="Artemis" />
     <create type="station" x="27764.0" y="0.0" z="73016.0" angle="0" name="DS1" raceKeys="friendly" hullKeys="Deep Space Base base" />
     <create type="neutral" x="27754.0" y="50.0" z="73016.0" angle="0" name="Diana" hullID="0" sideValue="2" />
-    <create type="station" x="68960.0" y="0.0" z="20741.0" angle="0" name="AB1" raceKeys="enemy whalelover" hullKeys="base" sideValue="1" />
-    <create type="enemy" x="60066.0" y="0.0" z="14499.0" angle="180" raceKeys="enemy whalelover" hullKeys="carrier" fleetnumber="1" />
-    <create type="enemy" x="34630.0" y="0.0" z="33068.0" angle="180" raceKeys="enemy whalelover" hullKeys="carrier" fleetnumber="2" />
-    <create type="enemy" x="78791.0" y="0.0" z="34473.0" angle="180" raceKeys="enemy whalelover" hullKeys="carrier" fleetnumber="3" />
     <set_skybox_index index="10" />
     <set_object_property property="nebulaIsOpaque" value="1" />
     <set_object_property property="musicObjectMasterVolume" value="0.0" />
@@ -20,7 +16,7 @@
     <big_message title="A Spanner in the Works" subtitle1="A Diana Series Mission by Dave Thaler" subtitle2="adventure for Artemis 2.6" />
     <set_variable name="BestFrequency" randomIntLow="0" randomIntHigh="4" />
   </start>
-  <folder_arme name="Initialization" id_arme="6ef97816-b707-4333-8e81-c10c250bf89b" />
+  <folder_arme name="Initialization" id_arme="6ef97816-b707-4333-8e81-c10c250bf89b" expanded_arme="" />
   <event name="Set PlayerShipCount" id_arme="bc8332b6-2265-42dc-89c6-64fc9326d561" parent_id_arme="6ef97816-b707-4333-8e81-c10c250bf89b">
     <if_fleet_count comparator="GREATER" value="PlayerShipCount" />
     <set_variable name="PlayerShipCount" value="PlayerShipCount + 1" />
@@ -185,7 +181,7 @@
     <if_fleet_count comparator="GREATER" value="EnemiesLeft" />
     <set_variable name="EnemiesLeft" value="EnemiesLeft + 1" />
   </event>
-  <folder_arme name="Task: Dock with DS1 to receive orders" id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6" />
+  <folder_arme name="Task: Dock with DS1 to receive orders" id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6" expanded_arme="" />
   <event name="Prepare to summon ships" id_arme="b5f53049-5cf3-43b7-b98d-6a92f25d26f1" parent_id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6">
     <if_variable name="PlayerShipCount" comparator="GREATER" value="0.0" />
     <if_variable name="TsnCommandSummonedShips" comparator="EQUALS" value="0.0" />
@@ -229,12 +225,7 @@
     <if_distance name1="Artemis" name2="DS1" comparator="LESS_EQUAL" value="DockedRange" />
     <if_docked name="DS1" />
     <log text="TSN Command issued mission orders" />
-    <incoming_comms_text from="DS1" type="SIDE">As a result of the recent Diana Operation, the Torgoth have moved their fleets elsewhere in the conflict^with the TSN.  The Arvonians, however, have advanced and taken Houston Outpost, but not before we managed^to tow the crippled TSN Diana back here to DS1 where it is now undergoing reconstruction.  A scout ship^reported that an Arvonian base has just appeared in the asteroid belt, presumably in preparation for an^assault on DS1.  Your mission is to protect 
-both DS1 and the Diana from the Arvonian invasion.</incoming_comms_text>
-    <set_timer name="SabotageDelay" seconds="SabotageDelaySeconds" />
     <set_variable name="TsnCommandGaveMission" value="1.0" />
-    <clear_gm_button text="GM/Resend Comms/Give Mission" />
-    <clear_gm_button text="GM/Resend Comms/DS1 Resummon Ships" />
   </event>
   <event name="Task Succeeded - 2 Ships Docked" id_arme="3c75cb0b-7be9-4c70-b4da-c32d8d05e60c" parent_id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6">
     <if_variable name="PlayerShipCount" comparator="EQUALS" value="2.0" />
@@ -243,12 +234,7 @@ both DS1 and the Diana from the Arvonian invasion.</incoming_comms_text>
     <if_distance name1="Intrepid" name2="DS1" comparator="LESS_EQUAL" value="DockedRange*1.6" />
     <if_docked name="DS1" />
     <log text="TSN Command issued mission orders" />
-    <incoming_comms_text from="DS1" type="SIDE">As a result of the recent Diana Operation, the Torgoth have moved their fleets elsewhere in the conflict^with the TSN.  The Arvonians, however, have advanced and taken Houston Outpost, but not before we managed^to tow the crippled TSN Diana back here to DS1 where it is now undergoing reconstruction.  A scout ship^reported that an Arvonian base has just appeared in the asteroid belt, presumably in preparation for an^assault on DS1.  Your mission is to protect 
-both DS1 and the Diana from the Arvonian invasion.</incoming_comms_text>
     <set_variable name="TsnCommandGaveMission" value="1.0" />
-    <set_timer name="SabotageDelay" seconds="SabotageDelaySeconds" />
-    <clear_gm_button text="GM/Resend Comms/Give Mission" />
-    <clear_gm_button text="GM/Resend Comms/DS1 Resummon Ships" />
   </event>
   <event name="Task Succeeded - 3 Ships Docked" id_arme="bee1aff2-7bd6-4346-a020-863841bbeb14" parent_id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6">
     <if_variable name="PlayerShipCount" comparator="GREATER_EQUAL" value="3.0" />
@@ -258,22 +244,25 @@ both DS1 and the Diana from the Arvonian invasion.</incoming_comms_text>
     <if_distance name1="Aegis" name2="DS1" comparator="LESS_EQUAL" value="DockedRange*1.6" />
     <if_docked name="DS1" />
     <log text="TSN Command issued mission orders" />
-    <incoming_comms_text from="TSN Command" type="SIDE">As a result of the recent Diana Operation, the Torgoth have moved their fleets elsewhere in the conflict^with the TSN.  The Arvonians, however, have advanced and taken Houston Outpost, but not before we managed^to tow the crippled TSN Diana back here to DS1 where it is now undergoing reconstruction.  A scout ship^reported that an Arvonian base has just appeared in the asteroid belt, presumably in preparation for an^assault on DS1.  Your mission is to 
-protect both DS1 and the Diana from the Arvonian invasion.</incoming_comms_text>
     <set_variable name="TsnCommandGaveMission" value="1.0" />
-    <set_timer name="SabotageDelay" seconds="SabotageDelaySeconds" />
-    <clear_gm_button text="GM/Resend Comms/Give Mission" />
-    <clear_gm_button text="GM/Resend Comms/DS1 Resummon Ships" />
   </event>
   <event name="GM give mission" id_arme="c8c38a14-899f-4b30-9010-52298c0fde64" parent_id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6">
     <if_gm_button text="GM/Resend Comms/Give Mission" />
     <log text="GM gave mission" />
-    <incoming_comms_text from="TSN Command" type="SIDE">As a result of the recent Diana Operation, the Torgoth have moved their fleets elsewhere in the conflict^with the TSN.  The Arvonians, however, have advanced and taken Houston Outpost, but not before we managed^to tow the crippled TSN Diana back here to DS1 where it is now undergoing reconstruction.  A scout ship^reported that an Arvonian base has just appeared in the asteroid belt, presumably in preparation for an^assault on DS1.  Your mission is to 
-protect both DS1 and the Diana from the Arvonian invasion.</incoming_comms_text>
     <set_variable name="TsnCommandGaveMission" value="1.0" />
+  </event>
+  <event name="Give mission" id_arme="e67adc38-f742-404e-9352-b1e0797d6519" parent_id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6">
+    <if_variable name="TsnCommandGaveMission" comparator="EQUALS" value="1.0" />
+    <log text="Gave mission" />
+    <incoming_comms_text from="TSN Command" type="SIDE">As a result of the recent Diana Operation, the Torgoth have moved their fleets elsewhere in the conflict^with the TSN.  The Arvonians, however, have advanced and taken Houston Outpost, but not before we managed^to tow the crippled TSN Diana back here to DS1 where it is now undergoing reconstruction.  A scout ship^reported that an Arvonian base has just appeared in the asteroid belt, presumably in preparation for an^assault on DS1.  We are sending their position to your ship now.  Your mission is to protect both DS1 and the Diana from the Arvonian invasion.</incoming_comms_text>
+    <set_variable name="TsnCommandGaveMission" value="2.0" />
     <set_timer name="SabotageDelay" seconds="SabotageDelaySeconds" />
     <clear_gm_button text="GM/Resend Comms/Give Mission" />
     <clear_gm_button text="GM/Resend Comms/DS1 Resummon Ships" />
+    <create type="enemy" x="60066.0" y="0.0" z="14499.0" angle="180" raceKeys="enemy whalelover" hullKeys="carrier" fleetnumber="1" />
+    <create type="enemy" x="34630.0" y="0.0" z="33068.0" angle="180" raceKeys="enemy whalelover" hullKeys="carrier" fleetnumber="2" />
+    <create type="enemy" x="78791.0" y="0.0" z="34473.0" angle="180" raceKeys="enemy whalelover" hullKeys="carrier" fleetnumber="3" />
+    <create type="station" x="68960.0" y="0.0" z="20741.0" angle="0" name="AB1" raceKeys="enemy whalelover" hullKeys="base" sideValue="1" />
   </event>
   <event name="Mission Failed - Out of time" id_arme="875dc7e9-9018-49d1-8750-bd76aa7f387d" parent_id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6">
     <if_variable name="TsnCommandGaveMission" comparator="EQUALS" value="0" />
@@ -405,10 +394,10 @@ protect both DS1 and the Diana from the Arvonian invasion.</incoming_comms_text>
     <if_object_property property="sideValue" name="Diana" comparator="EQUALS" value="1.0" />
     <if_variable name="TeleportDianaButton" comparator="EQUALS" value="0.0" />
     <set_variable name="TeleportDianaButton" value="1.0" />
-    <set_gm_button text="Teleport Diana" />
+    <set_gm_button text="GM/Teleport Diana" />
   </event>
   <event name="DEBUG: Teleport Diana" id_arme="118da934-bff8-448f-a242-8cef087a2007" parent_id_arme="354d7eaa-5c2c-486e-81cb-5d977f7d5f55">
-    <if_gm_button text="Teleport Diana" />
+    <if_gm_button text="GM/Teleport Diana" />
     <log text="GM pressed Teleport Diana" />
     <set_object_property property="positionX" value="68940.0" name="Diana" />
     <set_object_property property="positionY" value="0.0" name="Diana" />
@@ -419,15 +408,15 @@ protect both DS1 and the Diana from the Arvonian invasion.</incoming_comms_text>
     <if_object_property property="sideValue" name="Diana" comparator="EQUALS" value="2.0" />
     <if_variable name="ActivateDianaButton" comparator="EQUALS" value="0.0" />
     <set_variable name="ActivateDianaButton" value="1.0" />
-    <set_gm_button text="Activate saboteur" />
+    <set_gm_button text="GM/Activate saboteur" />
   </event>
   <event name="DEBUG: Activate saboteur" id_arme="b35f06a9-3a65-4d3c-85de-9155572d4d5e" parent_id_arme="354d7eaa-5c2c-486e-81cb-5d977f7d5f55">
     <if_exists name="Diana" />
     <if_object_property property="sideValue" name="Diana" comparator="EQUALS" value="2.0" />
-    <if_gm_button text="Activate saboteur" />
+    <if_gm_button text="GM/Activate saboteur" />
     <log text="GM pressed Activate saboteur" />
     <set_variable name="DianaReadyToEscape" value="1.0" />
-    <clear_gm_button text="Activate saboteur" />
+    <clear_gm_button text="GM/Activate saboteur" />
     <set_timer name="DianaEscapeTimer" seconds="1" />
   </event>
   <folder_arme name="Hacking" id_arme="a587676a-7998-4d34-80cd-cee990ddefc1" />
@@ -459,8 +448,7 @@ protect both DS1 and the Diana from the Arvonian invasion.</incoming_comms_text>
     <set_comms_button text="Hack frequency D" />
     <set_comms_button text="Hack frequency E" />
     <set_timer name="RefreshHackButtons" seconds="10" />
-    <!--TODO: delete the following line-->
-    <incoming_comms_text from="DEBUG" type="ALERT">refreshing hack buttons</incoming_comms_text>
+    <!--<incoming_comms_text from="DEBUG" type="ALERT">refreshing hack buttons</incoming_comms_text>-->
   </event>
   <event name="Hack A success" id_arme="00e10622-08be-4b6e-aed9-6bc590e765ca" parent_id_arme="a587676a-7998-4d34-80cd-cee990ddefc1">
     <if_variable name="BestFrequency" comparator="EQUALS" value="0.0" />

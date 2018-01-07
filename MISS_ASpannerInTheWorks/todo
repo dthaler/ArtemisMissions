@@ -37,7 +37,9 @@
 01/06/18 ADD: randomly compute shield band strengths (but one should be clearly lowest)
 01/06/18 ADD: comms message to reveal the saboteur is an AI
 01/06/18 ADD: a way for SCI+COMMS to hack back in (a la ST:BC)
-01/06/18 DEL: remove CHASE_ANGER so won't chanse player if taunted (can't change taunts, per race)
+01/06/18 DEL: remove CHASE_ANGER so won't chase player if taunted (can't change taunts, per race)
+01/06/18 FIX: move GM Teleport Diana and Activate etc GM buttons under GM/
+01/06/18 FIX: reveal Arvonians after get mission
 
 ---
 {
@@ -47,22 +49,21 @@
             * send DamCon team over?
             * send a player shuttle over?
 
----
+1/2 ADD: Skaraans at difficulty level 3?+
+            while SkaraanCount < difficulty = 1
+                create Skaraan
+                SkaraanCount++
 
-2/2 ADD?: handle EMP'ing the Diana
+---
 
 2/1 MAYBE: maybe change the station type to an industrial base?
         rename to something like 'TSN Shipyard' or similar
-
-2/2 FIX: prevent players from creating Diana as a player ship, maybe rename the player ship?
-
-2/2 FIX: reveal Arvonians after get mission
 
 2/2 FIX: find a way to prevent "Diana created" spew
 
 2/2 DO: have a bomb timer in the mission if you don't dock within some number of minutes
 
-2/2 MAYBE: add a planet by DS1 for cosmetic reasons, maybe use a tiny nebula on top of it for atmosphere?
+2/2 CHECK: whether can increase the size of Arvonian carriers
 
 ---
 
@@ -76,7 +77,14 @@
            has attracted more attention from the Arvonian fleets which are now advancing on DS1.  Your mission
            is to protect both DS1 and the Diana from the Arvonian invasion.
 
-2/2 DO?: make Diana AI try to join nearest enemy fleet
+3/2 FIX: prevent players from creating Diana as a player ship, maybe rename the player ship?
+        doesn't seem to allow it already
+
+3/2 ADD?: handle EMP'ing the Diana
+
+3/2 DO?: make Diana AI try to join nearest enemy fleet
+
+3/2 MAYBE: add a planet by DS1 for cosmetic reasons, maybe use a tiny nebula on top of it for atmosphere?
 
 Update wiki page 
     http://artemiswiki.pbworks.com/w/page/39352364/Science
