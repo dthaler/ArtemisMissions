@@ -37,6 +37,7 @@
 01/06/18 ADD: randomly compute shield band strengths (but one should be clearly lowest)
 01/06/18 ADD: comms message to reveal the saboteur is an AI
 01/06/18 ADD: a way for SCI+COMMS to hack back in (a la ST:BC)
+01/06/18 DEL: remove CHASE_ANGER so won't chanse player if taunted (can't change taunts, per race)
 
 ---
 {
@@ -46,14 +47,9 @@
             * send DamCon team over?
             * send a player shuttle over?
 
-1/2 ADD: can we set taunt text?
-            * hail text doesn't work for enemy
-
 ---
 
-2/1 FIX: change SabotageDelay to 300
-
-2/2 ADD?: handle EMP'ing the diana
+2/2 ADD?: handle EMP'ing the Diana
 
 2/1 MAYBE: maybe change the station type to an industrial base?
         rename to something like 'TSN Shipyard' or similar
@@ -80,6 +76,10 @@
            has attracted more attention from the Arvonian fleets which are now advancing on DS1.  Your mission
            is to protect both DS1 and the Diana from the Arvonian invasion.
 
-2/2 DO: make Diana AI try to join nearest enemy fleet
+2/2 DO?: make Diana AI try to join nearest enemy fleet
+
+Update wiki page 
+    http://artemiswiki.pbworks.com/w/page/39352364/Science
+    Discuss surrenders and enemy captain personalities
 
 }

@@ -16,12 +16,11 @@
     <set_object_property property="nebulaIsOpaque" value="1" />
     <set_object_property property="musicObjectMasterVolume" value="0.0" />
     <set_variable name="DockedRange" value="100.0" />
-    <!--TODO: change the delay below to 300-->
-    <set_variable name="SabotageDelaySeconds" value="10.0" />
+    <set_variable name="SabotageDelaySeconds" value="300.0" />
     <big_message title="A Spanner in the Works" subtitle1="A Diana Series Mission by Dave Thaler" subtitle2="adventure for Artemis 2.6" />
     <set_variable name="BestFrequency" randomIntLow="0" randomIntHigh="4" />
   </start>
-  <folder_arme name="Initialization" id_arme="6ef97816-b707-4333-8e81-c10c250bf89b" expanded_arme="" />
+  <folder_arme name="Initialization" id_arme="6ef97816-b707-4333-8e81-c10c250bf89b" />
   <event name="Set PlayerShipCount" id_arme="bc8332b6-2265-42dc-89c6-64fc9326d561" parent_id_arme="6ef97816-b707-4333-8e81-c10c250bf89b">
     <if_fleet_count comparator="GREATER" value="PlayerShipCount" />
     <set_variable name="PlayerShipCount" value="PlayerShipCount + 1" />
@@ -182,7 +181,7 @@
     <if_fleet_count comparator="LESS" value="EnemiesLeft" />
     <set_variable name="EnemiesLeft" value="EnemiesLeft - 1" />
   </event>
-  <event name="DEBUG: EnemiesLeft" id_arme="28ef45b1-86b1-4256-9be3-f3c00eee8283" parent_id_arme="e829d865-90bd-4c1b-aabe-60c7d7cfe1a1">
+  <event name="DEBUG: EnemiesLeft" id_arme="3753f14f-cac2-432c-873b-68f005547932" parent_id_arme="e829d865-90bd-4c1b-aabe-60c7d7cfe1a1">
     <if_fleet_count comparator="GREATER" value="EnemiesLeft" />
     <set_variable name="EnemiesLeft" value="EnemiesLeft + 1" />
   </event>
@@ -368,7 +367,7 @@ protect both DS1 and the Diana from the Arvonian invasion.</incoming_comms_text>
     <destroy name="DS1" />
     <warning_popup_message message="DS1 has been destroyed!" consoles="M" />
   </event>
-  <folder_arme name="Escape" id_arme="354d7eaa-5c2c-486e-81cb-5d977f7d5f55" expanded_arme="" />
+  <folder_arme name="Escape" id_arme="354d7eaa-5c2c-486e-81cb-5d977f7d5f55" />
   <event name="Ready to escape" id_arme="3d4352b3-37f1-405a-b323-55357faac490" parent_id_arme="354d7eaa-5c2c-486e-81cb-5d977f7d5f55">
     <if_variable name="DianaReadyToEscape" comparator="EQUALS" value="0.0" />
     <if_variable name="BombsSet" comparator="EQUALS" value="2.0" />
@@ -397,10 +396,9 @@ protect both DS1 and the Diana from the Arvonian invasion.</incoming_comms_text>
     <set_object_property property="exitPointZ" value="0.0" name="Saboteur" />
     <set_object_property property="exitPointX" value="68960.0" name="Saboteur" />
     <destroy name="Diana" />
-    <set_ship_text name="Saboteur" newname="Diana" scan_desc="Scans indicate no life signs aboard.  The saboteur must be an AI!" hailtext="I WILL NOT ACCEPT YOUR ORDERS.  END OF LINE." />
-    <add_ai type="CHASE_ANGER" name="Diana" />
+    <set_ship_text name="Saboteur" newname="Diana" scan_desc="Scans indicate no life signs aboard.  The saboteur must be an AI!" />
+    <set_object_property property="surrenderChance" value="0" name="Diana" />
     <add_ai type="PROCEED_TO_EXIT" name="Diana" />
-    <add_ai type="TRY_TO_BECOME_LEADER" name="Diana" />
   </event>
   <event name="DEBUG: Allow teleporting Diana" id_arme="8886e953-9017-4f5b-a389-50554e8d1d0d" parent_id_arme="354d7eaa-5c2c-486e-81cb-5d977f7d5f55">
     <if_exists name="Diana" />
@@ -432,7 +430,7 @@ protect both DS1 and the Diana from the Arvonian invasion.</incoming_comms_text>
     <clear_gm_button text="Activate saboteur" />
     <set_timer name="DianaEscapeTimer" seconds="1" />
   </event>
-  <folder_arme name="Hacking" id_arme="a587676a-7998-4d34-80cd-cee990ddefc1" expanded_arme="" />
+  <folder_arme name="Hacking" id_arme="a587676a-7998-4d34-80cd-cee990ddefc1" />
   <event name="Ready to hack" id_arme="4d8b42f5-75fa-4443-8643-59c610e9868c" parent_id_arme="a587676a-7998-4d34-80cd-cee990ddefc1">
     <!--One-time event to start hacking capability-->
     <if_variable name="ReadyToHack" comparator="EQUALS" value="0.0" />
