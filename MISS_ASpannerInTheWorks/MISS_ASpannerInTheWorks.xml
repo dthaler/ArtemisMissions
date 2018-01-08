@@ -22,6 +22,7 @@
     <!--Initialize any variables that must be integers:-->
     <set_variable name="DamConTeamSent" value="0.0" integer="yes" />
     <set_variable name="HackStepsSucceeded" value="0.0" integer="yes" />
+    <set_variable name="SkaaranCount" value="0.0" integer="yes" />
     <set_variable name="TractorStrength" value="2.0" />
   </start>
   <folder_arme name="Initialization" id_arme="6ef97816-b707-4333-8e81-c10c250bf89b" />
@@ -113,7 +114,7 @@
     <create type="enemy" x="SkaaranX" y="0.0" z="SkaaranZ" angle="0" raceKeys="Skaraan enemy hasspecials" hullKeys="small" />
     <set_variable name="SkaaranCount" value="SkaaranCount + 1" />
   </event>
-  <folder_arme name="Start/End Game Events" id_arme="e829d865-90bd-4c1b-aabe-60c7d7cfe1a1" />
+  <folder_arme name="Start/End Game Events" id_arme="e829d865-90bd-4c1b-aabe-60c7d7cfe1a1" expanded_arme="" />
   <event name="Start Title timer after first ship connects" id_arme="75a51448-2195-4afa-9ca8-864f45de62a0" parent_id_arme="e829d865-90bd-4c1b-aabe-60c7d7cfe1a1">
     <if_variable name="51362_1_titleTimerStarted" comparator="EQUALS" value="0" />
     <if_variable name="PlayerShipCount" comparator="GREATER" value="0" />
@@ -152,7 +153,8 @@
   <event name="All enemies destroyed" id_arme="8cd2c901-c296-44f2-9e21-34a669cf027b" parent_id_arme="e829d865-90bd-4c1b-aabe-60c7d7cfe1a1">
     <if_not_exists name="AB1" />
     <if_variable name="GameOver" comparator="EQUALS" value="0.0" />
-    <if_fleet_count comparator="EQUALS" value="0.0" />
+    <if_variable name="TsnCommandGaveMission" comparator="GREATER" value="1.0" />
+    <if_fleet_count comparator="EQUALS" value="0.0" sideValue="1" />
     <log text="MISSION SUCCEEDED" />
     <set_variable name="GameOver" value="1.0" />
     <set_timer name="GameFinishedTimer" seconds="15" />
@@ -190,14 +192,14 @@
     <incoming_comms_text from="Main Screen" type="SIDE">Mission Failed^The saboteur escaped with the TSN Diana</incoming_comms_text>
   </event>
   <event name="DEBUG: EnemiesLeft" id_arme="b2cb0990-403d-4203-9f02-a732053e1d82" parent_id_arme="e829d865-90bd-4c1b-aabe-60c7d7cfe1a1">
-    <if_fleet_count comparator="LESS" value="EnemiesLeft" />
+    <if_fleet_count comparator="LESS" value="EnemiesLeft" sideValue="1" />
     <set_variable name="EnemiesLeft" value="EnemiesLeft - 1" />
   </event>
   <event name="DEBUG: EnemiesLeft" id_arme="3753f14f-cac2-432c-873b-68f005547932" parent_id_arme="e829d865-90bd-4c1b-aabe-60c7d7cfe1a1">
-    <if_fleet_count comparator="GREATER" value="EnemiesLeft" />
+    <if_fleet_count comparator="GREATER" value="EnemiesLeft" sideValue="1" />
     <set_variable name="EnemiesLeft" value="EnemiesLeft + 1" />
   </event>
-  <folder_arme name="Task: Dock with DS1 to receive orders" id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6" />
+  <folder_arme name="Task: Dock with DS1 to receive orders" id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6" expanded_arme="" />
   <event name="Prepare to summon ships" id_arme="b5f53049-5cf3-43b7-b98d-6a92f25d26f1" parent_id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6">
     <if_variable name="PlayerShipCount" comparator="GREATER" value="0.0" />
     <if_variable name="TsnCommandSummonedShips" comparator="EQUALS" value="0.0" />
@@ -270,8 +272,7 @@
   <event name="Give mission" id_arme="e67adc38-f742-404e-9352-b1e0797d6519" parent_id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6">
     <if_variable name="TsnCommandGaveMission" comparator="EQUALS" value="1.0" />
     <log text="Gave mission" />
-    <incoming_comms_text from="TSN Command" type="SIDE">As a result of the recent Diana Operation, the Torgoth have moved their fleets elsewhere in the conflict^with the TSN.  The Arvonians, however, have advanced and taken Houston Outpost, but not before we managed^to tow the crippled TSN Diana back here to DS1 where it is now undergoing reconstruction.  A scout ship^reported that an Arvonian base has just appeared in the asteroid belt, presumably in preparation for an^assault on DS1.  We are sending thei
-r position to your ship now.  Your mission is to protect both DS1 and the Diana from the Arvonian invasion.</incoming_comms_text>
+    <incoming_comms_text from="TSN Command" type="SIDE">As a result of the recent Diana Operation, the Torgoth have moved their fleets^elsewhere in the conflict with the TSN.  The Arvonians, however, have advanced^and taken Houston Outpost, but not before we managed to tow the crippled TSN^Diana back here to DS1 where it is now undergoing reconstruction.  A scout ship^reported that an Arvonian base has just appeared in the asteroid belt,^presumably in preparation for an assault on DS1.  We are sending their position^to your ship now.  Your mission is to protect both DS1 and the Diana from the^Arvonian invasion.  It is imperative that we not lose either one.</incoming_comms_text>
     <set_variable name="TsnCommandGaveMission" value="2.0" />
     <set_timer name="SabotageDelay" seconds="SabotageDelaySeconds" />
     <clear_gm_button text="GM/Resend Comms/Give Mission" />
@@ -307,7 +308,7 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
     <if_timer_finished name="SabotageDelay" />
     <log text="Bomb set!" />
     <warning_popup_message message="Urgent message from DS1" consoles="M" />
-    <incoming_comms_text from="DS1" type="STATION">URGENT: Immediate assistance needed at DS1!  We must have a sabotaur at work.  We just discovered a bomb on our station in the production facility!  Please dock with us as soon as possible and send a team of explosives experts who can deal with it before it detonates and destroys this station!  We have deactivated our final step in building more missiles so no more will be produced until the bomb is deactivated.</incoming_comms_text>
+    <incoming_comms_text from="DS1" type="STATION">URGENT: Immediate assistance needed at DS1!  We must have a sabotaur at work.  We just discovered a bomb on our station in the production facility!  We need you to dock with us as soon as possible and send a team of explosives experts who can deal with it before it detonates and destroys this station!  We have deactivated our final step in building more missiles so no more will be produced until the bomb is deactivated.</incoming_comms_text>
     <set_gm_button text="Bomb defused" />
     <set_gm_button text="Bomb detonated" />
     <set_object_property property="canBuild" value="0" name="DS1" />

@@ -43,11 +43,21 @@
 01/07/18 ADD: <difficulty-1> small Skaraans
 01/07/18 FIX: display number of successful hack steps in a comms message
 01/07/18 ADD: a way to restore the Diana to friendly or neutral side
+01/07/18 BUG: Skaaran count should be 0 on difficulty level 1
+01/07/18 BUG: Diana switching sides is still counted as an enemy in EnemiesLeft variable
+
 
 ---
 {
 
+1/2 BUG: Urgent message from DS1 about saboteur can happen after hacking
+        "Bomb set!" after "Hack complete"
+
 ---
+
+2/2 ADD: maybe some friendly civilian ships to keep comms busy at the beginning
+
+2/2 ADD: clue that the AI is Arvonian
 
 2/2 FIX: find a way to prevent "Diana created" spew
 
