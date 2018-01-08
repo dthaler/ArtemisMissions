@@ -41,6 +41,7 @@
 01/06/18 FIX: move GM Teleport Diana and Activate etc GM buttons under GM/
 01/06/18 FIX: reveal Arvonians after get mission
 01/07/18 ADD: <difficulty-1> small Skaraans
+01/17/18 FIX: display number of successful hack steps in a comms message
 
 ---
 {
@@ -51,8 +52,6 @@
             * send a player shuttle over?
 
 ---
-
-update wiki max random int is somewhere in the 30000's (above 32768)
 
 2/1 MAYBE: maybe change the station type to an industrial base?
         rename to something like 'TSN Shipyard' or similar

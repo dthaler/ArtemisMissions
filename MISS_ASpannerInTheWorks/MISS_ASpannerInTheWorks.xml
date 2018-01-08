@@ -15,6 +15,8 @@
     <set_variable name="SabotageDelaySeconds" value="300.0" />
     <big_message title="A Spanner in the Works" subtitle1="A Diana Series Mission by Dave Thaler" subtitle2="adventure for Artemis 2.6" />
     <set_variable name="BestFrequency" randomIntLow="0" randomIntHigh="4" />
+    <set_variable name="HackSuccessesNeeded" value="5.0" integer="yes" />
+    <set_variable name="HackStepsSucceeded" value="0.0" integer="yes" />
   </start>
   <folder_arme name="Initialization" id_arme="6ef97816-b707-4333-8e81-c10c250bf89b" expanded_arme="" />
   <event name="Set PlayerShipCount" id_arme="bc8332b6-2265-42dc-89c6-64fc9326d561" parent_id_arme="6ef97816-b707-4333-8e81-c10c250bf89b">
@@ -188,7 +190,7 @@
     <if_fleet_count comparator="GREATER" value="EnemiesLeft" />
     <set_variable name="EnemiesLeft" value="EnemiesLeft + 1" />
   </event>
-  <folder_arme name="Task: Dock with DS1 to receive orders" id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6" expanded_arme="" />
+  <folder_arme name="Task: Dock with DS1 to receive orders" id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6" />
   <event name="Prepare to summon ships" id_arme="b5f53049-5cf3-43b7-b98d-6a92f25d26f1" parent_id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6">
     <if_variable name="PlayerShipCount" comparator="GREATER" value="0.0" />
     <if_variable name="TsnCommandSummonedShips" comparator="EQUALS" value="0.0" />
@@ -261,7 +263,8 @@
   <event name="Give mission" id_arme="e67adc38-f742-404e-9352-b1e0797d6519" parent_id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6">
     <if_variable name="TsnCommandGaveMission" comparator="EQUALS" value="1.0" />
     <log text="Gave mission" />
-    <incoming_comms_text from="TSN Command" type="SIDE">As a result of the recent Diana Operation, the Torgoth have moved their fleets elsewhere in the conflict^with the TSN.  The Arvonians, however, have advanced and taken Houston Outpost, but not before we managed^to tow the crippled TSN Diana back here to DS1 where it is now undergoing reconstruction.  A scout ship^reported that an Arvonian base has just appeared in the asteroid belt, presumably in preparation for an^assault on DS1.  We are sending their position to your ship now.  Your mission is to protect both DS1 and the Diana from the Arvonian invasion.</incoming_comms_text>
+    <incoming_comms_text from="TSN Command" type="SIDE">As a result of the recent Diana Operation, the Torgoth have moved their fleets elsewhere in the conflict^with the TSN.  The Arvonians, however, have advanced and taken Houston Outpost, but not before we managed^to tow the crippled TSN Diana back here to DS1 where it is now undergoing reconstruction.  A scout ship^reported that an Arvonian base has just appeared in the asteroid belt, presumably in preparation for an^assault on DS1.  We are sending thei
+r position to your ship now.  Your mission is to protect both DS1 and the Diana from the Arvonian invasion.</incoming_comms_text>
     <set_variable name="TsnCommandGaveMission" value="2.0" />
     <set_timer name="SabotageDelay" seconds="SabotageDelaySeconds" />
     <clear_gm_button text="GM/Resend Comms/Give Mission" />
@@ -426,7 +429,7 @@
     <clear_gm_button text="GM/Activate saboteur" />
     <set_timer name="DianaEscapeTimer" seconds="1" />
   </event>
-  <folder_arme name="Hacking" id_arme="a587676a-7998-4d34-80cd-cee990ddefc1" />
+  <folder_arme name="Hacking" id_arme="a587676a-7998-4d34-80cd-cee990ddefc1" expanded_arme="" />
   <event name="Ready to hack" id_arme="4d8b42f5-75fa-4443-8643-59c610e9868c" parent_id_arme="a587676a-7998-4d34-80cd-cee990ddefc1">
     <!--One-time event to start hacking capability-->
     <if_variable name="ReadyToHack" comparator="EQUALS" value="0.0" />
@@ -443,7 +446,7 @@
     <if_exists name="Diana" />
     <if_timer_finished name="RefreshHackButtons" />
     <if_object_property property="sideValue" name="Diana" comparator="EQUALS" value="1.0" />
-    <if_variable name="HackStepsSucceeded" comparator="LESS" value="3.0" />
+    <if_variable name="HackStepsSucceeded" comparator="LESS" value="HackSuccessesNeeded" />
     <clear_comms_button text="Hack frequency A" />
     <clear_comms_button text="Hack frequency B" />
     <clear_comms_button text="Hack frequency C" />
@@ -513,23 +516,23 @@
     <set_variable name="BestFrequency" randomIntLow="0" randomIntHigh="4" />
     <warning_popup_message message="The Diana's energy signature has changed" consoles="S">Unauthorized undocking of the Diana detected!  The saboteur must be trying to escape!</warning_popup_message>
     <set_variable name="HackResult" value="0.0" />
-    <set_variable name="HackStepsSucceeded" value="0.0" />
+    <set_variable name="HackStepsSucceeded" value="0.0" integer="yes" />
     <incoming_comms_text from="Internal Comms" type="SIDE">Inorrect, all computer defenses have been reset.</incoming_comms_text>
   </event>
   <event name="Hack step succeeded" id_arme="cfa626be-a329-4fcf-bbbd-e18591ecf4a1" parent_id_arme="a587676a-7998-4d34-80cd-cee990ddefc1">
     <if_variable name="HackResult" comparator="EQUALS" value="1.0" />
-    <log text="Hack step succeeded, now up to ^HackStepsSucceeded^" />
+    <log text="Hack step succeeded, now up to |HackStepsSucceeded|" />
     <set_variable name="BestFrequency" randomIntLow="0" randomIntHigh="4" />
     <warning_popup_message message="The Diana's energy signature has changed" consoles="S">Unauthorized undocking of the Diana detected!  The saboteur must be trying to escape!</warning_popup_message>
     <set_variable name="HackResult" value="0.0" />
-    <set_variable name="HackStepsSucceeded" value="HackStepsSucceeded + 1" />
-    <incoming_comms_text from="Internal Comms" type="SIDE">Correct, we have now gotten through ^HackStepsSucceeded^ levels of the saboteur's computer defenses!</incoming_comms_text>
+    <set_variable name="HackStepsSucceeded" value="HackStepsSucceeded + 1" integer="yes" />
+    <incoming_comms_text from="Internal Comms" type="SIDE">Correct, we have now gotten through |HackStepsSucceeded| levels of the saboteur's computer defenses!</incoming_comms_text>
   </event>
   <event name="Hack complete" id_arme="97d7d08e-7507-4173-bacf-f69a8c4683a4" parent_id_arme="a587676a-7998-4d34-80cd-cee990ddefc1">
-    <if_variable name="HackStepsSucceeded" comparator="EQUALS" value="3.0" />
+    <if_variable name="HackStepsSucceeded" comparator="EQUALS" value="HackSuccessesNeeded" />
     <log text="Hack complete" />
     <warning_popup_message message="The Diana's engines have been disrupted" consoles="S">Unauthorized undocking of the Diana detected!  The saboteur must be trying to escape!</warning_popup_message>
-    <set_variable name="HackStepsSucceeded" value="HackStepsSucceeded + 1" />
+    <set_variable name="HackStepsSucceeded" value="HackStepsSucceeded + 1" integer="yes" />
     <clear_comms_button text="Hack frequency A" />
     <clear_comms_button text="Hack frequency B" />
     <clear_comms_button text="Hack frequency C" />
@@ -541,7 +544,7 @@
     <if_exists name="Diana" />
     <if_object_property property="sideValue" name="Diana" comparator="EQUALS" value="1.0" />
     <if_object_property property="systemDamageImpulse" name="Diana" comparator="LESS" value="100.0" />
-    <if_variable name="HackStepsSucceeded" comparator="GREATER_EQUAL" value="3.0" />
+    <if_variable name="HackStepsSucceeded" comparator="GREATER_EQUAL" value="HackSuccessesNeeded" />
     <set_object_property property="systemDamageTurning" value="100.0" name="Diana" />
     <set_object_property property="systemDamageImpulse" value="100.0" name="Diana" />
   </event>
