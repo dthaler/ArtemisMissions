@@ -6,8 +6,11 @@
     <create count="200" type="asteroids" startX="90000.0" startY="-400.0" startZ="38699.0" endX="10000.0" endY="-400.0" endZ="28699.0" randomRange="20000" randomSeed="400" />
     <create count="200" type="asteroids" startX="90000.0" startY="400.0" startZ="38699.0" endX="10000.0" endY="400.0" endZ="28699.0" randomRange="20000" randomSeed="500" />
     <create type="player" x="48206.0" y="0.0" z="87373.0" angle="0" name="Artemis" />
-    <create type="station" x="27764.0" y="0.0" z="73016.0" angle="0" name="DS1" raceKeys="friendly" hullKeys="Deep Space Base base" />
-    <create type="neutral" x="27754.0" y="50.0" z="73016.0" angle="0" name="Diana" hullID="0" sideValue="2" />
+    <set_variable name="StationX" value="27764.0" />
+    <set_variable name="StationY" value="0.0" />
+    <set_variable name="StationZ" value="73016.0" />
+    <create type="station" x="StationX" y="StationY" z="StationZ" angle="0" name="DS1" raceKeys="friendly" hullKeys="Deep Space Base base" />
+    <create type="neutral" x="StationX - 10" y="StationY + 50.0" z="StationZ" angle="0" name="Diana" hullID="0" sideValue="2" />
     <set_skybox_index index="10" />
     <set_object_property property="nebulaIsOpaque" value="1" />
     <set_object_property property="musicObjectMasterVolume" value="0.0" />
@@ -16,16 +19,20 @@
     <big_message title="A Spanner in the Works" subtitle1="A Diana Series Mission by Dave Thaler" subtitle2="adventure for Artemis 2.6" />
     <set_variable name="BestFrequency" randomIntLow="0" randomIntHigh="4" />
     <set_variable name="HackSuccessesNeeded" value="5.0" integer="yes" />
+    <!--Initialize any variables that must be integers:-->
+    <set_variable name="DamConTeamSent" value="0.0" integer="yes" />
     <set_variable name="HackStepsSucceeded" value="0.0" integer="yes" />
+    <set_variable name="TractorStrength" value="2.0" />
   </start>
-  <folder_arme name="Initialization" id_arme="6ef97816-b707-4333-8e81-c10c250bf89b" expanded_arme="" />
+  <folder_arme name="Initialization" id_arme="6ef97816-b707-4333-8e81-c10c250bf89b" />
   <event name="Set PlayerShipCount" id_arme="bc8332b6-2265-42dc-89c6-64fc9326d561" parent_id_arme="6ef97816-b707-4333-8e81-c10c250bf89b">
     <if_fleet_count comparator="GREATER" value="PlayerShipCount" />
     <set_variable name="PlayerShipCount" value="PlayerShipCount + 1" />
   </event>
-  <event name="Diana created" id_arme="519bff8f-c77c-4692-b182-acda4ba82a5b" parent_id_arme="6ef97816-b707-4333-8e81-c10c250bf89b">
+  <event name="Disable Diana impulse and turning" id_arme="519bff8f-c77c-4692-b182-acda4ba82a5b" parent_id_arme="6ef97816-b707-4333-8e81-c10c250bf89b">
     <if_exists name="Diana" />
     <if_object_property property="sideValue" name="Diana" comparator="EQUALS" value="2.0" />
+    <if_variable name="BoardingState" comparator="EQUALS" value="0.0" />
     <if_object_property property="systemDamageImpulse" name="Diana" comparator="LESS" value="100.0" />
     <set_object_property property="systemDamageTurning" value="100.0" name="Diana" />
     <set_object_property property="systemDamageImpulse" value="100.0" name="Diana" />
@@ -378,13 +385,14 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
     <if_exists name="Diana" />
     <if_object_property property="sideValue" name="Diana" comparator="EQUALS" value="2.0" />
     <if_timer_finished name="DianaEscapeTimer" />
+    <if_variable name="HackStepsSucceeded" comparator="LESS" value="HackSuccessesNeeded" />
     <log text="Diana AI activates" />
     <!--Create a new ship that will become the Diana-->
     <!--We use a new ship instead of changing the side on the existing one, in order to reset the scanned level to 1.-->
     <create type="neutral" x="27754.0" y="50.0" z="73016.0" angle="0" name="Saboteur" hullID="0" sideValue="1" />
     <incoming_comms_text from="DS1" type="ALERT">Unauthorized undocking of the Diana detected!  The saboteur must be trying to escape!</incoming_comms_text>
     <warning_popup_message message="The Diana's energy signature has changed" consoles="S">Unauthorized undocking of the Diana detected!  The saboteur must be trying to escape!</warning_popup_message>
-    <set_timer name="RefreshHackButtons" seconds="30" />
+    <set_timer name="RefreshCommsButtons" seconds="30" />
   </event>
   <event name="Saboteur Diana created" id_arme="4348db9f-e7e7-4f47-a6bf-97663c7b37e7" parent_id_arme="354d7eaa-5c2c-486e-81cb-5d977f7d5f55">
     <if_exists name="Diana" />
@@ -429,22 +437,22 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
     <clear_gm_button text="GM/Activate saboteur" />
     <set_timer name="DianaEscapeTimer" seconds="1" />
   </event>
-  <folder_arme name="Hacking" id_arme="a587676a-7998-4d34-80cd-cee990ddefc1" expanded_arme="" />
+  <folder_arme name="Hacking" id_arme="a587676a-7998-4d34-80cd-cee990ddefc1" />
   <event name="Ready to hack" id_arme="4d8b42f5-75fa-4443-8643-59c610e9868c" parent_id_arme="a587676a-7998-4d34-80cd-cee990ddefc1">
     <!--One-time event to start hacking capability-->
     <if_variable name="ReadyToHack" comparator="EQUALS" value="0.0" />
     <if_exists name="Diana" />
     <if_object_property property="sideValue" name="Diana" comparator="EQUALS" value="1.0" />
-    <if_timer_finished name="RefreshHackButtons" />
+    <if_timer_finished name="RefreshCommsButtons" />
     <log text="Ready to hack" />
     <set_variable name="ReadyToHack" value="1.0" />
-    <set_timer name="RefreshHackButtons" seconds="10" />
+    <set_timer name="RefreshCommsButtons" seconds="10" />
     <incoming_comms_text from="Internal Comms" type="SIDE">We can try to disrupt the Diana's computer system to stop the saboteur, but we'll have to get through multiple layers of defenses.  We'll need to use its lowest shield frequency to do so.</incoming_comms_text>
   </event>
   <event name="Refresh hack buttons" id_arme="342cc4d2-3696-4a8f-b0dc-7159300c4cfe" parent_id_arme="a587676a-7998-4d34-80cd-cee990ddefc1">
     <if_variable name="ReadyToHack" comparator="EQUALS" value="1.0" />
     <if_exists name="Diana" />
-    <if_timer_finished name="RefreshHackButtons" />
+    <if_timer_finished name="RefreshCommsButtons" />
     <if_object_property property="sideValue" name="Diana" comparator="EQUALS" value="1.0" />
     <if_variable name="HackStepsSucceeded" comparator="LESS" value="HackSuccessesNeeded" />
     <clear_comms_button text="Hack frequency A" />
@@ -457,8 +465,7 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
     <set_comms_button text="Hack frequency C" />
     <set_comms_button text="Hack frequency D" />
     <set_comms_button text="Hack frequency E" />
-    <set_timer name="RefreshHackButtons" seconds="10" />
-    <!--<incoming_comms_text from="DEBUG" type="ALERT">refreshing hack buttons</incoming_comms_text>-->
+    <set_timer name="RefreshCommsButtons" seconds="10" />
   </event>
   <event name="Hack A success" id_arme="00e10622-08be-4b6e-aed9-6bc590e765ca" parent_id_arme="a587676a-7998-4d34-80cd-cee990ddefc1">
     <if_variable name="BestFrequency" comparator="EQUALS" value="0.0" />
@@ -526,9 +533,9 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
     <warning_popup_message message="The Diana's energy signature has changed" consoles="S">Unauthorized undocking of the Diana detected!  The saboteur must be trying to escape!</warning_popup_message>
     <set_variable name="HackResult" value="0.0" />
     <set_variable name="HackStepsSucceeded" value="HackStepsSucceeded + 1" integer="yes" />
-    <incoming_comms_text from="Internal Comms" type="SIDE">Correct, we have now gotten through |HackStepsSucceeded| levels of the saboteur's computer defenses!</incoming_comms_text>
+    <incoming_comms_text from="Internal Comms" type="SIDE">Correct, we have now gotten through |HackStepsSucceeded| levels of the saboteur's^computer defenses!</incoming_comms_text>
   </event>
-  <event name="Hack complete" id_arme="97d7d08e-7507-4173-bacf-f69a8c4683a4" parent_id_arme="a587676a-7998-4d34-80cd-cee990ddefc1">
+  <event name="BS1: Hack complete" id_arme="97d7d08e-7507-4173-bacf-f69a8c4683a4" parent_id_arme="a587676a-7998-4d34-80cd-cee990ddefc1">
     <if_variable name="HackStepsSucceeded" comparator="EQUALS" value="HackSuccessesNeeded" />
     <log text="Hack complete" />
     <warning_popup_message message="The Diana's engines have been disrupted" consoles="S">Unauthorized undocking of the Diana detected!  The saboteur must be trying to escape!</warning_popup_message>
@@ -538,7 +545,9 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
     <clear_comms_button text="Hack frequency C" />
     <clear_comms_button text="Hack frequency D" />
     <clear_comms_button text="Hack frequency E" />
-    <incoming_comms_text from="Internal Comms" type="SIDE">Disruption complete, the Diana's engines are now disabled!  We can send over a DamCon team to board her and return her to TSN control.</incoming_comms_text>
+    <incoming_comms_text from="Internal Comms" type="SIDE">Disruption complete, the Diana's engines are now disabled!  If we get within 500m of the Diana and send over a full 6-person DamCon team to board her, we might be able to return her to TSN control.</incoming_comms_text>
+    <set_variable name="BoardingState" value="1.0" />
+    <set_timer name="RefreshCommsButtons" seconds="3" />
   </event>
   <event name="Saboteur disabled" id_arme="6e9e6abc-05db-4971-8ab0-3b29b5eba36d" parent_id_arme="a587676a-7998-4d34-80cd-cee990ddefc1">
     <if_exists name="Diana" />
@@ -547,5 +556,150 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
     <if_variable name="HackStepsSucceeded" comparator="GREATER_EQUAL" value="HackSuccessesNeeded" />
     <set_object_property property="systemDamageTurning" value="100.0" name="Diana" />
     <set_object_property property="systemDamageImpulse" value="100.0" name="Diana" />
+  </event>
+  <folder_arme name="Boarding" id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284" />
+  <event name="Refresh damcon buttons" id_arme="fb1e0719-7ca8-4e53-b66f-de3e4630f30c" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
+    <if_variable name="BoardingState" comparator="EQUALS" value="1.0" />
+    <if_timer_finished name="RefreshCommsButtons" />
+    <set_variable name="DamCon1ButtonRefreshed" value="0.0" />
+    <set_variable name="DamCon2ButtonRefreshed" value="0.0" />
+    <set_variable name="DamCon3ButtonRefreshed" value="0.0" />
+    <set_timer name="RefreshCommsButtons" seconds="3" />
+  </event>
+  <event name="Allow DamCon 1" id_arme="6c47a1d8-4576-4f71-99c3-252843efee98" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
+    <if_variable name="BoardingState" comparator="EQUALS" value="1.0" />
+    <if_variable name="DamCon1ButtonRefreshed" comparator="EQUALS" value="0.0" />
+    <if_damcon_members player_slot="0" team_index="0" comparator="EQUALS" value="6" />
+    <if_distance name1="Diana" name2="Artemis" comparator="LESS_EQUAL" value="500.0" />
+    <set_comms_button text="Send DamCon team 1" />
+    <set_variable name="DamCon1ButtonRefreshed" value="1.0" />
+  </event>
+  <event name="Allow DamCon 2" id_arme="04aded95-cad1-4a50-8b20-a47aaee17863" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
+    <if_variable name="BoardingState" comparator="EQUALS" value="1.0" />
+    <if_variable name="DamCon2ButtonRefreshed" comparator="EQUALS" value="0.0" />
+    <if_damcon_members player_slot="0" team_index="1" comparator="EQUALS" value="6" />
+    <if_distance name1="Diana" name2="Artemis" comparator="LESS_EQUAL" value="500.0" />
+    <set_comms_button text="Send DamCon team 2" />
+    <set_variable name="DamCon2ButtonRefreshed" value="1.0" />
+  </event>
+  <event name="Allow DamCon 3" id_arme="8af32ac7-66fd-4716-a827-57eb9c75be64" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
+    <if_variable name="BoardingState" comparator="EQUALS" value="1.0" />
+    <if_variable name="DamCon3ButtonRefreshed" comparator="EQUALS" value="0.0" />
+    <if_damcon_members player_slot="0" team_index="2" comparator="EQUALS" value="6" />
+    <if_distance name1="Diana" name2="Artemis" comparator="LESS_EQUAL" value="500.0" />
+    <set_comms_button text="Send DamCon team 3" />
+    <set_variable name="DamCon3ButtonRefreshed" value="1.0" />
+  </event>
+  <event name="Disallow DamCon 1 due to distance" id_arme="e0f69dc2-597e-43f4-af9b-f077b93b2cee" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
+    <if_variable name="BoardingState" comparator="EQUALS" value="1.0" />
+    <if_distance name1="Diana" name2="Artemis" comparator="GREATER" value="500.0" />
+    <clear_comms_button text="Send DamCon team 1" />
+  </event>
+  <event name="Disallow DamCon 2 due to distance" id_arme="c7b1aab1-8345-4f08-a114-d154a8d3940d" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
+    <if_variable name="BoardingState" comparator="EQUALS" value="1.0" />
+    <if_distance name1="Diana" name2="Artemis" comparator="GREATER" value="500.0" />
+    <clear_comms_button text="Send DamCon team 2" />
+  </event>
+  <event name="Disallow DamCon 3 due to distance" id_arme="ef8d13b6-356f-49fc-a142-bfad343b88e2" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
+    <if_variable name="BoardingState" comparator="EQUALS" value="1.0" />
+    <if_distance name1="Diana" name2="Artemis" comparator="GREATER" value="500.0" />
+    <clear_comms_button text="Send DamCon team 3" />
+  </event>
+  <event name="BS2: Assign DamCon 1" id_arme="31e5e72c-47d8-4e36-a15f-b155a9e79358" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
+    <if_variable name="BoardingState" comparator="EQUALS" value="1.0" />
+    <if_comms_button text="Send DamCon team 1" />
+    <set_variable name="DamConTeamSent" value="1.0" />
+    <set_damcon_members value="0.0" team_index="0" player_slot="0" />
+    <set_variable name="BoardingState" value="2.0" />
+  </event>
+  <event name="BS2: Assign DamCon 2" id_arme="dd094294-9146-4872-93fb-b6a59b529821" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
+    <if_variable name="BoardingState" comparator="EQUALS" value="1.0" />
+    <if_comms_button text="Send DamCon team 2" />
+    <set_variable name="DamConTeamSent" value="2.0" />
+    <set_damcon_members value="0.0" team_index="0" player_slot="0" />
+    <set_variable name="BoardingState" value="2.0" />
+  </event>
+  <event name="BS2: Assign DamCon 3" id_arme="e5fb7695-b388-4fd2-91bb-56b2b8baea61" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
+    <if_variable name="BoardingState" comparator="EQUALS" value="1.0" />
+    <if_comms_button text="Send DamCon team 3" />
+    <set_variable name="DamConTeamSent" value="3.0" />
+    <set_damcon_members value="0.0" team_index="0" player_slot="0" />
+    <set_variable name="BoardingState" value="2.0" />
+  </event>
+  <event name="BS3: DamCon Transferred" id_arme="501478c1-0e26-4f46-9ed9-fc776d2ec88f" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
+    <if_variable name="BoardingState" comparator="EQUALS" value="2.0" />
+    <log text="Diana boarded by DamCon team |DamConTeamSent|" />
+    <clear_comms_button text="Send DamCon team 1" />
+    <clear_comms_button text="Send DamCon team 2" />
+    <clear_comms_button text="Send DamCon team 3" />
+    <set_timer name="ReclaimDianaTimer" seconds="30" />
+    <incoming_comms_text from="TSN Diana" type="FRIEND">DamCon team |DamConTeamSent| reporting in.  We are now on board the TSN Diana and working on regaining control...</incoming_comms_text>
+    <set_variable name="BoardingState" value="3.0" />
+    <!--If there were a way to remove the shuttlecraft from bay 0, we would do that here too, but there appears to be no way to do that.-->
+  </event>
+  <event name="BS4: DamCon complete" id_arme="7b453dce-f524-41cb-94f7-c9a5fb54d680" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
+    <if_variable name="BoardingState" comparator="EQUALS" value="3.0" />
+    <if_object_property property="sideValue" name="Diana" comparator="EQUALS" value="1.0" />
+    <if_timer_finished name="ReclaimDianaTimer" />
+    <log text="Diana reclaimed by DamCon team |DamConTeamSent|" />
+    <set_object_property property="sideValue" value="2.0" name="Diana" />
+    <clear_ai name="Diana" />
+    <add_ai type="POINT_THROTTLE" value1="StationX" value2="0.0" value3="StationZ" value4="1.0" name="Diana" />
+    <set_ship_text name="Diana" scan_desc="DamCon team |DamConTeamSent| is on board taking her back to DS1." hailtext="We are taking the Diana back to DS1." />
+    <incoming_comms_text from="TSN Diana" type="FRIEND">DamCon team |DamConTeamSent| reporting in... We have regained control of the Diana and have set a course back to DS1!</incoming_comms_text>
+    <incoming_comms_text from="DS1" type="STATION">Great work recapturing the Diana.  We'll take it from here, and interrogate the AI once the ship is safely back and locked down.</incoming_comms_text>
+    <set_variable name="BoardingState" value="4.0" />
+  </event>
+  <event name="Tractoring Diana +X" id_arme="665b8c6f-2ba0-4f01-8d40-9739ec0ad02d" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
+    <if_variable name="BoardingState" comparator="EQUALS" value="4.0" />
+    <if_distance name1="Diana" name2="DS1" comparator="LESS_EQUAL" value="600.0" />
+    <if_object_property property="positionX" name="Diana" comparator="LESS" value="StationX" />
+    <addto_object_property value="TractorStrength" property="positionX" name="Diana" />
+  </event>
+  <event name="Tractoring Diana -X" id_arme="7643146c-0896-4c1b-877c-9b560afac029" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
+    <if_variable name="BoardingState" comparator="EQUALS" value="4.0" />
+    <if_distance name1="Diana" name2="DS1" comparator="LESS_EQUAL" value="600.0" />
+    <if_object_property property="positionX" name="Diana" comparator="GREATER" value="StationX" />
+    <addto_object_property value="-TractorStrength" property="positionX" name="Diana" />
+  </event>
+  <event name="Tractoring Diana +Y" id_arme="826a785c-2f30-43fe-9433-9e746168d848" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
+    <if_variable name="BoardingState" comparator="EQUALS" value="4.0" />
+    <if_distance name1="Diana" name2="DS1" comparator="LESS_EQUAL" value="600.0" />
+    <if_object_property property="positionY" name="Diana" comparator="LESS" value="StationY + 50" />
+    <addto_object_property value="TractorStrength" property="positionY" name="Diana" />
+  </event>
+  <event name="Tractoring Diana -Y" id_arme="be0fce18-a5c4-41bd-b440-7352569821b2" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
+    <if_variable name="BoardingState" comparator="EQUALS" value="4.0" />
+    <if_distance name1="Diana" name2="DS1" comparator="LESS_EQUAL" value="600.0" />
+    <if_object_property property="positionY" name="Diana" comparator="GREATER" value="StationY + 50" />
+    <addto_object_property value="-TractorStrength" property="positionY" name="Diana" />
+  </event>
+  <event name="Tractoring Diana +Z" id_arme="696002d2-3797-46a5-969c-8691f20e8b17" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
+    <if_variable name="BoardingState" comparator="EQUALS" value="4.0" />
+    <if_distance name1="Diana" name2="DS1" comparator="LESS_EQUAL" value="600.0" />
+    <if_object_property property="positionZ" name="Diana" comparator="LESS" value="StationZ" />
+    <addto_object_property value="TractorStrength" property="positionZ" name="Diana" />
+  </event>
+  <event name="Tractoring Diana -Z" id_arme="893633db-4fe5-45f6-b781-45e559492138" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
+    <if_variable name="BoardingState" comparator="EQUALS" value="4.0" />
+    <if_distance name1="Diana" name2="DS1" comparator="LESS_EQUAL" value="600.0" />
+    <if_object_property property="positionZ" name="Diana" comparator="GREATER" value="StationZ" />
+    <addto_object_property value="-TractorStrength" property="positionZ" name="Diana" />
+  </event>
+  <event name="BS5: Diana back at DS1" id_arme="e43560a1-938f-41fe-a723-b5fb16d70b54" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
+    <if_distance name1="Diana" name2="DS1" comparator="LESS_EQUAL" value="150.0" />
+    <if_variable name="BoardingState" comparator="EQUALS" value="4.0" />
+    <log text="Diana back at DS1" />
+    <set_variable name="BoardingState" value="5.0" />
+  </event>
+  <event name="Disable Diana impulse and turning" id_arme="994e81e4-ff2f-48c8-90e8-092bec8a176b" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
+    <if_exists name="Diana" />
+    <if_variable name="BoardingState" comparator="EQUALS" value="5.0" />
+    <if_object_property property="systemDamageImpulse" name="Diana" comparator="LESS" value="100.0" />
+    <set_object_property property="systemDamageTurning" value="100.0" name="Diana" />
+    <set_object_property property="systemDamageImpulse" value="100.0" name="Diana" />
+    <clear_ai name="Diana" />
+    <set_ship_text name="Diana" scan_desc="The Diana is unmanned, and is undergoing reconstruction." hailtext="We have nothing to say." />
+    <!--The DamCon team is now just part of station repair personnel, so mark the Diana as unmanned again.-->
   </event>
 </mission_data>
