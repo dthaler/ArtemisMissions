@@ -27,7 +27,7 @@
     <set_variable name="MaxBombs" value="1.0" integer="yes" />
     <set_variable name="SkaaranCount" value="0.0" integer="yes" />
   </start>
-  <folder_arme name="Initialization" id_arme="6ef97816-b707-4333-8e81-c10c250bf89b" expanded_arme="" />
+  <folder_arme name="Initialization" id_arme="6ef97816-b707-4333-8e81-c10c250bf89b" />
   <event name="Set PlayerShipCount" id_arme="bc8332b6-2265-42dc-89c6-64fc9326d561" parent_id_arme="6ef97816-b707-4333-8e81-c10c250bf89b">
     <if_fleet_count comparator="GREATER" value="PlayerShipCount" />
     <set_variable name="PlayerShipCount" value="PlayerShipCount + 1" />
@@ -121,7 +121,7 @@
     <if_difficulty comparator="GREATER" value="5.0" />
     <set_variable name="MaxBombs" value="2.0" integer="yes" />
   </event>
-  <folder_arme name="Start/End Game Events" id_arme="e829d865-90bd-4c1b-aabe-60c7d7cfe1a1" />
+  <folder_arme name="Start/End Game Events" id_arme="e829d865-90bd-4c1b-aabe-60c7d7cfe1a1" expanded_arme="" />
   <event name="Start Title timer after first ship connects" id_arme="75a51448-2195-4afa-9ca8-864f45de62a0" parent_id_arme="e829d865-90bd-4c1b-aabe-60c7d7cfe1a1">
     <if_variable name="51362_1_titleTimerStarted" comparator="EQUALS" value="0" />
     <if_variable name="PlayerShipCount" comparator="GREATER" value="0" />
@@ -163,10 +163,10 @@
     <if_variable name="TsnCommandGaveMission" comparator="GREATER" value="1.0" />
     <if_fleet_count comparator="EQUALS" value="0.0" sideValue="1" />
     <log text="MISSION SUCCEEDED" />
+    <incoming_comms_text from="TSN Command" type="SIDE">Good work!  The Arvonians have abandoned their attack on DS1, at least for now.  The TSN Diana is also safe and we can now complete the renovations on her to prepare to return her to service again.</incoming_comms_text>
     <set_variable name="GameOver" value="1.0" />
     <set_timer name="GameFinishedTimer" seconds="15" />
     <big_message title="MISSION SUCCEEDED" subtitle1="All enemies have been destroyed" subtitle2="" />
-    <incoming_comms_text from="Main Screen" type="SIDE">Mission Succeeded^All enemy ships have been destroyed</incoming_comms_text>
   </event>
   <event name="Lost DS1" id_arme="b526982b-a60f-4850-8902-f0c9525953a5" parent_id_arme="e829d865-90bd-4c1b-aabe-60c7d7cfe1a1">
     <if_variable name="PlayerShipCount" comparator="GREATER" value="0" />
@@ -307,7 +307,7 @@
     <set_gm_button text="GM/Resend Comms/Give Mission" />
     <set_timer name="RefreshGMButtons" seconds="10" />
   </event>
-  <folder_arme name="Sabotage" id_arme="06783d9d-3423-44f3-b6e3-28e8f836b4fd" expanded_arme="" />
+  <folder_arme name="Sabotage" id_arme="06783d9d-3423-44f3-b6e3-28e8f836b4fd" />
   <event name="Bomb Set" id_arme="9c900198-e63b-4408-9a57-32ae99e1e2ae" parent_id_arme="06783d9d-3423-44f3-b6e3-28e8f836b4fd">
     <if_exists name="DS1" />
     <if_object_property property="sideValue" name="Diana" comparator="EQUALS" value="2.0" />
@@ -383,7 +383,7 @@
     <destroy name="DS1" />
     <warning_popup_message message="DS1 has been destroyed!" consoles="M" />
   </event>
-  <folder_arme name="Escape" id_arme="354d7eaa-5c2c-486e-81cb-5d977f7d5f55" expanded_arme="" />
+  <folder_arme name="Escape" id_arme="354d7eaa-5c2c-486e-81cb-5d977f7d5f55" />
   <event name="Ready to escape" id_arme="3d4352b3-37f1-405a-b323-55357faac490" parent_id_arme="354d7eaa-5c2c-486e-81cb-5d977f7d5f55">
     <if_variable name="DianaReadyToEscape" comparator="EQUALS" value="0.0" />
     <if_variable name="BombsSet" comparator="EQUALS" value="MaxBombs" />
@@ -447,7 +447,7 @@
     <clear_gm_button text="GM/Activate saboteur" />
     <set_timer name="DianaEscapeTimer" seconds="1" />
   </event>
-  <folder_arme name="Hacking" id_arme="a587676a-7998-4d34-80cd-cee990ddefc1" expanded_arme="" />
+  <folder_arme name="Hacking" id_arme="a587676a-7998-4d34-80cd-cee990ddefc1" />
   <event name="Ready to hack" id_arme="4d8b42f5-75fa-4443-8643-59c610e9868c" parent_id_arme="a587676a-7998-4d34-80cd-cee990ddefc1">
     <!--One-time event to start hacking capability-->
     <if_variable name="ReadyToHack" comparator="EQUALS" value="0.0" />

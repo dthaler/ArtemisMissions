@@ -48,6 +48,7 @@
 01/15/18 ADD: way to relay KTANE result across another subnet or even Internet
 01/15/18 ADD: # bombs = 1 (diff 1-5), 2 (diff 6-11)
 01/15/18 BUG: Urgent message from DS1 about saboteur can happen after hacking
+01/15/18 ADD: mission success comms message
 
 ---
 {
