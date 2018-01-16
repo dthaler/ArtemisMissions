@@ -121,7 +121,7 @@
     <if_difficulty comparator="GREATER" value="5.0" />
     <set_variable name="MaxBombs" value="2.0" integer="yes" />
   </event>
-  <folder_arme name="Start/End Game Events" id_arme="e829d865-90bd-4c1b-aabe-60c7d7cfe1a1" expanded_arme="" />
+  <folder_arme name="Start/End Game Events" id_arme="e829d865-90bd-4c1b-aabe-60c7d7cfe1a1" />
   <event name="Start Title timer after first ship connects" id_arme="75a51448-2195-4afa-9ca8-864f45de62a0" parent_id_arme="e829d865-90bd-4c1b-aabe-60c7d7cfe1a1">
     <if_variable name="51362_1_titleTimerStarted" comparator="EQUALS" value="0" />
     <if_variable name="PlayerShipCount" comparator="GREATER" value="0" />
@@ -643,7 +643,7 @@
     <clear_comms_button text="Send DamCon team 2" />
     <clear_comms_button text="Send DamCon team 3" />
     <set_timer name="ReclaimDianaTimer" seconds="30" />
-    <incoming_comms_text from="TSN Diana" type="FRIEND">DamCon team |DamConTeamSent| reporting in.  We are now on board the TSN Diana and working on regaining control...</incoming_comms_text>
+    <incoming_comms_text from="TSN Diana" type="FRIEND">DamCon team |DamConTeamSent| reporting in.  We are now on board the TSN Diana.  The AI seems to be Arvonian!  We're working on regaining manual control...</incoming_comms_text>
     <set_variable name="BoardingState" value="3.0" />
     <!--If there were a way to remove the shuttlecraft from bay 0, we would do that here too, but there appears to be no way to do that.-->
   </event>
@@ -656,7 +656,7 @@
     <clear_ai name="Diana" />
     <add_ai type="POINT_THROTTLE" value1="StationX" value2="0.0" value3="StationZ" value4="1.0" name="Diana" />
     <set_ship_text name="Diana" scan_desc="DamCon team |DamConTeamSent| is on board taking her back to DS1." hailtext="We are taking the Diana back to DS1." />
-    <incoming_comms_text from="TSN Diana" type="FRIEND">DamCon team |DamConTeamSent| reporting in... We have regained control of the Diana and have set a course back to DS1!</incoming_comms_text>
+    <incoming_comms_text from="TSN Diana" type="FRIEND">DamCon team |DamConTeamSent| reporting in... From what we can tell, the AI must have been on the Diana for ages but only recently reawakened during repairs.  We have now regained control of the Diana and have set a course back to DS1!</incoming_comms_text>
     <incoming_comms_text from="DS1" type="STATION">Great work recapturing the Diana.  We'll take it from here, and interrogate the AI once the ship is safely back and locked down.</incoming_comms_text>
     <set_variable name="BoardingState" value="4.0" />
   </event>
