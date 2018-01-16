@@ -45,13 +45,12 @@
 01/07/18 ADD: a way to restore the Diana to friendly or neutral side
 01/07/18 BUG: Skaaran count should be 0 on difficulty level 1
 01/07/18 BUG: Diana switching sides is still counted as an enemy in EnemiesLeft variable
-
+01/15/18 ADD: way to relay KTANE result across another subnet or even Internet
+01/15/18 ADD: # bombs = 1 (diff 1-5), 2 (diff 6-11)
+01/15/18 BUG: Urgent message from DS1 about saboteur can happen after hacking
 
 ---
 {
-
-1/2 BUG: Urgent message from DS1 about saboteur can happen after hacking
-        "Bomb set!" after "Hack complete"
 
 ---
 
@@ -64,8 +63,6 @@
 2/2 DO: have a bomb timer in the mission if you don't dock within some number of minutes
 
 ---
-
-3/1 DO: decide whether just 1 bomb sequence or 2
 
 3/1 MAYBE: maybe change the station type to an industrial base?
         rename to something like 'TSN Shipyard' or similar
