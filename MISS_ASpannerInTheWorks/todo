@@ -51,13 +51,14 @@
 01/15/18 ADD: mission success comms message
 01/15/18 ADD: clue that the AI is Arvonian
 01/15/18 ADD: timer to fail if you don't dock to receive orders in time
+01/15/18 ADD: some friendly civilian ships to keep comms busy at the beginning
 
 ---
 {
 
 ---
 
-2/2 ADD: maybe some friendly civilian ships to keep comms busy at the beginning
+2/2 ADD: maybe require a task for each NPC ship before they will follow comms' orders
 
 ---
 

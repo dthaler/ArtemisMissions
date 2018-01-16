@@ -11,6 +11,29 @@
     <set_variable name="StationZ" value="73016.0" />
     <create type="station" x="StationX" y="StationY" z="StationZ" angle="0" name="DS1" raceKeys="friendly" hullKeys="Deep Space Base base" />
     <create type="neutral" x="StationX - 10" y="StationY + 50.0" z="StationZ" angle="0" name="Diana" hullID="0" sideValue="2" />
+    <create type="neutral" x="4093.0" y="0.0" z="46077.0" angle="320" name="S01" raceKeys="Terran friendly" hullKeys="science" sideValue="2" />
+    <clear_ai name="S01" />
+    <add_ai type="PROCEED_TO_EXIT" name="S01" />
+    <add_ai type="FOLLOW_COMMS_ORDERS" name="S01" />
+    <create type="neutral" x="91841.0" y="0.0" z="96053.0" angle="45" name="S02" raceKeys="Terran friendly" hullKeys="cargo" sideValue="2" />
+    <clear_ai name="S02" />
+    <add_ai type="PROCEED_TO_EXIT" name="S02" />
+    <add_ai type="FOLLOW_COMMS_ORDERS" name="S02" />
+    <create type="neutral" x="98378.0" y="0.0" z="64527.0" angle="75" name="S03" raceKeys="Terran friendly" hullKeys="luxury" sideValue="2" />
+    <clear_ai name="S03" />
+    <add_ai type="PROCEED_TO_EXIT" name="S03" />
+    <add_ai type="FOLLOW_COMMS_ORDERS" name="S03" />
+    <create type="neutral" x="4964.0" y="0.0" z="96198.0" angle="0" name="S04" raceKeys="Terran friendly" hullKeys="transport" sideValue="2" />
+    <clear_ai name="S04" />
+    <add_ai type="PROCEED_TO_EXIT" name="S04" />
+    <add_ai type="FOLLOW_COMMS_ORDERS" name="S04" />
+    <create type="neutral" x="14553.0" y="0.0" z="10484.0" angle="200" name="S05" raceKeys="Terran friendly" hullKeys="small" sideValue="2" />
+    <clear_ai name="S05" />
+    <add_ai type="PROCEED_TO_EXIT" name="S05" />
+    <add_ai type="CHASE_AI_SHIP" name="S05" />
+    <add_ai type="FOLLOW_COMMS_ORDERS" name="S05" />
+    <add_ai type="DEFEND" value2="1000" value1="3000" name="S05" />
+    <add_ai type="CHASE_ANGER" name="S05" />
     <set_skybox_index index="10" />
     <set_object_property property="nebulaIsOpaque" value="1" />
     <set_object_property property="musicObjectMasterVolume" value="0.0" />
@@ -25,11 +48,12 @@
     <set_variable name="HackStepsSucceeded" value="0.0" integer="yes" />
     <set_variable name="BombsSet" value="0.0" integer="yes" />
     <set_variable name="MaxBombs" value="1.0" integer="yes" />
+    <set_variable name="NpcShipCount" value="5.0" integer="yes" />
     <set_variable name="SkaaranCount" value="0.0" integer="yes" />
   </start>
   <folder_arme name="Initialization" id_arme="6ef97816-b707-4333-8e81-c10c250bf89b" />
   <event name="Set PlayerShipCount" id_arme="bc8332b6-2265-42dc-89c6-64fc9326d561" parent_id_arme="6ef97816-b707-4333-8e81-c10c250bf89b">
-    <if_fleet_count comparator="GREATER" value="PlayerShipCount" />
+    <if_fleet_count comparator="GREATER" value="PlayerShipCount + NpcShipCount" sideValue="2" />
     <set_variable name="PlayerShipCount" value="PlayerShipCount + 1" />
   </event>
   <event name="Disable Diana impulse and turning" id_arme="519bff8f-c77c-4692-b182-acda4ba82a5b" parent_id_arme="6ef97816-b707-4333-8e81-c10c250bf89b">
