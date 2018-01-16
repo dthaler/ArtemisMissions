@@ -50,6 +50,7 @@
 01/15/18 BUG: Urgent message from DS1 about saboteur can happen after hacking
 01/15/18 ADD: mission success comms message
 01/15/18 ADD: clue that the AI is Arvonian
+01/15/18 ADD: timer to fail if you don't dock to receive orders in time
 
 ---
 {
@@ -57,10 +58,6 @@
 ---
 
 2/2 ADD: maybe some friendly civilian ships to keep comms busy at the beginning
-
-2/2 FIX: find a way to prevent "Diana created" spew
-
-2/2 DO: have a bomb timer in the mission if you don't dock within some number of minutes
 
 ---
 
@@ -72,8 +69,10 @@
 
 3/1 DO: Short description for TSN Nexus:
            The crippled TSN Diana is now undergoing reconstruction at DS1, but the recent mission to recover it
-           has attracted more attention from the Arvonian fleets which are now advancing on DS1.  Your mission
+           has attracted unwanted attention from the Arvonian fleets which are now advancing on DS1.  Your mission
            is to protect both DS1 and the Diana from the Arvonian invasion.
+
+3/2 FIX: find a way to prevent "Diana created" spew
 
 3/2 CHECK: whether can increase the size of Arvonian carriers
 

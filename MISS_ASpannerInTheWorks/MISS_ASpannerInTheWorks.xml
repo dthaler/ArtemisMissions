@@ -223,7 +223,7 @@
     <warning_popup_message message="Message from TSN Command" consoles="M" />
     <incoming_comms_text from="TSN Command" type="SIDE ALERT">All TSN ships in this sector are directed to dock at DS1 immediately to receive new mission orders.</incoming_comms_text>
     <set_variable name="TsnCommandSummonedShips" value="2.0" />
-    <set_timer name="ShipsDueAtCommandBase" seconds="600" />
+    <set_timer name="ShipsDueAtCommandBase" seconds="300" />
     <set_timer name="StartupDelayBeforeOrders" seconds="120" />
   </event>
   <event name="TSN Command summons ships again" id_arme="7c3e3147-e599-4707-afd7-a957d9ce8684" parent_id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6">
@@ -243,6 +243,16 @@
     <incoming_comms_text from="TSN Command" type="SIDE ALERT">We repeat, all TSN ships in this sector are directed to dock at DS1 immediately to receive new mission orders!</incoming_comms_text>
     <set_variable name="TsnCommandSummonedShips" value="3.0" />
     <set_timer name="ShipsDueAtCommandBase" seconds="300" />
+  </event>
+  <event name="Mission Failed - Out of time" id_arme="875dc7e9-9018-49d1-8750-bd76aa7f387d" parent_id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6">
+    <if_variable name="TsnCommandGaveMission" comparator="EQUALS" value="0" />
+    <if_timer_finished name="ShipsDueAtCommandBase" />
+    <if_variable name="GameOver" comparator="EQUALS" value="0.0" />
+    <log text="Did not receive missions orders in time" />
+    <set_variable name="GameOver" value="1.0" />
+    <set_timer name="GameFinishedTimer" seconds="15" />
+    <big_message title="MISSION FAILED" subtitle1="You did not follow orders from TSN Command in time" subtitle2="" />
+    <incoming_comms_text from="TSN Command" type="SIDE">You did not follow orders from TSN Command in time!</incoming_comms_text>
   </event>
   <event name="Task Succeeded - 1 Ship Docked" id_arme="179e7ae6-25f8-46c5-8916-6995e3c73883" parent_id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6">
     <if_variable name="PlayerShipCount" comparator="EQUALS" value="1.0" />
@@ -288,14 +298,6 @@
     <create type="enemy" x="34630.0" y="0.0" z="33068.0" angle="180" raceKeys="enemy whalelover" hullKeys="carrier" fleetnumber="2" />
     <create type="enemy" x="78791.0" y="0.0" z="34473.0" angle="180" raceKeys="enemy whalelover" hullKeys="carrier" fleetnumber="3" />
     <create type="station" x="68960.0" y="0.0" z="20741.0" angle="0" name="AB1" raceKeys="enemy whalelover" hullKeys="base" sideValue="1" />
-  </event>
-  <event name="Mission Failed - Out of time" id_arme="875dc7e9-9018-49d1-8750-bd76aa7f387d" parent_id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6">
-    <if_variable name="TsnCommandGaveMission" comparator="EQUALS" value="0" />
-    <if_timer_finished name="ShipsDueAtCommandBase" />
-    <if_variable name="GameStatus" comparator="EQUALS" value="1.0" />
-    <log text="Did not receive missions orders in time" />
-    <incoming_comms_text from="TSN Command" type="SIDE">You did not follow orders from TSN Command in time!</incoming_comms_text>
-    <set_variable name="GameStatus" value="0" />
   </event>
   <event name="Refresh GM buttons" id_arme="f1383e6f-ee03-4dce-872f-9f43586e0033" parent_id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6">
     <if_exists name="DS1" />
