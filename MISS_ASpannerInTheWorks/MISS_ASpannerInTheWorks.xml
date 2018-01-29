@@ -146,7 +146,7 @@
     <if_difficulty comparator="GREATER" value="5.0" />
     <set_variable name="MaxBombs" value="2.0" integer="yes" />
   </event>
-  <folder_arme name="Start/End Game Events" id_arme="e829d865-90bd-4c1b-aabe-60c7d7cfe1a1" />
+  <folder_arme name="Start/End Game Events" id_arme="e829d865-90bd-4c1b-aabe-60c7d7cfe1a1" expanded_arme="" />
   <event name="Start Title timer after first ship connects" id_arme="75a51448-2195-4afa-9ca8-864f45de62a0" parent_id_arme="e829d865-90bd-4c1b-aabe-60c7d7cfe1a1">
     <if_variable name="51362_1_titleTimerStarted" comparator="EQUALS" value="0" />
     <if_variable name="PlayerShipCount" comparator="GREATER" value="0" />
@@ -155,9 +155,9 @@
   </event>
   <event name="Show Title" id_arme="dca1c962-7f01-47cc-955a-8c0a98bf8cab" parent_id_arme="e829d865-90bd-4c1b-aabe-60c7d7cfe1a1">
     <if_variable name="51362_1_delayedTitleShown" comparator="EQUALS" value="0" />
-    <if_variable name="51362_1_gameShipsSpawned" comparator="GREATER" value="0" />
+    <if_variable name="PlayerShipCount" comparator="GREATER" value="0" />
     <if_timer_finished name="51362_1_titleTimer" />
-    <big_message title="The Diana Operation" subtitle1="written by Dave Thaler" subtitle2="" />
+    <big_message title="A Spanner in the Works" subtitle1="written by Dave Thaler" subtitle2="" />
     <set_variable name="51362_1_delayedTitleShown" value="1" />
   </event>
   <event name="All Player Ships Destroyed" id_arme="42f2865c-0518-4e1b-bfc1-7556bdc0cd1b" parent_id_arme="e829d865-90bd-4c1b-aabe-60c7d7cfe1a1">
