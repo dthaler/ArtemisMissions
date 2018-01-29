@@ -52,13 +52,28 @@
 01/15/18 ADD: clue that the AI is Arvonian
 01/15/18 ADD: timer to fail if you don't dock to receive orders in time
 01/15/18 ADD: some friendly civilian ships to keep comms busy at the beginning
+01/28/18 NO:   update bomb instructions, or real life script to talk about
+01/28/18       containment area of the anti-matter core  (which is where spock died)
+01/28/18       (NO since more confuses the issue)
+01/28/18 ADD: support for a second player ship
+
 
 ---
 {
 
+1/2 ADD: more enemy ships to scale with # player ships
+         DianaOperation had 9 Light Carriers (and 9 torgoth) for 2 ships which was hard
+
 ---
 
+2/2 FIX: replace some Skaarans with monsters that live in the asteroid belt
+
 2/2 ADD: maybe require a task for each NPC ship before they will follow comms' orders
+           Science vessel goal - something about space monsters
+           Cargo
+           Luxury              - wants something from the science vessel
+           Transport
+           Escort
 
 ---
 

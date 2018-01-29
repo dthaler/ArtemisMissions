@@ -48,14 +48,15 @@
     <set_variable name="HackStepsSucceeded" value="0.0" integer="yes" />
     <set_variable name="BombsSet" value="0.0" integer="yes" />
     <set_variable name="MaxBombs" value="1.0" integer="yes" />
-    <set_variable name="NpcShipCount" value="5.0" integer="yes" />
+    <set_variable name="PlayerShipCount" value="0.0" integer="yes" />
     <set_variable name="SkaaranCount" value="0.0" integer="yes" />
+    <!--.....-->
+    <!--..... GM Buttons-->
+    <set_gm_button text="GM/Respawn/Artemis" />
+    <set_gm_button text="GM/Respawn/Intrepid" />
+    <set_gm_button text="GM/Respawn/Aegis" />
   </start>
-  <folder_arme name="Initialization" id_arme="6ef97816-b707-4333-8e81-c10c250bf89b" />
-  <event name="Set PlayerShipCount" id_arme="bc8332b6-2265-42dc-89c6-64fc9326d561" parent_id_arme="6ef97816-b707-4333-8e81-c10c250bf89b">
-    <if_fleet_count comparator="GREATER" value="PlayerShipCount + NpcShipCount" sideValue="2" />
-    <set_variable name="PlayerShipCount" value="PlayerShipCount + 1" />
-  </event>
+  <folder_arme name="Initialization" id_arme="6ef97816-b707-4333-8e81-c10c250bf89b" expanded_arme="" />
   <event name="Disable Diana impulse and turning" id_arme="519bff8f-c77c-4692-b182-acda4ba82a5b" parent_id_arme="6ef97816-b707-4333-8e81-c10c250bf89b">
     <if_exists name="Diana" />
     <if_object_property property="sideValue" name="Diana" comparator="EQUALS" value="2.0" />
@@ -230,7 +231,59 @@
     <if_fleet_count comparator="GREATER" value="EnemiesLeft" sideValue="1" />
     <set_variable name="EnemiesLeft" value="EnemiesLeft + 1" />
   </event>
-  <folder_arme name="Task: Dock with DS1 to receive orders" id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6" />
+  <folder_arme name="Player Ship initialization" id_arme="21712616-42f1-44fc-a39e-b0521eb9312f" expanded_arme="" />
+  <event name="Create Player Ship - Artemis" id_arme="77054e94-9150-490c-b841-a94b75764284" parent_id_arme="21712616-42f1-44fc-a39e-b0521eb9312f">
+    <if_exists name="Artemis" />
+    <if_variable name="ArtemisInitialized" comparator="EQUALS" value="0" />
+    <log text="Artemis spawned" />
+    <set_object_property property="positionX" value="48206.0" name="Artemis" />
+    <set_object_property property="positionZ" value="87373.0" name="Artemis" />
+    <set_object_property property="positionY" value="0" name="Artemis" />
+    <set_object_property property="angle" value="0.0" name="Artemis" />
+    <set_variable name="ArtemisInitialized" value="1" />
+    <set_variable name="PlayerShipCount" value="PlayerShipCount+1" integer="yes" />
+  </event>
+  <event name="Create Player Ship - Intrepid" id_arme="37715cd5-a873-452b-9b03-0409dab65292" parent_id_arme="21712616-42f1-44fc-a39e-b0521eb9312f">
+    <if_exists name="Intrepid" />
+    <if_variable name="IntrepidInitialized" comparator="EQUALS" value="0" />
+    <log text="Intrepid spawned" />
+    <set_object_property property="positionX" value="20450" name="Intrepid" />
+    <set_object_property property="positionZ" value="79400" name="Intrepid" />
+    <set_object_property property="positionY" value="0" name="Intrepid" />
+    <set_object_property property="angle" value="0.0" name="Intrepid" />
+    <set_variable name="IntrepidInitialized" value="1" />
+    <set_variable name="PlayerShipCount" value="PlayerShipCount+1" integer="yes" />
+  </event>
+  <event name="Create Player Ship - Aegis" id_arme="6e63775f-221a-4740-beb5-76207cb60034" parent_id_arme="21712616-42f1-44fc-a39e-b0521eb9312f">
+    <if_exists name="Aegis" />
+    <if_variable name="AegisInitialized" comparator="EQUALS" value="0" />
+    <log text="Aegis spawned" />
+    <set_object_property property="positionX" value="20503" name="Aegis" />
+    <set_object_property property="positionZ" value="79253" name="Aegis" />
+    <set_object_property property="positionY" value="0" name="Aegis" />
+    <set_object_property property="angle" value="0.0" name="Aegis" />
+    <set_variable name="AegisInitialized" value="1" />
+    <set_variable name="PlayerShipCount" value="PlayerShipCount+1" integer="yes" />
+  </event>
+  <event name="GM Respawn Artemis" id_arme="efb65ce9-530c-464c-beb0-9fd16373c12e" parent_id_arme="21712616-42f1-44fc-a39e-b0521eb9312f">
+    <if_not_exists name="Artemis" />
+    <if_gm_button text="GM/Respawn/Artemis" />
+    <log text="GM respawned Artemis" />
+    <create type="player" player_slot="0" x="20208.0" y="0.0" z="78958.0" angle="0" name="Artemis" />
+  </event>
+  <event name="GM Respawn Intrepid" id_arme="5dce5363-20c8-4e29-a476-1e2d3f9e8ee6" parent_id_arme="21712616-42f1-44fc-a39e-b0521eb9312f">
+    <if_not_exists name="Intrepid" />
+    <if_gm_button text="GM/Respawn/Intrepid" />
+    <log text="GM respawned Intrepid" />
+    <create type="player" player_slot="1" x="20450.0" y="0.0" z="79400.0" angle="0" name="Intrepid" />
+  </event>
+  <event name="GM Respawn Aegis" id_arme="a2277a96-da09-4a57-9da5-61d9b00e1a32" parent_id_arme="21712616-42f1-44fc-a39e-b0521eb9312f">
+    <if_not_exists name="Aegis" />
+    <if_gm_button text="GM/Respawn/Aegis" />
+    <log text="GM respawned Aegis" />
+    <create type="player" player_slot="2" x="20503.0" y="0.0" z="79253.0" angle="0" name="Aegis" />
+  </event>
+  <folder_arme name="Task: Dock with DS1 to receive orders" id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6" expanded_arme="" />
   <event name="Prepare to summon ships" id_arme="b5f53049-5cf3-43b7-b98d-6a92f25d26f1" parent_id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6">
     <if_variable name="PlayerShipCount" comparator="GREATER" value="0.0" />
     <if_variable name="TsnCommandSummonedShips" comparator="EQUALS" value="0.0" />

@@ -1,10 +1,10 @@
-The Diana Operation
+A Spanner in the Works
 written by Dave Thaler
 
 This is a scripted mission for one, two, or three bridges.
 
 ----------------------------------- INSTALLATION
-To install this mission, copy the MISS_TheDianaOperation folder to
+To install this mission, copy the MISS_ASpannerInTheWorks folder to
 %artemisInstallationFolder%\dat\Missions\
 
 ----------------------------------- BEGIN SET UP AND CONFIGURATION
@@ -12,10 +12,10 @@ To install this mission, copy the MISS_TheDianaOperation folder to
 To play this mission:
 
   1. Start Artemis
-  2. Start DianaCaptainsLog.exe on one of the Diana machines (e.g., Diana main screen)
+  2. Optionally start KeepTalking.exe on the machine with Keep Talking and Nobody Explodes installed on it
   3. Select "Start Server"
   4. Select "Scripted Game"
-  5. Set the mission to "TheDianaOperation"
+  5. Set the mission to "ASpannerInTheWorks"
 
   6. Have the Helm officer for each player ship connect to the server and select 'Main Screen'* and 'Helm':
     Ship #
@@ -26,16 +26,23 @@ To play this mission:
     Ship 1: Artemis
     Ship 2: Intrepid
     Ship 3: Aegis
-    ... (ships 4-6 are unused)
-    Ship 7: Ceres (must be a Scout)
-    Ship 8: Diana (must be a Light Cruiser)
+    ... (ships 4-8 are unused)
 
   7. Have the other officers (Tactical/Weapons, Engineering, Science, Communications, Captain, Observer, Game Master)
      connect and select their ships and stations.
 
   8. Set the difficulty level
-     Level 3+: Adds large Torgoth ships
-     Level 5+: Adds rogue Skaraans
+     Level 1: 0 Skaarans
+     Level 2: 1 Skaaran
+     Level 3: 2 Skaarans
+     Level 4: 3 Skaarans
+     Level 5: 4 Skaarans
+     Level 6: 5 Skaarans
+     Level 7: 6 Skaarans
+     Level 8: 7 Skaarans
+     Level 9: 8 Skaarans
+     Level 10: 9 Skaarans
+     Level 11: 10 Skaarans
  
   9. Select "Start Game" on the Server**
 
