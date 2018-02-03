@@ -35,7 +35,6 @@
     <add_ai type="DEFEND" value2="1000" value1="3000" name="S05" />
     <add_ai type="CHASE_ANGER" name="S05" />
     <set_skybox_index index="10" />
-    <set_object_property property="nebulaIsOpaque" value="1" />
     <set_object_property property="musicObjectMasterVolume" value="0.0" />
     <set_variable name="DockedRange" value="100.0" />
     <set_variable name="SabotageDelaySeconds" value="300.0" />
@@ -50,11 +49,6 @@
     <set_variable name="MaxBombs" value="1.0" integer="yes" />
     <set_variable name="PlayerShipCount" value="0.0" integer="yes" />
     <set_variable name="SkaaranCount" value="0.0" integer="yes" />
-    <!--.....-->
-    <!--..... GM Buttons-->
-    <set_gm_button text="GM/Respawn/Artemis" />
-    <set_gm_button text="GM/Respawn/Intrepid" />
-    <set_gm_button text="GM/Respawn/Aegis" />
   </start>
   <folder_arme name="Initialization" id_arme="6ef97816-b707-4333-8e81-c10c250bf89b" />
   <event name="Disable Diana impulse and turning" id_arme="519bff8f-c77c-4692-b182-acda4ba82a5b" parent_id_arme="6ef97816-b707-4333-8e81-c10c250bf89b">
@@ -231,7 +225,7 @@
     <if_fleet_count comparator="GREATER" value="EnemiesLeft" sideValue="1" />
     <set_variable name="EnemiesLeft" value="EnemiesLeft + 1" />
   </event>
-  <folder_arme name="Player Ship initialization" id_arme="21712616-42f1-44fc-a39e-b0521eb9312f" expanded_arme="" />
+  <folder_arme name="Player Ship initialization" id_arme="21712616-42f1-44fc-a39e-b0521eb9312f" />
   <event name="Create Player Ship - Artemis" id_arme="77054e94-9150-490c-b841-a94b75764284" parent_id_arme="21712616-42f1-44fc-a39e-b0521eb9312f">
     <if_exists name="Artemis" />
     <if_variable name="ArtemisInitialized" comparator="EQUALS" value="0" />
@@ -264,24 +258,6 @@
     <set_object_property property="angle" value="0.0" name="Aegis" />
     <set_variable name="AegisInitialized" value="1" />
     <set_variable name="PlayerShipCount" value="PlayerShipCount+1" integer="yes" />
-  </event>
-  <event name="GM Respawn Artemis" id_arme="efb65ce9-530c-464c-beb0-9fd16373c12e" parent_id_arme="21712616-42f1-44fc-a39e-b0521eb9312f">
-    <if_not_exists name="Artemis" />
-    <if_gm_button text="GM/Respawn/Artemis" />
-    <log text="GM respawned Artemis" />
-    <create type="player" player_slot="0" x="20208.0" y="0.0" z="78958.0" angle="0" name="Artemis" />
-  </event>
-  <event name="GM Respawn Intrepid" id_arme="5dce5363-20c8-4e29-a476-1e2d3f9e8ee6" parent_id_arme="21712616-42f1-44fc-a39e-b0521eb9312f">
-    <if_not_exists name="Intrepid" />
-    <if_gm_button text="GM/Respawn/Intrepid" />
-    <log text="GM respawned Intrepid" />
-    <create type="player" player_slot="1" x="20450.0" y="0.0" z="79400.0" angle="0" name="Intrepid" />
-  </event>
-  <event name="GM Respawn Aegis" id_arme="a2277a96-da09-4a57-9da5-61d9b00e1a32" parent_id_arme="21712616-42f1-44fc-a39e-b0521eb9312f">
-    <if_not_exists name="Aegis" />
-    <if_gm_button text="GM/Respawn/Aegis" />
-    <log text="GM respawned Aegis" />
-    <create type="player" player_slot="2" x="20503.0" y="0.0" z="79253.0" angle="0" name="Aegis" />
   </event>
   <folder_arme name="Task: Dock with DS1 to receive orders" id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6" />
   <event name="Prepare to summon ships" id_arme="b5f53049-5cf3-43b7-b98d-6a92f25d26f1" parent_id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6">
@@ -527,7 +503,7 @@
     <clear_gm_button text="GM/Activate saboteur" />
     <set_timer name="DianaEscapeTimer" seconds="1" />
   </event>
-  <folder_arme name="Hacking" id_arme="a587676a-7998-4d34-80cd-cee990ddefc1" expanded_arme="" />
+  <folder_arme name="Hacking" id_arme="a587676a-7998-4d34-80cd-cee990ddefc1" />
   <event name="Ready to hack" id_arme="4d8b42f5-75fa-4443-8643-59c610e9868c" parent_id_arme="a587676a-7998-4d34-80cd-cee990ddefc1">
     <!--One-time event to start hacking capability-->
     <if_variable name="ReadyToHack" comparator="EQUALS" value="0.0" />
@@ -658,7 +634,7 @@
     <set_object_property property="systemDamageImpulse" value="100.0" name="Diana" />
     <set_object_property property="systemDamageBeam" value="100.0" name="Diana" />
   </event>
-  <folder_arme name="Boarding" id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284" expanded_arme="" />
+  <folder_arme name="Boarding" id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284" />
   <event name="Refresh damcon buttons" id_arme="fb1e0719-7ca8-4e53-b66f-de3e4630f30c" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
     <if_variable name="BoardingState" comparator="EQUALS" value="1.0" />
     <if_timer_finished name="RefreshCommsButtons" />
@@ -682,140 +658,208 @@
     <set_variable name="IntrepidDamCon2ButtonVisible" value="0.0" />
     <set_variable name="IntrepidDamCon3ButtonVisible" value="0.0" />
   </event>
+  <event name="Show Artemis DamCon 1 button" id_arme="fab1a80d-d1a4-44e3-ae63-b9901b4b9476" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
+    <if_variable name="BoardingState" comparator="EQUALS" value="1.0" />
+    <if_variable name="ArtemisDamCon1ButtonVisible" comparator="EQUALS" value="1.0" />
+    <if_object_property property="sideValue" name="Artemis" comparator="EQUALS" value="3.0" />
+    <if_damcon_members player_slot="0" team_index="0" comparator="EQUALS" value="6" />
+    <if_distance name1="Diana" name2="Artemis" comparator="LESS_EQUAL" value="500.0" />
+    <set_comms_button text="Send DamCon team 1" sideValue="3" />
+    <set_variable name="ArtemisDamCon1ButtonVisible" value="2.0" />
+  </event>
+  <event name="Show Artemis DamCon 2 button" id_arme="85dcea4d-036d-41de-96fc-cd8760d5b993" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
+    <if_variable name="BoardingState" comparator="EQUALS" value="1.0" />
+    <if_variable name="ArtemisDamCon2ButtonVisible" comparator="EQUALS" value="1.0" />
+    <if_object_property property="sideValue" name="Artemis" comparator="EQUALS" value="3.0" />
+    <if_damcon_members player_slot="0" team_index="1" comparator="EQUALS" value="6" />
+    <if_distance name1="Diana" name2="Artemis" comparator="LESS_EQUAL" value="500.0" />
+    <set_comms_button text="Send DamCon team 2" sideValue="3" />
+    <set_variable name="ArtemisDamCon2ButtonVisible" value="2.0" />
+  </event>
+  <event name="Show Artemis DamCon 3 button" id_arme="1c8b2fff-66da-4f8a-ae2b-aef8dc96ec69" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
+    <if_variable name="BoardingState" comparator="EQUALS" value="1.0" />
+    <if_variable name="ArtemisDamCon3ButtonVisible" comparator="EQUALS" value="1.0" />
+    <if_object_property property="sideValue" name="Artemis" comparator="EQUALS" value="3.0" />
+    <if_damcon_members player_slot="0" team_index="2" comparator="EQUALS" value="6" />
+    <if_distance name1="Diana" name2="Artemis" comparator="LESS_EQUAL" value="500.0" />
+    <set_comms_button text="Send DamCon team 3" sideValue="3" />
+    <set_variable name="ArtemisDamCon3ButtonVisible" value="2.0" />
+  </event>
+  <event name="Show Intrepid DamCon 1 button" id_arme="d83bb6c0-79a6-4707-8eb1-4671fab32e63" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
+    <if_variable name="BoardingState" comparator="EQUALS" value="1.0" />
+    <if_variable name="IntrepidDamCon1ButtonVisible" comparator="EQUALS" value="1.0" />
+    <if_object_property property="sideValue" name="Intrepid" comparator="EQUALS" value="4.0" />
+    <if_damcon_members player_slot="1" team_index="0" comparator="EQUALS" value="6" />
+    <if_distance name1="Diana" name2="Intrepid" comparator="LESS_EQUAL" value="500.0" />
+    <set_comms_button text="Send DamCon team 1 " sideValue="4" />
+    <set_variable name="IntrepidDamCon1ButtonVisible" value="2.0" />
+  </event>
+  <event name="Show Intrepid DamCon 2 button" id_arme="4e5f6e78-21f7-49d9-b20a-9e523effd27b" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
+    <if_variable name="BoardingState" comparator="EQUALS" value="1.0" />
+    <if_variable name="IntrepidDamCon2ButtonVisible" comparator="EQUALS" value="1.0" />
+    <if_object_property property="sideValue" name="Intrepid" comparator="EQUALS" value="4.0" />
+    <if_damcon_members player_slot="1" team_index="1" comparator="EQUALS" value="6" />
+    <if_distance name1="Diana" name2="Intrepid" comparator="LESS_EQUAL" value="500.0" />
+    <set_comms_button text="Send DamCon team 2 " sideValue="4" />
+    <set_variable name="IntrepidDamCon2ButtonVisible" value="2.0" />
+  </event>
+  <event name="Show Intrepid DamCon 3 button" id_arme="15bd250a-1ce5-498f-8f64-0854bea72266" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
+    <if_variable name="BoardingState" comparator="EQUALS" value="1.0" />
+    <if_variable name="IntrepidDamCon3ButtonVisible" comparator="EQUALS" value="1.0" />
+    <if_object_property property="sideValue" name="Intrepid" comparator="EQUALS" value="4.0" />
+    <if_damcon_members player_slot="1" team_index="2" comparator="EQUALS" value="6" />
+    <if_distance name1="Diana" name2="Intrepid" comparator="LESS_EQUAL" value="500.0" />
+    <set_comms_button text="Send DamCon team 3 " sideValue="4" />
+    <set_variable name="IntrepidDamCon3ButtonVisible" value="2.0" />
+  </event>
+  <event name="Restore Artemis side" id_arme="16646f32-7c88-4545-9446-7bf9a1b80db9" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
+    <if_object_property property="sideValue" name="Artemis" comparator="NOT" value="2.0" />
+    <set_side_value value="2" name="Artemis" />
+  </event>
+  <event name="Restore Intrepid side" id_arme="3d5ed666-7872-4786-8307-6392563004aa" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
+    <if_object_property property="sideValue" name="Intrepid" comparator="NOT" value="2.0" />
+    <set_side_value value="2" name="Intrepid" />
+  </event>
   <event name="Allow Artemis DamCon 1" id_arme="e09e7be1-c24c-4d3a-bee1-3e76a2e387e5" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
     <if_variable name="BoardingState" comparator="EQUALS" value="1.0" />
     <if_variable name="ArtemisDamCon1ButtonRefreshed" comparator="EQUALS" value="0.0" />
+    <if_object_property property="sideValue" name="Artemis" comparator="EQUALS" value="2.0" />
     <if_damcon_members player_slot="0" team_index="0" comparator="EQUALS" value="6" />
     <if_distance name1="Diana" name2="Artemis" comparator="LESS_EQUAL" value="500.0" />
-    <set_comms_button text="Send DamCon team 1" />
+    <set_side_value value="3" name="Artemis" />
     <set_variable name="ArtemisDamCon1ButtonRefreshed" value="1.0" />
     <set_variable name="ArtemisDamCon1ButtonVisible" value="1.0" />
   </event>
   <event name="Allow Artemis DamCon 2" id_arme="22c31aa7-4be1-4e28-80f8-e3aee8ecd390" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
     <if_variable name="BoardingState" comparator="EQUALS" value="1.0" />
     <if_variable name="ArtemisDamCon2ButtonRefreshed" comparator="EQUALS" value="0.0" />
+    <if_object_property property="sideValue" name="Artemis" comparator="EQUALS" value="2.0" />
     <if_damcon_members player_slot="0" team_index="1" comparator="EQUALS" value="6" />
     <if_distance name1="Diana" name2="Artemis" comparator="LESS_EQUAL" value="500.0" />
-    <set_comms_button text="Send DamCon team 2" />
+    <set_side_value value="3" name="Artemis" />
     <set_variable name="ArtemisDamCon2ButtonRefreshed" value="1.0" />
     <set_variable name="ArtemisDamCon2ButtonVisible" value="1.0" />
   </event>
   <event name="Allow Artemis DamCon 3" id_arme="aa7bdc06-be65-4208-9680-9aab5f98bda3" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
     <if_variable name="BoardingState" comparator="EQUALS" value="1.0" />
     <if_variable name="ArtemisDamCon3ButtonRefreshed" comparator="EQUALS" value="0.0" />
+    <if_object_property property="sideValue" name="Artemis" comparator="EQUALS" value="2.0" />
     <if_damcon_members player_slot="0" team_index="2" comparator="EQUALS" value="6" />
     <if_distance name1="Diana" name2="Artemis" comparator="LESS_EQUAL" value="500.0" />
-    <set_comms_button text="Send DamCon team 3" />
+    <set_side_value value="3" name="Artemis" />
     <set_variable name="ArtemisDamCon3ButtonRefreshed" value="1.0" />
     <set_variable name="ArtemisDamCon3ButtonVisible" value="1.0" />
   </event>
   <event name="Allow Intrepid DamCon 1" id_arme="d9eb046c-a441-41ef-ad9a-8724b03fb60c" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
     <if_variable name="BoardingState" comparator="EQUALS" value="1.0" />
     <if_variable name="IntrepidDamCon1ButtonRefreshed" comparator="EQUALS" value="0.0" />
+    <if_object_property property="sideValue" name="Intrepid" comparator="EQUALS" value="2.0" />
     <if_damcon_members player_slot="1" team_index="0" comparator="EQUALS" value="6" />
     <if_distance name1="Diana" name2="Intrepid" comparator="LESS_EQUAL" value="500.0" />
-    <set_comms_button text="Send DamCon team 1 " />
+    <set_side_value value="4" name="Intrepid" />
     <set_variable name="IntrepidDamCon1ButtonRefreshed" value="1.0" />
     <set_variable name="IntrepidDamCon1ButtonVisible" value="1.0" />
   </event>
   <event name="Allow Intrepid DamCon 2" id_arme="04aded95-cad1-4a50-8b20-a47aaee17863" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
     <if_variable name="BoardingState" comparator="EQUALS" value="1.0" />
     <if_variable name="IntrepidDamCon2ButtonRefreshed" comparator="EQUALS" value="0.0" />
+    <if_object_property property="sideValue" name="Intrepid" comparator="EQUALS" value="2.0" />
     <if_damcon_members player_slot="1" team_index="1" comparator="EQUALS" value="6" />
     <if_distance name1="Diana" name2="Intrepid" comparator="LESS_EQUAL" value="500.0" />
-    <set_comms_button text="Send DamCon team 2 " />
+    <set_side_value value="4" name="Intrepid" />
     <set_variable name="IntrepidDamCon2ButtonRefreshed" value="1.0" />
     <set_variable name="IntrepidDamCon2ButtonVisible" value="1.0" />
   </event>
   <event name="Allow Intrepid DamCon 3" id_arme="8af32ac7-66fd-4716-a827-57eb9c75be64" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
     <if_variable name="BoardingState" comparator="EQUALS" value="1.0" />
     <if_variable name="IntrepidDamCon3ButtonRefreshed" comparator="EQUALS" value="0.0" />
+    <if_object_property property="sideValue" name="Intrepid" comparator="EQUALS" value="2.0" />
     <if_damcon_members player_slot="1" team_index="2" comparator="EQUALS" value="6" />
     <if_distance name1="Diana" name2="Intrepid" comparator="LESS_EQUAL" value="500.0" />
-    <set_comms_button text="Send DamCon team 3 " />
+    <set_side_value value="4" name="Intrepid" />
     <set_variable name="IntrepidDamCon3ButtonRefreshed" value="1.0" />
     <set_variable name="IntrepidDamCon3ButtonVisible" value="1.0" />
   </event>
   <event name="Disallow Artemis DamCon 1 for distance" id_arme="861df967-a1cb-4134-b39c-dc42209ec9fc" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
     <if_variable name="BoardingState" comparator="EQUALS" value="1.0" />
-    <if_variable name="ArtemisDamCon1ButtonVisible" comparator="EQUALS" value="1.0" />
+    <if_variable name="ArtemisDamCon1ButtonVisible" comparator="GREATER" value="0.0" />
     <if_distance name1="Diana" name2="Artemis" comparator="GREATER" value="500.0" />
     <clear_comms_button text="Send DamCon team 1" />
     <set_variable name="ArtemisDamCon1ButtonVisible" value="0.0" />
   </event>
   <event name="Disallow Artemis DamCon 2 for distance" id_arme="c7b1aab1-8345-4f08-a114-d154a8d3940d" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
     <if_variable name="BoardingState" comparator="EQUALS" value="1.0" />
-    <if_variable name="ArtemisDamCon2ButtonVisible" comparator="EQUALS" value="1.0" />
+    <if_variable name="ArtemisDamCon2ButtonVisible" comparator="GREATER" value="0.0" />
     <if_distance name1="Diana" name2="Artemis" comparator="GREATER" value="500.0" />
     <clear_comms_button text="Send DamCon team 2" />
     <set_variable name="ArtemisDamCon2ButtonVisible" value="0.0" />
   </event>
   <event name="Disallow Artemis DamCon 3 for distance" id_arme="ef8d13b6-356f-49fc-a142-bfad343b88e2" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
     <if_variable name="BoardingState" comparator="EQUALS" value="1.0" />
-    <if_variable name="ArtemisDamCon3ButtonVisible" comparator="EQUALS" value="1.0" />
+    <if_variable name="ArtemisDamCon3ButtonVisible" comparator="GREATER" value="0.0" />
     <if_distance name1="Diana" name2="Artemis" comparator="GREATER" value="500.0" />
     <clear_comms_button text="Send DamCon team 3" />
     <set_variable name="ArtemisDamCon3ButtonVisible" value="0.0" />
   </event>
-  <event name="Disallow Artemis DamCon 1 for team" id_arme="42434d6e-e1dd-4db1-af62-62e9c6c240c2" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
+  <event name="Disallow Artemis DamCon 1 for size" id_arme="42434d6e-e1dd-4db1-af62-62e9c6c240c2" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
     <if_variable name="BoardingState" comparator="EQUALS" value="1.0" />
-    <if_variable name="ArtemisDamCon1ButtonVisible" comparator="EQUALS" value="1.0" />
+    <if_variable name="ArtemisDamCon1ButtonVisible" comparator="GREATER" value="0.0" />
     <if_damcon_members player_slot="0" team_index="0" comparator="LESS" value="6" />
     <clear_comms_button text="Send DamCon team 1" />
     <set_variable name="ArtemisDamCon1ButtonVisible" value="0.0" />
   </event>
-  <event name="Disallow Artemis DamCon 2 for team" id_arme="7eca72a3-252e-418f-a1b2-d32472fea254" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
+  <event name="Disallow Artemis DamCon 2 for size" id_arme="7eca72a3-252e-418f-a1b2-d32472fea254" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
     <if_variable name="BoardingState" comparator="EQUALS" value="1.0" />
-    <if_variable name="ArtemisDamCon2ButtonVisible" comparator="EQUALS" value="1.0" />
+    <if_variable name="ArtemisDamCon2ButtonVisible" comparator="GREATER" value="0.0" />
     <if_damcon_members player_slot="0" team_index="1" comparator="LESS" value="6" />
     <clear_comms_button text="Send DamCon team 2" />
     <set_variable name="ArtemisDamCon2ButtonVisible" value="0.0" />
   </event>
-  <event name="Disallow Artemis DamCon 3 for team" id_arme="f3ce1617-350d-4e02-aeb1-468d7bbce7c0" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
+  <event name="Disallow Artemis DamCon 3 for size" id_arme="f3ce1617-350d-4e02-aeb1-468d7bbce7c0" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
     <if_variable name="BoardingState" comparator="EQUALS" value="1.0" />
-    <if_variable name="ArtemisDamCon3ButtonVisible" comparator="EQUALS" value="1.0" />
+    <if_variable name="ArtemisDamCon3ButtonVisible" comparator="GREATER" value="0.0" />
     <if_damcon_members player_slot="0" team_index="2" comparator="LESS" value="6" />
     <clear_comms_button text="Send DamCon team 3" />
     <set_variable name="ArtemisDamCon3ButtonVisible" value="0.0" />
   </event>
   <event name="Disallow Intrepid DamCon 1 for distance" id_arme="d01155d6-4dda-4063-a811-7736f8ab996d" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
     <if_variable name="BoardingState" comparator="EQUALS" value="1.0" />
-    <if_variable name="IntrepidDamCon1ButtonVisible" comparator="EQUALS" value="1.0" />
+    <if_variable name="IntrepidDamCon1ButtonVisible" comparator="GREATER" value="0.0" />
     <if_distance name1="Diana" name2="Intrepid" comparator="GREATER" value="500.0" />
     <clear_comms_button text="Send DamCon team 1 " />
     <set_variable name="IntrepidDamCon1ButtonVisible" value="0.0" />
   </event>
   <event name="Disallow Intrepid DamCon 2 for distance" id_arme="e251fa00-8368-4caf-85bc-ab38bd10e8c5" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
     <if_variable name="BoardingState" comparator="EQUALS" value="1.0" />
-    <if_variable name="IntrepidDamCon2ButtonVisible" comparator="EQUALS" value="1.0" />
+    <if_variable name="IntrepidDamCon2ButtonVisible" comparator="GREATER" value="0.0" />
     <if_distance name1="Diana" name2="Intrepid" comparator="GREATER" value="500.0" />
     <clear_comms_button text="Send DamCon team 2 " />
     <set_variable name="IntrepidDamCon2ButtonVisible" value="0.0" />
   </event>
   <event name="Disallow Intrepid DamCon 3 for distance" id_arme="e0f69dc2-597e-43f4-af9b-f077b93b2cee" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
     <if_variable name="BoardingState" comparator="EQUALS" value="1.0" />
-    <if_variable name="IntrepidDamCon3ButtonVisible" comparator="EQUALS" value="1.0" />
+    <if_variable name="IntrepidDamCon3ButtonVisible" comparator="GREATER" value="0.0" />
     <if_distance name1="Diana" name2="Intrepid" comparator="GREATER" value="500.0" />
     <clear_comms_button text="Send DamCon team 3 " />
     <set_variable name="IntrepidDamCon3ButtonVisible" value="0.0" />
   </event>
-  <event name="Disallow Intrepid DamCon 1 for team" id_arme="2a69f573-dc68-4383-81f2-89561eb15492" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
+  <event name="Disallow Intrepid DamCon 1 for size" id_arme="2a69f573-dc68-4383-81f2-89561eb15492" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
     <if_variable name="BoardingState" comparator="EQUALS" value="1.0" />
-    <if_variable name="IntrepidDamCon1ButtonVisible" comparator="EQUALS" value="1.0" />
+    <if_variable name="IntrepidDamCon1ButtonVisible" comparator="GREATER" value="0.0" />
     <if_damcon_members player_slot="1" team_index="0" comparator="LESS" value="6" />
     <clear_comms_button text="Send DamCon team 1 " />
     <set_variable name="IntrepidDamCon1ButtonVisible" value="0.0" />
   </event>
-  <event name="Disallow Intrepid DamCon 2 for team" id_arme="49cb8b5f-974e-47db-bafd-20e5d7b47aa5" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
+  <event name="Disallow Intrepid DamCon 2 for size" id_arme="49cb8b5f-974e-47db-bafd-20e5d7b47aa5" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
     <if_variable name="BoardingState" comparator="EQUALS" value="1.0" />
-    <if_variable name="IntrepidDamCon2ButtonVisible" comparator="EQUALS" value="1.0" />
+    <if_variable name="IntrepidDamCon2ButtonVisible" comparator="GREATER" value="0.0" />
     <if_damcon_members player_slot="1" team_index="1" comparator="LESS" value="6" />
     <clear_comms_button text="Send DamCon team 2 " />
     <set_variable name="IntrepidDamCon2ButtonVisible" value="0.0" />
   </event>
-  <event name="Disallow Intrepid DamCon 3 for team" id_arme="b5d27490-af7a-4838-8df1-a6f5022bdc75" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
+  <event name="Disallow Intrepid DamCon 3 for size" id_arme="b5d27490-af7a-4838-8df1-a6f5022bdc75" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
     <if_variable name="BoardingState" comparator="EQUALS" value="1.0" />
-    <if_variable name="IntrepidDamCon3ButtonVisible" comparator="EQUALS" value="1.0" />
+    <if_variable name="IntrepidDamCon3ButtonVisible" comparator="GREATER" value="0.0" />
     <if_damcon_members player_slot="1" team_index="2" comparator="LESS" value="6" />
     <clear_comms_button text="Send DamCon team 3 " />
     <set_variable name="IntrepidDamCon3ButtonVisible" value="0.0" />
