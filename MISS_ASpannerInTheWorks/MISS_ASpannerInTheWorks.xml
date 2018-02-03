@@ -38,7 +38,7 @@
     <set_object_property property="musicObjectMasterVolume" value="0.0" />
     <set_variable name="DockedRange" value="100.0" />
     <set_variable name="SabotageDelaySeconds" value="300.0" />
-    <big_message title="A Spanner in the Works" subtitle1="A Diana Series Mission by Dave Thaler" subtitle2="adventure for Artemis 2.6" />
+    <big_message title="A Spanner in the Works" subtitle1="A Diana Series Mission by Dave Thaler" subtitle2="An adventure for one or two ships for Artemis 2.6" />
     <set_variable name="BestFrequency" randomIntLow="0" randomIntHigh="4" />
     <set_variable name="TractorStrength" value="2.0" />
     <!--Initialize any variables that must be integers:-->
@@ -141,19 +141,6 @@
     <set_variable name="MaxBombs" value="2.0" integer="yes" />
   </event>
   <folder_arme name="Start/End Game Events" id_arme="e829d865-90bd-4c1b-aabe-60c7d7cfe1a1" />
-  <event name="Start Title timer after first ship connects" id_arme="75a51448-2195-4afa-9ca8-864f45de62a0" parent_id_arme="e829d865-90bd-4c1b-aabe-60c7d7cfe1a1">
-    <if_variable name="51362_1_titleTimerStarted" comparator="EQUALS" value="0" />
-    <if_variable name="PlayerShipCount" comparator="GREATER" value="0" />
-    <set_timer name="51362_1_titleTimer" seconds="5" />
-    <set_variable name="51362_1_titleTimerStarted" value="1" />
-  </event>
-  <event name="Show Title" id_arme="dca1c962-7f01-47cc-955a-8c0a98bf8cab" parent_id_arme="e829d865-90bd-4c1b-aabe-60c7d7cfe1a1">
-    <if_variable name="51362_1_delayedTitleShown" comparator="EQUALS" value="0" />
-    <if_variable name="PlayerShipCount" comparator="GREATER" value="0" />
-    <if_timer_finished name="51362_1_titleTimer" />
-    <big_message title="A Spanner in the Works" subtitle1="written by Dave Thaler" subtitle2="" />
-    <set_variable name="51362_1_delayedTitleShown" value="1" />
-  </event>
   <event name="All Player Ships Destroyed" id_arme="42f2865c-0518-4e1b-bfc1-7556bdc0cd1b" parent_id_arme="e829d865-90bd-4c1b-aabe-60c7d7cfe1a1">
     <if_not_exists name="Aegis" />
     <if_not_exists name="Artemis" />
@@ -342,7 +329,7 @@
   <event name="Give mission" id_arme="e67adc38-f742-404e-9352-b1e0797d6519" parent_id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6">
     <if_variable name="TsnCommandGaveMission" comparator="EQUALS" value="1.0" />
     <log text="Gave mission" />
-    <incoming_comms_text from="TSN Command" type="SIDE">As a result of the recent Diana Operation, the Torgoth have moved their fleets^elsewhere in the conflict with the TSN.  The Arvonians, however, have advanced^and taken Houston Outpost, but not before we managed to tow the crippled TSN^Diana back here to DS1 where it is now undergoing reconstruction.  A scout ship^reported that an Arvonian base has just appeared in the asteroid belt,^presumably in preparation for an assault on DS1.  We are sending their position^to your ship now.  Your mission is to protect both DS1 and the Diana from the^Arvonian invasion.  It is imperative that we not lose either one.</incoming_comms_text>
+    <incoming_comms_text from="TSN Command" type="SIDE">As a result of the recent Diana Operation, the Torgoth have moved their fleets elsewhere in the conflict with the TSN.  The Arvonians, however, have advanced and taken Houston Outpost, but not before we managed to tow the crippled TSN Diana back here to DS1 where it is now undergoing reconstruction.  A scout ship reported that an Arvonian base has just appeared in the asteroid belt, presumably in preparation for an assault on DS1.  We are sending their position to your ship now.  Your mission is to protect both DS1 and the Diana from the Arvonian invasion.  It is imperative that we not lose either one.</incoming_comms_text>
     <set_variable name="TsnCommandGaveMission" value="2.0" />
     <set_timer name="SabotageDelay" seconds="SabotageDelaySeconds" />
     <clear_gm_button text="GM/Resend Comms/Give Mission" />

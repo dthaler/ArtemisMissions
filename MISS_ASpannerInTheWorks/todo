@@ -58,11 +58,11 @@
 01/28/18 ADD: support for a second player ship
 02/02/18 ADD: support for a second player ship for the damcon buttons
 02/02/18 ADD: only add DamCon buttons to one ship, not all player ships
+02/02/18 BUG: odd wrapping in "As a result of the recent..." message
+02/02/18 FIX: clean up 51362_1_* variables
 
 ---
 {
-
-1/1 odd wrapping in "As a result of the recent..." message
 
 1/2 advertise
          post on meetup.com
@@ -72,8 +72,6 @@
 1/2 ADD: more enemy ships to scale with # player ships
          DianaOperation had 9 Carriers (6 light 3 normal) and 9 torgoth and 6 bases for 2 ships which was hard
          just had to hold out long enough not destroy them all
-
-1/2 FIX: clean up 51362_1_* variables
 
 ---
 
