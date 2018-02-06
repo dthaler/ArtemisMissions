@@ -50,3 +50,6 @@ To play this mission:
 ----------------------------------- END SET UP AND CONFIGURATION
 .
 Game title will appear 5 seconds into the game on both the main screen and as a Comms message.
+
+The sensor range cannot be unlimited.  If an unlimited range is configured, the range will be set to 16km
+(the recommended default for this mission).

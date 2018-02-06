@@ -11,6 +11,9 @@
     <set_variable name="StationZ" value="73016.0" />
     <create type="station" x="StationX" y="StationY" z="StationZ" angle="0" name="DS1" raceKeys="friendly" hullKeys="Deep Space Base base" />
     <create type="neutral" x="StationX - 10" y="StationY + 50.0" z="StationZ" angle="0" name="Diana" hullID="0" sideValue="2" />
+    <!---->
+    <!--Create allied ships-->
+    <!---->
     <create type="neutral" x="4093.0" y="0.0" z="46077.0" angle="320" name="S01" raceKeys="Terran friendly" hullKeys="science" sideValue="2" />
     <clear_ai name="S01" />
     <add_ai type="PROCEED_TO_EXIT" name="S01" />
@@ -212,6 +215,38 @@
     <if_fleet_count comparator="GREATER" value="EnemiesLeft" sideValue="1" />
     <set_variable name="EnemiesLeft" value="EnemiesLeft + 1" />
   </event>
+  <event name="Limit sensor range" id_arme="51449eef-be71-441f-90b7-d3a39fe8ae40" parent_id_arme="e829d865-90bd-4c1b-aabe-60c7d7cfe1a1">
+    <if_object_property property="sensorSetting" comparator="EQUALS" value="0.0" />
+    <set_object_property property="sensorSetting" value="2" />
+  </event>
+  <event name="Report sensor range 33k" id_arme="839700f3-5592-475d-ac17-5aa0aea17490" parent_id_arme="e829d865-90bd-4c1b-aabe-60c7d7cfe1a1">
+    <if_object_property property="sensorSetting" comparator="EQUALS" value="1.0" />
+    <if_variable name="ReportedSensorRange" comparator="EQUALS" value="0.0" />
+    <if_timer_finished name="StartupDelayBeforeOrders" />
+    <set_variable name="ReportedSensorRange" value="1.0" />
+    <warning_popup_message message="Sensor range limited to 33k" consoles="S" />
+  </event>
+  <event name="Report sensor range 16k" id_arme="ce2a3e84-28f1-4442-9bff-78960d1a6424" parent_id_arme="e829d865-90bd-4c1b-aabe-60c7d7cfe1a1">
+    <if_object_property property="sensorSetting" comparator="EQUALS" value="2.0" />
+    <if_variable name="ReportedSensorRange" comparator="EQUALS" value="0.0" />
+    <if_timer_finished name="StartupDelayBeforeOrders" />
+    <set_variable name="ReportedSensorRange" value="1.0" />
+    <warning_popup_message message="Sensor range limited to 16k" consoles="S" />
+  </event>
+  <event name="Report sensor range 11k" id_arme="c98dc60d-87f6-4e3e-8215-ae3a31a06814" parent_id_arme="e829d865-90bd-4c1b-aabe-60c7d7cfe1a1">
+    <if_object_property property="sensorSetting" comparator="EQUALS" value="3.0" />
+    <if_variable name="ReportedSensorRange" comparator="EQUALS" value="0.0" />
+    <if_timer_finished name="StartupDelayBeforeOrders" />
+    <set_variable name="ReportedSensorRange" value="1.0" />
+    <warning_popup_message message="Sensor range limited to 11k" consoles="S" />
+  </event>
+  <event name="Report sensor range 8k" id_arme="5979b578-ffd3-499f-957d-d192fc8b9ced" parent_id_arme="e829d865-90bd-4c1b-aabe-60c7d7cfe1a1">
+    <if_object_property property="sensorSetting" comparator="EQUALS" value="4.0" />
+    <if_variable name="ReportedSensorRange" comparator="EQUALS" value="0.0" />
+    <if_timer_finished name="StartupDelayBeforeOrders" />
+    <set_variable name="ReportedSensorRange" value="1.0" />
+    <warning_popup_message message="Sensor range limited to 8k" consoles="S" />
+  </event>
   <folder_arme name="Player Ship initialization" id_arme="21712616-42f1-44fc-a39e-b0521eb9312f" />
   <event name="Create Player Ship - Artemis" id_arme="77054e94-9150-490c-b841-a94b75764284" parent_id_arme="21712616-42f1-44fc-a39e-b0521eb9312f">
     <if_exists name="Artemis" />
@@ -326,7 +361,7 @@
     <log text="GM gave mission" />
     <set_variable name="TsnCommandGaveMission" value="1.0" />
   </event>
-  <event name="Give mission" id_arme="e67adc38-f742-404e-9352-b1e0797d6519" parent_id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6">
+  <event name="Give mission" id_arme="d1a783c8-8781-4cbe-95ae-4baa520c39a5" parent_id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6">
     <if_variable name="TsnCommandGaveMission" comparator="EQUALS" value="1.0" />
     <log text="Gave mission" />
     <incoming_comms_text from="TSN Command" type="SIDE">As a result of the recent Diana Operation, the Torgoth have moved their fleets elsewhere in the conflict with the TSN.  The Arvonians, however, have advanced and taken Houston Outpost, but not before we managed to tow the crippled TSN Diana back here to DS1 where it is now undergoing reconstruction.  A scout ship reported that an Arvonian base has just appeared in the asteroid belt, presumably in preparation for an assault on DS1.  We are sending their position to your ship now.  Your mission is to protect both DS1 and the Diana from the Arvonian invasion.  It is imperative that we not lose either one.</incoming_comms_text>
@@ -334,10 +369,18 @@
     <set_timer name="SabotageDelay" seconds="SabotageDelaySeconds" />
     <clear_gm_button text="GM/Resend Comms/Give Mission" />
     <clear_gm_button text="GM/Resend Comms/DS1 Resummon Ships" />
-    <create type="enemy" x="60066.0" y="0.0" z="14499.0" angle="180" raceKeys="enemy whalelover" hullKeys="carrier" fleetnumber="1" />
-    <create type="enemy" x="34630.0" y="0.0" z="33068.0" angle="180" raceKeys="enemy whalelover" hullKeys="carrier" fleetnumber="2" />
-    <create type="enemy" x="78791.0" y="0.0" z="34473.0" angle="180" raceKeys="enemy whalelover" hullKeys="carrier" fleetnumber="3" />
     <create type="station" x="68960.0" y="0.0" z="20741.0" angle="0" name="AB1" raceKeys="enemy whalelover" hullKeys="base" sideValue="1" />
+    <create type="enemy" x="83996.0" y="0.0" z="20217.0" angle="180" hullID="3001" fleetnumber="1" />
+    <create type="enemy" x="34630.0" y="0.0" z="33068.0" angle="180" hullID="3001" fleetnumber="2" />
+    <create type="enemy" x="62494.0" y="0.0" z="33292.0" angle="180" hullID="3001" fleetnumber="3" />
+  </event>
+  <event name="Add enemies for 2nd ship" id_arme="e67adc38-f742-404e-9352-b1e0797d6519" parent_id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6">
+    <if_variable name="TsnCommandGaveMission" comparator="EQUALS" value="2.0" />
+    <log text="Added enemies for 2nd ship" />
+    <set_variable name="TsnCommandGaveMission" value="3.0" />
+    <create type="enemy" x="59734.0" y="0.0" z="13389.0" angle="180" hullID="3002" fleetnumber="4" />
+    <create type="enemy" x="78039.0" y="0.0" z="33583.0" angle="180" hullID="3002" fleetnumber="5" />
+    <create type="enemy" x="50291.0" y="0.0" z="26900.0" angle="180" hullID="3002" fleetnumber="6" />
   </event>
   <event name="Refresh GM buttons" id_arme="f1383e6f-ee03-4dce-872f-9f43586e0033" parent_id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6">
     <if_exists name="DS1" />

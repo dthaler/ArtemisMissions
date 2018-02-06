@@ -60,22 +60,39 @@
 02/02/18 ADD: only add DamCon buttons to one ship, not all player ships
 02/02/18 BUG: odd wrapping in "As a result of the recent..." message
 02/02/18 FIX: clean up 51362_1_* variables
+02/05/18 FIX: limit sensor range like The Diana Operation did
 
 ---
 {
 
 1/2 advertise
-         post on meetup.com
+         DONE post on meetup.com
+         DONE post about NWC on artemis forums
          send blog entry to jeffrey sloan
-         post about NWC on artemis forums
+         PROG check Brew Bothell schedule
 
 1/2 ADD: more enemy ships to scale with # player ships
          DianaOperation had 9 Carriers (6 light 3 normal) and 9 torgoth and 6 bases for 2 ships which was hard
          just had to hold out long enough not destroy them all
 
----
+         1 ship:   3 light carriers     (+ Skaarans per difficulty)
+         2 ships:  + 3 heavy carriers   (+ Skaarans per difficulty)
 
-2/2 FIX: replace some Skaarans with monsters that live in the asteroid belt
+1/2 FIX: replace some Skaarans with monsters that live in the asteroid belt
+          * Biomechs - eat asteroids so appropriate for the asteroid belt (defends self)
+                    stage 3 needs anomalies
+            Shark - eats whales so ok only if there's also whales (defends self)
+            Dragon - aggressive, so probably skip it
+            Piranha - swarms, likes nebulae and wrecks, so probably skip it
+            Charybdis - makes nebolas, so probably skip it
+          * Space bug - follows and harasses biomechs
+
+         1 ship:  4 stage-1 biomechs
+         2 ships: +4 NSECTs
+
+         Problem: Biomechs can't be used normally in a mission, you have to write lots of code to deal with them
+
+---
 
 2/2 ADD: maybe require a task for each NPC ship before they will follow comms' orders
            Science vessel goal - something about space monsters
