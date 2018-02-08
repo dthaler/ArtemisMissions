@@ -44,6 +44,31 @@
     <big_message title="A Spanner in the Works" subtitle1="A Diana Series Mission by Dave Thaler" subtitle2="An adventure for one or two ships for Artemis 2.6" />
     <set_variable name="BestFrequency" randomIntLow="0" randomIntHigh="4" />
     <set_variable name="TractorStrength" value="2.0" />
+    <!--Create monsters-->
+    <create type="enemy" x="93875.0" y="10.0" z="32276.0" angle="0" name="B01" raceKeys="BioMech biomech" hullKeys="small asteroideater Stage 1" sideValue="0" />
+    <clear_ai name="B01" />
+    <add_ai type="STAY_CLOSE" value1="93875.0" value2="10.0" value3="32276.0" value4="1.0" name="B01" />
+    <add_ai type="CHASE_PLAYER" value1="1000" value2="500" name="B01" />
+    <add_ai type="CHASE_AI_SHIP" value1="1000" value2="500" name="B01" />
+    <add_ai type="CHASE_ANGER" name="B01" />
+    <create type="enemy" x="43608.0" y="10.0" z="36053.0" angle="0" name="B02" raceKeys="BioMech biomech" hullKeys="small asteroideater Stage 1" sideValue="0" />
+    <clear_ai name="B02" />
+    <add_ai type="POINT_THROTTLE" value1="43608.0" value2="10.0" value3="36053.0" value4="1.0" name="B02" />
+    <add_ai type="CHASE_PLAYER" value1="1000" value2="500" name="B02" />
+    <add_ai type="CHASE_AI_SHIP" value1="1000" value2="500" name="B02" />
+    <add_ai type="CHASE_ANGER" name="B02" />
+    <create type="enemy" x="33439.0" y="10.0" z="19055.0" angle="0" name="B03" raceKeys="BioMech biomech" hullKeys="small asteroideater Stage 1" sideValue="0" />
+    <clear_ai name="B03" />
+    <add_ai type="POINT_THROTTLE" value1="33439.0" value2="10.0" value3="19055.0" value4="1.0" name="B03" />
+    <add_ai type="CHASE_PLAYER" value1="1000" value2="500" name="B03" />
+    <add_ai type="CHASE_AI_SHIP" value1="1000" value2="500" name="B03" />
+    <add_ai type="CHASE_ANGER" name="B03" />
+    <create type="enemy" x="7289.0" y="10.0" z="28789.0" angle="0" name="B04" raceKeys="BioMech biomech" hullKeys="small asteroideater Stage 1" sideValue="0" />
+    <clear_ai name="B04" />
+    <add_ai type="POINT_THROTTLE" value1="7289.0" value2="10.0" value3="28789.0" value4="1.0" name="B04" />
+    <add_ai type="CHASE_PLAYER" value1="1000" value2="500" name="B04" />
+    <add_ai type="CHASE_AI_SHIP" value1="1000" value2="500" name="B04" />
+    <add_ai type="CHASE_ANGER" name="B04" />
     <!--Initialize any variables that must be integers:-->
     <set_variable name="HackSuccessesNeeded" value="5.0" integer="yes" />
     <set_variable name="DamConTeamSent" value="0.0" integer="yes" />
@@ -269,6 +294,11 @@
     <set_object_property property="angle" value="0.0" name="Intrepid" />
     <set_variable name="IntrepidInitialized" value="1" />
     <set_variable name="PlayerShipCount" value="PlayerShipCount+1" integer="yes" />
+    <!--Add some NSECT monsters-->
+    <create type="monster" monsterType="6" x="55666.0" y="10.0" z="19346.0" angle="0" />
+    <create type="monster" monsterType="6" x="86320.0" y="10.0" z="37941.0" angle="0" />
+    <create type="monster" monsterType="6" x="23415.0" y="10.0" z="35326.0" angle="0" />
+    <create type="monster" monsterType="6" x="68306.0" y="10.0" z="41138.0" angle="0" />
   </event>
   <event name="Create Player Ship - Aegis" id_arme="6e63775f-221a-4740-beb5-76207cb60034" parent_id_arme="21712616-42f1-44fc-a39e-b0521eb9312f">
     <if_exists name="Aegis" />
@@ -281,7 +311,7 @@
     <set_variable name="AegisInitialized" value="1" />
     <set_variable name="PlayerShipCount" value="PlayerShipCount+1" integer="yes" />
   </event>
-  <folder_arme name="Task: Dock with DS1 to receive orders" id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6" />
+  <folder_arme name="Task: Dock with DS1 to receive orders" id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6" expanded_arme="" />
   <event name="Prepare to summon ships" id_arme="b5f53049-5cf3-43b7-b98d-6a92f25d26f1" parent_id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6">
     <if_variable name="PlayerShipCount" comparator="GREATER" value="0.0" />
     <if_variable name="TsnCommandSummonedShips" comparator="EQUALS" value="0.0" />
@@ -373,11 +403,18 @@
     <create type="enemy" x="83996.0" y="0.0" z="20217.0" angle="180" hullID="3001" fleetnumber="1" />
     <create type="enemy" x="34630.0" y="0.0" z="33068.0" angle="180" hullID="3001" fleetnumber="2" />
     <create type="enemy" x="62494.0" y="0.0" z="33292.0" angle="180" hullID="3001" fleetnumber="3" />
+    <create type="enemy" x="85739.0" y="0.0" z="20072.0" angle="180" hullID="3001" fleetnumber="1" />
+    <create type="enemy" x="33293.0" y="0.0" z="33292.0" angle="180" hullID="3001" fleetnumber="2" />
+    <create type="enemy" x="60606.0" y="0.0" z="33292.0" angle="180" hullID="3001" fleetnumber="3" />
   </event>
   <event name="Add enemies for 2nd ship" id_arme="e67adc38-f742-404e-9352-b1e0797d6519" parent_id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6">
+    <if_variable name="PlayerShipCount" comparator="GREATER" value="1.0" />
     <if_variable name="TsnCommandGaveMission" comparator="EQUALS" value="2.0" />
     <log text="Added enemies for 2nd ship" />
     <set_variable name="TsnCommandGaveMission" value="3.0" />
+    <create type="enemy" x="58427.0" y="0.0" z="14116.0" angle="180" hullID="3002" fleetnumber="4" />
+    <create type="enemy" x="77022.0" y="0.0" z="34019.0" angle="180" hullID="3002" fleetnumber="5" />
+    <create type="enemy" x="49129.0" y="0.0" z="27336.0" angle="180" hullID="3002" fleetnumber="6" />
     <create type="enemy" x="59734.0" y="0.0" z="13389.0" angle="180" hullID="3002" fleetnumber="4" />
     <create type="enemy" x="78039.0" y="0.0" z="33583.0" angle="180" hullID="3002" fleetnumber="5" />
     <create type="enemy" x="50291.0" y="0.0" z="26900.0" angle="180" hullID="3002" fleetnumber="6" />
