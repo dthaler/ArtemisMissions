@@ -63,28 +63,16 @@
 02/05/18 FIX: limit sensor range like The Diana Operation did
 02/07/18 ADD: more enemy ships to scale with # player ships (6 light, +6 more heavy carriers if second ship)
 02/07/18      plus Skaraans per difficulty
-
----
-{
-
-1/2 advertise
-         DONE post on meetup.com
-         DONE post about NWC on artemis forums
-         send blog entry to jeffrey sloan
-         PROG check Brew Bothell schedule
-
-1/2 FIX: replace some Skaarans with monsters that live in the asteroid belt
-          * Biomechs - eat asteroids so appropriate for the asteroid belt (defends self)
-                    stage 3 needs anomalies
-       B    Shark - eats whales so ok only if there's also whales (defends self)
-       B    Dragon - 
-       B    Piranha - swarms, likes nebulae and wrecks, so probably skip it
-            Charybdis - makes nebulas, so probably skip it, the only one that's NOT aggressive
-       B  * Space bug - follows and harasses biomechs
-
-         1 ship:  4 stage-1 biomechs
-         2 ships: +4 NSECTs
-
+02/08/18 FIX: add some monsters that live in the asteroid belt
+               Biomechs - eat asteroids so appropriate for the asteroid belt (defends self)
+                       stage 3 needs anomalies
+               Shark - eats whales so ok only if there's also whales (defends self)
+               Dragon - 
+               Piranha - swarms, likes nebulae and wrecks, so probably skip it
+               Charybdis - makes nebulas, so probably skip it, the only one that's NOT aggressive
+               Space bug - follows and harasses biomechs
+         1 ship:  4 NSECTS randomly placed + 1 biomech
+         2 ships: +4 NSECTs randomly placed + 1 DRAGON
          Problem: Biomechs can't be used normally in a mission, you have to write lots of code to deal with them
          Option 1) Write code to make biomechs eat/evolve
             disadvantage is risk of random anti-proton numbers if bug is not fixed
@@ -102,7 +90,14 @@
                 disadvantage - uses nebulas instead of something new
             option 3c) use Dragon(s)
 
-         Proposal: 1 stage 1 biomech that grows, some NSECTS, and one DRAGON
+---
+{
+
+1/2 advertise
+         DONE post on meetup.com
+         DONE post about NWC on artemis forums
+         send blog entry to jeffrey sloan
+         PROG check Brew Bothell schedule
 
 ---
 
