@@ -89,6 +89,7 @@
             option 3b) use Charybdis and Piranhas
                 disadvantage - uses nebulas instead of something new
             option 3c) use Dragon(s)
+1/2 ADD: Luxury Liner Avalon side mission (trade 200 energy for 2 coolant)
 
 ---
 {
@@ -108,17 +109,17 @@
                                     maybe use DEFEND? or TARGET_THROTTLE
                                  IF navigate to DS1
                                     +change brain stack to enable attacking, but not Diana or Saboteur
-         DNTT on start:
+         DONE on start:
                     set ship text
                     set brain stack to be non-violent
                         DIR_THROTTLE
                     (implicitly set variable to 0)
                     set random timer (RapierCommsDelay) between 60 and 180 seconds
-         DNTT on timer expiry (and variable is 0):
+         DONE on timer expiry (and variable is 0):
                     send comms message
                     set variable to 1
          DNTT on reaching DS1:
-                    update brain stack to be violent but not against Diana
+                    update brain stack
                         CHASE_AI_SHIP anywhere
                         FOLLOW_COMMS_ORDERS
                         DEFEND 3000 1000
@@ -140,13 +141,6 @@
                     DO restore good brain stack
                     DO restore good ship text
                     set RapierOnAlert = 0
-
-1/2 ADD: Luxury (Avalon) side mission
-                    LOCATION: not close to Starseeker
-                    WHEN: available immediately, comms after random delay
-                    IF: donate 100 energy
-                                    +coolant  (totalCoolant += 2)
-                                    +change brain stack to follow orders
 
 1/2 ADD: DS1 side mission #1
                     - deliver something to DS1 to increase DS1 shields "enhance our shield generators"

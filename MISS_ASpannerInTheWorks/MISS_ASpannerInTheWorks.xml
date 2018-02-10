@@ -33,8 +33,9 @@
     <add_ai type="FOLLOW_COMMS_ORDERS" name="Pegasus" />
     <create type="neutral" x="4964.0" y="0.0" z="96198.0" angle="0" name="Avalon" raceKeys="Terran friendly" hullKeys="luxury" sideValue="2" />
     <clear_ai name="Avalon" />
-    <add_ai type="PROCEED_TO_EXIT" name="Avalon" />
-    <add_ai type="FOLLOW_COMMS_ORDERS" name="Avalon" />
+    <set_variable name="AvalonCommsDelay" randomIntLow="120" randomIntHigh="600" />
+    <set_ship_text name="Avalon" hailtext="We're out of energy!  Could you lend us 200 units to get moving?" />
+    <set_timer name="AvalonCommsTimer" seconds="AvalonCommsDelay" />
     <create type="neutral" x="91841.0" y="0.0" z="96053.0" angle="45" name="Atlas" raceKeys="Terran friendly" hullKeys="transport" sideValue="2" />
     <clear_ai name="Atlas" />
     <add_ai type="PROCEED_TO_EXIT" name="Atlas" />
@@ -57,16 +58,16 @@
     <add_ai type="CHASE_AI_SHIP" value1="1000" value2="500" name="B01" />
     <add_ai type="CHASE_ANGER" name="B01" />
     <!--Add some NSECT monsters. More will be created when a second ship spawns.-->
-    <set_variable name="RandomX" randomFloatLow="10000.0" randomFloatHigh="90000.0" />
+    <set_variable name="RandomX" randomFloatLow="20000.0" randomFloatHigh="90000.0" />
     <set_variable name="RandomZ" randomIntLow="10000" randomIntHigh="40000" />
     <create type="monster" monsterType="6" x="RandomX" y="0.0" z="RandomZ" angle="0" />
-    <set_variable name="RandomX" randomFloatLow="10000.0" randomFloatHigh="90000.0" />
+    <set_variable name="RandomX" randomFloatLow="20000.0" randomFloatHigh="90000.0" />
     <set_variable name="RandomZ" randomIntLow="10000" randomIntHigh="40000" />
     <create type="monster" monsterType="6" x="RandomX" y="0.0" z="RandomZ" angle="0" />
-    <set_variable name="RandomX" randomFloatLow="10000.0" randomFloatHigh="90000.0" />
+    <set_variable name="RandomX" randomFloatLow="20000.0" randomFloatHigh="90000.0" />
     <set_variable name="RandomZ" randomIntLow="10000" randomIntHigh="40000" />
     <create type="monster" monsterType="6" x="RandomX" y="0.0" z="RandomZ" angle="0" />
-    <set_variable name="RandomX" randomFloatLow="10000.0" randomFloatHigh="90000.0" />
+    <set_variable name="RandomX" randomFloatLow="20000.0" randomFloatHigh="90000.0" />
     <set_variable name="RandomZ" randomIntLow="10000" randomIntHigh="40000" />
     <create type="monster" monsterType="6" x="RandomX" y="0.0" z="RandomZ" angle="0" />
     <!---->
@@ -299,16 +300,16 @@
     <set_variable name="IntrepidInitialized" value="1" />
     <set_variable name="PlayerShipCount" value="PlayerShipCount+1" integer="yes" />
     <!--Add some more NSECT monsters-->
-    <set_variable name="RandomX" randomFloatLow="10000.0" randomFloatHigh="90000.0" />
+    <set_variable name="RandomX" randomFloatLow="20000.0" randomFloatHigh="90000.0" />
     <set_variable name="RandomZ" randomIntLow="10000" randomIntHigh="40000" />
     <create type="monster" monsterType="6" x="RandomX" y="0.0" z="RandomZ" angle="0" />
-    <set_variable name="RandomX" randomFloatLow="10000.0" randomFloatHigh="90000.0" />
+    <set_variable name="RandomX" randomFloatLow="20000.0" randomFloatHigh="90000.0" />
     <set_variable name="RandomZ" randomIntLow="10000" randomIntHigh="40000" />
     <create type="monster" monsterType="6" x="RandomX" y="0.0" z="RandomZ" angle="0" />
-    <set_variable name="RandomX" randomFloatLow="10000.0" randomFloatHigh="90000.0" />
+    <set_variable name="RandomX" randomFloatLow="20000.0" randomFloatHigh="90000.0" />
     <set_variable name="RandomZ" randomIntLow="10000" randomIntHigh="40000" />
     <create type="monster" monsterType="6" x="RandomX" y="0.0" z="RandomZ" angle="0" />
-    <set_variable name="RandomX" randomFloatLow="10000.0" randomFloatHigh="90000.0" />
+    <set_variable name="RandomX" randomFloatLow="20000.0" randomFloatHigh="90000.0" />
     <set_variable name="RandomZ" randomIntLow="10000" randomIntHigh="40000" />
     <create type="monster" monsterType="6" x="RandomX" y="0.0" z="RandomZ" angle="0" />
     <create type="monster" monsterType="3" x="99831.0" y="0.0" z="40702.0" angle="0" />
@@ -448,6 +449,7 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
     <if_variable name="RapierHelpStage" comparator="EQUALS" value="0.0" />
     <if_timer_finished name="RapierCommsTimer" />
     <log text="Rapier called for help" />
+    <incoming_comms_text from="Rapier" type="FRIEND">Our sensors are all down!  We're flying blind. Please guide us to a station for repairs!</incoming_comms_text>
     <set_variable name="RapierHelpStage" value="1.0" />
   </event>
   <event name="Rapier reaches DS1" id_arme="a96b73e6-6360-4bc7-851d-00e805b18b31" parent_id_arme="a7e826ad-d40c-4a39-8248-01183453befa">
@@ -484,6 +486,40 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
     <add_ai type="FOLLOW_COMMS_ORDERS" name="Rapier" />
     <add_ai type="DEFEND" value2="3000" value1="1000" name="Rapier" />
     <add_ai type="CHASE_ANGER" name="Rapier" />
+  </event>
+  <folder_arme name="Side mission: Avalon" id_arme="1dcd0b8c-8f99-4b5b-8f55-6f4e7390217e" />
+  <event name="Avalon calls for help" id_arme="b24d24ac-08b8-4ad2-856d-d30608afad93" parent_id_arme="1dcd0b8c-8f99-4b5b-8f55-6f4e7390217e">
+    <if_variable name="AvalonHelpStage" comparator="EQUALS" value="0.0" />
+    <if_timer_finished name="AvalonCommsTimer" />
+    <log text="Avalon called for help" />
+    <incoming_comms_text from="Luxury Liner Avalon" type="FRIEND">We're out of energy!  Could you lend us 200 units to get moving?  In return, we've give you two of our coolant units.</incoming_comms_text>
+    <set_variable name="AvalonHelpStage" value="1.0" />
+  </event>
+  <event name="Artemis gives Avalon energy" id_arme="1e950fcb-481e-4dab-a7ba-593907b0d5b8" parent_id_arme="1dcd0b8c-8f99-4b5b-8f55-6f4e7390217e">
+    <if_variable name="AvalonHelpStage" comparator="LESS" value="2.0" />
+    <if_object_property property="energy" name="Artemis" comparator="GREATER" value="200.0" />
+    <if_distance name1="Artemis" name2="Avalon" comparator="LESS_EQUAL" value="500.0" />
+    <log text="Artemis gave Avalon energy" />
+    <set_variable name="AvalonHelpStage" value="2.0" />
+    <addto_object_property value="-200.0" property="energy" name="Artemis" />
+    <addto_object_property value="2.0" property="totalCoolant" name="Artemis" />
+    <incoming_comms_text from="Avalon" type="FRIEND">Thanks for the energy, Artemis!  In return, here's two of our coolant units.</incoming_comms_text>
+    <add_ai type="PROCEED_TO_EXIT" name="Avalon" />
+    <add_ai type="FOLLOW_COMMS_ORDERS" name="Avalon" />
+    <set_ship_text name="Luxury Liner Avalon" hailtext="We're travelling this sector, showing our guests the most beautiful and amazing sights." />
+  </event>
+  <event name="Intrepid gives Avalon energy" id_arme="74f4d364-69d5-441e-b516-2f6f816a1364" parent_id_arme="1dcd0b8c-8f99-4b5b-8f55-6f4e7390217e">
+    <if_variable name="AvalonHelpStage" comparator="LESS" value="2.0" />
+    <if_object_property property="energy" name="Intrepid" comparator="GREATER" value="200.0" />
+    <if_distance name1="Intrepid" name2="Avalon" comparator="LESS_EQUAL" value="500.0" />
+    <log text="Intrepid gave Avalon energy" />
+    <set_variable name="AvalonHelpStage" value="2.0" />
+    <addto_object_property value="-200.0" property="energy" name="Intrepid" />
+    <addto_object_property value="2.0" property="totalCoolant" name="Intrepid" />
+    <incoming_comms_text from="Avalon" type="FRIEND">Thanks for the energy, Intrepid!  In return, here's two of our coolant units.</incoming_comms_text>
+    <add_ai type="PROCEED_TO_EXIT" name="Avalon" />
+    <add_ai type="FOLLOW_COMMS_ORDERS" name="Avalon" />
+    <set_ship_text name="Luxury Liner Avalon" hailtext="We're travelling this sector, showing our guests the most beautiful and amazing sights." />
   </event>
   <folder_arme name="Sabotage" id_arme="06783d9d-3423-44f3-b6e3-28e8f836b4fd" />
   <event name="Bomb Set" id_arme="9c900198-e63b-4408-9a57-32ae99e1e2ae" parent_id_arme="06783d9d-3423-44f3-b6e3-28e8f836b4fd">
