@@ -1,57 +1,78 @@
 <mission_data version="2.6" background_id_arme="84327810-6e7d-41e7-9e71-391649f5b452" playerShipNames_arme="Artemis\Intrepid\Aegis\Horatio\Excalibur\Hera\Ceres\Diana">
   <start id_arme="84327810-6e7d-41e7-9e71-391649f5b452">
+    <big_message title="A Spanner in the Works" subtitle1="A Diana Series Mission by Dave Thaler" subtitle2="An adventure for one or two ships for Artemis 2.6" />
+    <set_skybox_index index="10" />
+    <set_object_property property="musicObjectMasterVolume" value="0.0" />
+    <set_variable name="SabotageDelaySeconds" value="300.0" />
+    <!---->
+    <!--Create terrain-->
+    <!---->
     <create count="200" type="asteroids" startX="90000.0" startY="0.0" startZ="38699.0" endX="10000.0" endY="0.0" endZ="28699.0" randomRange="20000" randomSeed="100" />
     <create count="200" type="asteroids" startX="90000.0" startY="200.0" startZ="38699.0" endX="10000.0" endY="200.0" endZ="28699.0" randomRange="20000" randomSeed="200" />
     <create count="200" type="asteroids" startX="90000.0" startY="-200.0" startZ="38699.0" endX="10000.0" endY="-200.0" endZ="28699.0" randomRange="20000" randomSeed="300" />
     <create count="200" type="asteroids" startX="90000.0" startY="-400.0" startZ="38699.0" endX="10000.0" endY="-400.0" endZ="28699.0" randomRange="20000" randomSeed="400" />
     <create count="200" type="asteroids" startX="90000.0" startY="400.0" startZ="38699.0" endX="10000.0" endY="400.0" endZ="28699.0" randomRange="20000" randomSeed="500" />
+    <!---->
+    <!--Create allied ships-->
+    <!---->
     <create type="player" x="48206.0" y="0.0" z="87373.0" angle="0" name="Artemis" />
     <set_variable name="StationX" value="27764.0" />
     <set_variable name="StationY" value="0.0" />
     <set_variable name="StationZ" value="73016.0" />
     <create type="station" x="StationX" y="StationY" z="StationZ" angle="0" name="DS1" raceKeys="friendly" hullKeys="Deep Space Base base" />
-    <create type="neutral" x="StationX - 10" y="StationY + 50.0" z="StationZ" angle="0" name="Diana" hullID="0" sideValue="2" />
-    <!---->
-    <!--Create allied ships-->
-    <!---->
-    <create type="neutral" x="4093.0" y="0.0" z="46077.0" angle="320" name="S01" raceKeys="Terran friendly" hullKeys="science" sideValue="2" />
-    <clear_ai name="S01" />
-    <add_ai type="PROCEED_TO_EXIT" name="S01" />
-    <add_ai type="FOLLOW_COMMS_ORDERS" name="S01" />
-    <create type="neutral" x="91841.0" y="0.0" z="96053.0" angle="45" name="S02" raceKeys="Terran friendly" hullKeys="cargo" sideValue="2" />
-    <clear_ai name="S02" />
-    <add_ai type="PROCEED_TO_EXIT" name="S02" />
-    <add_ai type="FOLLOW_COMMS_ORDERS" name="S02" />
-    <create type="neutral" x="98378.0" y="0.0" z="64527.0" angle="75" name="S03" raceKeys="Terran friendly" hullKeys="luxury" sideValue="2" />
-    <clear_ai name="S03" />
-    <add_ai type="PROCEED_TO_EXIT" name="S03" />
-    <add_ai type="FOLLOW_COMMS_ORDERS" name="S03" />
-    <create type="neutral" x="4964.0" y="0.0" z="96198.0" angle="0" name="S04" raceKeys="Terran friendly" hullKeys="transport" sideValue="2" />
-    <clear_ai name="S04" />
-    <add_ai type="PROCEED_TO_EXIT" name="S04" />
-    <add_ai type="FOLLOW_COMMS_ORDERS" name="S04" />
-    <create type="neutral" x="14553.0" y="0.0" z="10484.0" angle="200" name="S05" raceKeys="Terran friendly" hullKeys="small" sideValue="2" />
-    <clear_ai name="S05" />
-    <add_ai type="PROCEED_TO_EXIT" name="S05" />
-    <add_ai type="CHASE_AI_SHIP" name="S05" />
-    <add_ai type="FOLLOW_COMMS_ORDERS" name="S05" />
-    <add_ai type="DEFEND" value2="1000" value1="3000" name="S05" />
-    <add_ai type="CHASE_ANGER" name="S05" />
-    <set_skybox_index index="10" />
-    <set_object_property property="musicObjectMasterVolume" value="0.0" />
     <set_variable name="DockedRange" value="100.0" />
-    <set_variable name="SabotageDelaySeconds" value="300.0" />
-    <big_message title="A Spanner in the Works" subtitle1="A Diana Series Mission by Dave Thaler" subtitle2="An adventure for one or two ships for Artemis 2.6" />
-    <set_variable name="BestFrequency" randomIntLow="0" randomIntHigh="4" />
     <set_variable name="TractorStrength" value="2.0" />
+    <create type="neutral" x="StationX - 10" y="StationY + 50.0" z="StationZ" angle="0" name="Diana" hullID="0" sideValue="2" />
+    <create type="neutral" x="14553.0" y="0.0" z="10484.0" angle="200" name="Starseeker" raceKeys="Terran friendly" hullKeys="science" sideValue="2" />
+    <clear_ai name="Starseeker" />
+    <add_ai type="PROCEED_TO_EXIT" name="Starseeker" />
+    <add_ai type="FOLLOW_COMMS_ORDERS" name="Starseeker" />
+    <create type="neutral" x="98378.0" y="0.0" z="64527.0" angle="75" name="Pegasus" raceKeys="Terran friendly" hullKeys="cargo" sideValue="2" />
+    <clear_ai name="Pegasus" />
+    <add_ai type="PROCEED_TO_EXIT" name="Pegasus" />
+    <add_ai type="FOLLOW_COMMS_ORDERS" name="Pegasus" />
+    <create type="neutral" x="4964.0" y="0.0" z="96198.0" angle="0" name="Avalon" raceKeys="Terran friendly" hullKeys="luxury" sideValue="2" />
+    <clear_ai name="Avalon" />
+    <add_ai type="PROCEED_TO_EXIT" name="Avalon" />
+    <add_ai type="FOLLOW_COMMS_ORDERS" name="Avalon" />
+    <create type="neutral" x="91841.0" y="0.0" z="96053.0" angle="45" name="Atlas" raceKeys="Terran friendly" hullKeys="transport" sideValue="2" />
+    <clear_ai name="Atlas" />
+    <add_ai type="PROCEED_TO_EXIT" name="Atlas" />
+    <add_ai type="FOLLOW_COMMS_ORDERS" name="Atlas" />
+    <!--Create a Destroyer-->
+    <create type="neutral" x="4093.0" y="0.0" z="46077.0" angle="320" name="Rapier" raceKeys="Terran friendly" hullKeys="medium" sideValue="2" />
+    <clear_ai name="Rapier" />
+    <add_ai type="DIR_THROTTLE" value1="320" value2="1.0" name="Rapier" />
+    <add_ai type="FOLLOW_COMMS_ORDERS" name="Rapier" />
+    <set_ship_text name="Rapier" hailtext="Our sensors are all down!  We're flying blind. Please guide us to a station for repairs!" />
+    <set_variable name="RapierCommsDelay" randomIntLow="60" randomIntHigh="180" />
+    <set_timer name="RapierCommsTimer" seconds="RapierCommsDelay" />
+    <!---->
     <!--Create monsters-->
-    <create type="enemy" x="7289.0" y="10.0" z="28789.0" angle="0" name="B01" raceKeys="BioMech biomech" hullKeys="small asteroideater Stage 1" sideValue="0" />
+    <!---->
+    <create type="enemy" x="7289.0" y="10.0" z="28789.0" angle="0" name="B01" hullID="6001" sideValue="0" fleetnumber="-1" />
     <clear_ai name="B01" />
     <add_ai type="POINT_THROTTLE" value1="7289.0" value2="10.0" value3="28789.0" value4="1.0" name="B01" />
     <add_ai type="CHASE_PLAYER" value1="1000" value2="500" name="B01" />
     <add_ai type="CHASE_AI_SHIP" value1="1000" value2="500" name="B01" />
     <add_ai type="CHASE_ANGER" name="B01" />
+    <!--Add some NSECT monsters. More will be created when a second ship spawns.-->
+    <set_variable name="RandomX" randomFloatLow="10000.0" randomFloatHigh="90000.0" />
+    <set_variable name="RandomZ" randomIntLow="10000" randomIntHigh="40000" />
+    <create type="monster" monsterType="6" x="RandomX" y="0.0" z="RandomZ" angle="0" />
+    <set_variable name="RandomX" randomFloatLow="10000.0" randomFloatHigh="90000.0" />
+    <set_variable name="RandomZ" randomIntLow="10000" randomIntHigh="40000" />
+    <create type="monster" monsterType="6" x="RandomX" y="0.0" z="RandomZ" angle="0" />
+    <set_variable name="RandomX" randomFloatLow="10000.0" randomFloatHigh="90000.0" />
+    <set_variable name="RandomZ" randomIntLow="10000" randomIntHigh="40000" />
+    <create type="monster" monsterType="6" x="RandomX" y="0.0" z="RandomZ" angle="0" />
+    <set_variable name="RandomX" randomFloatLow="10000.0" randomFloatHigh="90000.0" />
+    <set_variable name="RandomZ" randomIntLow="10000" randomIntHigh="40000" />
+    <create type="monster" monsterType="6" x="RandomX" y="0.0" z="RandomZ" angle="0" />
+    <!---->
     <!--Initialize any variables that must be integers:-->
+    <!---->
+    <set_variable name="BestFrequency" randomIntLow="0" randomIntHigh="4" />
     <set_variable name="HackSuccessesNeeded" value="5.0" integer="yes" />
     <set_variable name="DamConTeamSent" value="0.0" integer="yes" />
     <set_variable name="HackStepsSucceeded" value="0.0" integer="yes" />
@@ -60,7 +81,7 @@
     <set_variable name="PlayerShipCount" value="0.0" integer="yes" />
     <set_variable name="SkaraanCount" value="0.0" integer="yes" />
   </start>
-  <folder_arme name="Initialization" id_arme="6ef97816-b707-4333-8e81-c10c250bf89b" expanded_arme="" />
+  <folder_arme name="Initialization" id_arme="6ef97816-b707-4333-8e81-c10c250bf89b" />
   <event name="Disable Diana impulse and turning" id_arme="519bff8f-c77c-4692-b182-acda4ba82a5b" parent_id_arme="6ef97816-b707-4333-8e81-c10c250bf89b">
     <if_exists name="Diana" />
     <if_object_property property="sideValue" name="Diana" comparator="EQUALS" value="2.0" />
@@ -266,19 +287,6 @@
     <set_object_property property="angle" value="0.0" name="Artemis" />
     <set_variable name="ArtemisInitialized" value="1" />
     <set_variable name="PlayerShipCount" value="PlayerShipCount+1" integer="yes" />
-    <!--Add some NSECT monsters-->
-    <set_variable name="RandomX" randomFloatLow="10000.0" randomFloatHigh="90000.0" />
-    <set_variable name="RandomZ" randomIntLow="10000" randomIntHigh="40000" />
-    <create type="monster" monsterType="6" x="RandomX" y="0.0" z="RandomZ" angle="0" />
-    <set_variable name="RandomX" randomFloatLow="10000.0" randomFloatHigh="90000.0" />
-    <set_variable name="RandomZ" randomIntLow="10000" randomIntHigh="40000" />
-    <create type="monster" monsterType="6" x="RandomX" y="0.0" z="RandomZ" angle="0" />
-    <set_variable name="RandomX" randomFloatLow="10000.0" randomFloatHigh="90000.0" />
-    <set_variable name="RandomZ" randomIntLow="10000" randomIntHigh="40000" />
-    <create type="monster" monsterType="6" x="RandomX" y="0.0" z="RandomZ" angle="0" />
-    <set_variable name="RandomX" randomFloatLow="10000.0" randomFloatHigh="90000.0" />
-    <set_variable name="RandomZ" randomIntLow="10000" randomIntHigh="40000" />
-    <create type="monster" monsterType="6" x="RandomX" y="0.0" z="RandomZ" angle="0" />
   </event>
   <event name="Create Player Ship - Intrepid" id_arme="37715cd5-a873-452b-9b03-0409dab65292" parent_id_arme="21712616-42f1-44fc-a39e-b0521eb9312f">
     <if_exists name="Intrepid" />
@@ -434,6 +442,48 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
     <set_gm_button text="GM/Resend Comms/DS1 Resummon Ships" />
     <set_gm_button text="GM/Resend Comms/Give Mission" />
     <set_timer name="RefreshGMButtons" seconds="10" />
+  </event>
+  <folder_arme name="Side mission: Rapier" id_arme="a7e826ad-d40c-4a39-8248-01183453befa" />
+  <event name="Rapier calls for help" id_arme="c3cb45b0-fe02-4eb3-bac0-b1ed8852de8d" parent_id_arme="a7e826ad-d40c-4a39-8248-01183453befa">
+    <if_variable name="RapierHelpStage" comparator="EQUALS" value="0.0" />
+    <if_timer_finished name="RapierCommsTimer" />
+    <log text="Rapier called for help" />
+    <set_variable name="RapierHelpStage" value="1.0" />
+  </event>
+  <event name="Rapier reaches DS1" id_arme="a96b73e6-6360-4bc7-851d-00e805b18b31" parent_id_arme="a7e826ad-d40c-4a39-8248-01183453befa">
+    <if_variable name="RapierHelpStage" comparator="EQUALS" value="1.0" />
+    <if_distance name1="Rapier" name2="DS1" comparator="LESS_EQUAL" value="500.0" />
+    <log text="Rapier reached DS1" />
+    <set_variable name="RapierHelpStage" value="2.0" />
+    <set_ship_text name="Rapier" hailtext="We're ready to help." />
+    <clear_ai name="Rapier" />
+    <add_ai type="CHASE_AI_SHIP" name="Rapier" />
+    <add_ai type="FOLLOW_COMMS_ORDERS" name="Rapier" />
+    <add_ai type="DEFEND" value2="3000" value1="1000" name="Rapier" />
+    <add_ai type="CHASE_ANGER" name="Rapier" />
+  </event>
+  <event name="Prevent Rapier from attacking Diana" id_arme="d08f056b-14f4-45a1-87f6-0f6c51797536" parent_id_arme="a7e826ad-d40c-4a39-8248-01183453befa">
+    <if_variable name="RapierHelpStage" comparator="EQUALS" value="2.0" />
+    <if_object_property property="sideValue" name="Diana" comparator="EQUALS" value="1.0" />
+    <if_distance name1="Rapier" name2="Diana" comparator="LESS_EQUAL" value="3000.0" />
+    <log text="Rapier is following the rogue Diana" />
+    <set_variable name="RapierFollowingDiana" value="1.0" />
+    <clear_ai name="Rapier" />
+    <add_ai type="TARGET_THROTTLE" value1="1.0" targetName="Diana" value2="1" name="Rapier" />
+    <add_ai type="FOLLOW_COMMS_ORDERS" name="Rapier" />
+    <set_ship_text name="Rapier" hailtext="We're following the Diana, do you know what's going on?" />
+  </event>
+  <event name="Rapier returning to duty" id_arme="7d325b79-4866-4678-ad74-691855738900" parent_id_arme="a7e826ad-d40c-4a39-8248-01183453befa">
+    <if_variable name="RapierFollowingDiana" comparator="EQUALS" value="1.0" />
+    <if_object_property property="sideValue" name="Diana" comparator="NOT" value="1.0" />
+    <log text="Rapier returning to normal duty" />
+    <set_variable name="RapierFollowingDiana" value="0.0" />
+    <set_ship_text name="Rapier" hailtext="We're ready to help." />
+    <clear_ai name="Rapier" />
+    <add_ai type="CHASE_AI_SHIP" name="Rapier" />
+    <add_ai type="FOLLOW_COMMS_ORDERS" name="Rapier" />
+    <add_ai type="DEFEND" value2="3000" value1="1000" name="Rapier" />
+    <add_ai type="CHASE_ANGER" name="Rapier" />
   </event>
   <folder_arme name="Sabotage" id_arme="06783d9d-3423-44f3-b6e3-28e8f836b4fd" />
   <event name="Bomb Set" id_arme="9c900198-e63b-4408-9a57-32ae99e1e2ae" parent_id_arme="06783d9d-3423-44f3-b6e3-28e8f836b4fd">

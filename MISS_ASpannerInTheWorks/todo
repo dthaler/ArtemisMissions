@@ -99,14 +99,99 @@
          send blog entry to jeffrey sloan
          PROG check Brew Bothell schedule
 
----
+1/2 ADD: Destroyer (Rapier) side mission
+                    LOCATION: on close side of asteroid belt
+                    WHEN: available immediately, comms incoming near beginning, after random delay
+                    "Our sensors are all down!  We're flying blind. Please guide us to a station for repairs!"
+                                if on close side of asteroid belt, navigate them to DS1 to activate them
+                                maybe switch to destroyer, but don't want it to destroy the Diana
+                                    maybe use DEFEND? or TARGET_THROTTLE
+                                 IF navigate to DS1
+                                    +change brain stack to enable attacking, but not Diana or Saboteur
+         DNTT on start:
+                    set ship text
+                    set brain stack to be non-violent
+                        DIR_THROTTLE
+                    (implicitly set variable to 0)
+                    set random timer (RapierCommsDelay) between 60 and 180 seconds
+         DNTT on timer expiry (and variable is 0):
+                    send comms message
+                    set variable to 1
+         DNTT on reaching DS1:
+                    update brain stack to be violent but not against Diana
+                        CHASE_AI_SHIP anywhere
+                        FOLLOW_COMMS_ORDERS
+                        DEFEND 3000 1000
+                        CHASE_ANGER
+                    set ship text
+                    set variable to 2
+         DNTT prevent Rapier from destroying Diana
+                    IF sideValue of Diana == 1
+                    IF variable RapierHelpStage == 2
+                    IF distance between Rapier and Diana is <= 3000
+                    set RapierOnAlert = 1
+                    update brain stack
+                        TARGET_THROTTLE to Diana but don't attack
+                        FOLLOW_COMMS_ORDERS
+                    set ship text
+         DNTT end Rapier workaround
+                    IF sideValue of Diana != 1
+                    IF RapierOnAlert == 1
+                    DO restore good brain stack
+                    DO restore good ship text
+                    set RapierOnAlert = 0
 
-2/2 ADD: maybe require a task for each NPC ship before they will follow comms' orders
-           Science vessel goal - something about space monsters or biomechs
-           Cargo               - pick up something, deliver to cargo and get something (e.g., probes/beacons/tags)
-           Luxury              - wants something from the science vessel (e.g., probes/beacons/tags)
-           Transport
-           Escort
+1/2 ADD: Luxury (Avalon) side mission
+                    LOCATION: not close to Starseeker
+                    WHEN: available immediately, comms after random delay
+                    IF: donate 100 energy
+                                    +coolant  (totalCoolant += 2)
+                                    +change brain stack to follow orders
+
+1/2 ADD: DS1 side mission #1
+                    - deliver something to DS1 to increase DS1 shields "enhance our shield generators"
+                    WHEN: comms after random delay, ok if early
+                                 IF pick up parts from Atlas and deliver them to DS1
+                                    +DS1 shields (shieldState += N)
+
+1/2 ADD: DS1 side mission #2
+                    WHEN: comms after random delay, only after bomb defused
+                                 IF pick up parts from Pegasus and deliver them to DS1
+                                    +DS1 nukes (missileStoresNuke += 2)
+
+1/2 ADD: Cargo (Pegasus) side mission
+                    LOCATION: not close to DS1
+                    WHEN: available immediately, comms after random delay
+                                 IF donate DamCon team
+                                    +2 nukes  (countNuke += 2)
+                                    +change brain stack to follow orders
+
+1/2 ADD: Science (Starseeker) side mission #1
+                    LOCATION: farther north, but not right next to biomech
+                    WHEN: available immediately but not a mission per se
+                                 maybe starts with biomech TARGET_THROTTLE at Starseeker so non-violent
+                                 after mission success, biomech changes to DEFEND Starseeker
+                                    +make data available for pickup
+                                    +change brain stack to follow orders
+
+1/2 ADD: Transport (Atlas) side mission
+                    LOCATION: not close to DS1
+                    WHEN: available on hail after Starseeker has data, comms after random delay
+                                 IF pick up data from Starseeker and deliver it to Atlas
+                                    +shields  (shieldMaxStateFront/shieldMaxStateBack += N)
+                                    +change brain stack to follow orders
+
+1/2 ADD: Science (Starseeker) side mission
+                    LOCATION: farther north, but not right next to biomech
+                    WHEN: available on hail after other data is picked up, comms after random delay
+                                 IF tag N nsects? or the dragon?
+                                 IF deliver data from Avalon to Starseeker
+                                    +maneuverability (turnRate)
+
+    Comms message wording
+         First, {rendezvous,dock} with
+         and {download some data,pick up some supplies} we need.
+         Then, {rendezvous,dock} with us, and we'll 
 
 ---
 

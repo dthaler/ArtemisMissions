@@ -1,0 +1,38 @@
+possible conditions:
+      * donate energy (100 units)
+      * donate a DamCon team
+      * deliver cargo/data from X to Y
+         First, {rendezvous,dock} with
+         and {download some data,pick up some supplies} we need.
+         Then, {rendezvous,dock} with us, and we'll
+      * "Our sensors are all down!  We're flying blind. Please guide us to a station for repairs!"
+      * shipboard computer haywire, can't reboot it
+
+possible rewards:
+      * give you more engineering coolant.  (totalCoolant += 2)
+   ++ * give you two more nuclear torpedoes.  (countNuke += 2)
+        charge your batteries.                (energy += N)
+      * enhance your shield generators.     (shieldMaxStateFront/Back += N)
+        double our production speed.
+
+        500 Energy
+        Restore DamCon team
+        Doubles heat loss caused by coolant (no because used Cetrocite last time)
+        Scanning becomes instant for 5 minutes (no)
+        10% Buff to Beam recharge rate
+        10% buff to Warp and Impulse speed
+        10% buff to Shields recharge rate
+        Auto surrender (no)
+      * increase sensor range on ALL ships
+      * increase Player Weapon Power % on ALL ships
+      * increase Player Shield Strength % on ALL ships
+      * increase topSpeed permanently
+      * increase turnRate permanently
+      * increase shieldMaxStateFront/shieldMaxStateBack permanently
+      * add homing torps
+      * add nukes
+      * add mines
+      * add EMPs
+      * add energy
+      * add coolant
+      * disable triggersMines

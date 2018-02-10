@@ -1,0 +1,18 @@
+Science:        Starseeker
+Transport:      Atlas
+Destroyer:      Rapier      Condor, Pursuit, Falcon, Porcupine, Trident
+Luxury:         Avalon      Illustrious
+Cargo:          Pegasus     Poseidon, Deliverance, Supply
+
+Freedom
+Cairo
+Montgomery
+Hubbard
+Resilient
+Kepler
+Bullfrog
+Allegiance
+Steadfast
+Aurora
+Ganymede
+Nova
