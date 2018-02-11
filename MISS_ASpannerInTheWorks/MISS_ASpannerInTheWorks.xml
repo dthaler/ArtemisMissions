@@ -529,7 +529,7 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
     <if_variable name="DS1UpgradeMissionStage" comparator="LESS" value="1.0" />
     <if_timer_finished name="DS1UpgradeMissionTimer" />
     <log text="DS1 offered mission to upgrade production" />
-    <incoming_comms_text from="DS1 Terran Civilian Base" type="STATION">Our engineers have been analyzing our production facility.  Rendezvous with the Atlas and pick up some parts we need, and we can increase build times significantly.</incoming_comms_text>
+    <incoming_comms_text from="DS1" type="STATION">Our engineers have been analyzing our production facility.  Rendezvous with the Atlas and pick up some parts we need, and we can increase build times significantly.</incoming_comms_text>
     <set_variable name="DS1UpgradeMissionStage" value="1.0" />
   </event>
   <event name="Artemis got DS1 upgrade parts from Atlas" id_arme="67c214b2-c3da-49f8-a9f7-04106a97864c" parent_id_arme="1c978b6c-f7b8-40fe-8106-07aa435466e6">
@@ -550,14 +550,14 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
     <if_variable name="DS1UpgradeMissionStage" comparator="EQUALS" value="2.0" />
     <if_distance name1="Artemis" name2="DS1" comparator="LESS_EQUAL" value="500.0" />
     <log text="Artemis delivered upgrade parts to DS1" />
-    <incoming_comms_text from="DS1 Terran Industrial Base" type="STATION">Transfer complete, Artemis. Our production is now operating at maximum capacity!</incoming_comms_text>
+    <incoming_comms_text from="DS1" type="STATION">Transfer complete, Artemis. Our production is now operating at maximum capacity!</incoming_comms_text>
     <set_variable name="DS1UpgradeMissionStage" value="4.0" />
   </event>
   <event name="Intrepid delivered upgrade parts to DS1" id_arme="d4601bd2-9ff0-467e-9a8b-53992a8ac494" parent_id_arme="1c978b6c-f7b8-40fe-8106-07aa435466e6">
     <if_variable name="DS1UpgradeMissionStage" comparator="EQUALS" value="3.0" />
     <if_distance name1="Intrepid" name2="DS1" comparator="LESS_EQUAL" value="500.0" />
     <log text="Intrepid delivered upgrade parts to DS1" />
-    <incoming_comms_text from="DS1 Terran Industrial Base" type="STATION">Transfer complete, Intrepid. Our production is now operating at maximum capacity!</incoming_comms_text>
+    <incoming_comms_text from="DS1" type="STATION">Transfer complete, Intrepid. Our production is now operating at maximum capacity!</incoming_comms_text>
     <set_variable name="DS1UpgradeMissionStage" value="4.0" />
   </event>
   <event name="Upgrade DS1" id_arme="b0b99765-f0e7-4ccc-855f-c82f27c45f8a" parent_id_arme="1c978b6c-f7b8-40fe-8106-07aa435466e6">
@@ -585,6 +585,44 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
     <copy_object_property property="missileStoresPShock" name1="DS1Copy" name2="DS1" />
     <copy_object_property property="angle" name1="DS1Copy" name2="DS1" />
     <destroy name="DS1Copy" />
+  </event>
+  <folder_arme name="Side mission: DS1 nukes" id_arme="122bc34c-b356-4497-b1a9-649c6b1cb5f3" />
+  <event name="DS1 offers nukes mission" id_arme="68632c12-2226-4f27-bbb5-efe4070cc000" parent_id_arme="122bc34c-b356-4497-b1a9-649c6b1cb5f3">
+    <if_variable name="DS1NukeMissionStage" comparator="EQUALS" value="0.0" />
+    <if_timer_finished name="DS1NukeMissionTimer" />
+    <log text="DS1 offered mission to build 2 extra nukes" />
+    <incoming_comms_text from="DS1" type="STATION">Help us help you.^Rendezvous with the Pegasus and pick up some extra parts we need, and we can complete 2 extra nukes.</incoming_comms_text>
+    <set_variable name="DS1NukeMissionStage" value="1.0" />
+  </event>
+  <event name="Artemis got DS1 nuke parts from Pegasus" id_arme="9030ce44-0775-43f5-87ae-d98ad823a0ca" parent_id_arme="122bc34c-b356-4497-b1a9-649c6b1cb5f3">
+    <if_variable name="DS1NukeMissionStage" comparator="EQUALS" value="1.0" />
+    <if_distance name1="Artemis" name2="Pegasus" comparator="LESS_EQUAL" value="500.0" />
+    <log text="Artemis picked up nuke parts from Pegasus" />
+    <incoming_comms_text from="Bulk Cargo Pegasus" type="FRIEND">Transfer complete, Artemis. Please proceed to DS1 to deliver the parts.</incoming_comms_text>
+    <set_variable name="DS1NukeMissionStage" value="2.0" />
+  </event>
+  <event name="Intrepid got DS1 nuke parts from Pegasus" id_arme="43156111-dbd3-45de-ae26-b2ea449c4b2c" parent_id_arme="122bc34c-b356-4497-b1a9-649c6b1cb5f3">
+    <if_variable name="DS1NukeMissionStage" comparator="EQUALS" value="1.0" />
+    <if_distance name1="Intrepid" name2="Pegasus" comparator="LESS_EQUAL" value="500.0" />
+    <log text="Intrepid picked up nuke parts from Pegasus" />
+    <incoming_comms_text from="Bulk Cargo Pegasus" type="FRIEND">Transfer complete, Intrepid. Please proceed to DS1 to deliver the parts.</incoming_comms_text>
+    <set_variable name="DS1NukeMissionStage" value="3.0" />
+  </event>
+  <event name="Artemis delivered nuke parts to DS1" id_arme="e5f9ce5d-fa6a-4cc6-acf4-e974d403d439" parent_id_arme="122bc34c-b356-4497-b1a9-649c6b1cb5f3">
+    <if_variable name="DS1NukeMissionStage" comparator="EQUALS" value="2.0" />
+    <if_distance name1="Artemis" name2="DS1" comparator="LESS_EQUAL" value="500.0" />
+    <log text="Artemis delivered nuke parts to DS1" />
+    <incoming_comms_text from="DS1" type="STATION">Transfer complete, Artemis. We now have 2 additional nukes.</incoming_comms_text>
+    <set_variable name="DS1NukeMissionStage" value="4.0" />
+    <addto_object_property value="2.0" property="missileStoresNuke" name="DS1" />
+  </event>
+  <event name="Intrepid delivered nuke parts to DS1" id_arme="b029ae61-61e9-4d53-bdd2-a639309de072" parent_id_arme="122bc34c-b356-4497-b1a9-649c6b1cb5f3">
+    <if_variable name="DS1NukeMissionStage" comparator="EQUALS" value="3.0" />
+    <if_distance name1="Intrepid" name2="DS1" comparator="LESS_EQUAL" value="500.0" />
+    <log text="Intrepid delivered nuke parts to DS1" />
+    <incoming_comms_text from="DS1" type="STATION">Transfer complete, Intrepid. We now have 2 additional nukes.</incoming_comms_text>
+    <set_variable name="DS1NukeMissionStage" value="4.0" />
+    <addto_object_property value="2.0" property="missileStoresNuke" name="DS1" />
   </event>
   <folder_arme name="Sabotage" id_arme="06783d9d-3423-44f3-b6e3-28e8f836b4fd" />
   <event name="Bomb Set" id_arme="9c900198-e63b-4408-9a57-32ae99e1e2ae" parent_id_arme="06783d9d-3423-44f3-b6e3-28e8f836b4fd">
@@ -649,6 +687,8 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
     <set_object_property property="canBuild" value="1" name="DS1" />
     <set_variable name="BombsDefused" value="BombsDefused + 1" />
     <incoming_comms_text from="DS1" type="STATION">Congratulations, the bomb has been defused and our production facility has resumed operation!</incoming_comms_text>
+    <set_variable name="DS1NukeMissionDelay" randomIntLow="60" randomIntHigh="180" />
+    <set_timer name="DS1NukeMissionTimer" seconds="DS1NukeMissionDelay" />
     <!---->
     <!--Schedule another sabotage attempt-->
     <!---->
