@@ -142,6 +142,51 @@
                                  after mission success, biomech changes to DEFEND Starseeker
                                     +make data available for pickup
                                     +change brain stack to follow orders
+                   DNTT on start:
+                            (set StarseekerHelpStage = 0)
+                            make biomech TARGET_THROTTLE at Starseeker
+                            set Starseeker ship text to say studying biomech
+                            set variable StarseekerDataDelay to random delay 120-600
+                            set timer: StarseekerDataTimer to StarseekerDataDelay
+                   DNTT on StarseekerDataTimer expiry (if StarseekerHelpStage==0):
+                        IF StarseekerHelpStage==0
+                        IF Starseeker exists
+                            log entry
+                            set StarseekerHelpStage=1
+                            change Starseeker brain stack to follow orders
+                            send Comms message from Starseeker
+                            set Starseeker ship text
+                            set AtlasCommsTimer to 15 seconds
+                            set StarseekerHelpTimer to random delay 120-600
+                            change biomech brain stack to DEFEND Starseeker (change side to player side?)
+                                TARGET_THROTTLE
+                                DEFEND 1000 3000
+                                CHASE_ANGER
+                   DNTT IF AtlasCommsTimer finished
+                        IF AtlasHelpStage==0
+                        IF Atlas exists
+                            set Atlas ship text
+                            send Comms message from Atlas
+                            set AtlasHelpStage=1
+                   DNTT Artemis arrives at Starseeker (and same for Intrepid)
+                        IF AtlasHelpStage==1
+                        IF Artemis by Starseeker
+                            log entry
+                            send Comms message from Starseeker
+                            set AtlasHelpStage=2
+                   DNTT Artemis arrives at Atlas with data (and same for Intrepid)
+                        IF AtlasHelpStage==2
+                        IF Artemis by Atlas
+                            log entry
+                            set AtlasHelpStage=4
+                            send Comms message from Atlas
+                            increase Artemis shields
+                   DNTT IF AtlasHelpStage==4
+                        IF Atlas exists
+                            log entry
+                            set AtlasHelpStage=99
+                            set Atlas ship text
+                            change Atlas brain stack to follow orders
 
 1/2 ADD: Transport (Atlas) side mission
                     LOCATION: not close to DS1
@@ -156,6 +201,24 @@
                                  IF tag N nsects? or the dragon?
                                  IF deliver data from Avalon to Starseeker
                                     +maneuverability (turnRate)
+                      * update XXX in "Starseeker acquires BioMech data"
+                   DNTT IF StarseekerHelpStage==1
+                        IF StarseekerHelpTimer expired
+                        IF Starseeker exists
+                            log entry
+                            send Comms message from Starseeker
+                            set StarseekerHelpStage=2
+                   DNTT IF StarseekerHelpStage==2   (and Intrepid)
+                        IF Artemis by Avalon
+                            log entry
+                            send Comms message from Avalon
+                            set StarseekerHelpStage=3
+                   DNTT IF StarseekerHelpStage==3   (and Intrepid)
+                        IF Artemis by Starseeker
+                            log entry
+                            send Comms message from Starseeker
+                            set StarseekerHelpStage=99
+                            add to Artemis turnRate
 
     Comms message wording
          First, {rendezvous,dock} with

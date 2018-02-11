@@ -25,25 +25,30 @@
     <set_variable name="DS1UpgradeMissionDelay" randomIntLow="150" randomIntHigh="300" />
     <set_timer name="DS1UpgradeMissionTimer" seconds="DS1UpgradeMissionDelay" />
     <create type="neutral" x="StationX - 10" y="StationY + 50.0" z="StationZ" angle="0" name="Diana" hullID="0" sideValue="2" />
+    <!--Science Vessel: Starseeker-->
     <create type="neutral" x="14553.0" y="0.0" z="10484.0" angle="200" name="Starseeker" raceKeys="Terran friendly" hullKeys="science" sideValue="2" />
     <clear_ai name="Starseeker" />
     <add_ai type="PROCEED_TO_EXIT" name="Starseeker" />
-    <add_ai type="FOLLOW_COMMS_ORDERS" name="Starseeker" />
+    <set_ship_text name="Starseeker" hailtext="We're studying the BioMech wildlife in this sector." />
+    <set_variable name="StarseekerDataDelay" randomIntLow="120" randomIntHigh="600" />
+    <set_timer name="StarseekerDataTimer" seconds="StarseekerDataDelay" />
+    <!--Bulk Cargo: Pegasus-->
     <create type="neutral" x="98378.0" y="0.0" z="64527.0" angle="75" name="Pegasus" raceKeys="Terran friendly" hullKeys="cargo" sideValue="2" />
     <clear_ai name="Pegasus" />
-    <set_variable name="PegasusCommsDelay" randomIntLow="120" randomIntHigh="600" />
     <set_ship_text name="Pegasus" hailtext="Our engines have broken down! Could you lend us a DamCon team to conduct repairs?" />
+    <set_variable name="PegasusCommsDelay" randomIntLow="120" randomIntHigh="600" />
     <set_timer name="PegasusCommsTimer" seconds="PegasusCommsDelay" />
+    <!--Luxury Liner: Avalon-->
     <create type="neutral" x="4964.0" y="0.0" z="96198.0" angle="0" name="Avalon" raceKeys="Terran friendly" hullKeys="luxury" sideValue="2" />
     <clear_ai name="Avalon" />
     <set_variable name="AvalonCommsDelay" randomIntLow="120" randomIntHigh="600" />
     <set_ship_text name="Avalon" hailtext="We're out of energy!  Could you lend us 200 units to get moving?" />
     <set_timer name="AvalonCommsTimer" seconds="AvalonCommsDelay" />
+    <!--Transport: Atlas-->
     <create type="neutral" x="70339.0" y="0.0" z="81815.0" angle="45" name="Atlas" raceKeys="Terran friendly" hullKeys="transport" sideValue="2" />
     <clear_ai name="Atlas" />
     <add_ai type="PROCEED_TO_EXIT" name="Atlas" />
-    <add_ai type="FOLLOW_COMMS_ORDERS" name="Atlas" />
-    <!--Create a Destroyer-->
+    <!--Destroyer: Rapier-->
     <create type="neutral" x="4093.0" y="0.0" z="46077.0" angle="320" name="Rapier" raceKeys="Terran friendly" hullKeys="medium" sideValue="2" />
     <clear_ai name="Rapier" />
     <add_ai type="DIR_THROTTLE" value1="320" value2="1.0" name="Rapier" />
@@ -56,9 +61,7 @@
     <!---->
     <create type="enemy" x="7289.0" y="10.0" z="28789.0" angle="0" name="B01" hullID="6001" sideValue="0" fleetnumber="-1" />
     <clear_ai name="B01" />
-    <add_ai type="POINT_THROTTLE" value1="7289.0" value2="10.0" value3="28789.0" value4="1.0" name="B01" />
-    <add_ai type="CHASE_PLAYER" value1="1000" value2="500" name="B01" />
-    <add_ai type="CHASE_AI_SHIP" value1="1000" value2="500" name="B01" />
+    <add_ai type="TARGET_THROTTLE" value1="1.0" targetName="Starseeker" value2="10.0" name="B01" />
     <add_ai type="CHASE_ANGER" name="B01" />
     <!--Add some NSECT monsters. More will be created when a second ship spawns.-->
     <set_variable name="RandomX" randomFloatLow="20000.0" randomFloatHigh="90000.0" />
@@ -448,10 +451,11 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
     <set_timer name="RefreshGMButtons" seconds="10" />
   </event>
   <folder_arme name="Side mission: Rapier" id_arme="a7e826ad-d40c-4a39-8248-01183453befa" />
-  <event name="Rapier calls for help" id_arme="c3cb45b0-fe02-4eb3-bac0-b1ed8852de8d" parent_id_arme="a7e826ad-d40c-4a39-8248-01183453befa">
+  <event name="Rapier asks for help" id_arme="c3cb45b0-fe02-4eb3-bac0-b1ed8852de8d" parent_id_arme="a7e826ad-d40c-4a39-8248-01183453befa">
     <if_variable name="RapierHelpStage" comparator="EQUALS" value="0.0" />
     <if_timer_finished name="RapierCommsTimer" />
-    <log text="Rapier called for help" />
+    <if_exists name="Rapier" />
+    <log text="Rapier asked for help" />
     <incoming_comms_text from="Rapier" type="FRIEND">Our sensors are all down!  We're flying blind. Please guide us to a station for repairs!</incoming_comms_text>
     <set_variable name="RapierHelpStage" value="1.0" />
   </event>
@@ -484,7 +488,7 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
     <if_object_property property="sideValue" name="Diana" comparator="NOT" value="1.0" />
     <log text="Rapier returning to normal duty" />
     <set_variable name="RapierFollowingDiana" value="0.0" />
-    <set_ship_text name="Rapier" hailtext="We're ready to help." />
+    <set_ship_text name="Rapier" hailtext="Patrolling this sector.  Standing by to assist." />
     <clear_ai name="Rapier" />
     <add_ai type="CHASE_AI_SHIP" name="Rapier" />
     <add_ai type="FOLLOW_COMMS_ORDERS" name="Rapier" />
@@ -492,10 +496,11 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
     <add_ai type="CHASE_ANGER" name="Rapier" />
   </event>
   <folder_arme name="Side mission: Avalon" id_arme="1dcd0b8c-8f99-4b5b-8f55-6f4e7390217e" />
-  <event name="Avalon calls for help" id_arme="b24d24ac-08b8-4ad2-856d-d30608afad93" parent_id_arme="1dcd0b8c-8f99-4b5b-8f55-6f4e7390217e">
+  <event name="Avalon asks for help" id_arme="b24d24ac-08b8-4ad2-856d-d30608afad93" parent_id_arme="1dcd0b8c-8f99-4b5b-8f55-6f4e7390217e">
     <if_variable name="AvalonHelpStage" comparator="EQUALS" value="0.0" />
     <if_timer_finished name="AvalonCommsTimer" />
-    <log text="Avalon called for help" />
+    <if_exists name="Avalon" />
+    <log text="Avalon asked for help" />
     <incoming_comms_text from="Luxury Liner Avalon" type="FRIEND">We're out of energy!  Could you lend us 200 units to get moving?  In return, we've give you two of our coolant units.</incoming_comms_text>
     <set_variable name="AvalonHelpStage" value="1.0" />
   </event>
@@ -529,6 +534,7 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
   <event name="DS1 offers upgrade mission" id_arme="345952d6-0657-488f-bc88-f97c031c19ab" parent_id_arme="1c978b6c-f7b8-40fe-8106-07aa435466e6">
     <if_variable name="DS1UpgradeMissionStage" comparator="LESS" value="1.0" />
     <if_timer_finished name="DS1UpgradeMissionTimer" />
+    <if_exists name="Atlas" />
     <log text="DS1 offered mission to upgrade production" />
     <incoming_comms_text from="DS1" type="STATION">Our engineers have been analyzing our production facility.  Rendezvous with the Atlas and pick up some parts we need, and we can increase build times significantly.</incoming_comms_text>
     <set_variable name="DS1UpgradeMissionStage" value="1.0" />
@@ -591,6 +597,7 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
   <event name="DS1 offers nukes mission" id_arme="68632c12-2226-4f27-bbb5-efe4070cc000" parent_id_arme="122bc34c-b356-4497-b1a9-649c6b1cb5f3">
     <if_variable name="DS1NukeMissionStage" comparator="EQUALS" value="0.0" />
     <if_timer_finished name="DS1NukeMissionTimer" />
+    <if_exists name="Pegasus" />
     <log text="DS1 offered mission to build 2 extra nukes" />
     <incoming_comms_text from="DS1" type="STATION">Help us help you.^Rendezvous with the Pegasus and pick up some extra parts we need, and we can complete 2 extra nukes.</incoming_comms_text>
     <set_variable name="DS1NukeMissionStage" value="1.0" />
@@ -626,10 +633,11 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
     <addto_object_property value="2.0" property="missileStoresNuke" name="DS1" />
   </event>
   <folder_arme name="Side mission: Pegasus" id_arme="9711027e-1cab-41a6-8423-07e739133d62" />
-  <event name="Pegasus calls for help" id_arme="df3571d3-79f4-4775-97d9-c2ebf360c42d" parent_id_arme="9711027e-1cab-41a6-8423-07e739133d62">
+  <event name="Pegasus asks for help" id_arme="df3571d3-79f4-4775-97d9-c2ebf360c42d" parent_id_arme="9711027e-1cab-41a6-8423-07e739133d62">
     <if_variable name="PegasusHelpStage" comparator="EQUALS" value="0.0" />
     <if_timer_finished name="PegasusCommsTimer" />
-    <log text="Pegasus called for help" />
+    <if_exists name="Pegasus" />
+    <log text="Pegasus asked for help" />
     <incoming_comms_text from="Bulk Cargo Pegasus" type="FRIEND">Our engines have broken down! Could you lend us a DamCon team to conduct repairs?  In return, we can give you 2 nukes.</incoming_comms_text>
     <set_variable name="PegasusHelpStage" value="1.0" />
   </event>
@@ -710,6 +718,120 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
     <add_ai type="PROCEED_TO_EXIT" name="Pegasus" />
     <add_ai type="FOLLOW_COMMS_ORDERS" name="Pegasus" />
     <set_ship_text name="Pegasus" hailtext="We're moving cargo between the stations in this sector." />
+  </event>
+  <folder_arme name="Side mission: Atlas" id_arme="096c8a20-33f3-414b-ab56-3e1a20dc4e8f" />
+  <event name="Atlas asks for help" id_arme="ecd477a2-7bfa-410f-ad6c-4006e9253d50" parent_id_arme="096c8a20-33f3-414b-ab56-3e1a20dc4e8f">
+    <if_variable name="AtlasHelpStage" comparator="EQUALS" value="0.0" />
+    <if_timer_finished name="AtlasCommsTimer" />
+    <if_exists name="Atlas" />
+    <if_exists name="Starseeker" />
+    <log text="Atlas asked for help" />
+    <incoming_comms_text from="Transport Atlas" type="FRIEND">We'd like to get the Starseeker's data. First, rendezvous with the Starseeker and download their data. Then, rendezvous with us, and we'll enhance your shield generators.</incoming_comms_text>
+    <set_variable name="AtlasHelpStage" value="1.0" />
+  </event>
+  <event name="Artemis got data from Starseeker" id_arme="8822a5a2-be3f-4a77-bca6-29f23888872c" parent_id_arme="096c8a20-33f3-414b-ab56-3e1a20dc4e8f">
+    <if_variable name="AtlasHelpStage" comparator="EQUALS" value="1.0" />
+    <if_distance name1="Artemis" name2="Starseeker" comparator="LESS_EQUAL" value="500.0" />
+    <if_exists name="Atlas" />
+    <log text="Artemis got data from Starseeker" />
+    <incoming_comms_text from="Science Vessel Starseeker" type="FRIEND">Transfer complete, Artemis. Please proceed to the Atlas to deliver the data.</incoming_comms_text>
+    <set_variable name="AtlasHelpStage" value="2.0" />
+  </event>
+  <event name="Intrepid got data from Starseeker" id_arme="123f52ca-741b-4370-b9b1-505b89c1baea" parent_id_arme="096c8a20-33f3-414b-ab56-3e1a20dc4e8f">
+    <if_variable name="AtlasHelpStage" comparator="EQUALS" value="1.0" />
+    <if_distance name1="Intrepid" name2="Starseeker" comparator="LESS_EQUAL" value="500.0" />
+    <if_exists name="Atlas" />
+    <log text="Intrepid got data from Starseeker" />
+    <incoming_comms_text from="Science Vessel Starseeker" type="FRIEND">Transfer complete, Intrepid. Please proceed to the Atlas to deliver the data.</incoming_comms_text>
+    <set_variable name="AtlasHelpStage" value="3.0" />
+  </event>
+  <event name="Artemis delivered data to Atlas" id_arme="cb594a87-07c4-461e-a461-94ffd124abf7" parent_id_arme="096c8a20-33f3-414b-ab56-3e1a20dc4e8f">
+    <if_variable name="AtlasHelpStage" comparator="EQUALS" value="2.0" />
+    <if_distance name1="Artemis" name2="Atlas" comparator="LESS_EQUAL" value="500.0" />
+    <log text="Artemis delivered data to Atlas" />
+    <incoming_comms_text from="Transport Atlas" type="FRIEND">Transfer complete, Artemis. In return, we'll now enhance your shield generators.</incoming_comms_text>
+    <addto_object_property value="50.0" property="shieldMaxStateFront" name="Artemis" />
+    <addto_object_property value="50.0" property="shieldMaxStateBack" name="Artemis" />
+    <set_variable name="AtlasHelpStage" value="4.0" />
+  </event>
+  <event name="Intrepid delivered data to Atlas" id_arme="f3f1b473-5cc0-4796-b07e-939a2da8f039" parent_id_arme="096c8a20-33f3-414b-ab56-3e1a20dc4e8f">
+    <if_variable name="AtlasHelpStage" comparator="EQUALS" value="3.0" />
+    <if_distance name1="Intrepid" name2="Atlas" comparator="LESS_EQUAL" value="500.0" />
+    <log text="Intrepid delivered data to Atlas" />
+    <incoming_comms_text from="Transport Atlas" type="FRIEND">Transfer complete, Intrepid. In return, we'll now enhance your shield generators.</incoming_comms_text>
+    <addto_object_property value="50.0" property="shieldMaxStateFront" name="Intrepid" />
+    <addto_object_property value="50.0" property="shieldMaxStateBack" name="Intrepid" />
+    <set_variable name="AtlasHelpStage" value="4.0" />
+  </event>
+  <event name="Atlas follows orders" id_arme="a0ab9c90-7c1e-4d2f-8817-e180e58cc64b" parent_id_arme="096c8a20-33f3-414b-ab56-3e1a20dc4e8f">
+    <if_variable name="AtlasHelpStage" comparator="EQUALS" value="4.0" />
+    <if_exists name="Atlas" />
+    <log text="Atlas will now follow orders" />
+    <set_ship_text name="Atlas" hailtext="We're moving cargo between the stations in this sector." />
+    <add_ai type="FOLLOW_COMMS_ORDERS" name="Atlas" />
+    <set_variable name="AtlasHelpStage" value="99.0" />
+  </event>
+  <folder_arme name="Side mission: Starseeker" id_arme="25c18002-5184-41c0-8540-53d8f201f8d5" />
+  <event name="Starseeker acquires BioMech data" id_arme="e9a1e3ae-e4f8-4778-95fc-95f8645595f0" parent_id_arme="25c18002-5184-41c0-8540-53d8f201f8d5">
+    <if_variable name="StarseekerHelpStage" comparator="EQUALS" value="0.0" />
+    <if_timer_finished name="StarseekerDataTimer" />
+    <if_exists name="Starseeker" />
+    <if_exists name="B01" />
+    <log text="Starseeker acquires BioMech data" />
+    <incoming_comms_text from="Science Vessel Starseeker" type="FRIEND">This BioMech seems to like us. We've observed it for some time now and have some great data from our study.</incoming_comms_text>
+    <clear_ai name="B01" />
+    <add_ai type="TARGET_THROTTLE" value1="1.0" targetName="Starseeker" value2="10.0" name="B01" />
+    <add_ai type="DEFEND" value2="3000" value1="1000" name="B01" />
+    <add_ai type="CHASE_ANGER" name="B01" />
+    <set_object_property property="sideValue" value="2.0" name="B01" />
+    <add_ai type="PROCEED_TO_EXIT" name="Starseeker" />
+    <add_ai type="FOLLOW_COMMS_ORDERS" name="Starseeker" />
+    <set_timer name="AtlasCommsTimer" seconds="15" />
+    <set_ship_text name="Atlas" hailtext="We'd like to get the Starseeker's data." />
+    <set_variable name="StarseekerHelpDelay" randomFloatLow="120.0" randomFloatHigh="600.0" />
+    <set_timer name="StarseekerHelpTimer" seconds="StarseekerHelpDelay" />
+    <set_variable name="StarseekerHelpStage" value="1.0" />
+  </event>
+  <event name="Starseeker asks for help" id_arme="8ba1e71a-3081-4c96-984f-2fae6ed07e10" parent_id_arme="25c18002-5184-41c0-8540-53d8f201f8d5">
+    <if_variable name="StarseekerHelpStage" comparator="EQUALS" value="1.0" />
+    <if_timer_finished name="StarseekerHelpTimer" />
+    <if_exists name="Starseeker" />
+    <if_exists name="Avalon" />
+    <log text="Starseeker asked for help" />
+    <incoming_comms_text from="Science Vessel Starseeker" type="FRIEND">Help us help you.^First, rendezvous with the Avalon and download some data we need. Then, rendezvous with us, and we'll enhance your maneuverability.</incoming_comms_text>
+    <set_variable name="StarseekerHelpStage" value="2.0" />
+  </event>
+  <event name="Artemis got data from Avalon" id_arme="cec08989-58fb-46fd-b64f-cfcf97f1a55e" parent_id_arme="25c18002-5184-41c0-8540-53d8f201f8d5">
+    <if_variable name="StarseekerHelpStage" comparator="EQUALS" value="2.0" />
+    <if_distance name1="Artemis" name2="Avalon" comparator="LESS_EQUAL" value="500.0" />
+    <if_exists name="Starseeker" />
+    <log text="Artemis got data from Avalon" />
+    <incoming_comms_text from="Luxury Liner Avalon" type="FRIEND">Transfer complete, Artemis. Please proceed to the Starseeker to deliver the data.</incoming_comms_text>
+    <set_variable name="StarseekerHelpStage" value="3.0" />
+  </event>
+  <event name="Intrepid got data from Avalon" id_arme="8af1306e-b68d-4733-b255-ebf63140f711" parent_id_arme="25c18002-5184-41c0-8540-53d8f201f8d5">
+    <if_variable name="StarseekerHelpStage" comparator="EQUALS" value="2.0" />
+    <if_distance name1="Intrepid" name2="Avalon" comparator="LESS_EQUAL" value="500.0" />
+    <if_exists name="Starseeker" />
+    <log text="Intrepid got data from Avalon" />
+    <incoming_comms_text from="Luxury Liner Avalon" type="FRIEND">Transfer complete, Intrepid. Please proceed to the Starseeker to deliver the data.</incoming_comms_text>
+    <set_variable name="StarseekerHelpStage" value="4.0" />
+  </event>
+  <event name="Artemis delivered data to Starseeker" id_arme="6ea4963c-b126-458f-8f70-5b2e5a6cdd4d" parent_id_arme="25c18002-5184-41c0-8540-53d8f201f8d5">
+    <if_variable name="StarseekerHelpStage" comparator="EQUALS" value="3.0" />
+    <if_distance name1="Artemis" name2="Starseeker" comparator="LESS_EQUAL" value="500.0" />
+    <log text="Artemis delivered data to Starseeker" />
+    <incoming_comms_text from="Science Vessel Starseeker" type="FRIEND">Transfer complete, Artemis. In return, we'll now enhance your maneuverability.</incoming_comms_text>
+    <addto_object_property value="0.002" property="turnRate" name="Artemis" />
+    <set_variable name="StarseekerHelpStage" value="99.0" />
+  </event>
+  <event name="Intrepid delivered data to Starseeker" id_arme="9c16c17c-28dc-4f73-a701-aa5ed6088b2d" parent_id_arme="25c18002-5184-41c0-8540-53d8f201f8d5">
+    <if_variable name="StarseekerHelpStage" comparator="EQUALS" value="4.0" />
+    <if_distance name1="Intrepid" name2="Starseeker" comparator="LESS_EQUAL" value="500.0" />
+    <log text="Intrepid delivered data to Starseeker" />
+    <incoming_comms_text from="Science Vessel Starseeker" type="FRIEND">Transfer complete, Intrepid. In return, we'll now enhance your maneuverability.</incoming_comms_text>
+    <addto_object_property value="0.002" property="turnRate" name="Intrepid" />
+    <set_variable name="StarseekerHelpStage" value="99.0" />
   </event>
   <folder_arme name="Sabotage" id_arme="06783d9d-3423-44f3-b6e3-28e8f836b4fd" />
   <event name="Bomb Set" id_arme="9c900198-e63b-4408-9a57-32ae99e1e2ae" parent_id_arme="06783d9d-3423-44f3-b6e3-28e8f836b4fd">
