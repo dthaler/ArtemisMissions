@@ -440,17 +440,40 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
     <create type="enemy" x="78039.0" y="0.0" z="33583.0" angle="180" hullID="3002" fleetnumber="5" />
     <create type="enemy" x="50291.0" y="0.0" z="26900.0" angle="180" hullID="3002" fleetnumber="6" />
   </event>
-  <event name="Refresh GM buttons" id_arme="f1383e6f-ee03-4dce-872f-9f43586e0033" parent_id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6">
+  <event name="Clear GM buttons" id_arme="1878597c-8874-4fad-97a3-f6071b4b9adb" parent_id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6">
+    <if_timer_finished name="RefreshGMButtons" />
+    <clear_gm_button text="GM/Resend Comms/DS1 Resummon Ships" />
+    <clear_gm_button text="GM/Resend Comms/Give Mission" />
+    <clear_gm_button text="GM/Side Mission/BioMech Study" />
+    <clear_gm_button text="GM/Side Mission/Help Atlas" />
+    <clear_gm_button text="GM/Side Mission/Help Avalon" />
+    <clear_gm_button text="GM/Side Mission/Help DS1 Nukes" />
+    <clear_gm_button text="GM/Side Mission/Help DS1 Upgrade" />
+    <clear_gm_button text="GM/Side Mission/Help Pegasus" />
+    <clear_gm_button text="GM/Side Mission/Help Rapier" />
+    <clear_gm_button text="GM/Side Mission/Help Starseeker" />
+  </event>
+  <event name="Refresh GM buttons" id_arme="b6556827-1bda-406e-b769-606e7aade0c5" parent_id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6">
     <if_exists name="DS1" />
     <if_timer_finished name="RefreshGMButtons" />
     <if_variable name="TsnCommandGaveMission" comparator="EQUALS" value="0.0" />
-    <clear_gm_button text="GM/Resend Comms/DS1 Resummon Ships" />
-    <clear_gm_button text="GM/Resend Comms/Give Mission" />
     <set_gm_button text="GM/Resend Comms/DS1 Resummon Ships" />
     <set_gm_button text="GM/Resend Comms/Give Mission" />
-    <set_timer name="RefreshGMButtons" seconds="10" />
   </event>
-  <folder_arme name="Side mission: Rapier" id_arme="a7e826ad-d40c-4a39-8248-01183453befa" />
+  <folder_arme name="Side missions" id_arme="9b774b87-1030-4c79-bf55-a32cfc834264" expanded_arme="" />
+  <folder_arme name="Side mission: Rapier" id_arme="a7e826ad-d40c-4a39-8248-01183453befa" parent_id_arme="9b774b87-1030-4c79-bf55-a32cfc834264" />
+  <event name="Refresh GM button" id_arme="20765da5-aadc-47af-b6b3-d1e74038966a" parent_id_arme="a7e826ad-d40c-4a39-8248-01183453befa">
+    <if_exists name="Rapier" />
+    <if_timer_finished name="RefreshGMButtons" />
+    <if_variable name="RapierHelpStage" comparator="EQUALS" value="0.0" />
+    <set_gm_button text="GM/Side Mission/Help Rapier" />
+  </event>
+  <event name="GM button pressed" id_arme="7e76ae62-bf2e-47f7-81dd-7a49e653fba3" parent_id_arme="a7e826ad-d40c-4a39-8248-01183453befa">
+    <if_gm_button text="GM/Side Mission/Help Rapier" />
+    <log text="GM started Rapier side mission" />
+    <clear_gm_button text="GM/Side Mission/Help Rapier" />
+    <set_timer name="RapierCommsTimer" seconds="1" />
+  </event>
   <event name="Rapier asks for help" id_arme="c3cb45b0-fe02-4eb3-bac0-b1ed8852de8d" parent_id_arme="a7e826ad-d40c-4a39-8248-01183453befa">
     <if_variable name="RapierHelpStage" comparator="EQUALS" value="0.0" />
     <if_timer_finished name="RapierCommsTimer" />
@@ -495,7 +518,19 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
     <add_ai type="DEFEND" value2="3000" value1="1000" name="Rapier" />
     <add_ai type="CHASE_ANGER" name="Rapier" />
   </event>
-  <folder_arme name="Side mission: Avalon" id_arme="1dcd0b8c-8f99-4b5b-8f55-6f4e7390217e" />
+  <folder_arme name="Side mission: Avalon" id_arme="1dcd0b8c-8f99-4b5b-8f55-6f4e7390217e" parent_id_arme="9b774b87-1030-4c79-bf55-a32cfc834264" />
+  <event name="Refresh GM button" id_arme="bf428982-7d57-4feb-ad54-739c1cc1afff" parent_id_arme="1dcd0b8c-8f99-4b5b-8f55-6f4e7390217e">
+    <if_exists name="Avalon" />
+    <if_timer_finished name="RefreshGMButtons" />
+    <if_variable name="AvalonHelpStage" comparator="EQUALS" value="0.0" />
+    <set_gm_button text="GM/Side Mission/Help Avalon" />
+  </event>
+  <event name="GM button pressed" id_arme="ec144357-39a9-4916-bc09-d8943271b35b" parent_id_arme="1dcd0b8c-8f99-4b5b-8f55-6f4e7390217e">
+    <if_gm_button text="GM/Side Mission/Help Avalon" />
+    <log text="GM started Avalon side mission" />
+    <clear_gm_button text="GM/Side Mission/Help Avalon" />
+    <set_timer name="AvalonCommsTimer" seconds="1" />
+  </event>
   <event name="Avalon asks for help" id_arme="b24d24ac-08b8-4ad2-856d-d30608afad93" parent_id_arme="1dcd0b8c-8f99-4b5b-8f55-6f4e7390217e">
     <if_variable name="AvalonHelpStage" comparator="EQUALS" value="0.0" />
     <if_timer_finished name="AvalonCommsTimer" />
@@ -530,9 +565,21 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
     <add_ai type="FOLLOW_COMMS_ORDERS" name="Avalon" />
     <set_ship_text name="Avalon" hailtext="We're travelling this sector, showing our guests the most beautiful and amazing sights." />
   </event>
-  <folder_arme name="Side mission: DS1 upgrade" id_arme="1c978b6c-f7b8-40fe-8106-07aa435466e6" />
+  <folder_arme name="Side mission: DS1 upgrade" id_arme="1c978b6c-f7b8-40fe-8106-07aa435466e6" parent_id_arme="9b774b87-1030-4c79-bf55-a32cfc834264" />
+  <event name="Refresh GM button" id_arme="2b084568-1102-4c26-8e7f-0a7f28ca07a1" parent_id_arme="1c978b6c-f7b8-40fe-8106-07aa435466e6">
+    <if_timer_finished name="RefreshGMButtons" />
+    <if_exists name="Atlas" />
+    <if_variable name="DS1UpgradeMissionStage" comparator="EQUALS" value="0.0" />
+    <set_gm_button text="GM/Side Mission/Help DS1 Upgrade" />
+  </event>
+  <event name="GM button pressed" id_arme="852173c1-7a6c-455c-90ff-32b22e81894e" parent_id_arme="1c978b6c-f7b8-40fe-8106-07aa435466e6">
+    <if_gm_button text="GM/Side Mission/Help DS1 Upgrade" />
+    <log text="GM started DS1 upgrade side mission" />
+    <clear_gm_button text="GM/Side Mission/Help DS1 Upgrade" />
+    <set_timer name="DS1UpgradeMissionTimer" seconds="1" />
+  </event>
   <event name="DS1 offers upgrade mission" id_arme="345952d6-0657-488f-bc88-f97c031c19ab" parent_id_arme="1c978b6c-f7b8-40fe-8106-07aa435466e6">
-    <if_variable name="DS1UpgradeMissionStage" comparator="LESS" value="1.0" />
+    <if_variable name="DS1UpgradeMissionStage" comparator="EQUALS" value="0.0" />
     <if_timer_finished name="DS1UpgradeMissionTimer" />
     <if_exists name="Atlas" />
     <log text="DS1 offered mission to upgrade production" />
@@ -593,7 +640,19 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
     <copy_object_property property="angle" name1="DS1Copy" name2="DS1" />
     <destroy name="DS1Copy" />
   </event>
-  <folder_arme name="Side mission: DS1 nukes" id_arme="122bc34c-b356-4497-b1a9-649c6b1cb5f3" />
+  <folder_arme name="Side mission: DS1 nukes" id_arme="122bc34c-b356-4497-b1a9-649c6b1cb5f3" parent_id_arme="9b774b87-1030-4c79-bf55-a32cfc834264" />
+  <event name="Refresh GM button" id_arme="43bc5945-14db-4234-8890-1bf5b2fe66ed" parent_id_arme="122bc34c-b356-4497-b1a9-649c6b1cb5f3">
+    <if_timer_finished name="RefreshGMButtons" />
+    <if_exists name="Pegasus" />
+    <if_variable name="DS1NukeMissionStage" comparator="EQUALS" value="0.0" />
+    <set_gm_button text="GM/Side Mission/Help DS1 Nukes" />
+  </event>
+  <event name="GM button pressed" id_arme="32a8a0b1-9fde-4b7f-91c2-9de0758ec194" parent_id_arme="122bc34c-b356-4497-b1a9-649c6b1cb5f3">
+    <if_gm_button text="GM/Side Mission/Help DS1 Nukes" />
+    <log text="GM started DS1 nukes side mission" />
+    <clear_gm_button text="GM/Side Mission/Help DS1 Nukes" />
+    <set_timer name="DS1NukeMissionTimer" seconds="1" />
+  </event>
   <event name="DS1 offers nukes mission" id_arme="68632c12-2226-4f27-bbb5-efe4070cc000" parent_id_arme="122bc34c-b356-4497-b1a9-649c6b1cb5f3">
     <if_variable name="DS1NukeMissionStage" comparator="EQUALS" value="0.0" />
     <if_timer_finished name="DS1NukeMissionTimer" />
@@ -632,7 +691,19 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
     <set_variable name="DS1NukeMissionStage" value="4.0" />
     <addto_object_property value="2.0" property="missileStoresNuke" name="DS1" />
   </event>
-  <folder_arme name="Side mission: Pegasus" id_arme="9711027e-1cab-41a6-8423-07e739133d62" />
+  <folder_arme name="Side mission: Pegasus" id_arme="9711027e-1cab-41a6-8423-07e739133d62" parent_id_arme="9b774b87-1030-4c79-bf55-a32cfc834264" />
+  <event name="Refresh GM button" id_arme="2a985172-c4db-47a0-bc4c-2870df25620e" parent_id_arme="9711027e-1cab-41a6-8423-07e739133d62">
+    <if_exists name="Pegasus" />
+    <if_timer_finished name="RefreshGMButtons" />
+    <if_variable name="PegasusHelpStage" comparator="EQUALS" value="0.0" />
+    <set_gm_button text="GM/Side Mission/Help Pegasus" />
+  </event>
+  <event name="GM button pressed" id_arme="dbb6c166-9164-459d-a971-7c531f60ad8c" parent_id_arme="9711027e-1cab-41a6-8423-07e739133d62">
+    <if_gm_button text="GM/Side Mission/Help Pegasus" />
+    <log text="GM started Pegasus side mission" />
+    <clear_gm_button text="GM/Side Mission/Help Pegasus" />
+    <set_timer name="PegasusCommsTimer" seconds="1" />
+  </event>
   <event name="Pegasus asks for help" id_arme="df3571d3-79f4-4775-97d9-c2ebf360c42d" parent_id_arme="9711027e-1cab-41a6-8423-07e739133d62">
     <if_variable name="PegasusHelpStage" comparator="EQUALS" value="0.0" />
     <if_timer_finished name="PegasusCommsTimer" />
@@ -719,7 +790,20 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
     <add_ai type="FOLLOW_COMMS_ORDERS" name="Pegasus" />
     <set_ship_text name="Pegasus" hailtext="We're moving cargo between the stations in this sector." />
   </event>
-  <folder_arme name="Side mission: Atlas" id_arme="096c8a20-33f3-414b-ab56-3e1a20dc4e8f" />
+  <folder_arme name="Side mission: Atlas" id_arme="096c8a20-33f3-414b-ab56-3e1a20dc4e8f" parent_id_arme="9b774b87-1030-4c79-bf55-a32cfc834264" />
+  <event name="Refresh GM button" id_arme="a82d7e37-ca80-48b2-8439-431bc9195200" parent_id_arme="096c8a20-33f3-414b-ab56-3e1a20dc4e8f">
+    <if_exists name="Atlas" />
+    <if_exists name="Starseeker" />
+    <if_timer_finished name="RefreshGMButtons" />
+    <if_variable name="AtlasHelpStage" comparator="EQUALS" value="0.0" />
+    <set_gm_button text="GM/Side Mission/Help Atlas" />
+  </event>
+  <event name="GM button pressed" id_arme="68d5f1fb-180c-4cce-b2fa-5c42aff23cff" parent_id_arme="096c8a20-33f3-414b-ab56-3e1a20dc4e8f">
+    <if_gm_button text="GM/Side Mission/Help Atlas" />
+    <log text="GM started Atlas side mission" />
+    <clear_gm_button text="GM/Side Mission/Help Atlas" />
+    <set_timer name="AtlasCommsTimer" seconds="1" />
+  </event>
   <event name="Atlas asks for help" id_arme="ecd477a2-7bfa-410f-ad6c-4006e9253d50" parent_id_arme="096c8a20-33f3-414b-ab56-3e1a20dc4e8f">
     <if_variable name="AtlasHelpStage" comparator="EQUALS" value="0.0" />
     <if_timer_finished name="AtlasCommsTimer" />
@@ -771,7 +855,19 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
     <add_ai type="FOLLOW_COMMS_ORDERS" name="Atlas" />
     <set_variable name="AtlasHelpStage" value="99.0" />
   </event>
-  <folder_arme name="Side mission: Starseeker" id_arme="25c18002-5184-41c0-8540-53d8f201f8d5" />
+  <folder_arme name="Side mission: Starseeker" id_arme="25c18002-5184-41c0-8540-53d8f201f8d5" parent_id_arme="9b774b87-1030-4c79-bf55-a32cfc834264" expanded_arme="" />
+  <event name="Refresh GM button" id_arme="5d367bbc-b65a-425a-b5a8-6e00aa948d4d" parent_id_arme="25c18002-5184-41c0-8540-53d8f201f8d5">
+    <if_exists name="Starseeker" />
+    <if_timer_finished name="RefreshGMButtons" />
+    <if_variable name="StarseekerHelpStage" comparator="EQUALS" value="0.0" />
+    <set_gm_button text="GM/Side Mission/BioMech Study" />
+  </event>
+  <event name="GM button pressed" id_arme="a5ce26f9-8a58-4b0c-842b-f9dd31cf868a" parent_id_arme="25c18002-5184-41c0-8540-53d8f201f8d5">
+    <if_gm_button text="GM/Side Mission/BioMech Study" />
+    <log text="GM completed BioMech Study" />
+    <clear_gm_button text="GM/Side Mission/BioMech Study" />
+    <set_timer name="StarseekerDataTimer" seconds="1" />
+  </event>
   <event name="Starseeker acquires BioMech data" id_arme="e9a1e3ae-e4f8-4778-95fc-95f8645595f0" parent_id_arme="25c18002-5184-41c0-8540-53d8f201f8d5">
     <if_variable name="StarseekerHelpStage" comparator="EQUALS" value="0.0" />
     <if_timer_finished name="StarseekerDataTimer" />
@@ -784,7 +880,6 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
     <add_ai type="DEFEND" value2="3000" value1="1000" name="B01" />
     <add_ai type="CHASE_ANGER" name="B01" />
     <set_object_property property="sideValue" value="2.0" name="B01" />
-    <add_ai type="PROCEED_TO_EXIT" name="Starseeker" />
     <add_ai type="FOLLOW_COMMS_ORDERS" name="Starseeker" />
     <set_timer name="AtlasCommsTimer" seconds="15" />
     <set_ship_text name="Atlas" hailtext="We'd like to get the Starseeker's data." />
@@ -792,8 +887,21 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
     <set_timer name="StarseekerHelpTimer" seconds="StarseekerHelpDelay" />
     <set_variable name="StarseekerHelpStage" value="1.0" />
   </event>
+  <event name="Refresh GM button" id_arme="533b90dc-0994-45d7-8437-fc6dc582081e" parent_id_arme="25c18002-5184-41c0-8540-53d8f201f8d5">
+    <if_exists name="Starseeker" />
+    <if_exists name="Avalon" />
+    <if_timer_finished name="RefreshGMButtons" />
+    <if_variable name="StarseekerHelpStage" comparator="LESS" value="2.0" />
+    <set_gm_button text="GM/Side Mission/Help Starseeker" />
+  </event>
+  <event name="GM button pressed" id_arme="6c4b3192-36ab-4b51-9829-1af884c24795" parent_id_arme="25c18002-5184-41c0-8540-53d8f201f8d5">
+    <if_gm_button text="GM/Side Mission/Help Starseeker" />
+    <log text="GM started Starseeker side mission" />
+    <clear_gm_button text="GM/Side Mission/Help Starseeker" />
+    <set_timer name="StarseekerHelpTimer" seconds="1" />
+  </event>
   <event name="Starseeker asks for help" id_arme="8ba1e71a-3081-4c96-984f-2fae6ed07e10" parent_id_arme="25c18002-5184-41c0-8540-53d8f201f8d5">
-    <if_variable name="StarseekerHelpStage" comparator="EQUALS" value="1.0" />
+    <if_variable name="StarseekerHelpStage" comparator="LESS" value="2.0" />
     <if_timer_finished name="StarseekerHelpTimer" />
     <if_exists name="Starseeker" />
     <if_exists name="Avalon" />
@@ -832,6 +940,11 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
     <incoming_comms_text from="Science Vessel Starseeker" type="FRIEND">Transfer complete, Intrepid. In return, we'll now enhance your maneuverability.</incoming_comms_text>
     <addto_object_property value="0.002" property="turnRate" name="Intrepid" />
     <set_variable name="StarseekerHelpStage" value="99.0" />
+  </event>
+  <event name="Restart GM button refresh timer" id_arme="f1383e6f-ee03-4dce-872f-9f43586e0033" parent_id_arme="9b774b87-1030-4c79-bf55-a32cfc834264">
+    <if_exists name="DS1" />
+    <if_timer_finished name="RefreshGMButtons" />
+    <set_timer name="RefreshGMButtons" seconds="10" />
   </event>
   <folder_arme name="Sabotage" id_arme="06783d9d-3423-44f3-b6e3-28e8f836b4fd" />
   <event name="Bomb Set" id_arme="9c900198-e63b-4408-9a57-32ae99e1e2ae" parent_id_arme="06783d9d-3423-44f3-b6e3-28e8f836b4fd">
