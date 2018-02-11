@@ -19,9 +19,11 @@
     <set_variable name="StationX" value="27764.0" />
     <set_variable name="StationY" value="0.0" />
     <set_variable name="StationZ" value="73016.0" />
-    <create type="station" x="StationX" y="StationY" z="StationZ" angle="0" name="DS1" raceKeys="friendly" hullKeys="Deep Space Base base" />
+    <create type="station" x="StationX" y="StationY" z="StationZ" angle="0" name="DS1" raceKeys="friendly" hullKeys="Civilian Base base" />
     <set_variable name="DockedRange" value="100.0" />
     <set_variable name="TractorStrength" value="2.0" />
+    <set_variable name="DS1UpgradeMissionDelay" randomIntLow="150" randomIntHigh="300" />
+    <set_timer name="DS1UpgradeMissionTimer" seconds="DS1UpgradeMissionDelay" />
     <create type="neutral" x="StationX - 10" y="StationY + 50.0" z="StationZ" angle="0" name="Diana" hullID="0" sideValue="2" />
     <create type="neutral" x="14553.0" y="0.0" z="10484.0" angle="200" name="Starseeker" raceKeys="Terran friendly" hullKeys="science" sideValue="2" />
     <clear_ai name="Starseeker" />
@@ -36,7 +38,7 @@
     <set_variable name="AvalonCommsDelay" randomIntLow="120" randomIntHigh="600" />
     <set_ship_text name="Avalon" hailtext="We're out of energy!  Could you lend us 200 units to get moving?" />
     <set_timer name="AvalonCommsTimer" seconds="AvalonCommsDelay" />
-    <create type="neutral" x="91841.0" y="0.0" z="96053.0" angle="45" name="Atlas" raceKeys="Terran friendly" hullKeys="transport" sideValue="2" />
+    <create type="neutral" x="70339.0" y="0.0" z="81815.0" angle="45" name="Atlas" raceKeys="Terran friendly" hullKeys="transport" sideValue="2" />
     <clear_ai name="Atlas" />
     <add_ai type="PROCEED_TO_EXIT" name="Atlas" />
     <add_ai type="FOLLOW_COMMS_ORDERS" name="Atlas" />
@@ -468,6 +470,7 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
     <if_variable name="RapierHelpStage" comparator="EQUALS" value="2.0" />
     <if_object_property property="sideValue" name="Diana" comparator="EQUALS" value="1.0" />
     <if_distance name1="Rapier" name2="Diana" comparator="LESS_EQUAL" value="3000.0" />
+    <if_variable name="RapierFollowingDiana" comparator="EQUALS" value="0.0" />
     <log text="Rapier is following the rogue Diana" />
     <set_variable name="RapierFollowingDiana" value="1.0" />
     <clear_ai name="Rapier" />
@@ -503,10 +506,10 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
     <set_variable name="AvalonHelpStage" value="2.0" />
     <addto_object_property value="-200.0" property="energy" name="Artemis" />
     <addto_object_property value="2.0" property="totalCoolant" name="Artemis" />
-    <incoming_comms_text from="Avalon" type="FRIEND">Thanks for the energy, Artemis!  In return, here's two of our coolant units.</incoming_comms_text>
+    <incoming_comms_text from="Luxury Liner Avalon" type="FRIEND">Thanks for the energy, Artemis!  In return, here's two of our coolant units.</incoming_comms_text>
     <add_ai type="PROCEED_TO_EXIT" name="Avalon" />
     <add_ai type="FOLLOW_COMMS_ORDERS" name="Avalon" />
-    <set_ship_text name="Luxury Liner Avalon" hailtext="We're travelling this sector, showing our guests the most beautiful and amazing sights." />
+    <set_ship_text name="Avalon" hailtext="We're travelling this sector, showing our guests the most beautiful and amazing sights." />
   </event>
   <event name="Intrepid gives Avalon energy" id_arme="74f4d364-69d5-441e-b516-2f6f816a1364" parent_id_arme="1dcd0b8c-8f99-4b5b-8f55-6f4e7390217e">
     <if_variable name="AvalonHelpStage" comparator="LESS" value="2.0" />
@@ -516,10 +519,72 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
     <set_variable name="AvalonHelpStage" value="2.0" />
     <addto_object_property value="-200.0" property="energy" name="Intrepid" />
     <addto_object_property value="2.0" property="totalCoolant" name="Intrepid" />
-    <incoming_comms_text from="Avalon" type="FRIEND">Thanks for the energy, Intrepid!  In return, here's two of our coolant units.</incoming_comms_text>
+    <incoming_comms_text from="Luxury Liner Avalon" type="FRIEND">Thanks for the energy, Intrepid!  In return, here's two of our coolant units.</incoming_comms_text>
     <add_ai type="PROCEED_TO_EXIT" name="Avalon" />
     <add_ai type="FOLLOW_COMMS_ORDERS" name="Avalon" />
-    <set_ship_text name="Luxury Liner Avalon" hailtext="We're travelling this sector, showing our guests the most beautiful and amazing sights." />
+    <set_ship_text name="Avalon" hailtext="We're travelling this sector, showing our guests the most beautiful and amazing sights." />
+  </event>
+  <folder_arme name="Side mission: DS1 upgrade" id_arme="1c978b6c-f7b8-40fe-8106-07aa435466e6" />
+  <event name="DS1 offers upgrade mission" id_arme="345952d6-0657-488f-bc88-f97c031c19ab" parent_id_arme="1c978b6c-f7b8-40fe-8106-07aa435466e6">
+    <if_variable name="DS1UpgradeMissionStage" comparator="LESS" value="1.0" />
+    <if_timer_finished name="DS1UpgradeMissionTimer" />
+    <log text="DS1 offered mission to upgrade production" />
+    <incoming_comms_text from="DS1 Terran Civilian Base" type="STATION">Our engineers have been analyzing our production facility.  Rendezvous with the Atlas and pick up some parts we need, and we can increase build times significantly.</incoming_comms_text>
+    <set_variable name="DS1UpgradeMissionStage" value="1.0" />
+  </event>
+  <event name="Artemis got DS1 upgrade parts from Atlas" id_arme="67c214b2-c3da-49f8-a9f7-04106a97864c" parent_id_arme="1c978b6c-f7b8-40fe-8106-07aa435466e6">
+    <if_variable name="DS1UpgradeMissionStage" comparator="EQUALS" value="1.0" />
+    <if_distance name1="Artemis" name2="Atlas" comparator="LESS_EQUAL" value="500.0" />
+    <log text="Artemis picked up DS1 parts from Atlas" />
+    <incoming_comms_text from="Transport Atlas" type="FRIEND">Transfer complete, Artemis. Please proceed to DS1 to deliver the station production parts.</incoming_comms_text>
+    <set_variable name="DS1UpgradeMissionStage" value="2.0" />
+  </event>
+  <event name="Intrepid got DS1 upgrade parts from Atlas" id_arme="72f50c50-bef8-4e28-b436-765fa4712901" parent_id_arme="1c978b6c-f7b8-40fe-8106-07aa435466e6">
+    <if_variable name="DS1UpgradeMissionStage" comparator="EQUALS" value="1.0" />
+    <if_distance name1="Intrepid" name2="Atlas" comparator="LESS_EQUAL" value="500.0" />
+    <log text="Intrepid picked up DS1 parts from Atlas" />
+    <incoming_comms_text from="Transport Atlas" type="FRIEND">Transfer complete, Intrepid. Please proceed to DS1 to deliver the station production parts.</incoming_comms_text>
+    <set_variable name="DS1UpgradeMissionStage" value="3.0" />
+  </event>
+  <event name="Artemis delivered upgrade parts to DS1" id_arme="788a8ece-304a-47a9-8881-4bde524b8c1b" parent_id_arme="1c978b6c-f7b8-40fe-8106-07aa435466e6">
+    <if_variable name="DS1UpgradeMissionStage" comparator="EQUALS" value="2.0" />
+    <if_distance name1="Artemis" name2="DS1" comparator="LESS_EQUAL" value="500.0" />
+    <log text="Artemis delivered upgrade parts to DS1" />
+    <incoming_comms_text from="DS1 Terran Industrial Base" type="STATION">Transfer complete, Artemis. Our production is now operating at maximum capacity!</incoming_comms_text>
+    <set_variable name="DS1UpgradeMissionStage" value="4.0" />
+  </event>
+  <event name="Intrepid delivered upgrade parts to DS1" id_arme="d4601bd2-9ff0-467e-9a8b-53992a8ac494" parent_id_arme="1c978b6c-f7b8-40fe-8106-07aa435466e6">
+    <if_variable name="DS1UpgradeMissionStage" comparator="EQUALS" value="3.0" />
+    <if_distance name1="Intrepid" name2="DS1" comparator="LESS_EQUAL" value="500.0" />
+    <log text="Intrepid delivered upgrade parts to DS1" />
+    <incoming_comms_text from="DS1 Terran Industrial Base" type="STATION">Transfer complete, Intrepid. Our production is now operating at maximum capacity!</incoming_comms_text>
+    <set_variable name="DS1UpgradeMissionStage" value="4.0" />
+  </event>
+  <event name="Upgrade DS1" id_arme="b0b99765-f0e7-4ccc-855f-c82f27c45f8a" parent_id_arme="1c978b6c-f7b8-40fe-8106-07aa435466e6">
+    <if_variable name="DS1UpgradeMissionStage" comparator="EQUALS" value="4.0" />
+    <set_variable name="DS1UpgradeMissionStage" value="99.0" />
+    <!--Rename DS1 so we can replace it-->
+    <create type="station" x="0.0" y="0.0" z="0.0" angle="0" name="DS1Copy" raceKeys="friendly" hullKeys="Civilian Base base" />
+    <copy_object_property property="shieldState" name1="DS1" name2="DS1Copy" />
+    <copy_object_property property="canBuild" name1="DS1" name2="DS1Copy" />
+    <copy_object_property property="missileStoresHoming" name1="DS1" name2="DS1Copy" />
+    <copy_object_property property="missileStoresNuke" name1="DS1" name2="DS1Copy" />
+    <copy_object_property property="missileStoresMine" name1="DS1" name2="DS1Copy" />
+    <copy_object_property property="missileStoresECM" name1="DS1" name2="DS1Copy" />
+    <copy_object_property property="missileStoresPShock" name1="DS1" name2="DS1Copy" />
+    <copy_object_property property="angle" name1="DS1" name2="DS1Copy" />
+    <destroy name="DS1" />
+    <!--Create an Industrial Base to replace DS1-->
+    <create type="station" x="StationX" y="StationY" z="StationZ" angle="0" name="DS1" raceKeys="friendly" hullKeys="Industrial Base base" />
+    <copy_object_property property="shieldState" name1="DS1Copy" name2="DS1" />
+    <copy_object_property property="canBuild" name1="DS1Copy" name2="DS1" />
+    <copy_object_property property="missileStoresHoming" name1="DS1Copy" name2="DS1" />
+    <copy_object_property property="missileStoresNuke" name1="DS1Copy" name2="DS1" />
+    <copy_object_property property="missileStoresMine" name1="DS1Copy" name2="DS1" />
+    <copy_object_property property="missileStoresECM" name1="DS1Copy" name2="DS1" />
+    <copy_object_property property="missileStoresPShock" name1="DS1Copy" name2="DS1" />
+    <copy_object_property property="angle" name1="DS1Copy" name2="DS1" />
+    <destroy name="DS1Copy" />
   </event>
   <folder_arme name="Sabotage" id_arme="06783d9d-3423-44f3-b6e3-28e8f836b4fd" />
   <event name="Bomb Set" id_arme="9c900198-e63b-4408-9a57-32ae99e1e2ae" parent_id_arme="06783d9d-3423-44f3-b6e3-28e8f836b4fd">

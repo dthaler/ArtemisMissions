@@ -89,7 +89,9 @@
             option 3b) use Charybdis and Piranhas
                 disadvantage - uses nebulas instead of something new
             option 3c) use Dragon(s)
+1/2 ADD: Destroyer (Rapier) side mission (get them to DS1)
 1/2 ADD: Luxury Liner Avalon side mission (trade 200 energy for 2 coolant)
+1/2 ADD: DS1 upgrade mission (convert Civilian Base to Industrial Base)
 
 ---
 {
@@ -100,24 +102,7 @@
          send blog entry to jeffrey sloan
          PROG check Brew Bothell schedule
 
-1/2 ADD: Destroyer (Rapier) side mission
-                    LOCATION: on close side of asteroid belt
-                    WHEN: available immediately, comms incoming near beginning, after random delay
-                    "Our sensors are all down!  We're flying blind. Please guide us to a station for repairs!"
-                                if on close side of asteroid belt, navigate them to DS1 to activate them
-                                maybe switch to destroyer, but don't want it to destroy the Diana
-                                    maybe use DEFEND? or TARGET_THROTTLE
-                                 IF navigate to DS1
-                                    +change brain stack to enable attacking, but not Diana or Saboteur
-         DONE on start:
-                    set ship text
-                    set brain stack to be non-violent
-                        DIR_THROTTLE
-                    (implicitly set variable to 0)
-                    set random timer (RapierCommsDelay) between 60 and 180 seconds
-         DONE on timer expiry (and variable is 0):
-                    send comms message
-                    set variable to 1
+1/2 ADD: Destroyer (Rapier) side mission (get them to DS1)
          DNTT on reaching DS1:
                     update brain stack
                         CHASE_AI_SHIP anywhere
@@ -141,12 +126,6 @@
                     DO restore good brain stack
                     DO restore good ship text
                     set RapierOnAlert = 0
-
-1/2 ADD: DS1 side mission #1
-                    - deliver something to DS1 to increase DS1 shields "enhance our shield generators"
-                    WHEN: comms after random delay, ok if early
-                                 IF pick up parts from Atlas and deliver them to DS1
-                                    +DS1 shields (shieldState += N)
 
 1/2 ADD: DS1 side mission #2
                     WHEN: comms after random delay, only after bomb defused
@@ -188,6 +167,8 @@
          Then, {rendezvous,dock} with us, and we'll 
 
 ---
+
+2/2 FIX: make Rapier repairs actually take a minute at DS1
 
 3/1 MAYBE: maybe change the station type to an industrial base?
         rename to something like 'TSN Shipyard' or similar
