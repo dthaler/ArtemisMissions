@@ -31,8 +31,9 @@
     <add_ai type="FOLLOW_COMMS_ORDERS" name="Starseeker" />
     <create type="neutral" x="98378.0" y="0.0" z="64527.0" angle="75" name="Pegasus" raceKeys="Terran friendly" hullKeys="cargo" sideValue="2" />
     <clear_ai name="Pegasus" />
-    <add_ai type="PROCEED_TO_EXIT" name="Pegasus" />
-    <add_ai type="FOLLOW_COMMS_ORDERS" name="Pegasus" />
+    <set_variable name="PegasusCommsDelay" randomIntLow="120" randomIntHigh="600" />
+    <set_ship_text name="Pegasus" hailtext="Our engines have broken down! Could you lend us a DamCon team to conduct repairs?" />
+    <set_timer name="PegasusCommsTimer" seconds="PegasusCommsDelay" />
     <create type="neutral" x="4964.0" y="0.0" z="96198.0" angle="0" name="Avalon" raceKeys="Terran friendly" hullKeys="luxury" sideValue="2" />
     <clear_ai name="Avalon" />
     <set_variable name="AvalonCommsDelay" randomIntLow="120" randomIntHigh="600" />
@@ -623,6 +624,92 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
     <incoming_comms_text from="DS1" type="STATION">Transfer complete, Intrepid. We now have 2 additional nukes.</incoming_comms_text>
     <set_variable name="DS1NukeMissionStage" value="4.0" />
     <addto_object_property value="2.0" property="missileStoresNuke" name="DS1" />
+  </event>
+  <folder_arme name="Side mission: Pegasus" id_arme="9711027e-1cab-41a6-8423-07e739133d62" />
+  <event name="Pegasus calls for help" id_arme="df3571d3-79f4-4775-97d9-c2ebf360c42d" parent_id_arme="9711027e-1cab-41a6-8423-07e739133d62">
+    <if_variable name="PegasusHelpStage" comparator="EQUALS" value="0.0" />
+    <if_timer_finished name="PegasusCommsTimer" />
+    <log text="Pegasus called for help" />
+    <incoming_comms_text from="Bulk Cargo Pegasus" type="FRIEND">Our engines have broken down! Could you lend us a DamCon team to conduct repairs?  In return, we can give you 2 nukes.</incoming_comms_text>
+    <set_variable name="PegasusHelpStage" value="1.0" />
+  </event>
+  <event name="Artemis gives Pegasus DamCon team 1" id_arme="305a3b18-11ad-4cb3-b67e-49701a8448c5" parent_id_arme="9711027e-1cab-41a6-8423-07e739133d62">
+    <if_variable name="PegasusHelpStage" comparator="LESS" value="2.0" />
+    <if_damcon_members name="Artemis" team_index="0" comparator="EQUALS" value="6" />
+    <if_distance name1="Artemis" name2="Pegasus" comparator="LESS_EQUAL" value="500.0" />
+    <log text="Artemis gave Pegasus DamCon team 1" />
+    <set_variable name="PegasusHelpStage" value="2.0" />
+    <set_damcon_members value="0" team_index="0" name="Artemis" />
+    <addto_object_property value="2.0" property="countNuke" name="Artemis" />
+    <incoming_comms_text from="Bulk Cargo Pegasus" type="FRIEND">Thanks for the repair team, Artemis!  In return, here's two nukes.</incoming_comms_text>
+    <add_ai type="PROCEED_TO_EXIT" name="Pegasus" />
+    <add_ai type="FOLLOW_COMMS_ORDERS" name="Pegasus" />
+    <set_ship_text name="Pegasus" hailtext="We're moving cargo between the stations in this sector." />
+  </event>
+  <event name="Artemis gives Pegasus DamCon team 2" id_arme="4fe4426a-650e-40b2-943f-b7179c07f16e" parent_id_arme="9711027e-1cab-41a6-8423-07e739133d62">
+    <if_variable name="PegasusHelpStage" comparator="LESS" value="2.0" />
+    <if_damcon_members name="Artemis" team_index="1" comparator="EQUALS" value="6" />
+    <if_distance name1="Artemis" name2="Pegasus" comparator="LESS_EQUAL" value="500.0" />
+    <log text="Artemis gave Pegasus DamCon team 2" />
+    <set_variable name="PegasusHelpStage" value="2.0" />
+    <set_damcon_members value="0" team_index="1" name="Artemis" />
+    <addto_object_property value="2.0" property="countNuke" name="Artemis" />
+    <incoming_comms_text from="Bulk Cargo Pegasus" type="FRIEND">Thanks for the repair team, Artemis!  In return, here's two nukes.</incoming_comms_text>
+    <add_ai type="PROCEED_TO_EXIT" name="Pegasus" />
+    <add_ai type="FOLLOW_COMMS_ORDERS" name="Pegasus" />
+    <set_ship_text name="Pegasus" hailtext="We're moving cargo between the stations in this sector." />
+  </event>
+  <event name="Artemis gives Pegasus DamCon team 3" id_arme="639c33e4-7ca1-4970-a5ab-0a80b49d66d7" parent_id_arme="9711027e-1cab-41a6-8423-07e739133d62">
+    <if_variable name="PegasusHelpStage" comparator="LESS" value="2.0" />
+    <if_damcon_members name="Artemis" team_index="2" comparator="EQUALS" value="6" />
+    <if_distance name1="Artemis" name2="Pegasus" comparator="LESS_EQUAL" value="500.0" />
+    <log text="Artemis gave Pegasus DamCon team 3" />
+    <set_variable name="PegasusHelpStage" value="2.0" />
+    <set_damcon_members value="0" team_index="2" name="Artemis" />
+    <addto_object_property value="2.0" property="countNuke" name="Artemis" />
+    <incoming_comms_text from="Bulk Cargo Pegasus" type="FRIEND">Thanks for the repair team, Artemis!  In return, here's two nukes.</incoming_comms_text>
+    <add_ai type="PROCEED_TO_EXIT" name="Pegasus" />
+    <add_ai type="FOLLOW_COMMS_ORDERS" name="Pegasus" />
+    <set_ship_text name="Pegasus" hailtext="We're moving cargo between the stations in this sector." />
+  </event>
+  <event name="Intrepid gives Pegasus DamCon team 1" id_arme="6e9ee58c-b71d-49c6-9c15-9f4abe6faaf8" parent_id_arme="9711027e-1cab-41a6-8423-07e739133d62">
+    <if_variable name="PegasusHelpStage" comparator="LESS" value="2.0" />
+    <if_damcon_members name="Intrepid" team_index="0" comparator="EQUALS" value="6" />
+    <if_distance name1="Intrepid" name2="Pegasus" comparator="LESS_EQUAL" value="500.0" />
+    <log text="Intrepid gave Pegasus DamCon team 1" />
+    <set_variable name="PegasusHelpStage" value="2.0" />
+    <set_damcon_members value="0" team_index="0" name="Intrepid" />
+    <addto_object_property value="2.0" property="countNuke" name="Intrepid" />
+    <incoming_comms_text from="Bulk Cargo Pegasus" type="FRIEND">Thanks for the repair team, Intrepid!  In return, here's two nukes.</incoming_comms_text>
+    <add_ai type="PROCEED_TO_EXIT" name="Pegasus" />
+    <add_ai type="FOLLOW_COMMS_ORDERS" name="Pegasus" />
+    <set_ship_text name="Pegasus" hailtext="We're moving cargo between the stations in this sector." />
+  </event>
+  <event name="Intrepid gives Pegasus DamCon team 2" id_arme="1e94ae91-b739-4420-aad8-49d281886a92" parent_id_arme="9711027e-1cab-41a6-8423-07e739133d62">
+    <if_variable name="PegasusHelpStage" comparator="LESS" value="2.0" />
+    <if_damcon_members name="Intrepid" team_index="1" comparator="EQUALS" value="6" />
+    <if_distance name1="Intrepid" name2="Pegasus" comparator="LESS_EQUAL" value="500.0" />
+    <log text="Intrepid gave Pegasus DamCon team 2" />
+    <set_variable name="PegasusHelpStage" value="2.0" />
+    <set_damcon_members value="0" team_index="1" name="Intrepid" />
+    <addto_object_property value="2.0" property="countNuke" name="Intrepid" />
+    <incoming_comms_text from="Bulk Cargo Pegasus" type="FRIEND">Thanks for the repair team, Intrepid!  In return, here's two nukes.</incoming_comms_text>
+    <add_ai type="PROCEED_TO_EXIT" name="Pegasus" />
+    <add_ai type="FOLLOW_COMMS_ORDERS" name="Pegasus" />
+    <set_ship_text name="Pegasus" hailtext="We're moving cargo between the stations in this sector." />
+  </event>
+  <event name="Intrepid gives Pegasus DamCon team 3" id_arme="45b5b054-ec48-433c-ae4e-89279e84a2bb" parent_id_arme="9711027e-1cab-41a6-8423-07e739133d62">
+    <if_variable name="PegasusHelpStage" comparator="LESS" value="2.0" />
+    <if_damcon_members name="Intrepid" team_index="2" comparator="EQUALS" value="6" />
+    <if_distance name1="Intrepid" name2="Pegasus" comparator="LESS_EQUAL" value="500.0" />
+    <log text="Intrepid gave Pegasus DamCon team 3" />
+    <set_variable name="PegasusHelpStage" value="2.0" />
+    <set_damcon_members value="0" team_index="2" name="Intrepid" />
+    <addto_object_property value="2.0" property="countNuke" name="Intrepid" />
+    <incoming_comms_text from="Bulk Cargo Pegasus" type="FRIEND">Thanks for the repair team, Intrepid!  In return, here's two nukes.</incoming_comms_text>
+    <add_ai type="PROCEED_TO_EXIT" name="Pegasus" />
+    <add_ai type="FOLLOW_COMMS_ORDERS" name="Pegasus" />
+    <set_ship_text name="Pegasus" hailtext="We're moving cargo between the stations in this sector." />
   </event>
   <folder_arme name="Sabotage" id_arme="06783d9d-3423-44f3-b6e3-28e8f836b4fd" />
   <event name="Bomb Set" id_arme="9c900198-e63b-4408-9a57-32ae99e1e2ae" parent_id_arme="06783d9d-3423-44f3-b6e3-28e8f836b4fd">

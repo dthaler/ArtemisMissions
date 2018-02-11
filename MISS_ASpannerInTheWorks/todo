@@ -93,6 +93,7 @@
 02/10/18 ADD: Luxury Liner Avalon side mission (trade 200 energy for 2 coolant)
 02/10/18 ADD: DS1 upgrade mission (convert Civilian Base to Industrial Base)
 02/10/18 ADD: DS1 nuke side mission
+02/10/18 ADD: Cargo (Pegasus) side mission (trade DamCon team for 2 nukes)
 
 ---
 {
@@ -102,6 +103,12 @@
          DONE post about NWC on artemis forums
          send blog entry to jeffrey sloan
          PROG check Brew Bothell schedule
+
+1/1 FIX: set initial DS1 missile store counts
+
+1/2 ADD: GM buttons to initiate side missions (set relevant comms timer to 1 second)
+
+1/2 ADD: make Pegasus side mission use Comms buttons
 
 1/2 ADD: Destroyer (Rapier) side mission (get them to DS1)
          DNTT on reaching DS1:
@@ -127,13 +134,6 @@
                     DO restore good brain stack
                     DO restore good ship text
                     set RapierOnAlert = 0
-
-1/2 ADD: Cargo (Pegasus) side mission
-                    LOCATION: not close to DS1
-                    WHEN: available immediately, comms after random delay
-                                 IF donate DamCon team
-                                    +2 nukes  (countNuke += 2)
-                                    +change brain stack to follow orders
 
 1/2 ADD: Science (Starseeker) side mission #1
                     LOCATION: farther north, but not right next to biomech
