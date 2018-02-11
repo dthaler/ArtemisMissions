@@ -38,12 +38,12 @@ possible rewards:
       * disable triggersMines
 
         * probably need to replace station with a different station
-                        Shield Build  Beam  Torp
-            Civilian:    400    0.5    N     N
-            Science:     400    0.5    N     N
-            Deep Space:  400    1.0    Y     N
-            Industrial:  400    3.0    N     N
-            Command:     800    2.0    Y     Y
+                        Shield Build  Beam  Torp        Shape
+            Civilian:    400    0.5    N     N          4 stacked rings
+            Science:     400    0.5    N     N          windmill gun
+            Deep Space:  400    1.0    Y     N          3 stacked rings
+            Industrial:  400    3.0    N     N          platforms around sides
+            Command:     800    2.0    Y     Y          3 stacked rings
 
            Civilian/Science -> DeepSpace : 2x production & add beams
            Civilian/Science -> Industrial: 6x production

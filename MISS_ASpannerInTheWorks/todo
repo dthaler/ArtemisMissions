@@ -96,6 +96,10 @@
 02/10/18 ADD: Cargo (Pegasus) side mission (trade DamCon team for 2 nukes)
 02/10/18 ADD: Transport (Atlas) side mission
 02/10/18 ADD: GM buttons to initiate side missions (set relevant comms timer to 1 second)
+02/10/18 ADD: Science (Starseeker) side mission
+02/10/18 FIX: replace base type with Deep Space changing to Command
+02/10/18 FIX: Artemis and Intrepid should spawn pointing North
+02/10/18 FIX: set initial DS1 missile store counts (2xLight Cruiser, +1xBattleship if Intrepid)
 
 ---
 {
@@ -106,66 +110,18 @@
          send blog entry to jeffrey sloan
          PROG check Brew Bothell schedule
 
-1/1 FIX: set initial DS1 missile store counts
-
-1/2 ADD: make Pegasus side mission use Comms buttons
-
-1/2 ADD: Destroyer (Rapier) side mission (get them to DS1)
-         DNTT on reaching DS1:
-                    update brain stack
-                        CHASE_AI_SHIP anywhere
-                        FOLLOW_COMMS_ORDERS
-                        DEFEND 3000 1000
-                        CHASE_ANGER
-                    set ship text
-                    set variable to 2
-         DNTT prevent Rapier from destroying Diana
-                    IF sideValue of Diana == 1
-                    IF variable RapierHelpStage == 2
-                    IF distance between Rapier and Diana is <= 3000
-                    set RapierOnAlert = 1
-                    update brain stack
-                        TARGET_THROTTLE to Diana but don't attack
-                        FOLLOW_COMMS_ORDERS
-                    set ship text
-         DNTT end Rapier workaround
-                    IF sideValue of Diana != 1
-                    IF RapierOnAlert == 1
-                    DO restore good brain stack
-                    DO restore good ship text
-                    set RapierOnAlert = 0
-
-1/2 ADD: Science (Starseeker) side mission
-                    LOCATION: farther north, but not right next to biomech
-                    WHEN: available on hail after other data is picked up, comms after random delay
-                                 IF tag N nsects? or the dragon?
-                                 IF deliver data from Avalon to Starseeker
-                                    +maneuverability (turnRate)
-                      * update XXX in "Starseeker acquires BioMech data"
-                   DNTT IF StarseekerHelpStage==1
-                        IF StarseekerHelpTimer expired
-                        IF Starseeker exists
-                            log entry
-                            send Comms message from Starseeker
-                            set StarseekerHelpStage=2
-                   DNTT IF StarseekerHelpStage==2   (and Intrepid)
-                        IF Artemis by Avalon
-                            log entry
-                            send Comms message from Avalon
-                            set StarseekerHelpStage=3
-                   DNTT IF StarseekerHelpStage==3   (and Intrepid)
-                        IF Artemis by Starseeker
-                            log entry
-                            send Comms message from Starseeker
-                            set StarseekerHelpStage=99
-                            add to Artemis turnRate
+1/2 FIX: coordinates of NSECT generation to be in asteroid belt as it slants
 
 ---
 
 2/2 FIX: make Rapier repairs actually take a minute at DS1
 
-3/1 MAYBE: maybe change the station type to an industrial base?
-        rename to something like 'TSN Shipyard' or similar
+2/2 FIX: make DS1 upgrade actually take a minute
+
+2/2 add GUARD_STATION info to wiki
+        https://artemis.forumchitchat.com/post/defending-a-station-7788937?pid=1289833225&highlight=station
+
+2/2 ADD: make Pegasus side mission use Comms buttons
 
 3/1 DO: pick a name for the Arvonian base
     https://docs.google.com/viewer?a=v&pid=sites&srcid=ZGVmYXVsdGRvbWFpbnx0c25saW5ndWlzdGljc3xneDo3MmI3YjlkNmI0ZTUxYzFl
@@ -176,6 +132,8 @@
            is to protect both DS1 and the Diana from the Arvonian invasion.
 
 3/2 FIX: find a way to prevent "Diana created" spew
+            topSpeed = 0
+            turnRate = 0
 
 3/2 CHECK: whether can increase the size of Arvonian carriers
 
