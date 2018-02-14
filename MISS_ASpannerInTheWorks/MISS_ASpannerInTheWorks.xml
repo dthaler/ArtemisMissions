@@ -21,7 +21,6 @@
     <set_variable name="StationY" value="0.0" />
     <set_variable name="StationZ" value="73016.0" />
     <create type="station" x="StationX" y="StationY" z="StationZ" angle="0" name="DS1" raceKeys="friendly" hullKeys="Deep Space Base base" />
-    <set_variable name="DockedRange" value="100.0" />
     <set_variable name="TractorStrength" value="2.0" />
     <set_variable name="DS1UpgradeMissionDelay" randomIntLow="150" randomIntHigh="300" />
     <set_timer name="DS1UpgradeMissionTimer" seconds="DS1UpgradeMissionDelay" />
@@ -284,7 +283,7 @@
     <set_variable name="ReportedSensorRange" value="1.0" />
     <warning_popup_message message="Sensor range limited to 8k" consoles="S" />
   </event>
-  <folder_arme name="Player Ship initialization" id_arme="21712616-42f1-44fc-a39e-b0521eb9312f" expanded_arme="" />
+  <folder_arme name="Player Ship initialization" id_arme="21712616-42f1-44fc-a39e-b0521eb9312f" />
   <event name="Create Player Ship - Artemis" id_arme="77054e94-9150-490c-b841-a94b75764284" parent_id_arme="21712616-42f1-44fc-a39e-b0521eb9312f">
     <if_exists name="Artemis" />
     <if_variable name="ArtemisInitialized" comparator="EQUALS" value="0" />
@@ -394,27 +393,30 @@
   <event name="Task Succeeded - 1 Ship Docked" id_arme="179e7ae6-25f8-46c5-8916-6995e3c73883" parent_id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6">
     <if_variable name="PlayerShipCount" comparator="EQUALS" value="1.0" />
     <if_variable name="TsnCommandGaveMission" comparator="EQUALS" value="0.0" />
-    <if_distance name1="Artemis" name2="DS1" comparator="LESS_EQUAL" value="DockedRange" />
-    <if_docked name="DS1" />
+    <if_exists name="Artemis" />
+    <if_docked name="DS1" player_name="Artemis" />
     <log text="TSN Command issued mission orders" />
     <set_variable name="TsnCommandGaveMission" value="1.0" />
   </event>
   <event name="Task Succeeded - 2 Ships Docked" id_arme="3c75cb0b-7be9-4c70-b4da-c32d8d05e60c" parent_id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6">
     <if_variable name="PlayerShipCount" comparator="EQUALS" value="2.0" />
     <if_variable name="TsnCommandGaveMission" comparator="EQUALS" value="0.0" />
-    <if_distance name1="Artemis" name2="DS1" comparator="LESS_EQUAL" value="DockedRange*1.6" />
-    <if_distance name1="Intrepid" name2="DS1" comparator="LESS_EQUAL" value="DockedRange*1.6" />
-    <if_docked name="DS1" />
+    <if_exists name="Artemis" />
+    <if_exists name="Intrepid" />
+    <if_docked name="DS1" player_name="Artemis" />
+    <if_docked name="DS1" player_name="Intrepid" />
     <log text="TSN Command issued mission orders" />
     <set_variable name="TsnCommandGaveMission" value="1.0" />
   </event>
   <event name="Task Succeeded - 3 Ships Docked" id_arme="bee1aff2-7bd6-4346-a020-863841bbeb14" parent_id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6">
     <if_variable name="PlayerShipCount" comparator="GREATER_EQUAL" value="3.0" />
     <if_variable name="TsnCommandGaveMission" comparator="EQUALS" value="0.0" />
-    <if_distance name1="Artemis" name2="DS1" comparator="LESS_EQUAL" value="DockedRange*1.6" />
-    <if_distance name1="Intrepid" name2="DS1" comparator="LESS_EQUAL" value="DockedRange*1.6" />
-    <if_distance name1="Aegis" name2="DS1" comparator="LESS_EQUAL" value="DockedRange*1.6" />
-    <if_docked name="DS1" />
+    <if_exists name="Artemis" />
+    <if_exists name="Intrepid" />
+    <if_exists name="Aegis" />
+    <if_docked name="DS1" player_name="Artemis" />
+    <if_docked name="DS1" player_name="Intrepid" />
+    <if_docked name="DS1" player_name="Aegis" />
     <log text="TSN Command issued mission orders" />
     <set_variable name="TsnCommandGaveMission" value="1.0" />
   </event>
@@ -503,7 +505,7 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
     <clear_ai name="Rapier" />
     <add_ai type="CHASE_AI_SHIP" name="Rapier" />
     <add_ai type="FOLLOW_COMMS_ORDERS" name="Rapier" />
-    <add_ai type="DEFEND" value2="3000" value1="1000" name="Rapier" />
+    <add_ai type="DEFEND" value1="1000" value2="3000" name="Rapier" />
     <add_ai type="CHASE_ANGER" name="Rapier" />
   </event>
   <event name="Prevent Rapier from attacking Diana" id_arme="d08f056b-14f4-45a1-87f6-0f6c51797536" parent_id_arme="a7e826ad-d40c-4a39-8248-01183453befa">
@@ -527,7 +529,7 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
     <clear_ai name="Rapier" />
     <add_ai type="CHASE_AI_SHIP" name="Rapier" />
     <add_ai type="FOLLOW_COMMS_ORDERS" name="Rapier" />
-    <add_ai type="DEFEND" value2="3000" value1="1000" name="Rapier" />
+    <add_ai type="DEFEND" value1="1000" value2="3000" name="Rapier" />
     <add_ai type="CHASE_ANGER" name="Rapier" />
   </event>
   <folder_arme name="Side mission: Avalon" id_arme="1dcd0b8c-8f99-4b5b-8f55-6f4e7390217e" parent_id_arme="9b774b87-1030-4c79-bf55-a32cfc834264" />
@@ -889,7 +891,7 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
     <incoming_comms_text from="Science Vessel Starseeker" type="FRIEND">This BioMech seems to like us. We've observed it for some time now and have some great data from our study.</incoming_comms_text>
     <clear_ai name="B01" />
     <add_ai type="TARGET_THROTTLE" value1="1.0" targetName="Starseeker" value2="10.0" name="B01" />
-    <add_ai type="DEFEND" value2="3000" value1="1000" name="B01" />
+    <add_ai type="DEFEND" value1="1000" value2="3000" name="B01" />
     <add_ai type="CHASE_ANGER" name="B01" />
     <set_object_property property="sideValue" value="2.0" name="B01" />
     <add_ai type="FOLLOW_COMMS_ORDERS" name="Starseeker" />
@@ -980,7 +982,8 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
     <set_timer name="RefreshGMBombButtons" seconds="3" />
   </event>
   <event name="Artemis docked" id_arme="8aaa2492-326c-413c-a6ff-b38102c6a092" parent_id_arme="06783d9d-3423-44f3-b6e3-28e8f836b4fd">
-    <if_distance name1="Artemis" name2="DS1" comparator="LESS_EQUAL" value="DockedRange" />
+    <if_exists name="Artemis" />
+    <if_docked name="DS1" player_name="Artemis" />
     <if_variable name="WelcomedArtemisAwayTeam" comparator="EQUALS" value="0.0" />
     <if_object_property property="canBuild" name="DS1" comparator="EQUALS" value="0.0" />
     <log text="Artemis docked at DS1 to defuse bomb" />
@@ -988,7 +991,8 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
     <incoming_comms_text from="DS1" type="STATION">Glad to see you, Artemis. An Away Team of explosives experts should immediately disembark and head over to the production facility on our station.</incoming_comms_text>
   </event>
   <event name="Intrepid docked" id_arme="4e9c9d7f-1cb0-49b7-bb0d-5b8aedd79088" parent_id_arme="06783d9d-3423-44f3-b6e3-28e8f836b4fd">
-    <if_distance name1="Intrepid" name2="DS1" comparator="LESS_EQUAL" value="DockedRange" />
+    <if_exists name="Intrepid" />
+    <if_docked name="DS1" player_name="Intrepid" />
     <if_variable name="WelcomedIntrepidAwayTeam" comparator="EQUALS" value="0.0" />
     <if_object_property property="canBuild" name="DS1" comparator="EQUALS" value="0.0" />
     <log text="Intrepid docked at DS1 to defuse bomb" />
@@ -996,7 +1000,8 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
     <incoming_comms_text from="DS1" type="STATION">Glad to see you, Intrepid. An Away Team of explosives experts should immediately disembark and head over to the production facility on our station.</incoming_comms_text>
   </event>
   <event name="Aegis docked" id_arme="4138f4e7-048b-429a-8666-a49be7fe3fbf" parent_id_arme="06783d9d-3423-44f3-b6e3-28e8f836b4fd">
-    <if_distance name1="Aegis" name2="DS1" comparator="LESS_EQUAL" value="DockedRange" />
+    <if_exists name="Aegis" />
+    <if_docked name="DS1" player_name="Aegis" />
     <if_variable name="WelcomedAegisAwayTeam" comparator="EQUALS" value="0.0" />
     <if_object_property property="canBuild" name="DS1" comparator="EQUALS" value="0.0" />
     <log text="Aegis docked at DS1 to defuse bomb" />

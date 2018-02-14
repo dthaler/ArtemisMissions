@@ -100,9 +100,14 @@
 02/10/18 FIX: replace base type with Deep Space changing to Command
 02/10/18 FIX: Artemis and Intrepid should spawn pointing North
 02/10/18 FIX: set initial DS1 missile store counts (2xLight Cruiser, +1xBattleship if Intrepid)
+02/13/18 ADD: if_docked with player_name
 
 ---
 {
+
+1/2 FIX: side mission range should be 400 not 500 for a ship, or docked if a base.
+         enhanced shield capacity should be +50% max shields
+         rescue missions normally don't send comms messages (which seems wrong to me)
 
 1/2 advertise
          DONE post on meetup.com
@@ -111,6 +116,9 @@
          PROG check Brew Bothell schedule
 
 1/2 FIX: coordinates of NSECT generation to be in asteroid belt as it slants
+         slant is about 10k across 80k
+         NSECT X is 20000-90000 (70k)
+         NSECT Y is 10000-40000
 
 ---
 
