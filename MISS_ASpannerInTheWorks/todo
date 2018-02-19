@@ -101,13 +101,12 @@
 02/10/18 FIX: Artemis and Intrepid should spawn pointing North
 02/10/18 FIX: set initial DS1 missile store counts (2xLight Cruiser, +1xBattleship if Intrepid)
 02/13/18 ADD: if_docked with player_name
+02/19/18 FIX: side mission range should be 400 not 500 for a ship, or docked if a base.
+02/19/18 NO: rescue missions normally don't send comms messages (which seems wrong to me)
+02/19/18 NO: enhanced shield capacity should be +50% max shields
 
 ---
 {
-
-1/2 FIX: side mission range should be 400 not 500 for a ship, or docked if a base.
-         enhanced shield capacity should be +50% max shields
-         rescue missions normally don't send comms messages (which seems wrong to me)
 
 1/2 advertise
          DONE post on meetup.com

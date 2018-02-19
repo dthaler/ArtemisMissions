@@ -79,6 +79,7 @@
     <!---->
     <!--Initialize any variables that must be integers:-->
     <!---->
+    <set_variable name="ShipTransferRange" value="400.0" integer="yes" />
     <set_variable name="BestFrequency" randomIntLow="0" randomIntHigh="4" />
     <set_variable name="HackSuccessesNeeded" value="5.0" integer="yes" />
     <set_variable name="DamConTeamSent" value="0.0" integer="yes" />
@@ -498,7 +499,7 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
   </event>
   <event name="Rapier reaches DS1" id_arme="a96b73e6-6360-4bc7-851d-00e805b18b31" parent_id_arme="a7e826ad-d40c-4a39-8248-01183453befa">
     <if_variable name="RapierHelpStage" comparator="EQUALS" value="1.0" />
-    <if_distance name1="Rapier" name2="DS1" comparator="LESS_EQUAL" value="500.0" />
+    <if_distance name1="Rapier" name2="DS1" comparator="LESS_EQUAL" value="ShipTransferRange" />
     <log text="Rapier reached DS1" />
     <set_variable name="RapierHelpStage" value="2.0" />
     <set_ship_text name="Rapier" hailtext="We're ready to help." />
@@ -556,7 +557,7 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
   <event name="Artemis gives Avalon energy" id_arme="1e950fcb-481e-4dab-a7ba-593907b0d5b8" parent_id_arme="1dcd0b8c-8f99-4b5b-8f55-6f4e7390217e">
     <if_variable name="AvalonHelpStage" comparator="LESS" value="2.0" />
     <if_object_property property="energy" name="Artemis" comparator="GREATER" value="200.0" />
-    <if_distance name1="Artemis" name2="Avalon" comparator="LESS_EQUAL" value="500.0" />
+    <if_distance name1="Artemis" name2="Avalon" comparator="LESS_EQUAL" value="ShipTransferRange" />
     <log text="Artemis gave Avalon energy" />
     <set_variable name="AvalonHelpStage" value="2.0" />
     <addto_object_property value="-200.0" property="energy" name="Artemis" />
@@ -569,7 +570,7 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
   <event name="Intrepid gives Avalon energy" id_arme="74f4d364-69d5-441e-b516-2f6f816a1364" parent_id_arme="1dcd0b8c-8f99-4b5b-8f55-6f4e7390217e">
     <if_variable name="AvalonHelpStage" comparator="LESS" value="2.0" />
     <if_object_property property="energy" name="Intrepid" comparator="GREATER" value="200.0" />
-    <if_distance name1="Intrepid" name2="Avalon" comparator="LESS_EQUAL" value="500.0" />
+    <if_distance name1="Intrepid" name2="Avalon" comparator="LESS_EQUAL" value="ShipTransferRange" />
     <log text="Intrepid gave Avalon energy" />
     <set_variable name="AvalonHelpStage" value="2.0" />
     <addto_object_property value="-200.0" property="energy" name="Intrepid" />
@@ -602,28 +603,30 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
   </event>
   <event name="Artemis got DS1 upgrade parts from Atlas" id_arme="67c214b2-c3da-49f8-a9f7-04106a97864c" parent_id_arme="1c978b6c-f7b8-40fe-8106-07aa435466e6">
     <if_variable name="DS1UpgradeMissionStage" comparator="EQUALS" value="1.0" />
-    <if_distance name1="Artemis" name2="Atlas" comparator="LESS_EQUAL" value="500.0" />
+    <if_distance name1="Artemis" name2="Atlas" comparator="LESS_EQUAL" value="ShipTransferRange" />
     <log text="Artemis picked up DS1 parts from Atlas" />
     <incoming_comms_text from="Transport Atlas" type="FRIEND">Transfer complete, Artemis. Please proceed to DS1 to deliver the energy generator parts.</incoming_comms_text>
     <set_variable name="DS1UpgradeMissionStage" value="2.0" />
   </event>
   <event name="Intrepid got DS1 upgrade parts from Atlas" id_arme="72f50c50-bef8-4e28-b436-765fa4712901" parent_id_arme="1c978b6c-f7b8-40fe-8106-07aa435466e6">
     <if_variable name="DS1UpgradeMissionStage" comparator="EQUALS" value="1.0" />
-    <if_distance name1="Intrepid" name2="Atlas" comparator="LESS_EQUAL" value="500.0" />
+    <if_distance name1="Intrepid" name2="Atlas" comparator="LESS_EQUAL" value="ShipTransferRange" />
     <log text="Intrepid picked up DS1 parts from Atlas" />
     <incoming_comms_text from="Transport Atlas" type="FRIEND">Transfer complete, Intrepid. Please proceed to DS1 to deliver the energy generator parts.</incoming_comms_text>
     <set_variable name="DS1UpgradeMissionStage" value="3.0" />
   </event>
   <event name="Artemis delivered upgrade parts to DS1" id_arme="788a8ece-304a-47a9-8881-4bde524b8c1b" parent_id_arme="1c978b6c-f7b8-40fe-8106-07aa435466e6">
     <if_variable name="DS1UpgradeMissionStage" comparator="EQUALS" value="2.0" />
-    <if_distance name1="Artemis" name2="DS1" comparator="LESS_EQUAL" value="500.0" />
+    <if_exists name="Artemis" />
+    <if_docked player_name="Artemis" name="DS1" />
     <log text="Artemis delivered upgrade parts to DS1" />
     <incoming_comms_text from="DS1" type="STATION">Transfer complete, Artemis. Our upgrade is complete, and we have doubled our shields and production speed!</incoming_comms_text>
     <set_variable name="DS1UpgradeMissionStage" value="4.0" />
   </event>
   <event name="Intrepid delivered upgrade parts to DS1" id_arme="d4601bd2-9ff0-467e-9a8b-53992a8ac494" parent_id_arme="1c978b6c-f7b8-40fe-8106-07aa435466e6">
     <if_variable name="DS1UpgradeMissionStage" comparator="EQUALS" value="3.0" />
-    <if_distance name1="Intrepid" name2="DS1" comparator="LESS_EQUAL" value="500.0" />
+    <if_exists name="Intrepid" />
+    <if_docked player_name="Intrepid" name="DS1" />
     <log text="Intrepid delivered upgrade parts to DS1" />
     <incoming_comms_text from="DS1" type="STATION">Transfer complete, Intrepid. Our upgrade is complete, and we have doubled our shields and production speed!</incoming_comms_text>
     <set_variable name="DS1UpgradeMissionStage" value="4.0" />
@@ -677,21 +680,22 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
   </event>
   <event name="Artemis got DS1 nuke parts from Pegasus" id_arme="9030ce44-0775-43f5-87ae-d98ad823a0ca" parent_id_arme="122bc34c-b356-4497-b1a9-649c6b1cb5f3">
     <if_variable name="DS1NukeMissionStage" comparator="EQUALS" value="1.0" />
-    <if_distance name1="Artemis" name2="Pegasus" comparator="LESS_EQUAL" value="500.0" />
+    <if_distance name1="Artemis" name2="Pegasus" comparator="LESS_EQUAL" value="ShipTransferRange" />
     <log text="Artemis picked up nuke parts from Pegasus" />
     <incoming_comms_text from="Bulk Cargo Pegasus" type="FRIEND">Transfer complete, Artemis. Please proceed to DS1 to deliver the parts.</incoming_comms_text>
     <set_variable name="DS1NukeMissionStage" value="2.0" />
   </event>
   <event name="Intrepid got DS1 nuke parts from Pegasus" id_arme="43156111-dbd3-45de-ae26-b2ea449c4b2c" parent_id_arme="122bc34c-b356-4497-b1a9-649c6b1cb5f3">
     <if_variable name="DS1NukeMissionStage" comparator="EQUALS" value="1.0" />
-    <if_distance name1="Intrepid" name2="Pegasus" comparator="LESS_EQUAL" value="500.0" />
+    <if_distance name1="Intrepid" name2="Pegasus" comparator="LESS_EQUAL" value="ShipTransferRange" />
     <log text="Intrepid picked up nuke parts from Pegasus" />
     <incoming_comms_text from="Bulk Cargo Pegasus" type="FRIEND">Transfer complete, Intrepid. Please proceed to DS1 to deliver the parts.</incoming_comms_text>
     <set_variable name="DS1NukeMissionStage" value="3.0" />
   </event>
   <event name="Artemis delivered nuke parts to DS1" id_arme="e5f9ce5d-fa6a-4cc6-acf4-e974d403d439" parent_id_arme="122bc34c-b356-4497-b1a9-649c6b1cb5f3">
     <if_variable name="DS1NukeMissionStage" comparator="EQUALS" value="2.0" />
-    <if_distance name1="Artemis" name2="DS1" comparator="LESS_EQUAL" value="500.0" />
+    <if_exists name="Artemis" />
+    <if_docked player_name="Artemis" name="DS1" />
     <log text="Artemis delivered nuke parts to DS1" />
     <incoming_comms_text from="DS1" type="STATION">Transfer complete, Artemis. We now have 2 additional nukes.</incoming_comms_text>
     <set_variable name="DS1NukeMissionStage" value="4.0" />
@@ -699,7 +703,8 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
   </event>
   <event name="Intrepid delivered nuke parts to DS1" id_arme="b029ae61-61e9-4d53-bdd2-a639309de072" parent_id_arme="122bc34c-b356-4497-b1a9-649c6b1cb5f3">
     <if_variable name="DS1NukeMissionStage" comparator="EQUALS" value="3.0" />
-    <if_distance name1="Intrepid" name2="DS1" comparator="LESS_EQUAL" value="500.0" />
+    <if_exists name="Intrepid" />
+    <if_docked player_name="Intrepid" name="DS1" />
     <log text="Intrepid delivered nuke parts to DS1" />
     <incoming_comms_text from="DS1" type="STATION">Transfer complete, Intrepid. We now have 2 additional nukes.</incoming_comms_text>
     <set_variable name="DS1NukeMissionStage" value="4.0" />
@@ -729,7 +734,7 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
   <event name="Artemis gives Pegasus DamCon team 1" id_arme="305a3b18-11ad-4cb3-b67e-49701a8448c5" parent_id_arme="9711027e-1cab-41a6-8423-07e739133d62">
     <if_variable name="PegasusHelpStage" comparator="LESS" value="2.0" />
     <if_damcon_members name="Artemis" team_index="0" comparator="EQUALS" value="6" />
-    <if_distance name1="Artemis" name2="Pegasus" comparator="LESS_EQUAL" value="500.0" />
+    <if_distance name1="Artemis" name2="Pegasus" comparator="LESS_EQUAL" value="ShipTransferRange" />
     <log text="Artemis gave Pegasus DamCon team 1" />
     <set_variable name="PegasusHelpStage" value="2.0" />
     <set_damcon_members value="0" team_index="0" name="Artemis" />
@@ -742,7 +747,7 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
   <event name="Artemis gives Pegasus DamCon team 2" id_arme="4fe4426a-650e-40b2-943f-b7179c07f16e" parent_id_arme="9711027e-1cab-41a6-8423-07e739133d62">
     <if_variable name="PegasusHelpStage" comparator="LESS" value="2.0" />
     <if_damcon_members name="Artemis" team_index="1" comparator="EQUALS" value="6" />
-    <if_distance name1="Artemis" name2="Pegasus" comparator="LESS_EQUAL" value="500.0" />
+    <if_distance name1="Artemis" name2="Pegasus" comparator="LESS_EQUAL" value="ShipTransferRange" />
     <log text="Artemis gave Pegasus DamCon team 2" />
     <set_variable name="PegasusHelpStage" value="2.0" />
     <set_damcon_members value="0" team_index="1" name="Artemis" />
@@ -755,7 +760,7 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
   <event name="Artemis gives Pegasus DamCon team 3" id_arme="639c33e4-7ca1-4970-a5ab-0a80b49d66d7" parent_id_arme="9711027e-1cab-41a6-8423-07e739133d62">
     <if_variable name="PegasusHelpStage" comparator="LESS" value="2.0" />
     <if_damcon_members name="Artemis" team_index="2" comparator="EQUALS" value="6" />
-    <if_distance name1="Artemis" name2="Pegasus" comparator="LESS_EQUAL" value="500.0" />
+    <if_distance name1="Artemis" name2="Pegasus" comparator="LESS_EQUAL" value="ShipTransferRange" />
     <log text="Artemis gave Pegasus DamCon team 3" />
     <set_variable name="PegasusHelpStage" value="2.0" />
     <set_damcon_members value="0" team_index="2" name="Artemis" />
@@ -768,7 +773,7 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
   <event name="Intrepid gives Pegasus DamCon team 1" id_arme="6e9ee58c-b71d-49c6-9c15-9f4abe6faaf8" parent_id_arme="9711027e-1cab-41a6-8423-07e739133d62">
     <if_variable name="PegasusHelpStage" comparator="LESS" value="2.0" />
     <if_damcon_members name="Intrepid" team_index="0" comparator="EQUALS" value="6" />
-    <if_distance name1="Intrepid" name2="Pegasus" comparator="LESS_EQUAL" value="500.0" />
+    <if_distance name1="Intrepid" name2="Pegasus" comparator="LESS_EQUAL" value="ShipTransferRange" />
     <log text="Intrepid gave Pegasus DamCon team 1" />
     <set_variable name="PegasusHelpStage" value="2.0" />
     <set_damcon_members value="0" team_index="0" name="Intrepid" />
@@ -781,7 +786,7 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
   <event name="Intrepid gives Pegasus DamCon team 2" id_arme="1e94ae91-b739-4420-aad8-49d281886a92" parent_id_arme="9711027e-1cab-41a6-8423-07e739133d62">
     <if_variable name="PegasusHelpStage" comparator="LESS" value="2.0" />
     <if_damcon_members name="Intrepid" team_index="1" comparator="EQUALS" value="6" />
-    <if_distance name1="Intrepid" name2="Pegasus" comparator="LESS_EQUAL" value="500.0" />
+    <if_distance name1="Intrepid" name2="Pegasus" comparator="LESS_EQUAL" value="ShipTransferRange" />
     <log text="Intrepid gave Pegasus DamCon team 2" />
     <set_variable name="PegasusHelpStage" value="2.0" />
     <set_damcon_members value="0" team_index="1" name="Intrepid" />
@@ -794,7 +799,7 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
   <event name="Intrepid gives Pegasus DamCon team 3" id_arme="45b5b054-ec48-433c-ae4e-89279e84a2bb" parent_id_arme="9711027e-1cab-41a6-8423-07e739133d62">
     <if_variable name="PegasusHelpStage" comparator="LESS" value="2.0" />
     <if_damcon_members name="Intrepid" team_index="2" comparator="EQUALS" value="6" />
-    <if_distance name1="Intrepid" name2="Pegasus" comparator="LESS_EQUAL" value="500.0" />
+    <if_distance name1="Intrepid" name2="Pegasus" comparator="LESS_EQUAL" value="ShipTransferRange" />
     <log text="Intrepid gave Pegasus DamCon team 3" />
     <set_variable name="PegasusHelpStage" value="2.0" />
     <set_damcon_members value="0" team_index="2" name="Intrepid" />
@@ -829,7 +834,7 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
   </event>
   <event name="Artemis got data from Starseeker" id_arme="8822a5a2-be3f-4a77-bca6-29f23888872c" parent_id_arme="096c8a20-33f3-414b-ab56-3e1a20dc4e8f">
     <if_variable name="AtlasHelpStage" comparator="EQUALS" value="1.0" />
-    <if_distance name1="Artemis" name2="Starseeker" comparator="LESS_EQUAL" value="500.0" />
+    <if_distance name1="Artemis" name2="Starseeker" comparator="LESS_EQUAL" value="ShipTransferRange" />
     <if_exists name="Atlas" />
     <log text="Artemis got data from Starseeker" />
     <incoming_comms_text from="Science Vessel Starseeker" type="FRIEND">Transfer complete, Artemis. Please proceed to the Atlas to deliver the data.</incoming_comms_text>
@@ -837,7 +842,7 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
   </event>
   <event name="Intrepid got data from Starseeker" id_arme="123f52ca-741b-4370-b9b1-505b89c1baea" parent_id_arme="096c8a20-33f3-414b-ab56-3e1a20dc4e8f">
     <if_variable name="AtlasHelpStage" comparator="EQUALS" value="1.0" />
-    <if_distance name1="Intrepid" name2="Starseeker" comparator="LESS_EQUAL" value="500.0" />
+    <if_distance name1="Intrepid" name2="Starseeker" comparator="LESS_EQUAL" value="ShipTransferRange" />
     <if_exists name="Atlas" />
     <log text="Intrepid got data from Starseeker" />
     <incoming_comms_text from="Science Vessel Starseeker" type="FRIEND">Transfer complete, Intrepid. Please proceed to the Atlas to deliver the data.</incoming_comms_text>
@@ -845,7 +850,7 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
   </event>
   <event name="Artemis delivered data to Atlas" id_arme="cb594a87-07c4-461e-a461-94ffd124abf7" parent_id_arme="096c8a20-33f3-414b-ab56-3e1a20dc4e8f">
     <if_variable name="AtlasHelpStage" comparator="EQUALS" value="2.0" />
-    <if_distance name1="Artemis" name2="Atlas" comparator="LESS_EQUAL" value="500.0" />
+    <if_distance name1="Artemis" name2="Atlas" comparator="LESS_EQUAL" value="ShipTransferRange" />
     <log text="Artemis delivered data to Atlas" />
     <incoming_comms_text from="Transport Atlas" type="FRIEND">Transfer complete, Artemis. In return, we'll now enhance your shield generators.</incoming_comms_text>
     <addto_object_property value="50.0" property="shieldMaxStateFront" name="Artemis" />
@@ -854,7 +859,7 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
   </event>
   <event name="Intrepid delivered data to Atlas" id_arme="f3f1b473-5cc0-4796-b07e-939a2da8f039" parent_id_arme="096c8a20-33f3-414b-ab56-3e1a20dc4e8f">
     <if_variable name="AtlasHelpStage" comparator="EQUALS" value="3.0" />
-    <if_distance name1="Intrepid" name2="Atlas" comparator="LESS_EQUAL" value="500.0" />
+    <if_distance name1="Intrepid" name2="Atlas" comparator="LESS_EQUAL" value="ShipTransferRange" />
     <log text="Intrepid delivered data to Atlas" />
     <incoming_comms_text from="Transport Atlas" type="FRIEND">Transfer complete, Intrepid. In return, we'll now enhance your shield generators.</incoming_comms_text>
     <addto_object_property value="50.0" property="shieldMaxStateFront" name="Intrepid" />
@@ -925,7 +930,7 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
   </event>
   <event name="Artemis got data from Avalon" id_arme="cec08989-58fb-46fd-b64f-cfcf97f1a55e" parent_id_arme="25c18002-5184-41c0-8540-53d8f201f8d5">
     <if_variable name="StarseekerHelpStage" comparator="EQUALS" value="2.0" />
-    <if_distance name1="Artemis" name2="Avalon" comparator="LESS_EQUAL" value="500.0" />
+    <if_distance name1="Artemis" name2="Avalon" comparator="LESS_EQUAL" value="ShipTransferRange" />
     <if_exists name="Starseeker" />
     <log text="Artemis got data from Avalon" />
     <incoming_comms_text from="Luxury Liner Avalon" type="FRIEND">Transfer complete, Artemis. Please proceed to the Starseeker to deliver the data.</incoming_comms_text>
@@ -933,7 +938,7 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
   </event>
   <event name="Intrepid got data from Avalon" id_arme="8af1306e-b68d-4733-b255-ebf63140f711" parent_id_arme="25c18002-5184-41c0-8540-53d8f201f8d5">
     <if_variable name="StarseekerHelpStage" comparator="EQUALS" value="2.0" />
-    <if_distance name1="Intrepid" name2="Avalon" comparator="LESS_EQUAL" value="500.0" />
+    <if_distance name1="Intrepid" name2="Avalon" comparator="LESS_EQUAL" value="ShipTransferRange" />
     <if_exists name="Starseeker" />
     <log text="Intrepid got data from Avalon" />
     <incoming_comms_text from="Luxury Liner Avalon" type="FRIEND">Transfer complete, Intrepid. Please proceed to the Starseeker to deliver the data.</incoming_comms_text>
@@ -941,7 +946,7 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
   </event>
   <event name="Artemis delivered data to Starseeker" id_arme="6ea4963c-b126-458f-8f70-5b2e5a6cdd4d" parent_id_arme="25c18002-5184-41c0-8540-53d8f201f8d5">
     <if_variable name="StarseekerHelpStage" comparator="EQUALS" value="3.0" />
-    <if_distance name1="Artemis" name2="Starseeker" comparator="LESS_EQUAL" value="500.0" />
+    <if_distance name1="Artemis" name2="Starseeker" comparator="LESS_EQUAL" value="ShipTransferRange" />
     <log text="Artemis delivered data to Starseeker" />
     <incoming_comms_text from="Science Vessel Starseeker" type="FRIEND">Transfer complete, Artemis. In return, we'll now enhance your maneuverability.</incoming_comms_text>
     <addto_object_property value="0.002" property="turnRate" name="Artemis" />
@@ -949,7 +954,7 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
   </event>
   <event name="Intrepid delivered data to Starseeker" id_arme="9c16c17c-28dc-4f73-a701-aa5ed6088b2d" parent_id_arme="25c18002-5184-41c0-8540-53d8f201f8d5">
     <if_variable name="StarseekerHelpStage" comparator="EQUALS" value="4.0" />
-    <if_distance name1="Intrepid" name2="Starseeker" comparator="LESS_EQUAL" value="500.0" />
+    <if_distance name1="Intrepid" name2="Starseeker" comparator="LESS_EQUAL" value="ShipTransferRange" />
     <log text="Intrepid delivered data to Starseeker" />
     <incoming_comms_text from="Science Vessel Starseeker" type="FRIEND">Transfer complete, Intrepid. In return, we'll now enhance your maneuverability.</incoming_comms_text>
     <addto_object_property value="0.002" property="turnRate" name="Intrepid" />
@@ -1225,8 +1230,8 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
     <clear_comms_button text="Hack frequency D" />
     <clear_comms_button text="Hack frequency E" />
     <!--For v2.7.0, work around if_damcon_members bug by not requiring 6 people in team-->
-    <!--<incoming_comms_text from="Internal Comms" type="SIDE">Disruption complete, the Diana's engines are now disabled!  If we get within 500m of the Diana and send over a DamCon team to board her, we might be able to return her to TSN control.</incoming_comms_text>-->
-    <incoming_comms_text from="Internal Comms" type="SIDE">Disruption complete, the Diana's engines are now disabled!  If we get within 500m of the Diana and send over a full 6-person DamCon team to board her, we might be able to return her to TSN control.</incoming_comms_text>
+    <!--<incoming_comms_text from="Internal Comms" type="SIDE">Disruption complete, the Diana's engines are now disabled!  If we get within |ShipTransferRange|m of the Diana and send over a DamCon team to board her, we might be able to return her to TSN control.</incoming_comms_text>-->
+    <incoming_comms_text from="Internal Comms" type="SIDE">Disruption complete, the Diana's engines are now disabled!  If we get within |ShipTransferRange|m of the Diana and send over a full 6-person DamCon team to board her, we might be able to return her to TSN control.</incoming_comms_text>
     <set_variable name="BoardingState" value="1.0" />
     <set_timer name="RefreshCommsButtons" seconds="3" />
   </event>
@@ -1269,7 +1274,7 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
     <if_variable name="ArtemisDamCon1ButtonVisible" comparator="EQUALS" value="1.0" />
     <if_object_property property="sideValue" name="Artemis" comparator="EQUALS" value="3.0" />
     <if_damcon_members player_slot="0" team_index="0" comparator="EQUALS" value="6" />
-    <if_distance name1="Diana" name2="Artemis" comparator="LESS_EQUAL" value="500.0" />
+    <if_distance name1="Diana" name2="Artemis" comparator="LESS_EQUAL" value="ShipTransferRange" />
     <log text="Showed button for Artemis to send team DamCon team 1 to Diana" />
     <set_comms_button text="Send DamCon team 1" sideValue="3" />
     <set_variable name="ArtemisDamCon1ButtonVisible" value="2.0" />
@@ -1279,7 +1284,7 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
     <if_variable name="ArtemisDamCon2ButtonVisible" comparator="EQUALS" value="1.0" />
     <if_object_property property="sideValue" name="Artemis" comparator="EQUALS" value="3.0" />
     <if_damcon_members player_slot="0" team_index="1" comparator="EQUALS" value="6" />
-    <if_distance name1="Diana" name2="Artemis" comparator="LESS_EQUAL" value="500.0" />
+    <if_distance name1="Diana" name2="Artemis" comparator="LESS_EQUAL" value="ShipTransferRange" />
     <set_comms_button text="Send DamCon team 2" sideValue="3" />
     <set_variable name="ArtemisDamCon2ButtonVisible" value="2.0" />
   </event>
@@ -1288,7 +1293,7 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
     <if_variable name="ArtemisDamCon3ButtonVisible" comparator="EQUALS" value="1.0" />
     <if_object_property property="sideValue" name="Artemis" comparator="EQUALS" value="3.0" />
     <if_damcon_members player_slot="0" team_index="2" comparator="EQUALS" value="6" />
-    <if_distance name1="Diana" name2="Artemis" comparator="LESS_EQUAL" value="500.0" />
+    <if_distance name1="Diana" name2="Artemis" comparator="LESS_EQUAL" value="ShipTransferRange" />
     <set_comms_button text="Send DamCon team 3" sideValue="3" />
     <set_variable name="ArtemisDamCon3ButtonVisible" value="2.0" />
   </event>
@@ -1297,7 +1302,7 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
     <if_variable name="IntrepidDamCon1ButtonVisible" comparator="EQUALS" value="1.0" />
     <if_object_property property="sideValue" name="Intrepid" comparator="EQUALS" value="4.0" />
     <if_damcon_members player_slot="1" team_index="0" comparator="EQUALS" value="6" />
-    <if_distance name1="Diana" name2="Intrepid" comparator="LESS_EQUAL" value="500.0" />
+    <if_distance name1="Diana" name2="Intrepid" comparator="LESS_EQUAL" value="ShipTransferRange" />
     <log text="Showed button for Intrepid to send team DamCon team 1 to Diana" />
     <set_comms_button text="Send DamCon team 1 " sideValue="4" />
     <set_variable name="IntrepidDamCon1ButtonVisible" value="2.0" />
@@ -1307,7 +1312,7 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
     <if_variable name="IntrepidDamCon2ButtonVisible" comparator="EQUALS" value="1.0" />
     <if_object_property property="sideValue" name="Intrepid" comparator="EQUALS" value="4.0" />
     <if_damcon_members player_slot="1" team_index="1" comparator="EQUALS" value="6" />
-    <if_distance name1="Diana" name2="Intrepid" comparator="LESS_EQUAL" value="500.0" />
+    <if_distance name1="Diana" name2="Intrepid" comparator="LESS_EQUAL" value="ShipTransferRange" />
     <set_comms_button text="Send DamCon team 2 " sideValue="4" />
     <set_variable name="IntrepidDamCon2ButtonVisible" value="2.0" />
   </event>
@@ -1316,7 +1321,7 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
     <if_variable name="IntrepidDamCon3ButtonVisible" comparator="EQUALS" value="1.0" />
     <if_object_property property="sideValue" name="Intrepid" comparator="EQUALS" value="4.0" />
     <if_damcon_members player_slot="1" team_index="2" comparator="EQUALS" value="6" />
-    <if_distance name1="Diana" name2="Intrepid" comparator="LESS_EQUAL" value="500.0" />
+    <if_distance name1="Diana" name2="Intrepid" comparator="LESS_EQUAL" value="ShipTransferRange" />
     <set_comms_button text="Send DamCon team 3 " sideValue="4" />
     <set_variable name="IntrepidDamCon3ButtonVisible" value="2.0" />
   </event>
@@ -1337,7 +1342,7 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
     <if_variable name="ArtemisDamCon1ButtonRefreshed" comparator="EQUALS" value="0.0" />
     <if_object_property property="sideValue" name="Artemis" comparator="EQUALS" value="2.0" />
     <if_damcon_members player_slot="0" team_index="0" comparator="EQUALS" value="6" />
-    <if_distance name1="Diana" name2="Artemis" comparator="LESS_EQUAL" value="500.0" />
+    <if_distance name1="Diana" name2="Artemis" comparator="LESS_EQUAL" value="ShipTransferRange" />
     <log text="Allowing Artemis button to send DamCon team 1 to Diana" />
     <set_side_value value="3" name="Artemis" />
     <set_variable name="ArtemisDamCon1ButtonRefreshed" value="1.0" />
@@ -1348,7 +1353,7 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
     <if_variable name="ArtemisDamCon2ButtonRefreshed" comparator="EQUALS" value="0.0" />
     <if_object_property property="sideValue" name="Artemis" comparator="EQUALS" value="2.0" />
     <if_damcon_members player_slot="0" team_index="1" comparator="EQUALS" value="6" />
-    <if_distance name1="Diana" name2="Artemis" comparator="LESS_EQUAL" value="500.0" />
+    <if_distance name1="Diana" name2="Artemis" comparator="LESS_EQUAL" value="ShipTransferRange" />
     <set_side_value value="3" name="Artemis" />
     <set_variable name="ArtemisDamCon2ButtonRefreshed" value="1.0" />
     <set_variable name="ArtemisDamCon2ButtonVisible" value="1.0" />
@@ -1358,7 +1363,7 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
     <if_variable name="ArtemisDamCon3ButtonRefreshed" comparator="EQUALS" value="0.0" />
     <if_object_property property="sideValue" name="Artemis" comparator="EQUALS" value="2.0" />
     <if_damcon_members player_slot="0" team_index="2" comparator="EQUALS" value="6" />
-    <if_distance name1="Diana" name2="Artemis" comparator="LESS_EQUAL" value="500.0" />
+    <if_distance name1="Diana" name2="Artemis" comparator="LESS_EQUAL" value="ShipTransferRange" />
     <set_side_value value="3" name="Artemis" />
     <set_variable name="ArtemisDamCon3ButtonRefreshed" value="1.0" />
     <set_variable name="ArtemisDamCon3ButtonVisible" value="1.0" />
@@ -1368,7 +1373,7 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
     <if_variable name="IntrepidDamCon1ButtonRefreshed" comparator="EQUALS" value="0.0" />
     <if_object_property property="sideValue" name="Intrepid" comparator="EQUALS" value="2.0" />
     <if_damcon_members player_slot="1" team_index="0" comparator="EQUALS" value="6" />
-    <if_distance name1="Diana" name2="Intrepid" comparator="LESS_EQUAL" value="500.0" />
+    <if_distance name1="Diana" name2="Intrepid" comparator="LESS_EQUAL" value="ShipTransferRange" />
     <log text="Allowing Intrepid button to send DamCon team 1 to Diana" />
     <set_side_value value="4" name="Intrepid" />
     <set_variable name="IntrepidDamCon1ButtonRefreshed" value="1.0" />
@@ -1379,7 +1384,7 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
     <if_variable name="IntrepidDamCon2ButtonRefreshed" comparator="EQUALS" value="0.0" />
     <if_object_property property="sideValue" name="Intrepid" comparator="EQUALS" value="2.0" />
     <if_damcon_members player_slot="1" team_index="1" comparator="EQUALS" value="6" />
-    <if_distance name1="Diana" name2="Intrepid" comparator="LESS_EQUAL" value="500.0" />
+    <if_distance name1="Diana" name2="Intrepid" comparator="LESS_EQUAL" value="ShipTransferRange" />
     <set_side_value value="4" name="Intrepid" />
     <set_variable name="IntrepidDamCon2ButtonRefreshed" value="1.0" />
     <set_variable name="IntrepidDamCon2ButtonVisible" value="1.0" />
@@ -1389,7 +1394,7 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
     <if_variable name="IntrepidDamCon3ButtonRefreshed" comparator="EQUALS" value="0.0" />
     <if_object_property property="sideValue" name="Intrepid" comparator="EQUALS" value="2.0" />
     <if_damcon_members player_slot="1" team_index="2" comparator="EQUALS" value="6" />
-    <if_distance name1="Diana" name2="Intrepid" comparator="LESS_EQUAL" value="500.0" />
+    <if_distance name1="Diana" name2="Intrepid" comparator="LESS_EQUAL" value="ShipTransferRange" />
     <set_side_value value="4" name="Intrepid" />
     <set_variable name="IntrepidDamCon3ButtonRefreshed" value="1.0" />
     <set_variable name="IntrepidDamCon3ButtonVisible" value="1.0" />
@@ -1397,7 +1402,7 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
   <event name="Disallow Artemis DamCon 1 for distance" id_arme="861df967-a1cb-4134-b39c-dc42209ec9fc" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
     <if_variable name="BoardingState" comparator="EQUALS" value="1.0" />
     <if_variable name="ArtemisDamCon1ButtonVisible" comparator="GREATER" value="0.0" />
-    <if_distance name1="Diana" name2="Artemis" comparator="GREATER" value="500.0" />
+    <if_distance name1="Diana" name2="Artemis" comparator="GREATER" value="ShipTransferRange" />
     <log text="Disallowing Artemis button to send DamCon team 1 to Diana for distance" />
     <clear_comms_button text="Send DamCon team 1" />
     <set_variable name="ArtemisDamCon1ButtonVisible" value="0.0" />
@@ -1405,14 +1410,14 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
   <event name="Disallow Artemis DamCon 2 for distance" id_arme="c7b1aab1-8345-4f08-a114-d154a8d3940d" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
     <if_variable name="BoardingState" comparator="EQUALS" value="1.0" />
     <if_variable name="ArtemisDamCon2ButtonVisible" comparator="GREATER" value="0.0" />
-    <if_distance name1="Diana" name2="Artemis" comparator="GREATER" value="500.0" />
+    <if_distance name1="Diana" name2="Artemis" comparator="GREATER" value="ShipTransferRange" />
     <clear_comms_button text="Send DamCon team 2" />
     <set_variable name="ArtemisDamCon2ButtonVisible" value="0.0" />
   </event>
   <event name="Disallow Artemis DamCon 3 for distance" id_arme="ef8d13b6-356f-49fc-a142-bfad343b88e2" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
     <if_variable name="BoardingState" comparator="EQUALS" value="1.0" />
     <if_variable name="ArtemisDamCon3ButtonVisible" comparator="GREATER" value="0.0" />
-    <if_distance name1="Diana" name2="Artemis" comparator="GREATER" value="500.0" />
+    <if_distance name1="Diana" name2="Artemis" comparator="GREATER" value="ShipTransferRange" />
     <clear_comms_button text="Send DamCon team 3" />
     <set_variable name="ArtemisDamCon3ButtonVisible" value="0.0" />
   </event>
@@ -1444,7 +1449,7 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
   <event name="Disallow Intrepid DamCon 1 for distance" id_arme="d01155d6-4dda-4063-a811-7736f8ab996d" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
     <if_variable name="BoardingState" comparator="EQUALS" value="1.0" />
     <if_variable name="IntrepidDamCon1ButtonVisible" comparator="GREATER" value="0.0" />
-    <if_distance name1="Diana" name2="Intrepid" comparator="GREATER" value="500.0" />
+    <if_distance name1="Diana" name2="Intrepid" comparator="GREATER" value="ShipTransferRange" />
     <log text="Disallowing Intrepid button to send DamCon team 1 to Diana for distance" />
     <clear_comms_button text="Send DamCon team 1 " />
     <set_variable name="IntrepidDamCon1ButtonVisible" value="0.0" />
@@ -1452,14 +1457,14 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
   <event name="Disallow Intrepid DamCon 2 for distance" id_arme="e251fa00-8368-4caf-85bc-ab38bd10e8c5" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
     <if_variable name="BoardingState" comparator="EQUALS" value="1.0" />
     <if_variable name="IntrepidDamCon2ButtonVisible" comparator="GREATER" value="0.0" />
-    <if_distance name1="Diana" name2="Intrepid" comparator="GREATER" value="500.0" />
+    <if_distance name1="Diana" name2="Intrepid" comparator="GREATER" value="ShipTransferRange" />
     <clear_comms_button text="Send DamCon team 2 " />
     <set_variable name="IntrepidDamCon2ButtonVisible" value="0.0" />
   </event>
   <event name="Disallow Intrepid DamCon 3 for distance" id_arme="e0f69dc2-597e-43f4-af9b-f077b93b2cee" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
     <if_variable name="BoardingState" comparator="EQUALS" value="1.0" />
     <if_variable name="IntrepidDamCon3ButtonVisible" comparator="GREATER" value="0.0" />
-    <if_distance name1="Diana" name2="Intrepid" comparator="GREATER" value="500.0" />
+    <if_distance name1="Diana" name2="Intrepid" comparator="GREATER" value="ShipTransferRange" />
     <clear_comms_button text="Send DamCon team 3 " />
     <set_variable name="IntrepidDamCon3ButtonVisible" value="0.0" />
   </event>
