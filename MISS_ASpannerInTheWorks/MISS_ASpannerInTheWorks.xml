@@ -193,7 +193,7 @@
     <log text="FAILED because all player ships destroyed" />
     <set_variable name="GameOver" value="1.0" />
     <set_timer name="GameFinishedTimer" seconds="15" />
-    <big_message title="MISSION FAILED" subtitle1="All player ships have been destroyed" subtitle2="" />
+    <big_message title="MISSION FAILED" subtitle1="All player ships have been destroyed" />
     <incoming_comms_text from="Main Screen" type="SIDE">Mission Failed^All player ships have been destroyed</incoming_comms_text>
   </event>
   <event name="End Game" id_arme="2f1aab6d-e5c1-489e-8dcd-e39c4660c27f" parent_id_arme="e829d865-90bd-4c1b-aabe-60c7d7cfe1a1">
@@ -211,14 +211,14 @@
     <incoming_comms_text from="TSN Command" type="SIDE">Good work!  The Arvonians have abandoned their attack on DS1, at least for now.  The TSN Diana is also safe and we can now complete the renovations on her to prepare to return her to service again.</incoming_comms_text>
     <set_variable name="GameOver" value="1.0" />
     <set_timer name="GameFinishedTimer" seconds="15" />
-    <big_message title="MISSION SUCCEEDED" subtitle1="All enemies have been destroyed" subtitle2="" />
+    <big_message title="MISSION SUCCEEDED" subtitle1="All enemies have been destroyed" />
   </event>
   <event name="Lost DS1" id_arme="b526982b-a60f-4850-8902-f0c9525953a5" parent_id_arme="e829d865-90bd-4c1b-aabe-60c7d7cfe1a1">
     <if_variable name="PlayerShipCount" comparator="GREATER" value="0" />
     <if_not_exists name="DS1" />
     <if_variable name="GameOver" comparator="EQUALS" value="0" />
     <log text="FAILED because all player bases destroyed" />
-    <big_message title="MISSION FAILED" subtitle1="All player bases have been destroyed" subtitle2="" />
+    <big_message title="MISSION FAILED" subtitle1="All player bases have been destroyed" />
     <incoming_comms_text from="Main Screen" type="SIDE">Mission Failed^All player bases have been destroyed</incoming_comms_text>
     <set_variable name="GameOver" value="1" />
     <set_timer name="GameFinishedTimer" seconds="15" />
@@ -230,7 +230,7 @@
     <log text="FAILED because the Diana was destroyed" />
     <set_variable name="GameOver" value="1.0" />
     <set_timer name="GameFinishedTimer" seconds="15" />
-    <big_message title="MISSION FAILED" subtitle1="The TSN Diana was destroyed" subtitle2="" />
+    <big_message title="MISSION FAILED" subtitle1="The TSN Diana was destroyed" />
     <incoming_comms_text from="Main Screen" type="SIDE">Mission Failed^The TSN Diana has been destroyed</incoming_comms_text>
   </event>
   <event name="Diana Escaped" id_arme="94bc79ae-5517-4033-afa4-2bfcf435e031" parent_id_arme="e829d865-90bd-4c1b-aabe-60c7d7cfe1a1">
@@ -240,7 +240,7 @@
     <log text="FAILED because the saboteur escaped" />
     <set_variable name="GameOver" value="1.0" />
     <set_timer name="GameFinishedTimer" seconds="15" />
-    <big_message title="MISSION FAILED" subtitle1="The saboteur escaped with the TSN Diana" subtitle2="" />
+    <big_message title="MISSION FAILED" subtitle1="The saboteur escaped with the TSN Diana" />
     <incoming_comms_text from="Main Screen" type="SIDE">Mission Failed^The saboteur escaped with the TSN Diana</incoming_comms_text>
   </event>
   <event name="DEBUG: EnemiesLeft" id_arme="b2cb0990-403d-4203-9f02-a732053e1d82" parent_id_arme="e829d865-90bd-4c1b-aabe-60c7d7cfe1a1">
@@ -387,14 +387,14 @@
     <log text="Did not receive missions orders in time" />
     <set_variable name="GameOver" value="1.0" />
     <set_timer name="GameFinishedTimer" seconds="15" />
-    <big_message title="MISSION FAILED" subtitle1="You did not follow orders from TSN Command in time" subtitle2="" />
+    <big_message title="MISSION FAILED" subtitle1="You did not follow orders from TSN Command in time" />
     <incoming_comms_text from="TSN Command" type="SIDE">You did not follow orders from TSN Command in time!</incoming_comms_text>
   </event>
   <event name="Task Succeeded - 1 Ship Docked" id_arme="179e7ae6-25f8-46c5-8916-6995e3c73883" parent_id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6">
     <if_variable name="PlayerShipCount" comparator="EQUALS" value="1.0" />
     <if_variable name="TsnCommandGaveMission" comparator="EQUALS" value="0.0" />
     <if_exists name="Artemis" />
-    <if_docked name="DS1" player_name="Artemis" />
+    <if_docked player_name="Artemis" name="DS1" />
     <log text="TSN Command issued mission orders" />
     <set_variable name="TsnCommandGaveMission" value="1.0" />
   </event>
@@ -403,8 +403,8 @@
     <if_variable name="TsnCommandGaveMission" comparator="EQUALS" value="0.0" />
     <if_exists name="Artemis" />
     <if_exists name="Intrepid" />
-    <if_docked name="DS1" player_name="Artemis" />
-    <if_docked name="DS1" player_name="Intrepid" />
+    <if_docked player_name="Artemis" name="DS1" />
+    <if_docked player_name="Intrepid" name="DS1" />
     <log text="TSN Command issued mission orders" />
     <set_variable name="TsnCommandGaveMission" value="1.0" />
   </event>
@@ -414,9 +414,9 @@
     <if_exists name="Artemis" />
     <if_exists name="Intrepid" />
     <if_exists name="Aegis" />
-    <if_docked name="DS1" player_name="Artemis" />
-    <if_docked name="DS1" player_name="Intrepid" />
-    <if_docked name="DS1" player_name="Aegis" />
+    <if_docked player_name="Artemis" name="DS1" />
+    <if_docked player_name="Intrepid" name="DS1" />
+    <if_docked player_name="Aegis" name="DS1" />
     <log text="TSN Command issued mission orders" />
     <set_variable name="TsnCommandGaveMission" value="1.0" />
   </event>
@@ -983,7 +983,7 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
   </event>
   <event name="Artemis docked" id_arme="8aaa2492-326c-413c-a6ff-b38102c6a092" parent_id_arme="06783d9d-3423-44f3-b6e3-28e8f836b4fd">
     <if_exists name="Artemis" />
-    <if_docked name="DS1" player_name="Artemis" />
+    <if_docked player_name="Artemis" name="DS1" />
     <if_variable name="WelcomedArtemisAwayTeam" comparator="EQUALS" value="0.0" />
     <if_object_property property="canBuild" name="DS1" comparator="EQUALS" value="0.0" />
     <log text="Artemis docked at DS1 to defuse bomb" />
@@ -992,7 +992,7 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
   </event>
   <event name="Intrepid docked" id_arme="4e9c9d7f-1cb0-49b7-bb0d-5b8aedd79088" parent_id_arme="06783d9d-3423-44f3-b6e3-28e8f836b4fd">
     <if_exists name="Intrepid" />
-    <if_docked name="DS1" player_name="Intrepid" />
+    <if_docked player_name="Intrepid" name="DS1" />
     <if_variable name="WelcomedIntrepidAwayTeam" comparator="EQUALS" value="0.0" />
     <if_object_property property="canBuild" name="DS1" comparator="EQUALS" value="0.0" />
     <log text="Intrepid docked at DS1 to defuse bomb" />
@@ -1001,7 +1001,7 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
   </event>
   <event name="Aegis docked" id_arme="4138f4e7-048b-429a-8666-a49be7fe3fbf" parent_id_arme="06783d9d-3423-44f3-b6e3-28e8f836b4fd">
     <if_exists name="Aegis" />
-    <if_docked name="DS1" player_name="Aegis" />
+    <if_docked player_name="Aegis" name="DS1" />
     <if_variable name="WelcomedAegisAwayTeam" comparator="EQUALS" value="0.0" />
     <if_object_property property="canBuild" name="DS1" comparator="EQUALS" value="0.0" />
     <log text="Aegis docked at DS1 to defuse bomb" />
@@ -1224,6 +1224,8 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
     <clear_comms_button text="Hack frequency C" />
     <clear_comms_button text="Hack frequency D" />
     <clear_comms_button text="Hack frequency E" />
+    <!--For v2.7.0, work around if_damcon_members bug by not requiring 6 people in team-->
+    <!--<incoming_comms_text from="Internal Comms" type="SIDE">Disruption complete, the Diana's engines are now disabled!  If we get within 500m of the Diana and send over a DamCon team to board her, we might be able to return her to TSN control.</incoming_comms_text>-->
     <incoming_comms_text from="Internal Comms" type="SIDE">Disruption complete, the Diana's engines are now disabled!  If we get within 500m of the Diana and send over a full 6-person DamCon team to board her, we might be able to return her to TSN control.</incoming_comms_text>
     <set_variable name="BoardingState" value="1.0" />
     <set_timer name="RefreshCommsButtons" seconds="3" />
@@ -1241,6 +1243,7 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
   <event name="Refresh damcon buttons" id_arme="fb1e0719-7ca8-4e53-b66f-de3e4630f30c" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
     <if_variable name="BoardingState" comparator="EQUALS" value="1.0" />
     <if_timer_finished name="RefreshCommsButtons" />
+    <log text="Refreshing buttons to send DamCon team to Diana" />
     <set_variable name="ArtemisDamCon1ButtonRefreshed" value="0.0" />
     <set_variable name="ArtemisDamCon2ButtonRefreshed" value="0.0" />
     <set_variable name="ArtemisDamCon3ButtonRefreshed" value="0.0" />
@@ -1267,6 +1270,7 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
     <if_object_property property="sideValue" name="Artemis" comparator="EQUALS" value="3.0" />
     <if_damcon_members player_slot="0" team_index="0" comparator="EQUALS" value="6" />
     <if_distance name1="Diana" name2="Artemis" comparator="LESS_EQUAL" value="500.0" />
+    <log text="Showed button for Artemis to send team DamCon team 1 to Diana" />
     <set_comms_button text="Send DamCon team 1" sideValue="3" />
     <set_variable name="ArtemisDamCon1ButtonVisible" value="2.0" />
   </event>
@@ -1294,6 +1298,7 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
     <if_object_property property="sideValue" name="Intrepid" comparator="EQUALS" value="4.0" />
     <if_damcon_members player_slot="1" team_index="0" comparator="EQUALS" value="6" />
     <if_distance name1="Diana" name2="Intrepid" comparator="LESS_EQUAL" value="500.0" />
+    <log text="Showed button for Intrepid to send team DamCon team 1 to Diana" />
     <set_comms_button text="Send DamCon team 1 " sideValue="4" />
     <set_variable name="IntrepidDamCon1ButtonVisible" value="2.0" />
   </event>
@@ -1316,11 +1321,15 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
     <set_variable name="IntrepidDamCon3ButtonVisible" value="2.0" />
   </event>
   <event name="Restore Artemis side" id_arme="16646f32-7c88-4545-9446-7bf9a1b80db9" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
+    <if_exists name="Artemis" />
     <if_object_property property="sideValue" name="Artemis" comparator="NOT" value="2.0" />
+    <log text="Restored Artemis to side 2" />
     <set_side_value value="2" name="Artemis" />
   </event>
   <event name="Restore Intrepid side" id_arme="3d5ed666-7872-4786-8307-6392563004aa" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
+    <if_exists name="Intrepid" />
     <if_object_property property="sideValue" name="Intrepid" comparator="NOT" value="2.0" />
+    <log text="Restored Intrepid to side 2" />
     <set_side_value value="2" name="Intrepid" />
   </event>
   <event name="Allow Artemis DamCon 1" id_arme="e09e7be1-c24c-4d3a-bee1-3e76a2e387e5" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
@@ -1329,6 +1338,7 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
     <if_object_property property="sideValue" name="Artemis" comparator="EQUALS" value="2.0" />
     <if_damcon_members player_slot="0" team_index="0" comparator="EQUALS" value="6" />
     <if_distance name1="Diana" name2="Artemis" comparator="LESS_EQUAL" value="500.0" />
+    <log text="Allowing Artemis button to send DamCon team 1 to Diana" />
     <set_side_value value="3" name="Artemis" />
     <set_variable name="ArtemisDamCon1ButtonRefreshed" value="1.0" />
     <set_variable name="ArtemisDamCon1ButtonVisible" value="1.0" />
@@ -1359,6 +1369,7 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
     <if_object_property property="sideValue" name="Intrepid" comparator="EQUALS" value="2.0" />
     <if_damcon_members player_slot="1" team_index="0" comparator="EQUALS" value="6" />
     <if_distance name1="Diana" name2="Intrepid" comparator="LESS_EQUAL" value="500.0" />
+    <log text="Allowing Intrepid button to send DamCon team 1 to Diana" />
     <set_side_value value="4" name="Intrepid" />
     <set_variable name="IntrepidDamCon1ButtonRefreshed" value="1.0" />
     <set_variable name="IntrepidDamCon1ButtonVisible" value="1.0" />
@@ -1387,6 +1398,7 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
     <if_variable name="BoardingState" comparator="EQUALS" value="1.0" />
     <if_variable name="ArtemisDamCon1ButtonVisible" comparator="GREATER" value="0.0" />
     <if_distance name1="Diana" name2="Artemis" comparator="GREATER" value="500.0" />
+    <log text="Disallowing Artemis button to send DamCon team 1 to Diana for distance" />
     <clear_comms_button text="Send DamCon team 1" />
     <set_variable name="ArtemisDamCon1ButtonVisible" value="0.0" />
   </event>
@@ -1404,31 +1416,36 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
     <clear_comms_button text="Send DamCon team 3" />
     <set_variable name="ArtemisDamCon3ButtonVisible" value="0.0" />
   </event>
-  <event name="Disallow Artemis DamCon 1 for size" id_arme="42434d6e-e1dd-4db1-af62-62e9c6c240c2" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
+  <disabled_event name="Disallow Artemis DamCon 1 for size" id_arme="42434d6e-e1dd-4db1-af62-62e9c6c240c2" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
     <if_variable name="BoardingState" comparator="EQUALS" value="1.0" />
     <if_variable name="ArtemisDamCon1ButtonVisible" comparator="GREATER" value="0.0" />
+    <!--For v2.7.0, work around if_damcon_members bug by not requiring 6 people in team-->
     <if_damcon_members player_slot="0" team_index="0" comparator="LESS" value="6" />
+    <log text="Disallowing Artemis button to send DamCon team 1 to Diana for size" />
     <clear_comms_button text="Send DamCon team 1" />
     <set_variable name="ArtemisDamCon1ButtonVisible" value="0.0" />
-  </event>
-  <event name="Disallow Artemis DamCon 2 for size" id_arme="7eca72a3-252e-418f-a1b2-d32472fea254" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
+  </disabled_event>
+  <disabled_event name="Disallow Artemis DamCon 2 for size" id_arme="7eca72a3-252e-418f-a1b2-d32472fea254" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
     <if_variable name="BoardingState" comparator="EQUALS" value="1.0" />
     <if_variable name="ArtemisDamCon2ButtonVisible" comparator="GREATER" value="0.0" />
+    <!--For v2.7.0, work around if_damcon_members bug by not requiring 6 people in team-->
     <if_damcon_members player_slot="0" team_index="1" comparator="LESS" value="6" />
     <clear_comms_button text="Send DamCon team 2" />
     <set_variable name="ArtemisDamCon2ButtonVisible" value="0.0" />
-  </event>
-  <event name="Disallow Artemis DamCon 3 for size" id_arme="f3ce1617-350d-4e02-aeb1-468d7bbce7c0" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
+  </disabled_event>
+  <disabled_event name="Disallow Artemis DamCon 3 for size" id_arme="f3ce1617-350d-4e02-aeb1-468d7bbce7c0" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
     <if_variable name="BoardingState" comparator="EQUALS" value="1.0" />
     <if_variable name="ArtemisDamCon3ButtonVisible" comparator="GREATER" value="0.0" />
+    <!--For v2.7.0, work around if_damcon_members bug by not requiring 6 people in team-->
     <if_damcon_members player_slot="0" team_index="2" comparator="LESS" value="6" />
     <clear_comms_button text="Send DamCon team 3" />
     <set_variable name="ArtemisDamCon3ButtonVisible" value="0.0" />
-  </event>
+  </disabled_event>
   <event name="Disallow Intrepid DamCon 1 for distance" id_arme="d01155d6-4dda-4063-a811-7736f8ab996d" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
     <if_variable name="BoardingState" comparator="EQUALS" value="1.0" />
     <if_variable name="IntrepidDamCon1ButtonVisible" comparator="GREATER" value="0.0" />
     <if_distance name1="Diana" name2="Intrepid" comparator="GREATER" value="500.0" />
+    <log text="Disallowing Intrepid button to send DamCon team 1 to Diana for distance" />
     <clear_comms_button text="Send DamCon team 1 " />
     <set_variable name="IntrepidDamCon1ButtonVisible" value="0.0" />
   </event>
@@ -1446,27 +1463,31 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
     <clear_comms_button text="Send DamCon team 3 " />
     <set_variable name="IntrepidDamCon3ButtonVisible" value="0.0" />
   </event>
-  <event name="Disallow Intrepid DamCon 1 for size" id_arme="2a69f573-dc68-4383-81f2-89561eb15492" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
+  <disabled_event name="Disallow Intrepid DamCon 1 for size" id_arme="2a69f573-dc68-4383-81f2-89561eb15492" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
     <if_variable name="BoardingState" comparator="EQUALS" value="1.0" />
     <if_variable name="IntrepidDamCon1ButtonVisible" comparator="GREATER" value="0.0" />
+    <!--For v2.7.0, work around if_damcon_members bug by not requiring 6 people in team-->
     <if_damcon_members player_slot="1" team_index="0" comparator="LESS" value="6" />
+    <log text="Disallowing Artemis button to send DamCon team 1 to Diana for size" />
     <clear_comms_button text="Send DamCon team 1 " />
     <set_variable name="IntrepidDamCon1ButtonVisible" value="0.0" />
-  </event>
-  <event name="Disallow Intrepid DamCon 2 for size" id_arme="49cb8b5f-974e-47db-bafd-20e5d7b47aa5" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
+  </disabled_event>
+  <disabled_event name="Disallow Intrepid DamCon 2 for size" id_arme="49cb8b5f-974e-47db-bafd-20e5d7b47aa5" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
     <if_variable name="BoardingState" comparator="EQUALS" value="1.0" />
     <if_variable name="IntrepidDamCon2ButtonVisible" comparator="GREATER" value="0.0" />
+    <!--For v2.7.0, work around if_damcon_members bug by not requiring 6 people in team-->
     <if_damcon_members player_slot="1" team_index="1" comparator="LESS" value="6" />
     <clear_comms_button text="Send DamCon team 2 " />
     <set_variable name="IntrepidDamCon2ButtonVisible" value="0.0" />
-  </event>
-  <event name="Disallow Intrepid DamCon 3 for size" id_arme="b5d27490-af7a-4838-8df1-a6f5022bdc75" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
+  </disabled_event>
+  <disabled_event name="Disallow Intrepid DamCon 3 for size" id_arme="b5d27490-af7a-4838-8df1-a6f5022bdc75" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
     <if_variable name="BoardingState" comparator="EQUALS" value="1.0" />
     <if_variable name="IntrepidDamCon3ButtonVisible" comparator="GREATER" value="0.0" />
+    <!--For v2.7.0, work around if_damcon_members bug by not requiring 6 people in team-->
     <if_damcon_members player_slot="1" team_index="2" comparator="LESS" value="6" />
     <clear_comms_button text="Send DamCon team 3 " />
     <set_variable name="IntrepidDamCon3ButtonVisible" value="0.0" />
-  </event>
+  </disabled_event>
   <event name="BS2: Assign Artemis DamCon 1" id_arme="31e5e72c-47d8-4e36-a15f-b155a9e79358" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
     <if_variable name="BoardingState" comparator="EQUALS" value="1.0" />
     <if_comms_button text="Send DamCon team 1" />
