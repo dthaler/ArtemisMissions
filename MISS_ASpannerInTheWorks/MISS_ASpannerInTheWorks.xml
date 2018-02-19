@@ -1,6 +1,7 @@
-<mission_data version="2.6" background_id_arme="84327810-6e7d-41e7-9e71-391649f5b452" playerShipNames_arme="Artemis\Intrepid\Aegis\Horatio\Excalibur\Hera\Ceres\Diana">
+<mission_data version="2.7" background_id_arme="84327810-6e7d-41e7-9e71-391649f5b452" playerShipNames_arme="Artemis\Intrepid\Aegis\Horatio\Excalibur\Hera\Ceres\Diana">
+  <mission_description>The crippled TSN Diana is now undergoing reconstruction at DS1, but the recent mission to recover it has attracted unwanted attention from the Arvonian fleets which are now advancing on DS1.  Your mission is to protect both DS1 and the Diana from the Arvonian invasion.^^This mission is a sequel to "The Diana Operation".</mission_description>
   <start id_arme="84327810-6e7d-41e7-9e71-391649f5b452">
-    <big_message title="A Spanner in the Works" subtitle1="A Diana Series Mission by Dave Thaler" subtitle2="An adventure for one or two ships for Artemis 2.6" />
+    <big_message title="A Spanner in the Works" subtitle1="A Diana Series Mission by Dave Thaler" subtitle2="An adventure for one or two ships for Artemis 2.6 or 2.7" />
     <set_skybox_index index="10" />
     <set_object_property property="musicObjectMasterVolume" value="0.0" />
     <set_variable name="SabotageDelaySeconds" value="300.0" />
@@ -64,9 +65,8 @@
     <add_ai type="TARGET_THROTTLE" value1="1.0" targetName="Starseeker" value2="10.0" name="B01" />
     <add_ai type="CHASE_ANGER" name="B01" />
     <!--Add some NSECT monsters. More will be created when a second ship spawns.-->
-    <!--Coordinates should fit within asteroid field.-->
+    <!--Coordinates should fit within asteroid field.  MonsterZStart is the Z coordinate at X=20000 on the asteroid belt center line.-->
     <set_variable name="MonsterZStart" value="29949.0" />
-    <set_variable name="MonsterZEnd" value="38699.0" />
     <set_variable name="RandomX" randomFloatLow="20000.0" randomFloatHigh="90000.0" />
     <set_variable name="RandomZpiece" randomIntLow="(MonsterZStart - 15000)" randomIntHigh="(MonsterZStart + 15000)" />
     <set_variable name="RandomZ" value="RandomZpiece + ((RandomX - 20000) / 8)" />
@@ -96,7 +96,7 @@
     <set_variable name="PlayerShipCount" value="0.0" integer="yes" />
     <set_variable name="SkaraanCount" value="0.0" integer="yes" />
   </start>
-  <folder_arme name="Initialization" id_arme="6ef97816-b707-4333-8e81-c10c250bf89b" expanded_arme="" />
+  <folder_arme name="Initialization" id_arme="6ef97816-b707-4333-8e81-c10c250bf89b" />
   <event name="Disable Diana impulse and turning" id_arme="519bff8f-c77c-4692-b182-acda4ba82a5b" parent_id_arme="6ef97816-b707-4333-8e81-c10c250bf89b">
     <if_exists name="Diana" />
     <if_object_property property="sideValue" name="Diana" comparator="EQUALS" value="2.0" />
