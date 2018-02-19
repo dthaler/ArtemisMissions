@@ -104,6 +104,8 @@
 02/19/18 FIX: side mission range should be 400 not 500 for a ship, or docked if a base.
 02/19/18 NO: rescue missions normally don't send comms messages (which seems wrong to me)
 02/19/18 NO: enhanced shield capacity should be +50% max shields
+02/19/18 NO: set escape timer so never expires before Artemis docks
+02/19/18 FIX: coordinates of NSECT generation to be in asteroid belt as it slants
 
 ---
 {
@@ -113,11 +115,6 @@
          DONE post about NWC on artemis forums
          send blog entry to jeffrey sloan
          PROG check Brew Bothell schedule
-
-1/2 FIX: coordinates of NSECT generation to be in asteroid belt as it slants
-         slant is about 10k across 80k
-         NSECT X is 20000-90000 (70k)
-         NSECT Y is 10000-40000
 
 ---
 
