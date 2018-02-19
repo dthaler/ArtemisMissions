@@ -37,7 +37,7 @@
     <set_variable name="HeraInitialized" value="0" />
     <set_variable name="CeresInitialized" value="0" />
     <set_variable name="DianaInitialized" value="0" />
-    <create type="player" player_slot="" x="20208.0" y="0.0" z="78958.0" angle="0" name="Artemis" />
+    <create type="player" x="20208.0" y="0.0" z="78958.0" angle="0" name="Artemis" />
     <!--.....-->
     <!--..... Friendly Bases-->
     <create type="station" x="32917.0" y="124.0" z="93958.0" angle="61" name="Houston Outpost" raceKeys="Terran friendly" hullKeys="Command Base base" />
@@ -157,22 +157,22 @@
     <add_ai type="AVOID_BLACK_HOLE" value1="DistressSignalRadius" name="Cassini" />
     <add_ai type="FOLLOW_COMMS_ORDERS" name="Cassini" />
   </start>
-  <folder_arme name_arme="Debug Mode" id_arme="27459883-7153-49dc-8cdc-060a039bd7af" />
-  <event name_arme="Debug Spawn Ceres" id_arme="1d3e8c0b-6ee9-408d-8ac9-80b9b939e4ba" parent_id_arme="27459883-7153-49dc-8cdc-060a039bd7af">
+  <folder_arme name="Debug Mode" id_arme="27459883-7153-49dc-8cdc-060a039bd7af" />
+  <event name="Debug Spawn Ceres" id_arme="1d3e8c0b-6ee9-408d-8ac9-80b9b939e4ba" parent_id_arme="27459883-7153-49dc-8cdc-060a039bd7af">
     <if_not_exists name="Ceres" />
     <if_gm_button text="Debug/Spawn Ceres" />
     <log text="DEBUG: Spawning Ceres east of Wormhole" />
     <set_variable name="CeresLocation" value="101.0" />
     <create type="player" player_slot="0" x="WormholeX-30000" y="0.0" z="WormholeZ" angle="0" name="Ceres" hullID="1" warp="yes" />
   </event>
-  <event name_arme="Debug Ceres wormhole interaction" id_arme="ce23f454-f725-49f9-b635-ae4137cdea87" parent_id_arme="27459883-7153-49dc-8cdc-060a039bd7af">
+  <event name="Debug Ceres wormhole interaction" id_arme="ce23f454-f725-49f9-b635-ae4137cdea87" parent_id_arme="27459883-7153-49dc-8cdc-060a039bd7af">
     <if_gm_button text="Debug/Teleport Ceres near Wormhole" />
     <if_exists name="Ceres" />
     <log text="DEBUG: Teleporting Ceres east of Wormhole" />
     <set_object_property property="positionX" value="WormholeX-30000" name="Ceres" />
     <set_object_property property="positionZ" value="WormholeZ" name="Ceres" />
   </event>
-  <event name_arme="Debug Diana activation" id_arme="72081036-6646-415b-b134-22c36a78e56d" parent_id_arme="27459883-7153-49dc-8cdc-060a039bd7af">
+  <event name="Debug Diana activation" id_arme="72081036-6646-415b-b134-22c36a78e56d" parent_id_arme="27459883-7153-49dc-8cdc-060a039bd7af">
     <if_not_exists name="Diana" />
     <if_variable name="DianaCreated" comparator="EQUALS" value="0.0" />
     <if_gm_button text="Debug/Diana activation" />
@@ -183,8 +183,8 @@
     <set_variable name="DianaPlanetAlert" value="2.0" />
     <set_variable name="DianaDebugWithNoDamage" value="0.0" />
   </event>
-  <folder_arme name_arme="Create Additional Enemy Ships" id_arme="2ad003b4-66f9-451a-93cb-c6f44284c63c" />
-  <event name_arme="Difficulty 3+: Large Torgoths" id_arme="36a7fe10-fe2b-449a-ac99-5ec1b72f6390" parent_id_arme="2ad003b4-66f9-451a-93cb-c6f44284c63c">
+  <folder_arme name="Create Additional Enemy Ships" id_arme="2ad003b4-66f9-451a-93cb-c6f44284c63c" />
+  <event name="Difficulty 3+: Large Torgoths" id_arme="36a7fe10-fe2b-449a-ac99-5ec1b72f6390" parent_id_arme="2ad003b4-66f9-451a-93cb-c6f44284c63c">
     <if_difficulty comparator="GREATER_EQUAL" value="3.0" />
     <if_variable name="LargeTorgothsCreated" comparator="EQUALS" value="0.0" />
     <log text="Large Torgoths created" />
@@ -193,7 +193,7 @@
     <create type="enemy" x="67289.0" y="0.0" z="79927.0" angle="90" raceKeys="enemy whalehater" hullKeys="large" sideValue="1" fleetnumber="5" />
     <create type="enemy" x="81235.0" y="0.0" z="90387.0" angle="90" raceKeys="enemy whalehater" hullKeys="large" sideValue="1" fleetnumber="6" />
   </event>
-  <event name_arme="Difficulty 5+: Skaraans" id_arme="a5d31cee-1986-4ed2-b5d8-39d673d718b5" parent_id_arme="2ad003b4-66f9-451a-93cb-c6f44284c63c">
+  <event name="Difficulty 5+: Skaraans" id_arme="a5d31cee-1986-4ed2-b5d8-39d673d718b5" parent_id_arme="2ad003b4-66f9-451a-93cb-c6f44284c63c">
     <if_variable name="SkaraansCreated" comparator="EQUALS" value="0.0" />
     <if_difficulty comparator="GREATER" value="5.0" />
     <log text="Skaraans created" />
@@ -201,31 +201,31 @@
     <create type="enemy" x="95763.0" y="0.0" z="51598.0" angle="90" raceKeys="enemy hasspecials" hullKeys="medium" fleetnumber="-1" />
     <create type="enemy" x="64674.0" y="0.0" z="39104.0" angle="135" raceKeys="enemy hasspecials" hullKeys="small" fleetnumber="-1" />
   </event>
-  <event name_arme="GM respawn Torgoth" id_arme="4e5d369e-b8e4-45b5-b2b1-3e4ce0c9f395" parent_id_arme="2ad003b4-66f9-451a-93cb-c6f44284c63c">
+  <event name="GM respawn Torgoth" id_arme="4e5d369e-b8e4-45b5-b2b1-3e4ce0c9f395" parent_id_arme="2ad003b4-66f9-451a-93cb-c6f44284c63c">
     <if_gm_button text="GM/Respawn/Torgoth" />
     <log text="GM respawned a Torgoth ship" />
     <create type="enemy" use_gm_position="" raceKeys="enemy whalehater" hullKeys="small" />
   </event>
-  <event name_arme="GM respawn Arvonian" id_arme="f4daae2e-ce08-4e14-8dce-26b4c7020b22" parent_id_arme="2ad003b4-66f9-451a-93cb-c6f44284c63c">
+  <event name="GM respawn Arvonian" id_arme="f4daae2e-ce08-4e14-8dce-26b4c7020b22" parent_id_arme="2ad003b4-66f9-451a-93cb-c6f44284c63c">
     <if_gm_button text="GM/Respawn/Arvonian" />
     <log text="GM respawned an Arvonian ship" />
     <create type="enemy" use_gm_position="" raceKeys="enemy whalelover" hullKeys="small" />
   </event>
-  <folder_arme name_arme="Start/End Game Events" id_arme="950df5cb-1770-486e-93bc-2cb61e3ceffb" />
-  <event name_arme="Start Title timer after first ship connects" id_arme="75a51448-2195-4afa-9ca8-864f45de62a0" parent_id_arme="950df5cb-1770-486e-93bc-2cb61e3ceffb">
+  <folder_arme name="Start/End Game Events" id_arme="950df5cb-1770-486e-93bc-2cb61e3ceffb" />
+  <event name="Start Title timer after first ship connects" id_arme="75a51448-2195-4afa-9ca8-864f45de62a0" parent_id_arme="950df5cb-1770-486e-93bc-2cb61e3ceffb">
     <if_variable name="51362_1_titleTimerStarted" comparator="EQUALS" value="0" />
     <if_variable name="51362_1_gameShipsSpawned" comparator="GREATER" value="0" />
     <set_timer name="51362_1_titleTimer" seconds="5" />
     <set_variable name="51362_1_titleTimerStarted" value="1" />
   </event>
-  <event name_arme="Show Title" id_arme="dca1c962-7f01-47cc-955a-8c0a98bf8cab" parent_id_arme="950df5cb-1770-486e-93bc-2cb61e3ceffb">
+  <event name="Show Title" id_arme="dca1c962-7f01-47cc-955a-8c0a98bf8cab" parent_id_arme="950df5cb-1770-486e-93bc-2cb61e3ceffb">
     <if_variable name="51362_1_delayedTitleShown" comparator="EQUALS" value="0" />
     <if_variable name="51362_1_gameShipsSpawned" comparator="GREATER" value="0" />
     <if_timer_finished name="51362_1_titleTimer" />
     <big_message title="The Diana Operation" subtitle1="written by Dave Thaler" subtitle2="" />
     <set_variable name="51362_1_delayedTitleShown" value="1" />
   </event>
-  <event name_arme="All Required Missions Complete" id_arme="d8f92899-23ec-4c5c-8471-c02198d6c29d" parent_id_arme="950df5cb-1770-486e-93bc-2cb61e3ceffb">
+  <event name="All Required Missions Complete" id_arme="d8f92899-23ec-4c5c-8471-c02198d6c29d" parent_id_arme="950df5cb-1770-486e-93bc-2cb61e3ceffb">
     <if_variable name="GameStatus" comparator="GREATER_EQUAL" value="2" />
     <if_variable name="GameOver" comparator="EQUALS" value="0" />
     <if_variable name="51362_1_gameShipsSpawned" comparator="GREATER" value="0" />
@@ -235,7 +235,7 @@
     <set_variable name="GameOver" value="1" />
     <set_timer name="GameFinishedTimer" seconds="15" />
   </event>
-  <event name_arme="Mission Failed" id_arme="bafc124e-85f8-4718-b1e2-9fb12f7806f9" parent_id_arme="950df5cb-1770-486e-93bc-2cb61e3ceffb">
+  <event name="Mission Failed" id_arme="bafc124e-85f8-4718-b1e2-9fb12f7806f9" parent_id_arme="950df5cb-1770-486e-93bc-2cb61e3ceffb">
     <if_variable name="GameStatus" comparator="EQUALS" value="0" />
     <if_variable name="GameOver" comparator="EQUALS" value="0" />
     <if_variable name="51362_1_gameShipsSpawned" comparator="GREATER" value="0" />
@@ -245,7 +245,7 @@
     <set_variable name="GameOver" value="1" />
     <set_timer name="GameFinishedTimer" seconds="15" />
   </event>
-  <event name_arme="All Player Ships Destroyed" id_arme="e67595c8-6d92-4877-9593-839e1aee8765" parent_id_arme="950df5cb-1770-486e-93bc-2cb61e3ceffb">
+  <event name="All Player Ships Destroyed" id_arme="e67595c8-6d92-4877-9593-839e1aee8765" parent_id_arme="950df5cb-1770-486e-93bc-2cb61e3ceffb">
     <if_not_exists name="Artemis" />
     <if_not_exists name="Intrepid" />
     <if_not_exists name="Aegis" />
@@ -262,7 +262,7 @@
     <set_variable name="GameOver" value="1" />
     <set_timer name="GameFinishedTimer" seconds="15" />
   </event>
-  <event name_arme="All Bases Destroyed" id_arme="4285ad77-10ff-4102-9486-1796d8f340fe" parent_id_arme="950df5cb-1770-486e-93bc-2cb61e3ceffb">
+  <event name="All Bases Destroyed" id_arme="4285ad77-10ff-4102-9486-1796d8f340fe" parent_id_arme="950df5cb-1770-486e-93bc-2cb61e3ceffb">
     <if_not_exists name="Houston Outpost" />
     <if_not_exists name="SB01" />
     <if_not_exists name="IB02" />
@@ -274,46 +274,46 @@
     <set_variable name="GameOver" value="1" />
     <set_timer name="GameFinishedTimer" seconds="15" />
   </event>
-  <event name_arme="End Game" id_arme="2f1aab6d-e5c1-489e-8dcd-e39c4660c27f" parent_id_arme="950df5cb-1770-486e-93bc-2cb61e3ceffb">
+  <event name="End Game" id_arme="2f1aab6d-e5c1-489e-8dcd-e39c4660c27f" parent_id_arme="950df5cb-1770-486e-93bc-2cb61e3ceffb">
     <if_variable name="GameOver" comparator="EQUALS" value="1" />
     <if_timer_finished name="GameFinishedTimer" />
     <log text="End Game" />
     <end_mission />
   </event>
-  <event name_arme="Limit sensor range" id_arme="51449eef-be71-441f-90b7-d3a39fe8ae40" parent_id_arme="950df5cb-1770-486e-93bc-2cb61e3ceffb">
+  <event name="Limit sensor range" id_arme="51449eef-be71-441f-90b7-d3a39fe8ae40" parent_id_arme="950df5cb-1770-486e-93bc-2cb61e3ceffb">
     <if_object_property property="sensorSetting" comparator="EQUALS" value="0.0" />
     <set_object_property property="sensorSetting" value="2" />
   </event>
-  <event name_arme="Report sensor range 33k" id_arme="839700f3-5592-475d-ac17-5aa0aea17490" parent_id_arme="950df5cb-1770-486e-93bc-2cb61e3ceffb">
+  <event name="Report sensor range 33k" id_arme="839700f3-5592-475d-ac17-5aa0aea17490" parent_id_arme="950df5cb-1770-486e-93bc-2cb61e3ceffb">
     <if_object_property property="sensorSetting" comparator="EQUALS" value="1.0" />
     <if_variable name="ReportedSensorRange" comparator="EQUALS" value="0.0" />
     <if_timer_finished name="StartupDelayBeforeOrders" />
     <set_variable name="ReportedSensorRange" value="1.0" />
     <warning_popup_message message="Sensor range limited to 33k" consoles="S" />
   </event>
-  <event name_arme="Report sensor range 16k" id_arme="ce2a3e84-28f1-4442-9bff-78960d1a6424" parent_id_arme="950df5cb-1770-486e-93bc-2cb61e3ceffb">
+  <event name="Report sensor range 16k" id_arme="ce2a3e84-28f1-4442-9bff-78960d1a6424" parent_id_arme="950df5cb-1770-486e-93bc-2cb61e3ceffb">
     <if_object_property property="sensorSetting" comparator="EQUALS" value="2.0" />
     <if_variable name="ReportedSensorRange" comparator="EQUALS" value="0.0" />
     <if_timer_finished name="StartupDelayBeforeOrders" />
     <set_variable name="ReportedSensorRange" value="1.0" />
     <warning_popup_message message="Sensor range limited to 16k" consoles="S" />
   </event>
-  <event name_arme="Report sensor range 11k" id_arme="c98dc60d-87f6-4e3e-8215-ae3a31a06814" parent_id_arme="950df5cb-1770-486e-93bc-2cb61e3ceffb">
+  <event name="Report sensor range 11k" id_arme="c98dc60d-87f6-4e3e-8215-ae3a31a06814" parent_id_arme="950df5cb-1770-486e-93bc-2cb61e3ceffb">
     <if_object_property property="sensorSetting" comparator="EQUALS" value="3.0" />
     <if_variable name="ReportedSensorRange" comparator="EQUALS" value="0.0" />
     <if_timer_finished name="StartupDelayBeforeOrders" />
     <set_variable name="ReportedSensorRange" value="1.0" />
     <warning_popup_message message="Sensor range limited to 11k" consoles="S" />
   </event>
-  <event name_arme="Report sensor range 8k" id_arme="5979b578-ffd3-499f-957d-d192fc8b9ced" parent_id_arme="950df5cb-1770-486e-93bc-2cb61e3ceffb">
+  <event name="Report sensor range 8k" id_arme="5979b578-ffd3-499f-957d-d192fc8b9ced" parent_id_arme="950df5cb-1770-486e-93bc-2cb61e3ceffb">
     <if_object_property property="sensorSetting" comparator="EQUALS" value="4.0" />
     <if_variable name="ReportedSensorRange" comparator="EQUALS" value="0.0" />
     <if_timer_finished name="StartupDelayBeforeOrders" />
     <set_variable name="ReportedSensorRange" value="1.0" />
     <warning_popup_message message="Sensor range limited to 8k" consoles="S" />
   </event>
-  <folder_arme name_arme="Player Ship initialization" id_arme="bf827f3c-b918-4c21-8798-6c2a331061d1" />
-  <event name_arme="Create Player Ship - Artemis" id_arme="77054e94-9150-490c-b841-a94b75764284" parent_id_arme="bf827f3c-b918-4c21-8798-6c2a331061d1">
+  <folder_arme name="Player Ship initialization" id_arme="bf827f3c-b918-4c21-8798-6c2a331061d1" />
+  <event name="Create Player Ship - Artemis" id_arme="77054e94-9150-490c-b841-a94b75764284" parent_id_arme="bf827f3c-b918-4c21-8798-6c2a331061d1">
     <if_exists name="Artemis" />
     <if_variable name="ArtemisInitialized" comparator="EQUALS" value="0" />
     <log text="Artemis spawned" />
@@ -328,7 +328,7 @@
     <set_variable name="ArtemisSawDianaSignal" value="0.0" />
     <set_variable name="ArtemisWormholeAlert" value="0.0" />
   </event>
-  <event name_arme="Create Player Ship - Intrepid" id_arme="37715cd5-a873-452b-9b03-0409dab65292" parent_id_arme="bf827f3c-b918-4c21-8798-6c2a331061d1">
+  <event name="Create Player Ship - Intrepid" id_arme="37715cd5-a873-452b-9b03-0409dab65292" parent_id_arme="bf827f3c-b918-4c21-8798-6c2a331061d1">
     <if_exists name="Intrepid" />
     <if_variable name="IntrepidInitialized" comparator="EQUALS" value="0" />
     <log text="Intrepid spawned" />
@@ -343,7 +343,7 @@
     <set_variable name="IntrepidSawDianaSignal" value="0.0" />
     <set_variable name="IntrepidWormholeAlert" value="0.0" />
   </event>
-  <event name_arme="Create Player Ship - Aegis" id_arme="6e63775f-221a-4740-beb5-76207cb60034" parent_id_arme="bf827f3c-b918-4c21-8798-6c2a331061d1">
+  <event name="Create Player Ship - Aegis" id_arme="6e63775f-221a-4740-beb5-76207cb60034" parent_id_arme="bf827f3c-b918-4c21-8798-6c2a331061d1">
     <if_exists name="Aegis" />
     <if_variable name="AegisInitialized" comparator="EQUALS" value="0" />
     <log text="Aegis spawned" />
@@ -358,7 +358,7 @@
     <set_variable name="AegisSawDianaSignal" value="0.0" />
     <set_variable name="AegisWormholeAlert" value="0.0" />
   </event>
-  <event name_arme="Create Player Ship - Horatio" id_arme="347f8836-64ae-4bf5-8fc5-d57b76e0c302" parent_id_arme="bf827f3c-b918-4c21-8798-6c2a331061d1">
+  <event name="Create Player Ship - Horatio" id_arme="347f8836-64ae-4bf5-8fc5-d57b76e0c302" parent_id_arme="bf827f3c-b918-4c21-8798-6c2a331061d1">
     <if_exists name="Horatio" />
     <if_variable name="HoratioInitialized" comparator="EQUALS" value="0" />
     <log text="Horatio spawned" />
@@ -370,7 +370,7 @@
     <set_variable name="HoratioInitialized" value="1" />
     <set_variable name="PlayerShipCount" value="PlayerShipCount+1" />
   </event>
-  <event name_arme="Create Player Ship - Excalibur" id_arme="6184e5b8-1091-40bc-aebd-3c19b3a8c947" parent_id_arme="bf827f3c-b918-4c21-8798-6c2a331061d1">
+  <event name="Create Player Ship - Excalibur" id_arme="6184e5b8-1091-40bc-aebd-3c19b3a8c947" parent_id_arme="bf827f3c-b918-4c21-8798-6c2a331061d1">
     <if_exists name="Excalibur" />
     <if_variable name="ExcaliburInitialized" comparator="EQUALS" value="0" />
     <log text="Excalibur spawned" />
@@ -382,7 +382,7 @@
     <set_variable name="ExcaliburInitialized" value="1" />
     <set_variable name="PlayerShipCount" value="PlayerShipCount+1" />
   </event>
-  <event name_arme="Create Player Ship - Hera" id_arme="ea53b3a0-c662-4483-8499-8f7eac761d3f" parent_id_arme="bf827f3c-b918-4c21-8798-6c2a331061d1">
+  <event name="Create Player Ship - Hera" id_arme="ea53b3a0-c662-4483-8499-8f7eac761d3f" parent_id_arme="bf827f3c-b918-4c21-8798-6c2a331061d1">
     <if_exists name="Hera" />
     <if_variable name="HeraInitialized" comparator="EQUALS" value="0" />
     <log text="Hera spawned" />
@@ -394,7 +394,7 @@
     <set_variable name="HeraInitialized" value="1" />
     <set_variable name="PlayerShipCount" value="PlayerShipCount+1" />
   </event>
-  <event name_arme="Create Player Ship - Ceres" id_arme="1b29d6e0-fddc-4006-b86c-dc1ebec32216" parent_id_arme="bf827f3c-b918-4c21-8798-6c2a331061d1">
+  <event name="Create Player Ship - Ceres" id_arme="1b29d6e0-fddc-4006-b86c-dc1ebec32216" parent_id_arme="bf827f3c-b918-4c21-8798-6c2a331061d1">
     <if_exists name="Ceres" />
     <if_variable name="CeresInitialized" comparator="EQUALS" value="0" />
     <if_object_property property="shieldMaxStateFront" name="Ceres" comparator="EQUALS" value="60.0" />
@@ -412,7 +412,7 @@
     <set_variable name="CeresSeesDianaSignal" value="0.0" />
     <set_variable name="CeresWormholeAlert" value="0.0" />
   </event>
-  <event name_arme="Create Wrong Player Ship - Ceres" id_arme="797835bc-39ea-4b7c-b576-aaf141e75fc9" parent_id_arme="bf827f3c-b918-4c21-8798-6c2a331061d1">
+  <event name="Create Wrong Player Ship - Ceres" id_arme="797835bc-39ea-4b7c-b576-aaf141e75fc9" parent_id_arme="bf827f3c-b918-4c21-8798-6c2a331061d1">
     <if_exists name="Ceres" />
     <if_variable name="CeresInitialized" comparator="EQUALS" value="0" />
     <if_object_property property="shieldMaxStateFront" name="Ceres" comparator="NOT" value="60.0" />
@@ -420,14 +420,14 @@
     <warning_popup_message message="Ceres must be a Scout" consoles="M" player_slot="6" />
     <destroy name="Ceres" />
   </event>
-  <event name_arme="Create Wrong Time - Ceres" id_arme="48cf9c68-6f89-464c-8b1f-bc68507499dc" parent_id_arme="bf827f3c-b918-4c21-8798-6c2a331061d1">
+  <event name="Create Wrong Time - Ceres" id_arme="48cf9c68-6f89-464c-8b1f-bc68507499dc" parent_id_arme="bf827f3c-b918-4c21-8798-6c2a331061d1">
     <if_variable name="CeresLocation" comparator="LESS" value="101.0" />
     <if_exists name="Ceres" />
     <warning_popup_message message="Ceres is not ready for launch" consoles="M" player_slot="6" />
     <log text="Ceres spawned at wrong time" />
     <destroy name="Ceres" />
   </event>
-  <event name_arme="Continual - Ceres" id_arme="961617dd-5764-4798-beae-027fe69d30a1" parent_id_arme="bf827f3c-b918-4c21-8798-6c2a331061d1">
+  <event name="Continual - Ceres" id_arme="961617dd-5764-4798-beae-027fe69d30a1" parent_id_arme="bf827f3c-b918-4c21-8798-6c2a331061d1">
     <if_exists name="Ceres" />
     <!--Turn Ceres into a shuttle like ship-->
     <set_object_property property="countNuke" value="0.0" name="Ceres" />
@@ -438,7 +438,7 @@
     <set_damcon_members value="0.0" team_index="1" name="Ceres" />
     <set_damcon_members value="0.0" team_index="2" name="Ceres" />
   </event>
-  <event name_arme="Create Player Ship - Diana" id_arme="8cbdb951-cd98-48c0-b1eb-5133e0b8541b" parent_id_arme="bf827f3c-b918-4c21-8798-6c2a331061d1">
+  <event name="Create Player Ship - Diana" id_arme="8cbdb951-cd98-48c0-b1eb-5133e0b8541b" parent_id_arme="bf827f3c-b918-4c21-8798-6c2a331061d1">
     <if_exists name="Diana" />
     <if_variable name="DianaInitialized" comparator="EQUALS" value="0" />
     <if_object_property property="shieldMaxStateFront" name="Diana" comparator="EQUALS" value="80.0" />
@@ -472,7 +472,7 @@
     <set_variable name="DianaLocation" value="300.0" />
     <set_variable name="DianaCodeState" value="0.0" />
   </event>
-  <event name_arme="Create Wrong Player Ship - Diana" id_arme="daa23853-f417-45c6-8be2-5fc5f23625a9" parent_id_arme="bf827f3c-b918-4c21-8798-6c2a331061d1">
+  <event name="Create Wrong Player Ship - Diana" id_arme="daa23853-f417-45c6-8be2-5fc5f23625a9" parent_id_arme="bf827f3c-b918-4c21-8798-6c2a331061d1">
     <if_exists name="Diana" />
     <if_variable name="DianaInitialized" comparator="EQUALS" value="0" />
     <if_object_property property="shieldMaxStateFront" name="Diana" comparator="NOT" value="80.0" />
@@ -480,7 +480,7 @@
     <warning_popup_message message="Diana must be a Light Cruiser" consoles="M" player_slot="7" />
     <destroy name="Diana" />
   </event>
-  <event name_arme="Create Wrong Time - Diana" id_arme="39a752da-dcb4-4e50-8a67-63210511610f" parent_id_arme="bf827f3c-b918-4c21-8798-6c2a331061d1">
+  <event name="Create Wrong Time - Diana" id_arme="39a752da-dcb4-4e50-8a67-63210511610f" parent_id_arme="bf827f3c-b918-4c21-8798-6c2a331061d1">
     <!--CeresLocation: 0=not built, 58=On SB01, 101=Artemis, 102=Intrepid, ..., 200=Launched, 300=Wormhole, 400=Elysia-->
     <if_variable name="CeresLocation" comparator="NOT" value="400.0" />
     <if_exists name="Diana" />
@@ -490,28 +490,28 @@
     <set_variable name="DianaInitialized" value="0.0" />
     <destroy name="Diana" />
   </event>
-  <event name_arme="GM Respawn Artemis" id_arme="efb65ce9-530c-464c-beb0-9fd16373c12e" parent_id_arme="bf827f3c-b918-4c21-8798-6c2a331061d1">
+  <event name="GM Respawn Artemis" id_arme="efb65ce9-530c-464c-beb0-9fd16373c12e" parent_id_arme="bf827f3c-b918-4c21-8798-6c2a331061d1">
     <if_not_exists name="Artemis" />
     <if_gm_button text="GM/Respawn/Artemis" />
     <log text="GM respawned Artemis" />
     <create type="player" player_slot="0" x="20208.0" y="0.0" z="78958.0" angle="0" name="Artemis" />
     <set_variable name="ArtemisWormholeAlert" value="0.0" />
   </event>
-  <event name_arme="GM Respawn Intrepid" id_arme="5dce5363-20c8-4e29-a476-1e2d3f9e8ee6" parent_id_arme="bf827f3c-b918-4c21-8798-6c2a331061d1">
+  <event name="GM Respawn Intrepid" id_arme="5dce5363-20c8-4e29-a476-1e2d3f9e8ee6" parent_id_arme="bf827f3c-b918-4c21-8798-6c2a331061d1">
     <if_not_exists name="Intrepid" />
     <if_gm_button text="GM/Respawn/Intrepid" />
     <log text="GM respawned Intrepid" />
     <create type="player" player_slot="1" x="20450.0" y="0.0" z="79400.0" angle="0" name="Intrepid" />
     <set_variable name="IntrepidWormholeAlert" value="0.0" />
   </event>
-  <event name_arme="GM Respawn Aegis" id_arme="a2277a96-da09-4a57-9da5-61d9b00e1a32" parent_id_arme="bf827f3c-b918-4c21-8798-6c2a331061d1">
+  <event name="GM Respawn Aegis" id_arme="a2277a96-da09-4a57-9da5-61d9b00e1a32" parent_id_arme="bf827f3c-b918-4c21-8798-6c2a331061d1">
     <if_not_exists name="Aegis" />
     <if_gm_button text="GM/Respawn/Aegis" />
     <log text="GM respawned Aegis" />
     <create type="player" player_slot="2" x="20503.0" y="0.0" z="79253.0" angle="0" name="Aegis" />
     <set_variable name="AegisWormholeAlert" value="0.0" />
   </event>
-  <event name_arme="GM Respawn Pod 1" id_arme="ac878dae-27a5-4613-9a5b-758e025c8473" parent_id_arme="bf827f3c-b918-4c21-8798-6c2a331061d1">
+  <event name="GM Respawn Pod 1" id_arme="ac878dae-27a5-4613-9a5b-758e025c8473" parent_id_arme="bf827f3c-b918-4c21-8798-6c2a331061d1">
     <if_gm_button text="GM/Respawn/Whale Pod 1" />
     <log text="GM respawned whales" />
     <create type="monster" monsterType="1" podnumber="3" x="2785.0" y="0.0" z="53922.0" angle="270" name="XE01" />
@@ -519,8 +519,8 @@
     <create type="monster" monsterType="1" podnumber="3" x="1187.0" y="200.0" z="53922.0" angle="270" name="XE03" />
     <set_variable name="Pod1Following" value="0.0" />
   </event>
-  <folder_arme name_arme="Task: Dock with Houston Outpost to receive orders" id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed" />
-  <event name_arme="Prepare to summon ships" id_arme="8a457d0e-c6d9-420c-9968-8cda224e9d6e" parent_id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed">
+  <folder_arme name="Task: Dock with Houston Outpost to receive orders" id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed" />
+  <event name="Prepare to summon ships" id_arme="8a457d0e-c6d9-420c-9968-8cda224e9d6e" parent_id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed">
     <if_variable name="PlayerShipCount" comparator="GREATER" value="0.0" />
     <if_variable name="TsnCommandSummonedShips" comparator="EQUALS" value="0.0" />
     <log text="Delaying before summoning ships" />
@@ -528,13 +528,13 @@
     <set_timer name="StartupDelayBeforeOrders" seconds="10" />
     <set_timer name="WormholeOpeningDelay" seconds="60" />
   </event>
-  <event name_arme="Wormhole appears" id_arme="d97e211f-f2ff-49c8-bb52-774d7859c3a4" parent_id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed">
+  <event name="Wormhole appears" id_arme="d97e211f-f2ff-49c8-bb52-774d7859c3a4" parent_id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed">
     <if_timer_finished name="WormholeOpeningDelay" />
     <if_not_exists name="Wormhole" />
     <create type="blackHole" x="80945.0" y="50.0" z="18038.0" name="Wormhole" />
     <warning_popup_message message="Wormhole opened!" consoles="S" />
   </event>
-  <event name_arme="TSN Command summons ships" id_arme="db11b82c-2c75-4dfb-b2e1-fef7eb5c91b4" parent_id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed">
+  <event name="TSN Command summons ships" id_arme="db11b82c-2c75-4dfb-b2e1-fef7eb5c91b4" parent_id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed">
     <if_variable name="PlayerShipCount" comparator="GREATER" value="0.0" />
     <if_variable name="TsnCommandSummonedShips" comparator="EQUALS" value="1.0" />
     <if_timer_finished name="StartupDelayBeforeOrders" />
@@ -545,7 +545,7 @@
     <set_timer name="ShipsDueAtCommandBase" seconds="600" />
     <set_timer name="StartupDelayBeforeOrders" seconds="120" />
   </event>
-  <event name_arme="TSN Command summons ships again" id_arme="7c3e3147-e599-4707-afd7-a957d9ce8684" parent_id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed">
+  <event name="TSN Command summons ships again" id_arme="7c3e3147-e599-4707-afd7-a957d9ce8684" parent_id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed">
     <if_variable name="PlayerShipCount" comparator="GREATER" value="0.0" />
     <if_variable name="TsnCommandGaveMission" comparator="EQUALS" value="0.0" />
     <if_variable name="TsnCommandSummonedShips" comparator="EQUALS" value="2.0" />
@@ -555,7 +555,7 @@
     <incoming_comms_text from="TSN Command" type="SIDE ALERT">We repeat, all TSN ships in this sector are directed to dock at Houston Outpost immediately to receive new mission orders!</incoming_comms_text>
     <set_variable name="TsnCommandSummonedShips" value="3.0" />
   </event>
-  <event name_arme="GM summons ships again" id_arme="92f4ecc2-d839-4ba1-b5f4-8d35ddfeeac1" parent_id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed">
+  <event name="GM summons ships again" id_arme="92f4ecc2-d839-4ba1-b5f4-8d35ddfeeac1" parent_id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed">
     <if_gm_button text="GM/Resend Comms/Houston Resummon Ships" />
     <log text="TSN Command summoned ships again" />
     <warning_popup_message message="Message from TSN Command" consoles="M" />
@@ -563,7 +563,7 @@
     <set_variable name="TsnCommandSummonedShips" value="3.0" />
     <set_timer name="ShipsDueAtCommandBase" seconds="300" />
   </event>
-  <event name_arme="Task Succeeded - 1 Ship Docked" id_arme="179e7ae6-25f8-46c5-8916-6995e3c73883" parent_id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed">
+  <event name="Task Succeeded - 1 Ship Docked" id_arme="179e7ae6-25f8-46c5-8916-6995e3c73883" parent_id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed">
     <if_variable name="PlayerShipCount" comparator="EQUALS" value="1.0" />
     <if_variable name="TsnCommandGaveMission" comparator="EQUALS" value="0.0" />
     <if_distance name1="Artemis" name2="Houston Outpost" comparator="LESS_EQUAL" value="DockedRange" />
@@ -572,7 +572,7 @@
     <incoming_comms_text from="TSN Command" type="SIDE">The TSN Diana recently went on a secret mission into enemy territory beyond the asteroid belt to scout out a recently discovered unstable wormhole. Unfortunately, all contact from the Diana has since been lost. Your mission is to find out what happened to her, and return her to a TSN station if possible.  If not, make sure she is destroyed.  We cannot risk her falling into enemy hands.</incoming_comms_text>
     <set_variable name="TsnCommandGaveMission" value="1.0" />
   </event>
-  <event name_arme="Task Succeeded - 2 Ships Docked" id_arme="3c75cb0b-7be9-4c70-b4da-c32d8d05e60c" parent_id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed">
+  <event name="Task Succeeded - 2 Ships Docked" id_arme="3c75cb0b-7be9-4c70-b4da-c32d8d05e60c" parent_id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed">
     <if_variable name="PlayerShipCount" comparator="EQUALS" value="2.0" />
     <if_variable name="TsnCommandGaveMission" comparator="EQUALS" value="0.0" />
     <if_distance name1="Artemis" name2="Houston Outpost" comparator="LESS_EQUAL" value="DockedRange*1.6" />
@@ -582,7 +582,7 @@
     <incoming_comms_text from="TSN Command" type="SIDE">The TSN Diana recently went on a secret mission into enemy territory beyond the asteroid belt to scout out a recently discovered unstable wormhole. Unfortunately, all contact from the Diana has since been lost. Your mission is to find out what happened to her, and return her to a TSN station if possible.  If not, make sure she is destroyed.  We cannot risk her falling into enemy hands.</incoming_comms_text>
     <set_variable name="TsnCommandGaveMission" value="1.0" />
   </event>
-  <event name_arme="Task Succeeded - 3 Ships Docked" id_arme="bee1aff2-7bd6-4346-a020-863841bbeb14" parent_id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed">
+  <event name="Task Succeeded - 3 Ships Docked" id_arme="bee1aff2-7bd6-4346-a020-863841bbeb14" parent_id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed">
     <if_variable name="PlayerShipCount" comparator="GREATER_EQUAL" value="3.0" />
     <if_variable name="TsnCommandGaveMission" comparator="EQUALS" value="0.0" />
     <if_distance name1="Artemis" name2="Houston Outpost" comparator="LESS_EQUAL" value="DockedRange*1.6" />
@@ -593,13 +593,13 @@
     <incoming_comms_text from="TSN Command" type="SIDE">The TSN Diana recently went on a secret mission into enemy territory beyond the asteroid belt to scout out a recently discovered unstable wormhole. Unfortunately, all contact from the Diana has since been lost. Your mission is to find out what happened to her, and return her to a TSN station if possible.  If not, make sure she is destroyed.  We cannot risk her falling into enemy hands.</incoming_comms_text>
     <set_variable name="TsnCommandGaveMission" value="1.0" />
   </event>
-  <event name_arme="GM give mission" id_arme="c8c38a14-899f-4b30-9010-52298c0fde64" parent_id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed">
+  <event name="GM give mission" id_arme="c8c38a14-899f-4b30-9010-52298c0fde64" parent_id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed">
     <if_gm_button text="GM/Resend Comms/Give Mission" />
     <log text="GM gave mission" />
     <incoming_comms_text from="TSN Command" type="SIDE">The TSN Diana recently went on a secret mission into enemy territory beyond the asteroid belt to scout out a recently discovered unstable wormhole. Unfortunately, all contact from the Diana has since been lost. Your mission is to find out what happened to her, and return her to a TSN station if possible.  If not, make sure she is destroyed.  We cannot risk her falling into enemy hands.</incoming_comms_text>
     <set_variable name="TsnCommandGaveMission" value="1.0" />
   </event>
-  <event name_arme="Mission Failed - Friendly Base Destroyed" id_arme="a179a5ff-c09e-45d6-b572-786529a3e479" parent_id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed">
+  <event name="Mission Failed - Friendly Base Destroyed" id_arme="a179a5ff-c09e-45d6-b572-786529a3e479" parent_id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed">
     <if_variable name="GameStatus" comparator="EQUALS" value="1" />
     <if_variable name="TsnCommandGaveMission" comparator="EQUALS" value="0" />
     <if_not_exists name="Houston Outpost" />
@@ -607,7 +607,7 @@
     <incoming_comms_text from="TSN Command" type="SIDE">Houston Outpost was destroyed!</incoming_comms_text>
     <set_variable name="GameStatus" value="0" />
   </event>
-  <event name_arme="Mission Failed - Out of time" id_arme="875dc7e9-9018-49d1-8750-bd76aa7f387d" parent_id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed">
+  <event name="Mission Failed - Out of time" id_arme="875dc7e9-9018-49d1-8750-bd76aa7f387d" parent_id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed">
     <if_variable name="TsnCommandGaveMission" comparator="EQUALS" value="0" />
     <if_timer_finished name="ShipsDueAtCommandBase" />
     <if_variable name="GameStatus" comparator="EQUALS" value="1.0" />
@@ -615,8 +615,8 @@
     <incoming_comms_text from="TSN Command" type="SIDE">You did not follow orders from TSN Command in time!</incoming_comms_text>
     <set_variable name="GameStatus" value="0" />
   </event>
-  <folder_arme name_arme="Task: Find and report Diana signal" id_arme="d6313d2f-fc5c-4a2d-9b04-95dd6d503ee3" />
-  <event name_arme="Comms Message - Artemis" id_arme="007699f5-1b7f-4a3a-bba7-f71186dacb2f" parent_id_arme="d6313d2f-fc5c-4a2d-9b04-95dd6d503ee3">
+  <folder_arme name="Task: Find and report Diana signal" id_arme="d6313d2f-fc5c-4a2d-9b04-95dd6d503ee3" />
+  <event name="Comms Message - Artemis" id_arme="007699f5-1b7f-4a3a-bba7-f71186dacb2f" parent_id_arme="d6313d2f-fc5c-4a2d-9b04-95dd6d503ee3">
     <!--0=never seen, 1=sees now, 2=out of range, 3=noticed stopped-->
     <if_variable name="ArtemisSawDianaSignal" comparator="NOT" value="1.0" />
     <if_exists name="Artemis" />
@@ -630,7 +630,7 @@
     <set_timer name="DianaSignalRelayOfferRepeat" seconds="60" />
     <set_variable name="DianaSignal" value="1.0" />
   </event>
-  <event name_arme="Comms Message - Artemis, already reported" id_arme="abe91e60-4141-4c3b-ac19-ae00af470073" parent_id_arme="d6313d2f-fc5c-4a2d-9b04-95dd6d503ee3">
+  <event name="Comms Message - Artemis, already reported" id_arme="abe91e60-4141-4c3b-ac19-ae00af470073" parent_id_arme="d6313d2f-fc5c-4a2d-9b04-95dd6d503ee3">
     <!--0=never seen, 1=sees now, 2=out of range, 3=noticed stopped-->
     <if_variable name="ArtemisSawDianaSignal" comparator="NOT" value="1.0" />
     <if_exists name="Artemis" />
@@ -640,14 +640,14 @@
     <set_variable name="ArtemisSawDianaSignal" value="1.0" />
     <incoming_comms_text from="Internal Comms - Artemis" type="PLAYER">We have detected a faint automated distress signal from the Diana, originating from the wormhole.  The Diana appears to be disabled.</incoming_comms_text>
   </event>
-  <event name_arme="Comms Message Reset or Die - Artemis" id_arme="965568e2-52e8-474b-9543-f22dbb4c7cb8" parent_id_arme="d6313d2f-fc5c-4a2d-9b04-95dd6d503ee3">
+  <event name="Comms Message Reset or Die - Artemis" id_arme="965568e2-52e8-474b-9543-f22dbb4c7cb8" parent_id_arme="d6313d2f-fc5c-4a2d-9b04-95dd6d503ee3">
     <!--0=never seen, 1=sees now, 2=out of range, 3=noticed stopped-->
     <if_variable name="ArtemisSawDianaSignal" comparator="EQUALS" value="1.0" />
     <if_distance name1="Artemis" name2="Wormhole" comparator="GREATER" value="DistressSignalRadius" />
     <log text="Artemis left Diana signal range" />
     <set_variable name="ArtemisSawDianaSignal" value="2.0" />
   </event>
-  <event name_arme="Comms Message - Intrepid" id_arme="c7a16b5f-6a04-466c-a0d0-13496a89d8ed" parent_id_arme="d6313d2f-fc5c-4a2d-9b04-95dd6d503ee3">
+  <event name="Comms Message - Intrepid" id_arme="c7a16b5f-6a04-466c-a0d0-13496a89d8ed" parent_id_arme="d6313d2f-fc5c-4a2d-9b04-95dd6d503ee3">
     <!--0=never seen, 1=sees now, 2=out of range, 3=noticed stopped-->
     <if_variable name="IntrepidSawDianaSignal" comparator="NOT" value="1.0" />
     <if_exists name="Intrepid" />
@@ -661,7 +661,7 @@
     <set_timer name="DianaSignalRelayOfferRepeat" seconds="30" />
     <set_variable name="DianaSignal" value="1.0" />
   </event>
-  <event name_arme="Comms Message - Intrepid, already reported" id_arme="42fc0b10-9d87-4c66-9bc0-72b54feaa70b" parent_id_arme="d6313d2f-fc5c-4a2d-9b04-95dd6d503ee3">
+  <event name="Comms Message - Intrepid, already reported" id_arme="42fc0b10-9d87-4c66-9bc0-72b54feaa70b" parent_id_arme="d6313d2f-fc5c-4a2d-9b04-95dd6d503ee3">
     <!--0=never seen, 1=sees now, 2=out of range, 3=noticed stopped-->
     <if_variable name="IntrepidSawDianaSignal" comparator="NOT" value="1.0" />
     <if_exists name="Intrepid" />
@@ -671,14 +671,14 @@
     <set_variable name="IntrepidSawDianaSignal" value="1.0" />
     <incoming_comms_text from="Internal Comms - Intrepid" type="PLAYER">We have detected a faint automated distress signal from the Diana, originating from the wormhole.  The Diana appears to be disabled.</incoming_comms_text>
   </event>
-  <event name_arme="Comms Message Reset or Die - Intrepid" id_arme="7ea077d5-cc1e-4f76-927e-89479e2787b8" parent_id_arme="d6313d2f-fc5c-4a2d-9b04-95dd6d503ee3">
+  <event name="Comms Message Reset or Die - Intrepid" id_arme="7ea077d5-cc1e-4f76-927e-89479e2787b8" parent_id_arme="d6313d2f-fc5c-4a2d-9b04-95dd6d503ee3">
     <!--0=never seen, 1=sees now, 2=out of range, 3=noticed stopped-->
     <if_variable name="IntrepidSawDianaSignal" comparator="EQUALS" value="1.0" />
     <if_distance name1="Intrepid" name2="Wormhole" comparator="GREATER" value="DistressSignalRadius" />
     <log text="Intrepid left Diana signal range" />
     <set_variable name="IntrepidSawDianaSignal" value="2.0" />
   </event>
-  <event name_arme="Comms Message - Aegis" id_arme="011cbbd4-727f-4592-a298-27c48a3c35ad" parent_id_arme="d6313d2f-fc5c-4a2d-9b04-95dd6d503ee3">
+  <event name="Comms Message - Aegis" id_arme="011cbbd4-727f-4592-a298-27c48a3c35ad" parent_id_arme="d6313d2f-fc5c-4a2d-9b04-95dd6d503ee3">
     <!--0=never seen, 1=sees now, 2=out of range, 3=noticed stopped-->
     <if_variable name="AegisSawDianaSignal" comparator="NOT" value="1.0" />
     <if_exists name="Aegis" />
@@ -692,7 +692,7 @@
     <set_timer name="DianaSignalRelayOfferRepeat" seconds="30" />
     <set_variable name="DianaSignal" value="1.0" />
   </event>
-  <event name_arme="Comms Message - Aegis, already reported" id_arme="79eb0579-88e9-40f6-9ceb-f17c0e12a340" parent_id_arme="d6313d2f-fc5c-4a2d-9b04-95dd6d503ee3">
+  <event name="Comms Message - Aegis, already reported" id_arme="79eb0579-88e9-40f6-9ceb-f17c0e12a340" parent_id_arme="d6313d2f-fc5c-4a2d-9b04-95dd6d503ee3">
     <!--0=never seen, 1=sees now, 2=out of range, 3=noticed stopped-->
     <if_variable name="AegisSawDianaSignal" comparator="NOT" value="1.0" />
     <if_exists name="Aegis" />
@@ -702,14 +702,14 @@
     <set_variable name="AegisSawDianaSignal" value="1.0" />
     <incoming_comms_text from="Internal Comms - Aegis" type="PLAYER">We have detected a faint automated distress signal from the Diana, originating from the wormhole.  The Diana appears to be disabled.</incoming_comms_text>
   </event>
-  <event name_arme="Comms Message Reset or Die - Aegis" id_arme="fb96ed27-dfaf-4582-87c3-eedafaeef6fd" parent_id_arme="d6313d2f-fc5c-4a2d-9b04-95dd6d503ee3">
+  <event name="Comms Message Reset or Die - Aegis" id_arme="fb96ed27-dfaf-4582-87c3-eedafaeef6fd" parent_id_arme="d6313d2f-fc5c-4a2d-9b04-95dd6d503ee3">
     <!--0=never seen, 1=sees now, 2=out of range, 3=noticed stopped-->
     <if_variable name="AegisSawDianaSignal" comparator="EQUALS" value="1.0" />
     <if_distance name1="Aegis" name2="Wormhole" comparator="GREATER" value="DistressSignalRadius" />
     <log text="Aegis left Diana signal range" />
     <set_variable name="AegisSawDianaSignal" value="2.0" />
   </event>
-  <event name_arme="Repeat offer to relay message" id_arme="657d6706-6795-4fac-8005-ef76a325fa4c" parent_id_arme="d6313d2f-fc5c-4a2d-9b04-95dd6d503ee3">
+  <event name="Repeat offer to relay message" id_arme="657d6706-6795-4fac-8005-ef76a325fa4c" parent_id_arme="d6313d2f-fc5c-4a2d-9b04-95dd6d503ee3">
     <if_variable name="DianaSignal" comparator="EQUALS" value="1.0" />
     <if_timer_finished name="DianaSignalRelayOfferRepeat" />
     <end_getting_keypresses_from consoles="C" />
@@ -719,7 +719,7 @@
     <set_comms_button text="Relay Distress Signal to TSN Command" />
     <set_variable name="DianaSignal" value="2.0" />
   </event>
-  <event name_arme="GM Repeat offer to relay message" id_arme="610bbe7d-7bec-45c3-8d52-75c89caec1fa" parent_id_arme="d6313d2f-fc5c-4a2d-9b04-95dd6d503ee3">
+  <event name="GM Repeat offer to relay message" id_arme="610bbe7d-7bec-45c3-8d52-75c89caec1fa" parent_id_arme="d6313d2f-fc5c-4a2d-9b04-95dd6d503ee3">
     <if_gm_button text="GM/Resend Comms/Diana Distress Report" />
     <end_getting_keypresses_from consoles="C" />
     <clear_comms_button text="Relay Distress Signal to TSN Command" />
@@ -728,7 +728,7 @@
     <set_comms_button text="Relay Distress Signal to TSN Command" />
     <set_variable name="DianaSignal" value="2.0" />
   </event>
-  <event name_arme="Comms Message - Ceres" id_arme="cfa0c8f6-23f2-4c39-b361-47304220385b" parent_id_arme="d6313d2f-fc5c-4a2d-9b04-95dd6d503ee3">
+  <event name="Comms Message - Ceres" id_arme="cfa0c8f6-23f2-4c39-b361-47304220385b" parent_id_arme="d6313d2f-fc5c-4a2d-9b04-95dd6d503ee3">
     <!--0=never seen, 1=sees now, 2=out of range, 3=noticed stopped-->
     <if_variable name="CeresSeesDianaSignal" comparator="NOT" value="1.0" />
     <if_exists name="Ceres" />
@@ -739,14 +739,14 @@
     <warning_popup_message message="Diana's automated distress signal detected." consoles="SC" player_slot="6">We have detected a faint automated distress signal detected from TSN Diana, originating from the wormhole.  The Diana appears to be disabled.</warning_popup_message>
     <set_variable name="DianaSignal" value="1.0" />
   </event>
-  <event name_arme="Comms Message Reset or Die - Ceres" id_arme="d50f1a73-9451-423d-a545-de48441428c1" parent_id_arme="d6313d2f-fc5c-4a2d-9b04-95dd6d503ee3">
+  <event name="Comms Message Reset or Die - Ceres" id_arme="d50f1a73-9451-423d-a545-de48441428c1" parent_id_arme="d6313d2f-fc5c-4a2d-9b04-95dd6d503ee3">
     <!--0=never seen, 1=sees now, 2=out of range, 3=noticed stopped-->
     <if_variable name="CeresSeesDianaSignal" comparator="EQUALS" value="1.0" />
     <if_distance name1="Ceres" name2="Wormhole" comparator="GREATER" value="DistressSignalRadius" />
     <log text="Ceres left Diana signal range" />
     <set_variable name="CeresSeesDianaSignal" value="2.0" />
   </event>
-  <event name_arme="Event: TSN Command receives report via button" id_arme="6f705c5c-2f2d-4740-966b-465f3a5110dc" parent_id_arme="d6313d2f-fc5c-4a2d-9b04-95dd6d503ee3">
+  <event name="Event: TSN Command receives report via button" id_arme="6f705c5c-2f2d-4740-966b-465f3a5110dc" parent_id_arme="d6313d2f-fc5c-4a2d-9b04-95dd6d503ee3">
     <if_variable name="DianaSignal" comparator="GREATER_EQUAL" value="1.0" />
     <if_variable name="DianaSignal" comparator="LESS" value="3.0" />
     <if_variable name="ArtemisVersion2.5.107" comparator="GREATER" value="0.0" />
@@ -760,7 +760,7 @@
     <clear_gm_button text="GM/Resend Comms/Diana Distress Report" />
     <clear_gm_button text="GM/Player Action/Report Distress Signal" />
   </event>
-  <event name_arme="Event: TSN Command receives report via key" id_arme="6be2359b-126b-4d3c-9465-de5dce00b117" parent_id_arme="d6313d2f-fc5c-4a2d-9b04-95dd6d503ee3">
+  <event name="Event: TSN Command receives report via key" id_arme="6be2359b-126b-4d3c-9465-de5dce00b117" parent_id_arme="d6313d2f-fc5c-4a2d-9b04-95dd6d503ee3">
     <if_variable name="DianaSignal" comparator="GREATER_EQUAL" value="1.0" />
     <if_variable name="DianaSignal" comparator="LESS" value="3.0" />
     <if_client_key keyText="C" />
@@ -773,7 +773,7 @@
     <clear_gm_button text="GM/Resend Comms/Diana Distress Report" />
     <clear_gm_button text="GM/Player Action/Report Distress Signal" />
   </event>
-  <event name_arme="GM: TSN Command receives report" id_arme="2bb99fab-e68c-4d1d-87a3-a9bfb1547205" parent_id_arme="d6313d2f-fc5c-4a2d-9b04-95dd6d503ee3">
+  <event name="GM: TSN Command receives report" id_arme="2bb99fab-e68c-4d1d-87a3-a9bfb1547205" parent_id_arme="d6313d2f-fc5c-4a2d-9b04-95dd6d503ee3">
     <if_gm_button text="GM/Player Action/Report Distress Signal" />
     <log text="TSN Command received report of Diana signal via GM" />
     <end_getting_keypresses_from consoles="C" />
@@ -784,7 +784,7 @@
     <clear_gm_button text="GM/Resend Comms/Diana Distress Report" />
     <clear_gm_button text="GM/Player Action/Report Distress Signal" />
   </event>
-  <event name_arme="Artemis notices signal stopped" id_arme="9e7c5bf0-3f56-4e08-ad43-3d4806a25598" parent_id_arme="d6313d2f-fc5c-4a2d-9b04-95dd6d503ee3">
+  <event name="Artemis notices signal stopped" id_arme="9e7c5bf0-3f56-4e08-ad43-3d4806a25598" parent_id_arme="d6313d2f-fc5c-4a2d-9b04-95dd6d503ee3">
     <!--0=never seen, 1=sees now, 2=out of range, 3=noticed stopped-->
     <if_variable name="ArtemisSawDianaSignal" comparator="LESS" value="3.0" />
     <if_exists name="Artemis" />
@@ -794,7 +794,7 @@
     <set_variable name="ArtemisSawDianaSignal" value="3.0" />
     <incoming_comms_text from="Internal Comms - Artemis" type="PLAYER">The automated distress signal from TSN Diana has stopped.</incoming_comms_text>
   </event>
-  <event name_arme="Intrepid notices signal stopped" id_arme="cb0a0593-4f14-4214-8619-22f732514513" parent_id_arme="d6313d2f-fc5c-4a2d-9b04-95dd6d503ee3">
+  <event name="Intrepid notices signal stopped" id_arme="cb0a0593-4f14-4214-8619-22f732514513" parent_id_arme="d6313d2f-fc5c-4a2d-9b04-95dd6d503ee3">
     <!--0=never seen, 1=sees now, 2=out of range, 3=noticed stopped-->
     <if_variable name="IntrepidSawDianaSignal" comparator="LESS" value="3.0" />
     <if_exists name="Intrepid" />
@@ -804,7 +804,7 @@
     <set_variable name="IntrepidSawDianaSignal" value="3.0" />
     <incoming_comms_text from="Internal Comms - Intrepid" type="PLAYER">The automated distress signal from TSN Diana has stopped.</incoming_comms_text>
   </event>
-  <event name_arme="Aegis notices signal stopped" id_arme="c0fb6eb8-ec09-4959-ab19-ed067ae6932e" parent_id_arme="d6313d2f-fc5c-4a2d-9b04-95dd6d503ee3">
+  <event name="Aegis notices signal stopped" id_arme="c0fb6eb8-ec09-4959-ab19-ed067ae6932e" parent_id_arme="d6313d2f-fc5c-4a2d-9b04-95dd6d503ee3">
     <!--0=never seen, 1=sees now, 2=out of range, 3=noticed stopped-->
     <if_variable name="AegisSawDianaSignal" comparator="LESS" value="3.0" />
     <if_exists name="Aegis" />
@@ -814,8 +814,8 @@
     <set_variable name="AegisSawDianaSignal" value="3.0" />
     <incoming_comms_text from="Internal Comms - Aegis" type="PLAYER">The automated distress signal from TSN Diana has stopped.</incoming_comms_text>
   </event>
-  <folder_arme name_arme="Task: Dock with SB01 to receive Ceres shuttle" id_arme="e22a17c6-975f-4a55-8482-174e5f1a646a" />
-  <event name_arme="Event: Artemis docks to receive shuttle" id_arme="686f0e72-fc19-45c5-8b93-c15d527f6f16" parent_id_arme="e22a17c6-975f-4a55-8482-174e5f1a646a">
+  <folder_arme name="Task: Dock with SB01 to receive Ceres shuttle" id_arme="e22a17c6-975f-4a55-8482-174e5f1a646a" />
+  <event name="Event: Artemis docks to receive shuttle" id_arme="686f0e72-fc19-45c5-8b93-c15d527f6f16" parent_id_arme="e22a17c6-975f-4a55-8482-174e5f1a646a">
     <if_docked name="SB01" />
     <if_distance name1="Artemis" name2="SB01" comparator="LESS_EQUAL" value="DockedRange" />
     <if_object_property property="shieldMaxStateFront" name="Artemis" comparator="GREATER_EQUAL" value="80.0" />
@@ -825,7 +825,7 @@
     <set_variable name="CeresLocation" value="101.0" />
     <incoming_comms_text from="SB01" type="STATION">Artemis, we have installed the scout shuttle Ceres. Be advised that it is not designed for battle, so we recommend that your Away Team launch it only when you are near the wormhole. (You must select Scout as the type of Ceres in order to launch it.)</incoming_comms_text>
   </event>
-  <event name_arme="Event: Intrepid docks to receive shuttle" id_arme="ddd2ff97-8a83-4538-8ac8-62256da6f597" parent_id_arme="e22a17c6-975f-4a55-8482-174e5f1a646a">
+  <event name="Event: Intrepid docks to receive shuttle" id_arme="ddd2ff97-8a83-4538-8ac8-62256da6f597" parent_id_arme="e22a17c6-975f-4a55-8482-174e5f1a646a">
     <!--Note: if_docked only works for ship 0-->
     <!--<if_docked name="SB01" />-->
     <if_distance name1="Intrepid" name2="SB01" comparator="LESS_EQUAL" value="DockedRange" />
@@ -836,7 +836,7 @@
     <set_variable name="CeresLocation" value="102.0" />
     <incoming_comms_text from="SB01" type="STATION">Intrepid, we have installed the scout shuttle Ceres. Be advised that it is not designed for battle, so we recommend that your Away Team launch it only when you are near the wormhole. (You must select Scout as the type of Ceres in order to launch it.)</incoming_comms_text>
   </event>
-  <event name_arme="Event: Aegis docks to receive shuttle" id_arme="bf2b0e85-4b1a-4a03-8980-ed95b3b64192" parent_id_arme="e22a17c6-975f-4a55-8482-174e5f1a646a">
+  <event name="Event: Aegis docks to receive shuttle" id_arme="bf2b0e85-4b1a-4a03-8980-ed95b3b64192" parent_id_arme="e22a17c6-975f-4a55-8482-174e5f1a646a">
     <if_docked name="SB01" />
     <if_distance name1="Aegis" name2="SB01" comparator="LESS_EQUAL" value="DockedRange" />
     <if_variable name="CeresLocation" comparator="EQUALS" value="58" />
@@ -845,7 +845,7 @@
     <set_variable name="CeresLocation" value="103.0" />
     <incoming_comms_text from="SB01" type="STATION">Aegis, we have installed the scout shuttle Ceres. Be advised that it is not designed for battle, so we recommend that your Away Team launch it only when you are near the wormhole. (You must select Scout as the type of Ceres in order to launch it.)</incoming_comms_text>
   </event>
-  <event name_arme="Failure: SB01 destroyed" id_arme="4257be69-bee3-4b6e-915d-ef1f3c6839bc" parent_id_arme="e22a17c6-975f-4a55-8482-174e5f1a646a">
+  <event name="Failure: SB01 destroyed" id_arme="4257be69-bee3-4b6e-915d-ef1f3c6839bc" parent_id_arme="e22a17c6-975f-4a55-8482-174e5f1a646a">
     <if_variable name="CeresLocation" comparator="LESS" value="100.0" />
     <if_not_exists name="SB01" />
     <if_variable name="GameStatus" comparator="EQUALS" value="1.0" />
@@ -853,7 +853,7 @@
     <incoming_comms_text from="TSN Command" type="SIDE">SB01 was destroyed!</incoming_comms_text>
     <set_variable name="GameStatus" value="0.0" />
   </event>
-  <event name_arme="Failure: Ceres destroyed" id_arme="2a67d4b9-2fde-4df5-a54a-aa795a1ea3d3" parent_id_arme="e22a17c6-975f-4a55-8482-174e5f1a646a">
+  <event name="Failure: Ceres destroyed" id_arme="2a67d4b9-2fde-4df5-a54a-aa795a1ea3d3" parent_id_arme="e22a17c6-975f-4a55-8482-174e5f1a646a">
     <!--CeresLocation: 0=not built, 58=On SB01, 101=Artemis, 102=Intrepid, ..., 200=Launched, 300=Wormhole, 400=Elysia-->
     <if_variable name="CeresLocation" comparator="GREATER_EQUAL" value="200.0" />
     <if_variable name="CeresLocation" comparator="LESS_EQUAL" value="300.0" />
@@ -862,8 +862,8 @@
     <set_variable name="CeresLocation" value="58" />
     <incoming_comms_text from="SB01" type="STATION">You may dock with us again to be refitted with another Ceres class shuttle.</incoming_comms_text>
   </event>
-  <folder_arme name_arme="Task: Ceres launch/dock" id_arme="ac63bab5-e229-42a9-b58f-8a13664fd62f" />
-  <event name_arme="Ceres Launched from Artemis" id_arme="276c0742-929b-47b7-90af-8d4ca4e81a61" parent_id_arme="ac63bab5-e229-42a9-b58f-8a13664fd62f">
+  <folder_arme name="Task: Ceres launch/dock" id_arme="ac63bab5-e229-42a9-b58f-8a13664fd62f" />
+  <event name="Ceres Launched from Artemis" id_arme="276c0742-929b-47b7-90af-8d4ca4e81a61" parent_id_arme="ac63bab5-e229-42a9-b58f-8a13664fd62f">
     <!--CeresLocation: 0=not built, 58=On SB01, 101=Artemis, 102=Intrepid, ..., 200=Launched, 300=Wormhole, 400=Elysia-->
     <if_variable name="CeresLocation" comparator="EQUALS" value="101.0" />
     <if_exists name="Ceres" />
@@ -873,7 +873,7 @@
     <set_variable name="CeresLocation" value="200.0" />
     <incoming_comms_text from="Internal Comms - Shuttle Bay" type="PLAYER">Ceres has launched from Artemis.  Ceres can dock in the shuttle bay of another ship whose shields are dropped.  To dock, come to range 150 and put throttle in neutral.</incoming_comms_text>
   </event>
-  <event name_arme="Ceres Launched from Intrepid" id_arme="cc55cea6-e2bb-48df-8e01-7c6cbe869170" parent_id_arme="ac63bab5-e229-42a9-b58f-8a13664fd62f">
+  <event name="Ceres Launched from Intrepid" id_arme="cc55cea6-e2bb-48df-8e01-7c6cbe869170" parent_id_arme="ac63bab5-e229-42a9-b58f-8a13664fd62f">
     <!--CeresLocation: 0=not built, 58=On SB01, 101=Artemis, 102=Intrepid, ..., 200=Launched, 300=Wormhole, 400=Elysia-->
     <if_variable name="CeresLocation" comparator="EQUALS" value="102.0" />
     <if_exists name="Ceres" />
@@ -883,7 +883,7 @@
     <set_variable name="CeresLocation" value="200.0" />
     <incoming_comms_text from="Internal Comms - Shuttle Bay" type="PLAYER">Ceres has launched from Intrepid.  Ceres can dock in the shuttle bay of another ship whose shields are dropped.  To dock, come to range 150 and put throttle in neutral.</incoming_comms_text>
   </event>
-  <event name_arme="Ceres Launched from Aegis" id_arme="1663610e-ffc4-4425-988a-54d37da0c1e5" parent_id_arme="ac63bab5-e229-42a9-b58f-8a13664fd62f">
+  <event name="Ceres Launched from Aegis" id_arme="1663610e-ffc4-4425-988a-54d37da0c1e5" parent_id_arme="ac63bab5-e229-42a9-b58f-8a13664fd62f">
     <!--CeresLocation: 0=not built, 58=On SB01, 101=Artemis, 102=Intrepid, ..., 200=Launched, 300=Wormhole, 400=Elysia-->
     <if_variable name="CeresLocation" comparator="EQUALS" value="102.0" />
     <if_exists name="Ceres" />
@@ -893,7 +893,7 @@
     <set_variable name="CeresLocation" value="200.0" />
     <incoming_comms_text from="Internal Comms - Shuttle Bay" type="PLAYER">Ceres has launched from Aegis.  Ceres can dock in the shuttle bay of another ship whose shields are dropped.  To dock, come to range 150 and put throttle in neutral.</incoming_comms_text>
   </event>
-  <disabled_event name_arme="UNUSED: Near Artemis" id_arme="580cba2b-3228-4f14-8385-8b22ea93790c" parent_id_arme="ac63bab5-e229-42a9-b58f-8a13664fd62f">
+  <disabled_event name="UNUSED: Near Artemis" id_arme="580cba2b-3228-4f14-8385-8b22ea93790c" parent_id_arme="ac63bab5-e229-42a9-b58f-8a13664fd62f">
     <!--..... These events are unused by are here since some variation will likely be used with the next version of Artemis.-->
     <if_variable name="Unused" comparator="EQUALS" value="1.0" />
     <if_distance name1="Ceres" name2="Artemis" comparator="LESS_EQUAL" value="CeresDockRange" />
@@ -904,7 +904,7 @@
     <set_variable name="WatchingDockKeys" value="1.0" />
     <set_variable name="DisplayedArtemisRangeMsg" value="1.0" />
   </disabled_event>
-  <disabled_event name_arme="UNUSED: Near Intrepid" id_arme="a768b85d-5896-4440-8da5-bbda40060193" parent_id_arme="ac63bab5-e229-42a9-b58f-8a13664fd62f">
+  <disabled_event name="UNUSED: Near Intrepid" id_arme="a768b85d-5896-4440-8da5-bbda40060193" parent_id_arme="ac63bab5-e229-42a9-b58f-8a13664fd62f">
     <!--..... These events are unused by are here since some variation will likely be used with the next version of Artemis.-->
     <if_variable name="Unused" comparator="EQUALS" value="1.0" />
     <if_distance name1="Ceres" name2="Intrepid" comparator="LESS_EQUAL" value="CeresDockRange" />
@@ -915,7 +915,7 @@
     <set_variable name="WatchingDockKeys" value="1.0" />
     <set_variable name="DisplayedIntrepidRangeMsg" value="1.0" />
   </disabled_event>
-  <disabled_event name_arme="UNUSED: Left Artemis" id_arme="9b8f96b6-e69c-47ec-a95b-0eadfa27163a" parent_id_arme="ac63bab5-e229-42a9-b58f-8a13664fd62f">
+  <disabled_event name="UNUSED: Left Artemis" id_arme="9b8f96b6-e69c-47ec-a95b-0eadfa27163a" parent_id_arme="ac63bab5-e229-42a9-b58f-8a13664fd62f">
     <!--..... These events are unused by are here since some variation will likely be used with the next version of Artemis.-->
     <if_variable name="Unused" comparator="EQUALS" value="1.0" />
     <if_distance name1="Ceres" name2="Artemis" comparator="GREATER" value="CeresDockRange+100" />
@@ -923,7 +923,7 @@
     <log text="Ceres left Artemis area" />
     <set_variable name="DisplayedArtemisRangeMsg" value="0.0" />
   </disabled_event>
-  <disabled_event name_arme="UNUSED: Left Intrepid" id_arme="420c58a9-5328-472e-9017-a621091b4d74" parent_id_arme="ac63bab5-e229-42a9-b58f-8a13664fd62f">
+  <disabled_event name="UNUSED: Left Intrepid" id_arme="420c58a9-5328-472e-9017-a621091b4d74" parent_id_arme="ac63bab5-e229-42a9-b58f-8a13664fd62f">
     <!--..... These events are unused by are here since some variation will likely be used with the next version of Artemis.-->
     <if_variable name="Unused" comparator="EQUALS" value="1.0" />
     <if_distance name1="Ceres" name2="Intrepid" comparator="GREATER" value="CeresDockRange+100" />
@@ -931,7 +931,7 @@
     <log text="Ceres left Intrepid area" />
     <set_variable name="DisplayedIntrepidRangeMsg" value="0.0" />
   </disabled_event>
-  <disabled_event name_arme="UNUSED: Left All" id_arme="2dffd081-3c80-4472-9d10-e72c3f42b390" parent_id_arme="ac63bab5-e229-42a9-b58f-8a13664fd62f">
+  <disabled_event name="UNUSED: Left All" id_arme="2dffd081-3c80-4472-9d10-e72c3f42b390" parent_id_arme="ac63bab5-e229-42a9-b58f-8a13664fd62f">
     <!--..... These events are unused by are here since some variation will likely be used with the next version of Artemis.-->
     <if_variable name="Unused" comparator="EQUALS" value="1.0" />
     <if_distance name1="Ceres" name2="Artemis" comparator="GREATER" value="CeresDockRange" />
@@ -941,7 +941,7 @@
     <start_getting_keypresses_from consoles="C" />
     <set_variable name="WatchingDockKeys" value="0.0" />
   </disabled_event>
-  <disabled_event name_arme="UNUSED: Request dock with Artemis" id_arme="40e840c9-1c90-4b0f-8072-4bc8c2d51995" parent_id_arme="ac63bab5-e229-42a9-b58f-8a13664fd62f">
+  <disabled_event name="UNUSED: Request dock with Artemis" id_arme="40e840c9-1c90-4b0f-8072-4bc8c2d51995" parent_id_arme="ac63bab5-e229-42a9-b58f-8a13664fd62f">
     <!--..... These events are unused by are here since some variation will likely be used with the next version of Artemis.-->
     <if_variable name="Unused" comparator="EQUALS" value="1.0" />
     <if_distance name1="Ceres" name2="Artemis" comparator="LESS_EQUAL" value="CeresDockRange" />
@@ -955,7 +955,7 @@
     <end_getting_keypresses_from consoles="H" />
     <start_getting_keypresses_from consoles="C" />
   </disabled_event>
-  <disabled_event name_arme="UNUSED: Request dock with Intrepid" id_arme="ea419ab7-9bb2-4622-bd6f-7d882d1c02a8" parent_id_arme="ac63bab5-e229-42a9-b58f-8a13664fd62f">
+  <disabled_event name="UNUSED: Request dock with Intrepid" id_arme="ea419ab7-9bb2-4622-bd6f-7d882d1c02a8" parent_id_arme="ac63bab5-e229-42a9-b58f-8a13664fd62f">
     <!--..... These events are unused by are here since some variation will likely be used with the next version of Artemis.-->
     <if_variable name="Unused" comparator="EQUALS" value="1.0" />
     <if_distance name1="Ceres" name2="Intrepid" comparator="LESS_EQUAL" value="CeresDockRange" />
@@ -969,7 +969,7 @@
     <end_getting_keypresses_from consoles="H" />
     <start_getting_keypresses_from consoles="C" />
   </disabled_event>
-  <disabled_event name_arme="UNUSED: Dock with Artemis" id_arme="4be75056-9161-49b0-8c98-48170053057c" parent_id_arme="ac63bab5-e229-42a9-b58f-8a13664fd62f">
+  <disabled_event name="UNUSED: Dock with Artemis" id_arme="4be75056-9161-49b0-8c98-48170053057c" parent_id_arme="ac63bab5-e229-42a9-b58f-8a13664fd62f">
     <!--..... These events are unused by are here since some variation will likely be used with the next version of Artemis.-->
     <if_variable name="Unused" comparator="EQUALS" value="1.0" />
     <!--CeresLocation: 0=not built, 58=On SB01, 101=Artemis, 102=Intrepid, ..., 200=Launched, 300=Wormhole, 400=Elysia-->
@@ -984,7 +984,7 @@
     <incoming_comms_text from="Internal Comms - Shuttle Bay" type="PLAYER">Ceres has docked with Artemis.</incoming_comms_text>
     <warning_popup_message message="L = Launch Ceres" consoles="C" player_slot="0" />
   </disabled_event>
-  <disabled_event name_arme="UNUSED: Dock with Intrepid" id_arme="303cf5b4-3de5-478e-908c-8430c4cfd02c" parent_id_arme="ac63bab5-e229-42a9-b58f-8a13664fd62f">
+  <disabled_event name="UNUSED: Dock with Intrepid" id_arme="303cf5b4-3de5-478e-908c-8430c4cfd02c" parent_id_arme="ac63bab5-e229-42a9-b58f-8a13664fd62f">
     <!--..... These events are unused by are here since some variation will likely be used with the next version of Artemis.-->
     <if_variable name="Unused" comparator="EQUALS" value="1.0" />
     <!--CeresLocation: 0=not built, 58=On SB01, 101=Artemis, 102=Intrepid, ..., 200=Launched, 300=Wormhole, 400=Elysia-->
@@ -999,7 +999,7 @@
     <incoming_comms_text from="Internal Comms - Shuttle Bay" type="PLAYER">Ceres has docked with Intrepid.</incoming_comms_text>
     <warning_popup_message message="L = Launch Ceres" consoles="C" player_slot="1" />
   </disabled_event>
-  <event name_arme="Auto-Dock with Artemis" id_arme="76d0af60-cae2-4f10-b175-52b4cb55a12a" parent_id_arme="ac63bab5-e229-42a9-b58f-8a13664fd62f">
+  <event name="Auto-Dock with Artemis" id_arme="76d0af60-cae2-4f10-b175-52b4cb55a12a" parent_id_arme="ac63bab5-e229-42a9-b58f-8a13664fd62f">
     <!--CeresLocation: 0=not built, 58=On SB01, 101=Artemis, 102=Intrepid, ..., 200=Launched, 300=Wormhole, 400=Elysia-->
     <if_distance name1="Ceres" name2="Artemis" comparator="LESS_EQUAL" value="CeresDockRange" />
     <if_object_property property="shieldsOn" name="Artemis" comparator="EQUALS" value="0.0" />
@@ -1014,7 +1014,7 @@
     <incoming_comms_text from="Internal Comms - Shuttle Bay" type="PLAYER">Ceres has docked with Artemis. Ceres can be launched again at any time.</incoming_comms_text>
     <destroy name="Ceres" />
   </event>
-  <event name_arme="Auto-Dock with Intrepid" id_arme="e46e1efc-b41f-4ef1-b664-48bc310d69e7" parent_id_arme="ac63bab5-e229-42a9-b58f-8a13664fd62f">
+  <event name="Auto-Dock with Intrepid" id_arme="e46e1efc-b41f-4ef1-b664-48bc310d69e7" parent_id_arme="ac63bab5-e229-42a9-b58f-8a13664fd62f">
     <!--CeresLocation: 0=not built, 58=On SB01, 101=Artemis, 102=Intrepid, ..., 200=Launched, 300=Wormhole, 400=Elysia-->
     <if_distance name1="Ceres" name2="Intrepid" comparator="LESS_EQUAL" value="CeresDockRange" />
     <if_object_property property="shieldsOn" name="Intrepid" comparator="EQUALS" value="0.0" />
@@ -1029,7 +1029,7 @@
     <incoming_comms_text from="Internal Comms - Shuttle Bay" type="PLAYER">Ceres has docked with Intrepid. Ceres can be launched again at any time.</incoming_comms_text>
     <destroy name="Ceres" />
   </event>
-  <event name_arme="Auto-Dock with Aegis" id_arme="b6c38362-e9fc-4b56-807d-ae963b7916ea" parent_id_arme="ac63bab5-e229-42a9-b58f-8a13664fd62f">
+  <event name="Auto-Dock with Aegis" id_arme="b6c38362-e9fc-4b56-807d-ae963b7916ea" parent_id_arme="ac63bab5-e229-42a9-b58f-8a13664fd62f">
     <!--CeresLocation: 0=not built, 58=On SB01, 101=Artemis, 102=Intrepid, ..., 200=Launched, 300=Wormhole, 400=Elysia-->
     <if_distance name1="Ceres" name2="Aegis" comparator="LESS_EQUAL" value="CeresDockRange" />
     <if_object_property property="shieldsOn" name="Aegis" comparator="EQUALS" value="0.0" />
@@ -1044,194 +1044,194 @@
     <incoming_comms_text from="Internal Comms - Shuttle Bay" type="PLAYER">Ceres has docked with Aegis. Ceres can be launched again at any time.</incoming_comms_text>
     <destroy name="Ceres" />
   </event>
-  <folder_arme name_arme="Realm: Artemis at Wormhole" id_arme="13c61707-a8d2-4e51-8b1f-b43e332d0ab5" />
-  <event name_arme="Proximity Alert" id_arme="f0d2db3f-8e03-4e0f-b244-2de1b35fad6a" parent_id_arme="13c61707-a8d2-4e51-8b1f-b43e332d0ab5">
+  <folder_arme name="Realm: Artemis at Wormhole" id_arme="13c61707-a8d2-4e51-8b1f-b43e332d0ab5" />
+  <event name="Proximity Alert" id_arme="f0d2db3f-8e03-4e0f-b244-2de1b35fad6a" parent_id_arme="13c61707-a8d2-4e51-8b1f-b43e332d0ab5">
     <if_variable name="ArtemisWormholeAlert" comparator="EQUALS" value="0.0" />
     <if_distance name1="Artemis" name2="Wormhole" comparator="LESS" value="WormholeGravityRadius" />
     <log text="Artemis: Wormhole proximity alert" />
     <warning_popup_message message="Artemis: Gravity well hazard. Proceed cautiously." consoles="S" player_slot="0" />
     <set_variable name="ArtemisWormholeAlert" value="1.0" />
   </event>
-  <event name_arme="Collision Alert" id_arme="3b54d2e1-d457-49fc-9798-9613ac435975" parent_id_arme="13c61707-a8d2-4e51-8b1f-b43e332d0ab5">
+  <event name="Collision Alert" id_arme="3b54d2e1-d457-49fc-9798-9613ac435975" parent_id_arme="13c61707-a8d2-4e51-8b1f-b43e332d0ab5">
     <if_variable name="ArtemisWormholeAlert" comparator="LESS_EQUAL" value="1.0" />
     <if_distance name1="Artemis" name2="Wormhole" comparator="LESS" value="WormholeWarningRadius" />
     <log text="Artemis: Wormhole collision alert" />
     <warning_popup_message message="Danger! Artemis approaching event horizon!" consoles="H" player_slot="0" />
     <set_variable name="ArtemisWormholeAlert" value="2.0" />
   </event>
-  <event name_arme="Clear Collision Alert" id_arme="cc24ea6a-2df6-42f3-b450-7f55cad5dc88" parent_id_arme="13c61707-a8d2-4e51-8b1f-b43e332d0ab5">
+  <event name="Clear Collision Alert" id_arme="cc24ea6a-2df6-42f3-b450-7f55cad5dc88" parent_id_arme="13c61707-a8d2-4e51-8b1f-b43e332d0ab5">
     <if_variable name="ArtemisWormholeAlert" comparator="GREATER_EQUAL" value="2.0" />
     <if_distance name1="Artemis" name2="Wormhole" comparator="GREATER" value="WormholeWarningRadius" />
     <log text="Artemis: Wormhole event horizon averted" />
     <set_variable name="ArtemisWormholeAlert" value="1.0" />
   </event>
-  <event name_arme="Clear Proximity Alert" id_arme="a610d9b1-aa7a-4856-9011-f9dd8f349623" parent_id_arme="13c61707-a8d2-4e51-8b1f-b43e332d0ab5">
+  <event name="Clear Proximity Alert" id_arme="a610d9b1-aa7a-4856-9011-f9dd8f349623" parent_id_arme="13c61707-a8d2-4e51-8b1f-b43e332d0ab5">
     <if_variable name="ArtemisWormholeAlert" comparator="GREATER_EQUAL" value="1" />
     <if_distance name1="Artemis" name2="Wormhole" comparator="GREATER" value="WormholeGravityRadius" />
     <log text="Artemis: Wormhole proximity avoided" />
     <set_variable name="ArtemisWormholeAlert" value="0" />
   </event>
-  <event name_arme="Loss of Ship Control X" id_arme="26c951b8-3bc2-4be5-b4d9-38c6ba80b5ef" parent_id_arme="13c61707-a8d2-4e51-8b1f-b43e332d0ab5">
+  <event name="Loss of Ship Control X" id_arme="26c951b8-3bc2-4be5-b4d9-38c6ba80b5ef" parent_id_arme="13c61707-a8d2-4e51-8b1f-b43e332d0ab5">
     <if_distance name1="Artemis" name2="Wormhole" comparator="LESS_EQUAL" value="WormholeGravityRadius" />
     <if_object_property property="positionX" name="Artemis" comparator="LESS" value="WormholeX" />
     <addto_object_property value="WormholeGravity" property="positionX" name="Artemis" />
   </event>
-  <event name_arme="Loss of Ship Control X" id_arme="55a04160-8859-4854-9c96-512024f994ba" parent_id_arme="13c61707-a8d2-4e51-8b1f-b43e332d0ab5">
+  <event name="Loss of Ship Control X" id_arme="55a04160-8859-4854-9c96-512024f994ba" parent_id_arme="13c61707-a8d2-4e51-8b1f-b43e332d0ab5">
     <if_distance name1="Artemis" name2="Wormhole" comparator="LESS_EQUAL" value="WormholeGravityRadius" />
     <if_object_property property="positionX" name="Artemis" comparator="GREATER" value="WormholeX" />
     <addto_object_property value="-WormholeGravity" property="positionX" name="Artemis" />
   </event>
-  <event name_arme="Loss of Ship Control Z" id_arme="0135193a-4c58-4e22-bb64-6cb281745580" parent_id_arme="13c61707-a8d2-4e51-8b1f-b43e332d0ab5">
+  <event name="Loss of Ship Control Z" id_arme="0135193a-4c58-4e22-bb64-6cb281745580" parent_id_arme="13c61707-a8d2-4e51-8b1f-b43e332d0ab5">
     <if_distance name1="Artemis" name2="Wormhole" comparator="LESS_EQUAL" value="WormholeGravityRadius" />
     <if_object_property property="positionZ" name="Artemis" comparator="LESS" value="WormholeZ" />
     <addto_object_property value="WormholeGravity" property="positionZ" name="Artemis" />
   </event>
-  <event name_arme="Loss of Ship Control Z" id_arme="891c633d-ae10-4242-9afb-ce01301532ca" parent_id_arme="13c61707-a8d2-4e51-8b1f-b43e332d0ab5">
+  <event name="Loss of Ship Control Z" id_arme="891c633d-ae10-4242-9afb-ce01301532ca" parent_id_arme="13c61707-a8d2-4e51-8b1f-b43e332d0ab5">
     <if_distance name1="Artemis" name2="Wormhole" comparator="LESS_EQUAL" value="WormholeGravityRadius" />
     <if_object_property property="positionZ" name="Artemis" comparator="GREATER" value="WormholeZ" />
     <addto_object_property value="-WormholeGravity" property="positionZ" name="Artemis" />
   </event>
-  <event name_arme="Loss of Ship Control Y" id_arme="81f10cc8-41c6-482f-982b-c6f36986426c" parent_id_arme="13c61707-a8d2-4e51-8b1f-b43e332d0ab5">
+  <event name="Loss of Ship Control Y" id_arme="81f10cc8-41c6-482f-982b-c6f36986426c" parent_id_arme="13c61707-a8d2-4e51-8b1f-b43e332d0ab5">
     <if_distance name1="Artemis" name2="Wormhole" comparator="LESS_EQUAL" value="WormholeGravityRadius" />
     <if_object_property property="positionY" name="Artemis" comparator="LESS" value="WormholeY" />
     <addto_object_property value="WormholeGravity" property="positionY" name="Artemis" />
   </event>
-  <event name_arme="Loss of Ship Control Y" id_arme="dfd7f1f2-f896-420e-b27a-01c8e045de1b" parent_id_arme="13c61707-a8d2-4e51-8b1f-b43e332d0ab5">
+  <event name="Loss of Ship Control Y" id_arme="dfd7f1f2-f896-420e-b27a-01c8e045de1b" parent_id_arme="13c61707-a8d2-4e51-8b1f-b43e332d0ab5">
     <if_distance name1="Artemis" name2="Wormhole" comparator="LESS_EQUAL" value="WormholeGravityRadius" />
     <if_object_property property="positionY" name="Artemis" comparator="GREATER" value="WormholeY" />
     <addto_object_property value="-WormholeGravity" property="positionY" name="Artemis" />
   </event>
-  <event name_arme="Collision Death" id_arme="fc70fe3e-a457-43f0-a576-3e800ddf4c21" parent_id_arme="13c61707-a8d2-4e51-8b1f-b43e332d0ab5">
+  <event name="Collision Death" id_arme="fc70fe3e-a457-43f0-a576-3e800ddf4c21" parent_id_arme="13c61707-a8d2-4e51-8b1f-b43e332d0ab5">
     <if_distance name1="Artemis" name2="Wormhole" comparator="LESS_EQUAL" value="WormholeRadius" />
     <log text="Artemis destroyed in wormhole" />
     <destroy name="Artemis" />
   </event>
-  <folder_arme name_arme="Realm: Intrepid at Wormhole" id_arme="a9771b81-53f4-4210-82bf-94679d0d4a2e" />
-  <event name_arme="Proximity Alert" id_arme="ef3d0d2b-845e-4620-8ca5-08eaf12b17ba" parent_id_arme="a9771b81-53f4-4210-82bf-94679d0d4a2e">
+  <folder_arme name="Realm: Intrepid at Wormhole" id_arme="a9771b81-53f4-4210-82bf-94679d0d4a2e" />
+  <event name="Proximity Alert" id_arme="ef3d0d2b-845e-4620-8ca5-08eaf12b17ba" parent_id_arme="a9771b81-53f4-4210-82bf-94679d0d4a2e">
     <if_variable name="IntrepidWormholeAlert" comparator="EQUALS" value="0" />
     <if_distance name1="Intrepid" name2="Wormhole" comparator="LESS" value="WormholeGravityRadius" />
     <log text="Intrepid: Wormhole proximity alert" />
     <warning_popup_message message="Intrepid: Gravity well hazard. Proceed cautiously." consoles="S" player_slot="1" />
     <set_variable name="IntrepidWormholeAlert" value="1" />
   </event>
-  <event name_arme="Collision Alert" id_arme="5dabcdc0-60ff-45b2-af58-73c676d6520c" parent_id_arme="a9771b81-53f4-4210-82bf-94679d0d4a2e">
+  <event name="Collision Alert" id_arme="5dabcdc0-60ff-45b2-af58-73c676d6520c" parent_id_arme="a9771b81-53f4-4210-82bf-94679d0d4a2e">
     <if_variable name="IntrepidWormholeAlert" comparator="LESS_EQUAL" value="1.0" />
     <if_distance name1="Intrepid" name2="Wormhole" comparator="LESS" value="WormholeWarningRadius" />
     <log text="Intrepid: Wormhole collision alert" />
     <warning_popup_message message="Danger! Intrepid approaching event horizon!" consoles="H" player_slot="1" />
     <set_variable name="IntrepidWormholeAlert" value="2.0" />
   </event>
-  <event name_arme="Clear Collision Alert" id_arme="5f7b3eea-69c8-4bba-9968-19fe5a49fc2f" parent_id_arme="a9771b81-53f4-4210-82bf-94679d0d4a2e">
+  <event name="Clear Collision Alert" id_arme="5f7b3eea-69c8-4bba-9968-19fe5a49fc2f" parent_id_arme="a9771b81-53f4-4210-82bf-94679d0d4a2e">
     <if_variable name="IntrepidWormholeAlert" comparator="GREATER_EQUAL" value="2.0" />
     <if_distance name1="Intrepid" name2="Wormhole" comparator="GREATER" value="WormholeWarningRadius" />
     <log text="Intrepid: Wormhole event horizon averted" />
     <set_variable name="IntrepidWormholeAlert" value="1.0" />
   </event>
-  <event name_arme="Clear Proximity Alert" id_arme="ce075811-0b7c-4c80-8101-60c2ff807a2d" parent_id_arme="a9771b81-53f4-4210-82bf-94679d0d4a2e">
+  <event name="Clear Proximity Alert" id_arme="ce075811-0b7c-4c80-8101-60c2ff807a2d" parent_id_arme="a9771b81-53f4-4210-82bf-94679d0d4a2e">
     <if_variable name="IntrepidWormholeAlert" comparator="GREATER_EQUAL" value="1" />
     <if_distance name1="Intrepid" name2="Wormhole" comparator="GREATER" value="WormholeGravityRadius" />
     <log text="Intrepid: Wormhole proximity avoided" />
     <set_variable name="IntrepidWormholeAlert" value="0" />
   </event>
-  <event name_arme="Loss of Ship Control X" id_arme="31533c2c-677b-4932-b367-1ee7eb7d7eba" parent_id_arme="a9771b81-53f4-4210-82bf-94679d0d4a2e">
+  <event name="Loss of Ship Control X" id_arme="31533c2c-677b-4932-b367-1ee7eb7d7eba" parent_id_arme="a9771b81-53f4-4210-82bf-94679d0d4a2e">
     <if_distance name1="Intrepid" name2="Wormhole" comparator="LESS_EQUAL" value="WormholeGravityRadius" />
     <if_object_property property="positionX" name="Intrepid" comparator="LESS" value="WormholeX" />
     <addto_object_property value="WormholeGravity" property="positionX" name="Intrepid" />
   </event>
-  <event name_arme="Loss of Ship Control X" id_arme="e211464c-ef3b-4497-be89-5f59df0b8d1d" parent_id_arme="a9771b81-53f4-4210-82bf-94679d0d4a2e">
+  <event name="Loss of Ship Control X" id_arme="e211464c-ef3b-4497-be89-5f59df0b8d1d" parent_id_arme="a9771b81-53f4-4210-82bf-94679d0d4a2e">
     <if_distance name1="Intrepid" name2="Wormhole" comparator="LESS_EQUAL" value="WormholeGravityRadius" />
     <if_object_property property="positionX" name="Intrepid" comparator="GREATER" value="WormholeX" />
     <addto_object_property value="-WormholeGravity" property="positionX" name="Intrepid" />
   </event>
-  <event name_arme="Loss of Ship Control Z" id_arme="209a0120-baa2-4bf3-8161-c0719448de50" parent_id_arme="a9771b81-53f4-4210-82bf-94679d0d4a2e">
+  <event name="Loss of Ship Control Z" id_arme="209a0120-baa2-4bf3-8161-c0719448de50" parent_id_arme="a9771b81-53f4-4210-82bf-94679d0d4a2e">
     <if_distance name1="Intrepid" name2="Wormhole" comparator="LESS_EQUAL" value="WormholeGravityRadius" />
     <if_object_property property="positionZ" name="Intrepid" comparator="LESS" value="WormholeZ" />
     <addto_object_property value="WormholeGravity" property="positionZ" name="Intrepid" />
   </event>
-  <event name_arme="Loss of Ship Control Z" id_arme="ad40d9e8-e775-4ce9-a882-f2059f66b1d8" parent_id_arme="a9771b81-53f4-4210-82bf-94679d0d4a2e">
+  <event name="Loss of Ship Control Z" id_arme="ad40d9e8-e775-4ce9-a882-f2059f66b1d8" parent_id_arme="a9771b81-53f4-4210-82bf-94679d0d4a2e">
     <if_distance name1="Intrepid" name2="Wormhole" comparator="LESS_EQUAL" value="WormholeGravityRadius" />
     <if_object_property property="positionZ" name="Intrepid" comparator="GREATER" value="WormholeZ" />
     <addto_object_property value="-WormholeGravity" property="positionZ" name="Intrepid" />
   </event>
-  <event name_arme="Loss of Ship Control Y" id_arme="721b1631-825b-4e28-ad74-5b41275a75e7" parent_id_arme="a9771b81-53f4-4210-82bf-94679d0d4a2e">
+  <event name="Loss of Ship Control Y" id_arme="721b1631-825b-4e28-ad74-5b41275a75e7" parent_id_arme="a9771b81-53f4-4210-82bf-94679d0d4a2e">
     <if_distance name1="Intrepid" name2="Wormhole" comparator="LESS_EQUAL" value="WormholeGravityRadius" />
     <if_object_property property="positionY" name="Intrepid" comparator="LESS" value="WormholeY" />
     <addto_object_property value="WormholeGravity" property="positionY" name="Intrepid" />
   </event>
-  <event name_arme="Loss of Ship Control Y" id_arme="8532dfb3-6c1a-49d7-ba0b-c5c05c6a2ccb" parent_id_arme="a9771b81-53f4-4210-82bf-94679d0d4a2e">
+  <event name="Loss of Ship Control Y" id_arme="8532dfb3-6c1a-49d7-ba0b-c5c05c6a2ccb" parent_id_arme="a9771b81-53f4-4210-82bf-94679d0d4a2e">
     <if_distance name1="Intrepid" name2="Wormhole" comparator="LESS_EQUAL" value="WormholeGravityRadius" />
     <if_object_property property="positionY" name="Intrepid" comparator="GREATER" value="WormholeY" />
     <addto_object_property value="-WormholeGravity" property="positionY" name="Intrepid" />
   </event>
-  <event name_arme="Collision Death" id_arme="1d388d87-a539-453f-8212-e72b082c8337" parent_id_arme="a9771b81-53f4-4210-82bf-94679d0d4a2e">
+  <event name="Collision Death" id_arme="1d388d87-a539-453f-8212-e72b082c8337" parent_id_arme="a9771b81-53f4-4210-82bf-94679d0d4a2e">
     <if_distance name1="Intrepid" name2="Wormhole" comparator="LESS_EQUAL" value="WormholeRadius" />
     <log text="Intrepid destroyed in wormhole" />
     <destroy name="Intrepid" />
   </event>
-  <folder_arme name_arme="Realm: Aegis at Wormhole" id_arme="cded66b3-8f12-4ceb-8c8b-39acf83c416a" />
-  <event name_arme="Proximity Alert" id_arme="e7d833d2-fea6-4d3b-841a-1b1318fcdb1d" parent_id_arme="cded66b3-8f12-4ceb-8c8b-39acf83c416a">
+  <folder_arme name="Realm: Aegis at Wormhole" id_arme="cded66b3-8f12-4ceb-8c8b-39acf83c416a" />
+  <event name="Proximity Alert" id_arme="e7d833d2-fea6-4d3b-841a-1b1318fcdb1d" parent_id_arme="cded66b3-8f12-4ceb-8c8b-39acf83c416a">
     <if_variable name="AegisWormholeAlert" comparator="EQUALS" value="0" />
     <if_distance name1="Aegis" name2="Wormhole" comparator="LESS" value="WormholeGravityRadius" />
     <log text="Aegis: Wormhole proximity alert" />
     <warning_popup_message message="Aegis: Gravity well hazard. Proceed cautiously." consoles="S" player_slot="2" />
     <set_variable name="AegisWormholeAlert" value="1" />
   </event>
-  <event name_arme="Collision Alert" id_arme="0f161913-0ea7-4fa2-b887-09e12520fbcd" parent_id_arme="cded66b3-8f12-4ceb-8c8b-39acf83c416a">
+  <event name="Collision Alert" id_arme="0f161913-0ea7-4fa2-b887-09e12520fbcd" parent_id_arme="cded66b3-8f12-4ceb-8c8b-39acf83c416a">
     <if_variable name="AegisWormholeAlert" comparator="LESS_EQUAL" value="1.0" />
     <if_distance name1="Aegis" name2="Wormhole" comparator="LESS" value="WormholeWarningRadius" />
     <log text="Aegis: Wormhole collision alert" />
     <warning_popup_message message="Danger! Aegis approaching event horizon!" consoles="H" player_slot="2" />
     <set_variable name="AegisWormholeAlert" value="2.0" />
   </event>
-  <event name_arme="Clear Collision Alert" id_arme="eabdbc9c-8f27-4429-858d-4ba0422b3ced" parent_id_arme="cded66b3-8f12-4ceb-8c8b-39acf83c416a">
+  <event name="Clear Collision Alert" id_arme="eabdbc9c-8f27-4429-858d-4ba0422b3ced" parent_id_arme="cded66b3-8f12-4ceb-8c8b-39acf83c416a">
     <if_variable name="AegisWormholeAlert" comparator="GREATER_EQUAL" value="2.0" />
     <if_distance name1="Aegis" name2="Wormhole" comparator="GREATER" value="WormholeWarningRadius" />
     <log text="Aegis: Wormhole event horizon averted" />
     <set_variable name="AegisWormholeAlert" value="1.0" />
   </event>
-  <event name_arme="Clear Proximity Alert" id_arme="e6732ce2-f2d4-4c3f-a362-1013db459f2b" parent_id_arme="cded66b3-8f12-4ceb-8c8b-39acf83c416a">
+  <event name="Clear Proximity Alert" id_arme="e6732ce2-f2d4-4c3f-a362-1013db459f2b" parent_id_arme="cded66b3-8f12-4ceb-8c8b-39acf83c416a">
     <if_variable name="AegisWormholeAlert" comparator="GREATER_EQUAL" value="1" />
     <if_distance name1="Aegis" name2="Wormhole" comparator="GREATER" value="WormholeGravityRadius" />
     <log text="Aegis: Wormhole proximity avoided" />
     <set_variable name="AegisWormholeAlert" value="0" />
   </event>
-  <event name_arme="Loss of Ship Control X" id_arme="3a95cf3e-259c-4c19-a1a8-439b57fb7f5d" parent_id_arme="cded66b3-8f12-4ceb-8c8b-39acf83c416a">
+  <event name="Loss of Ship Control X" id_arme="3a95cf3e-259c-4c19-a1a8-439b57fb7f5d" parent_id_arme="cded66b3-8f12-4ceb-8c8b-39acf83c416a">
     <if_distance name1="Aegis" name2="Wormhole" comparator="LESS_EQUAL" value="WormholeGravityRadius" />
     <if_object_property property="positionX" name="Aegis" comparator="LESS" value="WormholeX" />
     <addto_object_property value="WormholeGravity" property="positionX" name="Aegis" />
   </event>
-  <event name_arme="Loss of Ship Control X" id_arme="f17826c1-4f86-4444-b869-41691a3ddda7" parent_id_arme="cded66b3-8f12-4ceb-8c8b-39acf83c416a">
+  <event name="Loss of Ship Control X" id_arme="f17826c1-4f86-4444-b869-41691a3ddda7" parent_id_arme="cded66b3-8f12-4ceb-8c8b-39acf83c416a">
     <if_distance name1="Aegis" name2="Wormhole" comparator="LESS_EQUAL" value="WormholeGravityRadius" />
     <if_object_property property="positionX" name="Aegis" comparator="GREATER" value="WormholeX" />
     <addto_object_property value="-WormholeGravity" property="positionX" name="Aegis" />
   </event>
-  <event name_arme="Loss of Ship Control Z" id_arme="4bba9ec6-da4a-4990-8120-d23cda28b585" parent_id_arme="cded66b3-8f12-4ceb-8c8b-39acf83c416a">
+  <event name="Loss of Ship Control Z" id_arme="4bba9ec6-da4a-4990-8120-d23cda28b585" parent_id_arme="cded66b3-8f12-4ceb-8c8b-39acf83c416a">
     <if_distance name1="Aegis" name2="Wormhole" comparator="LESS_EQUAL" value="WormholeGravityRadius" />
     <if_object_property property="positionZ" name="Aegis" comparator="LESS" value="WormholeZ" />
     <addto_object_property value="WormholeGravity" property="positionZ" name="Aegis" />
   </event>
-  <event name_arme="Loss of Ship Control Z" id_arme="f868860f-caf6-4161-b483-117aedde94b2" parent_id_arme="cded66b3-8f12-4ceb-8c8b-39acf83c416a">
+  <event name="Loss of Ship Control Z" id_arme="f868860f-caf6-4161-b483-117aedde94b2" parent_id_arme="cded66b3-8f12-4ceb-8c8b-39acf83c416a">
     <if_distance name1="Aegis" name2="Wormhole" comparator="LESS_EQUAL" value="WormholeGravityRadius" />
     <if_object_property property="positionZ" name="Aegis" comparator="GREATER" value="WormholeZ" />
     <addto_object_property value="-WormholeGravity" property="positionZ" name="Aegis" />
   </event>
-  <event name_arme="Loss of Ship Control Y" id_arme="e8b94e90-6bb5-476f-973b-102d626551c9" parent_id_arme="cded66b3-8f12-4ceb-8c8b-39acf83c416a">
+  <event name="Loss of Ship Control Y" id_arme="e8b94e90-6bb5-476f-973b-102d626551c9" parent_id_arme="cded66b3-8f12-4ceb-8c8b-39acf83c416a">
     <if_distance name1="Aegis" name2="Wormhole" comparator="LESS_EQUAL" value="WormholeGravityRadius" />
     <if_object_property property="positionY" name="Aegis" comparator="LESS" value="WormholeY" />
     <addto_object_property value="WormholeGravity" property="positionY" name="Aegis" />
   </event>
-  <event name_arme="Loss of Ship Control Y" id_arme="48cb9ccd-5ddd-44de-a7f5-c53a584c76c6" parent_id_arme="cded66b3-8f12-4ceb-8c8b-39acf83c416a">
+  <event name="Loss of Ship Control Y" id_arme="48cb9ccd-5ddd-44de-a7f5-c53a584c76c6" parent_id_arme="cded66b3-8f12-4ceb-8c8b-39acf83c416a">
     <if_distance name1="Aegis" name2="Wormhole" comparator="LESS_EQUAL" value="WormholeGravityRadius" />
     <if_object_property property="positionY" name="Aegis" comparator="GREATER" value="WormholeY" />
     <addto_object_property value="-WormholeGravity" property="positionY" name="Aegis" />
   </event>
-  <event name_arme="Collision Death" id_arme="067219c0-c73f-4a1b-b265-be80135b2116" parent_id_arme="cded66b3-8f12-4ceb-8c8b-39acf83c416a">
+  <event name="Collision Death" id_arme="067219c0-c73f-4a1b-b265-be80135b2116" parent_id_arme="cded66b3-8f12-4ceb-8c8b-39acf83c416a">
     <if_distance name1="Aegis" name2="Wormhole" comparator="LESS_EQUAL" value="WormholeRadius" />
     <log text="Aegis destroyed in wormhole" />
     <destroy name="Aegis" />
   </event>
-  <folder_arme name_arme="Task: Ceres at Wormhole" id_arme="0451ea51-a6bd-42b4-a599-db93410e620e" />
-  <event name_arme="Proximity Alert" id_arme="b8ee190b-ef78-4310-a389-f545815873bb" parent_id_arme="0451ea51-a6bd-42b4-a599-db93410e620e">
+  <folder_arme name="Task: Ceres at Wormhole" id_arme="0451ea51-a6bd-42b4-a599-db93410e620e" />
+  <event name="Proximity Alert" id_arme="b8ee190b-ef78-4310-a389-f545815873bb" parent_id_arme="0451ea51-a6bd-42b4-a599-db93410e620e">
     <if_variable name="CeresWormholeAlert" comparator="EQUALS" value="0" />
     <if_distance name1="Ceres" name2="Wormhole" comparator="LESS" value="WormholeGravityRadius" />
     <if_variable name="CeresLocation" comparator="EQUALS" value="200.0" />
@@ -1239,7 +1239,7 @@
     <warning_popup_message message="Ceres: Gravity well hazard. Proceed cautiously." consoles="S" player_slot="6" />
     <set_variable name="CeresWormholeAlert" value="1" />
   </event>
-  <event name_arme="Collision Alert" id_arme="fb8ed38b-8ad2-4fc3-8c06-4f9cf0f1cfdc" parent_id_arme="0451ea51-a6bd-42b4-a599-db93410e620e">
+  <event name="Collision Alert" id_arme="fb8ed38b-8ad2-4fc3-8c06-4f9cf0f1cfdc" parent_id_arme="0451ea51-a6bd-42b4-a599-db93410e620e">
     <if_variable name="CeresWormholeAlert" comparator="LESS_EQUAL" value="1.0" />
     <if_distance name1="Ceres" name2="Wormhole" comparator="LESS" value="WormholeWarningRadius" />
     <if_variable name="CeresLocation" comparator="EQUALS" value="200.0" />
@@ -1247,57 +1247,57 @@
     <warning_popup_message message="Ceres approaching event horizon" consoles="H" player_slot="6" />
     <set_variable name="CeresWormholeAlert" value="2.0" />
   </event>
-  <event name_arme="Clear Collision Alert" id_arme="00218966-0a1f-4d1b-986d-e3780989317e" parent_id_arme="0451ea51-a6bd-42b4-a599-db93410e620e">
+  <event name="Clear Collision Alert" id_arme="00218966-0a1f-4d1b-986d-e3780989317e" parent_id_arme="0451ea51-a6bd-42b4-a599-db93410e620e">
     <if_variable name="CeresWormholeAlert" comparator="GREATER_EQUAL" value="2.0" />
     <if_distance name1="Ceres" name2="Wormhole" comparator="GREATER" value="WormholeWarningRadius" />
     <if_variable name="CeresLocation" comparator="EQUALS" value="200.0" />
     <log text="Ceres: Wormhole event horizon averted" />
     <set_variable name="CeresWormholeAlert" value="1.0" />
   </event>
-  <event name_arme="Clear Proximity Alert" id_arme="87d42d0b-f46a-47c3-825e-c0dcb5cb30c0" parent_id_arme="0451ea51-a6bd-42b4-a599-db93410e620e">
+  <event name="Clear Proximity Alert" id_arme="87d42d0b-f46a-47c3-825e-c0dcb5cb30c0" parent_id_arme="0451ea51-a6bd-42b4-a599-db93410e620e">
     <if_variable name="CeresWormholeAlert" comparator="GREATER_EQUAL" value="1" />
     <if_distance name1="Ceres" name2="Wormhole" comparator="GREATER" value="WormholeGravityRadius" />
     <if_variable name="CeresLocation" comparator="EQUALS" value="200.0" />
     <log text="Ceres: Wormhole proximity avoided" />
     <set_variable name="CeresWormholeAlert" value="0" />
   </event>
-  <event name_arme="Loss of Ship Control X" id_arme="39693765-8059-4cf3-a7cd-05646f0563d3" parent_id_arme="0451ea51-a6bd-42b4-a599-db93410e620e">
+  <event name="Loss of Ship Control X" id_arme="39693765-8059-4cf3-a7cd-05646f0563d3" parent_id_arme="0451ea51-a6bd-42b4-a599-db93410e620e">
     <if_distance name1="Ceres" name2="Wormhole" comparator="LESS_EQUAL" value="WormholeGravityRadius" />
     <if_object_property property="positionX" name="Ceres" comparator="LESS" value="WormholeX" />
     <if_variable name="CeresLocation" comparator="EQUALS" value="200.0" />
     <addto_object_property value="WormholeGravity" property="positionX" name="Ceres" />
   </event>
-  <event name_arme="Loss of Ship Control X" id_arme="019c74b2-f522-420c-844f-54710a6f3c68" parent_id_arme="0451ea51-a6bd-42b4-a599-db93410e620e">
+  <event name="Loss of Ship Control X" id_arme="019c74b2-f522-420c-844f-54710a6f3c68" parent_id_arme="0451ea51-a6bd-42b4-a599-db93410e620e">
     <if_distance name1="Ceres" name2="Wormhole" comparator="LESS_EQUAL" value="WormholeGravityRadius" />
     <if_object_property property="positionX" name="Ceres" comparator="GREATER" value="WormholeX" />
     <if_variable name="CeresLocation" comparator="EQUALS" value="200.0" />
     <addto_object_property value="-WormholeGravity" property="positionX" name="Ceres" />
   </event>
-  <event name_arme="Loss of Ship Control Z" id_arme="4807c934-7eca-429f-b647-47528dfeb1d7" parent_id_arme="0451ea51-a6bd-42b4-a599-db93410e620e">
+  <event name="Loss of Ship Control Z" id_arme="4807c934-7eca-429f-b647-47528dfeb1d7" parent_id_arme="0451ea51-a6bd-42b4-a599-db93410e620e">
     <if_distance name1="Ceres" name2="Wormhole" comparator="LESS_EQUAL" value="WormholeGravityRadius" />
     <if_object_property property="positionZ" name="Ceres" comparator="LESS" value="WormholeZ" />
     <if_variable name="CeresLocation" comparator="EQUALS" value="200.0" />
     <addto_object_property value="WormholeGravity" property="positionZ" name="Ceres" />
   </event>
-  <event name_arme="Loss of Ship Control Z" id_arme="4bfaec50-b180-4306-a48c-a16d50f6cc68" parent_id_arme="0451ea51-a6bd-42b4-a599-db93410e620e">
+  <event name="Loss of Ship Control Z" id_arme="4bfaec50-b180-4306-a48c-a16d50f6cc68" parent_id_arme="0451ea51-a6bd-42b4-a599-db93410e620e">
     <if_distance name1="Ceres" name2="Wormhole" comparator="LESS_EQUAL" value="WormholeGravityRadius" />
     <if_object_property property="positionZ" name="Ceres" comparator="GREATER" value="WormholeZ" />
     <if_variable name="CeresLocation" comparator="EQUALS" value="200.0" />
     <addto_object_property value="-WormholeGravity" property="positionZ" name="Ceres" />
   </event>
-  <event name_arme="Loss of Ship Control Y" id_arme="b2d95166-5f36-4741-8106-0c305aa834ca" parent_id_arme="0451ea51-a6bd-42b4-a599-db93410e620e">
+  <event name="Loss of Ship Control Y" id_arme="b2d95166-5f36-4741-8106-0c305aa834ca" parent_id_arme="0451ea51-a6bd-42b4-a599-db93410e620e">
     <if_distance name1="Ceres" name2="Wormhole" comparator="LESS_EQUAL" value="WormholeGravityRadius" />
     <if_object_property property="positionY" name="Ceres" comparator="LESS" value="WormholeY" />
     <if_variable name="CeresLocation" comparator="EQUALS" value="200.0" />
     <addto_object_property value="WormholeGravity" property="positionY" name="Ceres" />
   </event>
-  <event name_arme="Loss of Ship Control Y" id_arme="a1cb5e93-b4f7-4272-8371-3461302f9113" parent_id_arme="0451ea51-a6bd-42b4-a599-db93410e620e">
+  <event name="Loss of Ship Control Y" id_arme="a1cb5e93-b4f7-4272-8371-3461302f9113" parent_id_arme="0451ea51-a6bd-42b4-a599-db93410e620e">
     <if_distance name1="Ceres" name2="Wormhole" comparator="LESS_EQUAL" value="WormholeGravityRadius" />
     <if_object_property property="positionY" name="Ceres" comparator="GREATER" value="WormholeY" />
     <if_variable name="CeresLocation" comparator="EQUALS" value="200.0" />
     <addto_object_property value="-WormholeGravity" property="positionY" name="Ceres" />
   </event>
-  <event name_arme="Pop Through" id_arme="c3deef2c-d034-4ba2-b924-513124cef557" parent_id_arme="0451ea51-a6bd-42b4-a599-db93410e620e">
+  <event name="Pop Through" id_arme="c3deef2c-d034-4ba2-b924-513124cef557" parent_id_arme="0451ea51-a6bd-42b4-a599-db93410e620e">
     <!--CeresLocation: 0=not built, 58=On SB01, 101=Artemis, 102=Intrepid, ..., 200=Launched, 300=Wormhole, 400=Elysia-->
     <if_variable name="CeresLocation" comparator="EQUALS" value="200.0" />
     <if_distance name1="Ceres" name2="Wormhole" comparator="LESS_EQUAL" value="WormholeRadius" />
@@ -1315,70 +1315,70 @@
     <set_object_property property="artScale" value="5.0" name="Elysia" />
     <log text="Ceres entered wormhole (done)" />
   </event>
-  <folder_arme name_arme="Realm: Ceres at Elysia" id_arme="e2bce9b4-34fd-46d7-a501-93e4a3a0126a" />
-  <event name_arme="Proximity Alert" id_arme="47502f74-3cf4-40c5-a550-3ae50b58f6f0" parent_id_arme="e2bce9b4-34fd-46d7-a501-93e4a3a0126a">
+  <folder_arme name="Realm: Ceres at Elysia" id_arme="e2bce9b4-34fd-46d7-a501-93e4a3a0126a" />
+  <event name="Proximity Alert" id_arme="47502f74-3cf4-40c5-a550-3ae50b58f6f0" parent_id_arme="e2bce9b4-34fd-46d7-a501-93e4a3a0126a">
     <if_variable name="CeresPlanetAlert" comparator="EQUALS" value="0" />
     <if_distance name1="Ceres" name2="Elysia" comparator="LESS" value="ElysiaGravityRadius" />
     <log text="Ceres: Elysia proximity alert" />
     <warning_popup_message message="Entering planet's gravity. Proceed cautiously." consoles="S" player_slot="6" />
     <set_variable name="CeresPlanetAlert" value="1" />
   </event>
-  <event name_arme="Collision Alert" id_arme="464025a9-69da-4089-892c-25081f987ab0" parent_id_arme="e2bce9b4-34fd-46d7-a501-93e4a3a0126a">
+  <event name="Collision Alert" id_arme="464025a9-69da-4089-892c-25081f987ab0" parent_id_arme="e2bce9b4-34fd-46d7-a501-93e4a3a0126a">
     <if_variable name="CeresPlanetAlert" comparator="LESS_EQUAL" value="1.0" />
     <if_distance name1="Ceres" name2="Elysia" comparator="LESS" value="ElysiaWarningRadius" />
     <log text="Ceres: Elysia collision alert" />
     <warning_popup_message message="Experiencing unexpected turbulence!  Engaging landing gear..." consoles="H" player_slot="6" />
     <set_variable name="CeresPlanetAlert" value="2.0" />
   </event>
-  <event name_arme="Clear Collision Alert" id_arme="895bd0f0-d532-4f10-a287-31de83f9ee8c" parent_id_arme="e2bce9b4-34fd-46d7-a501-93e4a3a0126a">
+  <event name="Clear Collision Alert" id_arme="895bd0f0-d532-4f10-a287-31de83f9ee8c" parent_id_arme="e2bce9b4-34fd-46d7-a501-93e4a3a0126a">
     <if_variable name="CeresPlanetAlert" comparator="GREATER_EQUAL" value="2.0" />
     <if_distance name1="Ceres" name2="Elysia" comparator="GREATER" value="ElysiaWarningRadius" />
     <log text="Ceres: Elysia collision averted" />
     <set_variable name="CeresPlanetAlert" value="1.0" />
   </event>
-  <event name_arme="Clear Proximity Alert" id_arme="d7f3dce4-eb39-4a02-a188-b730a3b59076" parent_id_arme="e2bce9b4-34fd-46d7-a501-93e4a3a0126a">
+  <event name="Clear Proximity Alert" id_arme="d7f3dce4-eb39-4a02-a188-b730a3b59076" parent_id_arme="e2bce9b4-34fd-46d7-a501-93e4a3a0126a">
     <if_variable name="CeresPlanetAlert" comparator="GREATER_EQUAL" value="1" />
     <if_distance name1="Ceres" name2="Elysia" comparator="GREATER" value="ElysiaGravityRadius" />
     <log text="Ceres: Elysia proximity avoided" />
     <set_variable name="CeresPlanetAlert" value="0" />
   </event>
-  <event name_arme="Loss of Ship Control X" id_arme="9324169a-48bd-4a6a-8e70-deb32e096dec" parent_id_arme="e2bce9b4-34fd-46d7-a501-93e4a3a0126a">
+  <event name="Loss of Ship Control X" id_arme="9324169a-48bd-4a6a-8e70-deb32e096dec" parent_id_arme="e2bce9b4-34fd-46d7-a501-93e4a3a0126a">
     <if_distance name1="Ceres" name2="Elysia" comparator="GREATER" value="ElysiaRadius" />
     <if_distance name1="Ceres" name2="Elysia" comparator="LESS" value="ElysiaGravityRadius" />
     <if_object_property property="positionX" name="Ceres" comparator="LESS" value="ElysiaX" />
     <addto_object_property value="ElysiaGravity" property="positionX" name="Ceres" />
   </event>
-  <event name_arme="Loss of Ship Control X" id_arme="beef98be-cc98-4e45-af8b-147b2753d52a" parent_id_arme="e2bce9b4-34fd-46d7-a501-93e4a3a0126a">
+  <event name="Loss of Ship Control X" id_arme="beef98be-cc98-4e45-af8b-147b2753d52a" parent_id_arme="e2bce9b4-34fd-46d7-a501-93e4a3a0126a">
     <if_distance name1="Ceres" name2="Elysia" comparator="GREATER" value="ElysiaRadius" />
     <if_distance name1="Ceres" name2="Elysia" comparator="LESS" value="ElysiaGravityRadius" />
     <if_object_property property="positionX" name="Ceres" comparator="GREATER" value="ElysiaX" />
     <addto_object_property value="-ElysiaGravity" property="positionX" name="Ceres" />
   </event>
-  <event name_arme="Loss of Ship Control Z" id_arme="a310d132-f15c-4015-b666-069f64a1eaa9" parent_id_arme="e2bce9b4-34fd-46d7-a501-93e4a3a0126a">
+  <event name="Loss of Ship Control Z" id_arme="a310d132-f15c-4015-b666-069f64a1eaa9" parent_id_arme="e2bce9b4-34fd-46d7-a501-93e4a3a0126a">
     <if_distance name1="Ceres" name2="Elysia" comparator="GREATER" value="ElysiaRadius" />
     <if_distance name1="Ceres" name2="Elysia" comparator="LESS" value="ElysiaGravityRadius" />
     <if_object_property property="positionZ" name="Ceres" comparator="LESS" value="ElysiaZ" />
     <addto_object_property value="ElysiaGravity" property="positionZ" name="Ceres" />
   </event>
-  <event name_arme="Loss of Ship Control Z" id_arme="66a690a0-9c84-46c0-80dd-961403a76b97" parent_id_arme="e2bce9b4-34fd-46d7-a501-93e4a3a0126a">
+  <event name="Loss of Ship Control Z" id_arme="66a690a0-9c84-46c0-80dd-961403a76b97" parent_id_arme="e2bce9b4-34fd-46d7-a501-93e4a3a0126a">
     <if_distance name1="Ceres" name2="Elysia" comparator="GREATER" value="ElysiaRadius" />
     <if_distance name1="Ceres" name2="Elysia" comparator="LESS" value="ElysiaGravityRadius" />
     <if_object_property property="positionZ" name="Ceres" comparator="GREATER" value="ElysiaZ" />
     <addto_object_property value="-ElysiaGravity" property="positionZ" name="Ceres" />
   </event>
-  <event name_arme="Loss of Ship Control Y" id_arme="c68eb3b2-4922-4a68-a645-fdbfbd7bf737" parent_id_arme="e2bce9b4-34fd-46d7-a501-93e4a3a0126a">
+  <event name="Loss of Ship Control Y" id_arme="c68eb3b2-4922-4a68-a645-fdbfbd7bf737" parent_id_arme="e2bce9b4-34fd-46d7-a501-93e4a3a0126a">
     <if_distance name1="Ceres" name2="Elysia" comparator="GREATER" value="ElysiaRadius" />
     <if_distance name1="Ceres" name2="Elysia" comparator="LESS" value="ElysiaGravityRadius" />
     <if_object_property property="positionY" name="Ceres" comparator="LESS" value="ElysiaY" />
     <addto_object_property value="ElysiaGravity" property="positionY" name="Ceres" />
   </event>
-  <event name_arme="Loss of Ship Control Y" id_arme="fd05048c-7fbb-408c-8921-169eb231e83c" parent_id_arme="e2bce9b4-34fd-46d7-a501-93e4a3a0126a">
+  <event name="Loss of Ship Control Y" id_arme="fd05048c-7fbb-408c-8921-169eb231e83c" parent_id_arme="e2bce9b4-34fd-46d7-a501-93e4a3a0126a">
     <if_distance name1="Ceres" name2="Elysia" comparator="GREATER" value="ElysiaRadius" />
     <if_distance name1="Ceres" name2="Elysia" comparator="LESS" value="ElysiaGravityRadius" />
     <if_object_property property="positionY" name="Ceres" comparator="GREATER" value="ElysiaY" />
     <addto_object_property value="-ElysiaGravity" property="positionY" name="Ceres" />
   </event>
-  <event name_arme="Crash on Elysia near Diana" id_arme="58879320-1f9e-4050-b69e-c1dd8f3bacae" parent_id_arme="e2bce9b4-34fd-46d7-a501-93e4a3a0126a">
+  <event name="Crash on Elysia near Diana" id_arme="58879320-1f9e-4050-b69e-c1dd8f3bacae" parent_id_arme="e2bce9b4-34fd-46d7-a501-93e4a3a0126a">
     <!--CeresLocation: 0=not built, 58=On SB01, 101=Artemis, 102=Intrepid, ..., 200=Launched, 300=Wormhole, 400=Elysia-->
     <if_variable name="CeresLocation" comparator="LESS" value="400.0" />
     <if_distance name1="Ceres" name2="Elysia" comparator="LESS_EQUAL" value="ElysiaRadius+1" />
@@ -1421,8 +1421,8 @@
     <set_variable name="DianaLocation" value="300.0" />
     <set_variable name="DianaPlanetAlert" value="2.0" />
   </event>
-  <folder_arme name_arme="Task: Find Diana bridge" id_arme="76ec50ee-2989-4148-9849-7c76a37a3dc0" />
-  <event name_arme="Ceres scans surface" id_arme="23c0e654-fdfc-4b6e-aa89-9f852f9f30bd" parent_id_arme="76ec50ee-2989-4148-9849-7c76a37a3dc0">
+  <folder_arme name="Task: Find Diana bridge" id_arme="76ec50ee-2989-4148-9849-7c76a37a3dc0" expanded_arme="" />
+  <event name="Ceres scans surface" id_arme="23c0e654-fdfc-4b6e-aa89-9f852f9f30bd" parent_id_arme="76ec50ee-2989-4148-9849-7c76a37a3dc0">
     <if_timer_finished name="Ceres Surface Scan" />
     <if_variable name="ReportedSurfaceScanResults" comparator="EQUALS" value="0.0" />
     <log text="Ceres scans surface" />
@@ -1430,14 +1430,14 @@
     <warning_popup_message message="Diana's signal is emanating from nearby." consoles="SC" player_slot="6" />
     <set_variable name="ReportedSurfaceScanResults" value="1.0" />
   </event>
-  <event name_arme="Continual - Diana has no energy" id_arme="aee1000a-652a-4d2c-b052-bc2b9be6a301" parent_id_arme="76ec50ee-2989-4148-9849-7c76a37a3dc0">
+  <event name="Continual - Diana has no energy" id_arme="aee1000a-652a-4d2c-b052-bc2b9be6a301" parent_id_arme="76ec50ee-2989-4148-9849-7c76a37a3dc0">
     <!--Energy periodically replenishes, so constantly force it to 0 until the reactivation code is entered-->
     <if_variable name="DianaCodeState" comparator="LESS" value="6.0" />
     <if_variable name="DianaDebugWithNoDamage" comparator="EQUALS" value="0.0" />
     <if_exists name="Diana" />
     <set_object_property property="energy" value="0.0" name="Diana" />
   </event>
-  <disabled_event name_arme="UNUSED: Push red button - keypress" id_arme="530d6961-70b5-4832-9a8a-500d92182637" parent_id_arme="76ec50ee-2989-4148-9849-7c76a37a3dc0">
+  <disabled_event name="UNUSED: Push red button - keypress" id_arme="530d6961-70b5-4832-9a8a-500d92182637" parent_id_arme="76ec50ee-2989-4148-9849-7c76a37a3dc0">
     <if_exists name="Diana" />
     <if_client_key keyText="V" />
     <if_variable name="DianaDetectedHuman" comparator="EQUALS" value="0.0" />
@@ -1448,7 +1448,7 @@
     <clear_gm_button text="GM/Player Action/Disable Distress Signal" />
     <end_getting_keypresses_from consoles="C" />
   </disabled_event>
-  <event name_arme="Pushed red button" id_arme="8ccff8b6-785b-438d-b6b0-b262cb33fc92" parent_id_arme="76ec50ee-2989-4148-9849-7c76a37a3dc0">
+  <event name="Pushed red button" id_arme="8ccff8b6-785b-438d-b6b0-b262cb33fc92" parent_id_arme="76ec50ee-2989-4148-9849-7c76a37a3dc0">
     <if_exists name="Diana" />
     <!--..... A sign should be present to tell the players to turn on shields (or press a button that happens to connected to shields up on the Helm console).-->
     <if_object_property property="shieldsOn" name="Diana" comparator="EQUALS" value="1.0" />
@@ -1459,7 +1459,7 @@
     <set_variable name="DianaDetectedHuman" value="1.0" />
     <clear_gm_button text="GM/Player Action/Disable Distress Signal" />
   </event>
-  <event name_arme="GM Push red button" id_arme="5df10ecb-a21a-4a12-bf21-ff6d3b7682c5" parent_id_arme="76ec50ee-2989-4148-9849-7c76a37a3dc0">
+  <event name="GM Push red button" id_arme="5df10ecb-a21a-4a12-bf21-ff6d3b7682c5" parent_id_arme="76ec50ee-2989-4148-9849-7c76a37a3dc0">
     <if_exists name="Diana" />
     <if_gm_button text="GM/Player Action/Disable Distress Signal" />
     <log text="Button pushed on Diana bridge" />
@@ -1468,7 +1468,7 @@
     <set_variable name="DianaDetectedHuman" value="1.0" />
     <clear_gm_button text="GM/Player Action/Disable Distress Signal" />
   </event>
-  <event name_arme="Disable distress signal" id_arme="9e87d753-643a-444e-8e57-851caeecb4cc" parent_id_arme="76ec50ee-2989-4148-9849-7c76a37a3dc0">
+  <event name="Disable distress signal" id_arme="9e87d753-643a-444e-8e57-851caeecb4cc" parent_id_arme="76ec50ee-2989-4148-9849-7c76a37a3dc0">
     <if_exists name="Diana" />
     <if_timer_finished name="DianaAuthenticating" />
     <if_variable name="DianaSignal" comparator="LESS" value="4.0" />
@@ -1477,7 +1477,7 @@
     <warning_popup_message message="TSN officer authenticated, automated distress call canceled.  Accessing computer..." consoles="MHWESC" player_slot="7" />
     <set_timer name="SearchingDianaComputer" seconds="10" />
   </event>
-  <event name_arme="Find Cetrocite device plans" id_arme="1579f629-81ce-4f74-88a3-fb3dde0b99c5" parent_id_arme="76ec50ee-2989-4148-9849-7c76a37a3dc0">
+  <event name="Find Cetrocite device plans" id_arme="1579f629-81ce-4f74-88a3-fb3dde0b99c5" parent_id_arme="76ec50ee-2989-4148-9849-7c76a37a3dc0">
     <if_exists name="Diana" />
     <if_timer_finished name="SearchingDianaComputer" />
     <if_variable name="FoundCetrociteSchematic" comparator="EQUALS" value="0.0" />
@@ -1488,7 +1488,7 @@
     <set_variable name="FoundCetrociteSchematic" value="1.0" />
     <set_timer name="DianaAccessingCaptainsLog" seconds="10" />
   </event>
-  <event name_arme="Allow sending plans to SB01" id_arme="90aebbe1-9ef0-47f9-a208-94faf204dfc2" parent_id_arme="76ec50ee-2989-4148-9849-7c76a37a3dc0">
+  <event name="Allow sending plans to SB01" id_arme="90aebbe1-9ef0-47f9-a208-94faf204dfc2" parent_id_arme="76ec50ee-2989-4148-9849-7c76a37a3dc0">
     <if_exists name="Diana" />
     <if_exists name="SB01" />
     <if_variable name="AllowedSB01Submission" comparator="EQUALS" value="0.0" />
@@ -1497,7 +1497,7 @@
     <incoming_comms_text from="Internal Comms - Science" type="PLAYER">S = Send a copy of the schematics to SB01 for scientific analysis</incoming_comms_text>
     <set_comms_button text="Send schematics to SB01 for analysis" />
   </event>
-  <event name_arme="Allow sending plans to IB02" id_arme="79cb266c-36c5-42d3-9e74-ff0ae18aaa9b" parent_id_arme="76ec50ee-2989-4148-9849-7c76a37a3dc0">
+  <event name="Allow sending plans to IB02" id_arme="79cb266c-36c5-42d3-9e74-ff0ae18aaa9b" parent_id_arme="76ec50ee-2989-4148-9849-7c76a37a3dc0">
     <if_exists name="Diana" />
     <if_exists name="IB02" />
     <if_variable name="AllowedIB02Submission" comparator="EQUALS" value="0.0" />
@@ -1506,7 +1506,7 @@
     <incoming_comms_text from="Internal Comms - Science" type="PLAYER">I = Send a copy of the schematics to IB02 for production</incoming_comms_text>
     <set_comms_button text="Send schematics to IB02 for production" />
   </event>
-  <event name_arme="Allow sending plans to Cassini" id_arme="850db560-9838-4219-a5e5-052617746efc" parent_id_arme="76ec50ee-2989-4148-9849-7c76a37a3dc0">
+  <event name="Allow sending plans to Cassini" id_arme="850db560-9838-4219-a5e5-052617746efc" parent_id_arme="76ec50ee-2989-4148-9849-7c76a37a3dc0">
     <if_exists name="Diana" />
     <if_not_exists name="SB01" />
     <if_exists name="Cassini" />
@@ -1516,7 +1516,7 @@
     <incoming_comms_text from="Internal Comms - Science" type="PLAYER">S = Send a copy of the schematics to the Cassini for scientific analysis</incoming_comms_text>
     <set_comms_button text="Send schematics to Cassini for analysis" />
   </event>
-  <event name_arme="Allow sending plans to Mariner" id_arme="b00da4bd-5a26-46e4-b404-d708dc5f63a4" parent_id_arme="76ec50ee-2989-4148-9849-7c76a37a3dc0">
+  <event name="Allow sending plans to Mariner" id_arme="b00da4bd-5a26-46e4-b404-d708dc5f63a4" parent_id_arme="76ec50ee-2989-4148-9849-7c76a37a3dc0">
     <if_exists name="Diana" />
     <if_not_exists name="IB02" />
     <if_exists name="Mariner" />
@@ -1526,7 +1526,7 @@
     <incoming_comms_text from="Internal Comms - Science" type="PLAYER">M = Send a copy of the schematics to the Mariner for production</incoming_comms_text>
     <set_comms_button text="Send schematics to Mariner for production" />
   </event>
-  <event name_arme="GM repeat Cetrocite device plans to SB01" id_arme="7328c7c8-b28d-48b5-aa10-b20423502ae4" parent_id_arme="76ec50ee-2989-4148-9849-7c76a37a3dc0">
+  <event name="GM repeat Cetrocite device plans to SB01" id_arme="7328c7c8-b28d-48b5-aa10-b20423502ae4" parent_id_arme="76ec50ee-2989-4148-9849-7c76a37a3dc0">
     <if_gm_button text="GM/Resend Comms/Schematic Report to SB01" />
     <if_exists name="SB01" />
     <log text="GM resent Cetrocite schematic notification for SB01" />
@@ -1537,7 +1537,7 @@
     <start_getting_keypresses_from consoles="C" />
     <set_comms_button text="Send schematics to SB01 for analysis" />
   </event>
-  <event name_arme="GM repeat Cetrocite device plans to IB02" id_arme="43979864-e583-4db7-9a36-6abfd11b3203" parent_id_arme="76ec50ee-2989-4148-9849-7c76a37a3dc0">
+  <event name="GM repeat Cetrocite device plans to IB02" id_arme="43979864-e583-4db7-9a36-6abfd11b3203" parent_id_arme="76ec50ee-2989-4148-9849-7c76a37a3dc0">
     <if_gm_button text="GM/Resend Comms/Schematic Report to IB02" />
     <if_exists name="IB02" />
     <log text="GM resent Cetrocite schematic notification for IB02" />
@@ -1548,7 +1548,7 @@
     <start_getting_keypresses_from consoles="C" />
     <set_comms_button text="Send schematics to IB02 for production" />
   </event>
-  <event name_arme="GM repeat Cetrocite device plans to Cassini" id_arme="0ea95639-1829-435b-8d2a-d2a7b000689d" parent_id_arme="76ec50ee-2989-4148-9849-7c76a37a3dc0">
+  <event name="GM repeat Cetrocite device plans to Cassini" id_arme="0ea95639-1829-435b-8d2a-d2a7b000689d" parent_id_arme="76ec50ee-2989-4148-9849-7c76a37a3dc0">
     <if_gm_button text="GM/Resend Comms/Schematic Report to Cassini" />
     <if_exists name="Cassini" />
     <log text="GM resent Cetrocite schematic notification for Cassini" />
@@ -1559,7 +1559,7 @@
     <start_getting_keypresses_from consoles="C" />
     <set_comms_button text="Send schematics to Cassini for analysis" />
   </event>
-  <event name_arme="GM repeat Cetrocite device plans to Mariner" id_arme="073982c1-cc33-4e74-99b1-6a247104620c" parent_id_arme="76ec50ee-2989-4148-9849-7c76a37a3dc0">
+  <event name="GM repeat Cetrocite device plans to Mariner" id_arme="073982c1-cc33-4e74-99b1-6a247104620c" parent_id_arme="76ec50ee-2989-4148-9849-7c76a37a3dc0">
     <if_gm_button text="GM/Resend Comms/Schematic Report to Mariner" />
     <if_exists name="Mariner" />
     <log text="GM resent Cetrocite schematic notification for Mariner" />
@@ -1570,7 +1570,7 @@
     <start_getting_keypresses_from consoles="C" />
     <set_comms_button text="Send schematics to Mariner for production" />
   </event>
-  <event name_arme="Access Captain's Log" id_arme="bdd6c29b-4973-40d6-9d3d-d0ccf71970a1" parent_id_arme="76ec50ee-2989-4148-9849-7c76a37a3dc0">
+  <event name="Access Captain's Log" id_arme="bdd6c29b-4973-40d6-9d3d-d0ccf71970a1" parent_id_arme="76ec50ee-2989-4148-9849-7c76a37a3dc0">
     <if_exists name="Diana" />
     <if_variable name="AccessedCaptainsLog" comparator="EQUALS" value="0.0" />
     <if_timer_finished name="DianaAccessingCaptainsLog" />
@@ -1578,7 +1578,7 @@
     <warning_popup_message message="Captains Log accessed..." consoles="MHWESC" player_slot="7" />
     <set_variable name="AccessedCaptainsLog" value="1.0" />
   </event>
-  <event name_arme="Enter Diana boot sequence" id_arme="0ebaa4df-5a9d-4b72-99e3-a5102e1d8c16" parent_id_arme="76ec50ee-2989-4148-9849-7c76a37a3dc0">
+  <event name="Enter Diana boot sequence" id_arme="0ebaa4df-5a9d-4b72-99e3-a5102e1d8c16" parent_id_arme="76ec50ee-2989-4148-9849-7c76a37a3dc0">
     <if_exists name="Diana" />
     <if_variable name="DianaCodeState" comparator="LESS" value="6.0" />
     <if_object_property property="pitch" name="Diana" comparator="GREATER" value="0.1" />
@@ -1591,7 +1591,7 @@
     <!--Start by turning on sensors only-->
     <set_player_grid_damage value="0.0" name="Diana" index="0" systemType="systemTactical" countFrom="front" />
   </event>
-  <event name_arme="Transfer coolant from Ceres to Diana" id_arme="77181087-f7b7-4c5b-8d0a-40b7200c7936" parent_id_arme="76ec50ee-2989-4148-9849-7c76a37a3dc0">
+  <event name="Transfer coolant from Ceres to Diana" id_arme="77181087-f7b7-4c5b-8d0a-40b7200c7936" parent_id_arme="76ec50ee-2989-4148-9849-7c76a37a3dc0">
     <if_exists name="Diana" />
     <if_exists name="Ceres" />
     <if_object_property property="totalCoolant" name="Diana" comparator="EQUALS" value="0.0" />
@@ -1606,7 +1606,7 @@
     <copy_object_property property="totalCoolant" name1="Ceres" name2="Diana" />
     <set_object_property property="totalCoolant" value="0.0" name="Ceres" />
   </event>
-  <event name_arme="Transfer energy from Ceres to Diana" id_arme="22ef54c8-63d8-485a-bd97-c89f3a91a5cf" parent_id_arme="76ec50ee-2989-4148-9849-7c76a37a3dc0">
+  <event name="Transfer energy from Ceres to Diana" id_arme="22ef54c8-63d8-485a-bd97-c89f3a91a5cf" parent_id_arme="76ec50ee-2989-4148-9849-7c76a37a3dc0">
     <if_exists name="Diana" />
     <if_exists name="Ceres" />
     <if_object_property property="energy" name="Ceres" comparator="GREATER" value="0.0" />
@@ -1617,8 +1617,8 @@
     <addto_object_property value="1.0" property="energy" name="Diana" />
     <addto_object_property value="-1.0" property="energy" name="Ceres" />
   </event>
-  <folder_arme name_arme="Task: Diana engineering" id_arme="768bd695-1724-48ef-a4b1-015462e61c10" />
-  <event name_arme="Inform engineer" id_arme="07b40d93-abaa-4517-a9a7-c40eb6567755" parent_id_arme="768bd695-1724-48ef-a4b1-015462e61c10">
+  <folder_arme name="Task: Diana engineering" id_arme="768bd695-1724-48ef-a4b1-015462e61c10" />
+  <event name="Inform engineer" id_arme="07b40d93-abaa-4517-a9a7-c40eb6567755" parent_id_arme="768bd695-1724-48ef-a4b1-015462e61c10">
     <if_timer_finished name="SearchingDianaComputer" />
     <if_variable name="DianaEngineerInstructed" comparator="EQUALS" value="0.0" />
     <if_exists name="Diana" />
@@ -1627,7 +1627,7 @@
     <!--<warning_popup_message message="Use keys to choose which system to power:^B=Beam^T=Torpedo^V=(Sensor) View^M=Maneuver^I=Impulse^N=(Warp) Nacelles^F=Front shield^R=Rear shield" consoles="E" player_slot="7" />-->
     <set_variable name="DianaEngineerInstructed" value="1.0" />
   </event>
-  <event name_arme="No shields" id_arme="b60326fc-5b24-478e-9df2-91b39a2571ab" parent_id_arme="768bd695-1724-48ef-a4b1-015462e61c10">
+  <event name="No shields" id_arme="b60326fc-5b24-478e-9df2-91b39a2571ab" parent_id_arme="768bd695-1724-48ef-a4b1-015462e61c10">
     <if_exists name="Diana" />
     <if_variable name="DianaAutoEngineer" comparator="EQUALS" value="1.0" />
     <if_variable name="DianaPowerToSystem" comparator="NOT" value="9.0" />
@@ -1645,7 +1645,7 @@
     <set_player_grid_damage value="1.0" name="Diana" index="3" systemType="systemBackShield" countFrom="front" />
     <set_player_grid_damage value="1.0" name="Diana" index="4" systemType="systemBackShield" countFrom="front" />
   </event>
-  <event name_arme="No warp" id_arme="f6c84bdb-8877-4f1b-a3e5-7b5983f95731" parent_id_arme="768bd695-1724-48ef-a4b1-015462e61c10">
+  <event name="No warp" id_arme="f6c84bdb-8877-4f1b-a3e5-7b5983f95731" parent_id_arme="768bd695-1724-48ef-a4b1-015462e61c10">
     <if_exists name="Diana" />
     <if_variable name="DianaAutoEngineer" comparator="EQUALS" value="1.0" />
     <if_variable name="DianaPowerToSystem" comparator="NOT" value="3.0" />
@@ -1659,7 +1659,7 @@
     <set_player_grid_damage value="1.0" name="Diana" index="2" systemType="systemWarp" countFrom="front" />
     <set_player_grid_damage value="1.0" name="Diana" index="3" systemType="systemWarp" countFrom="front" />
   </event>
-  <event name_arme="Power shields - auto" id_arme="770b795d-00c9-4c4d-9c7e-e87eb20332a4" parent_id_arme="768bd695-1724-48ef-a4b1-015462e61c10">
+  <event name="Power shields - auto" id_arme="770b795d-00c9-4c4d-9c7e-e87eb20332a4" parent_id_arme="768bd695-1724-48ef-a4b1-015462e61c10">
     <if_variable name="DianaCodeState" comparator="EQUALS" value="6.0" />
     <if_variable name="DianaAutoEngineer" comparator="EQUALS" value="1.0" />
     <if_exists name="Diana" />
@@ -1679,7 +1679,7 @@
     <set_player_grid_damage value="0.0" name="Diana" index="3" systemType="systemBackShield" countFrom="front" />
     <set_player_grid_damage value="0.0" name="Diana" index="4" systemType="systemBackShield" countFrom="front" />
   </event>
-  <event name_arme="Power maneuverability - auto (left)" id_arme="0e708520-75a8-4283-9722-d30cc0fe5fe3" parent_id_arme="768bd695-1724-48ef-a4b1-015462e61c10">
+  <event name="Power maneuverability - auto (left)" id_arme="0e708520-75a8-4283-9722-d30cc0fe5fe3" parent_id_arme="768bd695-1724-48ef-a4b1-015462e61c10">
     <if_variable name="DianaCodeState" comparator="EQUALS" value="6.0" />
     <if_variable name="DianaAutoEngineer" comparator="EQUALS" value="1.0" />
     <if_exists name="Diana" />
@@ -1695,7 +1695,7 @@
     <set_player_grid_damage value="0.0" name="Diana" index="2" systemType="systemTurning" countFrom="front" />
     <set_player_grid_damage value="0.0" name="Diana" index="3" systemType="systemTurning" countFrom="front" />
   </event>
-  <event name_arme="Power maneuverability - auto (right)" id_arme="200b19c2-ba45-4984-a36f-bebc79fe7f26" parent_id_arme="768bd695-1724-48ef-a4b1-015462e61c10">
+  <event name="Power maneuverability - auto (right)" id_arme="200b19c2-ba45-4984-a36f-bebc79fe7f26" parent_id_arme="768bd695-1724-48ef-a4b1-015462e61c10">
     <if_variable name="DianaCodeState" comparator="EQUALS" value="6.0" />
     <if_variable name="DianaAutoEngineer" comparator="EQUALS" value="1.0" />
     <if_exists name="Diana" />
@@ -1711,7 +1711,7 @@
     <set_player_grid_damage value="0.0" name="Diana" index="2" systemType="systemTurning" countFrom="front" />
     <set_player_grid_damage value="0.0" name="Diana" index="3" systemType="systemTurning" countFrom="front" />
   </event>
-  <event name_arme="Power warp - auto" id_arme="b44bd780-23bf-42de-bea4-03ae0d6a2d1f" parent_id_arme="768bd695-1724-48ef-a4b1-015462e61c10">
+  <event name="Power warp - auto" id_arme="b44bd780-23bf-42de-bea4-03ae0d6a2d1f" parent_id_arme="768bd695-1724-48ef-a4b1-015462e61c10">
     <if_variable name="DianaCodeState" comparator="EQUALS" value="6.0" />
     <if_variable name="DianaAutoEngineer" comparator="EQUALS" value="1.0" />
     <if_exists name="Diana" />
@@ -1729,7 +1729,7 @@
     <set_player_grid_damage value="0.0" name="Diana" index="2" systemType="systemWarp" countFrom="front" />
     <set_player_grid_damage value="0.0" name="Diana" index="3" systemType="systemWarp" countFrom="front" />
   </event>
-  <event name_arme="Power impulse - auto (forward)" id_arme="e6f7d453-2717-4ec7-b30a-7939e14aa959" parent_id_arme="768bd695-1724-48ef-a4b1-015462e61c10">
+  <event name="Power impulse - auto (forward)" id_arme="e6f7d453-2717-4ec7-b30a-7939e14aa959" parent_id_arme="768bd695-1724-48ef-a4b1-015462e61c10">
     <if_variable name="DianaCodeState" comparator="EQUALS" value="6.0" />
     <if_variable name="DianaAutoEngineer" comparator="EQUALS" value="1.0" />
     <if_exists name="Diana" />
@@ -1752,7 +1752,7 @@
     <set_player_grid_damage value="0.0" name="Diana" index="5" systemType="systemImpulse" countFrom="front" />
     <set_player_grid_damage value="0.0" name="Diana" index="0" systemType="systemWarp" countFrom="front" />
   </event>
-  <event name_arme="Power impulse - auto (reverse)" id_arme="8652ff09-189d-421a-a530-d9822007ea9d" parent_id_arme="768bd695-1724-48ef-a4b1-015462e61c10">
+  <event name="Power impulse - auto (reverse)" id_arme="8652ff09-189d-421a-a530-d9822007ea9d" parent_id_arme="768bd695-1724-48ef-a4b1-015462e61c10">
     <if_variable name="DianaCodeState" comparator="EQUALS" value="6.0" />
     <if_variable name="DianaAutoEngineer" comparator="EQUALS" value="1.0" />
     <if_exists name="Diana" />
@@ -1775,7 +1775,7 @@
     <set_player_grid_damage value="0.0" name="Diana" index="5" systemType="systemImpulse" countFrom="front" />
     <set_player_grid_damage value="0.0" name="Diana" index="0" systemType="systemWarp" countFrom="front" />
   </event>
-  <event name_arme="Power sensors - auto" id_arme="b1178bb3-8357-4c30-9a62-16f18c021224" parent_id_arme="768bd695-1724-48ef-a4b1-015462e61c10">
+  <event name="Power sensors - auto" id_arme="b1178bb3-8357-4c30-9a62-16f18c021224" parent_id_arme="768bd695-1724-48ef-a4b1-015462e61c10">
     <if_variable name="DianaCodeState" comparator="EQUALS" value="6.0" />
     <if_variable name="DianaAutoEngineer" comparator="EQUALS" value="1.0" />
     <if_exists name="Diana" />
@@ -1797,7 +1797,7 @@
     <set_player_grid_damage value="0.0" name="Diana" index="3" systemType="systemTactical" countFrom="front" />
     <set_player_grid_damage value="0.0" name="Diana" index="0" systemType="systemWarp" countFrom="front" />
   </event>
-  <event name_arme="No beams" id_arme="dcd646c8-33dd-44e3-9ed3-5fbdfe5e1112" parent_id_arme="768bd695-1724-48ef-a4b1-015462e61c10">
+  <event name="No beams" id_arme="dcd646c8-33dd-44e3-9ed3-5fbdfe5e1112" parent_id_arme="768bd695-1724-48ef-a4b1-015462e61c10">
     <if_exists name="Diana" />
     <if_variable name="DianaPowerToSystem" comparator="NOT" value="1.0" />
     <if_variable name="DianaSystemBeams" comparator="EQUALS" value="1.0" />
@@ -1809,7 +1809,7 @@
     <set_player_grid_damage value="1.0" name="Diana" index="2" systemType="systemBeam" countFrom="front" />
     <set_player_grid_damage value="1.0" name="Diana" index="3" systemType="systemBeam" countFrom="front" />
   </event>
-  <event name_arme="Power beams -key" id_arme="6417a09f-d31b-4776-ab04-3e0bfc3b44e8" parent_id_arme="768bd695-1724-48ef-a4b1-015462e61c10">
+  <event name="Power beams -key" id_arme="6417a09f-d31b-4776-ab04-3e0bfc3b44e8" parent_id_arme="768bd695-1724-48ef-a4b1-015462e61c10">
     <if_variable name="DianaEngineerInstructed" comparator="EQUALS" value="1.0" />
     <if_exists name="Diana" />
     <if_client_key keyText="B" />
@@ -1823,7 +1823,7 @@
     <set_player_grid_damage value="0.0" name="Diana" index="2" systemType="systemBeam" countFrom="front" />
     <set_player_grid_damage value="0.0" name="Diana" index="3" systemType="systemBeam" countFrom="front" />
   </event>
-  <event name_arme="No torpedo" id_arme="9b3637de-58b9-4ab9-b906-27e7d24cd53b" parent_id_arme="768bd695-1724-48ef-a4b1-015462e61c10">
+  <event name="No torpedo" id_arme="9b3637de-58b9-4ab9-b906-27e7d24cd53b" parent_id_arme="768bd695-1724-48ef-a4b1-015462e61c10">
     <if_exists name="Diana" />
     <if_variable name="DianaPowerToSystem" comparator="NOT" value="2.0" />
     <if_variable name="DianaSystemTorpedos" comparator="EQUALS" value="1.0" />
@@ -1833,7 +1833,7 @@
     <set_player_grid_damage value="1.0" name="Diana" index="0" systemType="systemTorpedo" countFrom="front" />
     <set_player_grid_damage value="1.0" name="Diana" index="1" systemType="systemTorpedo" countFrom="front" />
   </event>
-  <event name_arme="Power torpedo - key" id_arme="c078d5fd-37a2-47a9-a54d-47fe3fc9c8a5" parent_id_arme="768bd695-1724-48ef-a4b1-015462e61c10">
+  <event name="Power torpedo - key" id_arme="c078d5fd-37a2-47a9-a54d-47fe3fc9c8a5" parent_id_arme="768bd695-1724-48ef-a4b1-015462e61c10">
     <if_variable name="DianaEngineerInstructed" comparator="EQUALS" value="1.0" />
     <if_exists name="Diana" />
     <if_client_key keyText="T" />
@@ -1845,7 +1845,7 @@
     <set_player_grid_damage value="0.0" name="Diana" index="0" systemType="systemTorpedo" countFrom="front" />
     <set_player_grid_damage value="0.0" name="Diana" index="1" systemType="systemTorpedo" countFrom="front" />
   </event>
-  <event name_arme="No sensors" id_arme="f3ba4408-5ab9-40b8-b0b0-c8060110dfa0" parent_id_arme="768bd695-1724-48ef-a4b1-015462e61c10">
+  <event name="No sensors" id_arme="f3ba4408-5ab9-40b8-b0b0-c8060110dfa0" parent_id_arme="768bd695-1724-48ef-a4b1-015462e61c10">
     <if_exists name="Diana" />
     <if_variable name="DianaPowerToSystem" comparator="NOT" value="3.0" />
     <if_variable name="DianaSystemSensors" comparator="EQUALS" value="1.0" />
@@ -1857,7 +1857,7 @@
     <set_player_grid_damage value="1.0" name="Diana" index="2" systemType="systemTactical" countFrom="front" />
     <set_player_grid_damage value="1.0" name="Diana" index="3" systemType="systemTactical" countFrom="front" />
   </event>
-  <event name_arme="Power sensors - key" id_arme="8b895c41-cdaa-4464-84ee-d1a1280c79d9" parent_id_arme="768bd695-1724-48ef-a4b1-015462e61c10">
+  <event name="Power sensors - key" id_arme="8b895c41-cdaa-4464-84ee-d1a1280c79d9" parent_id_arme="768bd695-1724-48ef-a4b1-015462e61c10">
     <if_variable name="DianaEngineerInstructed" comparator="EQUALS" value="1.0" />
     <if_exists name="Diana" />
     <if_client_key keyText="V" />
@@ -1871,7 +1871,7 @@
     <set_player_grid_damage value="0.0" name="Diana" index="2" systemType="systemTactical" countFrom="front" />
     <set_player_grid_damage value="0.0" name="Diana" index="3" systemType="systemTactical" countFrom="front" />
   </event>
-  <event name_arme="No maneuverability" id_arme="f3415edb-c87d-4018-b530-75314856d172" parent_id_arme="768bd695-1724-48ef-a4b1-015462e61c10">
+  <event name="No maneuverability" id_arme="f3415edb-c87d-4018-b530-75314856d172" parent_id_arme="768bd695-1724-48ef-a4b1-015462e61c10">
     <if_exists name="Diana" />
     <if_variable name="DianaPowerToSystem" comparator="NOT" value="4.0" />
     <if_variable name="DianaSystemManeuverability" comparator="EQUALS" value="1.0" />
@@ -1883,7 +1883,7 @@
     <set_player_grid_damage value="1.0" name="Diana" index="2" systemType="systemTurning" countFrom="front" />
     <set_player_grid_damage value="1.0" name="Diana" index="3" systemType="systemTurning" countFrom="front" />
   </event>
-  <event name_arme="Power maneuverability - key" id_arme="3f8d2a49-fe07-4b8a-bcd9-814bf2d1e045" parent_id_arme="768bd695-1724-48ef-a4b1-015462e61c10">
+  <event name="Power maneuverability - key" id_arme="3f8d2a49-fe07-4b8a-bcd9-814bf2d1e045" parent_id_arme="768bd695-1724-48ef-a4b1-015462e61c10">
     <if_variable name="DianaEngineerInstructed" comparator="EQUALS" value="1.0" />
     <if_exists name="Diana" />
     <if_client_key keyText="M" />
@@ -1897,7 +1897,7 @@
     <set_player_grid_damage value="0.0" name="Diana" index="2" systemType="systemTurning" countFrom="front" />
     <set_player_grid_damage value="0.0" name="Diana" index="3" systemType="systemTurning" countFrom="front" />
   </event>
-  <event name_arme="No impulse" id_arme="3d93052a-67f9-49b3-ac0b-23b0aed401f8" parent_id_arme="768bd695-1724-48ef-a4b1-015462e61c10">
+  <event name="No impulse" id_arme="3d93052a-67f9-49b3-ac0b-23b0aed401f8" parent_id_arme="768bd695-1724-48ef-a4b1-015462e61c10">
     <if_exists name="Diana" />
     <if_variable name="DianaPowerToSystem" comparator="NOT" value="5.0" />
     <if_variable name="DianaSystemImpulse" comparator="EQUALS" value="1.0" />
@@ -1911,7 +1911,7 @@
     <set_player_grid_damage value="1.0" name="Diana" index="4" systemType="systemImpulse" countFrom="front" />
     <set_player_grid_damage value="1.0" name="Diana" index="5" systemType="systemImpulse" countFrom="front" />
   </event>
-  <event name_arme="Power impulse - key" id_arme="bdb0cfe7-41cb-4b94-a34a-432d7adcd2ed" parent_id_arme="768bd695-1724-48ef-a4b1-015462e61c10">
+  <event name="Power impulse - key" id_arme="bdb0cfe7-41cb-4b94-a34a-432d7adcd2ed" parent_id_arme="768bd695-1724-48ef-a4b1-015462e61c10">
     <if_variable name="DianaEngineerInstructed" comparator="EQUALS" value="1.0" />
     <if_exists name="Diana" />
     <if_client_key keyText="I" />
@@ -1927,7 +1927,7 @@
     <set_player_grid_damage value="0.0" name="Diana" index="4" systemType="systemImpulse" countFrom="front" />
     <set_player_grid_damage value="0.0" name="Diana" index="5" systemType="systemImpulse" countFrom="front" />
   </event>
-  <event name_arme="No warp - key" id_arme="07e7e70c-c081-4b61-9899-dccc35c23109" parent_id_arme="768bd695-1724-48ef-a4b1-015462e61c10">
+  <event name="No warp - key" id_arme="07e7e70c-c081-4b61-9899-dccc35c23109" parent_id_arme="768bd695-1724-48ef-a4b1-015462e61c10">
     <if_exists name="Diana" />
     <if_variable name="DianaAutoEngineer" comparator="EQUALS" value="0.0" />
     <if_variable name="DianaPowerToSystem" comparator="NOT" value="6.0" />
@@ -1940,7 +1940,7 @@
     <set_player_grid_damage value="1.0" name="Diana" index="2" systemType="systemWarp" countFrom="front" />
     <set_player_grid_damage value="1.0" name="Diana" index="3" systemType="systemWarp" countFrom="front" />
   </event>
-  <event name_arme="Power warp - key" id_arme="e32d5bf2-6612-4e52-93db-3b920f8333f0" parent_id_arme="768bd695-1724-48ef-a4b1-015462e61c10">
+  <event name="Power warp - key" id_arme="e32d5bf2-6612-4e52-93db-3b920f8333f0" parent_id_arme="768bd695-1724-48ef-a4b1-015462e61c10">
     <if_variable name="DianaEngineerInstructed" comparator="EQUALS" value="1.0" />
     <if_exists name="Diana" />
     <if_client_key keyText="N" />
@@ -1954,7 +1954,7 @@
     <set_player_grid_damage value="0.0" name="Diana" index="2" systemType="systemWarp" countFrom="front" />
     <set_player_grid_damage value="0.0" name="Diana" index="3" systemType="systemWarp" countFrom="front" />
   </event>
-  <event name_arme="No front shield" id_arme="23af89a5-1685-4758-8410-8105335ea6f1" parent_id_arme="768bd695-1724-48ef-a4b1-015462e61c10">
+  <event name="No front shield" id_arme="23af89a5-1685-4758-8410-8105335ea6f1" parent_id_arme="768bd695-1724-48ef-a4b1-015462e61c10">
     <if_exists name="Diana" />
     <if_variable name="DianaPowerToSystem" comparator="NOT" value="7.0" />
     <if_variable name="DianaPowerToSystem" comparator="NOT" value="9.0" />
@@ -1967,7 +1967,7 @@
     <set_player_grid_damage value="1.0" name="Diana" index="2" systemType="systemFrontShield" countFrom="front" />
     <set_player_grid_damage value="1.0" name="Diana" index="3" systemType="systemFrontShield" countFrom="front" />
   </event>
-  <event name_arme="Power front shield - key" id_arme="115e789e-c5a7-4ff4-8c8f-52958e6afc63" parent_id_arme="768bd695-1724-48ef-a4b1-015462e61c10">
+  <event name="Power front shield - key" id_arme="115e789e-c5a7-4ff4-8c8f-52958e6afc63" parent_id_arme="768bd695-1724-48ef-a4b1-015462e61c10">
     <if_variable name="DianaEngineerInstructed" comparator="EQUALS" value="1.0" />
     <if_exists name="Diana" />
     <if_client_key keyText="F" />
@@ -1981,7 +1981,7 @@
     <set_player_grid_damage value="0.0" name="Diana" index="2" systemType="systemFrontShield" countFrom="front" />
     <set_player_grid_damage value="0.0" name="Diana" index="3" systemType="systemFrontShield" countFrom="front" />
   </event>
-  <event name_arme="No rear shield" id_arme="e79491ab-ef48-4003-9c92-70bf17f6aa6e" parent_id_arme="768bd695-1724-48ef-a4b1-015462e61c10">
+  <event name="No rear shield" id_arme="e79491ab-ef48-4003-9c92-70bf17f6aa6e" parent_id_arme="768bd695-1724-48ef-a4b1-015462e61c10">
     <if_exists name="Diana" />
     <if_variable name="DianaPowerToSystem" comparator="NOT" value="8.0" />
     <if_variable name="DianaPowerToSystem" comparator="NOT" value="9.0" />
@@ -1995,7 +1995,7 @@
     <set_player_grid_damage value="1.0" name="Diana" index="3" systemType="systemBackShield" countFrom="front" />
     <set_player_grid_damage value="1.0" name="Diana" index="4" systemType="systemBackShield" countFrom="front" />
   </event>
-  <event name_arme="Power rear shield - key" id_arme="769cf07c-bfad-44e4-a909-c5b33a366370" parent_id_arme="768bd695-1724-48ef-a4b1-015462e61c10">
+  <event name="Power rear shield - key" id_arme="769cf07c-bfad-44e4-a909-c5b33a366370" parent_id_arme="768bd695-1724-48ef-a4b1-015462e61c10">
     <if_variable name="DianaEngineerInstructed" comparator="EQUALS" value="1.0" />
     <if_exists name="Diana" />
     <if_client_key keyText="R" />
@@ -2010,8 +2010,8 @@
     <set_player_grid_damage value="0.0" name="Diana" index="3" systemType="systemBackShield" countFrom="front" />
     <set_player_grid_damage value="0.0" name="Diana" index="4" systemType="systemBackShield" countFrom="front" />
   </event>
-  <folder_arme name_arme="Realm: Diana at Elysia" id_arme="d728922c-ff39-419c-afc5-83af1b0b1651" />
-  <event name_arme="Proximity Alert" id_arme="7effaa45-c5b8-4106-b1bb-35e33fa424d5" parent_id_arme="d728922c-ff39-419c-afc5-83af1b0b1651">
+  <folder_arme name="Realm: Diana at Elysia" id_arme="d728922c-ff39-419c-afc5-83af1b0b1651" />
+  <event name="Proximity Alert" id_arme="7effaa45-c5b8-4106-b1bb-35e33fa424d5" parent_id_arme="d728922c-ff39-419c-afc5-83af1b0b1651">
     <if_variable name="DianaCodeState" comparator="EQUALS" value="6.0" />
     <if_variable name="DianaPlanetAlert" comparator="EQUALS" value="0" />
     <if_distance name1="Diana" name2="Elysia" comparator="LESS" value="ElysiaGravityRadius" />
@@ -2019,7 +2019,7 @@
     <warning_popup_message message="Diana: Gravity well hazard. Proceed cautiously." consoles="S" player_slot="7" />
     <set_variable name="DianaPlanetAlert" value="1" />
   </event>
-  <event name_arme="Collision Alert" id_arme="6d4820f7-b6e2-409e-abeb-d4b5de22255f" parent_id_arme="d728922c-ff39-419c-afc5-83af1b0b1651">
+  <event name="Collision Alert" id_arme="6d4820f7-b6e2-409e-abeb-d4b5de22255f" parent_id_arme="d728922c-ff39-419c-afc5-83af1b0b1651">
     <if_variable name="DianaCodeState" comparator="EQUALS" value="6.0" />
     <if_variable name="DianaPlanetAlert" comparator="LESS_EQUAL" value="1.0" />
     <if_distance name1="Diana" name2="Elysia" comparator="LESS" value="ElysiaWarningRadius" />
@@ -2027,64 +2027,64 @@
     <warning_popup_message message="Diana: Gravity well collision alert!" consoles="H" player_slot="7" />
     <set_variable name="DianaPlanetAlert" value="2.0" />
   </event>
-  <event name_arme="Clear Collision Alert" id_arme="3ba06ff2-4f3f-45ac-8d0c-0a167a743bfe" parent_id_arme="d728922c-ff39-419c-afc5-83af1b0b1651">
+  <event name="Clear Collision Alert" id_arme="3ba06ff2-4f3f-45ac-8d0c-0a167a743bfe" parent_id_arme="d728922c-ff39-419c-afc5-83af1b0b1651">
     <if_variable name="DianaCodeState" comparator="EQUALS" value="6.0" />
     <if_variable name="DianaPlanetAlert" comparator="GREATER_EQUAL" value="2.0" />
     <if_distance name1="Diana" name2="Elysia" comparator="GREATER" value="ElysiaWarningRadius" />
     <log text="Diana: Elysia collision averted" />
     <set_variable name="DianaPlanetAlert" value="1.0" />
   </event>
-  <event name_arme="Clear Proximity Alert" id_arme="4e317b8c-7579-4107-8072-8df553d143b9" parent_id_arme="d728922c-ff39-419c-afc5-83af1b0b1651">
+  <event name="Clear Proximity Alert" id_arme="4e317b8c-7579-4107-8072-8df553d143b9" parent_id_arme="d728922c-ff39-419c-afc5-83af1b0b1651">
     <if_variable name="DianaCodeState" comparator="EQUALS" value="6.0" />
     <if_variable name="DianaPlanetAlert" comparator="GREATER_EQUAL" value="1" />
     <if_distance name1="Diana" name2="Elysia" comparator="GREATER" value="ElysiaGravityRadius" />
     <log text="Diana: Elysia proximity avoided" />
     <set_variable name="DianaPlanetAlert" value="0" />
   </event>
-  <event name_arme="Loss of Ship Control X" id_arme="87752e1b-4cbb-4e50-a5cf-bf750ba9db84" parent_id_arme="d728922c-ff39-419c-afc5-83af1b0b1651">
+  <event name="Loss of Ship Control X" id_arme="87752e1b-4cbb-4e50-a5cf-bf750ba9db84" parent_id_arme="d728922c-ff39-419c-afc5-83af1b0b1651">
     <if_variable name="DianaCodeState" comparator="EQUALS" value="6.0" />
     <if_distance name1="Diana" name2="Elysia" comparator="GREATER" value="ElysiaRadius" />
     <if_distance name1="Diana" name2="Elysia" comparator="LESS" value="ElysiaGravityRadius" />
     <if_object_property property="positionX" name="Diana" comparator="LESS" value="ElysiaX" />
     <addto_object_property value="ElysiaGravity" property="positionX" name="Diana" />
   </event>
-  <event name_arme="Loss of Ship Control X" id_arme="54b0c290-43a1-4082-83b9-bcd9ab8b292f" parent_id_arme="d728922c-ff39-419c-afc5-83af1b0b1651">
+  <event name="Loss of Ship Control X" id_arme="54b0c290-43a1-4082-83b9-bcd9ab8b292f" parent_id_arme="d728922c-ff39-419c-afc5-83af1b0b1651">
     <if_variable name="DianaCodeState" comparator="EQUALS" value="6.0" />
     <if_distance name1="Diana" name2="Elysia" comparator="GREATER" value="ElysiaRadius" />
     <if_distance name1="Diana" name2="Elysia" comparator="LESS" value="ElysiaGravityRadius" />
     <if_object_property property="positionX" name="Diana" comparator="GREATER" value="ElysiaX" />
     <addto_object_property value="-ElysiaGravity" property="positionX" name="Diana" />
   </event>
-  <event name_arme="Loss of Ship Control Z" id_arme="555a0058-5555-4dca-b457-6428a04a44ad" parent_id_arme="d728922c-ff39-419c-afc5-83af1b0b1651">
+  <event name="Loss of Ship Control Z" id_arme="555a0058-5555-4dca-b457-6428a04a44ad" parent_id_arme="d728922c-ff39-419c-afc5-83af1b0b1651">
     <if_variable name="DianaCodeState" comparator="EQUALS" value="6.0" />
     <if_distance name1="Diana" name2="Elysia" comparator="GREATER" value="ElysiaRadius" />
     <if_distance name1="Diana" name2="Elysia" comparator="LESS" value="ElysiaGravityRadius" />
     <if_object_property property="positionZ" name="Diana" comparator="LESS" value="ElysiaZ" />
     <addto_object_property value="ElysiaGravity" property="positionZ" name="Diana" />
   </event>
-  <event name_arme="Loss of Ship Control Z" id_arme="ca2dc3a4-c11b-4c4b-b680-450dc3d17559" parent_id_arme="d728922c-ff39-419c-afc5-83af1b0b1651">
+  <event name="Loss of Ship Control Z" id_arme="ca2dc3a4-c11b-4c4b-b680-450dc3d17559" parent_id_arme="d728922c-ff39-419c-afc5-83af1b0b1651">
     <if_variable name="DianaCodeState" comparator="EQUALS" value="6.0" />
     <if_distance name1="Diana" name2="Elysia" comparator="GREATER" value="ElysiaRadius" />
     <if_distance name1="Diana" name2="Elysia" comparator="LESS" value="ElysiaGravityRadius" />
     <if_object_property property="positionZ" name="Diana" comparator="GREATER" value="ElysiaZ" />
     <addto_object_property value="-ElysiaGravity" property="positionZ" name="Diana" />
   </event>
-  <event name_arme="Loss of Ship Control Y" id_arme="7ab973d5-bb18-4b71-bc35-8b20a2ecb225" parent_id_arme="d728922c-ff39-419c-afc5-83af1b0b1651">
+  <event name="Loss of Ship Control Y" id_arme="7ab973d5-bb18-4b71-bc35-8b20a2ecb225" parent_id_arme="d728922c-ff39-419c-afc5-83af1b0b1651">
     <if_variable name="DianaCodeState" comparator="EQUALS" value="6.0" />
     <if_distance name1="Diana" name2="Elysia" comparator="GREATER" value="ElysiaRadius" />
     <if_distance name1="Diana" name2="Elysia" comparator="LESS" value="ElysiaGravityRadius" />
     <if_object_property property="positionY" name="Diana" comparator="LESS" value="ElysiaY" />
     <addto_object_property value="ElysiaGravity" property="positionY" name="Diana" />
   </event>
-  <event name_arme="Loss of Ship Control Y" id_arme="1c36e638-ce33-442c-a196-21edc8153178" parent_id_arme="d728922c-ff39-419c-afc5-83af1b0b1651">
+  <event name="Loss of Ship Control Y" id_arme="1c36e638-ce33-442c-a196-21edc8153178" parent_id_arme="d728922c-ff39-419c-afc5-83af1b0b1651">
     <if_variable name="DianaCodeState" comparator="EQUALS" value="6.0" />
     <if_distance name1="Diana" name2="Elysia" comparator="GREATER" value="ElysiaRadius" />
     <if_distance name1="Diana" name2="Elysia" comparator="LESS" value="ElysiaGravityRadius" />
     <if_object_property property="positionY" name="Diana" comparator="GREATER" value="ElysiaY" />
     <addto_object_property value="-ElysiaGravity" property="positionY" name="Diana" />
   </event>
-  <folder_arme name_arme="Task: Diana at Wormhole" id_arme="a0dfaaac-6dc3-4625-b7f7-2b22461c4c83" />
-  <event name_arme="Emerge" id_arme="8360d84d-382f-4f94-88d1-f2a152a12773" parent_id_arme="a0dfaaac-6dc3-4625-b7f7-2b22461c4c83">
+  <folder_arme name="Task: Diana at Wormhole" id_arme="a0dfaaac-6dc3-4625-b7f7-2b22461c4c83" />
+  <event name="Emerge" id_arme="8360d84d-382f-4f94-88d1-f2a152a12773" parent_id_arme="a0dfaaac-6dc3-4625-b7f7-2b22461c4c83">
     <if_distance name1="Diana" name2="Wormhole" comparator="GREATER" value="WormholeRadius" />
     <if_variable name="DianaLocation" comparator="EQUALS" value="300.0" />
     <log text="Diana emerged from wormhole" />
@@ -2093,7 +2093,7 @@
     <set_variable name="DianaLocation" value="200.0" />
     <set_timer name="WormholeClosingDelay" seconds="20" />
   </event>
-  <event name_arme="Proximity Alert" id_arme="27d80b4e-efec-46f8-96c0-7aeada0bda70" parent_id_arme="a0dfaaac-6dc3-4625-b7f7-2b22461c4c83">
+  <event name="Proximity Alert" id_arme="27d80b4e-efec-46f8-96c0-7aeada0bda70" parent_id_arme="a0dfaaac-6dc3-4625-b7f7-2b22461c4c83">
     <if_variable name="DianaWormholeAlert" comparator="EQUALS" value="0" />
     <if_distance name1="Diana" name2="Wormhole" comparator="LESS" value="WormholeGravityRadius" />
     <if_variable name="DianaLocation" comparator="EQUALS" value="200.0" />
@@ -2101,7 +2101,7 @@
     <warning_popup_message message="Diana: Gravity well hazard. Proceed cautiously." consoles="S" player_slot="7" />
     <set_variable name="DianaWormholeAlert" value="1" />
   </event>
-  <event name_arme="Collision Alert" id_arme="f86ab1af-c7d0-4955-8d01-61c8f5a9d0e5" parent_id_arme="a0dfaaac-6dc3-4625-b7f7-2b22461c4c83">
+  <event name="Collision Alert" id_arme="f86ab1af-c7d0-4955-8d01-61c8f5a9d0e5" parent_id_arme="a0dfaaac-6dc3-4625-b7f7-2b22461c4c83">
     <if_variable name="DianaWormholeAlert" comparator="LESS_EQUAL" value="1.0" />
     <if_distance name1="Diana" name2="Wormhole" comparator="GREATER" value="WormholeRadius" />
     <if_distance name1="Diana" name2="Wormhole" comparator="LESS" value="WormholeWarningRadius" />
@@ -2110,21 +2110,21 @@
     <warning_popup_message message="Diana approaching event horizon" consoles="H" player_slot="7" />
     <set_variable name="DianaWormholeAlert" value="2.0" />
   </event>
-  <event name_arme="Clear Collision Alert" id_arme="e5bb11cc-7bc6-4f5e-b13d-d58976d31bf2" parent_id_arme="a0dfaaac-6dc3-4625-b7f7-2b22461c4c83">
+  <event name="Clear Collision Alert" id_arme="e5bb11cc-7bc6-4f5e-b13d-d58976d31bf2" parent_id_arme="a0dfaaac-6dc3-4625-b7f7-2b22461c4c83">
     <if_variable name="DianaWormholeAlert" comparator="GREATER_EQUAL" value="2.0" />
     <if_distance name1="Diana" name2="Wormhole" comparator="GREATER" value="WormholeWarningRadius" />
     <if_variable name="DianaLocation" comparator="EQUALS" value="200.0" />
     <log text="Diana: Wormhole event horizon averted" />
     <set_variable name="DianaWormholeAlert" value="1.0" />
   </event>
-  <event name_arme="Clear Proximity Alert" id_arme="99d0aa34-eef3-49ac-902d-e5283d388cca" parent_id_arme="a0dfaaac-6dc3-4625-b7f7-2b22461c4c83">
+  <event name="Clear Proximity Alert" id_arme="99d0aa34-eef3-49ac-902d-e5283d388cca" parent_id_arme="a0dfaaac-6dc3-4625-b7f7-2b22461c4c83">
     <if_variable name="DianaWormholeAlert" comparator="GREATER_EQUAL" value="1" />
     <if_distance name1="Diana" name2="Wormhole" comparator="GREATER" value="WormholeGravityRadius" />
     <if_variable name="DianaLocation" comparator="EQUALS" value="200.0" />
     <log text="Diana: Wormhole proximity avoided" />
     <set_variable name="DianaWormholeAlert" value="0" />
   </event>
-  <event name_arme="Pop Through" id_arme="ce51c3bc-aab8-4227-8d04-a8d1ddb2a8c6" parent_id_arme="a0dfaaac-6dc3-4625-b7f7-2b22461c4c83">
+  <event name="Pop Through" id_arme="ce51c3bc-aab8-4227-8d04-a8d1ddb2a8c6" parent_id_arme="a0dfaaac-6dc3-4625-b7f7-2b22461c4c83">
     <if_distance name1="Diana" name2="Wormhole" comparator="LESS" value="WormholeRadius" />
     <if_variable name="DianaLocation" comparator="EQUALS" value="200.0" />
     <log text="Diana entered wormhole" />
@@ -2132,7 +2132,7 @@
     <warning_popup_message message="The Diana has re-entered the wormhole!" consoles="S" />
     <set_variable name="DianaLocation" value="300.0" />
   </event>
-  <event name_arme="Wormhole Closes" id_arme="7a2b532e-09d6-4804-ad2b-31b94a741780" parent_id_arme="a0dfaaac-6dc3-4625-b7f7-2b22461c4c83">
+  <event name="Wormhole Closes" id_arme="7a2b532e-09d6-4804-ad2b-31b94a741780" parent_id_arme="a0dfaaac-6dc3-4625-b7f7-2b22461c4c83">
     <if_variable name="DianaLocation" comparator="EQUALS" value="200.0" />
     <if_exists name="Wormhole" />
     <if_timer_finished name="WormholeClosingDelay" />
@@ -2141,8 +2141,8 @@
     <destroy name="Elysia" />
     <destroy name="Ceres" />
   </event>
-  <folder_arme name_arme="Task: Cetrocite device" id_arme="05098897-4aee-41b7-92b2-9491f883970d" />
-  <event name_arme="Submit Cetrocite device plans to SB01 via button" id_arme="115fcb5c-f77f-40f5-82c1-503c340d6874" parent_id_arme="05098897-4aee-41b7-92b2-9491f883970d">
+  <folder_arme name="Task: Cetrocite device" id_arme="05098897-4aee-41b7-92b2-9491f883970d" />
+  <event name="Submit Cetrocite device plans to SB01 via button" id_arme="115fcb5c-f77f-40f5-82c1-503c340d6874" parent_id_arme="05098897-4aee-41b7-92b2-9491f883970d">
     <if_variable name="FoundCetrociteSchematic" comparator="GREATER" value="0.0" />
     <if_exists name="SB01" />
     <if_variable name="ArtemisVersion2.5.107" comparator="GREATER" value="0.0" />
@@ -2156,7 +2156,7 @@
     <clear_comms_button text="Send schematics to SB01 for analysis" />
     <clear_gm_button text="GM/Resend Comms/Schematic Report to SB01" />
   </event>
-  <event name_arme="Submit Cetrocite device plans to SB01 via key" id_arme="32e4d2ca-11a2-474d-8404-308a3360af58" parent_id_arme="05098897-4aee-41b7-92b2-9491f883970d">
+  <event name="Submit Cetrocite device plans to SB01 via key" id_arme="32e4d2ca-11a2-474d-8404-308a3360af58" parent_id_arme="05098897-4aee-41b7-92b2-9491f883970d">
     <if_variable name="FoundCetrociteSchematic" comparator="GREATER" value="0.0" />
     <if_exists name="SB01" />
     <if_client_key keyText="S" />
@@ -2169,7 +2169,7 @@
     <clear_comms_button text="Send schematics to SB01 for analysis" />
     <clear_gm_button text="GM/Resend Comms/Schematic Report to SB01" />
   </event>
-  <event name_arme="GM Submit Cetrocite device plans to SB01" id_arme="880fe12b-31c0-4137-8cc9-39c6033f59d2" parent_id_arme="05098897-4aee-41b7-92b2-9491f883970d">
+  <event name="GM Submit Cetrocite device plans to SB01" id_arme="880fe12b-31c0-4137-8cc9-39c6033f59d2" parent_id_arme="05098897-4aee-41b7-92b2-9491f883970d">
     <if_variable name="FoundCetrociteSchematic" comparator="GREATER" value="0.0" />
     <if_exists name="SB01" />
     <if_gm_button text="GM/Player Action/Send Schematics to SB01" />
@@ -2182,7 +2182,7 @@
     <clear_comms_button text="Send schematics to SB01 for analysis" />
     <clear_gm_button text="GM/Resend Comms/Schematic Report to SB01" />
   </event>
-  <event name_arme="Submit Cetrocite device plans to Cassini via button" id_arme="5e331300-4602-48f1-a9c6-a6907687004c" parent_id_arme="05098897-4aee-41b7-92b2-9491f883970d">
+  <event name="Submit Cetrocite device plans to Cassini via button" id_arme="5e331300-4602-48f1-a9c6-a6907687004c" parent_id_arme="05098897-4aee-41b7-92b2-9491f883970d">
     <if_variable name="FoundCetrociteSchematic" comparator="GREATER" value="0.0" />
     <if_exists name="Cassini" />
     <if_variable name="ArtemisVersion2.5.107" comparator="GREATER" value="0.0" />
@@ -2197,7 +2197,7 @@
     <clear_comms_button text="Send schematics to Cassini for analysis" />
     <clear_gm_button text="GM/Resend Comms/Schematic Report to Cassini" />
   </event>
-  <event name_arme="Submit Cetrocite device plans to Cassini via key" id_arme="639f69b1-77be-4134-a148-bf05053f88f7" parent_id_arme="05098897-4aee-41b7-92b2-9491f883970d">
+  <event name="Submit Cetrocite device plans to Cassini via key" id_arme="639f69b1-77be-4134-a148-bf05053f88f7" parent_id_arme="05098897-4aee-41b7-92b2-9491f883970d">
     <if_variable name="FoundCetrociteSchematic" comparator="GREATER" value="0.0" />
     <if_exists name="Cassini" />
     <if_client_key keyText="C" />
@@ -2211,7 +2211,7 @@
     <clear_comms_button text="Send schematics to Cassini for analysis" />
     <clear_gm_button text="GM/Resend Comms/Schematic Report to Cassini" />
   </event>
-  <event name_arme="GM Submit Cetrocite device plans to Cassini" id_arme="82366043-85b0-4377-a00a-158ae740412a" parent_id_arme="05098897-4aee-41b7-92b2-9491f883970d">
+  <event name="GM Submit Cetrocite device plans to Cassini" id_arme="82366043-85b0-4377-a00a-158ae740412a" parent_id_arme="05098897-4aee-41b7-92b2-9491f883970d">
     <if_variable name="FoundCetrociteSchematic" comparator="GREATER" value="0.0" />
     <if_exists name="Cassini" />
     <if_gm_button text="GM/Player Action/Send Schematics to Cassini" />
@@ -2224,14 +2224,14 @@
     <clear_comms_button text="Send schematics to Cassini for analysis" />
     <clear_gm_button text="GM/Resend Comms/Schematic Report to Cassini" />
   </event>
-  <event name_arme="GM Destroy IB02" id_arme="4d54d277-fd84-47f9-99b0-1abc0bd8a0cf" parent_id_arme="05098897-4aee-41b7-92b2-9491f883970d">
+  <event name="GM Destroy IB02" id_arme="4d54d277-fd84-47f9-99b0-1abc0bd8a0cf" parent_id_arme="05098897-4aee-41b7-92b2-9491f883970d">
     <if_exists name="IB02" />
     <if_gm_button text="Debug/Destroy IB02" />
     <log text="GM destroyed IB02" />
     <destroy name="IB02" />
     <clear_gm_button text="Debug/Destroy IB02" />
   </event>
-  <event name_arme="Submit Cetrocite device plans to IB02 via button" id_arme="83386375-26ce-4b7f-91e2-11b5fb3b24ed" parent_id_arme="05098897-4aee-41b7-92b2-9491f883970d">
+  <event name="Submit Cetrocite device plans to IB02 via button" id_arme="83386375-26ce-4b7f-91e2-11b5fb3b24ed" parent_id_arme="05098897-4aee-41b7-92b2-9491f883970d">
     <if_variable name="FoundCetrociteSchematic" comparator="GREATER" value="0.0" />
     <if_exists name="IB02" />
     <if_variable name="ArtemisVersion2.5.107" comparator="GREATER" value="0.0" />
@@ -2246,7 +2246,7 @@
     <clear_gm_button text="GM/Resend Comms/Schematic Report to IB02" />
     <set_variable name="SchematicBuilding" value="1.0" />
   </event>
-  <event name_arme="Submit Cetrocite device plans to IB02 via key" id_arme="3e37d5dd-30ab-46e9-93ea-e272f70337ba" parent_id_arme="05098897-4aee-41b7-92b2-9491f883970d">
+  <event name="Submit Cetrocite device plans to IB02 via key" id_arme="3e37d5dd-30ab-46e9-93ea-e272f70337ba" parent_id_arme="05098897-4aee-41b7-92b2-9491f883970d">
     <if_variable name="FoundCetrociteSchematic" comparator="GREATER" value="0.0" />
     <if_exists name="IB02" />
     <if_client_key keyText="I" />
@@ -2260,7 +2260,7 @@
     <clear_gm_button text="GM/Resend Comms/Schematic Report to IB02" />
     <set_variable name="SchematicBuilding" value="1.0" />
   </event>
-  <event name_arme="GM Submit Cetrocite device plans to IB02" id_arme="d954c53b-7255-4563-8803-0979e4df2402" parent_id_arme="05098897-4aee-41b7-92b2-9491f883970d">
+  <event name="GM Submit Cetrocite device plans to IB02" id_arme="d954c53b-7255-4563-8803-0979e4df2402" parent_id_arme="05098897-4aee-41b7-92b2-9491f883970d">
     <if_variable name="FoundCetrociteSchematic" comparator="GREATER" value="0.0" />
     <if_exists name="IB02" />
     <if_gm_button text="GM/Player Action/Send Schematics to IB02" />
@@ -2274,7 +2274,7 @@
     <clear_gm_button text="GM/Resend Comms/Schematic Report to IB02" />
     <set_variable name="SchematicBuilding" value="1.0" />
   </event>
-  <event name_arme="Submit Cetrocite device plans to Mariner via button" id_arme="9c939ddf-401d-4fb6-a193-2604902ca8f3" parent_id_arme="05098897-4aee-41b7-92b2-9491f883970d">
+  <event name="Submit Cetrocite device plans to Mariner via button" id_arme="9c939ddf-401d-4fb6-a193-2604902ca8f3" parent_id_arme="05098897-4aee-41b7-92b2-9491f883970d">
     <if_variable name="FoundCetrociteSchematic" comparator="GREATER" value="0.0" />
     <if_exists name="Mariner" />
     <if_variable name="ArtemisVersion2.5.107" comparator="GREATER" value="0.0" />
@@ -2289,7 +2289,7 @@
     <clear_gm_button text="GM/Resend Comms/Schematic Report to Mariner" />
     <set_variable name="SchematicBuilding" value="1.0" />
   </event>
-  <event name_arme="Submit Cetrocite device plans to Mariner via key" id_arme="a8bfc184-686b-432b-9ead-34b7eb15cf8e" parent_id_arme="05098897-4aee-41b7-92b2-9491f883970d">
+  <event name="Submit Cetrocite device plans to Mariner via key" id_arme="a8bfc184-686b-432b-9ead-34b7eb15cf8e" parent_id_arme="05098897-4aee-41b7-92b2-9491f883970d">
     <if_variable name="FoundCetrociteSchematic" comparator="GREATER" value="0.0" />
     <if_exists name="Mariner" />
     <if_client_key keyText="M" />
@@ -2303,7 +2303,7 @@
     <clear_gm_button text="GM/Resend Comms/Schematic Report to Mariner" />
     <set_variable name="SchematicBuilding" value="1.0" />
   </event>
-  <event name_arme="GM Submit Cetrocite device plans to Mariner" id_arme="35dca3c0-82bc-450e-9811-1429903488fd" parent_id_arme="05098897-4aee-41b7-92b2-9491f883970d">
+  <event name="GM Submit Cetrocite device plans to Mariner" id_arme="35dca3c0-82bc-450e-9811-1429903488fd" parent_id_arme="05098897-4aee-41b7-92b2-9491f883970d">
     <if_variable name="FoundCetrociteSchematic" comparator="GREATER" value="0.0" />
     <if_exists name="Mariner" />
     <if_gm_button text="GM/Player Action/Send Schematics to Mariner" />
@@ -2317,7 +2317,7 @@
     <clear_gm_button text="GM/Resend Comms/Schematic Report to Mariner" />
     <set_variable name="SchematicBuilding" value="1.0" />
   </event>
-  <event name_arme="Reminder about SB01" id_arme="cb95f219-e966-42fe-862f-ffbcc960d4c8" parent_id_arme="05098897-4aee-41b7-92b2-9491f883970d">
+  <event name="Reminder about SB01" id_arme="cb95f219-e966-42fe-862f-ffbcc960d4c8" parent_id_arme="05098897-4aee-41b7-92b2-9491f883970d">
     <!--Reminder if device built but not submitted for analysis-->
     <if_variable name="FoundCetrociteSchematic" comparator="EQUALS" value="1.0" />
     <if_variable name="SB01HasCetrociteSchematic" comparator="EQUALS" value="0.0" />
@@ -2331,7 +2331,7 @@
     <start_getting_keypresses_from consoles="C" />
     <set_comms_button text="Send schematics to SB01 for analysis" />
   </event>
-  <event name_arme="Reminder about Cassini" id_arme="1e365f32-5e2c-4431-898e-efd2e6a9b66e" parent_id_arme="05098897-4aee-41b7-92b2-9491f883970d">
+  <event name="Reminder about Cassini" id_arme="1e365f32-5e2c-4431-898e-efd2e6a9b66e" parent_id_arme="05098897-4aee-41b7-92b2-9491f883970d">
     <!--Reminder if device built but not submitted for analysis-->
     <if_variable name="FoundCetrociteSchematic" comparator="EQUALS" value="1.0" />
     <if_variable name="CassiniHasCetrociteSchematic" comparator="EQUALS" value="0.0" />
@@ -2346,7 +2346,7 @@
     <start_getting_keypresses_from consoles="C" />
     <set_comms_button text="Send schematics to Cassini for analysis" />
   </event>
-  <event name_arme="Reminder about IB02" id_arme="43113aaf-8178-4e2f-a809-41b553aedc41" parent_id_arme="05098897-4aee-41b7-92b2-9491f883970d">
+  <event name="Reminder about IB02" id_arme="43113aaf-8178-4e2f-a809-41b553aedc41" parent_id_arme="05098897-4aee-41b7-92b2-9491f883970d">
     <!--Reminder if schematics analyzed but not submitted for production-->
     <if_variable name="FoundCetrociteSchematic" comparator="EQUALS" value="1.0" />
     <if_variable name="SB01HasCetrociteSchematic" comparator="EQUALS" value="2.0" />
@@ -2360,7 +2360,7 @@
     <start_getting_keypresses_from consoles="C" />
     <set_comms_button text="Send schematics to IB02 for production" />
   </event>
-  <event name_arme="Reminder about Mariner" id_arme="c87a0dcb-460f-462a-9992-734de1827fd4" parent_id_arme="05098897-4aee-41b7-92b2-9491f883970d">
+  <event name="Reminder about Mariner" id_arme="c87a0dcb-460f-462a-9992-734de1827fd4" parent_id_arme="05098897-4aee-41b7-92b2-9491f883970d">
     <!--Reminder if schematics analyzed but not submitted for production-->
     <if_variable name="FoundCetrociteSchematic" comparator="EQUALS" value="1.0" />
     <if_variable name="SB01HasCetrociteSchematic" comparator="EQUALS" value="2.0" />
@@ -2375,7 +2375,7 @@
     <start_getting_keypresses_from consoles="C" />
     <set_comms_button text="Send schematics to Mariner for production" />
   </event>
-  <event name_arme="SB01 analyzed Cetrocite plans" id_arme="0e97c3ce-ee43-4a8f-90d5-b0d1a01744fa" parent_id_arme="05098897-4aee-41b7-92b2-9491f883970d">
+  <event name="SB01 analyzed Cetrocite plans" id_arme="0e97c3ce-ee43-4a8f-90d5-b0d1a01744fa" parent_id_arme="05098897-4aee-41b7-92b2-9491f883970d">
     <if_variable name="SB01HasCetrociteSchematic" comparator="EQUALS" value="1.0" />
     <if_exists name="SB01" />
     <if_timer_finished name="AnalyzingCetrociteSchematic" />
@@ -2384,7 +2384,7 @@
     <incoming_comms_text from="SB01" type="STATION">We have analyzed the Cetrocite device schematic from the Diana.  Our research indicates that such a device might be able to attract space whales within a range of about 25k.</incoming_comms_text>
     <set_timer name="MissionUpdate" seconds="30" />
   </event>
-  <event name_arme="Cassini analyzed Cetrocite plans" id_arme="244142ad-1050-4a83-bfc6-f4619addea31" parent_id_arme="05098897-4aee-41b7-92b2-9491f883970d">
+  <event name="Cassini analyzed Cetrocite plans" id_arme="244142ad-1050-4a83-bfc6-f4619addea31" parent_id_arme="05098897-4aee-41b7-92b2-9491f883970d">
     <if_variable name="CassiniHasCetrociteSchematic" comparator="EQUALS" value="1.0" />
     <if_exists name="Cassini" />
     <if_timer_finished name="CassiniAnalyzingCetrociteSchematic" />
@@ -2393,7 +2393,7 @@
     <incoming_comms_text from="Cassini" type="STATION">We have analyzed the Cetrocite device schematic from the Diana.  Our research indicates that such a device might be able to attract space whales within a range of about 25k.</incoming_comms_text>
     <set_timer name="MissionUpdate" seconds="30" />
   </event>
-  <event name_arme="Mission update" id_arme="dd0bf832-8d92-4e8b-9458-cf51e70b4b8e" parent_id_arme="05098897-4aee-41b7-92b2-9491f883970d">
+  <event name="Mission update" id_arme="dd0bf832-8d92-4e8b-9458-cf51e70b4b8e" parent_id_arme="05098897-4aee-41b7-92b2-9491f883970d">
     <!--Analyzed, and building at least started-->
     <if_timer_finished name="MissionUpdate" />
     <if_variable name="SchematicBuilding" comparator="GREATER_EQUAL" value="1.0" />
@@ -2403,7 +2403,7 @@
     <set_variable name="MissionUpdated" value="1.0" />
     <incoming_comms_text from="TSN Command" type="SIDE">Since Torgoths hunt space whales, while Arvonians are outraged if they see anyone hurt one, you might be able to use the Cetrocite prototype to break up the Torgoth-Arvonian alliance in this sector!</incoming_comms_text>
   </event>
-  <event name_arme="Cetrocite device ready at IB02" id_arme="2d7d9320-8f47-4639-acf6-cb5018674873" parent_id_arme="05098897-4aee-41b7-92b2-9491f883970d">
+  <event name="Cetrocite device ready at IB02" id_arme="2d7d9320-8f47-4639-acf6-cb5018674873" parent_id_arme="05098897-4aee-41b7-92b2-9491f883970d">
     <if_variable name="IB02HasCetrociteSchematic" comparator="EQUALS" value="1.0" />
     <if_exists name="IB02" />
     <if_timer_finished name="BuildingCetrociteDevice" />
@@ -2411,7 +2411,7 @@
     <set_variable name="IB02HasCetrociteSchematic" value="2.0" />
     <incoming_comms_text from="IB02" type="STATION">We have completed construction of the Cetrocite device. Dock with us to have it installed.</incoming_comms_text>
   </event>
-  <event name_arme="Cetrocite device ready at Mariner" id_arme="41ca6ca0-51e4-49aa-a924-060e96f31024" parent_id_arme="05098897-4aee-41b7-92b2-9491f883970d">
+  <event name="Cetrocite device ready at Mariner" id_arme="41ca6ca0-51e4-49aa-a924-060e96f31024" parent_id_arme="05098897-4aee-41b7-92b2-9491f883970d">
     <if_variable name="MarinerHasCetrociteSchematic" comparator="EQUALS" value="1.0" />
     <if_exists name="Mariner" />
     <if_timer_finished name="MarinerBuildingCetrociteDevice" />
@@ -2419,7 +2419,7 @@
     <set_variable name="MarinerHasCetrociteSchematic" value="2.0" />
     <incoming_comms_text from="Mariner" type="FRIEND">We have completed construction of the Cetrocite device. Come to within 150m of us to have it installed.</incoming_comms_text>
   </event>
-  <event name_arme="Event: Artemis docks with IB02 to receive Cetrocite device" id_arme="3d07931c-6ff9-48e9-a912-af3ad05134e2" parent_id_arme="05098897-4aee-41b7-92b2-9491f883970d">
+  <event name="Event: Artemis docks with IB02 to receive Cetrocite device" id_arme="3d07931c-6ff9-48e9-a912-af3ad05134e2" parent_id_arme="05098897-4aee-41b7-92b2-9491f883970d">
     <if_docked name="IB02" />
     <if_distance name1="Artemis" name2="IB02" comparator="LESS_EQUAL" value="DockedRange" />
     <if_variable name="IB02HasCetrociteSchematic" comparator="EQUALS" value="2.0" />
@@ -2431,7 +2431,7 @@
     <set_relative_position name2="Prototype Cetrocite device for Artemis" distance="0" angle="0" name1="Artemis" />
     <set_variable name="SummonExtraWhales" value="1.0" />
   </event>
-  <event name_arme="Event: Artemis docks with Mariner to receive Cetrocite device" id_arme="880d5fca-b3c7-4dd9-8420-829fcee0f094" parent_id_arme="05098897-4aee-41b7-92b2-9491f883970d">
+  <event name="Event: Artemis docks with Mariner to receive Cetrocite device" id_arme="880d5fca-b3c7-4dd9-8420-829fcee0f094" parent_id_arme="05098897-4aee-41b7-92b2-9491f883970d">
     <if_distance name1="Artemis" name2="Mariner" comparator="LESS_EQUAL" value="CeresDockRange" />
     <if_variable name="MarinerHasCetrociteSchematic" comparator="EQUALS" value="2.0" />
     <if_variable name="ArtemisHasCetrocite" comparator="EQUALS" value="0.0" />
@@ -2442,7 +2442,7 @@
     <set_relative_position name2="Prototype Cetrocite device for Artemis" distance="0" angle="0" name1="Artemis" />
     <set_variable name="SummonExtraWhales" value="1.0" />
   </event>
-  <event name_arme="Event: Intrepid docks with IB02 to receive Cetrocite device" id_arme="5749bb3b-7f92-4413-9da1-6f0c68fb7ed5" parent_id_arme="05098897-4aee-41b7-92b2-9491f883970d">
+  <event name="Event: Intrepid docks with IB02 to receive Cetrocite device" id_arme="5749bb3b-7f92-4413-9da1-6f0c68fb7ed5" parent_id_arme="05098897-4aee-41b7-92b2-9491f883970d">
     <if_distance name1="Intrepid" name2="IB02" comparator="LESS_EQUAL" value="DockedRange" />
     <if_variable name="IB02HasCetrociteSchematic" comparator="EQUALS" value="2.0" />
     <if_variable name="IntrepidHasCetrocite" comparator="EQUALS" value="0.0" />
@@ -2453,7 +2453,7 @@
     <set_relative_position name2="Prototype Cetrocite device for Intrepid" distance="0" angle="0" name1="Intrepid" />
     <set_variable name="SummonExtraWhales" value="1.0" />
   </event>
-  <event name_arme="Event: Intrepid docks with Mariner to receive Cetrocite device" id_arme="254c5087-de13-462d-bd4e-933fa7b54a87" parent_id_arme="05098897-4aee-41b7-92b2-9491f883970d">
+  <event name="Event: Intrepid docks with Mariner to receive Cetrocite device" id_arme="254c5087-de13-462d-bd4e-933fa7b54a87" parent_id_arme="05098897-4aee-41b7-92b2-9491f883970d">
     <if_distance name1="Intrepid" name2="Mariner" comparator="LESS_EQUAL" value="CeresDockRange" />
     <if_variable name="MarinerHasCetrociteSchematic" comparator="EQUALS" value="2.0" />
     <if_variable name="IntrepidHasCetrocite" comparator="EQUALS" value="0.0" />
@@ -2464,7 +2464,7 @@
     <set_relative_position name2="Prototype Cetrocite device for Intrepid" distance="0" angle="0" name1="Intrepid" />
     <set_variable name="SummonExtraWhales" value="1.0" />
   </event>
-  <event name_arme="Event: Aegis docks with IB02 to receive Cetrocite device" id_arme="85f8d267-5047-450c-bdd7-8028164bafc4" parent_id_arme="05098897-4aee-41b7-92b2-9491f883970d">
+  <event name="Event: Aegis docks with IB02 to receive Cetrocite device" id_arme="85f8d267-5047-450c-bdd7-8028164bafc4" parent_id_arme="05098897-4aee-41b7-92b2-9491f883970d">
     <if_distance name1="Aegis" name2="IB02" comparator="LESS_EQUAL" value="DockedRange" />
     <if_variable name="IB02HasCetrociteSchematic" comparator="EQUALS" value="2.0" />
     <if_variable name="AegisHasCetrocite" comparator="EQUALS" value="0.0" />
@@ -2475,7 +2475,7 @@
     <set_relative_position name2="Prototype Cetrocite device for Aegis" distance="0" angle="0" name1="Aegis" />
     <set_variable name="SummonExtraWhales" value="1.0" />
   </event>
-  <event name_arme="Event: Aegis docks with Mariner to receive Cetrocite device" id_arme="18af917f-8f54-4dfe-ab55-518fa2239464" parent_id_arme="05098897-4aee-41b7-92b2-9491f883970d">
+  <event name="Event: Aegis docks with Mariner to receive Cetrocite device" id_arme="18af917f-8f54-4dfe-ab55-518fa2239464" parent_id_arme="05098897-4aee-41b7-92b2-9491f883970d">
     <if_distance name1="Aegis" name2="Mariner" comparator="LESS_EQUAL" value="CeresDockRange" />
     <if_variable name="MarinerHasCetrociteSchematic" comparator="EQUALS" value="2.0" />
     <if_variable name="AegisHasCetrocite" comparator="EQUALS" value="0.0" />
@@ -2486,8 +2486,8 @@
     <set_relative_position name2="Prototype Cetrocite device for Aegis" distance="0" angle="0" name1="Aegis" />
     <set_variable name="SummonExtraWhales" value="1.0" />
   </event>
-  <folder_arme name_arme="Realm: Whale Attraction" id_arme="77b8262d-6987-450d-9791-375f4c76a445" />
-  <event name_arme="Pod 2 enters" id_arme="dfe43489-4d05-4359-aed6-41898c135036" parent_id_arme="77b8262d-6987-450d-9791-375f4c76a445">
+  <folder_arme name="Realm: Whale Attraction" id_arme="77b8262d-6987-450d-9791-375f4c76a445" />
+  <event name="Pod 2 enters" id_arme="dfe43489-4d05-4359-aed6-41898c135036" parent_id_arme="77b8262d-6987-450d-9791-375f4c76a445">
     <if_not_exists name="XE04" />
     <if_not_exists name="XE05" />
     <if_not_exists name="XE06" />
@@ -2499,37 +2499,37 @@
     <set_variable name="SummonExtraWhales" value="2.0" />
     <set_variable name="Pod2Following" value="0.0" />
   </event>
-  <event name_arme="XE01 follows Artemis" id_arme="23dbcde1-7d60-4e0a-be0c-5bcb50c4c39e" parent_id_arme="77b8262d-6987-450d-9791-375f4c76a445">
+  <event name="XE01 follows Artemis" id_arme="23dbcde1-7d60-4e0a-be0c-5bcb50c4c39e" parent_id_arme="77b8262d-6987-450d-9791-375f4c76a445">
     <if_exists name="Artemis" />
     <if_exists name="XE01" />
     <if_variable name="ArtemisHasCetrocite" comparator="EQUALS" value="1.0" />
     <if_distance name1="XE01" name2="Artemis" comparator="LESS_EQUAL" value="CetrociteDeviceRadius" />
     <if_variable name="Pod1Following" comparator="NOT" value="1.0" />
     <log text="XE01 following Artemis" />
-    <add_ai type="TARGET_THROTTLE" targetName="Artemis" value1="0.0" name="XE01" />
+    <add_ai type="TARGET_THROTTLE" value1="0.0" targetName="Artemis" name="XE01" />
     <set_variable name="Pod1Following" value="1.0" />
   </event>
-  <event name_arme="XE01 follows Intrepid" id_arme="71e5169b-4752-4413-b2fa-e8e94790bf27" parent_id_arme="77b8262d-6987-450d-9791-375f4c76a445">
+  <event name="XE01 follows Intrepid" id_arme="71e5169b-4752-4413-b2fa-e8e94790bf27" parent_id_arme="77b8262d-6987-450d-9791-375f4c76a445">
     <if_exists name="Intrepid" />
     <if_exists name="XE01" />
     <if_variable name="IntrepidHasCetrocite" comparator="EQUALS" value="1.0" />
     <if_distance name1="XE01" name2="Intrepid" comparator="LESS_EQUAL" value="CetrociteDeviceRadius" />
     <if_variable name="Pod1Following" comparator="NOT" value="2.0" />
     <log text="XE01 following Intrepid" />
-    <add_ai type="TARGET_THROTTLE" targetName="Intrepid" value1="0.0" name="XE01" />
+    <add_ai type="TARGET_THROTTLE" value1="0.0" targetName="Intrepid" name="XE01" />
     <set_variable name="Pod1Following" value="2.0" />
   </event>
-  <event name_arme="XE01 follows Aegis" id_arme="c37de44f-1d08-4a08-9b03-7b0472206950" parent_id_arme="77b8262d-6987-450d-9791-375f4c76a445">
+  <event name="XE01 follows Aegis" id_arme="c37de44f-1d08-4a08-9b03-7b0472206950" parent_id_arme="77b8262d-6987-450d-9791-375f4c76a445">
     <if_exists name="Aegis" />
     <if_exists name="XE01" />
     <if_variable name="AegisHasCetrocite" comparator="EQUALS" value="1.0" />
     <if_distance name1="XE01" name2="Aegis" comparator="LESS_EQUAL" value="CetrociteDeviceRadius" />
     <if_variable name="Pod1Following" comparator="NOT" value="3.0" />
     <log text="XE01 following Aegis" />
-    <add_ai type="TARGET_THROTTLE" targetName="Aegis" value1="0.0" name="XE01" />
+    <add_ai type="TARGET_THROTTLE" value1="0.0" targetName="Aegis" name="XE01" />
     <set_variable name="Pod1Following" value="3.0" />
   </event>
-  <event name_arme="XE02 follows Artemis" id_arme="ebf5fae4-cf55-4a6d-bda0-381f6e4a76dd" parent_id_arme="77b8262d-6987-450d-9791-375f4c76a445">
+  <event name="XE02 follows Artemis" id_arme="ebf5fae4-cf55-4a6d-bda0-381f6e4a76dd" parent_id_arme="77b8262d-6987-450d-9791-375f4c76a445">
     <if_exists name="Artemis" />
     <if_not_exists name="XE01" />
     <if_exists name="XE02" />
@@ -2537,10 +2537,10 @@
     <if_distance name1="XE02" name2="Artemis" comparator="LESS_EQUAL" value="CetrociteDeviceRadius" />
     <if_variable name="Pod1Following" comparator="NOT" value="1.0" />
     <log text="XE02 following Artemis" />
-    <add_ai type="TARGET_THROTTLE" targetName="Artemis" value1="0.0" name="XE02" />
+    <add_ai type="TARGET_THROTTLE" value1="0.0" targetName="Artemis" name="XE02" />
     <set_variable name="Pod1Following" value="1.0" />
   </event>
-  <event name_arme="XE02 follows Intrepid" id_arme="5baa6d70-5dc0-486e-a6c9-fd6c52e258fc" parent_id_arme="77b8262d-6987-450d-9791-375f4c76a445">
+  <event name="XE02 follows Intrepid" id_arme="5baa6d70-5dc0-486e-a6c9-fd6c52e258fc" parent_id_arme="77b8262d-6987-450d-9791-375f4c76a445">
     <if_exists name="Intrepid" />
     <if_not_exists name="XE01" />
     <if_exists name="XE02" />
@@ -2548,10 +2548,10 @@
     <if_distance name1="XE02" name2="Intrepid" comparator="LESS_EQUAL" value="CetrociteDeviceRadius" />
     <if_variable name="Pod1Following" comparator="NOT" value="2.0" />
     <log text="XE02 following Intrepid" />
-    <add_ai type="TARGET_THROTTLE" targetName="Intrepid" value1="0.0" name="XE02" />
+    <add_ai type="TARGET_THROTTLE" value1="0.0" targetName="Intrepid" name="XE02" />
     <set_variable name="Pod1Following" value="2.0" />
   </event>
-  <event name_arme="XE02 follows Aegis" id_arme="49499bce-098a-4b88-892e-4bef019f7511" parent_id_arme="77b8262d-6987-450d-9791-375f4c76a445">
+  <event name="XE02 follows Aegis" id_arme="49499bce-098a-4b88-892e-4bef019f7511" parent_id_arme="77b8262d-6987-450d-9791-375f4c76a445">
     <if_exists name="Aegis" />
     <if_not_exists name="XE01" />
     <if_exists name="XE02" />
@@ -2559,10 +2559,10 @@
     <if_distance name1="XE02" name2="Aegis" comparator="LESS_EQUAL" value="CetrociteDeviceRadius" />
     <if_variable name="Pod1Following" comparator="NOT" value="3.0" />
     <log text="XE02 following Aegis" />
-    <add_ai type="TARGET_THROTTLE" targetName="Aegis" value1="0.0" name="XE02" />
+    <add_ai type="TARGET_THROTTLE" value1="0.0" targetName="Aegis" name="XE02" />
     <set_variable name="Pod1Following" value="3.0" />
   </event>
-  <event name_arme="XE03 follows Artemis" id_arme="8c457a93-75ba-4c91-bb80-15817996eefe" parent_id_arme="77b8262d-6987-450d-9791-375f4c76a445">
+  <event name="XE03 follows Artemis" id_arme="8c457a93-75ba-4c91-bb80-15817996eefe" parent_id_arme="77b8262d-6987-450d-9791-375f4c76a445">
     <if_exists name="Artemis" />
     <if_not_exists name="XE01" />
     <if_not_exists name="XE02" />
@@ -2571,10 +2571,10 @@
     <if_distance name1="XE03" name2="Artemis" comparator="LESS_EQUAL" value="CetrociteDeviceRadius" />
     <if_variable name="Pod1Following" comparator="NOT" value="1.0" />
     <log text="XE03 following Artemis" />
-    <add_ai type="TARGET_THROTTLE" targetName="Artemis" value1="0.0" name="XE03" />
+    <add_ai type="TARGET_THROTTLE" value1="0.0" targetName="Artemis" name="XE03" />
     <set_variable name="Pod1Following" value="1.0" />
   </event>
-  <event name_arme="XE03 follows Intrepid" id_arme="83016d84-b13c-4033-81e7-46d34602112f" parent_id_arme="77b8262d-6987-450d-9791-375f4c76a445">
+  <event name="XE03 follows Intrepid" id_arme="83016d84-b13c-4033-81e7-46d34602112f" parent_id_arme="77b8262d-6987-450d-9791-375f4c76a445">
     <if_exists name="Intrepid" />
     <if_not_exists name="XE01" />
     <if_not_exists name="XE02" />
@@ -2583,10 +2583,10 @@
     <if_distance name1="XE03" name2="Intrepid" comparator="LESS_EQUAL" value="CetrociteDeviceRadius" />
     <if_variable name="Pod1Following" comparator="NOT" value="2.0" />
     <log text="XE03 following Intrepid" />
-    <add_ai type="TARGET_THROTTLE" targetName="Intrepid" value1="0.0" name="XE03" />
+    <add_ai type="TARGET_THROTTLE" value1="0.0" targetName="Intrepid" name="XE03" />
     <set_variable name="Pod1Following" value="2.0" />
   </event>
-  <event name_arme="XE03 follows Aegis" id_arme="31b17971-c9ff-4e8b-bd66-bd508cc53c73" parent_id_arme="77b8262d-6987-450d-9791-375f4c76a445">
+  <event name="XE03 follows Aegis" id_arme="31b17971-c9ff-4e8b-bd66-bd508cc53c73" parent_id_arme="77b8262d-6987-450d-9791-375f4c76a445">
     <if_exists name="Aegis" />
     <if_not_exists name="XE01" />
     <if_not_exists name="XE02" />
@@ -2595,40 +2595,40 @@
     <if_distance name1="XE03" name2="Aegis" comparator="LESS_EQUAL" value="CetrociteDeviceRadius" />
     <if_variable name="Pod1Following" comparator="NOT" value="3.0" />
     <log text="XE03 following Aegis" />
-    <add_ai type="TARGET_THROTTLE" targetName="Aegis" value1="0.0" name="XE03" />
+    <add_ai type="TARGET_THROTTLE" value1="0.0" targetName="Aegis" name="XE03" />
     <set_variable name="Pod1Following" value="3.0" />
   </event>
-  <event name_arme="XE04 follows Artemis" id_arme="33c61a91-3693-4b1d-b032-5b51cec189d8" parent_id_arme="77b8262d-6987-450d-9791-375f4c76a445">
+  <event name="XE04 follows Artemis" id_arme="33c61a91-3693-4b1d-b032-5b51cec189d8" parent_id_arme="77b8262d-6987-450d-9791-375f4c76a445">
     <if_exists name="Artemis" />
     <if_exists name="XE04" />
     <if_variable name="ArtemisHasCetrocite" comparator="EQUALS" value="1.0" />
     <if_distance name1="XE04" name2="Artemis" comparator="LESS_EQUAL" value="CetrociteDeviceRadius" />
     <if_variable name="Pod2Following" comparator="NOT" value="1.0" />
     <log text="XE04 following Artemis" />
-    <add_ai type="TARGET_THROTTLE" targetName="Artemis" value1="0.0" name="XE04" />
+    <add_ai type="TARGET_THROTTLE" value1="0.0" targetName="Artemis" name="XE04" />
     <set_variable name="Pod2Following" value="1.0" />
   </event>
-  <event name_arme="XE04 follows Intrepid" id_arme="899e9f2e-1f09-4fb4-9c16-8e7e2a8f6434" parent_id_arme="77b8262d-6987-450d-9791-375f4c76a445">
+  <event name="XE04 follows Intrepid" id_arme="899e9f2e-1f09-4fb4-9c16-8e7e2a8f6434" parent_id_arme="77b8262d-6987-450d-9791-375f4c76a445">
     <if_exists name="Intrepid" />
     <if_exists name="XE04" />
     <if_variable name="IntrepidHasCetrocite" comparator="EQUALS" value="1.0" />
     <if_distance name1="XE04" name2="Intrepid" comparator="LESS_EQUAL" value="CetrociteDeviceRadius" />
     <if_variable name="Pod2Following" comparator="NOT" value="2.0" />
     <log text="XE04 following Intrepid" />
-    <add_ai type="TARGET_THROTTLE" targetName="Intrepid" value1="0.0" name="XE04" />
+    <add_ai type="TARGET_THROTTLE" value1="0.0" targetName="Intrepid" name="XE04" />
     <set_variable name="Pod2Following" value="2.0" />
   </event>
-  <event name_arme="XE04 follows Aegis" id_arme="1a3f422d-98e7-4e84-a3ee-3f63abed59a3" parent_id_arme="77b8262d-6987-450d-9791-375f4c76a445">
+  <event name="XE04 follows Aegis" id_arme="1a3f422d-98e7-4e84-a3ee-3f63abed59a3" parent_id_arme="77b8262d-6987-450d-9791-375f4c76a445">
     <if_exists name="Aegis" />
     <if_exists name="XE04" />
     <if_variable name="AegisHasCetrocite" comparator="EQUALS" value="1.0" />
     <if_distance name1="XE04" name2="Aegis" comparator="LESS_EQUAL" value="CetrociteDeviceRadius" />
     <if_variable name="Pod2Following" comparator="NOT" value="3.0" />
     <log text="XE04 following Aegis" />
-    <add_ai type="TARGET_THROTTLE" targetName="Aegis" value1="0.0" name="XE04" />
+    <add_ai type="TARGET_THROTTLE" value1="0.0" targetName="Aegis" name="XE04" />
     <set_variable name="Pod2Following" value="3.0" />
   </event>
-  <event name_arme="XE05 follows Artemis" id_arme="1662df8c-2e1a-4014-9162-2d80f553a478" parent_id_arme="77b8262d-6987-450d-9791-375f4c76a445">
+  <event name="XE05 follows Artemis" id_arme="1662df8c-2e1a-4014-9162-2d80f553a478" parent_id_arme="77b8262d-6987-450d-9791-375f4c76a445">
     <if_exists name="Artemis" />
     <if_not_exists name="XE04" />
     <if_exists name="XE05" />
@@ -2636,10 +2636,10 @@
     <if_distance name1="XE05" name2="Artemis" comparator="LESS_EQUAL" value="CetrociteDeviceRadius" />
     <if_variable name="Pod2Following" comparator="NOT" value="1.0" />
     <log text="XE05 following Artemis" />
-    <add_ai type="TARGET_THROTTLE" targetName="Artemis" value1="0.0" name="XE05" />
+    <add_ai type="TARGET_THROTTLE" value1="0.0" targetName="Artemis" name="XE05" />
     <set_variable name="Pod2Following" value="1.0" />
   </event>
-  <event name_arme="XE05 follows Intrepid" id_arme="6c72ce59-87c6-4c7b-b09b-0c41ef3e7114" parent_id_arme="77b8262d-6987-450d-9791-375f4c76a445">
+  <event name="XE05 follows Intrepid" id_arme="6c72ce59-87c6-4c7b-b09b-0c41ef3e7114" parent_id_arme="77b8262d-6987-450d-9791-375f4c76a445">
     <if_exists name="Intrepid" />
     <if_not_exists name="XE04" />
     <if_exists name="XE05" />
@@ -2647,10 +2647,10 @@
     <if_distance name1="XE05" name2="Intrepid" comparator="LESS_EQUAL" value="CetrociteDeviceRadius" />
     <if_variable name="Pod2Following" comparator="NOT" value="2.0" />
     <log text="XE05 following Intrepid" />
-    <add_ai type="TARGET_THROTTLE" targetName="Intrepid" value1="0.0" name="XE05" />
+    <add_ai type="TARGET_THROTTLE" value1="0.0" targetName="Intrepid" name="XE05" />
     <set_variable name="Pod2Following" value="2.0" />
   </event>
-  <event name_arme="XE05 follows Aegis" id_arme="43c357c9-e045-4f1f-9e19-6749f6906942" parent_id_arme="77b8262d-6987-450d-9791-375f4c76a445">
+  <event name="XE05 follows Aegis" id_arme="43c357c9-e045-4f1f-9e19-6749f6906942" parent_id_arme="77b8262d-6987-450d-9791-375f4c76a445">
     <if_exists name="Aegis" />
     <if_not_exists name="XE04" />
     <if_exists name="XE05" />
@@ -2658,10 +2658,10 @@
     <if_distance name1="XE05" name2="Aegis" comparator="LESS_EQUAL" value="CetrociteDeviceRadius" />
     <if_variable name="Pod2Following" comparator="NOT" value="3.0" />
     <log text="XE05 following Aegis" />
-    <add_ai type="TARGET_THROTTLE" targetName="Aegis" value1="0.0" name="XE05" />
+    <add_ai type="TARGET_THROTTLE" value1="0.0" targetName="Aegis" name="XE05" />
     <set_variable name="Pod2Following" value="3.0" />
   </event>
-  <event name_arme="XE06 follows Artemis" id_arme="93b510db-4d51-4568-a0c3-c6ba16e9be0d" parent_id_arme="77b8262d-6987-450d-9791-375f4c76a445">
+  <event name="XE06 follows Artemis" id_arme="93b510db-4d51-4568-a0c3-c6ba16e9be0d" parent_id_arme="77b8262d-6987-450d-9791-375f4c76a445">
     <if_exists name="Artemis" />
     <if_not_exists name="XE04" />
     <if_not_exists name="XE05" />
@@ -2670,10 +2670,10 @@
     <if_distance name1="XE06" name2="Artemis" comparator="LESS_EQUAL" value="CetrociteDeviceRadius" />
     <if_variable name="Pod2Following" comparator="NOT" value="1.0" />
     <log text="XE06 following Artemis" />
-    <add_ai type="TARGET_THROTTLE" targetName="Artemis" value1="0.0" name="XE06" />
+    <add_ai type="TARGET_THROTTLE" value1="0.0" targetName="Artemis" name="XE06" />
     <set_variable name="Pod2Following" value="1.0" />
   </event>
-  <event name_arme="XE06 follows Intrepid" id_arme="f3afd656-1f70-4bb8-a80f-916375c51eb1" parent_id_arme="77b8262d-6987-450d-9791-375f4c76a445">
+  <event name="XE06 follows Intrepid" id_arme="f3afd656-1f70-4bb8-a80f-916375c51eb1" parent_id_arme="77b8262d-6987-450d-9791-375f4c76a445">
     <if_exists name="Intrepid" />
     <if_not_exists name="XE04" />
     <if_not_exists name="XE05" />
@@ -2682,10 +2682,10 @@
     <if_distance name1="XE06" name2="Intrepid" comparator="LESS_EQUAL" value="CetrociteDeviceRadius" />
     <if_variable name="Pod2Following" comparator="NOT" value="2.0" />
     <log text="XE06 following Intrepid" />
-    <add_ai type="TARGET_THROTTLE" targetName="Intrepid" value1="0.0" name="XE06" />
+    <add_ai type="TARGET_THROTTLE" value1="0.0" targetName="Intrepid" name="XE06" />
     <set_variable name="Pod2Following" value="2.0" />
   </event>
-  <event name_arme="XE06 follows Aegis" id_arme="d5cc0f29-843c-4ce1-bee3-cec12f4fc6ea" parent_id_arme="77b8262d-6987-450d-9791-375f4c76a445">
+  <event name="XE06 follows Aegis" id_arme="d5cc0f29-843c-4ce1-bee3-cec12f4fc6ea" parent_id_arme="77b8262d-6987-450d-9791-375f4c76a445">
     <if_exists name="Aegis" />
     <if_not_exists name="XE04" />
     <if_not_exists name="XE05" />
@@ -2694,11 +2694,11 @@
     <if_distance name1="XE06" name2="Aegis" comparator="LESS_EQUAL" value="CetrociteDeviceRadius" />
     <if_variable name="Pod2Following" comparator="NOT" value="3.0" />
     <log text="XE06 following Aegis" />
-    <add_ai type="TARGET_THROTTLE" targetName="Aegis" value1="0.0" name="XE06" />
+    <add_ai type="TARGET_THROTTLE" value1="0.0" targetName="Aegis" name="XE06" />
     <set_variable name="Pod2Following" value="3.0" />
   </event>
-  <folder_arme name_arme="Task: Return of Diana" id_arme="4f7a5ed6-77f2-4dba-b0b8-963bf019e4a1" />
-  <event name_arme="Diana docks at Houston Outpost" id_arme="36e9c301-f4b8-49b1-9378-a3c48c228ad4" parent_id_arme="4f7a5ed6-77f2-4dba-b0b8-963bf019e4a1">
+  <folder_arme name="Task: Return of Diana" id_arme="4f7a5ed6-77f2-4dba-b0b8-963bf019e4a1" />
+  <event name="Diana docks at Houston Outpost" id_arme="36e9c301-f4b8-49b1-9378-a3c48c228ad4" parent_id_arme="4f7a5ed6-77f2-4dba-b0b8-963bf019e4a1">
     <if_exists name="Diana" />
     <if_exists name="Houston Outpost" />
     <!--<if_docked name="Houston Outpost" />-->
@@ -2707,7 +2707,7 @@
     <log text="Diana docked at Houston Outpost" />
     <set_variable name="GameStatus" value="2.0" />
   </event>
-  <event name_arme="Diana docks at SB01" id_arme="ca77a781-327b-4127-bd2d-751f00976a80" parent_id_arme="4f7a5ed6-77f2-4dba-b0b8-963bf019e4a1">
+  <event name="Diana docks at SB01" id_arme="ca77a781-327b-4127-bd2d-751f00976a80" parent_id_arme="4f7a5ed6-77f2-4dba-b0b8-963bf019e4a1">
     <if_exists name="Diana" />
     <if_exists name="SB01" />
     <!--<if_docked name="SB01" />-->
@@ -2716,7 +2716,7 @@
     <log text="Diana docked at SB01" />
     <set_variable name="GameStatus" value="2.0" />
   </event>
-  <event name_arme="Diana docks at IB02" id_arme="d501478b-8c12-4f8c-9aa3-7cf486d3a5be" parent_id_arme="4f7a5ed6-77f2-4dba-b0b8-963bf019e4a1">
+  <event name="Diana docks at IB02" id_arme="d501478b-8c12-4f8c-9aa3-7cf486d3a5be" parent_id_arme="4f7a5ed6-77f2-4dba-b0b8-963bf019e4a1">
     <if_exists name="Diana" />
     <if_exists name="IB02" />
     <!--<if_docked name="IB02" />-->
@@ -2725,7 +2725,7 @@
     <log text="Diana docked at IB02" />
     <set_variable name="GameStatus" value="2.0" />
   </event>
-  <event name_arme="Diana destroyed" id_arme="381dd2c9-28b2-4dfe-84ab-d8d0d36a02d7" parent_id_arme="4f7a5ed6-77f2-4dba-b0b8-963bf019e4a1">
+  <event name="Diana destroyed" id_arme="381dd2c9-28b2-4dfe-84ab-d8d0d36a02d7" parent_id_arme="4f7a5ed6-77f2-4dba-b0b8-963bf019e4a1">
     <if_variable name="DianaCreated" comparator="EQUALS" value="1.0" />
     <if_variable name="DianaInitialized" comparator="EQUALS" value="1.0" />
     <if_not_exists name="Diana" />
