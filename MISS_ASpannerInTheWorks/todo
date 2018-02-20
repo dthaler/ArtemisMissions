@@ -110,6 +110,10 @@
 02/19/18 FIX: mention secondary mission
 02/19/18 FIX: remove MaxBombs bumping to 2
 02/19/18 BUG: Mission Success when Diana destroyed when no enemies exist
+02/19/18 BUG: Rapier stopped before 400 from DS1
+02/19/18 FIX: increased Skaraan difficulty
+02/19/18 ADD: more protection around AB1, like a carrier defending it
+02/19/18 FIX: set side mission comms to SIDE
 
 ---
 {
@@ -121,21 +125,23 @@
          PROG check Brew Bothell schedule
 
 1/1 BUG: can get Mission Success without ever defusing the bomb
-            DNTT
-
-1/2 BUG: Rapier stopped before 400 from DS1
-
-1/2 ADD: Rapier should need to follow you to DS1
-
-1/2 ADD: more protection around AB1, like a carrier defending it
+            DNTT  get Diana back 
+                  kill all enemies but never click Bomb Defused
 
 1/2 TEST: Skaraans didn't seem to attack us, or be difficult
+            DNTT increased difficulty to any Skaraan type not just Defiler
+
+1/2 ADD: Rapier should need to follow you to DS1
 
 1/2 TEST: what if you ignore the bomb warning and never dock?
 
 1/2 FIX: add more flavortext about saboteur
 
+1/2 FIX: make Rapier actually tractor to docked like Diana does
+
 ---
+
+2/2 FIX: display some score or rank at end
 
 2/2 FIX: no monsters should start tagged
 

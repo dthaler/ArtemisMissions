@@ -181,7 +181,7 @@
     <set_variable name="RandomZ" value="RandomZpiece + ((RandomX - 20000) / 8)" />
     <set_variable name="RandomZpiece" randomIntLow="(MonsterZStart - 15000)" randomIntHigh="(MonsterZStart + 15000)" />
     <log text="Creating Skaraan SK|SkaraanCount| at (|RandomX|, 0, |RandomZ|)" />
-    <create type="enemy" x="RandomX" y="0.0" z="RandomZ" angle="0" name="SK|SkaraanCount|" hullID="5000" />
+    <create type="enemy" x="RandomX" y="0.0" z="RandomZ" angle="0" name="SK|SkaraanCount|" raceKeys="Skaraan enemy hasspecials" hullKeys="small medium large" />
   </event>
   <disabled_event name="2 MaxBombs" id_arme="a457ad0c-fda4-4b35-a5ce-2f1b47b821ab" parent_id_arme="6ef97816-b707-4333-8e81-c10c250bf89b">
     <if_variable name="MaxBombs" comparator="LESS" value="2.0" />
@@ -203,7 +203,7 @@
     <set_variable name="GameOver" value="1.0" />
     <set_timer name="GameFinishedTimer" seconds="15" />
     <big_message title="MISSION FAILED" subtitle1="All player ships have been destroyed" />
-    <incoming_comms_text from="Main Screen" type="SIDE">Mission Failed^All player ships have been destroyed</incoming_comms_text>
+    <incoming_comms_text from="Main Screen" type="ALERT">Mission Failed^All player ships have been destroyed</incoming_comms_text>
   </event>
   <event name="End Game" id_arme="2f1aab6d-e5c1-489e-8dcd-e39c4660c27f" parent_id_arme="e829d865-90bd-4c1b-aabe-60c7d7cfe1a1">
     <if_variable name="GameOver" comparator="EQUALS" value="1" />
@@ -217,7 +217,7 @@
     <if_variable name="GameOver" comparator="EQUALS" value="0" />
     <log text="FAILED because all player bases destroyed" />
     <big_message title="MISSION FAILED" subtitle1="All player bases have been destroyed" />
-    <incoming_comms_text from="Main Screen" type="SIDE">Mission Failed^All player bases have been destroyed</incoming_comms_text>
+    <incoming_comms_text from="Main Screen" type="ALERT">Mission Failed^All player bases have been destroyed</incoming_comms_text>
     <set_variable name="GameOver" value="1" />
     <set_timer name="GameFinishedTimer" seconds="15" />
   </event>
@@ -229,7 +229,7 @@
     <set_variable name="GameOver" value="1.0" />
     <set_timer name="GameFinishedTimer" seconds="15" />
     <big_message title="MISSION FAILED" subtitle1="The TSN Diana was destroyed" />
-    <incoming_comms_text from="Main Screen" type="SIDE">Mission Failed^The TSN Diana has been destroyed</incoming_comms_text>
+    <incoming_comms_text from="Main Screen" type="ALERT">Mission Failed^The TSN Diana has been destroyed</incoming_comms_text>
   </event>
   <event name="Diana Escaped" id_arme="94bc79ae-5517-4033-afa4-2bfcf435e031" parent_id_arme="e829d865-90bd-4c1b-aabe-60c7d7cfe1a1">
     <if_variable name="PlayerShipCount" comparator="GREATER" value="0" />
@@ -239,7 +239,7 @@
     <set_variable name="GameOver" value="1.0" />
     <set_timer name="GameFinishedTimer" seconds="15" />
     <big_message title="MISSION FAILED" subtitle1="The saboteur escaped with the TSN Diana" />
-    <incoming_comms_text from="Main Screen" type="SIDE">Mission Failed^The saboteur escaped with the TSN Diana</incoming_comms_text>
+    <incoming_comms_text from="Main Screen" type="ALERT">Mission Failed^The saboteur escaped with the TSN Diana</incoming_comms_text>
   </event>
   <event name="All enemies destroyed" id_arme="8cd2c901-c296-44f2-9e21-34a669cf027b" parent_id_arme="e829d865-90bd-4c1b-aabe-60c7d7cfe1a1">
     <if_not_exists name="AB1" />
@@ -248,7 +248,7 @@
     <if_variable name="BoardingState" comparator="GREATER_EQUAL" value="4.0" />
     <if_fleet_count comparator="EQUALS" value="0.0" sideValue="1" />
     <log text="MISSION SUCCEEDED" />
-    <incoming_comms_text from="TSN Command" type="SIDE">Good work!  The Arvonians have abandoned their attack on DS1, at least for now.  The TSN Diana is also safe and we can now complete the renovations on her to prepare to return her to service again.</incoming_comms_text>
+    <incoming_comms_text from="TSN Command" type="STATION">Good work!  The Arvonians have abandoned their attack on DS1, at least for now.  The TSN Diana is also safe and we can now complete the renovations on her to prepare to return her to service again.</incoming_comms_text>
     <set_variable name="GameOver" value="1.0" />
     <set_timer name="GameFinishedTimer" seconds="15" />
     <big_message title="MISSION SUCCEEDED" subtitle1="All enemies have been destroyed" />
@@ -371,7 +371,7 @@
     <if_timer_finished name="StartupDelayBeforeOrders" />
     <log text="TSN Command summoned ships" />
     <warning_popup_message message="Message from TSN Command" consoles="M" />
-    <incoming_comms_text from="TSN Command" type="SIDE ALERT">All TSN ships in this sector are directed to dock at DS1 immediately to receive new mission orders.</incoming_comms_text>
+    <incoming_comms_text from="TSN Command" type="ALERT STATION">All TSN ships in this sector are directed to dock at DS1 immediately to receive new mission orders.</incoming_comms_text>
     <set_variable name="TsnCommandSummonedShips" value="2.0" />
     <set_timer name="ShipsDueAtCommandBase" seconds="300" />
     <set_timer name="StartupDelayBeforeOrders" seconds="120" />
@@ -383,14 +383,14 @@
     <if_timer_finished name="StartupDelayBeforeOrders" />
     <log text="TSN Command summoned ships again" />
     <warning_popup_message message="Message from TSN Command" consoles="M" />
-    <incoming_comms_text from="TSN Command" type="SIDE ALERT">We repeat, all TSN ships in this sector are directed to dock at DS1 immediately to receive new mission orders!</incoming_comms_text>
+    <incoming_comms_text from="TSN Command" type="ALERT STATION">We repeat, all TSN ships in this sector are directed to dock at DS1 immediately to receive new mission orders!</incoming_comms_text>
     <set_variable name="TsnCommandSummonedShips" value="3.0" />
   </event>
   <event name="GM summons ships again" id_arme="92f4ecc2-d839-4ba1-b5f4-8d35ddfeeac1" parent_id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6">
     <if_gm_button text="GM/Resend Comms/DS1 Resummon Ships" />
     <log text="TSN Command summoned ships again" />
     <warning_popup_message message="Message from TSN Command" consoles="M" />
-    <incoming_comms_text from="TSN Command" type="SIDE ALERT">We repeat, all TSN ships in this sector are directed to dock at DS1 immediately to receive new mission orders!</incoming_comms_text>
+    <incoming_comms_text from="TSN Command" type="ALERT STATION">We repeat, all TSN ships in this sector are directed to dock at DS1 immediately to receive new mission orders!</incoming_comms_text>
     <set_variable name="TsnCommandSummonedShips" value="3.0" />
     <set_timer name="ShipsDueAtCommandBase" seconds="300" />
   </event>
@@ -402,7 +402,7 @@
     <set_variable name="GameOver" value="1.0" />
     <set_timer name="GameFinishedTimer" seconds="15" />
     <big_message title="MISSION FAILED" subtitle1="You did not follow orders from TSN Command in time" />
-    <incoming_comms_text from="TSN Command" type="SIDE">You did not follow orders from TSN Command in time!</incoming_comms_text>
+    <incoming_comms_text from="TSN Command" type="ALERT STATION">You did not follow orders from TSN Command in time!</incoming_comms_text>
   </event>
   <event name="Task Succeeded - 1 Ship Docked" id_arme="179e7ae6-25f8-46c5-8916-6995e3c73883" parent_id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6">
     <if_variable name="PlayerShipCount" comparator="EQUALS" value="1.0" />
@@ -442,18 +442,25 @@
   <event name="Give mission" id_arme="d1a783c8-8781-4cbe-95ae-4baa520c39a5" parent_id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6">
     <if_variable name="TsnCommandGaveMission" comparator="EQUALS" value="1.0" />
     <log text="Gave mission" />
-    <incoming_comms_text from="TSN Command" type="SIDE">As a result of the recent Diana Operation, the Torgoth have moved their fleets elsewhere in the conflict with the TSN.  The Arvonians, however, have advanced and taken Houston Outpost, but not before we managed to tow the crippled TSN Diana back here to DS1 where it is now undergoing reconstruction.  A scout ship reported that an Arvonian base has just appeared in the asteroid belt, presumably in preparation for an assault on DS1.  We are sending their position to your ship now.  Your primary mission is to protect both DS1 and the Diana from the Arvonian invasion.  It is imperative that we not lose either one.  Your secondary mission is to protect all friendly ships, as much as possible without compromising your primary mission.</incoming_comms_text>
+    <incoming_comms_text from="TSN Command" type="ALERT STATION">As a result of the recent Diana Operation, the Torgoth have moved their fleets elsewhere in the conflict with the TSN.  The Arvonians, however, have advanced and taken Houston Outpost, but not before we managed to tow the crippled TSN Diana back here to DS1 where it is now undergoing reconstruction.  A scout ship reported that an Arvonian base has just appeared in the asteroid belt, presumably in preparation for an assault on DS1.  We are sending their position to your ship now.  Your primary mission is to protect both DS1 and the Diana from the Arvonian invasion.  It is imperative that we not lose either one.  Your secondary mission is to protect all friendly ships, as much as possible without compromising your primary mission.</incoming_comms_text>
     <set_variable name="TsnCommandGaveMission" value="2.0" />
     <set_timer name="SabotageDelay" seconds="SabotageDelaySeconds" />
     <clear_gm_button text="GM/Resend Comms/Give Mission" />
     <clear_gm_button text="GM/Resend Comms/DS1 Resummon Ships" />
     <create type="station" x="68960.0" y="0.0" z="20741.0" angle="0" name="AB1" raceKeys="enemy whalelover" hullKeys="base" sideValue="1" />
-    <create type="enemy" x="83996.0" y="0.0" z="20217.0" angle="180" hullID="3001" fleetnumber="1" />
-    <create type="enemy" x="34630.0" y="0.0" z="33068.0" angle="180" hullID="3001" fleetnumber="2" />
-    <create type="enemy" x="62494.0" y="0.0" z="33292.0" angle="180" hullID="3001" fleetnumber="3" />
+    <create type="enemy" x="83996.0" y="0.0" z="20217.0" angle="180" hullID="3002" fleetnumber="1" />
+    <create type="enemy" x="34630.0" y="0.0" z="33068.0" angle="180" hullID="3002" fleetnumber="2" />
+    <create type="enemy" x="62494.0" y="0.0" z="33292.0" angle="180" hullID="3002" fleetnumber="3" />
     <create type="enemy" x="85739.0" y="0.0" z="20072.0" angle="180" hullID="3001" fleetnumber="1" />
     <create type="enemy" x="33293.0" y="0.0" z="33292.0" angle="180" hullID="3001" fleetnumber="2" />
     <create type="enemy" x="60606.0" y="0.0" z="33292.0" angle="180" hullID="3001" fleetnumber="3" />
+    <create type="enemy" x="67579.0" y="0.0" z="21234.0" angle="180" name="A12" hullID="3001" fleetnumber="7" />
+    <clear_ai name="A12" />
+    <add_ai type="GUARD_STATION" value1="20" name="A12" />
+    <add_ai type="CHASE_AI_SHIP" value1="3000" value2="500" name="A12" />
+    <add_ai type="CHASE_PLAYER" value1="3000" value2="500" name="A12" />
+    <add_ai type="CHASE_ANGER" name="A12" />
+    <add_ai type="LAUNCH_FIGHTERS" value1="11000" name="A12" />
   </event>
   <event name="Add enemies for 2nd ship" id_arme="e67adc38-f742-404e-9352-b1e0797d6519" parent_id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6">
     <if_variable name="PlayerShipCount" comparator="GREATER" value="1.0" />
@@ -487,7 +494,7 @@
     <set_gm_button text="GM/Resend Comms/DS1 Resummon Ships" />
     <set_gm_button text="GM/Resend Comms/Give Mission" />
   </event>
-  <folder_arme name="Side missions" id_arme="9b774b87-1030-4c79-bf55-a32cfc834264" expanded_arme="" />
+  <folder_arme name="Side missions" id_arme="9b774b87-1030-4c79-bf55-a32cfc834264" />
   <folder_arme name="Side mission: Rapier" id_arme="a7e826ad-d40c-4a39-8248-01183453befa" parent_id_arme="9b774b87-1030-4c79-bf55-a32cfc834264" />
   <event name="Refresh GM button" id_arme="20765da5-aadc-47af-b6b3-d1e74038966a" parent_id_arme="a7e826ad-d40c-4a39-8248-01183453befa">
     <if_exists name="Rapier" />
@@ -506,7 +513,7 @@
     <if_timer_finished name="RapierCommsTimer" />
     <if_exists name="Rapier" />
     <log text="Rapier asked for help" />
-    <incoming_comms_text from="Rapier" type="FRIEND">Our sensors are all down!  We're flying blind. Please guide us to a station for repairs!</incoming_comms_text>
+    <incoming_comms_text from="Destroyer Rapier" type="SIDE FRIEND">Our sensors are all down!  We're flying blind. Please guide us to a station for repairs!</incoming_comms_text>
     <set_variable name="RapierHelpStage" value="1.0" />
   </event>
   <event name="Rapier reaches DS1" id_arme="a96b73e6-6360-4bc7-851d-00e805b18b31" parent_id_arme="a7e826ad-d40c-4a39-8248-01183453befa">
@@ -514,6 +521,7 @@
     <if_distance name1="Rapier" name2="DS1" comparator="LESS_EQUAL" value="600.0" />
     <log text="Rapier reached DS1" />
     <set_variable name="RapierHelpStage" value="2.0" />
+    <incoming_comms_text from="Destroyer Rapier" type="SIDE FRIEND">We made it back to DS1 and our sensors are fixed.  We're ready to help.</incoming_comms_text>
     <set_ship_text name="Rapier" hailtext="We're ready to help." />
     <clear_ai name="Rapier" />
     <add_ai type="CHASE_AI_SHIP" name="Rapier" />
@@ -563,7 +571,7 @@
     <if_timer_finished name="AvalonCommsTimer" />
     <if_exists name="Avalon" />
     <log text="Avalon asked for help" />
-    <incoming_comms_text from="Luxury Liner Avalon" type="FRIEND">We're out of energy!  Could you lend us 200 units to get moving?  In return, we've give you two of our coolant units.</incoming_comms_text>
+    <incoming_comms_text from="Luxury Liner Avalon" type="SIDE FRIEND">We're out of energy!  Could you lend us 200 units to get moving?  In return, we've give you two of our coolant units.</incoming_comms_text>
     <set_variable name="AvalonHelpStage" value="1.0" />
   </event>
   <event name="Artemis gives Avalon energy" id_arme="1e950fcb-481e-4dab-a7ba-593907b0d5b8" parent_id_arme="1dcd0b8c-8f99-4b5b-8f55-6f4e7390217e">
@@ -574,7 +582,7 @@
     <set_variable name="AvalonHelpStage" value="2.0" />
     <addto_object_property value="-200.0" property="energy" name="Artemis" />
     <addto_object_property value="2.0" property="totalCoolant" name="Artemis" />
-    <incoming_comms_text from="Luxury Liner Avalon" type="FRIEND">Thanks for the energy, Artemis!  In return, here's two of our coolant units.</incoming_comms_text>
+    <incoming_comms_text from="Luxury Liner Avalon" type="SIDE FRIEND">Thanks for the energy, Artemis!  In return, here's two of our coolant units.</incoming_comms_text>
     <add_ai type="PROCEED_TO_EXIT" name="Avalon" />
     <add_ai type="FOLLOW_COMMS_ORDERS" name="Avalon" />
     <set_ship_text name="Avalon" hailtext="We're travelling this sector, showing our guests the most beautiful and amazing sights." />
@@ -587,7 +595,7 @@
     <set_variable name="AvalonHelpStage" value="2.0" />
     <addto_object_property value="-200.0" property="energy" name="Intrepid" />
     <addto_object_property value="2.0" property="totalCoolant" name="Intrepid" />
-    <incoming_comms_text from="Luxury Liner Avalon" type="FRIEND">Thanks for the energy, Intrepid!  In return, here's two of our coolant units.</incoming_comms_text>
+    <incoming_comms_text from="Luxury Liner Avalon" type="SIDE FRIEND">Thanks for the energy, Intrepid!  In return, here's two of our coolant units.</incoming_comms_text>
     <add_ai type="PROCEED_TO_EXIT" name="Avalon" />
     <add_ai type="FOLLOW_COMMS_ORDERS" name="Avalon" />
     <set_ship_text name="Avalon" hailtext="We're travelling this sector, showing our guests the most beautiful and amazing sights." />
@@ -610,21 +618,21 @@
     <if_timer_finished name="DS1UpgradeMissionTimer" />
     <if_exists name="Atlas" />
     <log text="DS1 offered mission to upgrade production" />
-    <incoming_comms_text from="DS1" type="STATION">For several weeks now, our engineers have also been diligently working on upgrading this station to a Command Base.  Rendezvous with the Atlas and pick up some energy generator parts we need so we can complete our upgrade, which should double our shields and production speed.</incoming_comms_text>
+    <incoming_comms_text from="DS1" type="SIDE STATION">For several weeks now, our engineers have also been diligently working on upgrading this station to a Command Base.  Rendezvous with the Atlas and pick up some energy generator parts we need so we can complete our upgrade, which should double our shields and production speed.</incoming_comms_text>
     <set_variable name="DS1UpgradeMissionStage" value="1.0" />
   </event>
   <event name="Artemis got DS1 upgrade parts from Atlas" id_arme="67c214b2-c3da-49f8-a9f7-04106a97864c" parent_id_arme="1c978b6c-f7b8-40fe-8106-07aa435466e6">
     <if_variable name="DS1UpgradeMissionStage" comparator="EQUALS" value="1.0" />
     <if_distance name1="Artemis" name2="Atlas" comparator="LESS_EQUAL" value="ShipTransferRange" />
     <log text="Artemis picked up DS1 parts from Atlas" />
-    <incoming_comms_text from="Transport Atlas" type="FRIEND">Transfer complete, Artemis. Please proceed to DS1 to deliver the energy generator parts.</incoming_comms_text>
+    <incoming_comms_text from="Transport Atlas" type="SIDE FRIEND">Transfer complete, Artemis. Please proceed to DS1 to deliver the energy generator parts.</incoming_comms_text>
     <set_variable name="DS1UpgradeMissionStage" value="2.0" />
   </event>
   <event name="Intrepid got DS1 upgrade parts from Atlas" id_arme="72f50c50-bef8-4e28-b436-765fa4712901" parent_id_arme="1c978b6c-f7b8-40fe-8106-07aa435466e6">
     <if_variable name="DS1UpgradeMissionStage" comparator="EQUALS" value="1.0" />
     <if_distance name1="Intrepid" name2="Atlas" comparator="LESS_EQUAL" value="ShipTransferRange" />
     <log text="Intrepid picked up DS1 parts from Atlas" />
-    <incoming_comms_text from="Transport Atlas" type="FRIEND">Transfer complete, Intrepid. Please proceed to DS1 to deliver the energy generator parts.</incoming_comms_text>
+    <incoming_comms_text from="Transport Atlas" type="SIDE FRIEND">Transfer complete, Intrepid. Please proceed to DS1 to deliver the energy generator parts.</incoming_comms_text>
     <set_variable name="DS1UpgradeMissionStage" value="3.0" />
   </event>
   <event name="Artemis delivered upgrade parts to DS1" id_arme="788a8ece-304a-47a9-8881-4bde524b8c1b" parent_id_arme="1c978b6c-f7b8-40fe-8106-07aa435466e6">
@@ -632,7 +640,7 @@
     <if_exists name="Artemis" />
     <if_docked player_name="Artemis" name="DS1" />
     <log text="Artemis delivered upgrade parts to DS1" />
-    <incoming_comms_text from="DS1" type="STATION">Transfer complete, Artemis. Our upgrade is complete, and we have doubled our shields and production speed!</incoming_comms_text>
+    <incoming_comms_text from="DS1" type="SIDE STATION">Transfer complete, Artemis. Our upgrade is complete, and we have doubled our shields and production speed!</incoming_comms_text>
     <set_variable name="DS1UpgradeMissionStage" value="4.0" />
   </event>
   <event name="Intrepid delivered upgrade parts to DS1" id_arme="d4601bd2-9ff0-467e-9a8b-53992a8ac494" parent_id_arme="1c978b6c-f7b8-40fe-8106-07aa435466e6">
@@ -640,7 +648,7 @@
     <if_exists name="Intrepid" />
     <if_docked player_name="Intrepid" name="DS1" />
     <log text="Intrepid delivered upgrade parts to DS1" />
-    <incoming_comms_text from="DS1" type="STATION">Transfer complete, Intrepid. Our upgrade is complete, and we have doubled our shields and production speed!</incoming_comms_text>
+    <incoming_comms_text from="DS1" type="SIDE STATION">Transfer complete, Intrepid. Our upgrade is complete, and we have doubled our shields and production speed!</incoming_comms_text>
     <set_variable name="DS1UpgradeMissionStage" value="4.0" />
   </event>
   <event name="Upgrade DS1" id_arme="b0b99765-f0e7-4ccc-855f-c82f27c45f8a" parent_id_arme="1c978b6c-f7b8-40fe-8106-07aa435466e6">
@@ -687,21 +695,21 @@
     <if_timer_finished name="DS1NukeMissionTimer" />
     <if_exists name="Pegasus" />
     <log text="DS1 offered mission to build 2 extra nukes" />
-    <incoming_comms_text from="DS1" type="STATION">Help us help you.^Rendezvous with the Pegasus and pick up some extra parts we need, and we can complete 2 extra nukes.</incoming_comms_text>
+    <incoming_comms_text from="DS1" type="SIDE STATION">Help us help you.^Rendezvous with the Pegasus and pick up some extra parts we need, and we can complete 2 extra nukes.</incoming_comms_text>
     <set_variable name="DS1NukeMissionStage" value="1.0" />
   </event>
   <event name="Artemis got DS1 nuke parts from Pegasus" id_arme="9030ce44-0775-43f5-87ae-d98ad823a0ca" parent_id_arme="122bc34c-b356-4497-b1a9-649c6b1cb5f3">
     <if_variable name="DS1NukeMissionStage" comparator="EQUALS" value="1.0" />
     <if_distance name1="Artemis" name2="Pegasus" comparator="LESS_EQUAL" value="ShipTransferRange" />
     <log text="Artemis picked up nuke parts from Pegasus" />
-    <incoming_comms_text from="Bulk Cargo Pegasus" type="FRIEND">Transfer complete, Artemis. Please proceed to DS1 to deliver the parts.</incoming_comms_text>
+    <incoming_comms_text from="Bulk Cargo Pegasus" type="SIDE FRIEND">Transfer complete, Artemis. Please proceed to DS1 to deliver the parts.</incoming_comms_text>
     <set_variable name="DS1NukeMissionStage" value="2.0" />
   </event>
   <event name="Intrepid got DS1 nuke parts from Pegasus" id_arme="43156111-dbd3-45de-ae26-b2ea449c4b2c" parent_id_arme="122bc34c-b356-4497-b1a9-649c6b1cb5f3">
     <if_variable name="DS1NukeMissionStage" comparator="EQUALS" value="1.0" />
     <if_distance name1="Intrepid" name2="Pegasus" comparator="LESS_EQUAL" value="ShipTransferRange" />
     <log text="Intrepid picked up nuke parts from Pegasus" />
-    <incoming_comms_text from="Bulk Cargo Pegasus" type="FRIEND">Transfer complete, Intrepid. Please proceed to DS1 to deliver the parts.</incoming_comms_text>
+    <incoming_comms_text from="Bulk Cargo Pegasus" type="SIDE FRIEND">Transfer complete, Intrepid. Please proceed to DS1 to deliver the parts.</incoming_comms_text>
     <set_variable name="DS1NukeMissionStage" value="3.0" />
   </event>
   <event name="Artemis delivered nuke parts to DS1" id_arme="e5f9ce5d-fa6a-4cc6-acf4-e974d403d439" parent_id_arme="122bc34c-b356-4497-b1a9-649c6b1cb5f3">
@@ -709,7 +717,7 @@
     <if_exists name="Artemis" />
     <if_docked player_name="Artemis" name="DS1" />
     <log text="Artemis delivered nuke parts to DS1" />
-    <incoming_comms_text from="DS1" type="STATION">Transfer complete, Artemis. We now have 2 additional nukes.</incoming_comms_text>
+    <incoming_comms_text from="DS1" type="SIDE STATION">Transfer complete, Artemis. We now have 2 additional nukes.</incoming_comms_text>
     <set_variable name="DS1NukeMissionStage" value="4.0" />
     <addto_object_property value="2.0" property="missileStoresNuke" name="DS1" />
   </event>
@@ -718,7 +726,7 @@
     <if_exists name="Intrepid" />
     <if_docked player_name="Intrepid" name="DS1" />
     <log text="Intrepid delivered nuke parts to DS1" />
-    <incoming_comms_text from="DS1" type="STATION">Transfer complete, Intrepid. We now have 2 additional nukes.</incoming_comms_text>
+    <incoming_comms_text from="DS1" type="SIDE STATION">Transfer complete, Intrepid. We now have 2 additional nukes.</incoming_comms_text>
     <set_variable name="DS1NukeMissionStage" value="4.0" />
     <addto_object_property value="2.0" property="missileStoresNuke" name="DS1" />
   </event>
@@ -740,7 +748,7 @@
     <if_timer_finished name="PegasusCommsTimer" />
     <if_exists name="Pegasus" />
     <log text="Pegasus asked for help" />
-    <incoming_comms_text from="Bulk Cargo Pegasus" type="FRIEND">Our engines have broken down! Could you lend us a DamCon team to conduct repairs?  In return, we can give you 2 nukes.</incoming_comms_text>
+    <incoming_comms_text from="Bulk Cargo Pegasus" type="SIDE FRIEND">Our engines have broken down! Could you lend us a DamCon team to conduct repairs?  In return, we can give you 2 nukes.</incoming_comms_text>
     <set_variable name="PegasusHelpStage" value="1.0" />
   </event>
   <event name="Artemis gives Pegasus DamCon team 1" id_arme="305a3b18-11ad-4cb3-b67e-49701a8448c5" parent_id_arme="9711027e-1cab-41a6-8423-07e739133d62">
@@ -751,7 +759,7 @@
     <set_variable name="PegasusHelpStage" value="2.0" />
     <set_damcon_members value="0" team_index="0" name="Artemis" />
     <addto_object_property value="2.0" property="countNuke" name="Artemis" />
-    <incoming_comms_text from="Bulk Cargo Pegasus" type="FRIEND">Thanks for the repair team, Artemis!  In return, here's two nukes.</incoming_comms_text>
+    <incoming_comms_text from="Bulk Cargo Pegasus" type="SIDE FRIEND">Thanks for the repair team, Artemis!  In return, here's two nukes.</incoming_comms_text>
     <add_ai type="PROCEED_TO_EXIT" name="Pegasus" />
     <add_ai type="FOLLOW_COMMS_ORDERS" name="Pegasus" />
     <set_ship_text name="Pegasus" hailtext="We're moving cargo between the stations in this sector." />
@@ -764,7 +772,7 @@
     <set_variable name="PegasusHelpStage" value="2.0" />
     <set_damcon_members value="0" team_index="1" name="Artemis" />
     <addto_object_property value="2.0" property="countNuke" name="Artemis" />
-    <incoming_comms_text from="Bulk Cargo Pegasus" type="FRIEND">Thanks for the repair team, Artemis!  In return, here's two nukes.</incoming_comms_text>
+    <incoming_comms_text from="Bulk Cargo Pegasus" type="SIDE FRIEND">Thanks for the repair team, Artemis!  In return, here's two nukes.</incoming_comms_text>
     <add_ai type="PROCEED_TO_EXIT" name="Pegasus" />
     <add_ai type="FOLLOW_COMMS_ORDERS" name="Pegasus" />
     <set_ship_text name="Pegasus" hailtext="We're moving cargo between the stations in this sector." />
@@ -777,7 +785,7 @@
     <set_variable name="PegasusHelpStage" value="2.0" />
     <set_damcon_members value="0" team_index="2" name="Artemis" />
     <addto_object_property value="2.0" property="countNuke" name="Artemis" />
-    <incoming_comms_text from="Bulk Cargo Pegasus" type="FRIEND">Thanks for the repair team, Artemis!  In return, here's two nukes.</incoming_comms_text>
+    <incoming_comms_text from="Bulk Cargo Pegasus" type="SIDE FRIEND">Thanks for the repair team, Artemis!  In return, here's two nukes.</incoming_comms_text>
     <add_ai type="PROCEED_TO_EXIT" name="Pegasus" />
     <add_ai type="FOLLOW_COMMS_ORDERS" name="Pegasus" />
     <set_ship_text name="Pegasus" hailtext="We're moving cargo between the stations in this sector." />
@@ -790,7 +798,7 @@
     <set_variable name="PegasusHelpStage" value="2.0" />
     <set_damcon_members value="0" team_index="0" name="Intrepid" />
     <addto_object_property value="2.0" property="countNuke" name="Intrepid" />
-    <incoming_comms_text from="Bulk Cargo Pegasus" type="FRIEND">Thanks for the repair team, Intrepid!  In return, here's two nukes.</incoming_comms_text>
+    <incoming_comms_text from="Bulk Cargo Pegasus" type="SIDE FRIEND">Thanks for the repair team, Intrepid!  In return, here's two nukes.</incoming_comms_text>
     <add_ai type="PROCEED_TO_EXIT" name="Pegasus" />
     <add_ai type="FOLLOW_COMMS_ORDERS" name="Pegasus" />
     <set_ship_text name="Pegasus" hailtext="We're moving cargo between the stations in this sector." />
@@ -803,7 +811,7 @@
     <set_variable name="PegasusHelpStage" value="2.0" />
     <set_damcon_members value="0" team_index="1" name="Intrepid" />
     <addto_object_property value="2.0" property="countNuke" name="Intrepid" />
-    <incoming_comms_text from="Bulk Cargo Pegasus" type="FRIEND">Thanks for the repair team, Intrepid!  In return, here's two nukes.</incoming_comms_text>
+    <incoming_comms_text from="Bulk Cargo Pegasus" type="SIDE FRIEND">Thanks for the repair team, Intrepid!  In return, here's two nukes.</incoming_comms_text>
     <add_ai type="PROCEED_TO_EXIT" name="Pegasus" />
     <add_ai type="FOLLOW_COMMS_ORDERS" name="Pegasus" />
     <set_ship_text name="Pegasus" hailtext="We're moving cargo between the stations in this sector." />
@@ -816,7 +824,7 @@
     <set_variable name="PegasusHelpStage" value="2.0" />
     <set_damcon_members value="0" team_index="2" name="Intrepid" />
     <addto_object_property value="2.0" property="countNuke" name="Intrepid" />
-    <incoming_comms_text from="Bulk Cargo Pegasus" type="FRIEND">Thanks for the repair team, Intrepid!  In return, here's two nukes.</incoming_comms_text>
+    <incoming_comms_text from="Bulk Cargo Pegasus" type="SIDE FRIEND">Thanks for the repair team, Intrepid!  In return, here's two nukes.</incoming_comms_text>
     <add_ai type="PROCEED_TO_EXIT" name="Pegasus" />
     <add_ai type="FOLLOW_COMMS_ORDERS" name="Pegasus" />
     <set_ship_text name="Pegasus" hailtext="We're moving cargo between the stations in this sector." />
@@ -841,7 +849,7 @@
     <if_exists name="Atlas" />
     <if_exists name="Starseeker" />
     <log text="Atlas asked for help" />
-    <incoming_comms_text from="Transport Atlas" type="FRIEND">We'd like to get the Starseeker's data. First, rendezvous with the Starseeker and download their data. Then, rendezvous with us, and we'll enhance your shield generators.</incoming_comms_text>
+    <incoming_comms_text from="Transport Atlas" type="SIDE FRIEND">We'd like to get the Starseeker's data. First, rendezvous with the Starseeker and download their data. Then, rendezvous with us, and we'll enhance your shield generators.</incoming_comms_text>
     <set_variable name="AtlasHelpStage" value="1.0" />
   </event>
   <event name="Artemis got data from Starseeker" id_arme="8822a5a2-be3f-4a77-bca6-29f23888872c" parent_id_arme="096c8a20-33f3-414b-ab56-3e1a20dc4e8f">
@@ -849,7 +857,7 @@
     <if_distance name1="Artemis" name2="Starseeker" comparator="LESS_EQUAL" value="ShipTransferRange" />
     <if_exists name="Atlas" />
     <log text="Artemis got data from Starseeker" />
-    <incoming_comms_text from="Science Vessel Starseeker" type="FRIEND">Transfer complete, Artemis. Please proceed to the Atlas to deliver the data.</incoming_comms_text>
+    <incoming_comms_text from="Science Vessel Starseeker" type="SIDE FRIEND">Transfer complete, Artemis. Please proceed to the Atlas to deliver the data.</incoming_comms_text>
     <set_variable name="AtlasHelpStage" value="2.0" />
   </event>
   <event name="Intrepid got data from Starseeker" id_arme="123f52ca-741b-4370-b9b1-505b89c1baea" parent_id_arme="096c8a20-33f3-414b-ab56-3e1a20dc4e8f">
@@ -857,14 +865,14 @@
     <if_distance name1="Intrepid" name2="Starseeker" comparator="LESS_EQUAL" value="ShipTransferRange" />
     <if_exists name="Atlas" />
     <log text="Intrepid got data from Starseeker" />
-    <incoming_comms_text from="Science Vessel Starseeker" type="FRIEND">Transfer complete, Intrepid. Please proceed to the Atlas to deliver the data.</incoming_comms_text>
+    <incoming_comms_text from="Science Vessel Starseeker" type="SIDE FRIEND">Transfer complete, Intrepid. Please proceed to the Atlas to deliver the data.</incoming_comms_text>
     <set_variable name="AtlasHelpStage" value="3.0" />
   </event>
   <event name="Artemis delivered data to Atlas" id_arme="cb594a87-07c4-461e-a461-94ffd124abf7" parent_id_arme="096c8a20-33f3-414b-ab56-3e1a20dc4e8f">
     <if_variable name="AtlasHelpStage" comparator="EQUALS" value="2.0" />
     <if_distance name1="Artemis" name2="Atlas" comparator="LESS_EQUAL" value="ShipTransferRange" />
     <log text="Artemis delivered data to Atlas" />
-    <incoming_comms_text from="Transport Atlas" type="FRIEND">Transfer complete, Artemis. In return, we'll now enhance your shield generators.</incoming_comms_text>
+    <incoming_comms_text from="Transport Atlas" type="SIDE FRIEND">Transfer complete, Artemis. In return, we'll now enhance your shield generators.</incoming_comms_text>
     <addto_object_property value="50.0" property="shieldMaxStateFront" name="Artemis" />
     <addto_object_property value="50.0" property="shieldMaxStateBack" name="Artemis" />
     <set_variable name="AtlasHelpStage" value="4.0" />
@@ -873,7 +881,7 @@
     <if_variable name="AtlasHelpStage" comparator="EQUALS" value="3.0" />
     <if_distance name1="Intrepid" name2="Atlas" comparator="LESS_EQUAL" value="ShipTransferRange" />
     <log text="Intrepid delivered data to Atlas" />
-    <incoming_comms_text from="Transport Atlas" type="FRIEND">Transfer complete, Intrepid. In return, we'll now enhance your shield generators.</incoming_comms_text>
+    <incoming_comms_text from="Transport Atlas" type="SIDE FRIEND">Transfer complete, Intrepid. In return, we'll now enhance your shield generators.</incoming_comms_text>
     <addto_object_property value="50.0" property="shieldMaxStateFront" name="Intrepid" />
     <addto_object_property value="50.0" property="shieldMaxStateBack" name="Intrepid" />
     <set_variable name="AtlasHelpStage" value="4.0" />
@@ -937,7 +945,7 @@
     <if_exists name="Starseeker" />
     <if_exists name="Avalon" />
     <log text="Starseeker asked for help" />
-    <incoming_comms_text from="Science Vessel Starseeker" type="FRIEND">Help us help you.^First, rendezvous with the Avalon and download some data we need. Then, rendezvous with us, and we'll enhance your maneuverability.</incoming_comms_text>
+    <incoming_comms_text from="Science Vessel Starseeker" type="SIDE FRIEND">Help us help you.^First, rendezvous with the Avalon and download some data we need. Then, rendezvous with us, and we'll enhance your maneuverability.</incoming_comms_text>
     <set_variable name="StarseekerHelpStage" value="2.0" />
   </event>
   <event name="Artemis got data from Avalon" id_arme="cec08989-58fb-46fd-b64f-cfcf97f1a55e" parent_id_arme="25c18002-5184-41c0-8540-53d8f201f8d5">
@@ -945,7 +953,7 @@
     <if_distance name1="Artemis" name2="Avalon" comparator="LESS_EQUAL" value="ShipTransferRange" />
     <if_exists name="Starseeker" />
     <log text="Artemis got data from Avalon" />
-    <incoming_comms_text from="Luxury Liner Avalon" type="FRIEND">Transfer complete, Artemis. Please proceed to the Starseeker to deliver the data.</incoming_comms_text>
+    <incoming_comms_text from="Luxury Liner Avalon" type="SIDE FRIEND">Transfer complete, Artemis. Please proceed to the Starseeker to deliver the data.</incoming_comms_text>
     <set_variable name="StarseekerHelpStage" value="3.0" />
   </event>
   <event name="Intrepid got data from Avalon" id_arme="8af1306e-b68d-4733-b255-ebf63140f711" parent_id_arme="25c18002-5184-41c0-8540-53d8f201f8d5">
@@ -953,14 +961,14 @@
     <if_distance name1="Intrepid" name2="Avalon" comparator="LESS_EQUAL" value="ShipTransferRange" />
     <if_exists name="Starseeker" />
     <log text="Intrepid got data from Avalon" />
-    <incoming_comms_text from="Luxury Liner Avalon" type="FRIEND">Transfer complete, Intrepid. Please proceed to the Starseeker to deliver the data.</incoming_comms_text>
+    <incoming_comms_text from="Luxury Liner Avalon" type="SIDE FRIEND">Transfer complete, Intrepid. Please proceed to the Starseeker to deliver the data.</incoming_comms_text>
     <set_variable name="StarseekerHelpStage" value="4.0" />
   </event>
   <event name="Artemis delivered data to Starseeker" id_arme="6ea4963c-b126-458f-8f70-5b2e5a6cdd4d" parent_id_arme="25c18002-5184-41c0-8540-53d8f201f8d5">
     <if_variable name="StarseekerHelpStage" comparator="EQUALS" value="3.0" />
     <if_distance name1="Artemis" name2="Starseeker" comparator="LESS_EQUAL" value="ShipTransferRange" />
     <log text="Artemis delivered data to Starseeker" />
-    <incoming_comms_text from="Science Vessel Starseeker" type="FRIEND">Transfer complete, Artemis. In return, we'll now enhance your maneuverability.</incoming_comms_text>
+    <incoming_comms_text from="Science Vessel Starseeker" type="SIDE FRIEND">Transfer complete, Artemis. In return, we'll now enhance your maneuverability.</incoming_comms_text>
     <addto_object_property value="0.002" property="turnRate" name="Artemis" />
     <set_variable name="StarseekerHelpStage" value="99.0" />
   </event>
@@ -968,7 +976,7 @@
     <if_variable name="StarseekerHelpStage" comparator="EQUALS" value="4.0" />
     <if_distance name1="Intrepid" name2="Starseeker" comparator="LESS_EQUAL" value="ShipTransferRange" />
     <log text="Intrepid delivered data to Starseeker" />
-    <incoming_comms_text from="Science Vessel Starseeker" type="FRIEND">Transfer complete, Intrepid. In return, we'll now enhance your maneuverability.</incoming_comms_text>
+    <incoming_comms_text from="Science Vessel Starseeker" type="SIDE FRIEND">Transfer complete, Intrepid. In return, we'll now enhance your maneuverability.</incoming_comms_text>
     <addto_object_property value="0.002" property="turnRate" name="Intrepid" />
     <set_variable name="StarseekerHelpStage" value="99.0" />
   </event>
@@ -987,7 +995,7 @@
     <if_variable name="ReadyToHack" comparator="EQUALS" value="0.0" />
     <log text="Bomb set!" />
     <warning_popup_message message="Urgent message from DS1" consoles="M" />
-    <incoming_comms_text from="DS1" type="STATION">URGENT: Immediate assistance needed at DS1!  We must have a sabotaur at work.  We just discovered a bomb on our station in the production facility!  We need you to dock with us as soon as possible and send a team of explosives experts who can deal with it before it detonates and destroys this station!  We have deactivated our final step in building more missiles so no more will be produced until the bomb is deactivated.</incoming_comms_text>
+    <incoming_comms_text from="DS1" type="ALERT STATION">URGENT: Immediate assistance needed at DS1!  We must have a sabotaur at work.  We just discovered a bomb on our station in the production facility!  We need you to dock with us as soon as possible and send a team of explosives experts who can deal with it before it detonates and destroys this station!  We have deactivated our final step in building more missiles so no more will be produced until the bomb is deactivated.</incoming_comms_text>
     <set_gm_button text="Bomb defused" />
     <set_gm_button text="Bomb detonated" />
     <set_object_property property="canBuild" value="0" name="DS1" />
@@ -1005,7 +1013,7 @@
     <if_object_property property="canBuild" name="DS1" comparator="EQUALS" value="0.0" />
     <log text="Artemis docked at DS1 to defuse bomb" />
     <set_variable name="WelcomedArtemisAwayTeam" value="1.0" />
-    <incoming_comms_text from="DS1" type="STATION">Glad to see you, Artemis. An Away Team of explosives experts should immediately disembark and head over to the production facility on our station.</incoming_comms_text>
+    <incoming_comms_text from="DS1" type="ALERT STATION">Glad to see you, Artemis. An Away Team of explosives experts should immediately disembark and head over to the production facility on our station.</incoming_comms_text>
   </event>
   <event name="Intrepid docked" id_arme="4e9c9d7f-1cb0-49b7-bb0d-5b8aedd79088" parent_id_arme="06783d9d-3423-44f3-b6e3-28e8f836b4fd">
     <if_exists name="Intrepid" />
@@ -1014,7 +1022,7 @@
     <if_object_property property="canBuild" name="DS1" comparator="EQUALS" value="0.0" />
     <log text="Intrepid docked at DS1 to defuse bomb" />
     <set_variable name="WelcomedIntrepidAwayTeam" value="1.0" />
-    <incoming_comms_text from="DS1" type="STATION">Glad to see you, Intrepid. An Away Team of explosives experts should immediately disembark and head over to the production facility on our station.</incoming_comms_text>
+    <incoming_comms_text from="DS1" type="ALERT STATION">Glad to see you, Intrepid. An Away Team of explosives experts should immediately disembark and head over to the production facility on our station.</incoming_comms_text>
   </event>
   <event name="Aegis docked" id_arme="4138f4e7-048b-429a-8666-a49be7fe3fbf" parent_id_arme="06783d9d-3423-44f3-b6e3-28e8f836b4fd">
     <if_exists name="Aegis" />
@@ -1023,7 +1031,7 @@
     <if_object_property property="canBuild" name="DS1" comparator="EQUALS" value="0.0" />
     <log text="Aegis docked at DS1 to defuse bomb" />
     <set_variable name="WelcomedAegisAwayTeam" value="1.0" />
-    <incoming_comms_text from="DS1" type="STATION">Glad to see you, Aegis. An Away Team of explosives experts should immediately disembark and head over to the production facility on our station.</incoming_comms_text>
+    <incoming_comms_text from="DS1" type="ALERT STATION">Glad to see you, Aegis. An Away Team of explosives experts should immediately disembark and head over to the production facility on our station.</incoming_comms_text>
   </event>
   <event name="Refresh GM buttons" id_arme="b3049e32-14ce-4187-8b89-3322cce1a2f6" parent_id_arme="06783d9d-3423-44f3-b6e3-28e8f836b4fd">
     <if_exists name="DS1" />
@@ -1076,7 +1084,7 @@
     <!--Create a new ship that will become the Diana-->
     <!--We use a new ship instead of changing the side on the existing one, in order to reset the scanned level to 1.-->
     <create type="neutral" x="27754.0" y="50.0" z="73016.0" angle="0" name="Saboteur" hullID="0" sideValue="1" />
-    <incoming_comms_text from="DS1" type="ALERT">Unauthorized undocking of the Diana detected!  The saboteur must be trying to escape!</incoming_comms_text>
+    <incoming_comms_text from="DS1" type="ALERT STATION">Unauthorized undocking of the Diana detected!  The saboteur must be trying to escape!</incoming_comms_text>
     <warning_popup_message message="The Diana's energy signature has changed" consoles="S">Unauthorized undocking of the Diana detected!  The saboteur must be trying to escape!</warning_popup_message>
     <set_timer name="RefreshCommsButtons" seconds="30" />
   </event>
@@ -1133,7 +1141,7 @@
     <log text="Ready to hack" />
     <set_variable name="ReadyToHack" value="1.0" />
     <set_timer name="RefreshCommsButtons" seconds="10" />
-    <incoming_comms_text from="Internal Comms" type="SIDE">We can try to disrupt the Diana's computer system to stop the saboteur, but we'll have to get through multiple layers of defenses.  We'll need to use its lowest shield frequency to do so.</incoming_comms_text>
+    <incoming_comms_text from="Internal Comms" type="ALERT">We can try to disrupt the Diana's computer system to stop the saboteur, but we'll have to get through multiple layers of defenses.  We'll need to use its lowest shield frequency to do so.</incoming_comms_text>
   </event>
   <event name="Refresh hack buttons" id_arme="342cc4d2-3696-4a8f-b0dc-7159300c4cfe" parent_id_arme="a587676a-7998-4d34-80cd-cee990ddefc1">
     <if_variable name="ReadyToHack" comparator="EQUALS" value="1.0" />
@@ -1220,7 +1228,7 @@
     <warning_popup_message message="The Diana's energy signature has changed" consoles="S">Unauthorized undocking of the Diana detected!  The saboteur must be trying to escape!</warning_popup_message>
     <set_variable name="HackResult" value="0.0" />
     <set_variable name="HackStepsSucceeded" value="0.0" integer="yes" />
-    <incoming_comms_text from="Internal Comms" type="SIDE">Inorrect, all computer defenses have been reset.</incoming_comms_text>
+    <incoming_comms_text from="Internal Comms" type="ALERT">Inorrect, all computer defenses have been reset.</incoming_comms_text>
   </event>
   <event name="Hack step succeeded" id_arme="cfa626be-a329-4fcf-bbbd-e18591ecf4a1" parent_id_arme="a587676a-7998-4d34-80cd-cee990ddefc1">
     <if_variable name="HackResult" comparator="EQUALS" value="1.0" />
@@ -1229,7 +1237,7 @@
     <warning_popup_message message="The Diana's energy signature has changed" consoles="S">Unauthorized undocking of the Diana detected!  The saboteur must be trying to escape!</warning_popup_message>
     <set_variable name="HackResult" value="0.0" />
     <set_variable name="HackStepsSucceeded" value="HackStepsSucceeded + 1" integer="yes" />
-    <incoming_comms_text from="Internal Comms" type="SIDE">Correct, we have now gotten through |HackStepsSucceeded| levels of the saboteur's^computer defenses!</incoming_comms_text>
+    <incoming_comms_text from="Internal Comms" type="ALERT">Correct, we have now gotten through |HackStepsSucceeded| levels of the saboteur's^computer defenses!</incoming_comms_text>
   </event>
   <event name="BS1: Hack complete" id_arme="97d7d08e-7507-4173-bacf-f69a8c4683a4" parent_id_arme="a587676a-7998-4d34-80cd-cee990ddefc1">
     <if_variable name="HackStepsSucceeded" comparator="EQUALS" value="HackSuccessesNeeded" />
@@ -1242,8 +1250,8 @@
     <clear_comms_button text="Hack frequency D" />
     <clear_comms_button text="Hack frequency E" />
     <!--For v2.7.0, work around if_damcon_members bug by not requiring 6 people in team-->
-    <!--<incoming_comms_text from="Internal Comms" type="SIDE">Disruption complete, the Diana's engines are now disabled!  If we get within |ShipTransferRange|m of the Diana and send over a DamCon team to board her, we might be able to return her to TSN control.</incoming_comms_text>-->
-    <incoming_comms_text from="Internal Comms" type="SIDE">Disruption complete, the Diana's engines are now disabled!  If we get within |ShipTransferRange|m of the Diana and send over a DamCon team to board her, we might be able to return her to TSN control.</incoming_comms_text>
+    <!--<incoming_comms_text from="Internal Comms" type="ALERT">Disruption complete, the Diana's engines are now disabled!  If we get within |ShipTransferRange|m of the Diana and send over a DamCon team to board her, we might be able to return her to TSN control.</incoming_comms_text>-->
+    <incoming_comms_text from="Internal Comms" type="ALERT">Disruption complete, the Diana's engines are now disabled!  If we get within |ShipTransferRange|m of the Diana and send over a DamCon team to board her, we might be able to return her to TSN control.</incoming_comms_text>
     <set_variable name="BoardingState" value="1.0" />
     <set_timer name="RefreshCommsButtons" seconds="3" />
   </event>
@@ -1608,7 +1616,7 @@
     <add_ai type="POINT_THROTTLE" value1="StationX" value2="0.0" value3="StationZ" value4="1.0" name="Diana" />
     <set_ship_text name="Diana" scan_desc="Intrepid DamCon team |DamConTeamSent| is on board taking her back to DS1." hailtext="We are taking the Diana back to DS1." />
     <incoming_comms_text from="TSN Diana" type="FRIEND">Intrepid DamCon team |DamConTeamSent| reporting in... From what we can tell, the AI must have been on the Diana for ages but only recently reawakened during repairs.  We have now regained control of the Diana and have set a course back to DS1!</incoming_comms_text>
-    <incoming_comms_text from="DS1" type="STATION">Interpid, great work recapturing the Diana!  We'll take it from here, and interrogate the AI once the ship is safely back and locked down.</incoming_comms_text>
+    <incoming_comms_text from="DS1" type="STATION">Intrepid, great work recapturing the Diana!  We'll take it from here, and interrogate the AI once the ship is safely back and locked down.</incoming_comms_text>
     <set_variable name="BoardingState" value="4.0" />
   </event>
   <event name="DS1 Tractoring Diana +X" id_arme="665b8c6f-2ba0-4f01-8d40-9739ec0ad02d" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
