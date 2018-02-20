@@ -183,11 +183,11 @@
     <log text="Creating Skaraan SK|SkaraanCount| at (|RandomX|, 0, |RandomZ|)" />
     <create type="enemy" x="RandomX" y="0.0" z="RandomZ" angle="0" name="SK|SkaraanCount|" hullID="5000" />
   </event>
-  <event name="2 MaxBombs" id_arme="a457ad0c-fda4-4b35-a5ce-2f1b47b821ab" parent_id_arme="6ef97816-b707-4333-8e81-c10c250bf89b">
+  <disabled_event name="2 MaxBombs" id_arme="a457ad0c-fda4-4b35-a5ce-2f1b47b821ab" parent_id_arme="6ef97816-b707-4333-8e81-c10c250bf89b">
     <if_variable name="MaxBombs" comparator="LESS" value="2.0" />
     <if_difficulty comparator="GREATER" value="5.0" />
     <set_variable name="MaxBombs" value="2.0" integer="yes" />
-  </event>
+  </disabled_event>
   <folder_arme name="Start/End Game Events" id_arme="e829d865-90bd-4c1b-aabe-60c7d7cfe1a1" />
   <event name="All Player Ships Destroyed" id_arme="42f2865c-0518-4e1b-bfc1-7556bdc0cd1b" parent_id_arme="e829d865-90bd-4c1b-aabe-60c7d7cfe1a1">
     <if_not_exists name="Aegis" />
@@ -210,17 +210,6 @@
     <if_timer_finished name="GameFinishedTimer" />
     <log text="End Game" />
     <end_mission />
-  </event>
-  <event name="All enemies destroyed" id_arme="8cd2c901-c296-44f2-9e21-34a669cf027b" parent_id_arme="e829d865-90bd-4c1b-aabe-60c7d7cfe1a1">
-    <if_not_exists name="AB1" />
-    <if_variable name="GameOver" comparator="EQUALS" value="0.0" />
-    <if_variable name="TsnCommandGaveMission" comparator="GREATER" value="1.0" />
-    <if_fleet_count comparator="EQUALS" value="0.0" sideValue="1" />
-    <log text="MISSION SUCCEEDED" />
-    <incoming_comms_text from="TSN Command" type="SIDE">Good work!  The Arvonians have abandoned their attack on DS1, at least for now.  The TSN Diana is also safe and we can now complete the renovations on her to prepare to return her to service again.</incoming_comms_text>
-    <set_variable name="GameOver" value="1.0" />
-    <set_timer name="GameFinishedTimer" seconds="15" />
-    <big_message title="MISSION SUCCEEDED" subtitle1="All enemies have been destroyed" />
   </event>
   <event name="Lost DS1" id_arme="b526982b-a60f-4850-8902-f0c9525953a5" parent_id_arme="e829d865-90bd-4c1b-aabe-60c7d7cfe1a1">
     <if_variable name="PlayerShipCount" comparator="GREATER" value="0" />
@@ -251,6 +240,18 @@
     <set_timer name="GameFinishedTimer" seconds="15" />
     <big_message title="MISSION FAILED" subtitle1="The saboteur escaped with the TSN Diana" />
     <incoming_comms_text from="Main Screen" type="SIDE">Mission Failed^The saboteur escaped with the TSN Diana</incoming_comms_text>
+  </event>
+  <event name="All enemies destroyed" id_arme="8cd2c901-c296-44f2-9e21-34a669cf027b" parent_id_arme="e829d865-90bd-4c1b-aabe-60c7d7cfe1a1">
+    <if_not_exists name="AB1" />
+    <if_variable name="GameOver" comparator="EQUALS" value="0.0" />
+    <if_variable name="TsnCommandGaveMission" comparator="GREATER" value="1.0" />
+    <if_variable name="BoardingState" comparator="GREATER_EQUAL" value="4.0" />
+    <if_fleet_count comparator="EQUALS" value="0.0" sideValue="1" />
+    <log text="MISSION SUCCEEDED" />
+    <incoming_comms_text from="TSN Command" type="SIDE">Good work!  The Arvonians have abandoned their attack on DS1, at least for now.  The TSN Diana is also safe and we can now complete the renovations on her to prepare to return her to service again.</incoming_comms_text>
+    <set_variable name="GameOver" value="1.0" />
+    <set_timer name="GameFinishedTimer" seconds="15" />
+    <big_message title="MISSION SUCCEEDED" subtitle1="All enemies have been destroyed" />
   </event>
   <event name="DEBUG: EnemiesLeft" id_arme="b2cb0990-403d-4203-9f02-a732053e1d82" parent_id_arme="e829d865-90bd-4c1b-aabe-60c7d7cfe1a1">
     <if_fleet_count comparator="LESS" value="EnemiesLeft" sideValue="1" />
@@ -441,8 +442,7 @@
   <event name="Give mission" id_arme="d1a783c8-8781-4cbe-95ae-4baa520c39a5" parent_id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6">
     <if_variable name="TsnCommandGaveMission" comparator="EQUALS" value="1.0" />
     <log text="Gave mission" />
-    <incoming_comms_text from="TSN Command" type="SIDE">As a result of the recent Diana Operation, the Torgoth have moved their fleets elsewhere in the conflict with the TSN.  The Arvonians, however, have advanced and taken Houston Outpost, but not before we managed to tow the crippled TSN Diana back here to DS1 where it is now undergoing reconstruction.  A scout ship reported that an Arvonian base has just appeared in the asteroid belt, presumably in preparation for an assault on DS1.  We are sending thei
-r position to your ship now.  Your mission is to protect both DS1 and the Diana from the Arvonian invasion.  It is imperative that we not lose either one.</incoming_comms_text>
+    <incoming_comms_text from="TSN Command" type="SIDE">As a result of the recent Diana Operation, the Torgoth have moved their fleets elsewhere in the conflict with the TSN.  The Arvonians, however, have advanced and taken Houston Outpost, but not before we managed to tow the crippled TSN Diana back here to DS1 where it is now undergoing reconstruction.  A scout ship reported that an Arvonian base has just appeared in the asteroid belt, presumably in preparation for an assault on DS1.  We are sending their position to your ship now.  Your primary mission is to protect both DS1 and the Diana from the Arvonian invasion.  It is imperative that we not lose either one.  Your secondary mission is to protect all friendly ships, as much as possible without compromising your primary mission.</incoming_comms_text>
     <set_variable name="TsnCommandGaveMission" value="2.0" />
     <set_timer name="SabotageDelay" seconds="SabotageDelaySeconds" />
     <clear_gm_button text="GM/Resend Comms/Give Mission" />
@@ -487,7 +487,7 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
     <set_gm_button text="GM/Resend Comms/DS1 Resummon Ships" />
     <set_gm_button text="GM/Resend Comms/Give Mission" />
   </event>
-  <folder_arme name="Side missions" id_arme="9b774b87-1030-4c79-bf55-a32cfc834264" />
+  <folder_arme name="Side missions" id_arme="9b774b87-1030-4c79-bf55-a32cfc834264" expanded_arme="" />
   <folder_arme name="Side mission: Rapier" id_arme="a7e826ad-d40c-4a39-8248-01183453befa" parent_id_arme="9b774b87-1030-4c79-bf55-a32cfc834264" />
   <event name="Refresh GM button" id_arme="20765da5-aadc-47af-b6b3-d1e74038966a" parent_id_arme="a7e826ad-d40c-4a39-8248-01183453befa">
     <if_exists name="Rapier" />
@@ -511,7 +511,7 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
   </event>
   <event name="Rapier reaches DS1" id_arme="a96b73e6-6360-4bc7-851d-00e805b18b31" parent_id_arme="a7e826ad-d40c-4a39-8248-01183453befa">
     <if_variable name="RapierHelpStage" comparator="EQUALS" value="1.0" />
-    <if_distance name1="Rapier" name2="DS1" comparator="LESS_EQUAL" value="ShipTransferRange" />
+    <if_distance name1="Rapier" name2="DS1" comparator="LESS_EQUAL" value="600.0" />
     <log text="Rapier reached DS1" />
     <set_variable name="RapierHelpStage" value="2.0" />
     <set_ship_text name="Rapier" hailtext="We're ready to help." />
@@ -1243,7 +1243,7 @@ r position to your ship now.  Your mission is to protect both DS1 and the Diana 
     <clear_comms_button text="Hack frequency E" />
     <!--For v2.7.0, work around if_damcon_members bug by not requiring 6 people in team-->
     <!--<incoming_comms_text from="Internal Comms" type="SIDE">Disruption complete, the Diana's engines are now disabled!  If we get within |ShipTransferRange|m of the Diana and send over a DamCon team to board her, we might be able to return her to TSN control.</incoming_comms_text>-->
-    <incoming_comms_text from="Internal Comms" type="SIDE">Disruption complete, the Diana's engines are now disabled!  If we get within |ShipTransferRange|m of the Diana and send over a full 6-person DamCon team to board her, we might be able to return her to TSN control.</incoming_comms_text>
+    <incoming_comms_text from="Internal Comms" type="SIDE">Disruption complete, the Diana's engines are now disabled!  If we get within |ShipTransferRange|m of the Diana and send over a DamCon team to board her, we might be able to return her to TSN control.</incoming_comms_text>
     <set_variable name="BoardingState" value="1.0" />
     <set_timer name="RefreshCommsButtons" seconds="3" />
   </event>

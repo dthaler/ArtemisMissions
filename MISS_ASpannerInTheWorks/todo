@@ -106,6 +106,10 @@
 02/19/18 NO: enhanced shield capacity should be +50% max shields
 02/19/18 NO: set escape timer so never expires before Artemis docks
 02/19/18 FIX: coordinates of NSECT generation to be in asteroid belt as it slants
+02/19/18 FIX: remove "full 6 person" text due to if_damcon_members bug
+02/19/18 FIX: mention secondary mission
+02/19/18 FIX: remove MaxBombs bumping to 2
+02/19/18 BUG: Mission Success when Diana destroyed when no enemies exist
 
 ---
 {
@@ -116,7 +120,24 @@
          send blog entry to jeffrey sloan
          PROG check Brew Bothell schedule
 
+1/1 BUG: can get Mission Success without ever defusing the bomb
+            DNTT
+
+1/2 BUG: Rapier stopped before 400 from DS1
+
+1/2 ADD: Rapier should need to follow you to DS1
+
+1/2 ADD: more protection around AB1, like a carrier defending it
+
+1/2 TEST: Skaraans didn't seem to attack us, or be difficult
+
+1/2 TEST: what if you ignore the bomb warning and never dock?
+
+1/2 FIX: add more flavortext about saboteur
+
 ---
+
+2/2 FIX: no monsters should start tagged
 
 2/2 FIX: make Rapier repairs actually take a minute at DS1
 
