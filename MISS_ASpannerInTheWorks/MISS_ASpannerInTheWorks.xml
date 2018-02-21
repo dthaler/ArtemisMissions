@@ -521,9 +521,45 @@
     <incoming_comms_text from="Destroyer Rapier" type="SIDE FRIEND">Our sensors are all down!  We're flying blind. Please guide us to a station for repairs!</incoming_comms_text>
     <set_variable name="RapierHelpStage" value="1.0" />
   </event>
+  <event name="DS1 Tractoring Diana +X" id_arme="a6b726cb-f9db-45a2-bd80-4d146eaf37ac" parent_id_arme="a7e826ad-d40c-4a39-8248-01183453befa">
+    <if_variable name="RapierHelpStage" comparator="LESS_EQUAL" value="1.0" />
+    <if_distance name1="Rapier" name2="DS1" comparator="LESS_EQUAL" value="600.0" />
+    <if_object_property property="positionX" name="Rapier" comparator="LESS" value="StationX" />
+    <addto_object_property value="TractorStrength" property="positionX" name="Rapier" />
+  </event>
+  <event name="DS1 Tractoring Diana -X" id_arme="c631ee0a-969c-471a-97c8-5c994b5c08ad" parent_id_arme="a7e826ad-d40c-4a39-8248-01183453befa">
+    <if_variable name="RapierHelpStage" comparator="LESS_EQUAL" value="1.0" />
+    <if_distance name1="Rapier" name2="DS1" comparator="LESS_EQUAL" value="600.0" />
+    <if_object_property property="positionX" name="Rapier" comparator="GREATER" value="StationX" />
+    <addto_object_property value="-TractorStrength" property="positionX" name="Rapier" />
+  </event>
+  <event name="DS1 Tractoring Diana +Y" id_arme="32178376-da48-4531-939a-bbbe854519c4" parent_id_arme="a7e826ad-d40c-4a39-8248-01183453befa">
+    <if_variable name="RapierHelpStage" comparator="LESS_EQUAL" value="1.0" />
+    <if_distance name1="Rapier" name2="DS1" comparator="LESS_EQUAL" value="600.0" />
+    <if_object_property property="positionY" name="Rapier" comparator="LESS" value="StationY + 50" />
+    <addto_object_property value="TractorStrength" property="positionY" name="Rapier" />
+  </event>
+  <event name="DS1 Tractoring Diana -Y" id_arme="361d5410-0a7e-4b33-b18a-5e0129967d41" parent_id_arme="a7e826ad-d40c-4a39-8248-01183453befa">
+    <if_variable name="RapierHelpStage" comparator="LESS_EQUAL" value="1.0" />
+    <if_distance name1="Rapier" name2="DS1" comparator="LESS_EQUAL" value="600.0" />
+    <if_object_property property="positionY" name="Rapier" comparator="GREATER" value="StationY + 50" />
+    <addto_object_property value="-TractorStrength" property="positionY" name="Rapier" />
+  </event>
+  <event name="DS1 Tractoring Diana +Z" id_arme="5668c413-3928-4020-b715-4e13fc85d7c7" parent_id_arme="a7e826ad-d40c-4a39-8248-01183453befa">
+    <if_variable name="RapierHelpStage" comparator="LESS_EQUAL" value="1.0" />
+    <if_distance name1="Rapier" name2="DS1" comparator="LESS_EQUAL" value="600.0" />
+    <if_object_property property="positionZ" name="Rapier" comparator="LESS" value="StationZ" />
+    <addto_object_property value="TractorStrength" property="positionZ" name="Rapier" />
+  </event>
+  <event name="DS1 Tractoring Diana -Z" id_arme="486d05e6-95de-43e9-9c49-c1835097f677" parent_id_arme="a7e826ad-d40c-4a39-8248-01183453befa">
+    <if_variable name="RapierHelpStage" comparator="LESS_EQUAL" value="1.0" />
+    <if_distance name1="Rapier" name2="DS1" comparator="LESS_EQUAL" value="600.0" />
+    <if_object_property property="positionZ" name="Rapier" comparator="GREATER" value="StationZ" />
+    <addto_object_property value="-TractorStrength" property="positionZ" name="Rapier" />
+  </event>
   <event name="Rapier reaches DS1" id_arme="a96b73e6-6360-4bc7-851d-00e805b18b31" parent_id_arme="a7e826ad-d40c-4a39-8248-01183453befa">
     <if_variable name="RapierHelpStage" comparator="EQUALS" value="1.0" />
-    <if_distance name1="Rapier" name2="DS1" comparator="LESS_EQUAL" value="600.0" />
+    <if_distance name1="Rapier" name2="DS1" comparator="LESS_EQUAL" value="150.0" />
     <log text="Rapier reached DS1" />
     <set_variable name="RapierHelpStage" value="2.0" />
     <incoming_comms_text from="Destroyer Rapier" type="SIDE FRIEND">We made it back to DS1 and our sensors are fixed.  We're ready to help.</incoming_comms_text>
