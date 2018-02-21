@@ -114,6 +114,7 @@
 02/19/18 FIX: increased Skaraan difficulty
 02/19/18 ADD: more protection around AB1, like a carrier defending it
 02/19/18 FIX: set side mission comms to SIDE
+02/20/18 FIX: no monsters should start tagged
 
 ---
 {
@@ -138,12 +139,11 @@
 1/2 FIX: add more flavortext about saboteur
 
 1/2 FIX: make Rapier actually tractor to docked like Diana does
+         then can use the variable instead of 600
 
 ---
 
 2/2 FIX: display some score or rank at end
-
-2/2 FIX: no monsters should start tagged
 
 2/2 FIX: make Rapier repairs actually take a minute at DS1
 

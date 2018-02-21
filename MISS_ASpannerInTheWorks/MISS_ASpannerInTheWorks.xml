@@ -70,19 +70,23 @@
     <set_variable name="RandomX" randomFloatLow="20000.0" randomFloatHigh="90000.0" />
     <set_variable name="RandomZpiece" randomIntLow="(MonsterZStart - 15000)" randomIntHigh="(MonsterZStart + 15000)" />
     <set_variable name="RandomZ" value="RandomZpiece + ((RandomX - 20000) / 8)" />
-    <create type="monster" monsterType="6" x="RandomX" y="0.0" z="RandomZ" angle="0" />
+    <create type="monster" monsterType="6" x="RandomX" y="0.0" z="RandomZ" angle="0" name="NSECT" />
+    <set_monster_tag_data tag_slot="0" name="NSECT" />
     <set_variable name="RandomX" randomFloatLow="20000.0" randomFloatHigh="90000.0" />
     <set_variable name="RandomZ" value="RandomZpiece + ((RandomX - 20000) / 8)" />
     <set_variable name="RandomZpiece" randomIntLow="(MonsterZStart - 15000)" randomIntHigh="(MonsterZStart + 15000)" />
-    <create type="monster" monsterType="6" x="RandomX" y="0.0" z="RandomZ" angle="0" />
+    <create type="monster" monsterType="6" x="RandomX" y="0.0" z="RandomZ" angle="0" name="NSECT " />
+    <set_monster_tag_data tag_slot="0" name="NSECT " />
     <set_variable name="RandomX" randomFloatLow="20000.0" randomFloatHigh="90000.0" />
     <set_variable name="RandomZ" value="RandomZpiece + ((RandomX - 20000) / 8)" />
     <set_variable name="RandomZpiece" randomIntLow="(MonsterZStart - 15000)" randomIntHigh="(MonsterZStart + 15000)" />
-    <create type="monster" monsterType="6" x="RandomX" y="0.0" z="RandomZ" angle="0" />
+    <create type="monster" monsterType="6" x="RandomX" y="0.0" z="RandomZ" angle="0" name="NSECT  " />
+    <set_monster_tag_data tag_slot="0" name="NSECT  " />
     <set_variable name="RandomX" randomFloatLow="20000.0" randomFloatHigh="90000.0" />
     <set_variable name="RandomZ" value="RandomZpiece + ((RandomX - 20000) / 8)" />
     <set_variable name="RandomZpiece" randomIntLow="(MonsterZStart - 15000)" randomIntHigh="(MonsterZStart + 15000)" />
-    <create type="monster" monsterType="6" x="RandomX" y="0.0" z="RandomZ" angle="0" />
+    <create type="monster" monsterType="6" x="RandomX" y="0.0" z="RandomZ" angle="0" name="NSECT   " />
+    <set_monster_tag_data tag_slot="0" name="NSECT   " />
     <!---->
     <!--Initialize any variables that must be integers:-->
     <!---->
@@ -330,20 +334,21 @@
     <set_variable name="RandomX" randomFloatLow="20000.0" randomFloatHigh="90000.0" />
     <set_variable name="RandomZ" value="RandomZpiece + ((RandomX - 20000) / 8)" />
     <set_variable name="RandomZpiece" randomIntLow="(MonsterZStart - 15000)" randomIntHigh="(MonsterZStart + 15000)" />
-    <create type="monster" monsterType="6" x="RandomX" y="0.0" z="RandomZ" angle="0" />
+    <!--<create type="monster" monsterType="6" z="RandomZ" x="RandomX" angle="0" y="0.0" />-->
     <set_variable name="RandomX" randomFloatLow="20000.0" randomFloatHigh="90000.0" />
     <set_variable name="RandomZ" value="RandomZpiece + ((RandomX - 20000) / 8)" />
     <set_variable name="RandomZpiece" randomIntLow="(MonsterZStart - 15000)" randomIntHigh="(MonsterZStart + 15000)" />
-    <create type="monster" monsterType="6" x="RandomX" y="0.0" z="RandomZ" angle="0" />
+    <!--<create type="monster" monsterType="6" x="RandomX" z="RandomZ" angle="0" y="0.0" />-->
     <set_variable name="RandomX" randomFloatLow="20000.0" randomFloatHigh="90000.0" />
     <set_variable name="RandomZ" value="RandomZpiece + ((RandomX - 20000) / 8)" />
     <set_variable name="RandomZpiece" randomIntLow="(MonsterZStart - 15000)" randomIntHigh="(MonsterZStart + 15000)" />
-    <create type="monster" monsterType="6" x="RandomX" y="0.0" z="RandomZ" angle="0" />
+    <!--<create type="monster" monsterType="6" z="RandomZ" x="RandomX" angle="0" y="0.0" />-->
     <set_variable name="RandomX" randomFloatLow="20000.0" randomFloatHigh="90000.0" />
     <set_variable name="RandomZ" value="RandomZpiece + ((RandomX - 20000) / 8)" />
     <set_variable name="RandomZpiece" randomIntLow="(MonsterZStart - 15000)" randomIntHigh="(MonsterZStart + 15000)" />
-    <create type="monster" monsterType="6" x="RandomX" y="0.0" z="RandomZ" angle="0" />
-    <create type="monster" monsterType="3" x="99831.0" y="0.0" z="40702.0" angle="0" />
+    <!--<create type="monster" monsterType="6" x="RandomX" z="RandomZ" angle="0" y="0.0" />-->
+    <create type="monster" monsterType="3" x="99831.0" y="0.0" z="40702.0" angle="0" name="DRAGON" />
+    <set_monster_tag_data tag_slot="0" name="DRAGON" />
   </event>
   <event name="Create Player Ship - Aegis" id_arme="6e63775f-221a-4740-beb5-76207cb60034" parent_id_arme="21712616-42f1-44fc-a39e-b0521eb9312f">
     <if_exists name="Aegis" />
