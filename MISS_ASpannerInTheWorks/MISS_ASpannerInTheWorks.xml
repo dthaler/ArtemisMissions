@@ -252,7 +252,7 @@
     <if_variable name="BoardingState" comparator="GREATER_EQUAL" value="4.0" />
     <if_fleet_count comparator="EQUALS" value="0.0" sideValue="1" />
     <log text="MISSION SUCCEEDED" />
-    <incoming_comms_text from="TSN Command" type="STATION">Good work!  The Arvonians have abandoned their attack on DS1, at least for now.  The TSN Diana is also safe and we can now complete the renovations on her to prepare to return her to service again.</incoming_comms_text>
+    <incoming_comms_text from="TSN Command" type="STATION">Good work!  The Arvonians have abandoned their attack on DS1, at least for now.  The TSN Diana is also safe and we can now complete the renovations on her to prepare to return her to service again.^^The AI that took over the Diana seems to be of Arvonian origin, and was apparently dormant in a damaged memory bank long before the Diana was towed here to DS1.  Recent repairs to the Diana must have reawakened it.  It seems possible that it was somehow connected to the Diana's original fate from which it was rescued during the recent Diana Operation.</incoming_comms_text>
     <set_variable name="GameOver" value="1.0" />
     <set_timer name="GameFinishedTimer" seconds="15" />
     <big_message title="MISSION SUCCEEDED" subtitle1="All enemies have been destroyed" />
@@ -1713,6 +1713,7 @@
     <if_variable name="BoardingState" comparator="EQUALS" value="4.0" />
     <log text="Diana back at DS1" />
     <set_variable name="BoardingState" value="5.0" />
+    <incoming_comms_text from="DS1" type="STATION">We're interrogating the AI that took over the Diana.  It seems to be of Arvonian origin, and was apparently dormant in a damaged memory bank long before the Diana was towed here to DS1.  Recent repairs to the Diana must have reawakened it.  It seems possible that it was somehow connected to the Diana's original fate from which it was rescued during the recent Diana Operation.  More details will likely not be available until after you complete this mission, however.</incoming_comms_text>
   </event>
   <event name="Disable Diana impulse and turning" id_arme="994e81e4-ff2f-48c8-90e8-092bec8a176b" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
     <if_exists name="Diana" />
