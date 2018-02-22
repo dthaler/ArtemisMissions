@@ -1047,6 +1047,18 @@
     <set_variable name="WelcomedAegisAwayTeam" value="0.0" />
     <set_timer name="RefreshGMBombButtons" seconds="3" />
   </event>
+  <event name="Bomb detonated since no one docked" id_arme="644f8ef2-c329-4cd5-97e1-5b3977cd3b61" parent_id_arme="06783d9d-3423-44f3-b6e3-28e8f836b4fd">
+    <if_exists name="DS1" />
+    <if_object_property property="canBuild" name="DS1" comparator="EQUALS" value="0.0" />
+    <if_timer_finished name="SabotageDelay" />
+    <if_variable name="WelcomedArtemisAwayTeam" comparator="EQUALS" value="0.0" />
+    <if_variable name="WelcomedIntrepidAwayTeam" comparator="EQUALS" value="0.0" />
+    <log text="Bomb detonated because no one docked" />
+    <clear_gm_button text="Bomb detonated" />
+    <clear_gm_button text="Bomb defused" />
+    <destroy name="DS1" />
+    <warning_popup_message message="DS1 has been destroyed in an explosion!" consoles="M" />
+  </event>
   <event name="Artemis docked" id_arme="8aaa2492-326c-413c-a6ff-b38102c6a092" parent_id_arme="06783d9d-3423-44f3-b6e3-28e8f836b4fd">
     <if_exists name="Artemis" />
     <if_docked player_name="Artemis" name="DS1" />
@@ -1105,7 +1117,7 @@
     <clear_gm_button text="Bomb detonated" />
     <clear_gm_button text="Bomb defused" />
     <destroy name="DS1" />
-    <warning_popup_message message="DS1 has been destroyed!" consoles="M" />
+    <warning_popup_message message="DS1 has been destroyed in an explosion!" consoles="M" />
   </event>
   <folder_arme name="Escape" id_arme="354d7eaa-5c2c-486e-81cb-5d977f7d5f55" />
   <event name="Ready to escape" id_arme="3d4352b3-37f1-405a-b323-55357faac490" parent_id_arme="354d7eaa-5c2c-486e-81cb-5d977f7d5f55">

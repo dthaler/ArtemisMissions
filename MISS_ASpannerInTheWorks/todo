@@ -116,6 +116,7 @@
 02/19/18 FIX: set side mission comms to SIDE
 02/20/18 FIX: no monsters should start tagged
 02/20/18 FIX: make Rapier actually tractor to docked like Diana does
+02/21/18 FIX: lose if you ignore the bomb warning and never dock
 
 ---
 {
@@ -134,8 +135,6 @@
             DNTT increased difficulty to any Skaraan type not just Defiler
 
 1/2 ADD: Rapier should need to follow you to DS1
-
-1/2 TEST: what if you ignore the bomb warning and never dock?
 
 1/2 FIX: add more flavortext about saboteur
 
