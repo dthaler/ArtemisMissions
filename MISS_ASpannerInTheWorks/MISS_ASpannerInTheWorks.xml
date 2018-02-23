@@ -4,6 +4,8 @@
     <big_message title="A Spanner in the Works" subtitle1="A Diana Series Mission by Dave Thaler" subtitle2="An adventure for one or two ships for Artemis 2.6 or 2.7" />
     <set_skybox_index index="10" />
     <set_object_property property="musicObjectMasterVolume" value="0.0" />
+    <set_variable name="RapierHelpStage" value="0.0" />
+    <set_variable name="RapierTractoredBy" value="0.0" />
     <set_variable name="SabotageDelaySeconds" value="300.0" />
     <!---->
     <!--Create terrain-->
@@ -53,7 +55,6 @@
     <create type="neutral" x="4093.0" y="0.0" z="46077.0" angle="320" name="Rapier" raceKeys="Terran friendly" hullKeys="medium" sideValue="2" />
     <clear_ai name="Rapier" />
     <add_ai type="DIR_THROTTLE" value1="320" value2="1.0" name="Rapier" />
-    <add_ai type="FOLLOW_COMMS_ORDERS" name="Rapier" />
     <set_ship_text name="Rapier" hailtext="Our sensors are all down!  We're flying blind. Please guide us to a station for repairs!" />
     <set_variable name="RapierCommsDelay" randomIntLow="60" randomIntHigh="180" />
     <set_timer name="RapierCommsTimer" seconds="RapierCommsDelay" />
@@ -67,26 +68,6 @@
     <!--Add some NSECT monsters. More will be created when a second ship spawns.-->
     <!--Coordinates should fit within asteroid field.  MonsterZStart is the Z coordinate at X=20000 on the asteroid belt center line.-->
     <set_variable name="MonsterZStart" value="29949.0" />
-    <set_variable name="RandomX" randomFloatLow="20000.0" randomFloatHigh="90000.0" />
-    <set_variable name="RandomZpiece" randomIntLow="(MonsterZStart - 15000)" randomIntHigh="(MonsterZStart + 15000)" />
-    <set_variable name="RandomZ" value="RandomZpiece + ((RandomX - 20000) / 8)" />
-    <create type="monster" monsterType="6" x="RandomX" y="0.0" z="RandomZ" angle="0" name="NSECT" />
-    <set_monster_tag_data tag_slot="0" name="NSECT" />
-    <set_variable name="RandomX" randomFloatLow="20000.0" randomFloatHigh="90000.0" />
-    <set_variable name="RandomZ" value="RandomZpiece + ((RandomX - 20000) / 8)" />
-    <set_variable name="RandomZpiece" randomIntLow="(MonsterZStart - 15000)" randomIntHigh="(MonsterZStart + 15000)" />
-    <create type="monster" monsterType="6" x="RandomX" y="0.0" z="RandomZ" angle="0" name="NSECT " />
-    <set_monster_tag_data tag_slot="0" name="NSECT " />
-    <set_variable name="RandomX" randomFloatLow="20000.0" randomFloatHigh="90000.0" />
-    <set_variable name="RandomZ" value="RandomZpiece + ((RandomX - 20000) / 8)" />
-    <set_variable name="RandomZpiece" randomIntLow="(MonsterZStart - 15000)" randomIntHigh="(MonsterZStart + 15000)" />
-    <create type="monster" monsterType="6" x="RandomX" y="0.0" z="RandomZ" angle="0" name="NSECT  " />
-    <set_monster_tag_data tag_slot="0" name="NSECT  " />
-    <set_variable name="RandomX" randomFloatLow="20000.0" randomFloatHigh="90000.0" />
-    <set_variable name="RandomZ" value="RandomZpiece + ((RandomX - 20000) / 8)" />
-    <set_variable name="RandomZpiece" randomIntLow="(MonsterZStart - 15000)" randomIntHigh="(MonsterZStart + 15000)" />
-    <create type="monster" monsterType="6" x="RandomX" y="0.0" z="RandomZ" angle="0" name="NSECT   " />
-    <set_monster_tag_data tag_slot="0" name="NSECT   " />
     <!---->
     <!--Initialize any variables that must be integers:-->
     <!---->
@@ -98,6 +79,7 @@
     <set_variable name="BombsSet" value="0.0" integer="yes" />
     <set_variable name="MaxBombs" value="1.0" integer="yes" />
     <set_variable name="PlayerShipCount" value="0.0" integer="yes" />
+    <set_variable name="NSectCount" value="0.0" integer="yes" />
     <set_variable name="SkaraanCount" value="0.0" integer="yes" />
   </start>
   <folder_arme name="Initialization" id_arme="6ef97816-b707-4333-8e81-c10c250bf89b" />
@@ -187,6 +169,16 @@
     <log text="Creating Skaraan SK|SkaraanCount| at (|RandomX|, 0, |RandomZ|)" />
     <create type="enemy" x="RandomX" y="0.0" z="RandomZ" angle="0" name="SK|SkaraanCount|" raceKeys="Skaraan enemy hasspecials" hullKeys="small medium large" />
   </event>
+  <event name="Create NSect" id_arme="a7bad8c2-290c-4d64-9120-63678039a259" parent_id_arme="6ef97816-b707-4333-8e81-c10c250bf89b">
+    <if_variable name="NSectCount" comparator="LESS" value="PlayerShipCount * 2" />
+    <!--Add some more NSECT monsters-->
+    <set_variable name="NSectCount" value="NSectCount + 1" />
+    <set_variable name="RandomX" randomFloatLow="20000.0" randomFloatHigh="90000.0" />
+    <set_variable name="RandomZ" value="RandomZpiece + ((RandomX - 20000) / 8)" />
+    <set_variable name="RandomZpiece" randomIntLow="(MonsterZStart - 15000)" randomIntHigh="(MonsterZStart + 15000)" />
+    <create type="monster" monsterType="6" x="RandomX" y="0.0" z="RandomZ" angle="0" name="NSECT|NSectCount|" />
+    <set_monster_tag_data tag_slot="0" name="NSECT|NSectCount|" />
+  </event>
   <disabled_event name="2 MaxBombs" id_arme="a457ad0c-fda4-4b35-a5ce-2f1b47b821ab" parent_id_arme="6ef97816-b707-4333-8e81-c10c250bf89b">
     <if_variable name="MaxBombs" comparator="LESS" value="2.0" />
     <if_difficulty comparator="GREATER" value="5.0" />
@@ -251,6 +243,7 @@
     <if_variable name="TsnCommandGaveMission" comparator="GREATER" value="1.0" />
     <if_variable name="BoardingState" comparator="GREATER_EQUAL" value="4.0" />
     <if_fleet_count comparator="EQUALS" value="0.0" sideValue="1" />
+    <if_variable name="BombsSet" comparator="EQUALS" value="BombsDefused" />
     <log text="MISSION SUCCEEDED" />
     <incoming_comms_text from="TSN Command" type="STATION">Good work!  The Arvonians have abandoned their attack on DS1, at least for now.  The TSN Diana is also safe and we can now complete the renovations on her to prepare to return her to service again.^^The AI that took over the Diana seems to be of Arvonian origin, and was apparently dormant in a damaged memory bank long before the Diana was towed here to DS1.  Recent repairs to the Diana must have reawakened it.  It seems possible that it was somehow connected to the Diana's original fate from which it was rescued during the recent Diana Operation.</incoming_comms_text>
     <set_variable name="GameOver" value="1.0" />
@@ -330,25 +323,9 @@
     <addto_object_property value="6.0" property="missileStoresMine" name="DS1" />
     <addto_object_property value="4.0" property="missileStoresECM" name="DS1" />
     <addto_object_property value="5.0" property="missileStoresPShock" name="DS1" />
-    <!--Add some more NSECT monsters-->
-    <set_variable name="RandomX" randomFloatLow="20000.0" randomFloatHigh="90000.0" />
-    <set_variable name="RandomZ" value="RandomZpiece + ((RandomX - 20000) / 8)" />
-    <set_variable name="RandomZpiece" randomIntLow="(MonsterZStart - 15000)" randomIntHigh="(MonsterZStart + 15000)" />
-    <!--<create type="monster" monsterType="6" z="RandomZ" x="RandomX" angle="0" y="0.0" />-->
-    <set_variable name="RandomX" randomFloatLow="20000.0" randomFloatHigh="90000.0" />
-    <set_variable name="RandomZ" value="RandomZpiece + ((RandomX - 20000) / 8)" />
-    <set_variable name="RandomZpiece" randomIntLow="(MonsterZStart - 15000)" randomIntHigh="(MonsterZStart + 15000)" />
-    <!--<create type="monster" monsterType="6" x="RandomX" z="RandomZ" angle="0" y="0.0" />-->
-    <set_variable name="RandomX" randomFloatLow="20000.0" randomFloatHigh="90000.0" />
-    <set_variable name="RandomZ" value="RandomZpiece + ((RandomX - 20000) / 8)" />
-    <set_variable name="RandomZpiece" randomIntLow="(MonsterZStart - 15000)" randomIntHigh="(MonsterZStart + 15000)" />
-    <!--<create type="monster" monsterType="6" z="RandomZ" x="RandomX" angle="0" y="0.0" />-->
-    <set_variable name="RandomX" randomFloatLow="20000.0" randomFloatHigh="90000.0" />
-    <set_variable name="RandomZ" value="RandomZpiece + ((RandomX - 20000) / 8)" />
-    <set_variable name="RandomZpiece" randomIntLow="(MonsterZStart - 15000)" randomIntHigh="(MonsterZStart + 15000)" />
-    <!--<create type="monster" monsterType="6" x="RandomX" z="RandomZ" angle="0" y="0.0" />-->
-    <create type="monster" monsterType="3" x="99831.0" y="0.0" z="40702.0" angle="0" name="DRAGON" />
-    <set_monster_tag_data tag_slot="0" name="DRAGON" />
+    <!--Add a Dragon-->
+    <!--<create type="monster" monsterType="3" z="40702.0" x="99831.0" angle="0" name="DRAGON" y="0.0" />-->
+    <!--<set_monster_tag_data tag_slot="0" name="DRAGON" />-->
   </event>
   <event name="Create Player Ship - Aegis" id_arme="6e63775f-221a-4740-beb5-76207cb60034" parent_id_arme="21712616-42f1-44fc-a39e-b0521eb9312f">
     <if_exists name="Aegis" />
@@ -447,7 +424,8 @@
   <event name="Give mission" id_arme="d1a783c8-8781-4cbe-95ae-4baa520c39a5" parent_id_arme="5dd7403b-8c13-4135-9ec9-b07cfae067f6">
     <if_variable name="TsnCommandGaveMission" comparator="EQUALS" value="1.0" />
     <log text="Gave mission" />
-    <incoming_comms_text from="TSN Command" type="ALERT STATION">As a result of the recent Diana Operation, the Torgoth have moved their fleets elsewhere in the conflict with the TSN.  The Arvonians, however, have advanced and taken Houston Outpost, but not before we managed to tow the crippled TSN Diana back here to DS1 where it is now undergoing reconstruction.  A scout ship reported that an Arvonian base has just appeared in the asteroid belt, presumably in preparation for an assault on DS1.  We are sending their position to your ship now.  Your primary mission is to protect both DS1 and the Diana from the Arvonian invasion.  It is imperative that we not lose either one.  Your secondary mission is to protect all friendly ships, as much as possible without compromising your primary mission.</incoming_comms_text>
+    <incoming_comms_text from="TSN Command" type="ALERT STATION">As a result of the recent Diana Operation, the Torgoth have moved their fleets elsewhere in the conflict with the TSN.  The Arvonians, however, have advanced and taken Houston Outpost, but not before we managed to tow the crippled TSN Diana back here to DS1 where it is now undergoing reconstruction.  A scout ship reported that an Arvonian base has just appeared in the asteroid belt, presumably in preparation for an assault on DS1.  We are sending their position to your ship now.  Your primary mission is to protect both DS1 and the Diana from the Arvonian invasion.  It is imperative that we not lose either one.</incoming_comms_text>
+    <incoming_comms_text from="TSN Command" type="STATION">Most Terran ships have already evacuated, but a few stragglers remain for whatever reason.  Your secondary mission is to protect the remaining friendly ships as much as possible without compromising your primary mission.</incoming_comms_text>
     <set_variable name="TsnCommandGaveMission" value="2.0" />
     <set_timer name="SabotageDelay" seconds="SabotageDelaySeconds" />
     <clear_gm_button text="GM/Resend Comms/Give Mission" />
@@ -500,7 +478,7 @@
     <set_gm_button text="GM/Resend Comms/Give Mission" />
   </event>
   <folder_arme name="Side missions" id_arme="9b774b87-1030-4c79-bf55-a32cfc834264" />
-  <folder_arme name="Side mission: Rapier" id_arme="a7e826ad-d40c-4a39-8248-01183453befa" parent_id_arme="9b774b87-1030-4c79-bf55-a32cfc834264" />
+  <folder_arme name="Side mission: Rapier" id_arme="a7e826ad-d40c-4a39-8248-01183453befa" parent_id_arme="9b774b87-1030-4c79-bf55-a32cfc834264" expanded_arme="" />
   <event name="Refresh GM button" id_arme="20765da5-aadc-47af-b6b3-d1e74038966a" parent_id_arme="a7e826ad-d40c-4a39-8248-01183453befa">
     <if_exists name="Rapier" />
     <if_timer_finished name="RefreshGMButtons" />
@@ -518,44 +496,92 @@
     <if_timer_finished name="RapierCommsTimer" />
     <if_exists name="Rapier" />
     <log text="Rapier asked for help" />
-    <incoming_comms_text from="Destroyer Rapier" type="SIDE FRIEND">Our sensors are all down!  We're flying blind. Please guide us to a station for repairs!</incoming_comms_text>
+    <incoming_comms_text from="Destroyer Rapier" type="SIDE FRIEND">Our sensors are all down!  We're flying blind. Please come tractor us back to a station for repairs.</incoming_comms_text>
     <set_variable name="RapierHelpStage" value="1.0" />
+  </event>
+  <event name="Artemis starts tractoring Rapier" id_arme="659eca7d-86ec-4827-bbb4-04639483f1f8" parent_id_arme="a7e826ad-d40c-4a39-8248-01183453befa">
+    <if_variable name="RapierHelpStage" comparator="EQUALS" value="1.0" />
+    <if_variable name="RapierTractoredBy" comparator="EQUALS" value="0.0" />
+    <if_distance name1="Rapier" name2="Artemis" comparator="LESS_EQUAL" value="220.0" />
+    <log text="Artemis starts tractoring Rapier" />
+    <incoming_comms_text from="Destroyer Rapier" type="SIDE FRIEND">Thanks for the assistance Artemis, we're ready for you to tow us back to DS1.</incoming_comms_text>
+    <warning_popup_message message="Tractor beam locked onto Rapier" consoles="W" name="Artemis" />
+    <add_ai type="TARGET_THROTTLE" value1="1.0" targetName="Artemis" value2="1" name="Rapier" />
+    <set_variable name="RapierTractoredBy" value="1.0" />
+  </event>
+  <event name="Rapier following Artemis" id_arme="b07c0dc6-df6c-4016-b6a7-357b00ae8105" parent_id_arme="a7e826ad-d40c-4a39-8248-01183453befa">
+    <if_variable name="RapierHelpStage" comparator="EQUALS" value="1.0" />
+    <if_variable name="RapierTractoredBy" comparator="EQUALS" value="1.0" />
+    <!--This makes it so that the tractor only turns on when you are facing away from your target-->
+    <if_distance name1="Rapier" name2="Artemis" comparator="GREATER" value="220.0" />
+    <if_distance name1="Rapier" name2="DS1" comparator="GREATER" value="600.0" />
+    <set_relative_position name2="Rapier" distance="220" angle="180" name1="Artemis" />
+  </event>
+  <event name="Intrepid starts tractoring Rapier" id_arme="e25aafee-a19a-4148-b860-8b51a2a4d223" parent_id_arme="a7e826ad-d40c-4a39-8248-01183453befa">
+    <if_variable name="RapierHelpStage" comparator="EQUALS" value="1.0" />
+    <if_variable name="RapierTractoredBy" comparator="EQUALS" value="0.0" />
+    <if_distance name1="Rapier" name2="Intrepid" comparator="LESS_EQUAL" value="220.0" />
+    <log text="Intrepid starts tractoring Rapier" />
+    <incoming_comms_text from="Destroyer Rapier" type="SIDE FRIEND">Thanks for the assistance Intrepid, we're ready for you to tow us back to DS1.</incoming_comms_text>
+    <warning_popup_message message="Tractor beam locked onto Rapier" consoles="W" name="Intrepid" />
+    <add_ai type="TARGET_THROTTLE" value1="1.0" targetName="Intrepid" value2="1" name="Rapier" />
+    <set_variable name="RapierTractoredBy" value="2.0" />
+  </event>
+  <event name="Rapier following Intrepid" id_arme="6781b435-4839-43a3-bf96-60510c3803d7" parent_id_arme="a7e826ad-d40c-4a39-8248-01183453befa">
+    <if_variable name="RapierHelpStage" comparator="EQUALS" value="1.0" />
+    <if_variable name="RapierTractoredBy" comparator="EQUALS" value="2.0" />
+    <!--This makes it so that the tractor only turns on when you are facing away from your target-->
+    <if_distance name1="Rapier" name2="Intrepid" comparator="GREATER" value="220.0" />
+    <if_distance name1="Rapier" name2="DS1" comparator="GREATER" value="600.0" />
+    <set_relative_position name2="Rapier" distance="220" angle="180" name1="Intrepid" />
   </event>
   <event name="DS1 Tractoring Diana +X" id_arme="a6b726cb-f9db-45a2-bd80-4d146eaf37ac" parent_id_arme="a7e826ad-d40c-4a39-8248-01183453befa">
     <if_variable name="RapierHelpStage" comparator="LESS_EQUAL" value="1.0" />
     <if_distance name1="Rapier" name2="DS1" comparator="LESS_EQUAL" value="600.0" />
     <if_object_property property="positionX" name="Rapier" comparator="LESS" value="StationX" />
     <addto_object_property value="TractorStrength" property="positionX" name="Rapier" />
+    <set_variable name="RapierTractoredBy" value="99.0" />
+    <clear_ai name="Rapier" />
   </event>
   <event name="DS1 Tractoring Diana -X" id_arme="c631ee0a-969c-471a-97c8-5c994b5c08ad" parent_id_arme="a7e826ad-d40c-4a39-8248-01183453befa">
     <if_variable name="RapierHelpStage" comparator="LESS_EQUAL" value="1.0" />
     <if_distance name1="Rapier" name2="DS1" comparator="LESS_EQUAL" value="600.0" />
     <if_object_property property="positionX" name="Rapier" comparator="GREATER" value="StationX" />
     <addto_object_property value="-TractorStrength" property="positionX" name="Rapier" />
+    <set_variable name="RapierTractoredBy" value="99.0" />
+    <clear_ai name="Rapier" />
   </event>
   <event name="DS1 Tractoring Diana +Y" id_arme="32178376-da48-4531-939a-bbbe854519c4" parent_id_arme="a7e826ad-d40c-4a39-8248-01183453befa">
     <if_variable name="RapierHelpStage" comparator="LESS_EQUAL" value="1.0" />
     <if_distance name1="Rapier" name2="DS1" comparator="LESS_EQUAL" value="600.0" />
     <if_object_property property="positionY" name="Rapier" comparator="LESS" value="StationY + 50" />
     <addto_object_property value="TractorStrength" property="positionY" name="Rapier" />
+    <set_variable name="RapierTractoredBy" value="99.0" />
+    <clear_ai name="Rapier" />
   </event>
   <event name="DS1 Tractoring Diana -Y" id_arme="361d5410-0a7e-4b33-b18a-5e0129967d41" parent_id_arme="a7e826ad-d40c-4a39-8248-01183453befa">
     <if_variable name="RapierHelpStage" comparator="LESS_EQUAL" value="1.0" />
     <if_distance name1="Rapier" name2="DS1" comparator="LESS_EQUAL" value="600.0" />
     <if_object_property property="positionY" name="Rapier" comparator="GREATER" value="StationY + 50" />
     <addto_object_property value="-TractorStrength" property="positionY" name="Rapier" />
+    <set_variable name="RapierTractoredBy" value="99.0" />
+    <clear_ai name="Rapier" />
   </event>
   <event name="DS1 Tractoring Diana +Z" id_arme="5668c413-3928-4020-b715-4e13fc85d7c7" parent_id_arme="a7e826ad-d40c-4a39-8248-01183453befa">
     <if_variable name="RapierHelpStage" comparator="LESS_EQUAL" value="1.0" />
     <if_distance name1="Rapier" name2="DS1" comparator="LESS_EQUAL" value="600.0" />
     <if_object_property property="positionZ" name="Rapier" comparator="LESS" value="StationZ" />
     <addto_object_property value="TractorStrength" property="positionZ" name="Rapier" />
+    <set_variable name="RapierTractoredBy" value="99.0" />
+    <clear_ai name="Rapier" />
   </event>
   <event name="DS1 Tractoring Diana -Z" id_arme="486d05e6-95de-43e9-9c49-c1835097f677" parent_id_arme="a7e826ad-d40c-4a39-8248-01183453befa">
     <if_variable name="RapierHelpStage" comparator="LESS_EQUAL" value="1.0" />
     <if_distance name1="Rapier" name2="DS1" comparator="LESS_EQUAL" value="600.0" />
     <if_object_property property="positionZ" name="Rapier" comparator="GREATER" value="StationZ" />
     <addto_object_property value="-TractorStrength" property="positionZ" name="Rapier" />
+    <set_variable name="RapierTractoredBy" value="99.0" />
+    <clear_ai name="Rapier" />
   </event>
   <event name="Rapier reaches DS1" id_arme="a96b73e6-6360-4bc7-851d-00e805b18b31" parent_id_arme="a7e826ad-d40c-4a39-8248-01183453befa">
     <if_variable name="RapierHelpStage" comparator="EQUALS" value="1.0" />

@@ -118,9 +118,14 @@
 02/20/18 FIX: make Rapier actually tractor to docked like Diana does
 02/21/18 FIX: lose if you ignore the bomb warning and never dock
 02/21/18 FIX: add more flavortext about saboteur, after you board and take Diana back over
+02/21/18 FIX: require defusing bomb before mission is complete
+02/22/18 FIX: scale monster difficulty - 4 NSECTs might be too many since PIRA's spawn, maybe drop to 2
+02/22/18 ADD: Rapier should need to follow you to DS1
 
 ---
 {
+
+1/2 BUG: server crashes immediately after Intrepid spawns
 
 1/2 advertise
          DONE post on meetup.com
@@ -130,12 +135,10 @@
 
 1/1 BUG: can get Mission Success without ever defusing the bomb
             DNTT  get Diana back 
-                  kill all enemies but never click Bomb Defused
+            DNTT  kill all enemies but never click Bomb Defused
 
 1/2 TEST: Skaraans didn't seem to attack us, or be difficult
             DNTT increased difficulty to any Skaraan type not just Defiler
-
-1/2 ADD: Rapier should need to follow you to DS1
 
 ---
 
