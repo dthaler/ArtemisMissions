@@ -61,7 +61,7 @@
     <!---->
     <!--Create monsters-->
     <!---->
-    <create type="enemy" x="7289.0" y="10.0" z="28789.0" angle="0" name="B01" hullID="6001" sideValue="0" fleetnumber="-1" />
+    <create type="enemy" x="7289.0" y="10.0" z="28789.0" angle="0" name="B01" hullID="6001" sideValue="0" />
     <clear_ai name="B01" />
     <add_ai type="TARGET_THROTTLE" value1="1.0" targetName="Starseeker" value2="10.0" name="B01" />
     <add_ai type="CHASE_ANGER" name="B01" />
@@ -167,7 +167,7 @@
     <set_variable name="RandomZ" value="RandomZpiece + ((RandomX - 20000) / 8)" />
     <set_variable name="RandomZpiece" randomIntLow="(MonsterZStart - 15000)" randomIntHigh="(MonsterZStart + 15000)" />
     <log text="Creating Skaraan SK|SkaraanCount| at (|RandomX|, 0, |RandomZ|)" />
-    <create type="enemy" x="RandomX" y="0.0" z="RandomZ" angle="0" name="SK|SkaraanCount|" raceKeys="Skaraan enemy hasspecials" hullKeys="small medium large" />
+    <create type="enemy" x="RandomX" y="0.0" z="RandomZ" angle="0" name="SK|SkaraanCount|" raceKeys="Skaraan enemy hasspecials" hullKeys="small medium large" fleetnumber="10 + SkaraanCount" />
   </event>
   <event name="Create NSect" id_arme="a7bad8c2-290c-4d64-9120-63678039a259" parent_id_arme="6ef97816-b707-4333-8e81-c10c250bf89b">
     <if_variable name="NSectCount" comparator="LESS" value="PlayerShipCount * 2" />
