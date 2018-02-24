@@ -122,6 +122,8 @@
 02/22/18 FIX: scale monster difficulty - 4 NSECTs might be too many since PIRA's spawn, maybe drop to 2
 02/22/18 ADD: Rapier should need to follow you to DS1
 02/24/18 FIX: Skaraans didn't seem to attack us, or be difficult
+02/24/18 FIX: make the "Correct, we have now gotten through N levels..." not be ALERT just FRIEND
+02/24/18 FIX: decrease sabotage delay max
 
 ---
 {
@@ -139,6 +141,9 @@
 ---
 
 2/2 FIX: display some score or rank at end
+
+2/2 BUG: GM Activate Saboteur before bomb set prevents any bomb from ever being set
+            is that intentional?
 
 2/2 FIX: make Rapier repairs actually take a minute at DS1
 

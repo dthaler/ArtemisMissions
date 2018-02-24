@@ -6,7 +6,7 @@
     <set_object_property property="musicObjectMasterVolume" value="0.0" />
     <set_variable name="RapierHelpStage" value="0.0" />
     <set_variable name="RapierTractoredBy" value="0.0" />
-    <set_variable name="SabotageDelaySeconds" value="300.0" />
+    <set_variable name="SabotageDelaySeconds" value="240.0" />
     <!---->
     <!--Create terrain-->
     <!---->
@@ -1307,7 +1307,7 @@
     <warning_popup_message message="The Diana's energy signature has changed" consoles="S">Unauthorized undocking of the Diana detected!  The saboteur must be trying to escape!</warning_popup_message>
     <set_variable name="HackResult" value="0.0" />
     <set_variable name="HackStepsSucceeded" value="0.0" integer="yes" />
-    <incoming_comms_text from="Internal Comms" type="ALERT">Inorrect, all computer defenses have been reset.</incoming_comms_text>
+    <incoming_comms_text from="Internal Comms" type="FRIEND">Inorrect, all computer defenses have been reset.</incoming_comms_text>
   </event>
   <event name="Hack step succeeded" id_arme="cfa626be-a329-4fcf-bbbd-e18591ecf4a1" parent_id_arme="a587676a-7998-4d34-80cd-cee990ddefc1">
     <if_variable name="HackResult" comparator="EQUALS" value="1.0" />
@@ -1316,7 +1316,7 @@
     <warning_popup_message message="The Diana's energy signature has changed" consoles="S">Unauthorized undocking of the Diana detected!  The saboteur must be trying to escape!</warning_popup_message>
     <set_variable name="HackResult" value="0.0" />
     <set_variable name="HackStepsSucceeded" value="HackStepsSucceeded + 1" integer="yes" />
-    <incoming_comms_text from="Internal Comms" type="ALERT">Correct, we have now gotten through |HackStepsSucceeded| levels of the saboteur's^computer defenses!</incoming_comms_text>
+    <incoming_comms_text from="Internal Comms" type="FRIEND">Correct, we have now gotten through |HackStepsSucceeded| levels of the saboteur's^computer defenses!</incoming_comms_text>
   </event>
   <event name="BS1: Hack complete" id_arme="97d7d08e-7507-4173-bacf-f69a8c4683a4" parent_id_arme="a587676a-7998-4d34-80cd-cee990ddefc1">
     <if_variable name="HackStepsSucceeded" comparator="EQUALS" value="HackSuccessesNeeded" />
@@ -1330,7 +1330,7 @@
     <clear_comms_button text="Hack frequency E" />
     <!--For v2.7.0, work around if_damcon_members bug by not requiring 6 people in team-->
     <!--<incoming_comms_text from="Internal Comms" type="ALERT">Disruption complete, the Diana's engines are now disabled!  If we get within |ShipTransferRange|m of the Diana and send over a DamCon team to board her, we might be able to return her to TSN control.</incoming_comms_text>-->
-    <incoming_comms_text from="Internal Comms" type="ALERT">Disruption complete, the Diana's engines are now disabled!  If we get within |ShipTransferRange|m of the Diana and send over a DamCon team to board her, we might be able to return her to TSN control.</incoming_comms_text>
+    <incoming_comms_text from="Internal Comms" type="ALERT FRIEND">Disruption complete, the Diana's engines are now disabled!  If we get within |ShipTransferRange|m of the Diana and send over a DamCon team to board her, we might be able to return her to TSN control.</incoming_comms_text>
     <set_variable name="BoardingState" value="1.0" />
     <set_timer name="RefreshCommsButtons" seconds="3" />
   </event>
