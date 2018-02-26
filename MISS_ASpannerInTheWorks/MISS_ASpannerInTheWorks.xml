@@ -71,6 +71,7 @@
     <!---->
     <!--Initialize any variables that must be integers:-->
     <!---->
+    <set_variable name="TowRange" value="400.0" integer="yes" />
     <set_variable name="ShipTransferRange" value="400.0" integer="yes" />
     <set_variable name="BestFrequency" randomIntLow="0" randomIntHigh="4" />
     <set_variable name="HackSuccessesNeeded" value="5.0" integer="yes" />
@@ -298,7 +299,7 @@
     <set_object_property property="missileStoresHoming" value="16" name="DS1" />
     <set_object_property property="missileStoresNuke" value="4" name="DS1" />
     <set_object_property property="missileStoresMine" value="12" name="DS1" />
-    <set_object_property property="missileStoresECM" value="8" name="DS1" />
+    <set_object_property property="missileStoresEMP" value="8" name="DS1" />
     <set_object_property property="missileStoresPShock" value="4" name="DS1" />
     <set_object_property property="positionX" value="48206.0" name="Artemis" />
     <set_object_property property="positionY" value="0" name="Artemis" />
@@ -321,7 +322,7 @@
     <addto_object_property value="8.0" property="missileStoresHoming" name="DS1" />
     <addto_object_property value="2.0" property="missileStoresNuke" name="DS1" />
     <addto_object_property value="6.0" property="missileStoresMine" name="DS1" />
-    <addto_object_property value="4.0" property="missileStoresECM" name="DS1" />
+    <addto_object_property value="4.0" property="missileStoresEMP" name="DS1" />
     <addto_object_property value="5.0" property="missileStoresPShock" name="DS1" />
     <!--Add a Dragon-->
     <!--<create type="monster" monsterType="3" z="40702.0" x="99831.0" angle="0" name="DRAGON" y="0.0" />-->
@@ -478,7 +479,7 @@
     <set_gm_button text="GM/Resend Comms/Give Mission" />
   </event>
   <folder_arme name="Side missions" id_arme="9b774b87-1030-4c79-bf55-a32cfc834264" />
-  <folder_arme name="Side mission: Rapier" id_arme="a7e826ad-d40c-4a39-8248-01183453befa" parent_id_arme="9b774b87-1030-4c79-bf55-a32cfc834264" expanded_arme="" />
+  <folder_arme name="Side mission: Rapier" id_arme="a7e826ad-d40c-4a39-8248-01183453befa" parent_id_arme="9b774b87-1030-4c79-bf55-a32cfc834264" />
   <event name="Refresh GM button" id_arme="20765da5-aadc-47af-b6b3-d1e74038966a" parent_id_arme="a7e826ad-d40c-4a39-8248-01183453befa">
     <if_exists name="Rapier" />
     <if_timer_finished name="RefreshGMButtons" />
@@ -502,7 +503,7 @@
   <event name="Artemis starts tractoring Rapier" id_arme="659eca7d-86ec-4827-bbb4-04639483f1f8" parent_id_arme="a7e826ad-d40c-4a39-8248-01183453befa">
     <if_variable name="RapierHelpStage" comparator="EQUALS" value="1.0" />
     <if_variable name="RapierTractoredBy" comparator="EQUALS" value="0.0" />
-    <if_distance name1="Rapier" name2="Artemis" comparator="LESS_EQUAL" value="220.0" />
+    <if_distance name1="Rapier" name2="Artemis" comparator="LESS_EQUAL" value="TowRange" />
     <log text="Artemis starts tractoring Rapier" />
     <incoming_comms_text from="Destroyer Rapier" type="SIDE FRIEND">Thanks for the assistance Artemis, we're ready for you to tow us back to DS1.</incoming_comms_text>
     <warning_popup_message message="Tractor beam locked onto Rapier" consoles="W" name="Artemis" />
@@ -513,14 +514,14 @@
     <if_variable name="RapierHelpStage" comparator="EQUALS" value="1.0" />
     <if_variable name="RapierTractoredBy" comparator="EQUALS" value="1.0" />
     <!--This makes it so that the tractor only turns on when you are facing away from your target-->
-    <if_distance name1="Rapier" name2="Artemis" comparator="GREATER" value="220.0" />
+    <if_distance name1="Rapier" name2="Artemis" comparator="GREATER" value="TowRange" />
     <if_distance name1="Rapier" name2="DS1" comparator="GREATER" value="600.0" />
-    <set_relative_position name2="Rapier" distance="220" angle="180" name1="Artemis" />
+    <set_relative_position name2="Rapier" distance="TowRange" angle="180" name1="Artemis" />
   </event>
   <event name="Intrepid starts tractoring Rapier" id_arme="e25aafee-a19a-4148-b860-8b51a2a4d223" parent_id_arme="a7e826ad-d40c-4a39-8248-01183453befa">
     <if_variable name="RapierHelpStage" comparator="EQUALS" value="1.0" />
     <if_variable name="RapierTractoredBy" comparator="EQUALS" value="0.0" />
-    <if_distance name1="Rapier" name2="Intrepid" comparator="LESS_EQUAL" value="220.0" />
+    <if_distance name1="Rapier" name2="Intrepid" comparator="LESS_EQUAL" value="TowRange" />
     <log text="Intrepid starts tractoring Rapier" />
     <incoming_comms_text from="Destroyer Rapier" type="SIDE FRIEND">Thanks for the assistance Intrepid, we're ready for you to tow us back to DS1.</incoming_comms_text>
     <warning_popup_message message="Tractor beam locked onto Rapier" consoles="W" name="Intrepid" />
@@ -531,9 +532,9 @@
     <if_variable name="RapierHelpStage" comparator="EQUALS" value="1.0" />
     <if_variable name="RapierTractoredBy" comparator="EQUALS" value="2.0" />
     <!--This makes it so that the tractor only turns on when you are facing away from your target-->
-    <if_distance name1="Rapier" name2="Intrepid" comparator="GREATER" value="220.0" />
+    <if_distance name1="Rapier" name2="Intrepid" comparator="GREATER" value="TowRange" />
     <if_distance name1="Rapier" name2="DS1" comparator="GREATER" value="600.0" />
-    <set_relative_position name2="Rapier" distance="220" angle="180" name1="Intrepid" />
+    <set_relative_position name2="Rapier" distance="TowRange" angle="180" name1="Intrepid" />
   </event>
   <event name="DS1 Tractoring Diana +X" id_arme="a6b726cb-f9db-45a2-bd80-4d146eaf37ac" parent_id_arme="a7e826ad-d40c-4a39-8248-01183453befa">
     <if_variable name="RapierHelpStage" comparator="LESS_EQUAL" value="1.0" />
@@ -554,7 +555,7 @@
   <event name="DS1 Tractoring Diana +Y" id_arme="32178376-da48-4531-939a-bbbe854519c4" parent_id_arme="a7e826ad-d40c-4a39-8248-01183453befa">
     <if_variable name="RapierHelpStage" comparator="LESS_EQUAL" value="1.0" />
     <if_distance name1="Rapier" name2="DS1" comparator="LESS_EQUAL" value="600.0" />
-    <if_object_property property="positionY" name="Rapier" comparator="LESS" value="StationY + 50" />
+    <if_object_property property="positionY" name="Rapier" comparator="LESS" value="StationY" />
     <addto_object_property value="TractorStrength" property="positionY" name="Rapier" />
     <set_variable name="RapierTractoredBy" value="99.0" />
     <clear_ai name="Rapier" />
@@ -562,7 +563,7 @@
   <event name="DS1 Tractoring Diana -Y" id_arme="361d5410-0a7e-4b33-b18a-5e0129967d41" parent_id_arme="a7e826ad-d40c-4a39-8248-01183453befa">
     <if_variable name="RapierHelpStage" comparator="LESS_EQUAL" value="1.0" />
     <if_distance name1="Rapier" name2="DS1" comparator="LESS_EQUAL" value="600.0" />
-    <if_object_property property="positionY" name="Rapier" comparator="GREATER" value="StationY + 50" />
+    <if_object_property property="positionY" name="Rapier" comparator="GREATER" value="StationY" />
     <addto_object_property value="-TractorStrength" property="positionY" name="Rapier" />
     <set_variable name="RapierTractoredBy" value="99.0" />
     <clear_ai name="Rapier" />
@@ -728,8 +729,11 @@
     <copy_object_property property="missileStoresHoming" name1="DS1" name2="DS1Copy" />
     <copy_object_property property="missileStoresNuke" name1="DS1" name2="DS1Copy" />
     <copy_object_property property="missileStoresMine" name1="DS1" name2="DS1Copy" />
-    <copy_object_property property="missileStoresECM" name1="DS1" name2="DS1Copy" />
+    <copy_object_property property="missileStoresEMP" name1="DS1" name2="DS1Copy" />
     <copy_object_property property="missileStoresPShock" name1="DS1" name2="DS1Copy" />
+    <copy_object_property property="missileStoresBeacon" name1="DS1" name2="DS1Copy" />
+    <copy_object_property property="missileStoresProbe" name1="DS1" name2="DS1Copy" />
+    <copy_object_property property="missileStoresTag" name1="DS1" name2="DS1Copy" />
     <copy_object_property property="angle" name1="DS1" name2="DS1Copy" />
     <destroy name="DS1" />
     <!--Create an Industrial Base to replace DS1-->
@@ -739,8 +743,11 @@
     <copy_object_property property="missileStoresHoming" name1="DS1Copy" name2="DS1" />
     <copy_object_property property="missileStoresNuke" name1="DS1Copy" name2="DS1" />
     <copy_object_property property="missileStoresMine" name1="DS1Copy" name2="DS1" />
-    <copy_object_property property="missileStoresECM" name1="DS1Copy" name2="DS1" />
+    <copy_object_property property="missileStoresEMP" name1="DS1Copy" name2="DS1" />
     <copy_object_property property="missileStoresPShock" name1="DS1Copy" name2="DS1" />
+    <copy_object_property property="missileStoresBeacon" name1="DS1Copy" name2="DS1" />
+    <copy_object_property property="missileStoresProbe" name1="DS1Copy" name2="DS1" />
+    <copy_object_property property="missileStoresTag" name1="DS1Copy" name2="DS1" />
     <copy_object_property property="angle" name1="DS1Copy" name2="DS1" />
     <destroy name="DS1Copy" />
   </event>
@@ -1597,7 +1604,7 @@
     <if_comms_button text="Send DamCon team 1" />
     <set_variable name="DamConShipSent" value="1.0" />
     <set_variable name="DamConTeamSent" value="1.0" />
-    <set_damcon_members value="0.0" team_index="0" player_slot="0" />
+    <set_damcon_members value="0.0" team_index="0" name="Artemis" />
     <set_variable name="BoardingState" value="2.0" />
   </event>
   <event name="BS2: Assign Artemis DamCon 2" id_arme="dd094294-9146-4872-93fb-b6a59b529821" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
@@ -1605,7 +1612,7 @@
     <if_comms_button text="Send DamCon team 2" />
     <set_variable name="DamConShipSent" value="1.0" />
     <set_variable name="DamConTeamSent" value="2.0" />
-    <set_damcon_members value="0.0" team_index="1" player_slot="0" />
+    <set_damcon_members value="0.0" team_index="1" name="Artemis" />
     <set_variable name="BoardingState" value="2.0" />
   </event>
   <event name="BS2: Assign Artemis DamCon 3" id_arme="e5fb7695-b388-4fd2-91bb-56b2b8baea61" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
@@ -1613,7 +1620,7 @@
     <if_comms_button text="Send DamCon team 3" />
     <set_variable name="DamConShipSent" value="1.0" />
     <set_variable name="DamConTeamSent" value="3.0" />
-    <set_damcon_members value="0.0" team_index="2" player_slot="0" />
+    <set_damcon_members value="0.0" team_index="2" name="Artemis" />
     <set_variable name="BoardingState" value="2.0" />
   </event>
   <event name="BS2: Assign Intrepid DamCon 1" id_arme="679fd3f6-c5ea-4ea1-b13b-aae2ed367cb1" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
@@ -1621,7 +1628,7 @@
     <if_comms_button text="Send DamCon team 1 " />
     <set_variable name="DamConShipSent" value="2.0" />
     <set_variable name="DamConTeamSent" value="1.0" />
-    <set_damcon_members value="0.0" team_index="0" player_slot="1" />
+    <set_damcon_members value="0.0" team_index="0" name="Intrepid" />
     <set_variable name="BoardingState" value="2.0" />
   </event>
   <event name="BS2: Assign Intrepid DamCon 2" id_arme="dd74731f-6928-4da8-913f-f0fb0ea09bc5" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
@@ -1629,7 +1636,7 @@
     <if_comms_button text="Send DamCon team 2 " />
     <set_variable name="DamConShipSent" value="2.0" />
     <set_variable name="DamConTeamSent" value="2.0" />
-    <set_damcon_members value="0.0" team_index="1" player_slot="1" />
+    <set_damcon_members value="0.0" team_index="1" name="Intrepid" />
     <set_variable name="BoardingState" value="2.0" />
   </event>
   <event name="BS2: Assign Intrepid DamCon 3" id_arme="5d8ff5fb-8a22-4f1d-bd36-078caa90a34f" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
@@ -1637,7 +1644,7 @@
     <if_comms_button text="Send DamCon team 3 " />
     <set_variable name="DamConShipSent" value="2.0" />
     <set_variable name="DamConTeamSent" value="3.0" />
-    <set_damcon_members value="0.0" team_index="2" player_slot="1" />
+    <set_damcon_members value="0.0" team_index="2" name="Intrepid" />
     <set_variable name="BoardingState" value="2.0" />
   </event>
   <event name="BS3: Artemis DamCon Transferred" id_arme="5ee8ee64-b366-470b-9f96-6a34cff84ec8" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">

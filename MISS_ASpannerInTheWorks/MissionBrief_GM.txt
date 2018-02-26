@@ -32,17 +32,17 @@ To play this mission:
      connect and select their ships and stations.
 
   8. Set the difficulty level
-     Level 1: 0 Skaarans
-     Level 2: 1 Skaaran
-     Level 3: 2 Skaarans
-     Level 4: 3 Skaarans
-     Level 5: 4 Skaarans
-     Level 6: 5 Skaarans
-     Level 7: 6 Skaarans
-     Level 8: 7 Skaarans
-     Level 9: 8 Skaarans
-     Level 10: 9 Skaarans
-     Level 11: 10 Skaarans
+     Level 1: 0 Skaraans
+     Level 2: 1 Skaraan
+     Level 3: 2 Skaraans
+     Level 4: 3 Skaraans
+     Level 5: 4 Skaraans
+     Level 6: 5 Skaraans
+     Level 7: 6 Skaraans
+     Level 8: 7 Skaraans
+     Level 9: 8 Skaraans
+     Level 10: 9 Skaraans
+     Level 11: 10 Skaraans
  
   9. Select "Start Game" on the Server**
 

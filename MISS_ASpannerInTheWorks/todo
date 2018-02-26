@@ -124,6 +124,8 @@
 02/24/18 FIX: Skaraans didn't seem to attack us, or be difficult
 02/24/18 FIX: make the "Correct, we have now gotten through N levels..." not be ALERT just FRIEND
 02/24/18 FIX: decrease sabotage delay max
+02/24/18 BUG: can get Mission Success without ever defusing the bomb
+02/25/18 BUG: tractoring Rapier didn't work
 
 ---
 {
@@ -133,10 +135,6 @@
          DONE post about NWC on artemis forums
          send blog entry to jeffrey sloan
          PROG check Brew Bothell schedule
-
-1/1 BUG: can get Mission Success without ever defusing the bomb
-            DNTT  get Diana back 
-            DNTT  kill all enemies but never click Bomb Defused
 
 ---
 
@@ -149,18 +147,12 @@
 
 2/2 FIX: make DS1 upgrade actually take a minute
 
-2/2 add GUARD_STATION info to wiki
-        https://artemis.forumchitchat.com/post/defending-a-station-7788937?pid=1289833225&highlight=station
-
 2/2 ADD: make Pegasus side mission use Comms buttons
+
+---
 
 3/1 DO: pick a name for the Arvonian base
     https://docs.google.com/viewer?a=v&pid=sites&srcid=ZGVmYXVsdGRvbWFpbnx0c25saW5ndWlzdGljc3xneDo3MmI3YjlkNmI0ZTUxYzFl
-
-3/1 DO: Short description for TSN Nexus:
-           The crippled TSN Diana is now undergoing reconstruction at DS1, but the recent mission to recover it
-           has attracted unwanted attention from the Arvonian fleets which are now advancing on DS1.  Your mission
-           is to protect both DS1 and the Diana from the Arvonian invasion.
 
 3/2 FIX: find a way to prevent "Diana created" spew
             topSpeed = 0
