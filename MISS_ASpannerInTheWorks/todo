@@ -126,6 +126,7 @@
 02/24/18 FIX: decrease sabotage delay max
 02/24/18 BUG: can get Mission Success without ever defusing the bomb
 02/25/18 BUG: tractoring Rapier didn't work
+02/28/18 TEST: with Pirate ship which can't dock until destroy biomech
 
 ---
 {
