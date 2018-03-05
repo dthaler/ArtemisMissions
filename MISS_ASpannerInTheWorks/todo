@@ -137,6 +137,12 @@
          send blog entry to jeffrey sloan
          PROG check Brew Bothell schedule
 
+1/1 DO: check any more old bug reports and repost them in the 2.7 thread
+                ? #70 scripted biomech anti-proton count display on science
+                        01.100
+                        -279162... (hard to reproduce)
+                        01.100
+
 ---
 
 2/2 FIX: display some score or rank at end
