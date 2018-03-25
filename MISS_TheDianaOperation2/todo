@@ -129,19 +129,25 @@
 02/28/18 TEST: with Pirate ship which can't dock until destroy biomech
 
 ---
-{
+{ 
 
-1/2 advertise
-         DONE post on meetup.com
-         DONE post about NWC on artemis forums
-         send blog entry to jeffrey sloan
-         PROG check Brew Bothell schedule
+1/2 DEL: delete Admin account
 
-1/1 DO: check any more old bug reports and repost them in the 2.7 thread
-                ? #70 scripted biomech anti-proton count display on science
-                        01.100
-                        -279162... (hard to reproduce)
-                        01.100
+1/2 FIX: username on server
+
+1/2 TEST: beam audio sounds when 2 bridges are there
+
+1/2 TEST: headset
+
+1/2 FIX: DMX cues on 2.7 install
+        BLOCKED on username
+
+1/2 FIX: engineering cues on 2.7 install
+        BLOCKED on username
+
+1/2 ADD: Mark suggested audio files playable from Comms, so as to not miss important Comms messages
+
+1/2 CHECK: Somehow a Typhon (classic space monster) showed up, which wasnt intentional
 
 ---
 

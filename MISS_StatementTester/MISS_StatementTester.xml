@@ -50,7 +50,7 @@
     <create type="genericMesh" x="27047.0" y="0.0" z="50290.0" angle="0" name="GenericMesh" meshFileName="dat\spcJunk2.dxs" textureFileName="dat\spcJunk2.png" colorRed="1.0" colorGreen="0.0" colorBlue="1.0" />
     <create type="blackHole" x="48548.0" y="0.0" z="32130.0" name="BlackHole" />
   </start>
-  <folder_arme name="nebula" id_arme="c4e78254-0fb9-4536-a563-806044e09887" expanded_arme="" />
+  <folder_arme name="nebula" id_arme="c4e78254-0fb9-4536-a563-806044e09887" />
   <disabled_event name="create" id_arme="e019e0fb-3b1d-496e-87a3-f86a35a42fcf" parent_id_arme="c4e78254-0fb9-4536-a563-806044e09887">
     <if_variable name="NebulasCreated" comparator="EQUALS" value="0.0" />
     <create count="1" type="nebulas" startX="80000.0" startY="0.0" startZ="60000.0" endX="80000.0" endY="0.0" endZ="60000.0" randomRange="1000" />
@@ -62,7 +62,7 @@
     <create count="1" type="nebulas" startX="20000.0" startY="0.0" startZ="60000.0" endX="20000.0" endY="0.0" endZ="60000.0" randomRange="1000" />
     <set_variable name="NebulasCreated" value="1.0" />
   </disabled_event>
-  <folder_arme name="Show value" id_arme="511219bf-0cc7-4027-8d16-f85359aee992" expanded_arme="" />
+  <folder_arme name="Show value" id_arme="511219bf-0cc7-4027-8d16-f85359aee992" />
   <disabled_event name="Decrease Min" id_arme="00d1a448-3fba-4687-b142-de0a1c232f3c" parent_id_arme="511219bf-0cc7-4027-8d16-f85359aee992">
     <if_object_property property="turnRate" name="Artemis" comparator="LESS" value="Min" />
     <set_variable name="Min" value="Min * 2.0" />
@@ -88,7 +88,50 @@
     <set_variable name="Guess" value="(Min + Max) / 2.0" />
     <log text="New Guess is |Guess|" />
   </disabled_event>
-  <folder_arme name="if_damcon_members" id_arme="be97bb51-a0e0-48a6-9d82-e4c140eb6e6a" expanded_arme="" />
+  <folder_arme name="addto_object_property" id_arme="1225be4f-30f7-433c-af7d-82e8bb7f4622" />
+  <disabled_event name="Negative" id_arme="71c963ad-dbc4-4df0-b9d1-496cc9571952" parent_id_arme="1225be4f-30f7-433c-af7d-82e8bb7f4622">
+    <if_object_property property="sensorSetting" comparator="GREATER" value="2.0" />
+    <set_variable name="Delta" value="-1.0" />
+    <addto_object_property value="-1.0" property="sensorSetting" />
+    <addto_object_property value="1-Delta" property="sensorSetting" />
+    <set_object_property property="sensorSetting" value="-Delta+1" />
+    <addto_object_property value="-Delta+1" property="sensorSetting" />
+  </disabled_event>
+  <folder_arme name="big_message" id_arme="a0fd47eb-2d81-42b9-a7e1-324d52aabd19" />
+  <disabled_event name="no side" id_arme="b785b71c-e0f2-46da-ba91-03958f643776" parent_id_arme="a0fd47eb-2d81-42b9-a7e1-324d52aabd19">
+    <if_variable name="BigMessageSide" comparator="EQUALS" value="0.0" />
+    <big_message title="Big Message" subtitle1="with no side" />
+    <set_timer name="ChangeBigMessageTimer" seconds="5" />
+    <set_variable name="BigMessageSide" value="1.0" />
+  </disabled_event>
+  <disabled_event name="side 1" id_arme="49f084a8-5518-41f0-89ed-e1aca71d5594" parent_id_arme="a0fd47eb-2d81-42b9-a7e1-324d52aabd19">
+    <if_timer_finished name="ChangeBigMessageTimer" />
+    <if_variable name="BigMessageSide" comparator="EQUALS" value="1.0" />
+    <big_message title="Big Message" subtitle1="with side 1" />
+    <set_timer name="ChangeBigMessageTimer" seconds="5" />
+    <set_variable name="BigMessageSide" value="2.0" />
+  </disabled_event>
+  <disabled_event name="side 2" id_arme="8881d298-2c8a-4727-813a-81b2b9b6819c" parent_id_arme="a0fd47eb-2d81-42b9-a7e1-324d52aabd19">
+    <if_timer_finished name="ChangeBigMessageTimer" />
+    <if_variable name="BigMessageSide" comparator="EQUALS" value="2.0" />
+    <big_message title="Big Message" subtitle1="with side 2" />
+    <set_timer name="ChangeBigMessageTimer" seconds="5" />
+    <set_variable name="BigMessageSide" value="3.0" />
+  </disabled_event>
+  <disabled_event name="side 0" id_arme="3e226631-c8fe-4ae3-8e82-ca5523de1d30" parent_id_arme="a0fd47eb-2d81-42b9-a7e1-324d52aabd19">
+    <if_timer_finished name="ChangeBigMessageTimer" />
+    <if_variable name="BigMessageSide" comparator="EQUALS" value="4.0" />
+    <big_message title="Big Message" subtitle1="with side 0" />
+    <set_variable name="BigMessageSide" value="5.0" />
+  </disabled_event>
+  <disabled_event name="side 3" id_arme="92914c3e-9eb6-43c9-972f-bb1a52bef29a" parent_id_arme="a0fd47eb-2d81-42b9-a7e1-324d52aabd19">
+    <if_timer_finished name="ChangeBigMessageTimer" />
+    <if_variable name="BigMessageSide" comparator="EQUALS" value="3.0" />
+    <big_message title="Big Message" subtitle1="with side 3" />
+    <set_timer name="ChangeBigMessageTimer" seconds="5" />
+    <set_variable name="BigMessageSide" value="4.0" />
+  </disabled_event>
+  <folder_arme name="if_damcon_members" id_arme="be97bb51-a0e0-48a6-9d82-e4c140eb6e6a" />
   <disabled_event name="Too low" id_arme="91a21f0d-5d0a-4104-b37e-588b27081b6f" parent_id_arme="be97bb51-a0e0-48a6-9d82-e4c140eb6e6a">
     <if_damcon_members player_slot="0" team_index="0" comparator="GREATER" value="DamConSize" />
     <set_variable name="DamConSize" value="DamConSize + 1" />
@@ -97,58 +140,58 @@
     <if_damcon_members player_slot="0" team_index="0" comparator="LESS" value="DamConSize" />
     <set_variable name="DamConSize" value="DamConSize - 1" />
   </disabled_event>
-  <folder_arme name="if_distance" id_arme="0ad9ee2c-9548-4500-9937-8d1ee47fb8b8" expanded_arme="" />
-  <event name="Artemis too close" id_arme="20d857d8-1cda-4967-9d8f-23c815809731" parent_id_arme="0ad9ee2c-9548-4500-9937-8d1ee47fb8b8">
+  <folder_arme name="if_distance" id_arme="0ad9ee2c-9548-4500-9937-8d1ee47fb8b8" />
+  <disabled_event name="Artemis too close" id_arme="20d857d8-1cda-4967-9d8f-23c815809731" parent_id_arme="0ad9ee2c-9548-4500-9937-8d1ee47fb8b8">
     <if_variable name="ArtemisTooClose" comparator="EQUALS" value="0.0" />
     <if_distance name1="BlackHole" name2="Artemis" comparator="LESS" value="5000.0" />
     <set_variable name="ArtemisTooClose" value="1.0" />
-  </event>
-  <event name="Artemis far" id_arme="6de1c293-4642-4380-b15e-5dcc3742e953" parent_id_arme="0ad9ee2c-9548-4500-9937-8d1ee47fb8b8">
+  </disabled_event>
+  <disabled_event name="Artemis far" id_arme="6de1c293-4642-4380-b15e-5dcc3742e953" parent_id_arme="0ad9ee2c-9548-4500-9937-8d1ee47fb8b8">
     <if_variable name="ArtemisTooClose" comparator="EQUALS" value="1.0" />
     <if_distance name1="BlackHole" name2="Artemis" comparator="GREATER" value="5000.0" />
     <set_variable name="ArtemisTooClose" value="0.0" />
-  </event>
-  <event name="Intrepid too close" id_arme="6e81d92d-ad77-46f0-b2e4-db89e8151718" parent_id_arme="0ad9ee2c-9548-4500-9937-8d1ee47fb8b8">
+  </disabled_event>
+  <disabled_event name="Intrepid too close" id_arme="6e81d92d-ad77-46f0-b2e4-db89e8151718" parent_id_arme="0ad9ee2c-9548-4500-9937-8d1ee47fb8b8">
     <if_variable name="IntrepidTooClose" comparator="EQUALS" value="0.0" />
     <if_distance name1="BlackHole" name2="Intrepid" comparator="LESS" value="5000.0" />
     <set_variable name="IntrepidTooClose" value="1.0" />
-  </event>
-  <event name="Intrepid far" id_arme="5e24d8ca-e0b6-4cd6-864a-ac8120a756d6" parent_id_arme="0ad9ee2c-9548-4500-9937-8d1ee47fb8b8">
+  </disabled_event>
+  <disabled_event name="Intrepid far" id_arme="5e24d8ca-e0b6-4cd6-864a-ac8120a756d6" parent_id_arme="0ad9ee2c-9548-4500-9937-8d1ee47fb8b8">
     <if_variable name="IntrepidTooClose" comparator="EQUALS" value="1.0" />
     <if_distance name1="BlackHole" name2="Intrepid" comparator="GREATER" value="5000.0" />
     <set_variable name="IntrepidTooClose" value="0.0" />
-  </event>
-  <event name="Empty too close" id_arme="11d1f9e4-60de-4a1f-8f7a-d0098d9f4fd4" parent_id_arme="0ad9ee2c-9548-4500-9937-8d1ee47fb8b8">
+  </disabled_event>
+  <disabled_event name="Empty too close" id_arme="11d1f9e4-60de-4a1f-8f7a-d0098d9f4fd4" parent_id_arme="0ad9ee2c-9548-4500-9937-8d1ee47fb8b8">
     <if_variable name="EmptyTooClose" comparator="EQUALS" value="0.0" />
     <if_distance name1="BlackHole" comparator="LESS" value="5000.0" />
     <set_variable name="EmptyTooClose" value="1.0" />
-  </event>
-  <event name="Empty far" id_arme="f2be6277-d293-4c04-9ca5-e22b0c6bb01a" parent_id_arme="0ad9ee2c-9548-4500-9937-8d1ee47fb8b8">
+  </disabled_event>
+  <disabled_event name="Empty far" id_arme="f2be6277-d293-4c04-9ca5-e22b0c6bb01a" parent_id_arme="0ad9ee2c-9548-4500-9937-8d1ee47fb8b8">
     <if_variable name="EmptyTooClose" comparator="EQUALS" value="1.0" />
     <if_distance name1="BlackHole" comparator="GREATER" value="5000.0" />
     <set_variable name="EmptyTooClose" value="0.0" />
-  </event>
-  <event name="Slot0 too close" id_arme="6f3c1ada-7dcb-4659-8458-7a67fd15d4d0" parent_id_arme="0ad9ee2c-9548-4500-9937-8d1ee47fb8b8">
+  </disabled_event>
+  <disabled_event name="Slot0 too close" id_arme="6f3c1ada-7dcb-4659-8458-7a67fd15d4d0" parent_id_arme="0ad9ee2c-9548-4500-9937-8d1ee47fb8b8">
     <if_variable name="Slot0TooClose" comparator="EQUALS" value="0.0" />
     <if_distance name1="BlackHole" player_slot2="0" comparator="LESS" value="5000.0" />
     <set_variable name="Slot0TooClose" value="1.0" />
-  </event>
-  <event name="Slot0 far" id_arme="3efa3680-39d6-470f-b5ee-2eebc51ec0a4" parent_id_arme="0ad9ee2c-9548-4500-9937-8d1ee47fb8b8">
+  </disabled_event>
+  <disabled_event name="Slot0 far" id_arme="3efa3680-39d6-470f-b5ee-2eebc51ec0a4" parent_id_arme="0ad9ee2c-9548-4500-9937-8d1ee47fb8b8">
     <if_variable name="Slot0TooClose" comparator="EQUALS" value="1.0" />
     <if_distance name1="BlackHole" player_slot2="0" comparator="GREATER" value="5000.0" />
     <set_variable name="Slot0TooClose" value="0.0" />
-  </event>
-  <event name="Slot1 too close" id_arme="37620f65-ef97-478d-8bbd-c253e6592162" parent_id_arme="0ad9ee2c-9548-4500-9937-8d1ee47fb8b8">
+  </disabled_event>
+  <disabled_event name="Slot1 too close" id_arme="37620f65-ef97-478d-8bbd-c253e6592162" parent_id_arme="0ad9ee2c-9548-4500-9937-8d1ee47fb8b8">
     <if_variable name="Slot1TooClose" comparator="EQUALS" value="0.0" />
     <if_distance name1="BlackHole" player_slot2="1" comparator="LESS" value="5000.0" />
     <set_variable name="Slot1TooClose" value="1.0" />
-  </event>
-  <event name="Slot1 far" id_arme="f835383d-69bf-48dc-8e21-e11241d964c6" parent_id_arme="0ad9ee2c-9548-4500-9937-8d1ee47fb8b8">
+  </disabled_event>
+  <disabled_event name="Slot1 far" id_arme="f835383d-69bf-48dc-8e21-e11241d964c6" parent_id_arme="0ad9ee2c-9548-4500-9937-8d1ee47fb8b8">
     <if_variable name="Slot1TooClose" comparator="EQUALS" value="1.0" />
     <if_distance name1="BlackHole" player_slot2="1" comparator="GREATER" value="5000.0" />
     <set_variable name="Slot1TooClose" value="0.0" />
-  </event>
-  <folder_arme name="if_docked" id_arme="8af2c2f2-f053-4c2d-a4ce-f5d8f64a5e6c" expanded_arme="" />
+  </disabled_event>
+  <folder_arme name="if_docked" id_arme="8af2c2f2-f053-4c2d-a4ce-f5d8f64a5e6c" />
   <disabled_event name="Empty is not docked to DS2" id_arme="5f078a42-b0d1-4f2f-8f19-ff6edbaf3efb" parent_id_arme="8af2c2f2-f053-4c2d-a4ce-f5d8f64a5e6c">
     <if_docked name="DS2" />
     <!--<if_variable name="EmptyIsDockedToDS2" comparator="EQUALS" value="1.0" />-->
@@ -213,7 +256,18 @@
     <set_variable name="Slot1IsDockedToDS2" value="0.0" />
     <incoming_comms_text from="Test" type="STATION">Slot1 now docked to DS2</incoming_comms_text>
   </disabled_event>
-  <folder_arme name="if_in_nebula" id_arme="d074d90f-d98e-404a-823d-ba79a99042b8" expanded_arme="" />
+  <folder_arme name="if_exists" id_arme="2bb6d3ea-e052-4480-9ac7-ac2ac0bc9b33" expanded_arme="" />
+  <event name="slot 1 exists" id_arme="d0dc08e1-3c83-4d38-a111-016ba9e93bcf" parent_id_arme="2bb6d3ea-e052-4480-9ac7-ac2ac0bc9b33">
+    <if_exists player_slot="1" />
+    <if_variable name="Slot1Exists" comparator="EQUALS" value="0.0" />
+    <set_variable name="Slot1Exists" value="1.0" />
+  </event>
+  <event name="slot 1 not exist" id_arme="cfdaefbb-b806-42e3-8743-0e25edf30d43" parent_id_arme="2bb6d3ea-e052-4480-9ac7-ac2ac0bc9b33">
+    <if_not_exists player_slot="1" />
+    <if_variable name="Slot1Exists" comparator="EQUALS" value="1.0" />
+    <set_variable name="Slot1Exists" value="2.0" />
+  </event>
+  <folder_arme name="if_in_nebula" id_arme="d074d90f-d98e-404a-823d-ba79a99042b8" />
   <disabled_event name="empty empty" id_arme="bc336638-6a14-435f-ad00-127f62c8df2e" parent_id_arme="d074d90f-d98e-404a-823d-ba79a99042b8">
     <if_in_nebula />
     <if_variable name="EmptyNebulaType" comparator="NOT" value="4.0" />
@@ -329,7 +383,80 @@
     <if_variable name="Slot1NebulaType" comparator="NOT" value="12.0" />
     <set_variable name="Slot1NebulaType" value="12.0" />
   </disabled_event>
-  <folder_arme name="if_player_is_targeting" id_arme="b9c6e6f1-f97e-4195-b6de-2dadadabb581" expanded_arme="" />
+  <folder_arme name="if_object_property" id_arme="22eef1f9-3238-434c-8cb2-b0db0e190a0b" />
+  <disabled_event name="init isTagged" id_arme="7b0f4a39-46d7-4283-a9b4-d2b6eeb5c9d7" parent_id_arme="22eef1f9-3238-434c-8cb2-b0db0e190a0b">
+    <if_variable name="TagsInitialized" comparator="EQUALS" value="0.0" />
+    <set_object_property property="isTagged" value="1" name="GenericMesh" />
+    <set_object_property property="isTagged" value="1" name="BlackHole" />
+    <set_object_property property="isTagged" value="1" name="TestAnomaly" />
+    <set_object_property property="isTagged" value="1" name="Enemy1" />
+    <set_object_property property="tagOwnerSide" value="2.0" name="Enemy1" />
+    <set_object_property property="isTagged" value="1" name="Artemis" />
+    <set_variable name="TagsInitialized" value="1.0" />
+  </disabled_event>
+  <disabled_event name="enemy tagged" id_arme="708e5f42-3087-47c9-977f-2ab4e001912e" parent_id_arme="22eef1f9-3238-434c-8cb2-b0db0e190a0b">
+    <if_object_property property="isTagged" name="Enemy1" comparator="GREATER" value="Enemy1Tagged" />
+    <set_variable name="Enemy1Tagged" value="Enemy1Tagged + 0.1" />
+  </disabled_event>
+  <disabled_event name="enemy untagged" id_arme="9711fbdc-040a-44c1-9c00-fe80442c1ba1" parent_id_arme="22eef1f9-3238-434c-8cb2-b0db0e190a0b">
+    <if_object_property property="isTagged" name="Enemy1" comparator="LESS" value="Enemy1Tagged" />
+    <set_variable name="Enemy1Tagged" value="Enemy1Tagged - 1" />
+  </disabled_event>
+  <disabled_event name="monster tagged" id_arme="50891ea5-afdf-45fe-a299-13b3c924c032" parent_id_arme="22eef1f9-3238-434c-8cb2-b0db0e190a0b">
+    <if_object_property property="isTagged" name="Bug" comparator="GREATER" value="BugTagged" />
+    <set_variable name="BugTagged" value="BugTagged + 1" />
+  </disabled_event>
+  <disabled_event name="monster untagged" id_arme="f2710b93-b99a-4761-b7ba-da4d1a6f0daa" parent_id_arme="22eef1f9-3238-434c-8cb2-b0db0e190a0b">
+    <if_object_property property="isTagged" name="Bug" comparator="LESS" value="BugTagged" />
+    <set_variable name="BugTagged" value="BugTagged - 1" />
+  </disabled_event>
+  <disabled_event name="neutral tagged" id_arme="dd2c4a39-dc6d-4143-ab1c-cd797371ac27" parent_id_arme="22eef1f9-3238-434c-8cb2-b0db0e190a0b">
+    <if_object_property property="isTagged" name="GS500" comparator="GREATER" value="GS500Tagged" />
+    <set_variable name="GS500Tagged" value="GS500Tagged + 1" />
+  </disabled_event>
+  <disabled_event name="neutral untagged" id_arme="76b0bf79-e1f2-4da8-acfa-dac999028c3d" parent_id_arme="22eef1f9-3238-434c-8cb2-b0db0e190a0b">
+    <if_object_property property="isTagged" name="GS500" comparator="LESS" value="GS500Tagged" />
+    <set_variable name="GS500Tagged" value="GS500Tagged - 1" />
+  </disabled_event>
+  <disabled_event name="station tagged" id_arme="9f33d2af-e087-4521-b022-40d5566760d3" parent_id_arme="22eef1f9-3238-434c-8cb2-b0db0e190a0b">
+    <if_object_property property="isTagged" name="DS1" comparator="GREATER" value="DS1Tagged" />
+    <set_variable name="DS1Tagged" value="DS1Tagged + 1" />
+  </disabled_event>
+  <disabled_event name="GenericMesh tagged" id_arme="5ff7b7f1-1b82-49db-bcc2-3a43a432048f" parent_id_arme="22eef1f9-3238-434c-8cb2-b0db0e190a0b">
+    <if_object_property property="isTagged" name="GenericMesh" comparator="GREATER" value="GenericMeshTagged" />
+    <set_variable name="GenericMeshTagged" value="GenericMeshTagged + 1" />
+  </disabled_event>
+  <disabled_event name="anomaly tagged" id_arme="eed75548-e591-4ab7-b6b0-310260777a6d" parent_id_arme="22eef1f9-3238-434c-8cb2-b0db0e190a0b">
+    <if_object_property property="isTagged" name="TestAnomaly" comparator="GREATER" value="AnomalyTagged" />
+    <set_variable name="AnomalyTagged" value="AnomalyTagged + 1" />
+  </disabled_event>
+  <disabled_event name="player tagged" id_arme="37839fda-5148-456c-9b7f-3764c9d67ead" parent_id_arme="22eef1f9-3238-434c-8cb2-b0db0e190a0b">
+    <if_object_property property="isTagged" name="Artemis" comparator="GREATER" value="ArtemisTagged" />
+    <set_variable name="ArtemisTagged" value="ArtemisTagged + 1" />
+  </disabled_event>
+  <disabled_event name="blackhole tagged" id_arme="517abbe2-0cd1-4f1b-af29-c77912568a7a" parent_id_arme="22eef1f9-3238-434c-8cb2-b0db0e190a0b">
+    <if_object_property property="isTagged" name="BlackHole" comparator="GREATER" value="BlackHoleTagged" />
+    <set_variable name="BlackHoleTagged" value="BlackHoleTagged + 1" />
+  </disabled_event>
+  <disabled_event name="enemy tagSide inc" id_arme="4bb768b8-8da0-466d-963c-a59ed392132b" parent_id_arme="22eef1f9-3238-434c-8cb2-b0db0e190a0b">
+    <if_object_property property="isTagged" name="Enemy1" comparator="EQUALS" value="1.0" />
+    <if_object_property property="tagOwnerSide" name="Enemy1" comparator="GREATER" value="Enemy1TagSide" />
+    <set_variable name="Enemy1TagSide" value="Enemy1TagSide + 0.1" />
+  </disabled_event>
+  <disabled_event name="enemy tagSide dec" id_arme="3658465f-6f60-43c7-b774-1d617a09c0d1" parent_id_arme="22eef1f9-3238-434c-8cb2-b0db0e190a0b">
+    <if_object_property property="isTagged" name="Enemy1" comparator="EQUALS" value="1.0" />
+    <if_object_property property="tagOwnerSide" name="Enemy1" comparator="LESS" value="Enemy1TagSide" />
+    <set_variable name="Enemy1TagSide" value="Enemy1TagSide - 1" />
+  </disabled_event>
+  <disabled_event name="monster tagSide inc" id_arme="9cdf9e25-fd9d-422f-a8a6-d482e624f6ed" parent_id_arme="22eef1f9-3238-434c-8cb2-b0db0e190a0b">
+    <if_object_property property="tagOwnerSide" name="Bug" comparator="GREATER" value="BugTagSide" />
+    <set_variable name="BugTagSide" value="BugTagSide + 1" />
+  </disabled_event>
+  <disabled_event name="monster tagSide dec" id_arme="ab77f81a-9181-4bbf-b61e-62d508cfbcd9" parent_id_arme="22eef1f9-3238-434c-8cb2-b0db0e190a0b">
+    <if_object_property property="tagOwnerSide" name="Bug" comparator="LESS" value="BugTagSide" />
+    <set_variable name="BugTagSide" value="BugTagSide - 1" />
+  </disabled_event>
+  <folder_arme name="if_player_is_targeting" id_arme="b9c6e6f1-f97e-4195-b6de-2dadadabb581" />
   <disabled_event name="Empty is targeting GS500" id_arme="00db03f3-9cf3-4ab1-b713-fdc2a7c519e8" parent_id_arme="b9c6e6f1-f97e-4195-b6de-2dadadabb581">
     <if_player_is_targeting name="GS500" />
     <if_variable name="EmptyIsTargeting GS500" comparator="EQUALS" value="0.0" />
@@ -350,7 +477,7 @@
     <set_variable name="IntrepidIsTargetingGS500" value="1.0" />
     <incoming_comms_text from="Test" type="ALERT">Intrepid is targeting GS500</incoming_comms_text>
   </disabled_event>
-  <folder_arme name="if_scan_level" id_arme="cc1d4115-2025-4a20-8af3-1a79ca8cd5a2" expanded_arme="" />
+  <folder_arme name="if_scan_level" id_arme="cc1d4115-2025-4a20-8af3-1a79ca8cd5a2" />
   <disabled_event name="Enemy 1 scanned" id_arme="f8416d21-66d8-4ffa-9454-bf44eff857bf" parent_id_arme="cc1d4115-2025-4a20-8af3-1a79ca8cd5a2">
     <if_variable name="Enemy1Scanned" comparator="NOT" value="0.0" />
     <if_scan_level name="Enemy1" side="2" comparator="EQUALS" value="0" />
@@ -451,7 +578,7 @@
     <if_scan_level name="GenericMesh" side="2" comparator="EQUALS" value="3" />
     <set_variable name="GenericScanned" value="3.0" />
   </disabled_event>
-  <folder_arme name="incoming_comms_text" id_arme="6303ae81-2303-44ed-bc0c-6d7ddd947e80" expanded_arme="" />
+  <folder_arme name="incoming_comms_text" id_arme="6303ae81-2303-44ed-bc0c-6d7ddd947e80" />
   <disabled_event name="Announce Intrepid existence" id_arme="e1860582-2bb4-47f3-beb9-f412fc86f48c" parent_id_arme="6303ae81-2303-44ed-bc0c-6d7ddd947e80">
     <if_exists name="Intrepid" />
     <if_variable name="Announced" comparator="LESS" value="3.0" />
@@ -466,7 +593,7 @@
     <if_object_property property="sideValue" name="Intrepid" comparator="NOT" value="3.0" />
     <set_side_value value="3" name="Intrepid">Welcome to side 3</set_side_value>
   </disabled_event>
-  <folder_arme name="set_damcon_members" id_arme="e172b15b-457c-42c2-a5a8-608b6e526a8e" expanded_arme="" />
+  <folder_arme name="set_damcon_members" id_arme="e172b15b-457c-42c2-a5a8-608b6e526a8e" />
   <disabled_event name="add GM buttons" id_arme="4b3c058b-6c86-4b5d-afd0-1eec38542202" parent_id_arme="e172b15b-457c-42c2-a5a8-608b6e526a8e">
     <if_variable name="DamConButtonsAdded" comparator="EQUALS" value="0.0" />
     <set_gm_button text="DamCon/Artemis" />
@@ -488,7 +615,7 @@
     <if_gm_button text="DamCon/GM selection" />
     <set_damcon_members value="3" team_index="0" />
   </disabled_event>
-  <folder_arme name="set_named_object_tag_state" id_arme="e10bda42-0cd8-4fcf-8c77-724afb22e1bb" expanded_arme="" />
+  <folder_arme name="set_named_object_tag_state" id_arme="e10bda42-0cd8-4fcf-8c77-724afb22e1bb" />
   <disabled_event name="create objects to test" id_arme="31470ba3-38e9-4e18-b690-dd896748aff2" parent_id_arme="e10bda42-0cd8-4fcf-8c77-724afb22e1bb">
     <if_variable name="snots_init" comparator="EQUALS" value="0.0" />
     <!--Already have station DS1-->
@@ -507,7 +634,7 @@
     <set_named_object_tag_state name="GenericMesh" tagSourceSide="2" />
     <set_variable name="snots_init" value="1.0" />
   </disabled_event>
-  <folder_arme name="set_player_grid_damage" id_arme="7c8e9f55-373a-48b3-aa0d-f6e9a4ed3349" expanded_arme="" />
+  <folder_arme name="set_player_grid_damage" id_arme="7c8e9f55-373a-48b3-aa0d-f6e9a4ed3349" />
   <disabled_event name="damage" id_arme="648c4eac-5126-49cd-b8ba-fe33552ebfe1" parent_id_arme="7c8e9f55-373a-48b3-aa0d-f6e9a4ed3349">
     <!--works-->
     <set_player_grid_damage value="1.0" name="Artemis" index="0" systemType="systemBeam" countFrom="front" />
@@ -517,7 +644,7 @@
     <!--<set_player_grid_damage value="1.0" player_slot="0" index="0" systemType="systemImpulse" countFrom="front" />-->
     <!--<set_player_grid_damage value="1.0" player_slot="1" index="0" systemType="systemWarp" countFrom="front" />-->
   </disabled_event>
-  <folder_arme name="set_ship_text" id_arme="9619713c-748d-4fad-a6b3-4792d83a0e36" expanded_arme="" />
+  <folder_arme name="set_ship_text" id_arme="9619713c-748d-4fad-a6b3-4792d83a0e36" />
   <disabled_event name="test generic mesh" id_arme="8089b4ee-cb47-4baa-a1ae-0b5d17573dab" parent_id_arme="9619713c-748d-4fad-a6b3-4792d83a0e36">
     <if_variable name="SetGenericMeshText" comparator="EQUALS" value="0.0" />
     <set_ship_text name="GenericMesh" newname="Generic Mesh Name" race="Race text." class="Class text." desc="Description" scan_desc="Second science scan text." hailtext="Hail response." />
@@ -553,20 +680,33 @@
     <set_ship_text name="Artemis" newname="Artemis2" race="Race text." class="Class text." desc="Description" scan_desc="Second science scan text." hailtext="Hail response." />
     <set_variable name="SetPlayerText" value="1.0" />
   </disabled_event>
-  <folder_arme name="warning_popup_message" id_arme="4f8bdb43-8fd4-455b-8e1a-2d1c58ff8863" expanded_arme="" />
-  <event name="Artemis" id_arme="10a5998a-81d1-47ac-9686-5013c52c11eb" parent_id_arme="4f8bdb43-8fd4-455b-8e1a-2d1c58ff8863">
+  <folder_arme name="set_variable" id_arme="c7854dbd-3d98-4bf0-aefd-8085fc7d348d" />
+  <disabled_event name="Negative" id_arme="0d295079-1d60-414f-907c-ef8ddbe3cb36" parent_id_arme="c7854dbd-3d98-4bf0-aefd-8085fc7d348d">
+    <if_variable name="FloatPointTwo" comparator="EQUALS" value="0.0" />
+    <set_variable name="FloatPointTwo" value="0.2" />
+    <set_variable name="HighPositiveFloat" value="2147483000.0" />
+    <set_variable name="LowNegativeFloat" value="-2147483000.0" />
+    <set_variable name="HighPositiveInt" value="2147483000.0" integer="yes" />
+    <set_variable name="LowNegativeInt" value="-2147483000.0" integer="yes" />
+    <set_variable name="RandomInt" randomIntLow="-100" randomIntHigh="100" integer="yes" />
+    <set_variable name="RandomFloat" randomFloatLow="-100.0" randomFloatHigh="100.0" />
+    <set_variable name="BigRandomInt" randomIntLow="-2147483000" randomIntHigh="2147483000" integer="yes" />
+    <set_variable name="BigRandomFloat" randomFloatLow="-2147483000.0" randomFloatHigh="2147483000.0" />
+  </disabled_event>
+  <folder_arme name="warning_popup_message" id_arme="4f8bdb43-8fd4-455b-8e1a-2d1c58ff8863" />
+  <disabled_event name="Artemis" id_arme="10a5998a-81d1-47ac-9686-5013c52c11eb" parent_id_arme="4f8bdb43-8fd4-455b-8e1a-2d1c58ff8863">
     <if_variable name="ArtemisSentPopups" comparator="EQUALS" value="0.0" />
     <if_exists name="Artemis" />
     <if_object_property property="warpState" name="Artemis" comparator="EQUALS" value="1.0" />
     <!--works-->
     <warning_popup_message message="Artemis" consoles="MH" name="Artemis" />
-    <warning_popup_message message="Slot0" consoles="MH" player_slot="0" />
+    <warning_popup_message message="Slot0" consoles="MH" />
     <!--doesn't work-->
     <warning_popup_message message="GM" consoles="MH" use_gm_selection="" />
     <!--unknown-->
     <set_variable name="ArtemisSentPopups" value="1.0" />
-  </event>
-  <event name="Intrepid" id_arme="e0560988-4c92-4d96-a424-a45f616bb277" parent_id_arme="4f8bdb43-8fd4-455b-8e1a-2d1c58ff8863">
+  </disabled_event>
+  <disabled_event name="Intrepid" id_arme="e0560988-4c92-4d96-a424-a45f616bb277" parent_id_arme="4f8bdb43-8fd4-455b-8e1a-2d1c58ff8863">
     <if_variable name="IntrepidSentPopups" comparator="EQUALS" value="0.0" />
     <if_exists name="Intrepid" />
     <if_object_property property="warpState" name="Intrepid" comparator="EQUALS" value="1.0" />
@@ -575,8 +715,8 @@
     <!--unknown-->
     <!--<warning_popup_message value="1.0" name="Intrepid" index="0" systemType="systemBeam" countFrom="front" message="Intrepid" consoles="MH" />-->
     <!--<warning_popup_message value="1.0" use_gm_selection="" index="0" systemType="systemTactical" countFrom="front" message="GM" consoles="MH" />-->
-    <warning_popup_message message="Slot1" consoles="MH" player_slot="1" />
+    <warning_popup_message message="Slot1" consoles="MH" />
     <set_variable name="IntrepidSentPopups" value="1.0" />
-  </event>
+  </disabled_event>
 </mission_data>
 <!--This is a commentary after the mission node.-->

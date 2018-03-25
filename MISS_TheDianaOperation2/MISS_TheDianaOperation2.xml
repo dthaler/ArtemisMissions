@@ -1,7 +1,7 @@
 <mission_data version="2.7" background_id_arme="84327810-6e7d-41e7-9e71-391649f5b452" playerShipNames_arme="Artemis\Intrepid\Aegis\Horatio\Excalibur\Hera\Ceres\Diana">
   <mission_description>The crippled TSN Diana is now undergoing reconstruction at DS1, but the recent mission to recover it has attracted unwanted attention from the Arvonian fleets which are now advancing on DS1.  Your mission is to protect both DS1 and the Diana from the Arvonian invasion.^^This mission is a sequel to "The Diana Operation".</mission_description>
   <start id_arme="84327810-6e7d-41e7-9e71-391649f5b452">
-    <big_message title="A Spanner in the Works" subtitle1="A Diana Series Mission by Dave Thaler" subtitle2="An adventure for one or two ships for Artemis 2.6 or 2.7" />
+    <big_message title="The Diana Operation II: A Spanner in the Works" subtitle1="by Dave Thaler" subtitle2="An adventure for one or two ships for Artemis 2.6 or 2.7" />
     <set_skybox_index index="10" />
     <set_object_property property="musicObjectMasterVolume" value="0.0" />
     <set_variable name="RapierHelpStage" value="0.0" />
