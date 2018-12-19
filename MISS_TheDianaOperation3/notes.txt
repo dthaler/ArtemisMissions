@@ -1,0 +1,63 @@
+Idea: allow away team to do things that give upgrades (anomalies) to the ship
+Idea: allow away team to do things that determine what type of ship you get initially
+      or how much it starts with
+
+Question: How did the planet get trapped in the Nexus?  Was the Diana part of the cause?
+
+Should the Crew get to start in the Diana with all the buffs of previous years? (plus repairs)
+    Gravity well dampener
+        Good work.  We have analyzed the signal you sent us and determined that the signal is 
+        emanating from the wormhole itself.  SB01 has a prototype shuttle that can enter the 
+        wormhole.  Any TSN ship larger than a Scout can dock at SB01 to pick it up.  We recommend 
+        that you prepare an away team with an experienced engineer who can deal with the Diana.
+        --
+        Aegis, we have installed the scout shuttle Ceres. Be advised that it is not designed for 
+        battle, so we recommend that your Away Team launch it only when you are near the wormhole. 
+        (You must select Scout as the type of Ceres in order to launch it.)
+        --
+        Ceres has entered the wormhole.
+    Whale attractor:
+        We have analyzed the Cetrocite device schematic from the Diana.  Our research indicates 
+        that such a device might be able to attract space whales within a range of about 25k.
+
+Is there a way for a mission to test for when a specific upgrade is triggered?
+    mission 1 used Cetrocite Crystals and a video from Colin Chick
+
+In Mission 2, it was revealed that an Arvonian AI had been in the Diana from before it crashed
+        We're interrogating the AI that took over the Diana.  It seems to be of Arvonian origin, 
+        and was apparently dormant in a damaged memory bank long before the Diana was towed here 
+        to DS1.  Recent repairs to the Diana must have reawakened it.  It seems possible that it 
+        was somehow connected to the Diana's original fate from which it was rescued during the 
+        recent Diana Operation.  More details will likely not be available until after you 
+        complete this mission, however.
+
+It was being interrogated and provides the hook for Mission 3, whatever it is
+Could Comms have a way to ask questions of the AI during Mission 3?
+
+Wrecked Ceres is still on Elysia (might have been repaired since then)
+    Coolant and Energy were transferred to the Diana
+
+Is there a way for a player ship to be cloaked to look like a space whale?  Can it be changed?
+    What if spawn a generic mesh that wraps the player ship?
+
+What if Elysia comes under attack and the Diana has to save them?
+
+What is the Away Team mission this time?
+
+Tip: Don't start with any empty ship, allow all spots to be occupied!
+
+Canon question: how did this end?
+    what year is it?  Torgoth/Arvonian vs TSN
+    >2188 (nukes added)
+    >2189 (Artemis class ship)
+    >=2199 (Battleship added)
+    >=2200 (Science vessel added)
+    <= 2201 ? (TAK war ended)
+    or
+        2215-2219
+    2220 (DS->Cmd Base upgrades)
+    2235 TSN fighters appear
+    2240 war
+
+https://artemis.forumchitchat.com/post/v2-7-stub-shuttle-docking-with-station-with-cargo-transport-9936645?pid=1306326841#post1306326841
+    lets a shuttle dock with a station somehow

@@ -1,0 +1,617 @@
+<mission_data version="2.7.1" background_id_arme="93899f0b-c0bf-4f55-a78e-1226c5d9ab4a" playerShipNames_arme="Artemis\Intrepid\Aegis\Horatio\Excalibur\Hera\Ceres\Diana">
+  <mission_description>The newly restored TSN Diana is now returning to active service in the war against the Arvonian/Torgoth alliance.  The Artemis and Diana are sent back into enemy territory, on a mission to try to break up the enemy alliance.^^This mission is a sequel to "The Diana Operation 2".</mission_description>
+  <start id_arme="93899f0b-c0bf-4f55-a78e-1226c5d9ab4a">
+    <big_message title="The Diana Operation III: Return to Elysia" subtitle1="by Dave Thaler" subtitle2="An adventure for one or two ships for Artemis 2.7" />
+    <!--..... Use a relatively dark skybox so that whales will be more visible-->
+    <set_skybox_index index="8" />
+    <set_object_property property="musicObjectMasterVolume" value="0.0" />
+    <!---->
+    <!--Initialize the most important variables first so that they will appear on the F7 screen-->
+    <!---->
+    <set_variable name="TsnCommandGaveMission" value="0.0" />
+    <!-- ..... To end game on mission success, set GameStatus to 2 -->
+    <!-- ..... To end game on mission failure, set GameStatus to 0 -->
+    <set_variable name="GameStatus" value="1" />
+    <create type="player" x="20208.0" y="0.0" z="78958.0" angle="0" name="Artemis" />
+    <!---->
+    <!--Create allied bases-->
+    <!---->
+    <create type="station" x="32917.0" y="124.0" z="93958.0" angle="61" name="Houston Outpost" raceKeys="Terran friendly" hullKeys="Command Base base" />
+    <create type="station" x="8741.0" y="178.0" z="69467.0" angle="273" name="SB01" hullID="1004" />
+    <create type="station" x="11502.0" y="183.0" z="89370.0" angle="92" name="IB02" raceKeys="Terran friendly" hullKeys="Industrial Base base" />
+    <!---->
+    <!--Create Arvonian Bases-->
+    <!---->
+    <create type="station" x="32422.0" y="-13.0" z="41719.0" angle="324" name="AB01" raceKeys="enemy whalelover" hullKeys="Base base" sideValue="1" />
+    <create type="station" x="30243.0" y="186.0" z="23849.0" angle="127" name="AB02" raceKeys="enemy whalelover" hullKeys="Base base" sideValue="1" />
+    <create type="station" x="11066.0" y="-51.0" z="17602.0" angle="162" name="AB03" raceKeys="enemy whalelover" hullKeys="Base base" sideValue="1" />
+    <!---->
+    <!--Create Torgoth Bases-->
+    <!---->
+    <create type="station" x="64964.0" y="-94.0" z="56682.0" angle="348" name="TB01" raceKeys="enemy whalehater" hullKeys="Base base" sideValue="1" />
+    <create type="station" x="64093.0" y="-120.0" z="76585.0" angle="34" name="TB02" raceKeys="enemy whalehater" hullKeys="Base base" sideValue="1" />
+    <create type="station" x="82543.0" y="0.0" z="87627.0" angle="351" name="TB03" raceKeys="enemy whalehater" hullKeys="Base base" sideValue="1" />
+    <!---->
+    <!--Create terrain-->
+    <!---->
+    <create count="36" type="asteroids" startAngle="270" endAngle="360" startX="625.0" startY="53.0" startZ="99583.0" radius="50000" randomRange="3673" randomSeed="78203" />
+    <create count="100" type="nebulas" startX="78542.0" startY="37.0" startZ="22292.0" endX="38125.0" endY="132.0" endZ="61042.0" randomRange="10000" randomSeed="81474" />
+    <!-- ..... -->
+    <!-- ..... Realm Basic: Black Hole - Wormhole-->
+    <set_variable name="WormholeX" value="80945.0" />
+    <set_variable name="WormholeY" value="-200.0" />
+    <set_variable name="WormholeZ" value="18038.0" />
+    <set_variable name="ElysiaX" value="WormholeX" />
+    <set_variable name="ElysiaY" value="WormholeY" />
+    <set_variable name="ElysiaZ" value="WormholeZ" />
+    <set_variable name="ElysiaRadius" value="2400.0" />
+    <set_variable name="ElysiaWarningRadius" value="3600.0" />
+    <set_variable name="ElysiaGravityRadius" value="4800.0" />
+    <set_variable name="WormholeRadius" value="5000.0" />
+    <set_variable name="WormholeWarningRadius" value="10000.0" />
+    <set_variable name="WormholeGravityRadius" value="20000.0" />
+    <!--... Two ships touch at range 149/150-->
+    <set_variable name="DockedRange" value="100.0" />
+    <set_variable name="ElysiaGravity" value="2.0" />
+    <set_variable name="WormholeGravity" value="3.0" />
+    <!---->
+    <!--Create Whale pod 1-->
+    <!---->
+    <create type="monster" monsterType="1" podnumber="1" x="41865.0" y="0.0" z="7288.0" angle="170" name="XE01" />
+    <create type="monster" monsterType="1" podnumber="1" x="43754.0" y="0.0" z="5544.0" angle="170" name="XE02" />
+    <create type="monster" monsterType="1" podnumber="1" x="41139.0" y="200.0" z="5690.0" angle="170" name="XE03" />
+    <!--.....-->
+    <!--..... GM Buttons-->
+    <set_gm_button text="GM/Respawn/Arvonian" />
+    <set_gm_button text="GM/Respawn/Torgoth" />
+    <set_gm_button text="GM/Respawn/Whale Pod 1" />
+    <set_gm_button text="GM/Resend Comms/Houston Resummon Ships" />
+    <set_gm_button text="GM/Resend Comms/Give Mission" />
+    <!--.....-->
+    <!--..... Anomalies-->
+    <create type="Anomaly" pickupType="0" x="92131.0" y="0.0" z="47094.0" />
+    <create type="Anomaly" pickupType="0" x="81526.0" y="0.0" z="72082.0" />
+    <create type="Anomaly" pickupType="0" x="55085.0" y="0.0" z="9612.0" />
+    <create type="Anomaly" pickupType="0" x="22979.0" y="0.0" z="15133.0" />
+    <create type="Anomaly" pickupType="0" x="91986.0" y="0.0" z="9467.0" />
+    <!--.....-->
+    <!--..... Arvonians-->
+    <create type="enemy" x="35908.0" y="0.0" z="40847.0" angle="180" raceKeys="enemy whalelover" hullKeys="Carrier Carrier" sideValue="1" fleetnumber="1" />
+    <create type="enemy" x="25013.0" y="0.0" z="54213.0" angle="180" raceKeys="enemy whalelover" hullKeys="Light Carrier Carrier" sideValue="1" />
+    <create type="enemy" x="29516.0" y="0.0" z="42300.0" angle="180" raceKeys="enemy whalelover" hullKeys="Light Carrier Carrier" sideValue="1" fleetnumber="1" />
+    <create type="enemy" x="30243.0" y="0.0" z="25302.0" angle="180" raceKeys="enemy whalelover" hullKeys="Carrier Carrier" sideValue="1" fleetnumber="2" />
+    <create type="enemy" x="33003.0" y="0.0" z="22832.0" angle="180" raceKeys="enemy whalelover" hullKeys="Light Carrier Carrier" sideValue="1" fleetnumber="2" />
+    <create type="enemy" x="27337.0" y="0.0" z="22542.0" angle="180" raceKeys="enemy whalelover" hullKeys="Light Carrier Carrier" sideValue="1" fleetnumber="2" />
+    <create type="enemy" x="11211.0" y="0.0" z="20944.0" angle="180" raceKeys="enemy whalelover" hullKeys="Carrier Carrier" sideValue="1" fleetnumber="3" />
+    <create type="enemy" x="14407.0" y="0.0" z="18038.0" angle="180" raceKeys="enemy whalelover" hullKeys="Light Carrier Carrier" sideValue="1" fleetnumber="3" />
+    <create type="enemy" x="8596.0" y="0.0" z="18329.0" angle="180" raceKeys="enemy whalelover" hullKeys="Light Carrier Carrier" sideValue="1" fleetnumber="3" />
+    <!--.....-->
+    <!--..... Torgoths-->
+    <create type="enemy" x="62349.0" y="0.0" z="55520.0" angle="90" raceKeys="enemy whalehater" hullKeys="medium" sideValue="1" fleetnumber="4" />
+    <create type="enemy" x="63802.0" y="0.0" z="60024.0" angle="90" raceKeys="enemy whalehater" hullKeys="small" sideValue="1" fleetnumber="4" />
+    <create type="enemy" x="84722.0" y="0.0" z="89806.0" angle="90" raceKeys="enemy whalehater" hullKeys="medium" sideValue="1" fleetnumber="6" />
+    <create type="enemy" x="80654.0" y="0.0" z="85157.0" angle="90" raceKeys="enemy whalehater" hullKeys="small" sideValue="1" fleetnumber="6" />
+    <create type="enemy" x="62059.0" y="0.0" z="79927.0" angle="90" raceKeys="enemy whalehater" hullKeys="medium" sideValue="1" fleetnumber="5" />
+    <create type="enemy" x="48838.0" y="0.0" z="79927.0" angle="90" raceKeys="enemy whalehater" hullKeys="small" sideValue="1" />
+    <!--.....-->
+    <!--..... Terrans-->
+    <create type="neutral" x="28790.0" y="0.0" z="95907.0" angle="315" name="De-01" raceKeys="Terran friendly" hullKeys="medium warship" sideValue="2" />
+    <add_ai type="AVOID_BLACK_HOLE" value1="DistressSignalRadius" name="De-01" />
+    <add_ai type="FOLLOW_COMMS_ORDERS" name="De-01" />
+    <create type="neutral" x="5255.0" y="0.0" z="71646.0" angle="315" name="De-02" raceKeys="Terran friendly" hullKeys="medium warship" sideValue="2" />
+    <add_ai type="AVOID_BLACK_HOLE" value1="DistressSignalRadius" name="De-02" />
+    <add_ai type="FOLLOW_COMMS_ORDERS" name="De-02" />
+    <create type="neutral" x="6708.0" y="0.0" z="80072.0" angle="315" name="Es-03" raceKeys="Terran friendly" hullKeys="small warship" sideValue="2" />
+    <add_ai type="AVOID_BLACK_HOLE" value1="DistressSignalRadius" name="Es-03" />
+    <add_ai type="FOLLOW_COMMS_ORDERS" name="Es-03" />
+    <create type="neutral" x="19492.0" y="0.0" z="91259.0" angle="315" name="Es-04" raceKeys="Terran friendly" hullKeys="small warship" sideValue="2" />
+    <add_ai type="AVOID_BLACK_HOLE" value1="DistressSignalRadius" name="Es-04" />
+    <add_ai type="FOLLOW_COMMS_ORDERS" name="Es-04" />
+    <create type="neutral" x="11211.0" y="0.0" z="92130.0" angle="315" name="Mariner" raceKeys="Terran friendly" hullKeys="cargo" sideValue="2" />
+    <add_ai type="AVOID_BLACK_HOLE" value1="DistressSignalRadius" name="Mariner" />
+    <add_ai type="FOLLOW_COMMS_ORDERS" name="Mariner" />
+    <create type="neutral" x="4528.0" y="0.0" z="87481.0" angle="315" name="Cassini" raceKeys="Terran friendly" hullKeys="science" sideValue="2" />
+    <add_ai type="AVOID_BLACK_HOLE" value1="DistressSignalRadius" name="Cassini" />
+    <add_ai type="FOLLOW_COMMS_ORDERS" name="Cassini" />
+  </start>
+  <folder_arme name="Debug Mode" id_arme="27459883-7153-49dc-8cdc-060a039bd7af" expanded_arme="" />
+  <folder_arme name="Create Additional Enemy Ships" id_arme="2ad003b4-66f9-451a-93cb-c6f44284c63c" />
+  <event name="Difficulty 3+: Large Torgoths" id_arme="36a7fe10-fe2b-449a-ac99-5ec1b72f6390" parent_id_arme="2ad003b4-66f9-451a-93cb-c6f44284c63c">
+    <if_difficulty comparator="GREATER_EQUAL" value="3.0" />
+    <if_variable name="LargeTorgothsCreated" comparator="EQUALS" value="0.0" />
+    <log text="Large Torgoths created" />
+    <set_variable name="LargeTorgothsCreated" value="1.0" />
+    <create type="enemy" x="67143.0" y="0.0" z="59733.0" angle="90" raceKeys="enemy whalehater" hullKeys="large" sideValue="1" fleetnumber="4" />
+    <create type="enemy" x="67289.0" y="0.0" z="79927.0" angle="90" raceKeys="enemy whalehater" hullKeys="large" sideValue="1" fleetnumber="5" />
+    <create type="enemy" x="81235.0" y="0.0" z="90387.0" angle="90" raceKeys="enemy whalehater" hullKeys="large" sideValue="1" fleetnumber="6" />
+  </event>
+  <event name="Difficulty 5+: Skaraans" id_arme="a5d31cee-1986-4ed2-b5d8-39d673d718b5" parent_id_arme="2ad003b4-66f9-451a-93cb-c6f44284c63c">
+    <if_variable name="SkaraansCreated" comparator="EQUALS" value="0.0" />
+    <if_difficulty comparator="GREATER" value="5.0" />
+    <log text="Skaraans created" />
+    <set_variable name="SkaraansCreated" value="1.0" />
+    <create type="enemy" x="95763.0" y="0.0" z="51598.0" angle="90" raceKeys="enemy hasspecials" hullKeys="medium" fleetnumber="-1" />
+    <create type="enemy" x="64674.0" y="0.0" z="39104.0" angle="135" raceKeys="enemy hasspecials" hullKeys="small" fleetnumber="-1" />
+  </event>
+  <event name="GM respawn Torgoth" id_arme="4e5d369e-b8e4-45b5-b2b1-3e4ce0c9f395" parent_id_arme="2ad003b4-66f9-451a-93cb-c6f44284c63c">
+    <if_gm_button text="GM/Respawn/Torgoth" />
+    <log text="GM respawned a Torgoth ship" />
+    <create type="enemy" use_gm_position="" raceKeys="enemy whalehater" hullKeys="small" />
+  </event>
+  <event name="GM respawn Arvonian" id_arme="f4daae2e-ce08-4e14-8dce-26b4c7020b22" parent_id_arme="2ad003b4-66f9-451a-93cb-c6f44284c63c">
+    <if_gm_button text="GM/Respawn/Arvonian" />
+    <log text="GM respawned an Arvonian ship" />
+    <create type="enemy" use_gm_position="" raceKeys="enemy whalelover" hullKeys="small" />
+  </event>
+  <folder_arme name="Start/End Game Events" id_arme="950df5cb-1770-486e-93bc-2cb61e3ceffb" />
+  <event name="All Player Ships Destroyed" id_arme="e67595c8-6d92-4877-9593-839e1aee8765" parent_id_arme="950df5cb-1770-486e-93bc-2cb61e3ceffb">
+    <if_not_exists name="Artemis" />
+    <if_not_exists name="Intrepid" />
+    <if_not_exists name="Aegis" />
+    <if_not_exists name="Horatio" />
+    <if_not_exists name="Excalibur" />
+    <if_not_exists name="Hera" />
+    <if_not_exists name="Ceres" />
+    <if_not_exists name="Diana" />
+    <if_variable name="GameOver" comparator="EQUALS" value="0" />
+    <if_variable name="PlayerShipCount" comparator="GREATER" value="0" />
+    <log text="FAILED because all player ships destroyed" />
+    <set_variable name="GameOver" value="1" />
+    <set_timer name="GameFinishedTimer" seconds="15" />
+    <big_message title="MISSION FAILED" subtitle1="All player ships have been destroyed" />
+    <incoming_comms_text from="Main Screen" type="ALERT">Mission Failed^All player ships have been destroyed</incoming_comms_text>
+  </event>
+  <event name="End Game" id_arme="2f1aab6d-e5c1-489e-8dcd-e39c4660c27f" parent_id_arme="950df5cb-1770-486e-93bc-2cb61e3ceffb">
+    <if_variable name="GameOver" comparator="EQUALS" value="1" />
+    <if_timer_finished name="GameFinishedTimer" />
+    <log text="End Game" />
+    <end_mission />
+  </event>
+  <event name="All Bases Destroyed" id_arme="4285ad77-10ff-4102-9486-1796d8f340fe" parent_id_arme="950df5cb-1770-486e-93bc-2cb61e3ceffb">
+    <if_variable name="PlayerShipCount" comparator="GREATER" value="0" />
+    <if_not_exists name="Houston Outpost" />
+    <if_not_exists name="SB01" />
+    <if_not_exists name="IB02" />
+    <if_variable name="GameOver" comparator="EQUALS" value="0" />
+    <log text="FAILED because all player bases destroyed" />
+    <big_message title="MISSION FAILED" subtitle1="All player bases have been destroyed" />
+    <incoming_comms_text from="Main Screen" type="ALERT">Mission Failed^All player bases have been destroyed</incoming_comms_text>
+    <set_variable name="GameOver" value="1" />
+    <set_timer name="GameFinishedTimer" seconds="15" />
+  </event>
+  <event name="Limit sensor range" id_arme="51449eef-be71-441f-90b7-d3a39fe8ae40" parent_id_arme="950df5cb-1770-486e-93bc-2cb61e3ceffb">
+    <if_object_property property="sensorSetting" comparator="EQUALS" value="0.0" />
+    <set_object_property property="sensorSetting" value="2" />
+  </event>
+  <event name="Report sensor range 33k" id_arme="839700f3-5592-475d-ac17-5aa0aea17490" parent_id_arme="950df5cb-1770-486e-93bc-2cb61e3ceffb">
+    <if_object_property property="sensorSetting" comparator="EQUALS" value="1.0" />
+    <if_variable name="ReportedSensorRange" comparator="EQUALS" value="0.0" />
+    <if_timer_finished name="StartupDelayBeforeOrders" />
+    <set_variable name="ReportedSensorRange" value="1.0" />
+    <warning_popup_message message="Sensor range limited to 33k" consoles="S" />
+  </event>
+  <event name="Report sensor range 16k" id_arme="ce2a3e84-28f1-4442-9bff-78960d1a6424" parent_id_arme="950df5cb-1770-486e-93bc-2cb61e3ceffb">
+    <if_object_property property="sensorSetting" comparator="EQUALS" value="2.0" />
+    <if_variable name="ReportedSensorRange" comparator="EQUALS" value="0.0" />
+    <if_timer_finished name="StartupDelayBeforeOrders" />
+    <set_variable name="ReportedSensorRange" value="1.0" />
+    <warning_popup_message message="Sensor range limited to 16k" consoles="S" />
+  </event>
+  <event name="Report sensor range 11k" id_arme="c98dc60d-87f6-4e3e-8215-ae3a31a06814" parent_id_arme="950df5cb-1770-486e-93bc-2cb61e3ceffb">
+    <if_object_property property="sensorSetting" comparator="EQUALS" value="3.0" />
+    <if_variable name="ReportedSensorRange" comparator="EQUALS" value="0.0" />
+    <if_timer_finished name="StartupDelayBeforeOrders" />
+    <set_variable name="ReportedSensorRange" value="1.0" />
+    <warning_popup_message message="Sensor range limited to 11k" consoles="S" />
+  </event>
+  <event name="Report sensor range 8k" id_arme="5979b578-ffd3-499f-957d-d192fc8b9ced" parent_id_arme="950df5cb-1770-486e-93bc-2cb61e3ceffb">
+    <if_object_property property="sensorSetting" comparator="EQUALS" value="4.0" />
+    <if_variable name="ReportedSensorRange" comparator="EQUALS" value="0.0" />
+    <if_timer_finished name="StartupDelayBeforeOrders" />
+    <set_variable name="ReportedSensorRange" value="1.0" />
+    <warning_popup_message message="Sensor range limited to 8k" consoles="S" />
+  </event>
+  <folder_arme name="Player Ship initialization" id_arme="bf827f3c-b918-4c21-8798-6c2a331061d1" />
+  <event name="Create Player Ship - Artemis" id_arme="77054e94-9150-490c-b841-a94b75764284" parent_id_arme="bf827f3c-b918-4c21-8798-6c2a331061d1">
+    <if_exists name="Artemis" />
+    <if_variable name="ArtemisInitialized" comparator="EQUALS" value="0" />
+    <log text="Artemis spawned" />
+    <set_object_property property="missileStoresHoming" value="16" name="IB02" />
+    <set_object_property property="missileStoresNuke" value="4" name="IB02" />
+    <set_object_property property="missileStoresMine" value="12" name="IB02" />
+    <set_object_property property="missileStoresEMP" value="8" name="IB02" />
+    <set_object_property property="missileStoresPShock" value="4" name="IB02" />
+    <set_object_property property="positionX" value="20208" name="Artemis" />
+    <set_object_property property="positionZ" value="78958" name="Artemis" />
+    <set_object_property property="positionY" value="0" name="Artemis" />
+    <set_object_property property="angle" value="0.0" name="Artemis" />
+    <set_variable name="ArtemisInitialized" value="1" />
+    <set_variable name="PlayerShipCount" value="PlayerShipCount+1" />
+  </event>
+  <event name="Create Player Ship - Diana" id_arme="37715cd5-a873-452b-9b03-0409dab65292" parent_id_arme="bf827f3c-b918-4c21-8798-6c2a331061d1">
+    <if_exists name="Diana" />
+    <if_variable name="DianaInitialized" comparator="EQUALS" value="0" />
+    <log text="Diana spawned" />
+    <set_object_property property="positionX" value="20450" name="Diana" />
+    <set_object_property property="positionZ" value="79400" name="Diana" />
+    <set_object_property property="positionY" value="0" name="Diana" />
+    <set_object_property property="angle" value="0.0" name="Diana" />
+    <set_variable name="DianaInitialized" value="1" />
+    <set_variable name="PlayerShipCount" value="PlayerShipCount+1" />
+    <!--Add some more missiles to DS1-->
+    <addto_object_property value="8.0" property="missileStoresHoming" name="IB02" />
+    <addto_object_property value="2.0" property="missileStoresNuke" name="IB02" />
+    <addto_object_property value="6.0" property="missileStoresMine" name="IB02" />
+    <addto_object_property value="4.0" property="missileStoresEMP" name="IB02" />
+    <addto_object_property value="5.0" property="missileStoresPShock" name="IB02" />
+  </event>
+  <event name="Create Wrong Player Ship - Diana" id_arme="daa23853-f417-45c6-8be2-5fc5f23625a9" parent_id_arme="bf827f3c-b918-4c21-8798-6c2a331061d1">
+    <if_exists name="Diana" />
+    <if_variable name="DianaInitialized" comparator="EQUALS" value="0" />
+    <if_object_property property="shieldMaxStateFront" name="Diana" comparator="NOT" value="80.0" />
+    <log text="Diana spawned as a non-Light Cruiser" />
+    <warning_popup_message message="Diana must be a Light Cruiser" consoles="M" />
+    <destroy name="Diana" />
+  </event>
+  <event name="GM Respawn Pod 1" id_arme="ac878dae-27a5-4613-9a5b-758e025c8473" parent_id_arme="bf827f3c-b918-4c21-8798-6c2a331061d1">
+    <if_gm_button text="GM/Respawn/Whale Pod 1" />
+    <log text="GM respawned whales" />
+    <create type="monster" monsterType="1" podnumber="3" x="2785.0" y="0.0" z="53922.0" angle="270" name="XE01" />
+    <create type="monster" monsterType="1" podnumber="3" x="896.0" y="0.0" z="55811.0" angle="270" name="XE02" />
+    <create type="monster" monsterType="1" podnumber="3" x="1187.0" y="200.0" z="53922.0" angle="270" name="XE03" />
+  </event>
+  <folder_arme name="Task: Dock with Houston Outpost to receive orders" id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed" />
+  <event name="Prepare to summon ships" id_arme="8a457d0e-c6d9-420c-9968-8cda224e9d6e" parent_id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed">
+    <if_variable name="PlayerShipCount" comparator="GREATER" value="0.0" />
+    <if_variable name="TsnCommandSummonedShips" comparator="EQUALS" value="0.0" />
+    <log text="Delaying before summoning ships" />
+    <set_variable name="TsnCommandSummonedShips" value="1.0" />
+    <set_timer name="StartupDelayBeforeOrders" seconds="10" />
+    <set_timer name="WormholeOpeningDelay" seconds="60" />
+  </event>
+  <event name="Wormhole appears" id_arme="d97e211f-f2ff-49c8-bb52-774d7859c3a4" parent_id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed">
+    <if_timer_finished name="WormholeOpeningDelay" />
+    <if_not_exists name="Wormhole" />
+    <create type="blackHole" x="80945.0" y="50.0" z="18038.0" name="Wormhole" />
+    <warning_popup_message message="Wormhole opened!" consoles="S" />
+  </event>
+  <event name="TSN Command summons ships" id_arme="db11b82c-2c75-4dfb-b2e1-fef7eb5c91b4" parent_id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed">
+    <if_variable name="PlayerShipCount" comparator="GREATER" value="0.0" />
+    <if_variable name="TsnCommandSummonedShips" comparator="EQUALS" value="1.0" />
+    <if_timer_finished name="StartupDelayBeforeOrders" />
+    <log text="TSN Command summoned ships" />
+    <warning_popup_message message="Message from TSN Command" consoles="M" />
+    <incoming_comms_text from="TSN Command" type="SIDE ALERT">All TSN ships in this sector are directed to dock at Houston Outpost immediately to receive new mission orders.</incoming_comms_text>
+    <set_variable name="TsnCommandSummonedShips" value="2.0" />
+    <set_timer name="ShipsDueAtCommandBase" seconds="600" />
+    <set_timer name="StartupDelayBeforeOrders" seconds="120" />
+  </event>
+  <event name="TSN Command summons ships again" id_arme="7c3e3147-e599-4707-afd7-a957d9ce8684" parent_id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed">
+    <if_variable name="PlayerShipCount" comparator="GREATER" value="0.0" />
+    <if_variable name="TsnCommandGaveMission" comparator="EQUALS" value="0.0" />
+    <if_variable name="TsnCommandSummonedShips" comparator="EQUALS" value="2.0" />
+    <if_timer_finished name="StartupDelayBeforeOrders" />
+    <log text="TSN Command summoned ships again" />
+    <warning_popup_message message="Message from TSN Command" consoles="M" />
+    <incoming_comms_text from="TSN Command" type="SIDE ALERT">We repeat, all TSN ships in this sector are directed to dock at Houston Outpost immediately to receive new mission orders!</incoming_comms_text>
+    <set_variable name="TsnCommandSummonedShips" value="3.0" />
+  </event>
+  <event name="GM summons ships again" id_arme="92f4ecc2-d839-4ba1-b5f4-8d35ddfeeac1" parent_id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed">
+    <if_gm_button text="GM/Resend Comms/Houston Resummon Ships" />
+    <log text="TSN Command summoned ships again" />
+    <warning_popup_message message="Message from TSN Command" consoles="M" />
+    <incoming_comms_text from="TSN Command" type="SIDE ALERT">We repeat, all TSN ships in this sector are directed to dock at Houston Outpost immediately to receive new mission orders!</incoming_comms_text>
+    <set_variable name="TsnCommandSummonedShips" value="3.0" />
+    <set_timer name="ShipsDueAtCommandBase" seconds="300" />
+  </event>
+  <event name="Task Succeeded - 1 Ship Docked" id_arme="179e7ae6-25f8-46c5-8916-6995e3c73883" parent_id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed">
+    <if_variable name="PlayerShipCount" comparator="EQUALS" value="1.0" />
+    <if_variable name="TsnCommandGaveMission" comparator="EQUALS" value="0.0" />
+    <if_distance name1="Artemis" name2="Houston Outpost" comparator="LESS_EQUAL" value="DockedRange" />
+    <if_docked name="Houston Outpost" />
+    <log text="TSN Command issued mission orders" />
+    <incoming_comms_text from="TSN Command" type="SIDE">The TSN Diana recently went on a secret mission into enemy territory beyond the asteroid belt to scout out a recently discovered unstable wormhole. Unfortunately, all contact from the Diana has since been lost. Your mission is to find out what happened to her, and return her to a TSN station if possible.  If not, make sure she is destroyed.  We cannot risk her falling into enemy hands.</incoming_comms_text>
+    <set_variable name="TsnCommandGaveMission" value="1.0" />
+  </event>
+  <event name="Task Succeeded - 2 Ships Docked" id_arme="3c75cb0b-7be9-4c70-b4da-c32d8d05e60c" parent_id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed">
+    <if_variable name="PlayerShipCount" comparator="EQUALS" value="2.0" />
+    <if_variable name="TsnCommandGaveMission" comparator="EQUALS" value="0.0" />
+    <if_distance name1="Artemis" name2="Houston Outpost" comparator="LESS_EQUAL" value="DockedRange*1.6" />
+    <if_distance name1="Intrepid" name2="Houston Outpost" comparator="LESS_EQUAL" value="DockedRange*1.6" />
+    <if_docked name="Houston Outpost" />
+    <log text="TSN Command issued mission orders" />
+    <incoming_comms_text from="TSN Command" type="SIDE">The TSN Diana recently went on a secret mission into enemy territory beyond the asteroid belt to scout out a recently discovered unstable wormhole. Unfortunately, all contact from the Diana has since been lost. Your mission is to find out what happened to her, and return her to a TSN station if possible.  If not, make sure she is destroyed.  We cannot risk her falling into enemy hands.</incoming_comms_text>
+    <set_variable name="TsnCommandGaveMission" value="1.0" />
+  </event>
+  <event name="Task Succeeded - 3 Ships Docked" id_arme="bee1aff2-7bd6-4346-a020-863841bbeb14" parent_id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed">
+    <if_variable name="PlayerShipCount" comparator="GREATER_EQUAL" value="3.0" />
+    <if_variable name="TsnCommandGaveMission" comparator="EQUALS" value="0.0" />
+    <if_distance name1="Artemis" name2="Houston Outpost" comparator="LESS_EQUAL" value="DockedRange*1.6" />
+    <if_distance name1="Intrepid" name2="Houston Outpost" comparator="LESS_EQUAL" value="DockedRange*1.6" />
+    <if_distance name1="Aegis" name2="Houston Outpost" comparator="LESS_EQUAL" value="DockedRange*1.6" />
+    <if_docked name="Houston Outpost" />
+    <log text="TSN Command issued mission orders" />
+    <incoming_comms_text from="TSN Command" type="SIDE">The TSN Diana recently went on a secret mission into enemy territory beyond the asteroid belt to scout out a recently discovered unstable wormhole. Unfortunately, all contact from the Diana has since been lost. Your mission is to find out what happened to her, and return her to a TSN station if possible.  If not, make sure she is destroyed.  We cannot risk her falling into enemy hands.</incoming_comms_text>
+    <set_variable name="TsnCommandGaveMission" value="1.0" />
+  </event>
+  <event name="GM give mission" id_arme="c8c38a14-899f-4b30-9010-52298c0fde64" parent_id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed">
+    <if_gm_button text="GM/Resend Comms/Give Mission" />
+    <log text="GM gave mission" />
+    <incoming_comms_text from="TSN Command" type="SIDE">The TSN Diana recently went on a secret mission into enemy territory beyond the asteroid belt to scout out a recently discovered unstable wormhole. Unfortunately, all contact from the Diana has since been lost. Your mission is to find out what happened to her, and return her to a TSN station if possible.  If not, make sure she is destroyed.  We cannot risk her falling into enemy hands.</incoming_comms_text>
+    <set_variable name="TsnCommandGaveMission" value="1.0" />
+  </event>
+  <event name="Mission Failed - Friendly Base Destroyed" id_arme="a179a5ff-c09e-45d6-b572-786529a3e479" parent_id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed">
+    <if_variable name="GameStatus" comparator="EQUALS" value="1" />
+    <if_variable name="TsnCommandGaveMission" comparator="EQUALS" value="0" />
+    <if_not_exists name="Houston Outpost" />
+    <log text="Houston Outpost destroyed before giving orders" />
+    <incoming_comms_text from="TSN Command" type="SIDE">Houston Outpost was destroyed!</incoming_comms_text>
+    <set_variable name="GameStatus" value="0" />
+  </event>
+  <event name="Mission Failed - Out of time" id_arme="875dc7e9-9018-49d1-8750-bd76aa7f387d" parent_id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed">
+    <if_variable name="TsnCommandGaveMission" comparator="EQUALS" value="0" />
+    <if_timer_finished name="ShipsDueAtCommandBase" />
+    <if_variable name="GameStatus" comparator="EQUALS" value="1.0" />
+    <log text="Did not receive missions orders in time" />
+    <incoming_comms_text from="TSN Command" type="SIDE">You did not follow orders from TSN Command in time!</incoming_comms_text>
+    <set_variable name="GameStatus" value="0" />
+  </event>
+  <folder_arme name="Realm: Artemis outside Wormhole" id_arme="13c61707-a8d2-4e51-8b1f-b43e332d0ab5" />
+  <event name="Proximity Alert" id_arme="f0d2db3f-8e03-4e0f-b244-2de1b35fad6a" parent_id_arme="13c61707-a8d2-4e51-8b1f-b43e332d0ab5">
+    <if_variable name="ArtemisWormholeAlert" comparator="EQUALS" value="0.0" />
+    <if_distance name1="Artemis" name2="Wormhole" comparator="LESS" value="WormholeGravityRadius" />
+    <log text="Artemis: Wormhole proximity alert" />
+    <warning_popup_message message="Artemis: Gravity well hazard. Proceed cautiously." consoles="S" />
+    <set_variable name="ArtemisWormholeAlert" value="1.0" />
+  </event>
+  <event name="Collision Alert" id_arme="3b54d2e1-d457-49fc-9798-9613ac435975" parent_id_arme="13c61707-a8d2-4e51-8b1f-b43e332d0ab5">
+    <if_variable name="ArtemisWormholeAlert" comparator="LESS_EQUAL" value="1.0" />
+    <if_distance name1="Artemis" name2="Wormhole" comparator="LESS" value="WormholeWarningRadius" />
+    <log text="Artemis: Wormhole collision alert" />
+    <warning_popup_message message="Danger! Artemis approaching event horizon!" consoles="H" />
+    <set_variable name="ArtemisWormholeAlert" value="2.0" />
+  </event>
+  <event name="Clear Collision Alert" id_arme="cc24ea6a-2df6-42f3-b450-7f55cad5dc88" parent_id_arme="13c61707-a8d2-4e51-8b1f-b43e332d0ab5">
+    <if_variable name="ArtemisWormholeAlert" comparator="GREATER_EQUAL" value="2.0" />
+    <if_distance name1="Artemis" name2="Wormhole" comparator="GREATER" value="WormholeWarningRadius" />
+    <log text="Artemis: Wormhole event horizon averted" />
+    <set_variable name="ArtemisWormholeAlert" value="1.0" />
+  </event>
+  <event name="Clear Proximity Alert" id_arme="a610d9b1-aa7a-4856-9011-f9dd8f349623" parent_id_arme="13c61707-a8d2-4e51-8b1f-b43e332d0ab5">
+    <if_variable name="ArtemisWormholeAlert" comparator="GREATER_EQUAL" value="1" />
+    <if_distance name1="Artemis" name2="Wormhole" comparator="GREATER" value="WormholeGravityRadius" />
+    <log text="Artemis: Wormhole proximity avoided" />
+    <set_variable name="ArtemisWormholeAlert" value="0" />
+  </event>
+  <event name="Loss of Ship Control X" id_arme="26c951b8-3bc2-4be5-b4d9-38c6ba80b5ef" parent_id_arme="13c61707-a8d2-4e51-8b1f-b43e332d0ab5">
+    <if_distance name1="Artemis" name2="Wormhole" comparator="LESS_EQUAL" value="WormholeGravityRadius" />
+    <if_object_property property="positionX" name="Artemis" comparator="LESS" value="WormholeX" />
+    <addto_object_property value="WormholeGravity" property="positionX" name="Artemis" />
+  </event>
+  <event name="Loss of Ship Control X" id_arme="55a04160-8859-4854-9c96-512024f994ba" parent_id_arme="13c61707-a8d2-4e51-8b1f-b43e332d0ab5">
+    <if_distance name1="Artemis" name2="Wormhole" comparator="LESS_EQUAL" value="WormholeGravityRadius" />
+    <if_object_property property="positionX" name="Artemis" comparator="GREATER" value="WormholeX" />
+    <addto_object_property value="-WormholeGravity" property="positionX" name="Artemis" />
+  </event>
+  <event name="Loss of Ship Control Z" id_arme="0135193a-4c58-4e22-bb64-6cb281745580" parent_id_arme="13c61707-a8d2-4e51-8b1f-b43e332d0ab5">
+    <if_distance name1="Artemis" name2="Wormhole" comparator="LESS_EQUAL" value="WormholeGravityRadius" />
+    <if_object_property property="positionZ" name="Artemis" comparator="LESS" value="WormholeZ" />
+    <addto_object_property value="WormholeGravity" property="positionZ" name="Artemis" />
+  </event>
+  <event name="Loss of Ship Control Z" id_arme="891c633d-ae10-4242-9afb-ce01301532ca" parent_id_arme="13c61707-a8d2-4e51-8b1f-b43e332d0ab5">
+    <if_distance name1="Artemis" name2="Wormhole" comparator="LESS_EQUAL" value="WormholeGravityRadius" />
+    <if_object_property property="positionZ" name="Artemis" comparator="GREATER" value="WormholeZ" />
+    <addto_object_property value="-WormholeGravity" property="positionZ" name="Artemis" />
+  </event>
+  <event name="Loss of Ship Control Y" id_arme="81f10cc8-41c6-482f-982b-c6f36986426c" parent_id_arme="13c61707-a8d2-4e51-8b1f-b43e332d0ab5">
+    <if_distance name1="Artemis" name2="Wormhole" comparator="LESS_EQUAL" value="WormholeGravityRadius" />
+    <if_object_property property="positionY" name="Artemis" comparator="LESS" value="WormholeY" />
+    <addto_object_property value="WormholeGravity" property="positionY" name="Artemis" />
+  </event>
+  <event name="Loss of Ship Control Y" id_arme="dfd7f1f2-f896-420e-b27a-01c8e045de1b" parent_id_arme="13c61707-a8d2-4e51-8b1f-b43e332d0ab5">
+    <if_distance name1="Artemis" name2="Wormhole" comparator="LESS_EQUAL" value="WormholeGravityRadius" />
+    <if_object_property property="positionY" name="Artemis" comparator="GREATER" value="WormholeY" />
+    <addto_object_property value="-WormholeGravity" property="positionY" name="Artemis" />
+  </event>
+  <event name="Collision Death" id_arme="fc70fe3e-a457-43f0-a576-3e800ddf4c21" parent_id_arme="13c61707-a8d2-4e51-8b1f-b43e332d0ab5">
+    <if_distance name1="Artemis" name2="Wormhole" comparator="LESS_EQUAL" value="WormholeRadius" />
+    <log text="Artemis destroyed in wormhole" />
+    <destroy name="Artemis" />
+  </event>
+  <folder_arme name="Task: Diana outside Wormhole" id_arme="0451ea51-a6bd-42b4-a599-db93410e620e" />
+  <event name="Proximity Alert" id_arme="b8ee190b-ef78-4310-a389-f545815873bb" parent_id_arme="0451ea51-a6bd-42b4-a599-db93410e620e">
+    <if_variable name="DianaWormholeAlert" comparator="EQUALS" value="0" />
+    <if_distance name1="Diana" name2="Wormhole" comparator="LESS" value="WormholeGravityRadius" />
+    <if_variable name="DianaLocation" comparator="EQUALS" value="200.0" />
+    <log text="Diana: Wormhole proximity alert" />
+    <warning_popup_message message="Diana: Gravity well hazard. Proceed cautiously." consoles="S" />
+    <set_variable name="DianaWormholeAlert" value="1" />
+  </event>
+  <event name="Collision Alert" id_arme="fb8ed38b-8ad2-4fc3-8c06-4f9cf0f1cfdc" parent_id_arme="0451ea51-a6bd-42b4-a599-db93410e620e">
+    <if_variable name="DianaWormholeAlert" comparator="LESS_EQUAL" value="1.0" />
+    <if_distance name1="Diana" name2="Wormhole" comparator="LESS" value="WormholeWarningRadius" />
+    <if_variable name="DianaLocation" comparator="EQUALS" value="200.0" />
+    <log text="Diana: Wormhole collision alert" />
+    <warning_popup_message message="Diana approaching event horizon" consoles="H" />
+    <set_variable name="DianaWormholeAlert" value="2.0" />
+  </event>
+  <event name="Clear Collision Alert" id_arme="00218966-0a1f-4d1b-986d-e3780989317e" parent_id_arme="0451ea51-a6bd-42b4-a599-db93410e620e">
+    <if_variable name="DianaWormholeAlert" comparator="GREATER_EQUAL" value="2.0" />
+    <if_distance name1="Diana" name2="Wormhole" comparator="GREATER" value="WormholeWarningRadius" />
+    <if_variable name="DianaLocation" comparator="EQUALS" value="200.0" />
+    <log text="Diana: Wormhole event horizon averted" />
+    <set_variable name="DianaWormholeAlert" value="1.0" />
+  </event>
+  <event name="Clear Proximity Alert" id_arme="87d42d0b-f46a-47c3-825e-c0dcb5cb30c0" parent_id_arme="0451ea51-a6bd-42b4-a599-db93410e620e">
+    <if_variable name="DianaWormholeAlert" comparator="GREATER_EQUAL" value="1" />
+    <if_distance name1="Diana" name2="Wormhole" comparator="GREATER" value="WormholeGravityRadius" />
+    <if_variable name="DianaLocation" comparator="EQUALS" value="200.0" />
+    <log text="Diana: Wormhole proximity avoided" />
+    <set_variable name="DianaWormholeAlert" value="0" />
+  </event>
+  <event name="Loss of Ship Control X" id_arme="39693765-8059-4cf3-a7cd-05646f0563d3" parent_id_arme="0451ea51-a6bd-42b4-a599-db93410e620e">
+    <if_distance name1="Diana" name2="Wormhole" comparator="LESS_EQUAL" value="WormholeGravityRadius" />
+    <if_object_property property="positionX" name="Diana" comparator="LESS" value="WormholeX" />
+    <if_variable name="DianaLocation" comparator="EQUALS" value="200.0" />
+    <addto_object_property value="WormholeGravity" property="positionX" name="Diana" />
+  </event>
+  <event name="Loss of Ship Control X" id_arme="019c74b2-f522-420c-844f-54710a6f3c68" parent_id_arme="0451ea51-a6bd-42b4-a599-db93410e620e">
+    <if_distance name1="Diana" name2="Wormhole" comparator="LESS_EQUAL" value="WormholeGravityRadius" />
+    <if_object_property property="positionX" name="Diana" comparator="GREATER" value="WormholeX" />
+    <if_variable name="DianaLocation" comparator="EQUALS" value="200.0" />
+    <addto_object_property value="-WormholeGravity" property="positionX" name="Diana" />
+  </event>
+  <event name="Loss of Ship Control Z" id_arme="4807c934-7eca-429f-b647-47528dfeb1d7" parent_id_arme="0451ea51-a6bd-42b4-a599-db93410e620e">
+    <if_distance name1="Diana" name2="Wormhole" comparator="LESS_EQUAL" value="WormholeGravityRadius" />
+    <if_object_property property="positionZ" name="Diana" comparator="LESS" value="WormholeZ" />
+    <if_variable name="DianaLocation" comparator="EQUALS" value="200.0" />
+    <addto_object_property value="WormholeGravity" property="positionZ" name="Diana" />
+  </event>
+  <event name="Loss of Ship Control Z" id_arme="4bfaec50-b180-4306-a48c-a16d50f6cc68" parent_id_arme="0451ea51-a6bd-42b4-a599-db93410e620e">
+    <if_distance name1="Diana" name2="Wormhole" comparator="LESS_EQUAL" value="WormholeGravityRadius" />
+    <if_object_property property="positionZ" name="Diana" comparator="GREATER" value="WormholeZ" />
+    <if_variable name="DianaLocation" comparator="EQUALS" value="200.0" />
+    <addto_object_property value="-WormholeGravity" property="positionZ" name="Diana" />
+  </event>
+  <event name="Loss of Ship Control Y" id_arme="b2d95166-5f36-4741-8106-0c305aa834ca" parent_id_arme="0451ea51-a6bd-42b4-a599-db93410e620e">
+    <if_distance name1="Diana" name2="Wormhole" comparator="LESS_EQUAL" value="WormholeGravityRadius" />
+    <if_object_property property="positionY" name="Diana" comparator="LESS" value="WormholeY" />
+    <if_variable name="DianaLocation" comparator="EQUALS" value="200.0" />
+    <addto_object_property value="WormholeGravity" property="positionY" name="Diana" />
+  </event>
+  <event name="Loss of Ship Control Y" id_arme="a1cb5e93-b4f7-4272-8371-3461302f9113" parent_id_arme="0451ea51-a6bd-42b4-a599-db93410e620e">
+    <if_distance name1="Diana" name2="Wormhole" comparator="LESS_EQUAL" value="WormholeGravityRadius" />
+    <if_object_property property="positionY" name="Diana" comparator="GREATER" value="WormholeY" />
+    <if_variable name="DianaLocation" comparator="EQUALS" value="200.0" />
+    <addto_object_property value="-WormholeGravity" property="positionY" name="Diana" />
+  </event>
+  <event name="Pop Through" id_arme="c3deef2c-d034-4ba2-b924-513124cef557" parent_id_arme="0451ea51-a6bd-42b4-a599-db93410e620e">
+    <!--DianaLocation: 200=Launched, 300=Wormhole, 400=Elysia-->
+    <if_variable name="DianaLocation" comparator="EQUALS" value="200.0" />
+    <if_distance name1="Diana" name2="Wormhole" comparator="LESS_EQUAL" value="WormholeRadius" />
+    <log text="Diana entered wormhole" />
+    <!--DianaLocation: 0.0=not created, 200=Launched, 300=ThroughWormhole-->
+    <set_variable name="DianaLocation" value="300.0" />
+    <incoming_comms_text from="Internal Comms - Science" type="PLAYER">Diana has entered the wormhole.</incoming_comms_text>
+    <warning_popup_message message="Diana has successfully made it through the wormhole!  Gravity is normal." consoles="MHWESCO" />
+    <!-- ..... Realm Advanced: Planet Elysia -->
+    <create type="genericMesh" x="ElysiaX" y="ElysiaY" z="ElysiaZ" angle="0" name="Elysia" meshFileName="dat\asteroid.dxs" textureFileName="dat\roundA_specular.png" colorRed="0.5" colorGreen="0.5" colorBlue="1.0" />
+    <set_object_property property="pushRadius" value="ElysiaRadius" name="Elysia" />
+    <set_object_property property="angleDelta" value="0.000" name="Elysia" />
+    <set_object_property property="rollDelta" value="0.000" name="Elysia" />
+    <set_object_property property="pitchDelta" value="0.000" name="Elysia" />
+    <set_object_property property="artScale" value="5.0" name="Elysia" />
+    <log text="Diana entered wormhole (done)" />
+  </event>
+  <folder_arme name="Realm: Diana at Elysia" id_arme="d728922c-ff39-419c-afc5-83af1b0b1651" />
+  <event name="Proximity Alert" id_arme="7effaa45-c5b8-4106-b1bb-35e33fa424d5" parent_id_arme="d728922c-ff39-419c-afc5-83af1b0b1651">
+    <if_variable name="DianaPlanetAlert" comparator="EQUALS" value="0" />
+    <if_distance name1="Diana" name2="Elysia" comparator="LESS" value="ElysiaGravityRadius" />
+    <log text="Diana: Elysia proximity alert" />
+    <warning_popup_message message="Diana: Gravity well hazard. Proceed cautiously." consoles="S" />
+    <set_variable name="DianaPlanetAlert" value="1" />
+  </event>
+  <event name="Collision Alert" id_arme="6d4820f7-b6e2-409e-abeb-d4b5de22255f" parent_id_arme="d728922c-ff39-419c-afc5-83af1b0b1651">
+    <if_variable name="DianaPlanetAlert" comparator="LESS_EQUAL" value="1.0" />
+    <if_distance name1="Diana" name2="Elysia" comparator="LESS" value="ElysiaWarningRadius" />
+    <log text="Diana: Elysia collision alert" />
+    <warning_popup_message message="Diana: Gravity well collision alert!" consoles="H" />
+    <set_variable name="DianaPlanetAlert" value="2.0" />
+  </event>
+  <event name="Clear Collision Alert" id_arme="3ba06ff2-4f3f-45ac-8d0c-0a167a743bfe" parent_id_arme="d728922c-ff39-419c-afc5-83af1b0b1651">
+    <if_variable name="DianaPlanetAlert" comparator="GREATER_EQUAL" value="2.0" />
+    <if_distance name1="Diana" name2="Elysia" comparator="GREATER" value="ElysiaWarningRadius" />
+    <log text="Diana: Elysia collision averted" />
+    <set_variable name="DianaPlanetAlert" value="1.0" />
+  </event>
+  <event name="Clear Proximity Alert" id_arme="4e317b8c-7579-4107-8072-8df553d143b9" parent_id_arme="d728922c-ff39-419c-afc5-83af1b0b1651">
+    <if_variable name="DianaPlanetAlert" comparator="GREATER_EQUAL" value="1" />
+    <if_distance name1="Diana" name2="Elysia" comparator="GREATER" value="ElysiaGravityRadius" />
+    <log text="Diana: Elysia proximity avoided" />
+    <set_variable name="DianaPlanetAlert" value="0" />
+  </event>
+  <event name="Loss of Ship Control X" id_arme="87752e1b-4cbb-4e50-a5cf-bf750ba9db84" parent_id_arme="d728922c-ff39-419c-afc5-83af1b0b1651">
+    <if_distance name1="Diana" name2="Elysia" comparator="GREATER" value="ElysiaRadius" />
+    <if_distance name1="Diana" name2="Elysia" comparator="LESS" value="ElysiaGravityRadius" />
+    <if_object_property property="positionX" name="Diana" comparator="LESS" value="ElysiaX" />
+    <addto_object_property value="ElysiaGravity" property="positionX" name="Diana" />
+  </event>
+  <event name="Loss of Ship Control X" id_arme="54b0c290-43a1-4082-83b9-bcd9ab8b292f" parent_id_arme="d728922c-ff39-419c-afc5-83af1b0b1651">
+    <if_distance name1="Diana" name2="Elysia" comparator="GREATER" value="ElysiaRadius" />
+    <if_distance name1="Diana" name2="Elysia" comparator="LESS" value="ElysiaGravityRadius" />
+    <if_object_property property="positionX" name="Diana" comparator="GREATER" value="ElysiaX" />
+    <addto_object_property value="-ElysiaGravity" property="positionX" name="Diana" />
+  </event>
+  <event name="Loss of Ship Control Z" id_arme="555a0058-5555-4dca-b457-6428a04a44ad" parent_id_arme="d728922c-ff39-419c-afc5-83af1b0b1651">
+    <if_distance name1="Diana" name2="Elysia" comparator="GREATER" value="ElysiaRadius" />
+    <if_distance name1="Diana" name2="Elysia" comparator="LESS" value="ElysiaGravityRadius" />
+    <if_object_property property="positionZ" name="Diana" comparator="LESS" value="ElysiaZ" />
+    <addto_object_property value="ElysiaGravity" property="positionZ" name="Diana" />
+  </event>
+  <event name="Loss of Ship Control Z" id_arme="ca2dc3a4-c11b-4c4b-b680-450dc3d17559" parent_id_arme="d728922c-ff39-419c-afc5-83af1b0b1651">
+    <if_distance name1="Diana" name2="Elysia" comparator="GREATER" value="ElysiaRadius" />
+    <if_distance name1="Diana" name2="Elysia" comparator="LESS" value="ElysiaGravityRadius" />
+    <if_object_property property="positionZ" name="Diana" comparator="GREATER" value="ElysiaZ" />
+    <addto_object_property value="-ElysiaGravity" property="positionZ" name="Diana" />
+  </event>
+  <event name="Loss of Ship Control Y" id_arme="7ab973d5-bb18-4b71-bc35-8b20a2ecb225" parent_id_arme="d728922c-ff39-419c-afc5-83af1b0b1651">
+    <if_distance name1="Diana" name2="Elysia" comparator="GREATER" value="ElysiaRadius" />
+    <if_distance name1="Diana" name2="Elysia" comparator="LESS" value="ElysiaGravityRadius" />
+    <if_object_property property="positionY" name="Diana" comparator="LESS" value="ElysiaY" />
+    <addto_object_property value="ElysiaGravity" property="positionY" name="Diana" />
+  </event>
+  <event name="Loss of Ship Control Y" id_arme="1c36e638-ce33-442c-a196-21edc8153178" parent_id_arme="d728922c-ff39-419c-afc5-83af1b0b1651">
+    <if_distance name1="Diana" name2="Elysia" comparator="GREATER" value="ElysiaRadius" />
+    <if_distance name1="Diana" name2="Elysia" comparator="LESS" value="ElysiaGravityRadius" />
+    <if_object_property property="positionY" name="Diana" comparator="GREATER" value="ElysiaY" />
+    <addto_object_property value="-ElysiaGravity" property="positionY" name="Diana" />
+  </event>
+  <folder_arme name="Task: Diana inside Wormhole" id_arme="a0dfaaac-6dc3-4625-b7f7-2b22461c4c83" />
+  <event name="Emerge" id_arme="8360d84d-382f-4f94-88d1-f2a152a12773" parent_id_arme="a0dfaaac-6dc3-4625-b7f7-2b22461c4c83">
+    <if_distance name1="Diana" name2="Wormhole" comparator="GREATER" value="WormholeRadius" />
+    <if_variable name="DianaLocation" comparator="EQUALS" value="300.0" />
+    <log text="Diana emerged from wormhole" />
+    <warning_popup_message message="The Diana has successfully made it out of the wormhole!" consoles="MHWECO" />
+    <warning_popup_message message="The Diana has successfully made it out of the wormhole!" consoles="S" />
+    <set_variable name="DianaLocation" value="200.0" />
+  </event>
+  <event name="Proximity Alert" id_arme="27d80b4e-efec-46f8-96c0-7aeada0bda70" parent_id_arme="a0dfaaac-6dc3-4625-b7f7-2b22461c4c83">
+    <if_variable name="DianaWormholeAlert" comparator="EQUALS" value="0" />
+    <if_distance name1="Diana" name2="Wormhole" comparator="LESS" value="WormholeGravityRadius" />
+    <if_variable name="DianaLocation" comparator="EQUALS" value="200.0" />
+    <log text="Diana: Wormhole proximity alert" />
+    <warning_popup_message message="Diana: Gravity well hazard. Proceed cautiously." consoles="S" />
+    <set_variable name="DianaWormholeAlert" value="1" />
+  </event>
+  <event name="Collision Alert" id_arme="f86ab1af-c7d0-4955-8d01-61c8f5a9d0e5" parent_id_arme="a0dfaaac-6dc3-4625-b7f7-2b22461c4c83">
+    <if_variable name="DianaWormholeAlert" comparator="LESS_EQUAL" value="1.0" />
+    <if_distance name1="Diana" name2="Wormhole" comparator="GREATER" value="WormholeRadius" />
+    <if_distance name1="Diana" name2="Wormhole" comparator="LESS" value="WormholeWarningRadius" />
+    <if_variable name="DianaLocation" comparator="EQUALS" value="200.0" />
+    <log text="Diana approaching Wormhole event horizon" />
+    <warning_popup_message message="Diana approaching event horizon" consoles="H" />
+    <set_variable name="DianaWormholeAlert" value="2.0" />
+  </event>
+  <event name="Clear Collision Alert" id_arme="e5bb11cc-7bc6-4f5e-b13d-d58976d31bf2" parent_id_arme="a0dfaaac-6dc3-4625-b7f7-2b22461c4c83">
+    <if_variable name="DianaWormholeAlert" comparator="GREATER_EQUAL" value="2.0" />
+    <if_distance name1="Diana" name2="Wormhole" comparator="GREATER" value="WormholeWarningRadius" />
+    <if_variable name="DianaLocation" comparator="EQUALS" value="200.0" />
+    <log text="Diana: Wormhole event horizon averted" />
+    <set_variable name="DianaWormholeAlert" value="1.0" />
+  </event>
+  <event name="Clear Proximity Alert" id_arme="99d0aa34-eef3-49ac-902d-e5283d388cca" parent_id_arme="a0dfaaac-6dc3-4625-b7f7-2b22461c4c83">
+    <if_variable name="DianaWormholeAlert" comparator="GREATER_EQUAL" value="1" />
+    <if_distance name1="Diana" name2="Wormhole" comparator="GREATER" value="WormholeGravityRadius" />
+    <if_variable name="DianaLocation" comparator="EQUALS" value="200.0" />
+    <log text="Diana: Wormhole proximity avoided" />
+    <set_variable name="DianaWormholeAlert" value="0" />
+  </event>
+  <event name="Entered again" id_arme="ce51c3bc-aab8-4227-8d04-a8d1ddb2a8c6" parent_id_arme="a0dfaaac-6dc3-4625-b7f7-2b22461c4c83">
+    <if_distance name1="Diana" name2="Wormhole" comparator="LESS" value="WormholeRadius" />
+    <if_variable name="DianaLocation" comparator="EQUALS" value="200.0" />
+    <log text="Diana entered wormhole" />
+    <warning_popup_message message="The Diana has re-entered the wormhole!" consoles="MHWECO" />
+    <warning_popup_message message="The Diana has re-entered the wormhole!" consoles="S" />
+    <set_variable name="DianaLocation" value="300.0" />
+  </event>
+</mission_data>
