@@ -135,6 +135,8 @@
 ---
 {
 
+1/2 FIX: remove "SIDE" on incoming messages that are not side missions
+
 Things to do on site:
     * test artemis mission audio on site
     * give mark the mission

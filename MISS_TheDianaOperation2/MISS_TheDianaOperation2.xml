@@ -1070,6 +1070,7 @@
     <log text="Bomb set!" />
     <warning_popup_message message="Urgent message from DS1" consoles="M" />
     <incoming_comms_text from="DS1" type="ALERT STATION">URGENT: Immediate assistance needed at DS1!  We must have a sabotaur at work.  We just discovered a bomb on our station in the production facility!  We need you to dock with us as soon as possible and send a team of explosives experts who can deal with it before it detonates and destroys this station!  We have deactivated our final step in building more missiles so no more will be produced until the bomb is deactivated.</incoming_comms_text>
+    <set_comms_button text="Play DS1 distress call audio" />
     <set_gm_button text="Bomb defused" />
     <set_gm_button text="Bomb detonated" />
     <set_object_property property="canBuild" value="0" name="DS1" />
@@ -1079,6 +1080,11 @@
     <set_variable name="WelcomedIntrepidAwayTeam" value="0.0" />
     <set_variable name="WelcomedAegisAwayTeam" value="0.0" />
     <set_timer name="RefreshGMBombButtons" seconds="3" />
+  </event>
+  <event name="Play DS1 distress call audio" id_arme="a8012a3f-504c-4abf-b14c-cf196e7b46c0" parent_id_arme="06783d9d-3423-44f3-b6e3-28e8f836b4fd">
+    <if_comms_button text="Play DS1 distress call audio" />
+    <play_sound_now filename="./dat/missions/MISS_TheDianaOperation2/Ds1DistressCall.wav" />
+    <clear_comms_button text="Play DS1 distress call audio" />
   </event>
   <event name="Bomb detonated since no one docked" id_arme="644f8ef2-c329-4cd5-97e1-5b3977cd3b61" parent_id_arme="06783d9d-3423-44f3-b6e3-28e8f836b4fd">
     <if_exists name="DS1" />
@@ -1172,6 +1178,7 @@
     <create type="neutral" x="27754.0" y="50.0" z="73016.0" angle="0" name="Saboteur" hullID="0" sideValue="1" />
     <incoming_comms_text from="DS1" type="ALERT STATION">Unauthorized undocking of the Diana detected!  The saboteur must be trying to escape!</incoming_comms_text>
     <warning_popup_message message="The Diana's energy signature has changed" consoles="S">Unauthorized undocking of the Diana detected!  The saboteur must be trying to escape!</warning_popup_message>
+    <set_comms_button text="Play DS1 alert audio" />
     <set_timer name="RefreshCommsButtons" seconds="30" />
   </event>
   <event name="Saboteur Diana created" id_arme="4348db9f-e7e7-4f47-a6bf-97663c7b37e7" parent_id_arme="354d7eaa-5c2c-486e-81cb-5d977f7d5f55">
@@ -1186,6 +1193,11 @@
     <set_ship_text name="Saboteur" newname="Diana" scan_desc="Scans indicate no life signs aboard.  The saboteur must be an AI!" />
     <set_object_property property="surrenderChance" value="0" name="Diana" />
     <add_ai type="PROCEED_TO_EXIT" name="Diana" />
+  </event>
+  <event name="Play DS1 alert audio" id_arme="166bff19-ca4f-4641-a05f-eae815e31978" parent_id_arme="354d7eaa-5c2c-486e-81cb-5d977f7d5f55">
+    <if_comms_button text="Play DS1 alert audio" />
+    <play_sound_now filename="./dat/missions/MISS_TheDianaOperation2/DianaUndocked.wav" />
+    <clear_comms_button text="Play DS1 alert audio" />
   </event>
   <event name="DEBUG: Allow teleporting Diana" id_arme="8886e953-9017-4f5b-a389-50554e8d1d0d" parent_id_arme="354d7eaa-5c2c-486e-81cb-5d977f7d5f55">
     <if_exists name="Diana" />
@@ -1746,6 +1758,7 @@
     <if_variable name="BoardingState" comparator="EQUALS" value="4.0" />
     <log text="Diana back at DS1" />
     <set_variable name="BoardingState" value="5.0" />
+    <set_comms_button text="Play DS1 report audio" />
     <incoming_comms_text from="DS1" type="STATION">We're interrogating the AI that took over the Diana.  It seems to be of Arvonian origin, and was apparently dormant in a damaged memory bank long before the Diana was towed here to DS1.  Recent repairs to the Diana must have reawakened it.  It seems possible that it was somehow connected to the Diana's original fate from which it was rescued during the recent Diana Operation.  More details will likely not be available until after you complete this mission, however.</incoming_comms_text>
   </event>
   <event name="Disable Diana impulse and turning" id_arme="994e81e4-ff2f-48c8-90e8-092bec8a176b" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
@@ -1757,5 +1770,10 @@
     <clear_ai name="Diana" />
     <set_ship_text name="Diana" scan_desc="The Diana is unmanned, and is undergoing reconstruction." hailtext="We have nothing to say." />
     <!--The DamCon team is now just part of station repair personnel, so mark the Diana as unmanned again.-->
+  </event>
+  <event name="Play DS1 alert audio" id_arme="4192e0ee-e47a-43a7-be42-0c401c5dc7f6" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
+    <if_comms_button text="Play DS1 report audio" />
+    <play_sound_now filename="./dat/missions/MISS_TheDianaOperation2/InvestigationReport.wav" />
+    <clear_comms_button text="Play DS1 report audio" />
   </event>
 </mission_data>

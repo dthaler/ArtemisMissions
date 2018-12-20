@@ -1,0 +1,18 @@
+12/19/18 TEST: Artemis approaching wormhole
+12/19/18 TEST: Diana approaching wormhole
+12/19/18 FIX: Disable "Message from TSN command" popup
+12/19/18 FIX: update message about Diana emerging being successful
+
+---
+{
+
+1/2 ADD: some logic to make Arvonians turn against Torgoth
+
+1/2 ADD: GM logic for result of Away Team
+
+1/2 ADD: cloaking device mechanics
+
+1/2 BUG: in ArtemisMissionEditor
+          Monster AI block "CHASE_SIGNAL" is added to ship "Pha|BeaconSerialNumber|"
+
+}
