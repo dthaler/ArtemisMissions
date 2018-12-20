@@ -8,7 +8,7 @@
     <!---->
     <!--Initialize the most important variables first so that they will appear on the F7 screen-->
     <!---->
-    <set_variable name="TsnCommandGaveMission" value="0.0" />
+    <set_variable name="BeaconSerialNumber" value="0.0" integer="yes" />
     <!-- ..... To end game on mission success, set GameStatus to 2 -->
     <!-- ..... To end game on mission failure, set GameStatus to 0 -->
     <set_variable name="GameStatus" value="1" />
@@ -76,23 +76,38 @@
     <create type="Anomaly" pickupType="0" x="91986.0" y="0.0" z="9467.0" />
     <!--.....-->
     <!--..... Arvonians-->
-    <create type="enemy" x="35908.0" y="0.0" z="40847.0" angle="180" raceKeys="enemy whalelover" hullKeys="Carrier Carrier" sideValue="1" fleetnumber="1" />
-    <create type="enemy" x="25013.0" y="0.0" z="54213.0" angle="180" raceKeys="enemy whalelover" hullKeys="Light Carrier Carrier" sideValue="1" />
-    <create type="enemy" x="29516.0" y="0.0" z="42300.0" angle="180" raceKeys="enemy whalelover" hullKeys="Light Carrier Carrier" sideValue="1" fleetnumber="1" />
-    <create type="enemy" x="30243.0" y="0.0" z="25302.0" angle="180" raceKeys="enemy whalelover" hullKeys="Carrier Carrier" sideValue="1" fleetnumber="2" />
-    <create type="enemy" x="33003.0" y="0.0" z="22832.0" angle="180" raceKeys="enemy whalelover" hullKeys="Light Carrier Carrier" sideValue="1" fleetnumber="2" />
-    <create type="enemy" x="27337.0" y="0.0" z="22542.0" angle="180" raceKeys="enemy whalelover" hullKeys="Light Carrier Carrier" sideValue="1" fleetnumber="2" />
-    <create type="enemy" x="11211.0" y="0.0" z="20944.0" angle="180" raceKeys="enemy whalelover" hullKeys="Carrier Carrier" sideValue="1" fleetnumber="3" />
-    <create type="enemy" x="14407.0" y="0.0" z="18038.0" angle="180" raceKeys="enemy whalelover" hullKeys="Light Carrier Carrier" sideValue="1" fleetnumber="3" />
-    <create type="enemy" x="8596.0" y="0.0" z="18329.0" angle="180" raceKeys="enemy whalelover" hullKeys="Light Carrier Carrier" sideValue="1" fleetnumber="3" />
+    <create type="enemy" x="35908.0" y="0.0" z="40847.0" angle="180" name="AC01" raceKeys="enemy whalelover" hullKeys="Carrier Carrier" sideValue="1" fleetnumber="1" />
+    <add_ai type="AVOID_WHALE" value1="5000" name="AC01" />
+    <create type="enemy" x="25013.0" y="0.0" z="54213.0" angle="180" name="AC02" raceKeys="enemy whalelover" hullKeys="Light Carrier Carrier" sideValue="1" />
+    <add_ai type="AVOID_WHALE" value1="5000" name="AC02" />
+    <create type="enemy" x="29516.0" y="0.0" z="42300.0" angle="180" name="AC03" raceKeys="enemy whalelover" hullKeys="Light Carrier Carrier" sideValue="1" fleetnumber="1" />
+    <add_ai type="AVOID_WHALE" value1="5000" name="AC03" />
+    <create type="enemy" x="30243.0" y="0.0" z="25302.0" angle="180" name="AC04" raceKeys="enemy whalelover" hullKeys="Carrier Carrier" sideValue="1" fleetnumber="2" />
+    <add_ai type="AVOID_WHALE" value1="5000" name="AC04" />
+    <create type="enemy" x="33003.0" y="0.0" z="22832.0" angle="180" name="AC05" raceKeys="enemy whalelover" hullKeys="Light Carrier Carrier" sideValue="1" fleetnumber="2" />
+    <add_ai type="AVOID_WHALE" value1="5000" name="AC05" />
+    <create type="enemy" x="27337.0" y="0.0" z="22542.0" angle="180" name="AC06" raceKeys="enemy whalelover" hullKeys="Light Carrier Carrier" sideValue="1" fleetnumber="2" />
+    <add_ai type="AVOID_WHALE" value1="5000" name="AC06" />
+    <create type="enemy" x="11211.0" y="0.0" z="20944.0" angle="180" name="AC07" raceKeys="enemy whalelover" hullKeys="Carrier Carrier" sideValue="1" fleetnumber="3" />
+    <add_ai type="AVOID_WHALE" value1="5000" name="AC07" />
+    <create type="enemy" x="14407.0" y="0.0" z="18038.0" angle="180" name="AC08" raceKeys="enemy whalelover" hullKeys="Light Carrier Carrier" sideValue="1" fleetnumber="3" />
+    <add_ai type="AVOID_WHALE" value1="5000" name="AC08" />
+    <create type="enemy" x="8596.0" y="0.0" z="18329.0" angle="180" name="AC09" raceKeys="enemy whalelover" hullKeys="Light Carrier Carrier" sideValue="1" fleetnumber="3" />
+    <add_ai type="AVOID_WHALE" value1="5000" name="AC09" />
     <!--.....-->
     <!--..... Torgoths-->
-    <create type="enemy" x="62349.0" y="0.0" z="55520.0" angle="90" raceKeys="enemy whalehater" hullKeys="medium" sideValue="1" fleetnumber="4" />
-    <create type="enemy" x="63802.0" y="0.0" z="60024.0" angle="90" raceKeys="enemy whalehater" hullKeys="small" sideValue="1" fleetnumber="4" />
-    <create type="enemy" x="84722.0" y="0.0" z="89806.0" angle="90" raceKeys="enemy whalehater" hullKeys="medium" sideValue="1" fleetnumber="6" />
-    <create type="enemy" x="80654.0" y="0.0" z="85157.0" angle="90" raceKeys="enemy whalehater" hullKeys="small" sideValue="1" fleetnumber="6" />
-    <create type="enemy" x="62059.0" y="0.0" z="79927.0" angle="90" raceKeys="enemy whalehater" hullKeys="medium" sideValue="1" fleetnumber="5" />
-    <create type="enemy" x="48838.0" y="0.0" z="79927.0" angle="90" raceKeys="enemy whalehater" hullKeys="small" sideValue="1" />
+    <create type="enemy" x="62349.0" y="0.0" z="55520.0" angle="90" name="TG01" raceKeys="enemy whalehater" hullKeys="medium" sideValue="1" fleetnumber="4" />
+    <add_ai type="CHASE_WHALE" value1="5000" name="TG01" />
+    <create type="enemy" x="63802.0" y="0.0" z="60024.0" angle="90" name="TG02" raceKeys="enemy whalehater" hullKeys="small" sideValue="1" fleetnumber="4" />
+    <add_ai type="CHASE_WHALE" value1="5000" name="TG02" />
+    <create type="enemy" x="84722.0" y="0.0" z="89806.0" angle="90" name="TG03" raceKeys="enemy whalehater" hullKeys="medium" sideValue="1" fleetnumber="6" />
+    <add_ai type="CHASE_WHALE" value1="5000" name="TG03" />
+    <create type="enemy" x="80654.0" y="0.0" z="85157.0" angle="90" name="TG04" raceKeys="enemy whalehater" hullKeys="small" sideValue="1" fleetnumber="6" />
+    <add_ai type="CHASE_WHALE" value1="5000" name="TG04" />
+    <create type="enemy" x="62059.0" y="0.0" z="79927.0" angle="90" name="TG05" raceKeys="enemy whalehater" hullKeys="medium" sideValue="1" fleetnumber="5" />
+    <add_ai type="CHASE_WHALE" value1="5000" name="TG05" />
+    <create type="enemy" x="48838.0" y="0.0" z="79927.0" angle="90" name="TG06" raceKeys="enemy whalehater" hullKeys="small" sideValue="1" />
+    <add_ai type="CHASE_WHALE" value1="5000" name="TG06" />
     <!--.....-->
     <!--..... Terrans-->
     <create type="neutral" x="28790.0" y="0.0" z="95907.0" angle="315" name="De-01" raceKeys="Terran friendly" hullKeys="medium warship" sideValue="2" />
@@ -113,6 +128,8 @@
     <create type="neutral" x="4528.0" y="0.0" z="87481.0" angle="315" name="Cassini" raceKeys="Terran friendly" hullKeys="science" sideValue="2" />
     <add_ai type="AVOID_BLACK_HOLE" value1="DistressSignalRadius" name="Cassini" />
     <add_ai type="FOLLOW_COMMS_ORDERS" name="Cassini" />
+    <set_variable name="firstnumber" value="0.0" integer="yes" />
+    <set_variable name="secondnumber" value="0.0" integer="yes" />
   </start>
   <folder_arme name="Debug Mode" id_arme="27459883-7153-49dc-8cdc-060a039bd7af" expanded_arme="" />
   <folder_arme name="Create Additional Enemy Ships" id_arme="2ad003b4-66f9-451a-93cb-c6f44284c63c" />
@@ -211,7 +228,7 @@
     <set_variable name="ReportedSensorRange" value="1.0" />
     <warning_popup_message message="Sensor range limited to 8k" consoles="S" />
   </event>
-  <folder_arme name="Player Ship initialization" id_arme="bf827f3c-b918-4c21-8798-6c2a331061d1" />
+  <folder_arme name="Player Ship initialization" id_arme="bf827f3c-b918-4c21-8798-6c2a331061d1" expanded_arme="" />
   <event name="Create Player Ship - Artemis" id_arme="77054e94-9150-490c-b841-a94b75764284" parent_id_arme="bf827f3c-b918-4c21-8798-6c2a331061d1">
     <if_exists name="Artemis" />
     <if_variable name="ArtemisInitialized" comparator="EQUALS" value="0" />
@@ -221,6 +238,7 @@
     <set_object_property property="missileStoresMine" value="12" name="IB02" />
     <set_object_property property="missileStoresEMP" value="8" name="IB02" />
     <set_object_property property="missileStoresPShock" value="4" name="IB02" />
+    <set_object_property property="missileStoresBeacon" value="10" name="SB01" />
     <set_object_property property="positionX" value="20208" name="Artemis" />
     <set_object_property property="positionZ" value="78958" name="Artemis" />
     <set_object_property property="positionY" value="0" name="Artemis" />
@@ -613,5 +631,230 @@
     <warning_popup_message message="The Diana has re-entered the wormhole!" consoles="MHWECO" />
     <warning_popup_message message="The Diana has re-entered the wormhole!" consoles="S" />
     <set_variable name="DianaLocation" value="300.0" />
+  </event>
+  <!--Arvonian fighters are random-->
+  <folder_arme name="All randoms avoid whales" id_arme="b1522541-9f58-434f-a559-dc05b6371a10" expanded_arme="" />
+  <event name="UpdateAI for A" id_arme="81560c11-b118-466b-b0dd-f5a20588752b" parent_id_arme="b1522541-9f58-434f-a559-dc05b6371a10">
+    <if_exists name="A|firstnumber||secondnumber|" />
+    <if_variable name="A|firstnumber||secondnumber|" comparator="NOT" value="1.0" />
+    <add_ai type="AVOID_WHALE" value1="5000" name="A|firstnumber||secondnumber|" />
+    <set_variable name="A|firstnumber||secondnumber|" value="1.0" />
+  </event>
+  <event name="UpdateAI for B" id_arme="f61e86c0-20cf-47eb-95cd-98b15be901cf" parent_id_arme="b1522541-9f58-434f-a559-dc05b6371a10">
+    <if_exists name="B|firstnumber||secondnumber|" />
+    <if_variable name="B|firstnumber||secondnumber|" comparator="NOT" value="1.0" />
+    <add_ai type="AVOID_WHALE" value1="5000" name="B|firstnumber||secondnumber|" />
+    <set_variable name="B|firstnumber||secondnumber|" value="1.0" />
+  </event>
+  <event name="UpdateAI for C" id_arme="2f24970a-d298-4e4d-b4ef-b653f3b8787a" parent_id_arme="b1522541-9f58-434f-a559-dc05b6371a10">
+    <if_exists name="C|firstnumber||secondnumber|" />
+    <if_variable name="C|firstnumber||secondnumber|" comparator="NOT" value="1.0" />
+    <add_ai type="AVOID_WHALE" value1="5000" name="C|firstnumber||secondnumber|" />
+    <set_variable name="C|firstnumber||secondnumber|" value="1.0" />
+  </event>
+  <event name="UpdateAI for D" id_arme="9a03cace-faf9-4148-9c83-2edb38305e38" parent_id_arme="b1522541-9f58-434f-a559-dc05b6371a10">
+    <if_exists name="D|firstnumber||secondnumber|" />
+    <if_variable name="D|firstnumber||secondnumber|" comparator="NOT" value="1.0" />
+    <add_ai type="AVOID_WHALE" value1="5000" name="D|firstnumber||secondnumber|" />
+    <set_variable name="D|firstnumber||secondnumber|" value="1.0" />
+  </event>
+  <event name="UpdateAI for E" id_arme="f12180a1-ed4b-4a30-82d4-dc916f150cd1" parent_id_arme="b1522541-9f58-434f-a559-dc05b6371a10">
+    <if_exists name="E|firstnumber||secondnumber|" />
+    <if_variable name="E|firstnumber||secondnumber|" comparator="NOT" value="1.0" />
+    <add_ai type="AVOID_WHALE" value1="5000" name="E|firstnumber||secondnumber|" />
+    <set_variable name="E|firstnumber||secondnumber|" value="1.0" />
+  </event>
+  <event name="UpdateAI for F" id_arme="466f2b66-f69d-4a6d-865b-b3c38830793f" parent_id_arme="b1522541-9f58-434f-a559-dc05b6371a10">
+    <if_exists name="F|firstnumber||secondnumber|" />
+    <if_variable name="F|firstnumber||secondnumber|" comparator="NOT" value="1.0" />
+    <add_ai type="AVOID_WHALE" value1="5000" name="F|firstnumber||secondnumber|" />
+    <set_variable name="F|firstnumber||secondnumber|" value="1.0" />
+  </event>
+  <event name="UpdateAI for G" id_arme="daa295a0-221f-435a-b52f-7031dc038546" parent_id_arme="b1522541-9f58-434f-a559-dc05b6371a10">
+    <if_exists name="G|firstnumber||secondnumber|" />
+    <if_variable name="G|firstnumber||secondnumber|" comparator="NOT" value="1.0" />
+    <add_ai type="AVOID_WHALE" value1="5000" name="G|firstnumber||secondnumber|" />
+    <set_variable name="G|firstnumber||secondnumber|" value="1.0" />
+  </event>
+  <event name="UpdateAI for H" id_arme="1f14c3be-0936-4f6a-8fd8-ae6cda8c1b01" parent_id_arme="b1522541-9f58-434f-a559-dc05b6371a10">
+    <if_exists name="H|firstnumber||secondnumber|" />
+    <if_variable name="H|firstnumber||secondnumber|" comparator="NOT" value="1.0" />
+    <add_ai type="AVOID_WHALE" value1="5000" name="H|firstnumber||secondnumber|" />
+    <set_variable name="H|firstnumber||secondnumber|" value="1.0" />
+  </event>
+  <event name="UpdateAI for I" id_arme="c1c119ef-0617-4e48-be08-68eac79289ad" parent_id_arme="b1522541-9f58-434f-a559-dc05b6371a10">
+    <if_exists name="I|firstnumber||secondnumber|" />
+    <if_variable name="I|firstnumber||secondnumber|" comparator="NOT" value="1.0" />
+    <add_ai type="AVOID_WHALE" value1="5000" name="I|firstnumber||secondnumber|" />
+    <set_variable name="I|firstnumber||secondnumber|" value="1.0" />
+  </event>
+  <event name="UpdateAI for J" id_arme="a0cfc2e6-8f1a-4885-8a1c-f063e4dbd0cc" parent_id_arme="b1522541-9f58-434f-a559-dc05b6371a10">
+    <if_exists name="J|firstnumber||secondnumber|" />
+    <if_variable name="J|firstnumber||secondnumber|" comparator="NOT" value="1.0" />
+    <add_ai type="AVOID_WHALE" value1="5000" name="J|firstnumber||secondnumber|" />
+    <set_variable name="J|firstnumber||secondnumber|" value="1.0" />
+  </event>
+  <event name="UpdateAI for K" id_arme="bfb1364b-fdc9-4cb2-a501-841c496ee616" parent_id_arme="b1522541-9f58-434f-a559-dc05b6371a10">
+    <if_exists name="K|firstnumber||secondnumber|" />
+    <if_variable name="K|firstnumber||secondnumber|" comparator="NOT" value="1.0" />
+    <add_ai type="AVOID_WHALE" value1="5000" name="K|firstnumber||secondnumber|" />
+    <set_variable name="K|firstnumber||secondnumber|" value="1.0" />
+  </event>
+  <event name="UpdateAI for L" id_arme="853b6160-4ca4-4718-b9b7-d1d87d6f77bd" parent_id_arme="b1522541-9f58-434f-a559-dc05b6371a10">
+    <if_exists name="L|firstnumber||secondnumber|" />
+    <if_variable name="L|firstnumber||secondnumber|" comparator="NOT" value="1.0" />
+    <add_ai type="AVOID_WHALE" value1="5000" name="L|firstnumber||secondnumber|" />
+    <set_variable name="L|firstnumber||secondnumber|" value="1.0" />
+  </event>
+  <event name="UpdateAI for M" id_arme="9daaf6ad-bdc0-4c75-8537-6a20e4049b25" parent_id_arme="b1522541-9f58-434f-a559-dc05b6371a10">
+    <if_exists name="M|firstnumber||secondnumber|" />
+    <if_variable name="M|firstnumber||secondnumber|" comparator="NOT" value="1.0" />
+    <add_ai type="AVOID_WHALE" value1="5000" name="M|firstnumber||secondnumber|" />
+    <set_variable name="M|firstnumber||secondnumber|" value="1.0" />
+  </event>
+  <event name="UpdateAI for N" id_arme="e6ab09ab-35a3-40a0-ba09-36022e1201e9" parent_id_arme="b1522541-9f58-434f-a559-dc05b6371a10">
+    <if_exists name="N|firstnumber||secondnumber|" />
+    <if_variable name="N|firstnumber||secondnumber|" comparator="NOT" value="1.0" />
+    <add_ai type="AVOID_WHALE" value1="5000" name="N|firstnumber||secondnumber|" />
+    <set_variable name="N|firstnumber||secondnumber|" value="1.0" />
+  </event>
+  <event name="UpdateAI for O" id_arme="b39ce30d-f6ee-488d-bfb6-1c7da14928b1" parent_id_arme="b1522541-9f58-434f-a559-dc05b6371a10">
+    <if_exists name="O|firstnumber||secondnumber|" />
+    <if_variable name="O|firstnumber||secondnumber|" comparator="NOT" value="1.0" />
+    <add_ai type="AVOID_WHALE" value1="5000" name="O|firstnumber||secondnumber|" />
+    <set_variable name="O|firstnumber||secondnumber|" value="1.0" />
+  </event>
+  <event name="UpdateAI for P" id_arme="8070782a-3fd9-45b6-9606-2f85f4585b93" parent_id_arme="b1522541-9f58-434f-a559-dc05b6371a10">
+    <if_exists name="P|firstnumber||secondnumber|" />
+    <if_variable name="P|firstnumber||secondnumber|" comparator="NOT" value="1.0" />
+    <add_ai type="AVOID_WHALE" value1="5000" name="P|firstnumber||secondnumber|" />
+    <set_variable name="P|firstnumber||secondnumber|" value="1.0" />
+  </event>
+  <event name="UpdateAI for Q" id_arme="a46d5146-3064-4c92-ae8e-93469d851a69" parent_id_arme="b1522541-9f58-434f-a559-dc05b6371a10">
+    <if_exists name="Q|firstnumber||secondnumber|" />
+    <if_variable name="Q|firstnumber||secondnumber|" comparator="NOT" value="1.0" />
+    <add_ai type="AVOID_WHALE" value1="5000" name="Q|firstnumber||secondnumber|" />
+    <set_variable name="Q|firstnumber||secondnumber|" value="1.0" />
+  </event>
+  <event name="UpdateAI for R" id_arme="7f07f8e7-8572-45df-9d7e-cb6899cc04ac" parent_id_arme="b1522541-9f58-434f-a559-dc05b6371a10">
+    <if_exists name="R|firstnumber||secondnumber|" />
+    <if_variable name="R|firstnumber||secondnumber|" comparator="NOT" value="1.0" />
+    <add_ai type="AVOID_WHALE" value1="5000" name="R|firstnumber||secondnumber|" />
+    <set_variable name="R|firstnumber||secondnumber|" value="1.0" />
+  </event>
+  <event name="UpdateAI for S" id_arme="49ab5804-594e-4a88-a03a-6ac808548977" parent_id_arme="b1522541-9f58-434f-a559-dc05b6371a10">
+    <if_exists name="S|firstnumber||secondnumber|" />
+    <if_variable name="S|firstnumber||secondnumber|" comparator="NOT" value="1.0" />
+    <add_ai type="AVOID_WHALE" value1="5000" name="S|firstnumber||secondnumber|" />
+    <set_variable name="S|firstnumber||secondnumber|" value="1.0" />
+  </event>
+  <event name="UpdateAI for T" id_arme="3d7e07de-4ad7-4a2d-b740-8ec37c22d14c" parent_id_arme="b1522541-9f58-434f-a559-dc05b6371a10">
+    <if_exists name="T|firstnumber||secondnumber|" />
+    <if_variable name="T|firstnumber||secondnumber|" comparator="NOT" value="1.0" />
+    <add_ai type="AVOID_WHALE" value1="5000" name="T|firstnumber||secondnumber|" />
+    <set_variable name="T|firstnumber||secondnumber|" value="1.0" />
+  </event>
+  <event name="UpdateAI for U" id_arme="8fd5dc84-8468-40e2-b7ef-c711b90c431b" parent_id_arme="b1522541-9f58-434f-a559-dc05b6371a10">
+    <if_exists name="U|firstnumber||secondnumber|" />
+    <if_variable name="U|firstnumber||secondnumber|" comparator="NOT" value="1.0" />
+    <add_ai type="AVOID_WHALE" value1="5000" name="U|firstnumber||secondnumber|" />
+    <set_variable name="U|firstnumber||secondnumber|" value="1.0" />
+  </event>
+  <event name="UpdateAI for V" id_arme="dd354903-6796-405a-850e-22a5a93af992" parent_id_arme="b1522541-9f58-434f-a559-dc05b6371a10">
+    <if_exists name="V|firstnumber||secondnumber|" />
+    <if_variable name="V|firstnumber||secondnumber|" comparator="NOT" value="1.0" />
+    <add_ai type="AVOID_WHALE" value1="5000" name="V|firstnumber||secondnumber|" />
+    <set_variable name="V|firstnumber||secondnumber|" value="1.0" />
+  </event>
+  <event name="UpdateAI for W" id_arme="2a376ba0-8bb2-4ab7-84bc-8546ec19e381" parent_id_arme="b1522541-9f58-434f-a559-dc05b6371a10">
+    <if_exists name="W|firstnumber||secondnumber|" />
+    <if_variable name="W|firstnumber||secondnumber|" comparator="NOT" value="1.0" />
+    <add_ai type="AVOID_WHALE" value1="5000" name="W|firstnumber||secondnumber|" />
+    <set_variable name="W|firstnumber||secondnumber|" value="1.0" />
+  </event>
+  <event name="UpdateAI for X" id_arme="faf40c10-3ca8-4a8f-b4b7-d0590d38d82c" parent_id_arme="b1522541-9f58-434f-a559-dc05b6371a10">
+    <if_exists name="X|firstnumber||secondnumber|" />
+    <if_variable name="X|firstnumber||secondnumber|" comparator="NOT" value="1.0" />
+    <add_ai type="AVOID_WHALE" value1="5000" name="X|firstnumber||secondnumber|" />
+    <set_variable name="X|firstnumber||secondnumber|" value="1.0" />
+  </event>
+  <event name="UpdateAI for Y" id_arme="59e36051-37b7-495b-8fa4-792278ef4ad2" parent_id_arme="b1522541-9f58-434f-a559-dc05b6371a10">
+    <if_exists name="Y|firstnumber||secondnumber|" />
+    <if_variable name="Y|firstnumber||secondnumber|" comparator="NOT" value="1.0" />
+    <add_ai type="AVOID_WHALE" value1="5000" name="Y|firstnumber||secondnumber|" />
+    <set_variable name="Y|firstnumber||secondnumber|" value="1.0" />
+  </event>
+  <event name="UpdateAI for Z" id_arme="c31307a2-43b8-4d65-aa7b-9b0ba92dc506" parent_id_arme="b1522541-9f58-434f-a559-dc05b6371a10">
+    <if_exists name="Z|firstnumber||secondnumber|" />
+    <if_variable name="Z|firstnumber||secondnumber|" comparator="NOT" value="1.0" />
+    <add_ai type="AVOID_WHALE" value1="5000" name="Z|firstnumber||secondnumber|" />
+    <set_variable name="Z|firstnumber||secondnumber|" value="1.0" />
+  </event>
+  <event name="Increase 1st Number" id_arme="6f9a0e4e-f122-4326-a94d-f9d8b6d8da62" parent_id_arme="b1522541-9f58-434f-a559-dc05b6371a10">
+    <if_variable name="stopUpdatingAI" comparator="NOT" value="1.0" />
+    <if_variable name="firstnumber" comparator="LESS" value="10.0" />
+    <set_variable name="firstnumber" value="firstnumber+1" integer="yes" />
+  </event>
+  <event name="Increase 2nd Number" id_arme="6d702ff3-42f1-48db-94fe-16ede1b8a22e" parent_id_arme="b1522541-9f58-434f-a559-dc05b6371a10">
+    <if_variable name="stopUpdatingAI" comparator="NOT" value="1.0" />
+    <if_variable name="firstnumber" comparator="EQUALS" value="10.0" />
+    <if_variable name="secondnumber" comparator="LESS" value="10.0" />
+    <set_variable name="firstnumber" value="-1" integer="yes" />
+    <set_variable name="secondnumber" value="secondnumber+1" integer="yes" />
+  </event>
+  <event name="Reset Numbers" id_arme="32321099-b290-4e19-8e3a-61e57e6ded99" parent_id_arme="b1522541-9f58-434f-a559-dc05b6371a10">
+    <if_variable name="stopUpdatingAI" comparator="NOT" value="1.0" />
+    <if_variable name="secondnumber" comparator="EQUALS" value="10.0" />
+    <if_variable name="firstnumber" comparator="EQUALS" value="10.0" />
+    <set_variable name="firstnumber" value="0.0" integer="yes" />
+    <set_variable name="secondnumber" value="0.0" integer="yes" />
+  </event>
+  <folder_arme name="Phantom whale beacon" id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96" expanded_arme="" />
+  <event name="Show button" id_arme="483b8827-f8cb-44fb-aa4a-320ef2327272" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
+    <if_variable name="BeaconButtonShown" comparator="EQUALS" value="0.0" />
+    <if_object_property property="countBea" name="Artemis" comparator="GREATER" value="0" />
+    <!--TODO: only show button to Artemis-->
+    <log text="Showing &quot;Drop whale beacon&quot; button" />
+    <clear_comms_button text="Drop whale beacon" />
+    <set_comms_button text="Drop whale beacon" />
+    <set_variable name="BeaconButtonShown" value="1.0" />
+  </event>
+  <event name="Hide button" id_arme="72e7b351-9d37-4a40-b8f4-17efb88df61b" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
+    <if_variable name="BeaconButtonShown" comparator="EQUALS" value="1.0" />
+    <if_object_property property="countBea" name="Artemis" comparator="EQUALS" value="0" />
+    <log text="Removing &quot;Drop whale beacon&quot; button" />
+    <clear_comms_button text="Drop whale beacon" />
+    <set_variable name="BeaconButtonShown" value="0.0" />
+  </event>
+  <event name="Drop beacon" id_arme="15a730df-b6b6-4739-b6bc-742350964d24" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
+    <if_object_property property="countBea" name="Artemis" comparator="GREATER" value="0" />
+    <if_comms_button text="Drop whale beacon" />
+    <log text="Dropping a phantom whale beacon" />
+    <play_sound_now filename="dat/weapon1.wav" />
+    <set_variable name="BeaconSerialNumber" value="BeaconSerialNumber+1" />
+    <addto_object_property value="-1.0" property="countBea" name="Artemis" />
+    <create type="Anomaly" pickupType="8" beaconEffect="0" beaconMonsterType="1" x="0.0" y="0.0" z="0.0" name="Bea|BeaconSerialNumber|" />
+    <set_relative_position name2="Bea|BeaconSerialNumber|" distance="650" angle="180" name1="Artemis" />
+    <create type="monster" monsterType="1" age="1" podnumber="9" x="0.0" y="0.0" z="0.0" name="Pha|BeaconSerialNumber|" />
+    <clear_ai name="Pha|BeaconSerialNumber|" />
+    <set_monster_tag_data tag_slot="0" name="Pha|BeaconSerialNumber|" sourcetext="Artemis" datetext="Phantom image" />
+    <add_ai type="CHASE_SIGNAL" value1="6.0" name="Pha|BeaconSerialNumber|" />
+  </event>
+  <event name="Destroy whale if beacon destroyed" id_arme="67eddf09-e045-48e9-abe5-af933f1d283e" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
+    <if_exists name="Pha|firstnumber|" />
+    <if_not_exists name="Bea|firstnumber|" />
+    <log text="Destroying phantom whale beacause beacon |firstnumber| destroyed" />
+    <destroy name="Pha|firstnumber|" />
+  </event>
+  <event name="Destroy beacon if whale destroyed" id_arme="2cb53011-ec6f-4e69-ac58-c23ae694e287" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
+    <if_exists name="Bea|firstnumber|" />
+    <if_not_exists name="Pha|firstnumber|" />
+    <log text="Destroying beacon beacause phantom whale |firstnumber| destroyed" />
+    <destroy name="Bea|firstnumber|" />
+  </event>
+  <event name="Keep whale in place" id_arme="2428156e-3f9e-4476-bd13-3a9605aa81aa" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
+    <if_exists name="Bea|firstnumber|" />
+    <if_exists name="Pha|firstnumber|" />
+    <set_relative_position name2="Pha|firstnumber|" distance="0" angle="0" name1="Bea|firstnumber|" />
   </event>
 </mission_data>

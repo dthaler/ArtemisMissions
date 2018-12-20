@@ -127,29 +127,73 @@
 02/24/18 BUG: can get Mission Success without ever defusing the bomb
 02/25/18 BUG: tractoring Rapier didn't work
 02/28/18 TEST: with Pirate ship which can't dock until destroy biomech
+03/24/18 ADD: new username (Armidale) on server
+03/25/18 FIX: engineering presets on 2.7.1 install
+03/25/18 TEST: make sure controls.ini is on helm console for 2.7 and joy2key works
+03/27/18 FIX: DMX cues on 2.7.1 install
 
 ---
-{ 
+{
 
-1/2 DEL: delete Admin account
+Things to do on site:
+    * test artemis mission audio on site
+    * give mark the mission
 
-1/2 FIX: username on server
-
-1/2 TEST: beam audio sounds when 2 bridges are there
-
-1/2 TEST: headset
-
-1/2 FIX: DMX cues on 2.7 install
-        BLOCKED on username
-
-1/2 FIX: engineering cues on 2.7 install
-        BLOCKED on username
+1/2 FIX: install 2.7.1 on all laptops
+         ftr tablets
+            large tablet needs OS upgrade
+            BLOCKED on upgrade
+         my spare laptops
+            Dell         - done
+            X1 Carbon    - won't boot
+            BLOCKED on upgrade
+         kaylene's spare laptop - done
 
 1/2 ADD: Mark suggested audio files playable from Comms, so as to not miss important Comms messages
+            play_sound_now WAV file could be connected to a Comms button
+            how did it used to work?
+                was incoming_message for OGG file
+       DONE pick potential files
 
-1/2 CHECK: Somehow a Typhon (classic space monster) showed up, which wasnt intentional
+             1  "URGENT: Immediate assistance needed at DS1!  We must have a sabotaur at work.  
+                 We just discovered a bomb on our station in the production facility!  
+                 We need you to dock with us as soon as possible and send a team of explosives 
+                 experts who can deal with it before it detonates and destroys this station!
+                 We have deactivated our final step in building more missiles so no more will 
+                 be produced until the bomb is deactivated."
+
+                 --> Ds1DistressCall.wav
+
+             2  "Unauthorized undocking of the Diana detected!  The saboteur must be trying to escape!"
+
+                 --> DianaUndocked.wav
+
+             3  "We're interrogating the AI that took over the Diana.  It seems to be of Arvonian 
+                 origin, and was apparently dormant in a damaged memory bank long before the Diana 
+                 was towed here to DS1.  Recent repairs to the Diana must have reawakened it.  It 
+                 seems possible that it was somehow connected to the Diana's original fate from which 
+                 it was rescued during the recent Diana Operation.  More details will likely not be 
+                 available until after you complete this mission, however."
+                                                                  ^^^^^^^
+
+                 --> InvestigationReport.wav
+
+          * record WAV files: who?
+          * add comms buttons to play the WAV files
+                when send an incoming text message above, also add a comms button
+                when click on the comms button, play the WAV file and delete the comms button
 
 ---
+
+2/1 TEST: make sure controls.ini is on ftr consoles if any for 2.7
+          and joy2key works
+
+2/1 DEL: delete Admin account on Server machine
+
+2/1 FIX: check for updates on all laptops
+
+2/2 CHECK: Somehow a Typhon (classic space monster) showed up, which wasn't intentional.
+           Bug was reported in the forums about it not being a real Typhon
 
 2/2 FIX: display some score or rank at end
 
