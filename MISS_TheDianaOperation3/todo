@@ -3,7 +3,7 @@
 12/19/18 FIX: Disable "Message from TSN command" popup
 12/19/18 FIX: update message about Diana emerging being successful
 12/19/18 ADD: some logic to make Arvonians turn against Torgoth
-
+12/20/18 ADD: win condition
 
 ---
 {
@@ -17,8 +17,6 @@
 
 1/2 ADD: cloaking device mechanics
          ideas:
-
-1/2 ADD: WIN condition
 
 2/2 ADD: can we allow replenishing phantom whale beacons?
 

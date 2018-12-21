@@ -193,6 +193,18 @@
     <big_message title="MISSION FAILED" subtitle1="All player ships have been destroyed" />
     <incoming_comms_text from="Main Screen" type="ALERT">Mission Failed^All player ships have been destroyed</incoming_comms_text>
   </event>
+  <event name="All enemies destroyed" id_arme="8cd2c901-c296-44f2-9e21-34a669cf027b" parent_id_arme="950df5cb-1770-486e-93bc-2cb61e3ceffb">
+    <if_not_exists name="TB01" />
+    <if_not_exists name="TB02" />
+    <if_not_exists name="TB03" />
+    <if_variable name="GameOver" comparator="EQUALS" value="0.0" />
+    <if_fleet_count comparator="EQUALS" value="0.0" sideValue="1" />
+    <log text="MISSION SUCCEEDED" />
+    <incoming_comms_text from="TSN Command" type="STATION">Good work!  The Torgoths have been defeated and the Arvonians are retreating.  It looks like the war will soon be over!  Congratulations!</incoming_comms_text>
+    <set_variable name="GameOver" value="1.0" />
+    <set_timer name="GameFinishedTimer" seconds="15" />
+    <big_message title="MISSION SUCCEEDED" subtitle1="All enemies have been destroyed" />
+  </event>
   <event name="End Game" id_arme="2f1aab6d-e5c1-489e-8dcd-e39c4660c27f" parent_id_arme="950df5cb-1770-486e-93bc-2cb61e3ceffb">
     <if_variable name="GameOver" comparator="EQUALS" value="1" />
     <if_timer_finished name="GameFinishedTimer" />
