@@ -2,17 +2,28 @@
 12/19/18 TEST: Diana approaching wormhole
 12/19/18 FIX: Disable "Message from TSN command" popup
 12/19/18 FIX: update message about Diana emerging being successful
+12/19/18 ADD: some logic to make Arvonians turn against Torgoth
+
 
 ---
 {
 
-1/2 ADD: some logic to make Arvonians turn against Torgoth
+1/2 ADD: comms instructions on how phantom whale beacons work
+          and/or maybe a video
 
 1/2 ADD: GM logic for result of Away Team
+         ideas: what if have to get Arvonian AI to participate in the phantom whale ruse?
+            e.g. transmit an Arvonian alert in Arvonian coded message?
 
 1/2 ADD: cloaking device mechanics
+         ideas:
 
-1/2 BUG: in ArtemisMissionEditor
-          Monster AI block "CHASE_SIGNAL" is added to ship "Pha|BeaconSerialNumber|"
+1/2 ADD: WIN condition
+
+2/2 ADD: can we allow replenishing phantom whale beacons?
+
+2/2 FIX: handle GM/Comms joining after start, and still getting the buttons displayed
+
+1/2 AME BUG: didn't save to recent file
 
 }

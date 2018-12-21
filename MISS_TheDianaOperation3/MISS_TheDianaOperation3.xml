@@ -9,6 +9,15 @@
     <!--Initialize the most important variables first so that they will appear on the F7 screen-->
     <!---->
     <set_variable name="BeaconSerialNumber" value="0.0" integer="yes" />
+    <set_variable name="BeaTimeout1" value="0.0" integer="yes" />
+    <set_variable name="BeaTimeout2" value="0.0" integer="yes" />
+    <set_variable name="BeaTimeout3" value="0.0" integer="yes" />
+    <set_variable name="BeaTimeout4" value="0.0" integer="yes" />
+    <set_variable name="BeaTimeout5" value="0.0" integer="yes" />
+    <set_variable name="BeaTimeout6" value="0.0" integer="yes" />
+    <set_variable name="BeaTimeout7" value="0.0" integer="yes" />
+    <set_variable name="BeaTimeout8" value="0.0" integer="yes" />
+    <set_variable name="BeaTimeout9" value="0.0" integer="yes" />
     <!-- ..... To end game on mission success, set GameStatus to 2 -->
     <!-- ..... To end game on mission failure, set GameStatus to 0 -->
     <set_variable name="GameStatus" value="1" />
@@ -67,6 +76,7 @@
     <set_gm_button text="GM/Respawn/Whale Pod 1" />
     <set_gm_button text="GM/Resend Comms/Houston Resummon Ships" />
     <set_gm_button text="GM/Resend Comms/Give Mission" />
+    <set_gm_button text="GM/Break up alliance" />
     <!--.....-->
     <!--..... Anomalies-->
     <create type="Anomaly" pickupType="0" x="92131.0" y="0.0" z="47094.0" />
@@ -131,7 +141,12 @@
     <set_variable name="firstnumber" value="0.0" integer="yes" />
     <set_variable name="secondnumber" value="0.0" integer="yes" />
   </start>
-  <folder_arme name="Debug Mode" id_arme="27459883-7153-49dc-8cdc-060a039bd7af" expanded_arme="" />
+  <folder_arme name="Debug Mode" id_arme="27459883-7153-49dc-8cdc-060a039bd7af" />
+  <event name="GM break up alliance" id_arme="eb357c88-b858-4397-a28f-174f8ab8f543" parent_id_arme="27459883-7153-49dc-8cdc-060a039bd7af">
+    <if_gm_button text="GM/Break up alliance" />
+    <log text="GM broke up Arvonian/Torgoth alliance" />
+    <set_variable name="BreakupAlliance" value="1.0" />
+  </event>
   <folder_arme name="Create Additional Enemy Ships" id_arme="2ad003b4-66f9-451a-93cb-c6f44284c63c" />
   <event name="Difficulty 3+: Large Torgoths" id_arme="36a7fe10-fe2b-449a-ac99-5ec1b72f6390" parent_id_arme="2ad003b4-66f9-451a-93cb-c6f44284c63c">
     <if_difficulty comparator="GREATER_EQUAL" value="3.0" />
@@ -279,7 +294,7 @@
     <create type="monster" monsterType="1" podnumber="3" x="896.0" y="0.0" z="55811.0" angle="270" name="XE02" />
     <create type="monster" monsterType="1" podnumber="3" x="1187.0" y="200.0" z="53922.0" angle="270" name="XE03" />
   </event>
-  <folder_arme name="Task: Dock with Houston Outpost to receive orders" id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed" expanded_arme="" />
+  <folder_arme name="Task: Dock with Houston Outpost to receive orders" id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed" />
   <disabled_event name="Prepare to summon ships" id_arme="8a457d0e-c6d9-420c-9968-8cda224e9d6e" parent_id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed">
     <if_variable name="PlayerShipCount" comparator="GREATER" value="0.0" />
     <if_variable name="TsnCommandSummonedShips" comparator="EQUALS" value="0.0" />
@@ -831,6 +846,7 @@
     <clear_ai name="Pha|BeaconSerialNumber|" />
     <set_monster_tag_data tag_slot="0" name="Pha|BeaconSerialNumber|" sourcetext="Artemis" datetext="Phantom image" />
     <add_ai type="CHASE_SIGNAL" value1="6.0" name="Pha|BeaconSerialNumber|" />
+    <set_variable name="BeaTimeout|BeaconSerialNumber|" value="0.0" integer="yes" />
   </event>
   <event name="Destroy whale if beacon destroyed" id_arme="67eddf09-e045-48e9-abe5-af933f1d283e" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
     <if_exists name="Pha|firstnumber|" />
@@ -838,15 +854,272 @@
     <log text="Destroying phantom whale beacause beacon |firstnumber| destroyed" />
     <destroy name="Pha|firstnumber|" />
   </event>
-  <event name="Destroy beacon if whale destroyed" id_arme="2cb53011-ec6f-4e69-ac58-c23ae694e287" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
-    <if_exists name="Bea|firstnumber|" />
+  <event name="Torgoth destroyed whale" id_arme="7767ee1d-17db-4f89-99d3-2109c07288b3" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
+    <if_variable name="BreakupAlliance" comparator="EQUALS" value="0.0" />
     <if_not_exists name="Pha|firstnumber|" />
-    <log text="Destroying beacon beacause phantom whale |firstnumber| destroyed" />
+    <if_distance name1="TG0|secondnumber|" name2="Bea|firstnumber|" comparator="LESS" value="5000.0" />
+    <if_distance name1="Artemis" name2="Bea|firstnumber|" comparator="GREATER" value="5000.0" />
+    <if_distance name1="Diana" name2="Bea|firstnumber|" comparator="GREATER" value="5000.0" />
+    <log text="TG0|secondnumber| destroyed whale Pha|firstnumber|" />
+    <set_variable name="BreakupAlliance" value="1.0" />
+  </event>
+  <event name="Torgoth destroyed whale" id_arme="1b04eb6b-2ad2-4cb3-8748-fc6a8c3cc4f4" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
+    <if_variable name="BreakupAlliance" comparator="EQUALS" value="0.0" />
+    <if_not_exists name="Pha|firstnumber|" />
+    <if_distance name1="TG0|secondnumber|" name2="Bea|firstnumber|" comparator="LESS" value="5000.0" />
+    <if_not_exists name="Artemis" />
+    <if_distance name1="Diana" name2="Bea|firstnumber|" comparator="GREATER" value="5000.0" />
+    <log text="TG0|secondnumber| destroyed whale Pha|firstnumber|" />
+    <set_variable name="BreakupAlliance" value="1.0" />
+  </event>
+  <event name="Torgoth destroyed whale" id_arme="94bda36f-1b36-4fb7-896a-e3899f660a32" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
+    <if_variable name="BreakupAlliance" comparator="EQUALS" value="0.0" />
+    <if_not_exists name="Pha|firstnumber|" />
+    <if_distance name1="TG0|secondnumber|" name2="Bea|firstnumber|" comparator="LESS" value="5000.0" />
+    <if_distance name1="Artemis" name2="Bea|firstnumber|" comparator="GREATER" value="5000.0" />
+    <if_not_exists name="Diana" />
+    <log text="TG0|secondnumber| destroyed whale Pha|firstnumber|" />
+    <set_variable name="BreakupAlliance" value="1.0" />
+  </event>
+  <event name="Schedule destroying beacon 1" id_arme="b60d6210-8884-4d07-a61c-273bb0af29d2" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
+    <if_exists name="Bea1" />
+    <if_not_exists name="Pha1" />
+    <set_variable name="BeaTimeout1" value="BeaTimeout1+1" integer="yes" />
+    <log text="Scheduling destroying beacon 1..." />
+  </event>
+  <event name="Schedule destroying beacon 2" id_arme="a2a1a729-24ee-45b5-95b6-57df23c06fa7" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
+    <if_exists name="Bea2" />
+    <if_not_exists name="Pha2" />
+    <set_variable name="BeaTimeout2" value="BeaTimeout2+1" integer="yes" />
+    <log text="Scheduling destroying beacon 2..." />
+  </event>
+  <event name="Schedule destroying beacon 3" id_arme="a22b8aef-a365-4e02-b7cf-270a0bed3ae5" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
+    <if_exists name="Bea3" />
+    <if_not_exists name="Pha3" />
+    <set_variable name="BeaTimeout3" value="BeaTimeout3+1" integer="yes" />
+    <log text="Scheduling destroying beacon 3..." />
+  </event>
+  <event name="Schedule destroying beacon 4" id_arme="3491adf1-d8fb-4103-8d89-10779c933e5a" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
+    <if_exists name="Bea4" />
+    <if_not_exists name="Pha4" />
+    <set_variable name="BeaTimeout4" value="BeaTimeout4+1" integer="yes" />
+    <log text="Scheduling destroying beacon 4..." />
+  </event>
+  <event name="Schedule destroying beacon 5" id_arme="16ad979d-7cc2-4f27-b31a-f97e23ee8ab6" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
+    <if_exists name="Bea5" />
+    <if_not_exists name="Pha5" />
+    <set_variable name="BeaTimeout5" value="BeaTimeout5+1" integer="yes" />
+    <log text="Scheduling destroying beacon 5..." />
+  </event>
+  <event name="Schedule destroying beacon 6" id_arme="89c316ad-88bc-4c1b-9c34-683b9bc6ef8d" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
+    <if_exists name="Bea6" />
+    <if_not_exists name="Pha6" />
+    <set_variable name="BeaTimeout6" value="BeaTimeout6+1" integer="yes" />
+    <log text="Scheduling destroying beacon 6..." />
+  </event>
+  <event name="Schedule destroying beacon 7" id_arme="1c1719b6-616e-4ca2-9efd-1df5e373ef6d" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
+    <if_exists name="Bea7" />
+    <if_not_exists name="Pha7" />
+    <set_variable name="BeaTimeout7" value="BeaTimeout7+1" integer="yes" />
+    <log text="Scheduling destroying beacon 7..." />
+  </event>
+  <event name="Schedule destroying beacon 8" id_arme="190cf25d-a10f-4c17-b5f8-11afb64abae3" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
+    <if_exists name="Bea8" />
+    <if_not_exists name="Pha8" />
+    <set_variable name="BeaTimeout8" value="BeaTimeout8+1" integer="yes" />
+    <log text="Scheduling destroying beacon 8..." />
+  </event>
+  <event name="Schedule destroying beacon 9" id_arme="c65190e9-e21c-4e9d-8cf0-2aa33ff89e12" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
+    <if_exists name="Bea9" />
+    <if_not_exists name="Pha9" />
+    <set_variable name="BeaTimeout9" value="BeaTimeout9+1" integer="yes" />
+    <log text="Scheduling destroying beacon 9..." />
+  </event>
+  <event name="Destroy beacon after whale destroyed" id_arme="2cb53011-ec6f-4e69-ac58-c23ae694e287" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
+    <if_exists name="Bea|firstnumber|" />
+    <if_variable name="BeaTimeout|firstnumber|" comparator="GREATER" value="10.0" />
+    <log text="Scheduling destroying beacon beacause phantom whale |firstnumber| was destroyed" />
     <destroy name="Bea|firstnumber|" />
   </event>
   <event name="Keep whale in place" id_arme="2428156e-3f9e-4476-bd13-3a9605aa81aa" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
     <if_exists name="Bea|firstnumber|" />
     <if_exists name="Pha|firstnumber|" />
     <set_relative_position name2="Pha|firstnumber|" distance="0" angle="0" name1="Bea|firstnumber|" />
+  </event>
+  <folder_arme name="Break up alliance" id_arme="8804c4f9-925d-4740-8e06-e036def95c7b" />
+  <event name="Switch side for AB" id_arme="db56dd59-8390-4c24-bcac-e2d165591bd3" parent_id_arme="8804c4f9-925d-4740-8e06-e036def95c7b">
+    <if_exists name="AB0|firstnumber|" />
+    <if_variable name="BreakupAlliance" comparator="GREATER" value="0.0" />
+    <if_object_property property="sideValue" name="AB0|firstnumber|" comparator="NOT" value="2" />
+    <set_side_value value="2" name="AB0|firstnumber|" />
+  </event>
+  <event name="Switch side for AC" id_arme="70a3b5ce-71a8-4c98-a35e-ca2e74d4caa1" parent_id_arme="8804c4f9-925d-4740-8e06-e036def95c7b">
+    <if_exists name="AC0|firstnumber|" />
+    <if_variable name="BreakupAlliance" comparator="GREATER" value="0.0" />
+    <if_object_property property="sideValue" name="AC0|firstnumber|" comparator="NOT" value="2" />
+    <set_side_value value="2" name="AC0|firstnumber|" />
+  </event>
+  <event name="Switch side for A" id_arme="085f7d2c-3f04-4529-bb59-c85a12dcc77b" parent_id_arme="8804c4f9-925d-4740-8e06-e036def95c7b">
+    <if_exists name="A|firstnumber||secondnumber|" />
+    <if_variable name="BreakupAlliance" comparator="GREATER" value="0.0" />
+    <if_object_property property="sideValue" name="A|firstnumber||secondnumber|" comparator="NOT" value="2" />
+    <set_side_value value="2" name="A|firstnumber||secondnumber|" />
+  </event>
+  <event name="Switch side for B" id_arme="66c889ba-06c3-4c36-9133-08c12bd46ac3" parent_id_arme="8804c4f9-925d-4740-8e06-e036def95c7b">
+    <if_exists name="B|firstnumber||secondnumber|" />
+    <if_variable name="BreakupAlliance" comparator="GREATER" value="0.0" />
+    <if_object_property property="sideValue" name="B|firstnumber||secondnumber|" comparator="NOT" value="2" />
+    <set_side_value value="2" name="B|firstnumber||secondnumber|" />
+  </event>
+  <event name="Switch side for C" id_arme="608ca64e-dbb4-4c13-84ae-59287797a456" parent_id_arme="8804c4f9-925d-4740-8e06-e036def95c7b">
+    <if_exists name="C|firstnumber||secondnumber|" />
+    <if_variable name="BreakupAlliance" comparator="GREATER" value="0.0" />
+    <if_object_property property="sideValue" name="C|firstnumber||secondnumber|" comparator="NOT" value="2" />
+    <set_side_value value="2" name="C|firstnumber||secondnumber|" />
+  </event>
+  <event name="Switch side for D" id_arme="2a375188-94ae-4c51-816a-76139367def3" parent_id_arme="8804c4f9-925d-4740-8e06-e036def95c7b">
+    <if_exists name="D|firstnumber||secondnumber|" />
+    <if_variable name="BreakupAlliance" comparator="GREATER" value="0.0" />
+    <if_object_property property="sideValue" name="D|firstnumber||secondnumber|" comparator="NOT" value="2" />
+    <set_side_value value="2" name="D|firstnumber||secondnumber|" />
+  </event>
+  <event name="Switch side for E" id_arme="0b920c89-0d37-4ac5-b4b2-5f7bbdcb59e1" parent_id_arme="8804c4f9-925d-4740-8e06-e036def95c7b">
+    <if_exists name="E|firstnumber||secondnumber|" />
+    <if_variable name="BreakupAlliance" comparator="GREATER" value="0.0" />
+    <if_object_property property="sideValue" name="E|firstnumber||secondnumber|" comparator="NOT" value="2" />
+    <set_side_value value="2" name="E|firstnumber||secondnumber|" />
+  </event>
+  <event name="Switch side for F" id_arme="7380ff14-1b6a-4bb8-a244-d452c16ba029" parent_id_arme="8804c4f9-925d-4740-8e06-e036def95c7b">
+    <if_exists name="F|firstnumber||secondnumber|" />
+    <if_variable name="BreakupAlliance" comparator="GREATER" value="0.0" />
+    <if_object_property property="sideValue" name="F|firstnumber||secondnumber|" comparator="NOT" value="2" />
+    <set_side_value value="2" name="F|firstnumber||secondnumber|" />
+  </event>
+  <event name="Switch side for G" id_arme="fac17591-a8c9-4867-890d-c760edcf7709" parent_id_arme="8804c4f9-925d-4740-8e06-e036def95c7b">
+    <if_exists name="G|firstnumber||secondnumber|" />
+    <if_variable name="BreakupAlliance" comparator="GREATER" value="0.0" />
+    <if_object_property property="sideValue" name="G|firstnumber||secondnumber|" comparator="NOT" value="2" />
+    <set_side_value value="2" name="G|firstnumber||secondnumber|" />
+  </event>
+  <event name="Switch side for H" id_arme="13b66818-80d2-4353-8228-ff5d1bf1c1ee" parent_id_arme="8804c4f9-925d-4740-8e06-e036def95c7b">
+    <if_exists name="H|firstnumber||secondnumber|" />
+    <if_variable name="BreakupAlliance" comparator="GREATER" value="0.0" />
+    <if_object_property property="sideValue" name="H|firstnumber||secondnumber|" comparator="NOT" value="2" />
+    <set_side_value value="2" name="H|firstnumber||secondnumber|" />
+  </event>
+  <event name="Switch side for I" id_arme="614918e3-7329-4c72-91cf-dcce103b6975" parent_id_arme="8804c4f9-925d-4740-8e06-e036def95c7b">
+    <if_exists name="I|firstnumber||secondnumber|" />
+    <if_variable name="BreakupAlliance" comparator="GREATER" value="0.0" />
+    <if_object_property property="sideValue" name="I|firstnumber||secondnumber|" comparator="NOT" value="2" />
+    <set_side_value value="2" name="I|firstnumber||secondnumber|" />
+  </event>
+  <event name="Switch side for J" id_arme="81f8ac6f-1c43-4a53-bcff-d13faebad932" parent_id_arme="8804c4f9-925d-4740-8e06-e036def95c7b">
+    <if_exists name="J|firstnumber||secondnumber|" />
+    <if_variable name="BreakupAlliance" comparator="GREATER" value="0.0" />
+    <if_object_property property="sideValue" name="J|firstnumber||secondnumber|" comparator="NOT" value="2" />
+    <set_side_value value="2" name="J|firstnumber||secondnumber|" />
+  </event>
+  <event name="Switch side for K" id_arme="402e52af-6da5-463d-989f-ac977822e0b4" parent_id_arme="8804c4f9-925d-4740-8e06-e036def95c7b">
+    <if_exists name="K|firstnumber||secondnumber|" />
+    <if_variable name="BreakupAlliance" comparator="GREATER" value="0.0" />
+    <if_object_property property="sideValue" name="K|firstnumber||secondnumber|" comparator="NOT" value="2" />
+    <set_side_value value="2" name="K|firstnumber||secondnumber|" />
+  </event>
+  <event name="Switch side for L" id_arme="823e7967-b312-4595-8e79-9fc7aaf7350b" parent_id_arme="8804c4f9-925d-4740-8e06-e036def95c7b">
+    <if_exists name="L|firstnumber||secondnumber|" />
+    <if_variable name="BreakupAlliance" comparator="GREATER" value="0.0" />
+    <if_object_property property="sideValue" name="L|firstnumber||secondnumber|" comparator="NOT" value="2" />
+    <set_side_value value="2" name="L|firstnumber||secondnumber|" />
+  </event>
+  <event name="Switch side for M" id_arme="c8e787fd-2ff5-4668-86a6-d5e6644682ea" parent_id_arme="8804c4f9-925d-4740-8e06-e036def95c7b">
+    <if_exists name="M|firstnumber||secondnumber|" />
+    <if_variable name="BreakupAlliance" comparator="GREATER" value="0.0" />
+    <if_object_property property="sideValue" name="M|firstnumber||secondnumber|" comparator="NOT" value="2" />
+    <set_side_value value="2" name="M|firstnumber||secondnumber|" />
+  </event>
+  <event name="Switch side for N" id_arme="1ea69d5e-77c6-42c9-9882-e7d702b1ac06" parent_id_arme="8804c4f9-925d-4740-8e06-e036def95c7b">
+    <if_exists name="N|firstnumber||secondnumber|" />
+    <if_variable name="BreakupAlliance" comparator="GREATER" value="0.0" />
+    <if_object_property property="sideValue" name="N|firstnumber||secondnumber|" comparator="NOT" value="2" />
+    <set_side_value value="2" name="N|firstnumber||secondnumber|" />
+  </event>
+  <event name="Switch side for O" id_arme="a243f2c4-0403-4055-af38-c7a0f9db6991" parent_id_arme="8804c4f9-925d-4740-8e06-e036def95c7b">
+    <if_exists name="O|firstnumber||secondnumber|" />
+    <if_variable name="BreakupAlliance" comparator="GREATER" value="0.0" />
+    <if_object_property property="sideValue" name="O|firstnumber||secondnumber|" comparator="NOT" value="2" />
+    <set_side_value value="2" name="O|firstnumber||secondnumber|" />
+  </event>
+  <event name="Switch side for P" id_arme="2e4b464b-cb71-41f9-a65f-d64d4342ab9e" parent_id_arme="8804c4f9-925d-4740-8e06-e036def95c7b">
+    <if_exists name="P|firstnumber||secondnumber|" />
+    <if_variable name="BreakupAlliance" comparator="GREATER" value="0.0" />
+    <if_object_property property="sideValue" name="P|firstnumber||secondnumber|" comparator="NOT" value="2" />
+    <set_side_value value="2" name="P|firstnumber||secondnumber|" />
+  </event>
+  <event name="Switch side for Q" id_arme="516ecce4-e311-4ecb-a682-20cbae6d49fd" parent_id_arme="8804c4f9-925d-4740-8e06-e036def95c7b">
+    <if_exists name="Q|firstnumber||secondnumber|" />
+    <if_variable name="BreakupAlliance" comparator="GREATER" value="0.0" />
+    <if_object_property property="sideValue" name="Q|firstnumber||secondnumber|" comparator="NOT" value="2" />
+    <set_side_value value="2" name="Q|firstnumber||secondnumber|" />
+  </event>
+  <event name="Switch side for R" id_arme="fabbf0df-7e45-45c7-97d2-741f6d000e62" parent_id_arme="8804c4f9-925d-4740-8e06-e036def95c7b">
+    <if_exists name="R|firstnumber||secondnumber|" />
+    <if_variable name="BreakupAlliance" comparator="GREATER" value="0.0" />
+    <if_object_property property="sideValue" name="R|firstnumber||secondnumber|" comparator="NOT" value="2" />
+    <set_side_value value="2" name="R|firstnumber||secondnumber|" />
+  </event>
+  <event name="Switch side for S" id_arme="eb5df3fe-c258-4bdd-9f94-eecdf4fd5a2d" parent_id_arme="8804c4f9-925d-4740-8e06-e036def95c7b">
+    <if_exists name="S|firstnumber||secondnumber|" />
+    <if_variable name="BreakupAlliance" comparator="GREATER" value="0.0" />
+    <if_object_property property="sideValue" name="S|firstnumber||secondnumber|" comparator="NOT" value="2" />
+    <set_side_value value="2" name="S|firstnumber||secondnumber|" />
+  </event>
+  <event name="Switch side for T" id_arme="ae790220-51df-42f0-94dc-d8ea8cdd6b74" parent_id_arme="8804c4f9-925d-4740-8e06-e036def95c7b">
+    <if_exists name="T|firstnumber||secondnumber|" />
+    <if_variable name="BreakupAlliance" comparator="GREATER" value="0.0" />
+    <if_object_property property="sideValue" name="T|firstnumber||secondnumber|" comparator="NOT" value="2" />
+    <set_side_value value="2" name="T|firstnumber||secondnumber|" />
+  </event>
+  <event name="Switch side for U" id_arme="aabecae8-a1c1-4a1a-8875-1af34d8cbcd2" parent_id_arme="8804c4f9-925d-4740-8e06-e036def95c7b">
+    <if_exists name="U|firstnumber||secondnumber|" />
+    <if_variable name="BreakupAlliance" comparator="GREATER" value="0.0" />
+    <if_object_property property="sideValue" name="U|firstnumber||secondnumber|" comparator="NOT" value="2" />
+    <set_side_value value="2" name="U|firstnumber||secondnumber|" />
+  </event>
+  <event name="Switch side for V" id_arme="cb0e9619-aafa-4589-81e7-5cdac77ece82" parent_id_arme="8804c4f9-925d-4740-8e06-e036def95c7b">
+    <if_exists name="V|firstnumber||secondnumber|" />
+    <if_variable name="BreakupAlliance" comparator="GREATER" value="0.0" />
+    <if_object_property property="sideValue" name="V|firstnumber||secondnumber|" comparator="NOT" value="2" />
+    <set_side_value value="2" name="V|firstnumber||secondnumber|" />
+  </event>
+  <event name="Switch side for W" id_arme="b1349c34-e0cf-4a85-b36b-46f732c22666" parent_id_arme="8804c4f9-925d-4740-8e06-e036def95c7b">
+    <if_exists name="W|firstnumber||secondnumber|" />
+    <if_variable name="BreakupAlliance" comparator="GREATER" value="0.0" />
+    <if_object_property property="sideValue" name="W|firstnumber||secondnumber|" comparator="NOT" value="2" />
+    <set_side_value value="2" name="W|firstnumber||secondnumber|" />
+  </event>
+  <event name="Switch side for X" id_arme="1dc6cfde-c30d-48b1-9b89-111a224c8052" parent_id_arme="8804c4f9-925d-4740-8e06-e036def95c7b">
+    <if_exists name="X|firstnumber||secondnumber|" />
+    <if_variable name="BreakupAlliance" comparator="GREATER" value="0.0" />
+    <if_object_property property="sideValue" name="X|firstnumber||secondnumber|" comparator="NOT" value="2" />
+    <set_side_value value="2" name="X|firstnumber||secondnumber|" />
+  </event>
+  <event name="Switch side for Y" id_arme="24b6f1bf-c2a8-430f-85f0-268ba80e4224" parent_id_arme="8804c4f9-925d-4740-8e06-e036def95c7b">
+    <if_exists name="Y|firstnumber||secondnumber|" />
+    <if_variable name="BreakupAlliance" comparator="GREATER" value="0.0" />
+    <if_object_property property="sideValue" name="Y|firstnumber||secondnumber|" comparator="NOT" value="2" />
+    <set_side_value value="2" name="Y|firstnumber||secondnumber|" />
+  </event>
+  <event name="Switch side for Z" id_arme="8a8f4283-fbdd-404f-b059-9215c5f5440d" parent_id_arme="8804c4f9-925d-4740-8e06-e036def95c7b">
+    <if_exists name="Z|firstnumber||secondnumber|" />
+    <if_variable name="BreakupAlliance" comparator="GREATER" value="0.0" />
+    <if_object_property property="sideValue" name="Z|firstnumber||secondnumber|" comparator="NOT" value="2" />
+    <set_side_value value="2" name="Z|firstnumber||secondnumber|" />
+  </event>
+  <event name="Break up alliance" id_arme="d981abb0-0949-4304-a0ca-1fe1d064464b" parent_id_arme="8804c4f9-925d-4740-8e06-e036def95c7b">
+    <!--This is a separate event from "Torgoth destroyed whale" just to facilitate debugging by allowing the GM to trigger it manually-->
+    <if_variable name="BreakupAlliance" comparator="EQUALS" value="1.0" />
+    <log text="Breaking up the Arvonian/Torgoth alliance" />
+    <set_variable name="BreakupAlliance" value="2.0" />
+    <incoming_comms_text from="Arvonian command" sideValue="2" type="ALERT">Because the traitorous Torgoths have ruthlessly destroyed the innocent whale Pha|secondnumber|, we refuse to further participate in an alliance with those infidels!  Let us destroy them!</incoming_comms_text>
   </event>
 </mission_data>
