@@ -230,32 +230,32 @@
   <event name="Report sensor range 33k" id_arme="839700f3-5592-475d-ac17-5aa0aea17490" parent_id_arme="950df5cb-1770-486e-93bc-2cb61e3ceffb">
     <if_object_property property="sensorSetting" comparator="EQUALS" value="1.0" />
     <if_variable name="ReportedSensorRange" comparator="EQUALS" value="0.0" />
-    <if_timer_finished name="StartupDelayBeforeOrders" />
+    <if_timer_finished name="ArtemisStartupDelayBeforeOrders" />
     <set_variable name="ReportedSensorRange" value="1.0" />
     <warning_popup_message message="Sensor range limited to 33k" consoles="S" />
   </event>
   <event name="Report sensor range 16k" id_arme="ce2a3e84-28f1-4442-9bff-78960d1a6424" parent_id_arme="950df5cb-1770-486e-93bc-2cb61e3ceffb">
     <if_object_property property="sensorSetting" comparator="EQUALS" value="2.0" />
     <if_variable name="ReportedSensorRange" comparator="EQUALS" value="0.0" />
-    <if_timer_finished name="StartupDelayBeforeOrders" />
+    <if_timer_finished name="ArtemisStartupDelayBeforeOrders" />
     <set_variable name="ReportedSensorRange" value="1.0" />
     <warning_popup_message message="Sensor range limited to 16k" consoles="S" />
   </event>
   <event name="Report sensor range 11k" id_arme="c98dc60d-87f6-4e3e-8215-ae3a31a06814" parent_id_arme="950df5cb-1770-486e-93bc-2cb61e3ceffb">
     <if_object_property property="sensorSetting" comparator="EQUALS" value="3.0" />
     <if_variable name="ReportedSensorRange" comparator="EQUALS" value="0.0" />
-    <if_timer_finished name="StartupDelayBeforeOrders" />
+    <if_timer_finished name="ArtemisStartupDelayBeforeOrders" />
     <set_variable name="ReportedSensorRange" value="1.0" />
     <warning_popup_message message="Sensor range limited to 11k" consoles="S" />
   </event>
   <event name="Report sensor range 8k" id_arme="5979b578-ffd3-499f-957d-d192fc8b9ced" parent_id_arme="950df5cb-1770-486e-93bc-2cb61e3ceffb">
     <if_object_property property="sensorSetting" comparator="EQUALS" value="4.0" />
     <if_variable name="ReportedSensorRange" comparator="EQUALS" value="0.0" />
-    <if_timer_finished name="StartupDelayBeforeOrders" />
+    <if_timer_finished name="ArtemisStartupDelayBeforeOrders" />
     <set_variable name="ReportedSensorRange" value="1.0" />
     <warning_popup_message message="Sensor range limited to 8k" consoles="S" />
   </event>
-  <folder_arme name="Player Ship initialization" id_arme="bf827f3c-b918-4c21-8798-6c2a331061d1" />
+  <folder_arme name="Player Ship initialization" id_arme="bf827f3c-b918-4c21-8798-6c2a331061d1" expanded_arme="" />
   <event name="Create Player Ship - Artemis" id_arme="77054e94-9150-490c-b841-a94b75764284" parent_id_arme="bf827f3c-b918-4c21-8798-6c2a331061d1">
     <if_exists name="Artemis" />
     <if_variable name="ArtemisInitialized" comparator="EQUALS" value="0" />
@@ -265,7 +265,10 @@
     <set_object_property property="missileStoresMine" value="12" name="IB02" />
     <set_object_property property="missileStoresEMP" value="8" name="IB02" />
     <set_object_property property="missileStoresPShock" value="4" name="IB02" />
-    <set_object_property property="missileStoresBeacon" value="10" name="SB01" />
+    <set_object_property property="missileStoresBeacon" value="0" name="IB02" />
+    <set_object_property property="missileStoresBeacon" value="0" name="Houston Outpost" />
+    <set_object_property property="missileStoresBeacon" value="0" name="SB01" />
+    <set_object_property property="countBea" value="0" name="Artemis" />
     <set_object_property property="positionX" value="20208" name="Artemis" />
     <set_object_property property="positionZ" value="78958" name="Artemis" />
     <set_object_property property="positionY" value="0" name="Artemis" />
@@ -306,91 +309,136 @@
     <create type="monster" monsterType="1" podnumber="3" x="896.0" y="0.0" z="55811.0" angle="270" name="XE02" />
     <create type="monster" monsterType="1" podnumber="3" x="1187.0" y="200.0" z="53922.0" angle="270" name="XE03" />
   </event>
-  <folder_arme name="Task: Dock with Houston Outpost to receive orders" id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed" />
-  <disabled_event name="Prepare to summon ships" id_arme="8a457d0e-c6d9-420c-9968-8cda224e9d6e" parent_id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed">
-    <if_variable name="PlayerShipCount" comparator="GREATER" value="0.0" />
-    <if_variable name="TsnCommandSummonedShips" comparator="EQUALS" value="0.0" />
-    <log text="Delaying before summoning ships" />
-    <set_variable name="TsnCommandSummonedShips" value="1.0" />
-    <set_timer name="StartupDelayBeforeOrders" seconds="10" />
+  <folder_arme name="Task: Diana to dock with Houston Outpost" id_arme="228e7479-d78c-43b9-8d36-67cc88f26a4b" />
+  <event name="Prepare to summon Diana" id_arme="17d429df-4afa-44f0-a545-bb0759aaf7a5" parent_id_arme="228e7479-d78c-43b9-8d36-67cc88f26a4b">
+    <if_exists name="Diana" />
+    <if_variable name="TsnCommandSummonedDiana" comparator="EQUALS" value="0.0" />
+    <log text="Delaying before summoning Diana" />
+    <set_variable name="TsnCommandSummonedDiana" value="1.0" />
+    <set_timer name="DianaStartupDelayBeforeOrders" seconds="10" />
     <set_timer name="WormholeOpeningDelay" seconds="60" />
-  </disabled_event>
-  <event name="Wormhole appears" id_arme="d97e211f-f2ff-49c8-bb52-774d7859c3a4" parent_id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed">
+  </event>
+  <event name="Wormhole appears" id_arme="a8a8cb3c-a35a-4c74-9edf-464681c75eb5" parent_id_arme="228e7479-d78c-43b9-8d36-67cc88f26a4b">
     <if_timer_finished name="WormholeOpeningDelay" />
     <if_not_exists name="Wormhole" />
     <create type="blackHole" x="80945.0" y="50.0" z="18038.0" name="Wormhole" />
     <warning_popup_message message="Wormhole opened!" consoles="S" />
   </event>
-  <disabled_event name="TSN Command summons ships" id_arme="db11b82c-2c75-4dfb-b2e1-fef7eb5c91b4" parent_id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed">
-    <if_variable name="PlayerShipCount" comparator="GREATER" value="0.0" />
-    <if_variable name="TsnCommandSummonedShips" comparator="EQUALS" value="1.0" />
-    <if_timer_finished name="StartupDelayBeforeOrders" />
-    <log text="TSN Command summoned ships" />
-    <warning_popup_message message="Message from TSN Command" consoles="M" />
-    <incoming_comms_text from="TSN Command" type="ALERT">All TSN ships in this sector are directed to dock at Houston Outpost immediately to receive new mission orders.</incoming_comms_text>
-    <set_variable name="TsnCommandSummonedShips" value="2.0" />
-    <set_timer name="ShipsDueAtCommandBase" seconds="600" />
-    <set_timer name="StartupDelayBeforeOrders" seconds="120" />
-  </disabled_event>
-  <disabled_event name="TSN Command summons ships again" id_arme="7c3e3147-e599-4707-afd7-a957d9ce8684" parent_id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed">
-    <if_variable name="PlayerShipCount" comparator="GREATER" value="0.0" />
-    <if_variable name="TsnCommandGaveMission" comparator="EQUALS" value="0.0" />
-    <if_variable name="TsnCommandSummonedShips" comparator="EQUALS" value="2.0" />
-    <if_timer_finished name="StartupDelayBeforeOrders" />
-    <log text="TSN Command summoned ships again" />
-    <warning_popup_message message="Message from TSN Command" consoles="M" />
-    <incoming_comms_text from="TSN Command" type="ALERT">We repeat, all TSN ships in this sector are directed to dock at Houston Outpost immediately to receive new mission orders!</incoming_comms_text>
-    <set_variable name="TsnCommandSummonedShips" value="3.0" />
-  </disabled_event>
-  <disabled_event name="GM summons ships again" id_arme="92f4ecc2-d839-4ba1-b5f4-8d35ddfeeac1" parent_id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed">
-    <if_gm_button text="GM/Resend Comms/Houston Resummon Ships" />
-    <log text="TSN Command summoned ships again" />
-    <warning_popup_message message="Message from TSN Command" consoles="M" />
-    <incoming_comms_text from="TSN Command" type="ALERT">We repeat, all TSN ships in this sector are directed to dock at Houston Outpost immediately to receive new mission orders!</incoming_comms_text>
-    <set_variable name="TsnCommandSummonedShips" value="3.0" />
-    <set_timer name="ShipsDueAtCommandBase" seconds="300" />
-  </disabled_event>
-  <disabled_event name="Task Succeeded - 1 Ship Docked" id_arme="179e7ae6-25f8-46c5-8916-6995e3c73883" parent_id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed">
-    <if_variable name="PlayerShipCount" comparator="EQUALS" value="1.0" />
-    <if_variable name="TsnCommandGaveMission" comparator="EQUALS" value="0.0" />
-    <if_distance name1="Diana" name2="Houston Outpost" comparator="LESS_EQUAL" value="DockedRange" />
-    <if_docked name="Houston Outpost" />
-    <log text="TSN Command issued mission orders" />
-    <incoming_comms_text from="TSN Command" type="SIDE">The TSN Diana recently went on a secret mission into enemy territory beyond the asteroid belt to scout out a recently discovered unstable wormhole. Unfortunately, all contact from the Diana has since been lost. Your mission is to find out what happened to her, and return her to a TSN station if possible.  If not, make sure she is destroyed.  We cannot risk her falling into enemy hands.</incoming_comms_text>
-    <set_variable name="TsnCommandGaveMission" value="1.0" />
-  </disabled_event>
-  <disabled_event name="Task Succeeded - 2 Ships Docked" id_arme="3c75cb0b-7be9-4c70-b4da-c32d8d05e60c" parent_id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed">
-    <if_variable name="PlayerShipCount" comparator="EQUALS" value="2.0" />
-    <if_variable name="TsnCommandGaveMission" comparator="EQUALS" value="0.0" />
-    <if_distance name1="Artemis" name2="Houston Outpost" comparator="LESS_EQUAL" value="DockedRange*1.6" />
-    <if_distance name1="Diana" name2="Houston Outpost" comparator="LESS_EQUAL" value="DockedRange*1.6" />
-    <if_docked name="Houston Outpost" />
-    <log text="TSN Command issued mission orders" />
-    <incoming_comms_text from="TSN Command" type="SIDE">The TSN Diana recently went on a secret mission into enemy territory beyond the asteroid belt to scout out a recently discovered unstable wormhole. Unfortunately, all contact from the Diana has since been lost. Your mission is to find out what happened to her, and return her to a TSN station if possible.  If not, make sure she is destroyed.  We cannot risk her falling into enemy hands.</incoming_comms_text>
-    <set_variable name="TsnCommandGaveMission" value="1.0" />
-  </disabled_event>
-  <disabled_event name="GM give mission" id_arme="c8c38a14-899f-4b30-9010-52298c0fde64" parent_id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed">
-    <if_gm_button text="GM/Resend Comms/Give Mission" />
-    <log text="GM gave mission" />
-    <incoming_comms_text from="TSN Command" type="SIDE">The TSN Diana recently went on a secret mission into enemy territory beyond the asteroid belt to scout out a recently discovered unstable wormhole. Unfortunately, all contact from the Diana has since been lost. Your mission is to find out what happened to her, and return her to a TSN station if possible.  If not, make sure she is destroyed.  We cannot risk her falling into enemy hands.</incoming_comms_text>
-    <set_variable name="TsnCommandGaveMission" value="1.0" />
-  </disabled_event>
-  <disabled_event name="Mission Failed - Friendly Base Destroyed" id_arme="a179a5ff-c09e-45d6-b572-786529a3e479" parent_id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed">
+  <event name="TSN Command summons Diana" id_arme="3db4ce4b-ade1-4de1-b48c-5a4becf81f5f" parent_id_arme="228e7479-d78c-43b9-8d36-67cc88f26a4b">
+    <if_exists name="Diana" />
+    <if_variable name="TsnCommandSummonedDiana" comparator="EQUALS" value="1.0" />
+    <if_timer_finished name="DianaStartupDelayBeforeOrders" />
+    <log text="TSN Command summoned Diana" />
+    <warning_popup_message message="Message from TSN Command" consoles="M" name="Diana" />
+    <incoming_comms_text from="TSN Command" sideValue="2" type="ALERT">Diana, please dock at Houston Outpost immediately to receive new mission orders.</incoming_comms_text>
+    <set_variable name="TsnCommandSummonedDiana" value="2.0" />
+    <set_timer name="DianaStartupDelayBeforeOrders" seconds="120" />
+  </event>
+  <event name="TSN Command summons Diana again" id_arme="e8590e93-159e-4b79-8edf-524bbec18c99" parent_id_arme="228e7479-d78c-43b9-8d36-67cc88f26a4b">
+    <if_exists name="Diana" />
+    <if_variable name="TsnCommandGaveDianaMission" comparator="EQUALS" value="0.0" />
+    <if_variable name="TsnCommandSummonedDiana" comparator="EQUALS" value="2.0" />
+    <if_timer_finished name="DianaStartupDelayBeforeOrders" />
+    <log text="TSN Command summoned Diana again" />
+    <warning_popup_message message="Message from TSN Command" consoles="M" name="Diana" />
+    <incoming_comms_text from="TSN Command" type="ALERT">Diana, we repeat, you are instructed to dock at Houston Outpost immediately to receive new mission orders!</incoming_comms_text>
+    <set_variable name="TsnCommandSummonedDiana" value="3.0" />
+  </event>
+  <event name="GM summons Diana again" id_arme="f2f7b4ef-3f5b-4bfe-9ef7-21acce223130" parent_id_arme="228e7479-d78c-43b9-8d36-67cc88f26a4b">
+    <if_gm_button text="GM/Resend Comms/Houston Resummon Diana" />
+    <log text="GM summoned Diana again" />
+    <warning_popup_message message="Message from TSN Command" consoles="M" name="Diana" />
+    <incoming_comms_text from="TSN Command" type="ALERT">Diana, We repeat, you are instructed to dock at Houston Outpost immediately to receive new mission orders!</incoming_comms_text>
+    <set_variable name="TsnCommandSummonedDiana" value="3.0" />
+  </event>
+  <event name="Task Succeeded - Diana Docked" id_arme="19a6197b-51d7-4614-bb8d-69dee98f36f0" parent_id_arme="228e7479-d78c-43b9-8d36-67cc88f26a4b">
+    <if_exists name="Diana" />
+    <if_variable name="TsnCommandGaveDianaMission" comparator="EQUALS" value="0.0" />
+    <if_docked player_name="Diana" name="Houston Outpost" />
+    <log text="Houston Outpost issued mission orders to Diana" />
+    <incoming_comms_text from="TSN Command" type="ALERT">The TSN Diana recently went on a secret mission into enemy territory beyond the asteroid belt to scout out a recently discovered unstable wormhole. Unfortunately, all contact from the Diana has since been lost. Your mission is to find out what happened to her, and return her to a TSN station if possible.  If not, make sure she is destroyed.  We cannot risk her falling into enemy hands.</incoming_comms_text>
+    <set_variable name="TsnCommandGaveDianaMission" value="1.0" />
+  </event>
+  <event name="GM give Diana mission" id_arme="606c8e51-084d-42ba-bc5f-95be3479432d" parent_id_arme="228e7479-d78c-43b9-8d36-67cc88f26a4b">
+    <if_gm_button text="GM/Resend Comms/Give Diana Mission" />
+    <log text="GM gave Diana mission" />
+    <incoming_comms_text from="TSN Command" type="ALERT">The TSN Diana recently went on a secret mission into enemy territory beyond the asteroid belt to scout out a recently discovered unstable wormhole. Unfortunately, all contact from the Diana has since been lost. Your mission is to find out what happened to her, and return her to a TSN station if possible.  If not, make sure she is destroyed.  We cannot risk her falling into enemy hands.</incoming_comms_text>
+    <set_variable name="TsnCommandGaveDianaMission" value="1.0" />
+  </event>
+  <event name="Houston Outpost gives instruction" id_arme="7b1202cf-4d8e-43fd-921c-80ba473fb5d5" parent_id_arme="228e7479-d78c-43b9-8d36-67cc88f26a4b">
+    <if_variable name="TsnCommandGaveDianaMission" comparator="EQUALS" value="1.0" />
+    <incoming_comms_text from="TSN Command" type="ALERT">The TSN Diana recently went on a secret mission into enemy territory beyond the asteroid belt to scout out a recently discovered unstable wormhole. Unfortunately, all contact from the Diana has since been lost. Your mission is to find out what happened to her, and return her to a TSN station if possible.  If not, make sure she is destroyed.  We cannot risk her falling into enemy hands.</incoming_comms_text>
+    <set_variable name="TsnCommandGaveDianaMission" value="2.0" />
+  </event>
+  <event name="Mission Failed - Houston Outpost Destroyed" id_arme="80b4f834-f162-4dd3-a00f-a164b4756db9" parent_id_arme="228e7479-d78c-43b9-8d36-67cc88f26a4b">
     <if_variable name="GameStatus" comparator="EQUALS" value="1" />
-    <if_variable name="TsnCommandGaveMission" comparator="EQUALS" value="0" />
+    <if_variable name="TsnCommandGaveDianaMission" comparator="EQUALS" value="0" />
     <if_not_exists name="Houston Outpost" />
-    <log text="Houston Outpost destroyed before giving orders" />
-    <incoming_comms_text from="TSN Command" type="SIDE">Houston Outpost was destroyed!</incoming_comms_text>
+    <log text="Houston Outpost destroyed before giving orders to Diana" />
+    <incoming_comms_text from="TSN Command" type="ALERT">Houston Outpost was destroyed!</incoming_comms_text>
     <set_variable name="GameStatus" value="0" />
-  </disabled_event>
-  <disabled_event name="Mission Failed - Out of time" id_arme="875dc7e9-9018-49d1-8750-bd76aa7f387d" parent_id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed">
-    <if_variable name="TsnCommandGaveMission" comparator="EQUALS" value="0" />
-    <if_timer_finished name="ShipsDueAtCommandBase" />
-    <if_variable name="GameStatus" comparator="EQUALS" value="1.0" />
-    <log text="Did not receive missions orders in time" />
-    <incoming_comms_text from="TSN Command" type="SIDE">You did not follow orders from TSN Command in time!</incoming_comms_text>
+  </event>
+  <folder_arme name="Task: Artemis to dock with SB01 to get beacons" id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed" expanded_arme="" />
+  <event name="Prepare to summon Artemis" id_arme="8a457d0e-c6d9-420c-9968-8cda224e9d6e" parent_id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed">
+    <if_exists name="Artemis" />
+    <if_variable name="TsnCommandSummonedArtemis" comparator="EQUALS" value="0.0" />
+    <log text="Delaying before summoning Artemis" />
+    <set_variable name="TsnCommandSummonedArtemis" value="1.0" />
+    <set_timer name="ArtemisStartupDelayBeforeOrders" seconds="10" />
+  </event>
+  <event name="TSN Command summons Artemis" id_arme="db11b82c-2c75-4dfb-b2e1-fef7eb5c91b4" parent_id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed">
+    <if_exists name="Artemis" />
+    <if_variable name="TsnCommandSummonedArtemis" comparator="EQUALS" value="1.0" />
+    <if_timer_finished name="ArtemisStartupDelayBeforeOrders" />
+    <log text="TSN Command summoned Artemis" />
+    <warning_popup_message message="Message from TSN Command" consoles="M" name="Artemis" />
+    <incoming_comms_text from="TSN Command" sideValue="2" type="ALERT">Artemis, please dock at SB01 immediately to receive new mission orders.</incoming_comms_text>
+    <set_variable name="TsnCommandSummonedArtemis" value="2.0" />
+    <set_timer name="ArtemisStartupDelayBeforeOrders" seconds="120" />
+  </event>
+  <event name="TSN Command summons Artemis again" id_arme="7c3e3147-e599-4707-afd7-a957d9ce8684" parent_id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed">
+    <if_exists name="Artemis" />
+    <if_variable name="TsnCommandGaveArtemisMission" comparator="EQUALS" value="0.0" />
+    <if_variable name="TsnCommandSummonedArtemis" comparator="EQUALS" value="2.0" />
+    <if_timer_finished name="ArtemisStartupDelayBeforeOrders" />
+    <log text="TSN Command summoned Artemis again" />
+    <warning_popup_message message="Message from TSN Command" consoles="M" name="Artemis" />
+    <incoming_comms_text from="TSN Command" type="ALERT">Artemis, we repeat, you are instructed to dock at SB01 immediately to receive new mission orders!</incoming_comms_text>
+    <set_variable name="TsnCommandSummonedArtemis" value="3.0" />
+  </event>
+  <event name="GM summons Artemis again" id_arme="92f4ecc2-d839-4ba1-b5f4-8d35ddfeeac1" parent_id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed">
+    <if_gm_button text="GM/Resend Comms/SB01 Resummon Artemis" />
+    <log text="GM summoned Artemis again" />
+    <warning_popup_message message="Message from TSN Command" consoles="M" name="Artemis" />
+    <incoming_comms_text from="TSN Command" type="ALERT">Artemis, We repeat, you are instructed to dock at Houston Outpost immediately to receive new mission orders!</incoming_comms_text>
+    <set_variable name="TsnCommandSummonedArtemis" value="3.0" />
+  </event>
+  <event name="Task Succeeded - Artemis Docked" id_arme="9193c40a-87ab-4609-a9bb-191f6cd6785b" parent_id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed">
+    <if_exists name="Artemis" />
+    <if_variable name="TsnCommandGaveArtemisMission" comparator="EQUALS" value="0.0" />
+    <if_docked player_name="Artemis" name="SB01" />
+    <log text="SB01 issued mission orders to Artemis" />
+    <set_variable name="TsnCommandGaveArtemisMission" value="1.0" />
+  </event>
+  <event name="GM give Artemis mission" id_arme="c8c38a14-899f-4b30-9010-52298c0fde64" parent_id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed">
+    <if_gm_button text="GM/Resend Comms/Give Artemis Mission" />
+    <log text="GM gave Artemis mission" />
+    <set_variable name="TsnCommandGaveArtemisMission" value="1.0" />
+  </event>
+  <event name="SB01 gives instruction" id_arme="902bcf6e-6856-47d7-b62c-0a6ac838c953" parent_id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed">
+    <if_variable name="TsnCommandGaveArtemisMission" comparator="EQUALS" value="1.0" />
+    <incoming_comms_text from="TSN Command" type="ALERT">Artemis, we have retrofitted your shuttle bay with an experimental holographic beacon deployment system.  Beacons deployed by this experimental system will generate holographic signals that will appear to sensors and viewscreens as if they were space whales.  Intelligence indicates that all Arvonians will attempt to steer clear of space whales by at least 5000m, while Torgoths are known to actively hunt them down if within 5000m, even in preference to attacking our ships.  It is hoped that, if you use them intelligently, these can give you key tactical advantages. Your Comms officer can direct them to be deployed out your rear shuttle bay door, similar to mines.</incoming_comms_text>
+    <set_variable name="TsnCommandGaveArtemisMission" value="2.0" />
+    <set_object_property property="missileStoresBeacon" value="8" name="SB01" />
+  </event>
+  <event name="Mission Failed - SB01 Destroyed" id_arme="a179a5ff-c09e-45d6-b572-786529a3e479" parent_id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed">
+    <if_variable name="GameStatus" comparator="EQUALS" value="1" />
+    <if_variable name="TsnCommandGaveArtemisMission" comparator="EQUALS" value="0" />
+    <if_not_exists name="SB01" />
+    <log text="SB01 destroyed before giving Artemis orders" />
+    <incoming_comms_text from="TSN Command" type="ALERT">SB01 was destroyed!</incoming_comms_text>
     <set_variable name="GameStatus" value="0" />
-  </disabled_event>
+  </event>
   <folder_arme name="Realm: Artemis outside Wormhole" id_arme="13c61707-a8d2-4e51-8b1f-b43e332d0ab5" />
   <event name="Proximity Alert" id_arme="f0d2db3f-8e03-4e0f-b244-2de1b35fad6a" parent_id_arme="13c61707-a8d2-4e51-8b1f-b43e332d0ab5">
     <if_variable name="ArtemisWormholeAlert" comparator="EQUALS" value="0.0" />
@@ -828,8 +876,9 @@
     <set_variable name="firstnumber" value="0.0" integer="yes" />
     <set_variable name="secondnumber" value="0.0" integer="yes" />
   </event>
-  <folder_arme name="Phantom whale beacon" id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96" />
+  <folder_arme name="Phantom whale beacon" id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96" expanded_arme="" />
   <event name="Show button" id_arme="483b8827-f8cb-44fb-aa4a-320ef2327272" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
+    <if_variable name="TsnCommandGaveArtemisMission" comparator="EQUALS" value="2.0" />
     <if_variable name="BeaconButtonShown" comparator="EQUALS" value="0.0" />
     <if_object_property property="countBea" name="Artemis" comparator="GREATER" value="0" />
     <!--TODO: only show button to Artemis-->

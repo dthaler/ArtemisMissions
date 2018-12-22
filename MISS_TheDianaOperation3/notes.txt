@@ -61,3 +61,13 @@ Canon question: how did this end?
 
 https://artemis.forumchitchat.com/post/v2-7-stub-shuttle-docking-with-station-with-cargo-transport-9936645?pid=1306326841#post1306326841
     lets a shuttle dock with a station somehow
+
+Q: when should we get instructions on how phantom whale beacons work
+             A) Start with some on board [NO: this doesn't let use video or comms message for reference]
+             B) Start with 0 but some on station ready for pickup and get instructions then
+                    This lets us use a video/text
+                    Most interesting if base has a decent number at beginning
+             C) Start with 0 beacons ready but base produces them over time
+                    This lets us use a video/text
+                    But is less interesting since have to battle without them
+             D) Get them after Away Team mission [NO: this is less interesting]
