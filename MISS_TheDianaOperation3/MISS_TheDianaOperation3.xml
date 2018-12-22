@@ -309,19 +309,19 @@
     <create type="monster" monsterType="1" podnumber="3" x="896.0" y="0.0" z="55811.0" angle="270" name="XE02" />
     <create type="monster" monsterType="1" podnumber="3" x="1187.0" y="200.0" z="53922.0" angle="270" name="XE03" />
   </event>
-  <folder_arme name="Task: Diana to dock with Houston Outpost" id_arme="228e7479-d78c-43b9-8d36-67cc88f26a4b" />
+  <folder_arme name="Task: Diana to dock with Houston Outpost" id_arme="228e7479-d78c-43b9-8d36-67cc88f26a4b" expanded_arme="" />
   <event name="Prepare to summon Diana" id_arme="17d429df-4afa-44f0-a545-bb0759aaf7a5" parent_id_arme="228e7479-d78c-43b9-8d36-67cc88f26a4b">
     <if_exists name="Diana" />
     <if_variable name="TsnCommandSummonedDiana" comparator="EQUALS" value="0.0" />
     <log text="Delaying before summoning Diana" />
     <set_variable name="TsnCommandSummonedDiana" value="1.0" />
-    <set_timer name="DianaStartupDelayBeforeOrders" seconds="10" />
-    <set_timer name="WormholeOpeningDelay" seconds="60" />
+    <set_timer name="WormholeOpeningDelay" seconds="10" />
   </event>
   <event name="Wormhole appears" id_arme="a8a8cb3c-a35a-4c74-9edf-464681c75eb5" parent_id_arme="228e7479-d78c-43b9-8d36-67cc88f26a4b">
     <if_timer_finished name="WormholeOpeningDelay" />
     <if_not_exists name="Wormhole" />
     <create type="blackHole" x="80945.0" y="50.0" z="18038.0" name="Wormhole" />
+    <set_timer name="DianaStartupDelayBeforeOrders" seconds="10" />
     <warning_popup_message message="Wormhole opened!" consoles="S" />
   </event>
   <event name="TSN Command summons Diana" id_arme="3db4ce4b-ade1-4de1-b48c-5a4becf81f5f" parent_id_arme="228e7479-d78c-43b9-8d36-67cc88f26a4b">
@@ -876,7 +876,7 @@
     <set_variable name="firstnumber" value="0.0" integer="yes" />
     <set_variable name="secondnumber" value="0.0" integer="yes" />
   </event>
-  <folder_arme name="Phantom whale beacon" id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96" expanded_arme="" />
+  <folder_arme name="Phantom whale beacon" id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96" />
   <event name="Show button" id_arme="483b8827-f8cb-44fb-aa4a-320ef2327272" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
     <if_variable name="TsnCommandGaveArtemisMission" comparator="EQUALS" value="2.0" />
     <if_variable name="BeaconButtonShown" comparator="EQUALS" value="0.0" />

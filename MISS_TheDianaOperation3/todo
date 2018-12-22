@@ -5,6 +5,7 @@
 12/19/18 ADD: some logic to make Arvonians turn against Torgoth
 12/20/18 ADD: win condition
 12/21/18 ADD: comms instructions on how phantom whale beacons work
+12/21/18 FIX: decide when wormhole opens
 
 ---
 {
@@ -13,6 +14,7 @@
          Diana x2:
             Task Succeeded - Diana Docked
             GM give Diana mission
+            * mention wormhole opening in mission instructions
 
 1/2 ADD: GM logic for result of Away Team
          ideas: what if have to get Arvonian AI to participate in the phantom whale ruse?
@@ -21,13 +23,11 @@
 1/2 ADD: cloaking device mechanics
          ideas:
 
-1/2 FIX: decide when wormhole opens
-
 1/2 FIX: handle GM/Comms joining after start, and still getting the buttons displayed
          Q: can you have multiple events triggered from expiration of same timer?
             (if not, then add potential problems warning)
 
-1/2 FIX: only show whale beacon to Artemis, not Diana
+1/2 FIX: only show whale beacon button to Artemis, not Diana
 
 ---
 
