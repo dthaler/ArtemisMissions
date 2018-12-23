@@ -255,7 +255,7 @@
     <set_variable name="ReportedSensorRange" value="1.0" />
     <warning_popup_message message="Sensor range limited to 8k" consoles="S" />
   </event>
-  <folder_arme name="Player Ship initialization" id_arme="bf827f3c-b918-4c21-8798-6c2a331061d1" expanded_arme="" />
+  <folder_arme name="Player Ship initialization" id_arme="bf827f3c-b918-4c21-8798-6c2a331061d1" />
   <event name="Create Player Ship - Artemis" id_arme="77054e94-9150-490c-b841-a94b75764284" parent_id_arme="bf827f3c-b918-4c21-8798-6c2a331061d1">
     <if_exists name="Artemis" />
     <if_variable name="ArtemisInitialized" comparator="EQUALS" value="0" />
@@ -309,7 +309,7 @@
     <create type="monster" monsterType="1" podnumber="3" x="896.0" y="0.0" z="55811.0" angle="270" name="XE02" />
     <create type="monster" monsterType="1" podnumber="3" x="1187.0" y="200.0" z="53922.0" angle="270" name="XE03" />
   </event>
-  <folder_arme name="Task: Diana to dock with Houston Outpost" id_arme="228e7479-d78c-43b9-8d36-67cc88f26a4b" expanded_arme="" />
+  <folder_arme name="Task: Diana to dock with Houston Outpost" id_arme="228e7479-d78c-43b9-8d36-67cc88f26a4b" />
   <event name="Prepare to summon Diana" id_arme="17d429df-4afa-44f0-a545-bb0759aaf7a5" parent_id_arme="228e7479-d78c-43b9-8d36-67cc88f26a4b">
     <if_exists name="Diana" />
     <if_variable name="TsnCommandSummonedDiana" comparator="EQUALS" value="0.0" />
@@ -378,7 +378,7 @@
     <incoming_comms_text from="TSN Command" type="ALERT">Houston Outpost was destroyed!</incoming_comms_text>
     <set_variable name="GameStatus" value="0" />
   </event>
-  <folder_arme name="Task: Artemis to dock with SB01 to get beacons" id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed" expanded_arme="" />
+  <folder_arme name="Task: Artemis to dock with SB01 to get beacons" id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed" />
   <event name="Prepare to summon Artemis" id_arme="8a457d0e-c6d9-420c-9968-8cda224e9d6e" parent_id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed">
     <if_exists name="Artemis" />
     <if_variable name="TsnCommandSummonedArtemis" comparator="EQUALS" value="0.0" />
@@ -430,6 +430,7 @@
     <incoming_comms_text from="TSN Command" type="ALERT">Artemis, we have retrofitted your shuttle bay with an experimental holographic beacon deployment system.  Beacons deployed by this experimental system will generate holographic signals that will appear to sensors and viewscreens as if they were space whales.  Intelligence indicates that all Arvonians will attempt to steer clear of space whales by at least 5000m, while Torgoths are known to actively hunt them down if within 5000m, even in preference to attacking our ships.  It is hoped that, if you use them intelligently, these can give you key tactical advantages. Your Comms officer can direct them to be deployed out your rear shuttle bay door, similar to mines.</incoming_comms_text>
     <set_variable name="TsnCommandGaveArtemisMission" value="2.0" />
     <set_object_property property="missileStoresBeacon" value="8" name="SB01" />
+    <set_timer name="ButtonRefreshTimer" seconds="60" />
   </event>
   <event name="Mission Failed - SB01 Destroyed" id_arme="a179a5ff-c09e-45d6-b572-786529a3e479" parent_id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed">
     <if_variable name="GameStatus" comparator="EQUALS" value="1" />
@@ -877,18 +878,39 @@
     <set_variable name="secondnumber" value="0.0" integer="yes" />
   </event>
   <folder_arme name="Phantom whale beacon" id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96" />
+  <event name="Start refreshing button" id_arme="3cac636d-7052-4857-bef8-fe8b53d4ad85" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
+    <if_variable name="TsnCommandGaveArtemisMission" comparator="EQUALS" value="2.0" />
+    <if_timer_finished name="ButtonRefreshTimer" />
+    <set_variable name="BeaconButtonRefreshed" value="0.0" />
+    <set_timer name="ButtonRefreshTimer" seconds="30" />
+    <clear_comms_button text="Drop whale beacon" />
+    <set_variable name="BeaconButtonShown" value="0.0" />
+  </event>
   <event name="Show button" id_arme="483b8827-f8cb-44fb-aa4a-320ef2327272" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
     <if_variable name="TsnCommandGaveArtemisMission" comparator="EQUALS" value="2.0" />
-    <if_variable name="BeaconButtonShown" comparator="EQUALS" value="0.0" />
+    <if_variable name="BeaconButtonShown" comparator="EQUALS" value="1.0" />
+    <if_object_property property="sideValue" name="Artemis" comparator="NOT" value="2" />
     <if_object_property property="countBea" name="Artemis" comparator="GREATER" value="0" />
-    <!--TODO: only show button to Artemis-->
     <log text="Showing &quot;Drop whale beacon&quot; button" />
-    <clear_comms_button text="Drop whale beacon" />
-    <set_comms_button text="Drop whale beacon" />
+    <set_comms_button text="Drop whale beacon" sideValue="3" />
+    <set_variable name="BeaconButtonShown" value="2.0" />
+  </event>
+  <event name="Restore Artemis side" id_arme="2565f472-5deb-4f4e-be74-832ab73dce67" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
+    <if_exists name="Artemis" />
+    <if_object_property property="sideValue" name="Artemis" comparator="NOT" value="2" />
+    <set_object_property property="sideValue" value="2" name="Artemis" />
+  </event>
+  <event name="Change Artemis side" id_arme="36d1ebf2-17ef-4ad2-9940-92f23b430c7b" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
+    <if_variable name="TsnCommandGaveArtemisMission" comparator="EQUALS" value="2.0" />
+    <if_variable name="BeaconButtonRefreshed" comparator="EQUALS" value="0.0" />
+    <if_object_property property="sideValue" name="Artemis" comparator="EQUALS" value="2" />
+    <if_object_property property="countBea" name="Artemis" comparator="GREATER" value="0" />
+    <set_object_property property="sideValue" value="3" name="Artemis" />
+    <set_variable name="BeaconButtonRefreshed" value="1.0" />
     <set_variable name="BeaconButtonShown" value="1.0" />
   </event>
   <event name="Hide button" id_arme="72e7b351-9d37-4a40-b8f4-17efb88df61b" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
-    <if_variable name="BeaconButtonShown" comparator="EQUALS" value="1.0" />
+    <if_variable name="BeaconButtonShown" comparator="GREATER" value="0.0" />
     <if_object_property property="countBea" name="Artemis" comparator="EQUALS" value="0" />
     <log text="Removing &quot;Drop whale beacon&quot; button" />
     <clear_comms_button text="Drop whale beacon" />
