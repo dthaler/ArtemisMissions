@@ -23,7 +23,38 @@
             e.g. transmit an Arvonian alert in Arvonian coded message?
 
 1/2 ADD: cloaking device mechanics
-         ideas:
+         overlay a generic mesh 10% larger, with same shape as Light Cruiser but with a skybox texture
+         a) remove CHASE_PLAYER block (but keep CHASE_ANGER)
+         b) set CHASE_PLAYER to a very short radius
+
+            * IF Diana cloak on
+               AND Diana is nearby
+               AND Artemis not nearby
+               AND cloakedFromID is false
+              THEN
+               remove CHASE_PLAYER block
+               set cloakedFromID to true
+            * IF Diana cloak off
+               AND cloakedFromID is true
+              THEN
+               add CHASE_PLAYER block
+               set cloakedFromID to false
+            * IF Diana is not nearby
+               AND cloakedFromID is true
+              THEN
+               add CHASE_PLAYER block
+               set cloakedFromID to false
+            * IF Artemis is nearby
+               AND cloakedFromID is true
+              THEN
+               add CHASE_PLAYER block
+               set cloakedFromID to false
+
+         Another option is to change player side to enemy when engage cloak
+         Cloak should have a short timer (e.g., 15 seconds, with a 30 seconds recharge)
+
+         Let's first experiment with the side value and see what the effect is
+            * Add comms button to Diana to Engage Clock
 
 ---
 

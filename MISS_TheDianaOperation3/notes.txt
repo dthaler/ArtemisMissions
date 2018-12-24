@@ -1,8 +1,15 @@
 Idea: allow away team to do things that give upgrades (anomalies) to the ship
+	Double heat loss caused by coolant (5m)
+	Triple scanning speed (5m)
+	100% buff to beam recharge rate (5m)
+	100% buff to warp/impulse speed (5m)
+	300% buff to shield recharge rate (5m)
+		Maybe let comms order a choice of these upgrades from station
 Idea: allow away team to do things that determine what type of ship you get initially
       or how much it starts with
 
-Question: How did the planet get trapped in the Nexus?  Was the Diana part of the cause?
+Question: How did the planet get trapped in the Nexus?  (A: Nexus formed by space/time rift)
+	Was the Diana part of the cause? (A: Yes)
 
 Should the Crew get to start in the Diana with all the buffs of previous years? (plus repairs)
     Gravity well dampener
@@ -19,6 +26,20 @@ Should the Crew get to start in the Diana with all the buffs of previous years? 
     Whale attractor:
         We have analyzed the Cetrocite device schematic from the Diana.  Our research indicates 
         that such a device might be able to attract space whales within a range of about 25k.
+	"The Diana's computer contains detailed schematics for a prototype Cetrocite device, 
+	which surely must be related to its secret mission."
+	"We have analyzed the Cetrocite device schematic from the Diana.  Our research indicates 
+	that such a device might be able to attract space whales within a range of about 25k"
+    Antigrav:
+        "SB01 has a prototype shuttle that can enter the wormhole."
+    End:
+    	"Good work!  The Arvonians have abandoned their attack on DS1, at least for now.  The 
+	TSN Diana is also safe and we can now complete the renovations on her to prepare to return 
+	her to service again.^^The AI that took over the Diana seems to be of Arvonian origin, 
+	and was apparently dormant in a damaged memory bank long before the Diana was towed here 
+	to DS1.  Recent repairs to the Diana must have reawakened it.  It seems possible that it 
+	was somehow connected to the Diana's original fate from which it was rescued during the 
+	recent Diana Operation."
 
 Is there a way for a mission to test for when a specific upgrade is triggered?
     mission 1 used Cetrocite Crystals and a video from Colin Chick
@@ -71,3 +92,116 @@ Q: when should we get instructions on how phantom whale beacons work
                     This lets us use a video/text
                     But is less interesting since have to battle without them
              D) Get them after Away Team mission [NO: this is less interesting]
+
+We want a two-ship mission: Artemis and Diana, potentially with fighters and/or shuttles
+	What ship type was Diana? Ans: Lt Cruiser
+	What ship type was Artemis? Battleship?
+
+Mission 3 starts at a station where Diana and Artemis are both docked (to minimize time to briefing)
+	Mission initially gives results of AI interrogation, e.g.:
+		Diana had new experimental cloaking device (secret)
+		Diana was on mission to get to Elysia
+			[related to whale attraction & cetrocite]
+		Arvonian AI had infected Diana before the crash
+			Maybe the AI originated from Elysia?
+		AI tried to sabotage the device, and something went wrong, creating the wormhole
+			interaction between device, planet [cetrocite], and AI
+		Diana crashed on Elysia and deactivated the AI
+		[unrelated to whale attraction & cetrocite?]
+	Secretly, the motivation is to create a blackhole/wormhole construction device
+		scientists need to analyze the cetrocite field around Elysia to try to recreate it
+		(Diana's records are too damaged so that info was lost, either need to re-record or
+		possibly get from crashed Ceres?)
+	Ethical Q: can device be used to create a blackhole/wormhole? or should it be destroyed?
+		result 1: returned to TSN
+		result 2: captured by Arvonians
+		result 3: destroyed, no one gets it
+	Mission Q: what is the stated goal?
+	Mission Q: what is the Diana's goal?
+		Diana can safely get to Elysia to do something
+		can we provide a dialog with the AI?
+	Mission Q: what is the Artemis's goal?
+		Use already-equipped Cetrocite device to get Arvonians to target Torgoth?
+	Mission Q: what is the away team goal?
+			Maybe find the AI's origin on Elysia?
+			Arvonian base?  Arvonian parent AI?
+		Y1 was just to find someone in a crowd (only needed 1-2)
+	 	Y2 was to defuse a bomb (needed lots)
+		can we somehow use HID lamps as a console to interact with? 
+			CRUX is output only, but could be paired with a regular keyboard
+			keyboard is input/output
+	M1 question: what was gravity device made from? never revealed
+	             what was whale attractor device made from? Cetrocite
+
+Programming items:
+* Use a skin to make the Diana look like a whale, allow controls to engage/disengage device
+	in vesselData.xml, vessel art has
+			meshfile="dat/artemis.dxs"
+			diffuseFile=
+			glowFile=
+			specularFile=
+* Use a towed beacon to make the Artemis whale attractor work, allow controls to engage/disengage device
+* Should we reuse Colin's video, with subtitles added?
+Q: can there be "shield" frequencies of a black hole?
+
+M1 storyboard:
+	Investigate signal
+	Go back to get shuttle that can navigate wormhole
+	Drop off shuttle at wormhole, with away team
+	Away team:
+		Find person
+		Relay plans
+		Navigate Diana out
+	Artemis:
+		opt: Go back and get cetrocite device
+		opt: use device against Arvonians
+	End when Diana is returned
+
+M2 storyboard:
+ 	Saboteur strikes DS1, must return to drop away team
+	Away team:
+		go defuse bomb
+	Later, saboteur takes Diana and escapes station
+	One ship needs to go stop Diana (hack and board)
+	(various side missions exist to keep everyone busy, since this is in TSN space)
+	[this mission idea was generated from how we might use KTANE]
+	End when Diana is returned
+
+---
+Sample storyboard
+Phase 1: everyone gets their mission
+	 Diana goes into enemy space with cloaking device (weapons can 
+	 Artemis tries to get Arvonians to target Torgoth (all stations busy?)
+Phase 2: Diana enters wormhole again, Elysia appears
+	 Diana communicates with planet (is it occupied now?  under attack? ...)
+	 	Maybe planet is now ruled by another Arvonian AI and away team needs to deactivate it
+	 Diana sends Away Team for whatever reason, maybe they need to take a shuttle or let Diana land
+	 Artemis keeps fighting
+	 Diana might leave wormhole and fight while Away Team is left planetside?
+Phase 3: maybe destroy device and restore Elysia to normal space
+
+Q: What's a good *group* activity (game/puzzle) for the away team to do?
+	(that models what might be on a planet or space station)
+	phone a friend is ok if need info from the actual game
+		can there be "shield" frequencies of a black hole?
+
+	so far idea is to find a way to hack into an AI mainframe or base to deactivate it
+	and somehow involve HID Lamp device(s)
+		what was that Oculus game?
+	what is group effort?
+		a) phone contact
+		b) viewer(s) of HID Lamp devices
+		c) input controller(s)
+		d) instruction controller(s)
+	what is Lamp Device?
+	Hey, what if we used escape room equipment?!
+
+Can spawn an actual whale next to Artemis, or stationary
+Can spawn a whale-like skin around Artemis, or stationary
+Can manually add CHASE_WHALE to Torgoth ships
+Can manually add AVOID_WHALE and/or remove CHASE_PLAYER from Arvonian ships
+	problem with CHASE_PLAYER is that it's incorrect for a multiship mission
+	Conclusions: Arvonians are hard to script
+	https://artemis.forumchitchat.com/post/destroy-all-randomly-named-ships-problem-solved-8572294?pid=1296341393
+Can drop an anomaly of type attract/repel whale
+
