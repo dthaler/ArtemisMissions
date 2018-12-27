@@ -11,13 +11,10 @@
 12/26/18 ADD: cloaking device mechanics
 12/26/18 ADD: explain cloaking device mechanics to Diana
 12/27/18 ADD: give mission to Diana
+12/27/18 ADD: GM logic for result of Away Team
 
 ---
 {
-
-1/2 ADD: GM logic for result of Away Team
-         ideas: what if have to get Arvonian AI to participate in the phantom whale ruse?
-            e.g. transmit an Arvonian alert in Arvonian coded message?
 
 1/2 ADD: Mark's idea.. Artemis has to direct Diana away from enemy ships as well as draw enemy ships off Diana. 
          (limited sensor ranges and nebula clouds?)
@@ -29,13 +26,53 @@
          Maybe Diana has to spend a cumulative amount of time in the vicinity of the colony, but there are 
          regular patrols that pass close that Diana should avoid.  
 
+1/2 ADD: away team app/investigation
+          * have to learn there's a master AI in the mainframe
+          * Secretly, the motivation is to create a blackhole/wormhole construction device
+            scientists need to analyze the cetrocite field around Elysia to try to recreate it
+          * can we somehow use HID lamps as a console to interact with?
+               CRUX is output only, but could be paired with a regular keyboard
+               keyboard is input/output
+          * When the Diana approached Elysia and started scanning the planet, the Arvonian AI
+            already on Elysia infected the Diana via the comms/sensor systems, and tried to sabotage
+            the Diana's cloaking device.  However in doing so, something went wrong with the experimental device
+            due to the interaction between the experimental system, the sabotage, and Elysia's gravity/magnetic field,
+            and it created a rift in the space/time, which caused the wormhole to appear, and the Elysia and Diana
+                    to get stuck in it, and the Diana then crashed on Elysia.
+          * The master AI in the Elysia mainframe has analyzed what happened (remember generations have passed 
+            due to the time differential) and thinks it might be able to recreate this effect, and use it as 
+            a weapon to destroy (or at least neutralize) other entire planets like Earth, thus
+            winning the war.   (The AI that infected the Diana does not have the details since it was 
+            dormant since the crash, and the Dianas records were too damaged in the crash for the AI to 
+            figure out anything similar after reawakening.)
+          * During the mission, the Away Team will learn the truth from the mainframe AI, and maybe even get 
+            the plans to create this super weapon (you know a death star).  Will they:
+                a)  Try to provide the super-weapon plans to TSN command? or
+                b)  Destroy them so no one gets them?
+            Planet Exterminator?
+
 ---
 
 2/2 ADD: can we allow replenishing phantom whale beacons?
          or warn that it will run out after 9 or something
 
+2/2 Q: is there a way to Scan a generic mesh, to scan Elysia?
+
+2/2 ADD: make Diana have to relay message from Away Team to TSN Command, unless Wormhole destroyed first
+              GM button: Away Team/Send plans to TSN
+              GM button: Away Team/Send false message to Arvonians about Torgoths
+
+2/2 DEL: whale pod
+
+2/2 ADD: make end screen also show whether alliance was broken up
+
 ---
 
+3/2 BUG: when GM destroys death station plans, GM button doesn't disappear
+
 3/2 ADD: video instructions on how phantom whale beacons work
+
+3/2 Q: can there be "shield" frequencies of a black hole?
+
 
 }
