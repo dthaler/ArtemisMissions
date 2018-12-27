@@ -10,16 +10,10 @@
 12/23/18 FIX: handle GM joining after start, and still getting the buttons displayed
 12/26/18 ADD: cloaking device mechanics
 12/26/18 ADD: explain cloaking device mechanics to Diana
+12/27/18 ADD: give mission to Diana
 
 ---
 {
-
-1/2 ADD: give mission to Diana
-         Diana x2:
-            Task Succeeded - Diana Docked
-            GM give Diana mission
-            * mention wormhole opening in mission instructions
-            * mention "using Skaraan technology" or "salvaged from a Skaraan" wreck regarding cloaking device
 
 1/2 ADD: GM logic for result of Away Team
          ideas: what if have to get Arvonian AI to participate in the phantom whale ruse?

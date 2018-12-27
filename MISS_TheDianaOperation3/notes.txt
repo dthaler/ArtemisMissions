@@ -13,43 +13,43 @@ Question: How did the planet get trapped in the Nexus?  (A: Nexus formed by spac
 
 Should the Crew get to start in the Diana with all the buffs of previous years? (plus repairs)
     Gravity well dampener
-        Good work.  We have analyzed the signal you sent us and determined that the signal is 
-        emanating from the wormhole itself.  SB01 has a prototype shuttle that can enter the 
-        wormhole.  Any TSN ship larger than a Scout can dock at SB01 to pick it up.  We recommend 
+        Good work.  We have analyzed the signal you sent us and determined that the signal is
+        emanating from the wormhole itself.  SB01 has a prototype shuttle that can enter the
+        wormhole.  Any TSN ship larger than a Scout can dock at SB01 to pick it up.  We recommend
         that you prepare an away team with an experienced engineer who can deal with the Diana.
         --
-        Aegis, we have installed the scout shuttle Ceres. Be advised that it is not designed for 
-        battle, so we recommend that your Away Team launch it only when you are near the wormhole. 
+        Aegis, we have installed the scout shuttle Ceres. Be advised that it is not designed for
+        battle, so we recommend that your Away Team launch it only when you are near the wormhole.
         (You must select Scout as the type of Ceres in order to launch it.)
         --
         Ceres has entered the wormhole.
     Whale attractor:
-        We have analyzed the Cetrocite device schematic from the Diana.  Our research indicates 
+        We have analyzed the Cetrocite device schematic from the Diana.  Our research indicates
         that such a device might be able to attract space whales within a range of about 25k.
-	"The Diana's computer contains detailed schematics for a prototype Cetrocite device, 
+	"The Diana's computer contains detailed schematics for a prototype Cetrocite device,
 	which surely must be related to its secret mission."
-	"We have analyzed the Cetrocite device schematic from the Diana.  Our research indicates 
+	"We have analyzed the Cetrocite device schematic from the Diana.  Our research indicates
 	that such a device might be able to attract space whales within a range of about 25k"
     Antigrav:
         "SB01 has a prototype shuttle that can enter the wormhole."
     End:
-    	"Good work!  The Arvonians have abandoned their attack on DS1, at least for now.  The 
-	TSN Diana is also safe and we can now complete the renovations on her to prepare to return 
-	her to service again.^^The AI that took over the Diana seems to be of Arvonian origin, 
-	and was apparently dormant in a damaged memory bank long before the Diana was towed here 
-	to DS1.  Recent repairs to the Diana must have reawakened it.  It seems possible that it 
-	was somehow connected to the Diana's original fate from which it was rescued during the 
+    	"Good work!  The Arvonians have abandoned their attack on DS1, at least for now.  The
+	TSN Diana is also safe and we can now complete the renovations on her to prepare to return
+	her to service again.^^The AI that took over the Diana seems to be of Arvonian origin,
+	and was apparently dormant in a damaged memory bank long before the Diana was towed here
+	to DS1.  Recent repairs to the Diana must have reawakened it.  It seems possible that it
+	was somehow connected to the Diana's original fate from which it was rescued during the
 	recent Diana Operation."
 
 Is there a way for a mission to test for when a specific upgrade is triggered?
     mission 1 used Cetrocite Crystals and a video from Colin Chick
 
 In Mission 2, it was revealed that an Arvonian AI had been in the Diana from before it crashed
-        We're interrogating the AI that took over the Diana.  It seems to be of Arvonian origin, 
-        and was apparently dormant in a damaged memory bank long before the Diana was towed here 
-        to DS1.  Recent repairs to the Diana must have reawakened it.  It seems possible that it 
-        was somehow connected to the Diana's original fate from which it was rescued during the 
-        recent Diana Operation.  More details will likely not be available until after you 
+        We're interrogating the AI that took over the Diana.  It seems to be of Arvonian origin,
+        and was apparently dormant in a damaged memory bank long before the Diana was towed here
+        to DS1.  Recent repairs to the Diana must have reawakened it.  It seems possible that it
+        was somehow connected to the Diana's original fate from which it was rescued during the
+        recent Diana Operation.  More details will likely not be available until after you
         complete this mission, however.
 
 It was being interrogated and provides the hook for Mission 3, whatever it is
@@ -127,7 +127,7 @@ Mission 3 starts at a station where Diana and Artemis are both docked (to minimi
 			Arvonian base?  Arvonian parent AI?
 		Y1 was just to find someone in a crowd (only needed 1-2)
 	 	Y2 was to defuse a bomb (needed lots)
-		can we somehow use HID lamps as a console to interact with? 
+		can we somehow use HID lamps as a console to interact with?
 			CRUX is output only, but could be paired with a regular keyboard
 			keyboard is input/output
 	M1 question: what was gravity device made from? never revealed
@@ -170,7 +170,7 @@ M2 storyboard:
 ---
 Sample storyboard
 Phase 1: everyone gets their mission
-	 Diana goes into enemy space with cloaking device (weapons can 
+	 Diana goes into enemy space with cloaking device (weapons can
 	 Artemis tries to get Arvonians to target Torgoth (all stations busy?)
 Phase 2: Diana enters wormhole again, Elysia appears
 	 Diana communicates with planet (is it occupied now?  under attack? ...)
@@ -205,3 +205,59 @@ Can manually add AVOID_WHALE and/or remove CHASE_PLAYER from Arvonian ships
 	https://artemis.forumchitchat.com/post/destroy-all-randomly-named-ships-problem-solved-8572294?pid=1296341393
 Can drop an anomaly of type attract/repel whale
 
+
+Backstory: Just over two years ago, a plan to break up the Arvonian/Torgoth alliance was hatched,
+but the whale-specific device would require a bunch of Cetrocite which was not readily available in TSN space
+but was detected on Elysia, a planet in enemy territory.   So the Diana was outfitted with an experimental
+(and secret) cloaking device installed [which might be usable in this years mission] and sent into enemy
+territory to Elysia.
+
+    However, when it approached Elysia and started scanning the planet, the Arvonian AI
+    already on Elysia infected the Diana via the comms/sensor systems, and tried to sabotage
+    the Diana's cloaking device.  However in doing so, something went wrong with the experimental device
+    due to the interaction between the experimental system, the sabotage, and Elysia's gravity/magnetic field,
+    and it created a rift in the space/time, which caused the wormhole to appear, and the Elysia and Diana
+    to get stuck in it, and the Diana then crashed on Elysia.
+
+Now advance to present.  The master AI in the Elysia mainframe has figured this out, analyzed what happened
+(remember generations have passed due to the time differential) and thinks it might be able to recreate this
+effect, and use it as a weapon to destroy (or at least neutralize) other entire planets like Earth, thus
+winning the war.   (The AI that infected the Diana does not have the details since it was dormant since the
+crash, and the Dianas records were too damaged in the crash for the AI to figure out anything similar after
+reawakening.)
+
+During the mission, the Away Team will learn the truth from the mainframe AI, and maybe even get the plans
+to create this super weapon (you know a death star).  Will they:
+a)  Try to provide the super-weapon plans to TSN command? or
+b)  Destroy them so no one gets them?
+
+Y3 mission intro (want video):
+
+    Two years ago, TSN researchers began formulating a plan to try to break up the Arvonian/Torgoth
+    alliance, with whom the TSN has been at war for years.  This plan relied on constructing a device that
+    was merely theoretical at the time, and to fully design and develop would require large amounts of a
+    rare mineral known as Cetrocite, and so the Diana was sent on a secret mission into enemy
+    territory to a planet that probes indicated had virtually unlimited deposits of Cetrocite.
+
+    However, the mission failed when both the Diana and the planet suddenly vanished into a newly appeared
+    wormhole, which then disappeared as quickly as it appeared.  Months laster, the wormhole reopened and
+    an Artemis Away Team took a shuttle into the wormhole and recovered the crippled Diana from the planet
+    Elysia still inside the wormhole, and returned the Diana to TSN space, after discovering that generations
+    had passed on Elysia due to the time differential inside.
+
+    Repairs on the heavily damaged Diana continued for many months, until its computer banks were finally
+    fully restored, whereupon it was discovered that it had been infected with an Arvonian AI that had
+    been dormant in damaged memory banks and had been reawakened when the memory was repaired.  The AI was
+    eventually neutralized and interrogated.
+
+    We have now learned that the AI originated from a mainframe on Elysia and had infected the Diana when the
+    Diana began scanning the planet.  For its secret mission into enemy space, the Diana had been outfitted with
+    an experimental cloaking device, cobbled together from parts salvaged from a Skaraan wreck.  The AI
+    had attempted to sabotage this device, but in so doing caused the Diana to crash on the planet and much
+    of the computer record was lost as a result.
+
+    Now that the Diana is restored to normal operation and scientists predict another opening of the wormhole
+    is imminent, we must resume the original mission.  The Artemis must defend TSN space while the Diana heads
+    back to Elysia to retrieve a cargo of Cetrocite, and investigate the mainframe.  If the mainframe contains
+    a record of the plan to break up the enemy alliance, it is critical that the records be deleted or the
+    mainframe destroyed to prevent Arvonian command from learning of the plan.

@@ -277,7 +277,7 @@
     <set_variable name="ReportedSensorRange" value="1.0" />
     <warning_popup_message message="Sensor range limited to 8k" consoles="S" />
   </event>
-  <folder_arme name="Player Ship initialization" id_arme="bf827f3c-b918-4c21-8798-6c2a331061d1" expanded_arme="" />
+  <folder_arme name="Player Ship initialization" id_arme="bf827f3c-b918-4c21-8798-6c2a331061d1" />
   <event name="Create Player Ship - Artemis" id_arme="77054e94-9150-490c-b841-a94b75764284" parent_id_arme="bf827f3c-b918-4c21-8798-6c2a331061d1">
     <if_exists name="Artemis" />
     <if_variable name="ArtemisInitialized" comparator="EQUALS" value="0" />
@@ -395,10 +395,38 @@
     <log text="GM gave Diana mission" />
     <set_variable name="TsnCommandGaveDianaMission" value="1.0" />
   </event>
-  <event name="Houston Outpost gives instruction" id_arme="7b1202cf-4d8e-43fd-921c-80ba473fb5d5" parent_id_arme="228e7479-d78c-43b9-8d36-67cc88f26a4b">
+  <event name="Houston Outpost gives instruction 1" id_arme="e97d35b9-9f1e-4c08-935a-57417691421b" parent_id_arme="228e7479-d78c-43b9-8d36-67cc88f26a4b">
     <if_variable name="TsnCommandGaveDianaMission" comparator="EQUALS" value="1.0" />
-    <incoming_comms_text from="TSN Command" type="ALERT">Diana, ... TO BE FILLED IN ...</incoming_comms_text>
+    <incoming_comms_text from="TSN Command" type="ALERT">Two years ago, TSN researchers began formulating a plan to try to break up the Arvonian/Torgoth alliance, with whom the TSN has been at war for years.  This plan relied on constructing a device that was merely theoretical at the time, and to fully design and develop would require large amounts of a rare mineral known as Cetrocite, and so the Diana was sent on a secret mission into enemy territory to a planet that probes indicated had virtually unlimited deposits of Cetrocite.</incoming_comms_text>
+    <set_timer name="DianaMoreInstructionTimer" seconds="30" />
     <set_variable name="TsnCommandGaveDianaMission" value="2.0" />
+  </event>
+  <event name="Houston Outpost gives instruction 2" id_arme="b38bc5af-2597-463b-8eec-cb66b6a854c4" parent_id_arme="228e7479-d78c-43b9-8d36-67cc88f26a4b">
+    <if_variable name="TsnCommandGaveDianaMission" comparator="EQUALS" value="2.0" />
+    <if_timer_finished name="DianaMoreInstructionTimer" />
+    <incoming_comms_text from="TSN Command" type="ALERT">However, the mission failed when both the Diana and the planet suddenly vanished into a newly appeared wormhole, which then disappeared as quickly as it appeared.  Months laster, the wormhole reopened and an Artemis Away Team took a shuttle into the wormhole and recovered the crippled Diana from the planet Elysia still inside the wormhole, and returned the Diana to TSN space, after discovering that generations had passed on Elysia due to the time differential inside.</incoming_comms_text>
+    <set_timer name="DianaMoreInstructionTimer" seconds="30" />
+    <set_variable name="TsnCommandGaveDianaMission" value="3.0" />
+  </event>
+  <event name="Houston Outpost gives instruction 3" id_arme="324a33f2-179d-461e-b220-ba01afe0e70c" parent_id_arme="228e7479-d78c-43b9-8d36-67cc88f26a4b">
+    <if_variable name="TsnCommandGaveDianaMission" comparator="EQUALS" value="3.0" />
+    <if_timer_finished name="DianaMoreInstructionTimer" />
+    <incoming_comms_text from="TSN Command" type="ALERT">Repairs on the heavily damaged Diana continued for many months, until its computer banks were finally fully restored, whereupon it was discovered that it had been infected with an Arvonian AI that had been dormant in damaged memory banks and had been reawakened when the memory was repaired.  The AI was eventually neutralized and interrogated.</incoming_comms_text>
+    <set_timer name="DianaMoreInstructionTimer" seconds="30" />
+    <set_variable name="TsnCommandGaveDianaMission" value="4.0" />
+  </event>
+  <event name="Houston Outpost gives instruction 4" id_arme="009e773b-0a69-4aa7-96ce-4c8ba54071c9" parent_id_arme="228e7479-d78c-43b9-8d36-67cc88f26a4b">
+    <if_variable name="TsnCommandGaveDianaMission" comparator="EQUALS" value="4.0" />
+    <if_timer_finished name="DianaMoreInstructionTimer" />
+    <incoming_comms_text from="TSN Command" type="ALERT">We have now learned that the AI originated from a mainframe on Elysia and had infected the Diana when the Diana began scanning the planet.  For its secret mission into enemy space, the Diana had been outfitted with an experimental cloaking device, cobbled together from parts salvaged from a Skaraan wreck.  The AI had attempted to sabotage this device, but in so doing caused the Diana to crash on the planet and much of the computer record was lost as a result.</incoming_comms_text>
+    <set_timer name="DianaMoreInstructionTimer" seconds="30" />
+    <set_variable name="TsnCommandGaveDianaMission" value="5.0" />
+  </event>
+  <event name="Houston Outpost gives instruction 5" id_arme="7b1202cf-4d8e-43fd-921c-80ba473fb5d5" parent_id_arme="228e7479-d78c-43b9-8d36-67cc88f26a4b">
+    <if_variable name="TsnCommandGaveDianaMission" comparator="EQUALS" value="5.0" />
+    <if_timer_finished name="DianaMoreInstructionTimer" />
+    <incoming_comms_text from="TSN Command" type="ALERT">Now that the Diana is restored to normal operation and scientists predict another opening of the wormhole is imminent, we must resume the original mission.  The Artemis must defend TSN space while the Diana heads back to Elysia to retrieve a cargo of Cetrocite, and investigate the mainframe.  If the mainframe contains a record of the plan to break up the enemy alliance, it is critical that the records be deleted or the mainframe destroyed to prevent Arvonian command from learning of the plan.</incoming_comms_text>
+    <set_variable name="TsnCommandGaveDianaMission" value="6.0" />
   </event>
   <event name="Mission Failed - Houston Outpost Destroyed" id_arme="80b4f834-f162-4dd3-a00f-a164b4756db9" parent_id_arme="228e7479-d78c-43b9-8d36-67cc88f26a4b">
     <if_variable name="GameStatus" comparator="EQUALS" value="1" />
@@ -482,6 +510,7 @@
     <if_variable name="ArtemisWormholeAlert" comparator="LESS_EQUAL" value="1.0" />
     <if_distance name1="Artemis" name2="Wormhole" comparator="LESS" value="WormholeWarningRadius" />
     <log text="Artemis: Wormhole collision alert" />
+    <incoming_comms_text from="Artemis - Internal Comms" type="ALERT">Artemis bridge, analysis indicates that our ship can NOT withstand the forces of the wormhole.  We recommend leaving the area immediately!</incoming_comms_text>
     <warning_popup_message message="Danger! Artemis approaching event horizon!" consoles="H" />
     <set_variable name="ArtemisWormholeAlert" value="2.0" />
   </event>
@@ -548,6 +577,7 @@
     <if_variable name="DianaLocation" comparator="EQUALS" value="200.0" />
     <log text="Diana: Wormhole collision alert" />
     <warning_popup_message message="Diana approaching event horizon" consoles="H" />
+    <incoming_comms_text from="Diana - Internal Comms" type="ALERT">Diana bridge, analysis indicates that our ship can safely navigate through the wormhole.</incoming_comms_text>
     <set_variable name="DianaWormholeAlert" value="2.0" />
   </event>
   <event name="Clear Collision Alert" id_arme="00218966-0a1f-4d1b-986d-e3780989317e" parent_id_arme="0451ea51-a6bd-42b4-a599-db93410e620e">
@@ -730,7 +760,7 @@
     <warning_popup_message message="The Diana has re-entered the wormhole!" consoles="S" />
     <set_variable name="DianaLocation" value="300.0" />
   </disabled_event>
-  <folder_arme name="Track Diana location X" id_arme="511219bf-0cc7-4027-8d16-f85359aee992" expanded_arme="" />
+  <folder_arme name="Track Diana location X" id_arme="511219bf-0cc7-4027-8d16-f85359aee992" />
   <event name="Decrease Min" id_arme="00d1a448-3fba-4687-b142-de0a1c232f3c" parent_id_arme="511219bf-0cc7-4027-8d16-f85359aee992">
     <if_exists name="Diana" />
     <if_object_property property="positionX" name="Diana" comparator="LESS" value="MinDianaX" />
@@ -1360,7 +1390,7 @@
     <set_variable name="CloakButtonShown" value="0.0" />
     <set_timer name="CloakCooldownTimer" seconds="10" />
   </event>
-  <folder_arme name="Handle ship-specific buttons" id_arme="690c5f35-7bda-4380-9187-9a32d8d25c24" expanded_arme="" />
+  <folder_arme name="Handle ship-specific buttons" id_arme="690c5f35-7bda-4380-9187-9a32d8d25c24" />
   <folder_arme name="Artemis: Phantom whale beacon" id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96" parent_id_arme="690c5f35-7bda-4380-9187-9a32d8d25c24" />
   <event name="Start refreshing button" id_arme="3cac636d-7052-4857-bef8-fe8b53d4ad85" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
     <if_variable name="TsnCommandGaveArtemisMission" comparator="EQUALS" value="2.0" />
