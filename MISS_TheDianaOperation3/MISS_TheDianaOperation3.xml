@@ -8,6 +8,11 @@
     <!---->
     <!--Initialize the most important variables first so that they will appear on the F7 screen-->
     <!---->
+    <set_variable name="DianaPositionStable" value="1.0" />
+    <set_variable name="DianaX" value="20450.0" />
+    <set_variable name="DianaY" value="0.0" />
+    <set_variable name="DianaZ" value="79400.0" />
+    <set_variable name="CloakButtonShown" value="0.0" integer="yes" />
     <set_variable name="TsnCommandGaveArtemisMission" value="0.0" integer="yes" />
     <set_variable name="TsnCommandGaveDianaMission" value="0.0" integer="yes" />
     <set_variable name="BeaconSerialNumber" value="0.0" integer="yes" />
@@ -272,7 +277,7 @@
     <set_variable name="ReportedSensorRange" value="1.0" />
     <warning_popup_message message="Sensor range limited to 8k" consoles="S" />
   </event>
-  <folder_arme name="Player Ship initialization" id_arme="bf827f3c-b918-4c21-8798-6c2a331061d1" />
+  <folder_arme name="Player Ship initialization" id_arme="bf827f3c-b918-4c21-8798-6c2a331061d1" expanded_arme="" />
   <event name="Create Player Ship - Artemis" id_arme="77054e94-9150-490c-b841-a94b75764284" parent_id_arme="bf827f3c-b918-4c21-8798-6c2a331061d1">
     <if_exists name="Artemis" />
     <if_variable name="ArtemisInitialized" comparator="EQUALS" value="0" />
@@ -313,6 +318,7 @@
     <addto_object_property value="6.0" property="missileStoresMine" name="IB02" />
     <addto_object_property value="4.0" property="missileStoresEMP" name="IB02" />
     <addto_object_property value="5.0" property="missileStoresPShock" name="IB02" />
+    <set_timer name="CloakCooldownTimer" seconds="10" />
   </event>
   <event name="Create Wrong Player Ship - Diana" id_arme="daa23853-f417-45c6-8be2-5fc5f23625a9" parent_id_arme="bf827f3c-b918-4c21-8798-6c2a331061d1">
     <if_exists name="Diana" />
@@ -329,7 +335,13 @@
     <create type="monster" monsterType="1" podnumber="3" x="896.0" y="0.0" z="55811.0" angle="270" name="XE02" />
     <create type="monster" monsterType="1" podnumber="3" x="1187.0" y="200.0" z="53922.0" angle="270" name="XE03" />
   </event>
-  <folder_arme name="Task: Diana to dock with Houston Outpost" id_arme="228e7479-d78c-43b9-8d36-67cc88f26a4b" expanded_arme="" />
+  <event name="Tell Diana about cloaking device" id_arme="eded3ac7-2455-41fd-ab7e-0072883202ba" parent_id_arme="bf827f3c-b918-4c21-8798-6c2a331061d1">
+    <if_variable name="DianaCloakOverview" comparator="EQUALS" value="0.0" />
+    <if_timer_finished name="CloakCooldownTimer" />
+    <set_variable name="DianaCloakOverview" value="1.0" />
+    <incoming_comms_text from="Diana - Internal Comms" type="ALERT">Diana bridge, the Skaraan cloaking device is now ready for operation.  When enabled, we will be invisible to enemies farther away than 3000m.  The cloaking field will show on allied ship sensors as a purple circle.  Any movement or any firing of missiles will automatically cause the cloaking device to disengage.  Once disengaged, the cloaking device requires a cooldown time of 10 seconds before it can be re-engaged.</incoming_comms_text>
+  </event>
+  <folder_arme name="Task: Diana to dock with Houston Outpost" id_arme="228e7479-d78c-43b9-8d36-67cc88f26a4b" />
   <event name="Prepare to summon Diana" id_arme="17d429df-4afa-44f0-a545-bb0759aaf7a5" parent_id_arme="228e7479-d78c-43b9-8d36-67cc88f26a4b">
     <if_exists name="Diana" />
     <if_variable name="TsnCommandSummonedDiana" comparator="EQUALS" value="0.0" />
@@ -385,7 +397,7 @@
   </event>
   <event name="Houston Outpost gives instruction" id_arme="7b1202cf-4d8e-43fd-921c-80ba473fb5d5" parent_id_arme="228e7479-d78c-43b9-8d36-67cc88f26a4b">
     <if_variable name="TsnCommandGaveDianaMission" comparator="EQUALS" value="1.0" />
-    <incoming_comms_text from="TSN Command" type="ALERT">Diana, your cloaking device is now ready for operation.  When enabled, you will be invisible to enemies farther away than 3000m.  The cloaking field will show on allied ship sensors as a purple circle.  Any movement or firing of missiles will automatically cause the cloaking device to disengage.  Once disengaged, the cloaking device requires a cooldown time of 10 seconds before it can be re-engaged.</incoming_comms_text>
+    <incoming_comms_text from="TSN Command" type="ALERT">Diana, ... TO BE FILLED IN ...</incoming_comms_text>
     <set_variable name="TsnCommandGaveDianaMission" value="2.0" />
   </event>
   <event name="Mission Failed - Houston Outpost Destroyed" id_arme="80b4f834-f162-4dd3-a00f-a164b4756db9" parent_id_arme="228e7479-d78c-43b9-8d36-67cc88f26a4b">
@@ -396,7 +408,7 @@
     <incoming_comms_text from="TSN Command" type="ALERT">Houston Outpost was destroyed!</incoming_comms_text>
     <set_variable name="GameStatus" value="0" />
   </event>
-  <folder_arme name="Task: Artemis to dock with SB01 to get beacons" id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed" expanded_arme="" />
+  <folder_arme name="Task: Artemis to dock with SB01 to get beacons" id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed" />
   <event name="Prepare to summon Artemis" id_arme="8a457d0e-c6d9-420c-9968-8cda224e9d6e" parent_id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed">
     <if_exists name="Artemis" />
     <if_variable name="TsnCommandSummonedArtemis" comparator="EQUALS" value="0.0" />
@@ -718,28 +730,33 @@
     <warning_popup_message message="The Diana has re-entered the wormhole!" consoles="S" />
     <set_variable name="DianaLocation" value="300.0" />
   </disabled_event>
-  <folder_arme name="Track Diana location X" id_arme="511219bf-0cc7-4027-8d16-f85359aee992" />
+  <folder_arme name="Track Diana location X" id_arme="511219bf-0cc7-4027-8d16-f85359aee992" expanded_arme="" />
   <event name="Decrease Min" id_arme="00d1a448-3fba-4687-b142-de0a1c232f3c" parent_id_arme="511219bf-0cc7-4027-8d16-f85359aee992">
+    <if_exists name="Diana" />
     <if_object_property property="positionX" name="Diana" comparator="LESS" value="MinDianaX" />
     <set_variable name="MinDianaX" value="MinDianaX - 5000" />
     <log text="Decreased MinDianaX to |MinDianaX|" />
   </event>
   <event name="Increase Max" id_arme="87631d7d-7107-428a-8664-d61008a4bd9a" parent_id_arme="511219bf-0cc7-4027-8d16-f85359aee992">
+    <if_exists name="Diana" />
     <if_object_property property="positionX" name="Diana" comparator="GREATER" value="MaxDianaX" />
     <set_variable name="MaxDianaX" value="MaxDianaX + 5000" />
     <log text="Increased MaxDianaX to |MaxDianaX|" />
   </event>
   <event name="Guess is high" id_arme="8a9d5651-a4bc-431c-81dc-a921dff5df2b" parent_id_arme="511219bf-0cc7-4027-8d16-f85359aee992">
+    <if_exists name="Diana" />
     <if_object_property property="positionX" name="Diana" comparator="LESS" value="DianaX" />
     <set_variable name="MaxDianaX" value="DianaX" />
     <log text="Decreased MaxDianaX to |MaxDianaX|" />
   </event>
   <event name="Guess is low" id_arme="4c701183-769e-437b-af46-565dbf963551" parent_id_arme="511219bf-0cc7-4027-8d16-f85359aee992">
+    <if_exists name="Diana" />
     <if_object_property property="positionX" name="Diana" comparator="GREATER" value="DianaX" />
     <set_variable name="MinDianaX" value="DianaX" />
     <log text="Increased MinDianaX to |MinDianaX|" />
   </event>
   <event name="Recalc Guess" id_arme="2f2e4bfa-c62d-42e8-b856-9f4dd4a6244e" parent_id_arme="511219bf-0cc7-4027-8d16-f85359aee992">
+    <if_exists name="Diana" />
     <if_object_property property="positionX" name="Diana" comparator="NOT" value="DianaX" />
     <set_variable name="DianaX" value="(MinDianaX + MaxDianaX) / 2.0" />
     <log text="New DianaX is |DianaX|" />
@@ -747,26 +764,31 @@
   </event>
   <folder_arme name="Track Diana location Y" id_arme="680a2265-0e05-4a82-a8c6-7e0fea152f77" />
   <event name="Decrease Min" id_arme="311abf15-917e-4304-a75f-106673057b9c" parent_id_arme="680a2265-0e05-4a82-a8c6-7e0fea152f77">
+    <if_exists name="Diana" />
     <if_object_property property="positionY" name="Diana" comparator="LESS" value="MinDianaY" />
     <set_variable name="MinDianaY" value="MinDianaY - 5000" />
     <log text="Decreased MinDianaY to |MinDianaY|" />
   </event>
   <event name="Increase Max" id_arme="7af8e7ac-150b-4e65-ae90-6ca53a63e1e2" parent_id_arme="680a2265-0e05-4a82-a8c6-7e0fea152f77">
+    <if_exists name="Diana" />
     <if_object_property property="positionY" name="Diana" comparator="GREATER" value="MaxDianaY" />
     <set_variable name="MaxDianaY" value="MaxDianaY + 5000" />
     <log text="Increased MaxDianaY to |MaxDianaY|" />
   </event>
   <event name="Guess is high" id_arme="b565132c-c6a5-44da-8bd3-9aedbdd230de" parent_id_arme="680a2265-0e05-4a82-a8c6-7e0fea152f77">
+    <if_exists name="Diana" />
     <if_object_property property="positionY" name="Diana" comparator="LESS" value="DianaY" />
     <set_variable name="MaxDianaY" value="DianaY" />
     <log text="Decreased MaxDianaY to |MaxDianaY|" />
   </event>
   <event name="Guess is low" id_arme="a7cd1e44-ad64-405c-ba92-58e23ba57733" parent_id_arme="680a2265-0e05-4a82-a8c6-7e0fea152f77">
+    <if_exists name="Diana" />
     <if_object_property property="positionY" name="Diana" comparator="GREATER" value="DianaY" />
     <set_variable name="MinDianaY" value="DianaY" />
     <log text="Increased MinDianaY to |MinDianaY|" />
   </event>
   <event name="Recalc Guess" id_arme="7265cdc1-dae0-45c5-a5d3-d5ed94fb151d" parent_id_arme="680a2265-0e05-4a82-a8c6-7e0fea152f77">
+    <if_exists name="Diana" />
     <if_object_property property="positionY" name="Diana" comparator="NOT" value="DianaY" />
     <set_variable name="DianaY" value="(MinDianaY + MaxDianaY) / 2.0" />
     <log text="New DianaY is |DianaY|" />
@@ -774,26 +796,31 @@
   </event>
   <folder_arme name="Track Diana location Z" id_arme="7648c163-0386-4fbd-8dc2-c637d4ab46d7" />
   <event name="Decrease Min" id_arme="8a950775-885a-4699-9d8c-d41069345f41" parent_id_arme="7648c163-0386-4fbd-8dc2-c637d4ab46d7">
+    <if_exists name="Diana" />
     <if_object_property property="positionZ" name="Diana" comparator="LESS" value="MinDianaZ" />
     <set_variable name="MinDianaZ" value="MinDianaZ - 5000" />
     <log text="Decreased MinDianaZ to |MinDianaZ|" />
   </event>
   <event name="Increase Max" id_arme="6ff473c8-3a1c-4256-844b-67c6c293aba8" parent_id_arme="7648c163-0386-4fbd-8dc2-c637d4ab46d7">
+    <if_exists name="Diana" />
     <if_object_property property="positionZ" name="Diana" comparator="GREATER" value="MaxDianaZ" />
     <set_variable name="MaxDianaZ" value="MaxDianaZ + 5000" />
     <log text="Increased MaxDianaZ to |MaxDianaZ|" />
   </event>
   <event name="Guess is high" id_arme="edb73f6b-31e6-46a6-8e99-7d16c2a41ad8" parent_id_arme="7648c163-0386-4fbd-8dc2-c637d4ab46d7">
+    <if_exists name="Diana" />
     <if_object_property property="positionZ" name="Diana" comparator="LESS" value="DianaZ" />
     <set_variable name="MaxDianaZ" value="DianaZ" />
     <log text="Decreased MaxDianaZ to |MaxDianaZ|" />
   </event>
   <event name="Guess is low" id_arme="c94f5969-7d4f-404e-81ec-5051cba91f7b" parent_id_arme="7648c163-0386-4fbd-8dc2-c637d4ab46d7">
+    <if_exists name="Diana" />
     <if_object_property property="positionZ" name="Diana" comparator="GREATER" value="DianaZ" />
     <set_variable name="MinDianaZ" value="DianaZ" />
     <log text="Increased MinDianaZ to |MinDianaZ|" />
   </event>
   <event name="Recalc Guess" id_arme="0c5d5d93-0d8a-4c6e-b366-456f09ba24e9" parent_id_arme="7648c163-0386-4fbd-8dc2-c637d4ab46d7">
+    <if_exists name="Diana" />
     <if_object_property property="positionZ" name="Diana" comparator="NOT" value="DianaZ" />
     <set_variable name="DianaZ" value="(MinDianaZ + MaxDianaZ) / 2.0" />
     <log text="New DianaZ is |DianaZ|" />
@@ -1333,7 +1360,7 @@
     <set_variable name="CloakButtonShown" value="0.0" />
     <set_timer name="CloakCooldownTimer" seconds="10" />
   </event>
-  <folder_arme name="Handle ship-specific buttons" id_arme="690c5f35-7bda-4380-9187-9a32d8d25c24" />
+  <folder_arme name="Handle ship-specific buttons" id_arme="690c5f35-7bda-4380-9187-9a32d8d25c24" expanded_arme="" />
   <folder_arme name="Artemis: Phantom whale beacon" id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96" parent_id_arme="690c5f35-7bda-4380-9187-9a32d8d25c24" />
   <event name="Start refreshing button" id_arme="3cac636d-7052-4857-bef8-fe8b53d4ad85" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
     <if_variable name="TsnCommandGaveArtemisMission" comparator="EQUALS" value="2.0" />
@@ -1485,13 +1512,14 @@
     <if_exists name="Pha|firstnumber|" />
     <set_relative_position name2="Pha|firstnumber|" distance="0" angle="0" name1="Bea|firstnumber|" />
   </event>
-  <folder_arme name="Diana: Cloak button" id_arme="948f2be4-0ffd-4f56-84a9-a671ed0df671" parent_id_arme="690c5f35-7bda-4380-9187-9a32d8d25c24" />
+  <folder_arme name="Diana: Cloak button" id_arme="948f2be4-0ffd-4f56-84a9-a671ed0df671" parent_id_arme="690c5f35-7bda-4380-9187-9a32d8d25c24" expanded_arme="" />
   <event name="Position Unstable" id_arme="00ac3523-feaf-4d86-8649-82cc2c37827d" parent_id_arme="948f2be4-0ffd-4f56-84a9-a671ed0df671">
     <if_variable name="DianaPositionStable" comparator="EQUALS" value="0.0" />
     <if_variable name="CloakEngaged" comparator="EQUALS" value="0.0" />
-    <if_variable name="CloakButtonShown" comparator="EQUALS" value="1.0" />
+    <if_variable name="CloakButtonShown" comparator="GREATER" value="0.0" />
     <set_variable name="CloakButtonShown" value="0.0" />
     <clear_comms_button text="Engage Cloak" />
+    <clear_comms_button text="Disengage Cloak" />
   </event>
   <event name="Moved while cloaked" id_arme="476884b7-0d9b-4c07-af31-28974b4a853d" parent_id_arme="948f2be4-0ffd-4f56-84a9-a671ed0df671">
     <if_variable name="DianaPositionStable" comparator="EQUALS" value="0.0" />
@@ -1532,6 +1560,7 @@
     <if_object_property property="positionZ" name="Diana" comparator="EQUALS" value="DianaZ" />
     <set_object_property property="sideValue" value="3" name="Diana" />
     <set_variable name="CloakButtonShown" value="1.0" />
+    <set_variable name="DianaPositionStable" value="1.0" />
   </event>
   <event name="Engage Cloak" id_arme="15fdcfef-4236-4c57-bc37-87ed3afc61c1" parent_id_arme="948f2be4-0ffd-4f56-84a9-a671ed0df671">
     <if_comms_button text="Engage Cloak" />
