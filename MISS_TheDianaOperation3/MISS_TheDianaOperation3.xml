@@ -8,6 +8,8 @@
     <!---->
     <!--Initialize the most important variables first so that they will appear on the F7 screen-->
     <!---->
+    <set_variable name="TsnCommandGaveArtemisMission" value="0.0" integer="yes" />
+    <set_variable name="TsnCommandGaveDianaMission" value="0.0" integer="yes" />
     <set_variable name="BeaconSerialNumber" value="0.0" integer="yes" />
     <set_variable name="BeaTimeout1" value="0.0" integer="yes" />
     <set_variable name="BeaTimeout2" value="0.0" integer="yes" />
@@ -18,6 +20,14 @@
     <set_variable name="BeaTimeout7" value="0.0" integer="yes" />
     <set_variable name="BeaTimeout8" value="0.0" integer="yes" />
     <set_variable name="BeaTimeout9" value="0.0" integer="yes" />
+    <!--The radius of a single nebula cloud is about 3000m, the beam range of a Ximni battleship is 2600-->
+    <set_variable name="InNebulaDetectionRange" value="3000.0" />
+    <set_variable name="MinDianaX" value="DianaX" />
+    <set_variable name="MinDianaY" value="DianaY" />
+    <set_variable name="MinDianaZ" value="DianaZ" />
+    <set_variable name="MaxDianaX" value="DianaX" />
+    <set_variable name="MaxDianaY" value="DianaY" />
+    <set_variable name="MaxDianaZ" value="DianaZ" />
     <!-- ..... To end game on mission success, set GameStatus to 2 -->
     <!-- ..... To end game on mission failure, set GameStatus to 0 -->
     <set_variable name="GameStatus" value="1" />
@@ -44,7 +54,7 @@
     <!--Create terrain-->
     <!---->
     <create count="36" type="asteroids" startAngle="270" endAngle="360" startX="625.0" startY="53.0" startZ="99583.0" radius="50000" randomRange="3673" randomSeed="78203" />
-    <create count="100" type="nebulas" startX="78542.0" startY="37.0" startZ="22292.0" endX="38125.0" endY="132.0" endZ="61042.0" randomRange="10000" randomSeed="81474" />
+    <create count="100" type="nebulas" nebType="2" startX="78542.0" startY="37.0" startZ="22292.0" endX="38125.0" endY="132.0" endZ="61042.0" randomRange="10000" randomSeed="81474" />
     <!-- ..... -->
     <!-- ..... Realm Basic: Black Hole - Wormhole-->
     <set_variable name="WormholeX" value="80945.0" />
@@ -60,7 +70,6 @@
     <set_variable name="WormholeWarningRadius" value="10000.0" />
     <set_variable name="WormholeGravityRadius" value="20000.0" />
     <!--... Two ships touch at range 149/150-->
-    <set_variable name="DockedRange" value="100.0" />
     <set_variable name="ElysiaGravity" value="2.0" />
     <set_variable name="WormholeGravity" value="3.0" />
     <!---->
@@ -90,61 +99,46 @@
     <!--.....-->
     <!--..... Arvonians-->
     <create type="enemy" x="35908.0" y="0.0" z="40847.0" angle="180" name="AC01" raceKeys="enemy whalelover" hullKeys="Carrier Carrier" sideValue="1" fleetnumber="1" />
-    <add_ai type="AVOID_WHALE" value1="5000" name="AC01" />
     <create type="enemy" x="25013.0" y="0.0" z="54213.0" angle="180" name="AC02" raceKeys="enemy whalelover" hullKeys="Light Carrier Carrier" sideValue="1" />
-    <add_ai type="AVOID_WHALE" value1="5000" name="AC02" />
     <create type="enemy" x="29516.0" y="0.0" z="42300.0" angle="180" name="AC03" raceKeys="enemy whalelover" hullKeys="Light Carrier Carrier" sideValue="1" fleetnumber="1" />
-    <add_ai type="AVOID_WHALE" value1="5000" name="AC03" />
     <create type="enemy" x="30243.0" y="0.0" z="25302.0" angle="180" name="AC04" raceKeys="enemy whalelover" hullKeys="Carrier Carrier" sideValue="1" fleetnumber="2" />
-    <add_ai type="AVOID_WHALE" value1="5000" name="AC04" />
     <create type="enemy" x="33003.0" y="0.0" z="22832.0" angle="180" name="AC05" raceKeys="enemy whalelover" hullKeys="Light Carrier Carrier" sideValue="1" fleetnumber="2" />
-    <add_ai type="AVOID_WHALE" value1="5000" name="AC05" />
     <create type="enemy" x="27337.0" y="0.0" z="22542.0" angle="180" name="AC06" raceKeys="enemy whalelover" hullKeys="Light Carrier Carrier" sideValue="1" fleetnumber="2" />
-    <add_ai type="AVOID_WHALE" value1="5000" name="AC06" />
     <create type="enemy" x="11211.0" y="0.0" z="20944.0" angle="180" name="AC07" raceKeys="enemy whalelover" hullKeys="Carrier Carrier" sideValue="1" fleetnumber="3" />
-    <add_ai type="AVOID_WHALE" value1="5000" name="AC07" />
     <create type="enemy" x="14407.0" y="0.0" z="18038.0" angle="180" name="AC08" raceKeys="enemy whalelover" hullKeys="Light Carrier Carrier" sideValue="1" fleetnumber="3" />
-    <add_ai type="AVOID_WHALE" value1="5000" name="AC08" />
     <create type="enemy" x="8596.0" y="0.0" z="18329.0" angle="180" name="AC09" raceKeys="enemy whalelover" hullKeys="Light Carrier Carrier" sideValue="1" fleetnumber="3" />
-    <add_ai type="AVOID_WHALE" value1="5000" name="AC09" />
     <!--.....-->
     <!--..... Torgoths-->
     <create type="enemy" x="62349.0" y="0.0" z="55520.0" angle="90" name="TG01" raceKeys="enemy whalehater" hullKeys="medium" sideValue="1" fleetnumber="4" />
-    <add_ai type="CHASE_WHALE" value1="5000" name="TG01" />
     <create type="enemy" x="63802.0" y="0.0" z="60024.0" angle="90" name="TG02" raceKeys="enemy whalehater" hullKeys="small" sideValue="1" fleetnumber="4" />
-    <add_ai type="CHASE_WHALE" value1="5000" name="TG02" />
     <create type="enemy" x="84722.0" y="0.0" z="89806.0" angle="90" name="TG03" raceKeys="enemy whalehater" hullKeys="medium" sideValue="1" fleetnumber="6" />
-    <add_ai type="CHASE_WHALE" value1="5000" name="TG03" />
     <create type="enemy" x="80654.0" y="0.0" z="85157.0" angle="90" name="TG04" raceKeys="enemy whalehater" hullKeys="small" sideValue="1" fleetnumber="6" />
-    <add_ai type="CHASE_WHALE" value1="5000" name="TG04" />
     <create type="enemy" x="62059.0" y="0.0" z="79927.0" angle="90" name="TG05" raceKeys="enemy whalehater" hullKeys="medium" sideValue="1" fleetnumber="5" />
-    <add_ai type="CHASE_WHALE" value1="5000" name="TG05" />
     <create type="enemy" x="48838.0" y="0.0" z="79927.0" angle="90" name="TG06" raceKeys="enemy whalehater" hullKeys="small" sideValue="1" />
-    <add_ai type="CHASE_WHALE" value1="5000" name="TG06" />
     <!--.....-->
     <!--..... Terrans-->
     <create type="neutral" x="28790.0" y="0.0" z="95907.0" angle="315" name="De-01" raceKeys="Terran friendly" hullKeys="medium warship" sideValue="2" />
-    <add_ai type="AVOID_BLACK_HOLE" value1="DistressSignalRadius" name="De-01" />
+    <add_ai type="AVOID_BLACK_HOLE" value1="WormholeGravityRadius" name="De-01" />
     <add_ai type="FOLLOW_COMMS_ORDERS" name="De-01" />
     <create type="neutral" x="5255.0" y="0.0" z="71646.0" angle="315" name="De-02" raceKeys="Terran friendly" hullKeys="medium warship" sideValue="2" />
-    <add_ai type="AVOID_BLACK_HOLE" value1="DistressSignalRadius" name="De-02" />
+    <add_ai type="AVOID_BLACK_HOLE" value1="WormholeGravityRadius" name="De-02" />
     <add_ai type="FOLLOW_COMMS_ORDERS" name="De-02" />
     <create type="neutral" x="6708.0" y="0.0" z="80072.0" angle="315" name="Es-03" raceKeys="Terran friendly" hullKeys="small warship" sideValue="2" />
-    <add_ai type="AVOID_BLACK_HOLE" value1="DistressSignalRadius" name="Es-03" />
+    <add_ai type="AVOID_BLACK_HOLE" value1="WormholeGravityRadius" name="Es-03" />
     <add_ai type="FOLLOW_COMMS_ORDERS" name="Es-03" />
     <create type="neutral" x="19492.0" y="0.0" z="91259.0" angle="315" name="Es-04" raceKeys="Terran friendly" hullKeys="small warship" sideValue="2" />
-    <add_ai type="AVOID_BLACK_HOLE" value1="DistressSignalRadius" name="Es-04" />
+    <add_ai type="AVOID_BLACK_HOLE" value1="WormholeGravityRadius" name="Es-04" />
     <add_ai type="FOLLOW_COMMS_ORDERS" name="Es-04" />
     <create type="neutral" x="11211.0" y="0.0" z="92130.0" angle="315" name="Mariner" raceKeys="Terran friendly" hullKeys="cargo" sideValue="2" />
-    <add_ai type="AVOID_BLACK_HOLE" value1="DistressSignalRadius" name="Mariner" />
+    <add_ai type="AVOID_BLACK_HOLE" value1="WormholeGravityRadius" name="Mariner" />
     <add_ai type="FOLLOW_COMMS_ORDERS" name="Mariner" />
     <create type="neutral" x="4528.0" y="0.0" z="87481.0" angle="315" name="Cassini" raceKeys="Terran friendly" hullKeys="science" sideValue="2" />
-    <add_ai type="AVOID_BLACK_HOLE" value1="DistressSignalRadius" name="Cassini" />
+    <add_ai type="AVOID_BLACK_HOLE" value1="WormholeGravityRadius" name="Cassini" />
     <add_ai type="FOLLOW_COMMS_ORDERS" name="Cassini" />
     <set_variable name="firstnumber" value="0.0" integer="yes" />
     <set_variable name="secondnumber" value="0.0" integer="yes" />
   </start>
-  <folder_arme name="Debug Mode" id_arme="27459883-7153-49dc-8cdc-060a039bd7af" expanded_arme="" />
+  <folder_arme name="Debug Mode" id_arme="27459883-7153-49dc-8cdc-060a039bd7af" />
   <event name="GM break up alliance" id_arme="eb357c88-b858-4397-a28f-174f8ab8f543" parent_id_arme="27459883-7153-49dc-8cdc-060a039bd7af">
     <if_gm_button text="GM/Break up alliance" />
     <log text="GM broke up Arvonian/Torgoth alliance" />
@@ -198,7 +192,7 @@
     <log text="GM respawned an Arvonian ship" />
     <create type="enemy" use_gm_position="" raceKeys="enemy whalelover" hullKeys="small" />
   </event>
-  <folder_arme name="Start/End Game Events" id_arme="950df5cb-1770-486e-93bc-2cb61e3ceffb" expanded_arme="" />
+  <folder_arme name="Start/End Game Events" id_arme="950df5cb-1770-486e-93bc-2cb61e3ceffb" />
   <event name="All Player Ships Destroyed" id_arme="e67595c8-6d92-4877-9593-839e1aee8765" parent_id_arme="950df5cb-1770-486e-93bc-2cb61e3ceffb">
     <if_not_exists name="Artemis" />
     <if_not_exists name="Intrepid" />
@@ -303,9 +297,12 @@
     <if_exists name="Diana" />
     <if_variable name="DianaInitialized" comparator="EQUALS" value="0" />
     <log text="Diana spawned" />
-    <set_object_property property="positionX" value="20450" name="Diana" />
-    <set_object_property property="positionZ" value="79400" name="Diana" />
-    <set_object_property property="positionY" value="0" name="Diana" />
+    <set_variable name="DianaX" value="20450.0" />
+    <set_variable name="DianaY" value="0.0" />
+    <set_variable name="DianaZ" value="79400.0" />
+    <set_object_property property="positionX" value="DianaX" name="Diana" />
+    <set_object_property property="positionY" value="DianaY" name="Diana" />
+    <set_object_property property="positionZ" value="DianaZ" name="Diana" />
     <set_object_property property="angle" value="0.0" name="Diana" />
     <set_variable name="DianaInitialized" value="1" />
     <set_variable name="DianaLocation" value="200.0" />
@@ -332,7 +329,7 @@
     <create type="monster" monsterType="1" podnumber="3" x="896.0" y="0.0" z="55811.0" angle="270" name="XE02" />
     <create type="monster" monsterType="1" podnumber="3" x="1187.0" y="200.0" z="53922.0" angle="270" name="XE03" />
   </event>
-  <folder_arme name="Task: Diana to dock with Houston Outpost" id_arme="228e7479-d78c-43b9-8d36-67cc88f26a4b" />
+  <folder_arme name="Task: Diana to dock with Houston Outpost" id_arme="228e7479-d78c-43b9-8d36-67cc88f26a4b" expanded_arme="" />
   <event name="Prepare to summon Diana" id_arme="17d429df-4afa-44f0-a545-bb0759aaf7a5" parent_id_arme="228e7479-d78c-43b9-8d36-67cc88f26a4b">
     <if_exists name="Diana" />
     <if_variable name="TsnCommandSummonedDiana" comparator="EQUALS" value="0.0" />
@@ -379,18 +376,16 @@
     <if_variable name="TsnCommandGaveDianaMission" comparator="EQUALS" value="0.0" />
     <if_docked player_name="Diana" name="Houston Outpost" />
     <log text="Houston Outpost issued mission orders to Diana" />
-    <incoming_comms_text from="TSN Command" type="ALERT">The TSN Diana recently went on a secret mission into enemy territory beyond the asteroid belt to scout out a recently discovered unstable wormhole. Unfortunately, all contact from the Diana has since been lost. Your mission is to find out what happened to her, and return her to a TSN station if possible.  If not, make sure she is destroyed.  We cannot risk her falling into enemy hands.</incoming_comms_text>
     <set_variable name="TsnCommandGaveDianaMission" value="1.0" />
   </event>
   <event name="GM give Diana mission" id_arme="606c8e51-084d-42ba-bc5f-95be3479432d" parent_id_arme="228e7479-d78c-43b9-8d36-67cc88f26a4b">
     <if_gm_button text="GM/Resend Comms/Give Diana Mission" />
     <log text="GM gave Diana mission" />
-    <incoming_comms_text from="TSN Command" type="ALERT">The TSN Diana recently went on a secret mission into enemy territory beyond the asteroid belt to scout out a recently discovered unstable wormhole. Unfortunately, all contact from the Diana has since been lost. Your mission is to find out what happened to her, and return her to a TSN station if possible.  If not, make sure she is destroyed.  We cannot risk her falling into enemy hands.</incoming_comms_text>
     <set_variable name="TsnCommandGaveDianaMission" value="1.0" />
   </event>
   <event name="Houston Outpost gives instruction" id_arme="7b1202cf-4d8e-43fd-921c-80ba473fb5d5" parent_id_arme="228e7479-d78c-43b9-8d36-67cc88f26a4b">
     <if_variable name="TsnCommandGaveDianaMission" comparator="EQUALS" value="1.0" />
-    <incoming_comms_text from="TSN Command" type="ALERT">The TSN Diana recently went on a secret mission into enemy territory beyond the asteroid belt to scout out a recently discovered unstable wormhole. Unfortunately, all contact from the Diana has since been lost. Your mission is to find out what happened to her, and return her to a TSN station if possible.  If not, make sure she is destroyed.  We cannot risk her falling into enemy hands.</incoming_comms_text>
+    <incoming_comms_text from="TSN Command" type="ALERT">Diana, your cloaking device is now ready for operation.  When enabled, you will be invisible to enemies farther away than 3000m.  The cloaking field will show on allied ship sensors as a purple circle.  Any movement or firing of missiles will automatically cause the cloaking device to disengage.  Once disengaged, the cloaking device requires a cooldown time of 10 seconds before it can be re-engaged.</incoming_comms_text>
     <set_variable name="TsnCommandGaveDianaMission" value="2.0" />
   </event>
   <event name="Mission Failed - Houston Outpost Destroyed" id_arme="80b4f834-f162-4dd3-a00f-a164b4756db9" parent_id_arme="228e7479-d78c-43b9-8d36-67cc88f26a4b">
@@ -723,184 +718,623 @@
     <warning_popup_message message="The Diana has re-entered the wormhole!" consoles="S" />
     <set_variable name="DianaLocation" value="300.0" />
   </disabled_event>
-  <!--Arvonian fighters are random-->
-  <folder_arme name="All randoms avoid whales" id_arme="b1522541-9f58-434f-a559-dc05b6371a10" />
-  <event name="UpdateAI for A" id_arme="81560c11-b118-466b-b0dd-f5a20588752b" parent_id_arme="b1522541-9f58-434f-a559-dc05b6371a10">
+  <folder_arme name="Track Diana location X" id_arme="511219bf-0cc7-4027-8d16-f85359aee992" />
+  <event name="Decrease Min" id_arme="00d1a448-3fba-4687-b142-de0a1c232f3c" parent_id_arme="511219bf-0cc7-4027-8d16-f85359aee992">
+    <if_object_property property="positionX" name="Diana" comparator="LESS" value="MinDianaX" />
+    <set_variable name="MinDianaX" value="MinDianaX - 5000" />
+    <log text="Decreased MinDianaX to |MinDianaX|" />
+  </event>
+  <event name="Increase Max" id_arme="87631d7d-7107-428a-8664-d61008a4bd9a" parent_id_arme="511219bf-0cc7-4027-8d16-f85359aee992">
+    <if_object_property property="positionX" name="Diana" comparator="GREATER" value="MaxDianaX" />
+    <set_variable name="MaxDianaX" value="MaxDianaX + 5000" />
+    <log text="Increased MaxDianaX to |MaxDianaX|" />
+  </event>
+  <event name="Guess is high" id_arme="8a9d5651-a4bc-431c-81dc-a921dff5df2b" parent_id_arme="511219bf-0cc7-4027-8d16-f85359aee992">
+    <if_object_property property="positionX" name="Diana" comparator="LESS" value="DianaX" />
+    <set_variable name="MaxDianaX" value="DianaX" />
+    <log text="Decreased MaxDianaX to |MaxDianaX|" />
+  </event>
+  <event name="Guess is low" id_arme="4c701183-769e-437b-af46-565dbf963551" parent_id_arme="511219bf-0cc7-4027-8d16-f85359aee992">
+    <if_object_property property="positionX" name="Diana" comparator="GREATER" value="DianaX" />
+    <set_variable name="MinDianaX" value="DianaX" />
+    <log text="Increased MinDianaX to |MinDianaX|" />
+  </event>
+  <event name="Recalc Guess" id_arme="2f2e4bfa-c62d-42e8-b856-9f4dd4a6244e" parent_id_arme="511219bf-0cc7-4027-8d16-f85359aee992">
+    <if_object_property property="positionX" name="Diana" comparator="NOT" value="DianaX" />
+    <set_variable name="DianaX" value="(MinDianaX + MaxDianaX) / 2.0" />
+    <log text="New DianaX is |DianaX|" />
+    <set_variable name="DianaPositionStable" value="0.0" />
+  </event>
+  <folder_arme name="Track Diana location Y" id_arme="680a2265-0e05-4a82-a8c6-7e0fea152f77" />
+  <event name="Decrease Min" id_arme="311abf15-917e-4304-a75f-106673057b9c" parent_id_arme="680a2265-0e05-4a82-a8c6-7e0fea152f77">
+    <if_object_property property="positionY" name="Diana" comparator="LESS" value="MinDianaY" />
+    <set_variable name="MinDianaY" value="MinDianaY - 5000" />
+    <log text="Decreased MinDianaY to |MinDianaY|" />
+  </event>
+  <event name="Increase Max" id_arme="7af8e7ac-150b-4e65-ae90-6ca53a63e1e2" parent_id_arme="680a2265-0e05-4a82-a8c6-7e0fea152f77">
+    <if_object_property property="positionY" name="Diana" comparator="GREATER" value="MaxDianaY" />
+    <set_variable name="MaxDianaY" value="MaxDianaY + 5000" />
+    <log text="Increased MaxDianaY to |MaxDianaY|" />
+  </event>
+  <event name="Guess is high" id_arme="b565132c-c6a5-44da-8bd3-9aedbdd230de" parent_id_arme="680a2265-0e05-4a82-a8c6-7e0fea152f77">
+    <if_object_property property="positionY" name="Diana" comparator="LESS" value="DianaY" />
+    <set_variable name="MaxDianaY" value="DianaY" />
+    <log text="Decreased MaxDianaY to |MaxDianaY|" />
+  </event>
+  <event name="Guess is low" id_arme="a7cd1e44-ad64-405c-ba92-58e23ba57733" parent_id_arme="680a2265-0e05-4a82-a8c6-7e0fea152f77">
+    <if_object_property property="positionY" name="Diana" comparator="GREATER" value="DianaY" />
+    <set_variable name="MinDianaY" value="DianaY" />
+    <log text="Increased MinDianaY to |MinDianaY|" />
+  </event>
+  <event name="Recalc Guess" id_arme="7265cdc1-dae0-45c5-a5d3-d5ed94fb151d" parent_id_arme="680a2265-0e05-4a82-a8c6-7e0fea152f77">
+    <if_object_property property="positionY" name="Diana" comparator="NOT" value="DianaY" />
+    <set_variable name="DianaY" value="(MinDianaY + MaxDianaY) / 2.0" />
+    <log text="New DianaY is |DianaY|" />
+    <set_variable name="DianaPositionStable" value="0.0" />
+  </event>
+  <folder_arme name="Track Diana location Z" id_arme="7648c163-0386-4fbd-8dc2-c637d4ab46d7" />
+  <event name="Decrease Min" id_arme="8a950775-885a-4699-9d8c-d41069345f41" parent_id_arme="7648c163-0386-4fbd-8dc2-c637d4ab46d7">
+    <if_object_property property="positionZ" name="Diana" comparator="LESS" value="MinDianaZ" />
+    <set_variable name="MinDianaZ" value="MinDianaZ - 5000" />
+    <log text="Decreased MinDianaZ to |MinDianaZ|" />
+  </event>
+  <event name="Increase Max" id_arme="6ff473c8-3a1c-4256-844b-67c6c293aba8" parent_id_arme="7648c163-0386-4fbd-8dc2-c637d4ab46d7">
+    <if_object_property property="positionZ" name="Diana" comparator="GREATER" value="MaxDianaZ" />
+    <set_variable name="MaxDianaZ" value="MaxDianaZ + 5000" />
+    <log text="Increased MaxDianaZ to |MaxDianaZ|" />
+  </event>
+  <event name="Guess is high" id_arme="edb73f6b-31e6-46a6-8e99-7d16c2a41ad8" parent_id_arme="7648c163-0386-4fbd-8dc2-c637d4ab46d7">
+    <if_object_property property="positionZ" name="Diana" comparator="LESS" value="DianaZ" />
+    <set_variable name="MaxDianaZ" value="DianaZ" />
+    <log text="Decreased MaxDianaZ to |MaxDianaZ|" />
+  </event>
+  <event name="Guess is low" id_arme="c94f5969-7d4f-404e-81ec-5051cba91f7b" parent_id_arme="7648c163-0386-4fbd-8dc2-c637d4ab46d7">
+    <if_object_property property="positionZ" name="Diana" comparator="GREATER" value="DianaZ" />
+    <set_variable name="MinDianaZ" value="DianaZ" />
+    <log text="Increased MinDianaZ to |MinDianaZ|" />
+  </event>
+  <event name="Recalc Guess" id_arme="0c5d5d93-0d8a-4c6e-b366-456f09ba24e9" parent_id_arme="7648c163-0386-4fbd-8dc2-c637d4ab46d7">
+    <if_object_property property="positionZ" name="Diana" comparator="NOT" value="DianaZ" />
+    <set_variable name="DianaZ" value="(MinDianaZ + MaxDianaZ) / 2.0" />
+    <log text="New DianaZ is |DianaZ|" />
+    <set_variable name="DianaPositionStable" value="0.0" />
+  </event>
+  <folder_arme name="Update AI for enemies" id_arme="a6dd161c-9515-4064-a85e-eabc4edfbf6b" />
+  <event name="Update AI for AC" id_arme="6e2a5429-2df7-4970-8972-382cbfa17b51" parent_id_arme="a6dd161c-9515-4064-a85e-eabc4edfbf6b">
+    <if_exists name="AC|firstnumber||secondnumber|" />
+    <if_variable name="AC|firstnumber||secondnumber|" comparator="NOT" value="1.0" />
+    <clear_ai name="AC|firstnumber||secondnumber|" />
+    <add_ai type="TRY_TO_BECOME_LEADER" name="AC|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_PLAYER" value2="InNebulaDetectionRange" name="AC|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_STATION" value1="0" name="AC|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_AI_SHIP" value1="3000" value2="500" name="AC|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_PLAYER" value1="3000" value2="500" name="AC|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_ANGER" name="AC|firstnumber||secondnumber|" />
+    <add_ai type="AVOID_WHALE" value1="5000" name="AC|firstnumber||secondnumber|" />
+    <add_ai type="LEADER_LEADS" name="AC|firstnumber||secondnumber|" />
+    <add_ai type="FOLLOW_LEADER" name="AC|firstnumber||secondnumber|" />
+    <add_ai type="LAUNCH_FIGHTERS" value1="11000" name="AC|firstnumber||secondnumber|" />
+    <add_ai type="SPCL_AI" name="AC|firstnumber||secondnumber|" />
+    <set_variable name="AC|firstnumber||secondnumber|" value="1.0" />
+  </event>
+  <event name="Update AI for TG" id_arme="dc808c0a-9dd0-4a9d-9c63-9fad07614715" parent_id_arme="a6dd161c-9515-4064-a85e-eabc4edfbf6b">
+    <if_exists name="TG|firstnumber||secondnumber|" />
+    <if_variable name="TG|firstnumber||secondnumber|" comparator="NOT" value="1.0" />
+    <clear_ai name="TG|firstnumber||secondnumber|" />
+    <add_ai type="TRY_TO_BECOME_LEADER" name="TG|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_PLAYER" value2="InNebulaDetectionRange" name="TG|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_STATION" value1="0" name="TG|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_AI_SHIP" value1="3000" value2="500" name="TG|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_PLAYER" value1="3000" value2="500" name="TG|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_ANGER" name="TG|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_WHALE" value1="5000" name="TG|firstnumber||secondnumber|" />
+    <add_ai type="LEADER_LEADS" name="TG|firstnumber||secondnumber|" />
+    <add_ai type="FOLLOW_LEADER" name="TG|firstnumber||secondnumber|" />
+    <add_ai type="SPCL_AI" name="TG|firstnumber||secondnumber|" />
+    <set_variable name="TG|firstnumber||secondnumber|" value="1.0" />
+  </event>
+  <event name="UpdateAI for A" id_arme="71425a47-f61e-4071-97a9-e8f01bfe65ea" parent_id_arme="a6dd161c-9515-4064-a85e-eabc4edfbf6b">
     <if_exists name="A|firstnumber||secondnumber|" />
     <if_variable name="A|firstnumber||secondnumber|" comparator="NOT" value="1.0" />
+    <clear_ai name="A|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_PLAYER" value2="InNebulaDetectionRange" name="A|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_AI_SHIP" value2="InNebulaDetectionRange" name="A|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_STATION" name="A|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_OTHER_MONSTERS" value1="20000" name="A|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_AI_SHIP" value1="20000" value2="500" name="A|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_PLAYER" value1="20000" value2="500" name="A|firstnumber||secondnumber|" />
     <add_ai type="AVOID_WHALE" value1="5000" name="A|firstnumber||secondnumber|" />
+    <add_ai type="FIGHTER_BINGO" name="A|firstnumber||secondnumber|" />
+    <add_ai type="SPCL_AI" name="A|firstnumber||secondnumber|" />
     <set_variable name="A|firstnumber||secondnumber|" value="1.0" />
   </event>
-  <event name="UpdateAI for B" id_arme="f61e86c0-20cf-47eb-95cd-98b15be901cf" parent_id_arme="b1522541-9f58-434f-a559-dc05b6371a10">
+  <event name="UpdateAI for B" id_arme="45e0e7e4-4bcc-4acd-b0ec-5fe39432833a" parent_id_arme="a6dd161c-9515-4064-a85e-eabc4edfbf6b">
     <if_exists name="B|firstnumber||secondnumber|" />
     <if_variable name="B|firstnumber||secondnumber|" comparator="NOT" value="1.0" />
+    <clear_ai name="B|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_PLAYER" value2="InNebulaDetectionRange" name="B|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_AI_SHIP" value2="InNebulaDetectionRange" name="B|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_STATION" name="B|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_OTHER_MONSTERS" value1="20000" name="B|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_AI_SHIP" value1="20000" value2="500" name="B|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_PLAYER" value1="20000" value2="500" name="B|firstnumber||secondnumber|" />
     <add_ai type="AVOID_WHALE" value1="5000" name="B|firstnumber||secondnumber|" />
+    <add_ai type="FIGHTER_BINGO" name="B|firstnumber||secondnumber|" />
+    <add_ai type="SPCL_AI" name="B|firstnumber||secondnumber|" />
     <set_variable name="B|firstnumber||secondnumber|" value="1.0" />
   </event>
-  <event name="UpdateAI for C" id_arme="2f24970a-d298-4e4d-b4ef-b653f3b8787a" parent_id_arme="b1522541-9f58-434f-a559-dc05b6371a10">
+  <event name="UpdateAI for C" id_arme="99435ac9-a70d-4261-a369-6cd60c3d385b" parent_id_arme="a6dd161c-9515-4064-a85e-eabc4edfbf6b">
     <if_exists name="C|firstnumber||secondnumber|" />
     <if_variable name="C|firstnumber||secondnumber|" comparator="NOT" value="1.0" />
+    <clear_ai name="C|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_PLAYER" value2="InNebulaDetectionRange" name="C|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_AI_SHIP" value2="InNebulaDetectionRange" name="C|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_STATION" name="C|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_OTHER_MONSTERS" value1="20000" name="C|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_AI_SHIP" value1="20000" value2="500" name="C|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_PLAYER" value1="20000" value2="500" name="C|firstnumber||secondnumber|" />
     <add_ai type="AVOID_WHALE" value1="5000" name="C|firstnumber||secondnumber|" />
+    <add_ai type="FIGHTER_BINGO" name="C|firstnumber||secondnumber|" />
+    <add_ai type="SPCL_AI" name="C|firstnumber||secondnumber|" />
     <set_variable name="C|firstnumber||secondnumber|" value="1.0" />
   </event>
-  <event name="UpdateAI for D" id_arme="9a03cace-faf9-4148-9c83-2edb38305e38" parent_id_arme="b1522541-9f58-434f-a559-dc05b6371a10">
+  <event name="UpdateAI for D" id_arme="e0b0c259-fbb1-4d08-a61c-3f1e9c14e2b6" parent_id_arme="a6dd161c-9515-4064-a85e-eabc4edfbf6b">
     <if_exists name="D|firstnumber||secondnumber|" />
     <if_variable name="D|firstnumber||secondnumber|" comparator="NOT" value="1.0" />
+    <clear_ai name="D|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_PLAYER" value2="InNebulaDetectionRange" name="D|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_AI_SHIP" value2="InNebulaDetectionRange" name="D|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_STATION" name="D|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_OTHER_MONSTERS" value1="20000" name="D|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_AI_SHIP" value1="20000" value2="500" name="D|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_PLAYER" value1="20000" value2="500" name="D|firstnumber||secondnumber|" />
     <add_ai type="AVOID_WHALE" value1="5000" name="D|firstnumber||secondnumber|" />
+    <add_ai type="FIGHTER_BINGO" name="D|firstnumber||secondnumber|" />
+    <add_ai type="SPCL_AI" name="D|firstnumber||secondnumber|" />
     <set_variable name="D|firstnumber||secondnumber|" value="1.0" />
   </event>
-  <event name="UpdateAI for E" id_arme="f12180a1-ed4b-4a30-82d4-dc916f150cd1" parent_id_arme="b1522541-9f58-434f-a559-dc05b6371a10">
+  <event name="UpdateAI for E" id_arme="8b676876-c42a-4d74-b6bb-afb44a8f9d48" parent_id_arme="a6dd161c-9515-4064-a85e-eabc4edfbf6b">
     <if_exists name="E|firstnumber||secondnumber|" />
     <if_variable name="E|firstnumber||secondnumber|" comparator="NOT" value="1.0" />
+    <clear_ai name="E|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_PLAYER" value2="InNebulaDetectionRange" name="E|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_AI_SHIP" value2="InNebulaDetectionRange" name="E|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_STATION" name="E|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_OTHER_MONSTERS" value1="20000" name="E|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_AI_SHIP" value1="20000" value2="500" name="E|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_PLAYER" value1="20000" value2="500" name="E|firstnumber||secondnumber|" />
     <add_ai type="AVOID_WHALE" value1="5000" name="E|firstnumber||secondnumber|" />
+    <add_ai type="FIGHTER_BINGO" name="E|firstnumber||secondnumber|" />
+    <add_ai type="SPCL_AI" name="E|firstnumber||secondnumber|" />
     <set_variable name="E|firstnumber||secondnumber|" value="1.0" />
   </event>
-  <event name="UpdateAI for F" id_arme="466f2b66-f69d-4a6d-865b-b3c38830793f" parent_id_arme="b1522541-9f58-434f-a559-dc05b6371a10">
+  <event name="UpdateAI for F" id_arme="b879be14-28ea-4d83-8eb9-6061d0920546" parent_id_arme="a6dd161c-9515-4064-a85e-eabc4edfbf6b">
     <if_exists name="F|firstnumber||secondnumber|" />
     <if_variable name="F|firstnumber||secondnumber|" comparator="NOT" value="1.0" />
+    <clear_ai name="F|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_PLAYER" value2="InNebulaDetectionRange" name="F|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_AI_SHIP" value2="InNebulaDetectionRange" name="F|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_STATION" name="F|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_OTHER_MONSTERS" value1="20000" name="F|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_AI_SHIP" value1="20000" value2="500" name="F|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_PLAYER" value1="20000" value2="500" name="F|firstnumber||secondnumber|" />
     <add_ai type="AVOID_WHALE" value1="5000" name="F|firstnumber||secondnumber|" />
+    <add_ai type="FIGHTER_BINGO" name="F|firstnumber||secondnumber|" />
+    <add_ai type="SPCL_AI" name="F|firstnumber||secondnumber|" />
     <set_variable name="F|firstnumber||secondnumber|" value="1.0" />
   </event>
-  <event name="UpdateAI for G" id_arme="daa295a0-221f-435a-b52f-7031dc038546" parent_id_arme="b1522541-9f58-434f-a559-dc05b6371a10">
+  <event name="UpdateAI for G" id_arme="177c827d-baf6-4a0b-a77d-2eefcab46f1c" parent_id_arme="a6dd161c-9515-4064-a85e-eabc4edfbf6b">
     <if_exists name="G|firstnumber||secondnumber|" />
     <if_variable name="G|firstnumber||secondnumber|" comparator="NOT" value="1.0" />
+    <clear_ai name="G|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_PLAYER" value2="InNebulaDetectionRange" name="G|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_AI_SHIP" value2="InNebulaDetectionRange" name="G|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_STATION" name="G|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_OTHER_MONSTERS" value1="20000" name="G|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_AI_SHIP" value1="20000" value2="500" name="G|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_PLAYER" value1="20000" value2="500" name="G|firstnumber||secondnumber|" />
     <add_ai type="AVOID_WHALE" value1="5000" name="G|firstnumber||secondnumber|" />
+    <add_ai type="FIGHTER_BINGO" name="G|firstnumber||secondnumber|" />
+    <add_ai type="SPCL_AI" name="G|firstnumber||secondnumber|" />
     <set_variable name="G|firstnumber||secondnumber|" value="1.0" />
   </event>
-  <event name="UpdateAI for H" id_arme="1f14c3be-0936-4f6a-8fd8-ae6cda8c1b01" parent_id_arme="b1522541-9f58-434f-a559-dc05b6371a10">
+  <event name="UpdateAI for H" id_arme="da09da61-6f12-4468-ac7d-e36c65fdf3ea" parent_id_arme="a6dd161c-9515-4064-a85e-eabc4edfbf6b">
     <if_exists name="H|firstnumber||secondnumber|" />
     <if_variable name="H|firstnumber||secondnumber|" comparator="NOT" value="1.0" />
+    <clear_ai name="H|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_PLAYER" value2="InNebulaDetectionRange" name="H|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_AI_SHIP" value2="InNebulaDetectionRange" name="H|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_STATION" name="H|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_OTHER_MONSTERS" value1="20000" name="H|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_AI_SHIP" value1="20000" value2="500" name="H|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_PLAYER" value1="20000" value2="500" name="H|firstnumber||secondnumber|" />
     <add_ai type="AVOID_WHALE" value1="5000" name="H|firstnumber||secondnumber|" />
+    <add_ai type="FIGHTER_BINGO" name="H|firstnumber||secondnumber|" />
+    <add_ai type="SPCL_AI" name="H|firstnumber||secondnumber|" />
     <set_variable name="H|firstnumber||secondnumber|" value="1.0" />
   </event>
-  <event name="UpdateAI for I" id_arme="c1c119ef-0617-4e48-be08-68eac79289ad" parent_id_arme="b1522541-9f58-434f-a559-dc05b6371a10">
+  <event name="UpdateAI for I" id_arme="e0c2f8ab-a4aa-4dba-a571-ac9f18bb83b6" parent_id_arme="a6dd161c-9515-4064-a85e-eabc4edfbf6b">
     <if_exists name="I|firstnumber||secondnumber|" />
     <if_variable name="I|firstnumber||secondnumber|" comparator="NOT" value="1.0" />
+    <clear_ai name="I|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_PLAYER" value2="InNebulaDetectionRange" name="I|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_AI_SHIP" value2="InNebulaDetectionRange" name="I|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_STATION" name="I|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_OTHER_MONSTERS" value1="20000" name="I|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_AI_SHIP" value1="20000" value2="500" name="I|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_PLAYER" value1="20000" value2="500" name="I|firstnumber||secondnumber|" />
     <add_ai type="AVOID_WHALE" value1="5000" name="I|firstnumber||secondnumber|" />
+    <add_ai type="FIGHTER_BINGO" name="I|firstnumber||secondnumber|" />
+    <add_ai type="SPCL_AI" name="I|firstnumber||secondnumber|" />
     <set_variable name="I|firstnumber||secondnumber|" value="1.0" />
   </event>
-  <event name="UpdateAI for J" id_arme="a0cfc2e6-8f1a-4885-8a1c-f063e4dbd0cc" parent_id_arme="b1522541-9f58-434f-a559-dc05b6371a10">
+  <event name="UpdateAI for J" id_arme="f5d919d9-848b-4a55-8527-98a6b48c5b68" parent_id_arme="a6dd161c-9515-4064-a85e-eabc4edfbf6b">
     <if_exists name="J|firstnumber||secondnumber|" />
     <if_variable name="J|firstnumber||secondnumber|" comparator="NOT" value="1.0" />
+    <clear_ai name="J|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_PLAYER" value2="InNebulaDetectionRange" name="J|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_AI_SHIP" value2="InNebulaDetectionRange" name="J|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_STATION" name="J|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_OTHER_MONSTERS" value1="20000" name="J|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_AI_SHIP" value1="20000" value2="500" name="J|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_PLAYER" value1="20000" value2="500" name="J|firstnumber||secondnumber|" />
     <add_ai type="AVOID_WHALE" value1="5000" name="J|firstnumber||secondnumber|" />
+    <add_ai type="FIGHTER_BINGO" name="J|firstnumber||secondnumber|" />
+    <add_ai type="SPCL_AI" name="J|firstnumber||secondnumber|" />
     <set_variable name="J|firstnumber||secondnumber|" value="1.0" />
   </event>
-  <event name="UpdateAI for K" id_arme="bfb1364b-fdc9-4cb2-a501-841c496ee616" parent_id_arme="b1522541-9f58-434f-a559-dc05b6371a10">
+  <event name="UpdateAI for K" id_arme="c4f1a966-23a2-45a7-84dc-742256865db3" parent_id_arme="a6dd161c-9515-4064-a85e-eabc4edfbf6b">
     <if_exists name="K|firstnumber||secondnumber|" />
     <if_variable name="K|firstnumber||secondnumber|" comparator="NOT" value="1.0" />
+    <clear_ai name="K|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_PLAYER" value2="InNebulaDetectionRange" name="K|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_AI_SHIP" value2="InNebulaDetectionRange" name="K|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_STATION" name="K|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_OTHER_MONSTERS" value1="20000" name="K|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_AI_SHIP" value1="20000" value2="500" name="K|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_PLAYER" value1="20000" value2="500" name="K|firstnumber||secondnumber|" />
     <add_ai type="AVOID_WHALE" value1="5000" name="K|firstnumber||secondnumber|" />
+    <add_ai type="FIGHTER_BINGO" name="K|firstnumber||secondnumber|" />
+    <add_ai type="SPCL_AI" name="K|firstnumber||secondnumber|" />
     <set_variable name="K|firstnumber||secondnumber|" value="1.0" />
   </event>
-  <event name="UpdateAI for L" id_arme="853b6160-4ca4-4718-b9b7-d1d87d6f77bd" parent_id_arme="b1522541-9f58-434f-a559-dc05b6371a10">
+  <event name="UpdateAI for L" id_arme="6367a5b6-6395-463c-9e20-5d9199251e25" parent_id_arme="a6dd161c-9515-4064-a85e-eabc4edfbf6b">
     <if_exists name="L|firstnumber||secondnumber|" />
     <if_variable name="L|firstnumber||secondnumber|" comparator="NOT" value="1.0" />
+    <clear_ai name="L|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_PLAYER" value2="InNebulaDetectionRange" name="L|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_AI_SHIP" value2="InNebulaDetectionRange" name="L|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_STATION" name="L|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_OTHER_MONSTERS" value1="20000" name="L|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_AI_SHIP" value1="20000" value2="500" name="L|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_PLAYER" value1="20000" value2="500" name="L|firstnumber||secondnumber|" />
     <add_ai type="AVOID_WHALE" value1="5000" name="L|firstnumber||secondnumber|" />
+    <add_ai type="FIGHTER_BINGO" name="L|firstnumber||secondnumber|" />
+    <add_ai type="SPCL_AI" name="L|firstnumber||secondnumber|" />
     <set_variable name="L|firstnumber||secondnumber|" value="1.0" />
   </event>
-  <event name="UpdateAI for M" id_arme="9daaf6ad-bdc0-4c75-8537-6a20e4049b25" parent_id_arme="b1522541-9f58-434f-a559-dc05b6371a10">
+  <event name="UpdateAI for M" id_arme="9cfeea78-cb16-46e3-8dde-b99570e3bc80" parent_id_arme="a6dd161c-9515-4064-a85e-eabc4edfbf6b">
     <if_exists name="M|firstnumber||secondnumber|" />
     <if_variable name="M|firstnumber||secondnumber|" comparator="NOT" value="1.0" />
+    <clear_ai name="M|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_PLAYER" value2="InNebulaDetectionRange" name="M|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_AI_SHIP" value2="InNebulaDetectionRange" name="M|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_STATION" name="M|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_OTHER_MONSTERS" value1="20000" name="M|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_AI_SHIP" value1="20000" value2="500" name="M|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_PLAYER" value1="20000" value2="500" name="M|firstnumber||secondnumber|" />
     <add_ai type="AVOID_WHALE" value1="5000" name="M|firstnumber||secondnumber|" />
+    <add_ai type="FIGHTER_BINGO" name="M|firstnumber||secondnumber|" />
+    <add_ai type="SPCL_AI" name="M|firstnumber||secondnumber|" />
     <set_variable name="M|firstnumber||secondnumber|" value="1.0" />
   </event>
-  <event name="UpdateAI for N" id_arme="e6ab09ab-35a3-40a0-ba09-36022e1201e9" parent_id_arme="b1522541-9f58-434f-a559-dc05b6371a10">
+  <event name="UpdateAI for N" id_arme="f93ee2e1-3315-4781-b38e-b2749bf42889" parent_id_arme="a6dd161c-9515-4064-a85e-eabc4edfbf6b">
     <if_exists name="N|firstnumber||secondnumber|" />
     <if_variable name="N|firstnumber||secondnumber|" comparator="NOT" value="1.0" />
+    <clear_ai name="M|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_PLAYER" value2="InNebulaDetectionRange" name="M|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_AI_SHIP" value2="InNebulaDetectionRange" name="M|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_STATION" name="M|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_OTHER_MONSTERS" value1="20000" name="M|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_AI_SHIP" value1="20000" value2="500" name="M|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_PLAYER" value1="20000" value2="500" name="M|firstnumber||secondnumber|" />
     <add_ai type="AVOID_WHALE" value1="5000" name="N|firstnumber||secondnumber|" />
+    <add_ai type="FIGHTER_BINGO" name="M|firstnumber||secondnumber|" />
+    <add_ai type="SPCL_AI" name="M|firstnumber||secondnumber|" />
     <set_variable name="N|firstnumber||secondnumber|" value="1.0" />
   </event>
-  <event name="UpdateAI for O" id_arme="b39ce30d-f6ee-488d-bfb6-1c7da14928b1" parent_id_arme="b1522541-9f58-434f-a559-dc05b6371a10">
+  <event name="UpdateAI for O" id_arme="d84a95cb-9789-487a-bcde-fa2399d8f5c6" parent_id_arme="a6dd161c-9515-4064-a85e-eabc4edfbf6b">
     <if_exists name="O|firstnumber||secondnumber|" />
     <if_variable name="O|firstnumber||secondnumber|" comparator="NOT" value="1.0" />
+    <clear_ai name="O|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_PLAYER" value2="InNebulaDetectionRange" name="O|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_AI_SHIP" value2="InNebulaDetectionRange" name="O|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_STATION" name="O|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_OTHER_MONSTERS" value1="20000" name="O|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_AI_SHIP" value1="20000" value2="500" name="O|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_PLAYER" value1="20000" value2="500" name="O|firstnumber||secondnumber|" />
     <add_ai type="AVOID_WHALE" value1="5000" name="O|firstnumber||secondnumber|" />
+    <add_ai type="FIGHTER_BINGO" name="O|firstnumber||secondnumber|" />
+    <add_ai type="SPCL_AI" name="O|firstnumber||secondnumber|" />
     <set_variable name="O|firstnumber||secondnumber|" value="1.0" />
   </event>
-  <event name="UpdateAI for P" id_arme="8070782a-3fd9-45b6-9606-2f85f4585b93" parent_id_arme="b1522541-9f58-434f-a559-dc05b6371a10">
+  <event name="UpdateAI for P" id_arme="12a53965-4a2b-4dba-870a-cf258043b177" parent_id_arme="a6dd161c-9515-4064-a85e-eabc4edfbf6b">
     <if_exists name="P|firstnumber||secondnumber|" />
     <if_variable name="P|firstnumber||secondnumber|" comparator="NOT" value="1.0" />
+    <clear_ai name="P|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_PLAYER" value2="InNebulaDetectionRange" name="P|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_AI_SHIP" value2="InNebulaDetectionRange" name="P|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_STATION" name="P|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_OTHER_MONSTERS" value1="20000" name="P|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_AI_SHIP" value1="20000" value2="500" name="P|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_PLAYER" value1="20000" value2="500" name="P|firstnumber||secondnumber|" />
     <add_ai type="AVOID_WHALE" value1="5000" name="P|firstnumber||secondnumber|" />
+    <add_ai type="FIGHTER_BINGO" name="P|firstnumber||secondnumber|" />
+    <add_ai type="SPCL_AI" name="P|firstnumber||secondnumber|" />
     <set_variable name="P|firstnumber||secondnumber|" value="1.0" />
   </event>
-  <event name="UpdateAI for Q" id_arme="a46d5146-3064-4c92-ae8e-93469d851a69" parent_id_arme="b1522541-9f58-434f-a559-dc05b6371a10">
+  <event name="UpdateAI for Q" id_arme="ae2bf24b-a31c-4a8e-b972-82d0db843988" parent_id_arme="a6dd161c-9515-4064-a85e-eabc4edfbf6b">
     <if_exists name="Q|firstnumber||secondnumber|" />
     <if_variable name="Q|firstnumber||secondnumber|" comparator="NOT" value="1.0" />
+    <clear_ai name="Q|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_PLAYER" value2="InNebulaDetectionRange" name="Q|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_AI_SHIP" value2="InNebulaDetectionRange" name="Q|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_STATION" name="Q|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_OTHER_MONSTERS" value1="20000" name="Q|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_AI_SHIP" value1="20000" value2="500" name="Q|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_PLAYER" value1="20000" value2="500" name="Q|firstnumber||secondnumber|" />
     <add_ai type="AVOID_WHALE" value1="5000" name="Q|firstnumber||secondnumber|" />
+    <add_ai type="FIGHTER_BINGO" name="Q|firstnumber||secondnumber|" />
+    <add_ai type="SPCL_AI" name="Q|firstnumber||secondnumber|" />
     <set_variable name="Q|firstnumber||secondnumber|" value="1.0" />
   </event>
-  <event name="UpdateAI for R" id_arme="7f07f8e7-8572-45df-9d7e-cb6899cc04ac" parent_id_arme="b1522541-9f58-434f-a559-dc05b6371a10">
+  <event name="UpdateAI for R" id_arme="9249d4ff-c4f6-4289-b622-0b27e01349d8" parent_id_arme="a6dd161c-9515-4064-a85e-eabc4edfbf6b">
     <if_exists name="R|firstnumber||secondnumber|" />
     <if_variable name="R|firstnumber||secondnumber|" comparator="NOT" value="1.0" />
+    <clear_ai name="R|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_PLAYER" value2="InNebulaDetectionRange" name="R|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_AI_SHIP" value2="InNebulaDetectionRange" name="R|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_STATION" name="R|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_OTHER_MONSTERS" value1="20000" name="R|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_AI_SHIP" value1="20000" value2="500" name="R|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_PLAYER" value1="20000" value2="500" name="R|firstnumber||secondnumber|" />
     <add_ai type="AVOID_WHALE" value1="5000" name="R|firstnumber||secondnumber|" />
+    <add_ai type="FIGHTER_BINGO" name="R|firstnumber||secondnumber|" />
+    <add_ai type="SPCL_AI" name="R|firstnumber||secondnumber|" />
     <set_variable name="R|firstnumber||secondnumber|" value="1.0" />
   </event>
-  <event name="UpdateAI for S" id_arme="49ab5804-594e-4a88-a03a-6ac808548977" parent_id_arme="b1522541-9f58-434f-a559-dc05b6371a10">
+  <event name="UpdateAI for S" id_arme="b2f5e730-c0b9-4afd-bc4d-6ddb1b820ec3" parent_id_arme="a6dd161c-9515-4064-a85e-eabc4edfbf6b">
     <if_exists name="S|firstnumber||secondnumber|" />
     <if_variable name="S|firstnumber||secondnumber|" comparator="NOT" value="1.0" />
+    <clear_ai name="S|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_PLAYER" value2="InNebulaDetectionRange" name="S|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_AI_SHIP" value2="InNebulaDetectionRange" name="S|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_STATION" name="S|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_OTHER_MONSTERS" value1="20000" name="S|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_AI_SHIP" value1="20000" value2="500" name="S|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_PLAYER" value1="20000" value2="500" name="S|firstnumber||secondnumber|" />
     <add_ai type="AVOID_WHALE" value1="5000" name="S|firstnumber||secondnumber|" />
+    <add_ai type="FIGHTER_BINGO" name="S|firstnumber||secondnumber|" />
+    <add_ai type="SPCL_AI" name="S|firstnumber||secondnumber|" />
     <set_variable name="S|firstnumber||secondnumber|" value="1.0" />
   </event>
-  <event name="UpdateAI for T" id_arme="3d7e07de-4ad7-4a2d-b740-8ec37c22d14c" parent_id_arme="b1522541-9f58-434f-a559-dc05b6371a10">
+  <event name="UpdateAI for T" id_arme="8af06687-9598-4461-b01a-c5e98da65555" parent_id_arme="a6dd161c-9515-4064-a85e-eabc4edfbf6b">
     <if_exists name="T|firstnumber||secondnumber|" />
     <if_variable name="T|firstnumber||secondnumber|" comparator="NOT" value="1.0" />
+    <clear_ai name="T|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_PLAYER" value2="InNebulaDetectionRange" name="T|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_AI_SHIP" value2="InNebulaDetectionRange" name="T|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_STATION" name="T|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_OTHER_MONSTERS" value1="20000" name="T|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_AI_SHIP" value1="20000" value2="500" name="T|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_PLAYER" value1="20000" value2="500" name="T|firstnumber||secondnumber|" />
     <add_ai type="AVOID_WHALE" value1="5000" name="T|firstnumber||secondnumber|" />
+    <add_ai type="FIGHTER_BINGO" name="T|firstnumber||secondnumber|" />
+    <add_ai type="SPCL_AI" name="T|firstnumber||secondnumber|" />
     <set_variable name="T|firstnumber||secondnumber|" value="1.0" />
   </event>
-  <event name="UpdateAI for U" id_arme="8fd5dc84-8468-40e2-b7ef-c711b90c431b" parent_id_arme="b1522541-9f58-434f-a559-dc05b6371a10">
+  <event name="UpdateAI for U" id_arme="dd284122-717d-473f-b7a5-6e5a70fdec5d" parent_id_arme="a6dd161c-9515-4064-a85e-eabc4edfbf6b">
     <if_exists name="U|firstnumber||secondnumber|" />
     <if_variable name="U|firstnumber||secondnumber|" comparator="NOT" value="1.0" />
+    <clear_ai name="U|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_PLAYER" value2="InNebulaDetectionRange" name="U|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_AI_SHIP" value2="InNebulaDetectionRange" name="U|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_STATION" name="U|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_OTHER_MONSTERS" value1="20000" name="U|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_AI_SHIP" value1="20000" value2="500" name="U|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_PLAYER" value1="20000" value2="500" name="U|firstnumber||secondnumber|" />
     <add_ai type="AVOID_WHALE" value1="5000" name="U|firstnumber||secondnumber|" />
+    <add_ai type="FIGHTER_BINGO" name="U|firstnumber||secondnumber|" />
+    <add_ai type="SPCL_AI" name="U|firstnumber||secondnumber|" />
     <set_variable name="U|firstnumber||secondnumber|" value="1.0" />
   </event>
-  <event name="UpdateAI for V" id_arme="dd354903-6796-405a-850e-22a5a93af992" parent_id_arme="b1522541-9f58-434f-a559-dc05b6371a10">
+  <event name="UpdateAI for V" id_arme="2c93cb13-1b90-464f-ae8b-acb8d8fff055" parent_id_arme="a6dd161c-9515-4064-a85e-eabc4edfbf6b">
     <if_exists name="V|firstnumber||secondnumber|" />
     <if_variable name="V|firstnumber||secondnumber|" comparator="NOT" value="1.0" />
+    <clear_ai name="V|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_PLAYER" value2="InNebulaDetectionRange" name="V|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_AI_SHIP" value2="InNebulaDetectionRange" name="V|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_STATION" name="V|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_OTHER_MONSTERS" value1="20000" name="V|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_AI_SHIP" value1="20000" value2="500" name="V|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_PLAYER" value1="20000" value2="500" name="V|firstnumber||secondnumber|" />
     <add_ai type="AVOID_WHALE" value1="5000" name="V|firstnumber||secondnumber|" />
+    <add_ai type="FIGHTER_BINGO" name="V|firstnumber||secondnumber|" />
+    <add_ai type="SPCL_AI" name="V|firstnumber||secondnumber|" />
     <set_variable name="V|firstnumber||secondnumber|" value="1.0" />
   </event>
-  <event name="UpdateAI for W" id_arme="2a376ba0-8bb2-4ab7-84bc-8546ec19e381" parent_id_arme="b1522541-9f58-434f-a559-dc05b6371a10">
+  <event name="UpdateAI for W" id_arme="6a6261ae-a7a9-4d72-824d-fa52dd566ecf" parent_id_arme="a6dd161c-9515-4064-a85e-eabc4edfbf6b">
     <if_exists name="W|firstnumber||secondnumber|" />
     <if_variable name="W|firstnumber||secondnumber|" comparator="NOT" value="1.0" />
+    <clear_ai name="W|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_PLAYER" value2="InNebulaDetectionRange" name="W|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_AI_SHIP" value2="InNebulaDetectionRange" name="W|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_STATION" name="W|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_OTHER_MONSTERS" value1="20000" name="W|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_AI_SHIP" value1="20000" value2="500" name="W|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_PLAYER" value1="20000" value2="500" name="W|firstnumber||secondnumber|" />
     <add_ai type="AVOID_WHALE" value1="5000" name="W|firstnumber||secondnumber|" />
+    <add_ai type="FIGHTER_BINGO" name="W|firstnumber||secondnumber|" />
+    <add_ai type="SPCL_AI" name="W|firstnumber||secondnumber|" />
     <set_variable name="W|firstnumber||secondnumber|" value="1.0" />
   </event>
-  <event name="UpdateAI for X" id_arme="faf40c10-3ca8-4a8f-b4b7-d0590d38d82c" parent_id_arme="b1522541-9f58-434f-a559-dc05b6371a10">
+  <event name="UpdateAI for X" id_arme="c545c9fe-8b8e-41a1-b9c3-1973e6da4fc9" parent_id_arme="a6dd161c-9515-4064-a85e-eabc4edfbf6b">
     <if_exists name="X|firstnumber||secondnumber|" />
     <if_variable name="X|firstnumber||secondnumber|" comparator="NOT" value="1.0" />
+    <clear_ai name="X|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_PLAYER" value2="InNebulaDetectionRange" name="X|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_AI_SHIP" value2="InNebulaDetectionRange" name="X|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_STATION" name="X|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_OTHER_MONSTERS" value1="20000" name="X|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_AI_SHIP" value1="20000" value2="500" name="X|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_PLAYER" value1="20000" value2="500" name="X|firstnumber||secondnumber|" />
     <add_ai type="AVOID_WHALE" value1="5000" name="X|firstnumber||secondnumber|" />
+    <add_ai type="FIGHTER_BINGO" name="X|firstnumber||secondnumber|" />
+    <add_ai type="SPCL_AI" name="X|firstnumber||secondnumber|" />
     <set_variable name="X|firstnumber||secondnumber|" value="1.0" />
   </event>
-  <event name="UpdateAI for Y" id_arme="59e36051-37b7-495b-8fa4-792278ef4ad2" parent_id_arme="b1522541-9f58-434f-a559-dc05b6371a10">
+  <event name="UpdateAI for Y" id_arme="09804187-5924-4e5e-be0b-62d745721d7a" parent_id_arme="a6dd161c-9515-4064-a85e-eabc4edfbf6b">
     <if_exists name="Y|firstnumber||secondnumber|" />
     <if_variable name="Y|firstnumber||secondnumber|" comparator="NOT" value="1.0" />
+    <clear_ai name="Y|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_PLAYER" value2="InNebulaDetectionRange" name="Y|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_AI_SHIP" value2="InNebulaDetectionRange" name="Y|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_STATION" name="Y|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_OTHER_MONSTERS" value1="20000" name="Y|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_AI_SHIP" value1="20000" value2="500" name="Y|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_PLAYER" value1="20000" value2="500" name="Y|firstnumber||secondnumber|" />
     <add_ai type="AVOID_WHALE" value1="5000" name="Y|firstnumber||secondnumber|" />
+    <add_ai type="FIGHTER_BINGO" name="Y|firstnumber||secondnumber|" />
+    <add_ai type="SPCL_AI" name="Y|firstnumber||secondnumber|" />
     <set_variable name="Y|firstnumber||secondnumber|" value="1.0" />
   </event>
-  <event name="UpdateAI for Z" id_arme="c31307a2-43b8-4d65-aa7b-9b0ba92dc506" parent_id_arme="b1522541-9f58-434f-a559-dc05b6371a10">
+  <event name="UpdateAI for Z" id_arme="2e9845d4-ffa1-4e24-a0e0-88ce0be11bf1" parent_id_arme="a6dd161c-9515-4064-a85e-eabc4edfbf6b">
     <if_exists name="Z|firstnumber||secondnumber|" />
     <if_variable name="Z|firstnumber||secondnumber|" comparator="NOT" value="1.0" />
+    <clear_ai name="Z|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_PLAYER" value2="InNebulaDetectionRange" name="Z|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_AI_SHIP" value2="InNebulaDetectionRange" name="Z|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_STATION" name="Z|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_OTHER_MONSTERS" value1="20000" name="Z|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_AI_SHIP" value1="20000" value2="500" name="Z|firstnumber||secondnumber|" />
+    <add_ai type="CHASE_PLAYER" value1="20000" value2="500" name="Z|firstnumber||secondnumber|" />
     <add_ai type="AVOID_WHALE" value1="5000" name="Z|firstnumber||secondnumber|" />
+    <add_ai type="FIGHTER_BINGO" name="Z|firstnumber||secondnumber|" />
+    <add_ai type="SPCL_AI" name="Z|firstnumber||secondnumber|" />
     <set_variable name="Z|firstnumber||secondnumber|" value="1.0" />
   </event>
-  <event name="Increase 1st Number" id_arme="6f9a0e4e-f122-4326-a94d-f9d8b6d8da62" parent_id_arme="b1522541-9f58-434f-a559-dc05b6371a10">
+  <event name="Increase 1st Number" id_arme="6f9a0e4e-f122-4326-a94d-f9d8b6d8da62" parent_id_arme="a6dd161c-9515-4064-a85e-eabc4edfbf6b">
     <if_variable name="stopUpdatingAI" comparator="NOT" value="1.0" />
     <if_variable name="firstnumber" comparator="LESS" value="10.0" />
     <set_variable name="firstnumber" value="firstnumber+1" integer="yes" />
+    <set_variable name="DianaMissilesChanged" value="0.0" />
   </event>
-  <event name="Increase 2nd Number" id_arme="6d702ff3-42f1-48db-94fe-16ede1b8a22e" parent_id_arme="b1522541-9f58-434f-a559-dc05b6371a10">
+  <event name="Increase 2nd Number" id_arme="6d702ff3-42f1-48db-94fe-16ede1b8a22e" parent_id_arme="a6dd161c-9515-4064-a85e-eabc4edfbf6b">
     <if_variable name="stopUpdatingAI" comparator="NOT" value="1.0" />
     <if_variable name="firstnumber" comparator="EQUALS" value="10.0" />
     <if_variable name="secondnumber" comparator="LESS" value="10.0" />
     <set_variable name="firstnumber" value="-1" integer="yes" />
     <set_variable name="secondnumber" value="secondnumber+1" integer="yes" />
   </event>
-  <event name="Reset Numbers" id_arme="32321099-b290-4e19-8e3a-61e57e6ded99" parent_id_arme="b1522541-9f58-434f-a559-dc05b6371a10">
+  <event name="Reset Numbers" id_arme="32321099-b290-4e19-8e3a-61e57e6ded99" parent_id_arme="a6dd161c-9515-4064-a85e-eabc4edfbf6b">
     <if_variable name="stopUpdatingAI" comparator="NOT" value="1.0" />
     <if_variable name="secondnumber" comparator="EQUALS" value="10.0" />
     <if_variable name="firstnumber" comparator="EQUALS" value="10.0" />
     <set_variable name="firstnumber" value="0.0" integer="yes" />
     <set_variable name="secondnumber" value="0.0" integer="yes" />
   </event>
-  <folder_arme name="Phantom whale beacon" id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96" />
+  <folder_arme name="Decloak to fire" id_arme="e85cee3c-d933-48b3-b430-c0d43aa7f2cf" />
+  <event name="Increase Bea" id_arme="b13c7003-2cf7-42c1-83fc-0936b07370cb" parent_id_arme="e85cee3c-d933-48b3-b430-c0d43aa7f2cf">
+    <if_object_property property="countBea" name="Diana" comparator="GREATER" value="DianaCountBea" />
+    <set_variable name="DianaMissilesChanged" value="0.0" />
+    <set_variable name="DianaCountBea" value="DianaCountBea+1" />
+  </event>
+  <event name="Decrease Bea" id_arme="67df7bd9-ecd9-4360-9692-347a160f3187" parent_id_arme="e85cee3c-d933-48b3-b430-c0d43aa7f2cf">
+    <if_object_property property="countBea" name="Diana" comparator="LESS" value="DianaCountBea" />
+    <set_variable name="DianaMissilesChanged" value="1.0" />
+    <set_variable name="DianaCountBea" value="DianaCountBea-1" />
+  </event>
+  <event name="Increase EMP" id_arme="97c05293-b491-4ac6-a137-da28d9e459b8" parent_id_arme="e85cee3c-d933-48b3-b430-c0d43aa7f2cf">
+    <if_object_property property="countEMP" name="Diana" comparator="GREATER" value="DianaCountEMP" />
+    <set_variable name="DianaMissilesChanged" value="1.0" />
+    <set_variable name="DianaCountEMP" value="DianaCountEMP+1" />
+  </event>
+  <event name="Decrease EMP" id_arme="fecdb828-56e2-4251-b257-03006a686a75" parent_id_arme="e85cee3c-d933-48b3-b430-c0d43aa7f2cf">
+    <if_object_property property="countEMP" name="Diana" comparator="LESS" value="DianaCountEMP" />
+    <set_variable name="DianaMissilesChanged" value="1.0" />
+    <set_variable name="DianaCountEMP" value="DianaCountEMP-1" />
+  </event>
+  <event name="Increase Homing" id_arme="e5b060ce-68a1-4fcc-bf54-ccf509e5d9da" parent_id_arme="e85cee3c-d933-48b3-b430-c0d43aa7f2cf">
+    <if_object_property property="countHoming" name="Diana" comparator="GREATER" value="DianaCountHoming" />
+    <set_variable name="DianaMissilesChanged" value="1.0" />
+    <set_variable name="DianaCountHoming" value="DianaCountHoming+1" />
+  </event>
+  <event name="Decrease Homing" id_arme="f2112fec-4785-42da-8315-ffeec308e2eb" parent_id_arme="e85cee3c-d933-48b3-b430-c0d43aa7f2cf">
+    <if_object_property property="countHoming" name="Diana" comparator="LESS" value="DianaCountHoming" />
+    <set_variable name="DianaMissilesChanged" value="1.0" />
+    <set_variable name="DianaCountHoming" value="DianaCountHoming-1" />
+  </event>
+  <event name="Increase Mine" id_arme="6b8c75af-1e29-4434-a22e-990e6c6347ef" parent_id_arme="e85cee3c-d933-48b3-b430-c0d43aa7f2cf">
+    <if_object_property property="countMine" name="Diana" comparator="GREATER" value="DianaCountMine" />
+    <set_variable name="DianaMissilesChanged" value="1.0" />
+    <set_variable name="DianaCountMine" value="DianaCountMine+1" />
+  </event>
+  <event name="Decrease Mine" id_arme="259aaec7-02d3-4042-960e-caf92bacb8ed" parent_id_arme="e85cee3c-d933-48b3-b430-c0d43aa7f2cf">
+    <if_object_property property="countMine" name="Diana" comparator="LESS" value="DianaCountMine" />
+    <set_variable name="DianaMissilesChanged" value="1.0" />
+    <set_variable name="DianaCountMine" value="DianaCountMine-1" />
+  </event>
+  <event name="Increase Nuke" id_arme="834a1a4a-bfa7-46c2-a59c-26ec334d3c2f" parent_id_arme="e85cee3c-d933-48b3-b430-c0d43aa7f2cf">
+    <if_object_property property="countNuke" name="Diana" comparator="GREATER" value="DianaCountNuke" />
+    <set_variable name="DianaMissilesChanged" value="1.0" />
+    <set_variable name="DianaCountNuke" value="DianaCountNuke+1" />
+  </event>
+  <event name="Decrease Nuke" id_arme="37eb1ecf-111a-49b5-84d5-68132bcac82e" parent_id_arme="e85cee3c-d933-48b3-b430-c0d43aa7f2cf">
+    <if_object_property property="countNuke" name="Diana" comparator="LESS" value="DianaCountNuke" />
+    <set_variable name="DianaMissilesChanged" value="1.0" />
+    <set_variable name="DianaCountNuke" value="DianaCountNuke-1" />
+  </event>
+  <event name="Increase Pro" id_arme="cd06a433-f44e-4102-ab04-005f95e9ce60" parent_id_arme="e85cee3c-d933-48b3-b430-c0d43aa7f2cf">
+    <if_object_property property="countPro" name="Diana" comparator="GREATER" value="DianaCountPro" />
+    <set_variable name="DianaMissilesChanged" value="1.0" />
+    <set_variable name="DianaCountPro" value="DianaCountPro+1" />
+  </event>
+  <event name="Decrease Pro" id_arme="4e4a835f-0c54-4576-a87e-0c0202f50bf5" parent_id_arme="e85cee3c-d933-48b3-b430-c0d43aa7f2cf">
+    <if_object_property property="countPro" name="Diana" comparator="LESS" value="DianaCountPro" />
+    <set_variable name="DianaMissilesChanged" value="1.0" />
+    <set_variable name="DianaCountPro" value="DianaCountPro-1" />
+  </event>
+  <event name="Increase Shk" id_arme="70d64e11-32d3-4eb9-a342-3d9abb38214c" parent_id_arme="e85cee3c-d933-48b3-b430-c0d43aa7f2cf">
+    <if_object_property property="countShk" name="Diana" comparator="GREATER" value="DianaCountShk" />
+    <set_variable name="DianaMissilesChanged" value="1.0" />
+    <set_variable name="DianaCountShk" value="DianaCountShk+1" />
+  </event>
+  <event name="Decrease Shk" id_arme="67ea3c30-0b3d-4ca3-8db4-3ba7fe9d2cf1" parent_id_arme="e85cee3c-d933-48b3-b430-c0d43aa7f2cf">
+    <if_object_property property="countShk" name="Diana" comparator="LESS" value="DianaCountShk" />
+    <set_variable name="DianaMissilesChanged" value="1.0" />
+    <set_variable name="DianaCountShk" value="DianaCountShk-1" />
+  </event>
+  <event name="Increase Tag" id_arme="7b5a2fe1-0eb4-4452-a0df-931539838b57" parent_id_arme="e85cee3c-d933-48b3-b430-c0d43aa7f2cf">
+    <if_object_property property="countTag" name="Diana" comparator="GREATER" value="DianaCountTag" />
+    <set_variable name="DianaMissilesChanged" value="1.0" />
+    <set_variable name="DianaCountTag" value="DianaCountTag+1" />
+  </event>
+  <event name="Decrease Tag" id_arme="c9046b41-564e-49fa-a196-d01b542b9318" parent_id_arme="e85cee3c-d933-48b3-b430-c0d43aa7f2cf">
+    <if_object_property property="countTag" name="Diana" comparator="LESS" value="DianaCountTag" />
+    <set_variable name="DianaMissilesChanged" value="1.0" />
+    <set_variable name="DianaCountTag" value="DianaCountTag-1" />
+  </event>
+  <event name="Disengage Cloak" id_arme="74a32555-4338-47c0-a1e0-6072d4c09214" parent_id_arme="e85cee3c-d933-48b3-b430-c0d43aa7f2cf">
+    <if_variable name="CloakEngaged" comparator="NOT" value="0.0" />
+    <if_variable name="DianaMissilesChanged" comparator="NOT" value="0.0" />
+    <clear_comms_button text="Disengage Cloak" />
+    <destroy_near nebType="1" type="nebulas" radius="100000" centerX="DianaX" centerY="DianaY" centerZ="DianaZ" />
+    <set_variable name="CloakEngaged" value="0.0" />
+    <set_variable name="CloakButtonShown" value="0.0" />
+    <set_timer name="CloakCooldownTimer" seconds="10" />
+  </event>
+  <folder_arme name="Handle ship-specific buttons" id_arme="690c5f35-7bda-4380-9187-9a32d8d25c24" />
+  <folder_arme name="Artemis: Phantom whale beacon" id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96" parent_id_arme="690c5f35-7bda-4380-9187-9a32d8d25c24" />
   <event name="Start refreshing button" id_arme="3cac636d-7052-4857-bef8-fe8b53d4ad85" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
     <if_variable name="TsnCommandGaveArtemisMission" comparator="EQUALS" value="2.0" />
     <if_timer_finished name="CommsButtonRefreshTimer" />
@@ -910,7 +1344,6 @@
     <set_variable name="BeaconButtonShown" value="0.0" />
   </event>
   <event name="Show button" id_arme="483b8827-f8cb-44fb-aa4a-320ef2327272" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
-    <if_variable name="TsnCommandGaveArtemisMission" comparator="EQUALS" value="2.0" />
     <if_variable name="BeaconButtonShown" comparator="EQUALS" value="1.0" />
     <if_object_property property="sideValue" name="Artemis" comparator="NOT" value="2" />
     <if_object_property property="countBea" name="Artemis" comparator="GREATER" value="0" />
@@ -1052,7 +1485,73 @@
     <if_exists name="Pha|firstnumber|" />
     <set_relative_position name2="Pha|firstnumber|" distance="0" angle="0" name1="Bea|firstnumber|" />
   </event>
-  <folder_arme name="Break up alliance" id_arme="8804c4f9-925d-4740-8e06-e036def95c7b" expanded_arme="" />
+  <folder_arme name="Diana: Cloak button" id_arme="948f2be4-0ffd-4f56-84a9-a671ed0df671" parent_id_arme="690c5f35-7bda-4380-9187-9a32d8d25c24" />
+  <event name="Position Unstable" id_arme="00ac3523-feaf-4d86-8649-82cc2c37827d" parent_id_arme="948f2be4-0ffd-4f56-84a9-a671ed0df671">
+    <if_variable name="DianaPositionStable" comparator="EQUALS" value="0.0" />
+    <if_variable name="CloakEngaged" comparator="EQUALS" value="0.0" />
+    <if_variable name="CloakButtonShown" comparator="EQUALS" value="1.0" />
+    <set_variable name="CloakButtonShown" value="0.0" />
+    <clear_comms_button text="Engage Cloak" />
+  </event>
+  <event name="Moved while cloaked" id_arme="476884b7-0d9b-4c07-af31-28974b4a853d" parent_id_arme="948f2be4-0ffd-4f56-84a9-a671ed0df671">
+    <if_variable name="DianaPositionStable" comparator="EQUALS" value="0.0" />
+    <if_variable name="CloakEngaged" comparator="EQUALS" value="1.0" />
+    <clear_comms_button text="Disengage Cloak" />
+    <destroy_near nebType="1" type="nebulas" radius="100000" centerX="DianaX" centerY="DianaY" centerZ="DianaZ" />
+    <set_variable name="CloakEngaged" value="0.0" />
+    <set_variable name="CloakButtonShown" value="0.0" />
+    <set_timer name="CloakCooldownTimer" seconds="10" />
+  </event>
+  <event name="Show &quot;Engage Cloak&quot; button" id_arme="ca57f4e0-a634-48d5-8881-1fd65535b1da" parent_id_arme="948f2be4-0ffd-4f56-84a9-a671ed0df671">
+    <if_variable name="CloakButtonShown" comparator="EQUALS" value="1.0" />
+    <if_object_property property="sideValue" name="Diana" comparator="NOT" value="2" />
+    <if_timer_finished name="CloakCooldownTimer" />
+    <if_object_property property="positionX" name="Diana" comparator="EQUALS" value="DianaX" />
+    <if_object_property property="positionY" name="Diana" comparator="EQUALS" value="DianaY" />
+    <if_object_property property="positionZ" name="Diana" comparator="EQUALS" value="DianaZ" />
+    <set_comms_button text="Engage Cloak" sideValue="3" />
+    <set_variable name="CloakButtonShown" value="2.0" />
+    <set_variable name="DianaPositionStable" value="1.0" />
+  </event>
+  <event name="Show &quot;Disengage Cloak&quot; button" id_arme="15cc5c75-e6ce-487f-ba02-9bce4b4f6a4d" parent_id_arme="948f2be4-0ffd-4f56-84a9-a671ed0df671">
+    <if_variable name="CloakButtonShown" comparator="EQUALS" value="3.0" />
+    <if_object_property property="sideValue" name="Diana" comparator="NOT" value="2" />
+    <set_comms_button text="Disengage Cloak" sideValue="3" />
+    <set_variable name="CloakButtonShown" value="4.0" />
+  </event>
+  <event name="Restore Diana side" id_arme="83bf8361-6c19-4d51-b37a-02b23ff9e5b3" parent_id_arme="948f2be4-0ffd-4f56-84a9-a671ed0df671">
+    <if_exists name="Diana" />
+    <if_object_property property="sideValue" name="Diana" comparator="NOT" value="2" />
+    <set_object_property property="sideValue" value="2" name="Diana" />
+  </event>
+  <event name="Change Diana side for &quot;Engage Cloak&quot; button" id_arme="57265ed2-c5c6-465a-b5f9-c84002000d9a" parent_id_arme="948f2be4-0ffd-4f56-84a9-a671ed0df671">
+    <if_timer_finished name="CloakCooldownTimer" />
+    <if_variable name="CloakButtonShown" comparator="EQUALS" value="0.0" />
+    <if_object_property property="positionX" name="Diana" comparator="EQUALS" value="DianaX" />
+    <if_object_property property="positionY" name="Diana" comparator="EQUALS" value="DianaY" />
+    <if_object_property property="positionZ" name="Diana" comparator="EQUALS" value="DianaZ" />
+    <set_object_property property="sideValue" value="3" name="Diana" />
+    <set_variable name="CloakButtonShown" value="1.0" />
+  </event>
+  <event name="Engage Cloak" id_arme="15fdcfef-4236-4c57-bc37-87ed3afc61c1" parent_id_arme="948f2be4-0ffd-4f56-84a9-a671ed0df671">
+    <if_comms_button text="Engage Cloak" />
+    <clear_comms_button text="Engage Cloak" />
+    <set_comms_button text="Disengage Cloak" />
+    <create count="1" type="nebulas" nebType="1" startX="DianaX" startY="DianaY" startZ="DianaZ" radius="1" randomRange="0" />
+    <set_variable name="CloakEngaged" value="1.0" />
+    <!--Change Diana side for "Disengage Cloak" button-->
+    <set_object_property property="sideValue" value="3" name="Diana" />
+    <set_variable name="CloakButtonShown" value="3.0" />
+  </event>
+  <event name="Disengage Cloak" id_arme="428d0182-8dea-4b4d-a895-7395652ea659" parent_id_arme="948f2be4-0ffd-4f56-84a9-a671ed0df671">
+    <if_comms_button text="Disengage Cloak" />
+    <clear_comms_button text="Disengage Cloak" />
+    <destroy_near nebType="1" type="nebulas" radius="100000" centerX="DianaX" centerY="DianaY" centerZ="DianaZ" />
+    <set_variable name="CloakEngaged" value="0.0" />
+    <set_variable name="CloakButtonShown" value="0.0" />
+    <set_timer name="CloakCooldownTimer" seconds="10" />
+  </event>
+  <folder_arme name="Break up alliance" id_arme="8804c4f9-925d-4740-8e06-e036def95c7b" />
   <event name="Switch side for AB" id_arme="db56dd59-8390-4c24-bcac-e2d165591bd3" parent_id_arme="8804c4f9-925d-4740-8e06-e036def95c7b">
     <if_exists name="AB0|firstnumber|" />
     <if_variable name="BreakupAlliance" comparator="GREATER" value="0.0" />

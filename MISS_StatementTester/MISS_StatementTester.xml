@@ -16,6 +16,7 @@
     <create type="player" x="48838.0" y="0.0" z="15133.0" angle="0" name="Artemis" />
     <set_variable name="DamConSize" value="0.0" integer="yes" />
     <big_message title="Unnamed mission" subtitle1="by Unknown Author" subtitle2="adventure for Artemis 2.6" />
+    <!--<set_timer value="0.0" seconds="5" name="EliteTimer" />-->
     <set_variable name="Min" value="-100.0" />
     <set_variable name="Max" value="100.0" />
     <set_variable name="Guess" value="(Min + Max) / 2.0" />
@@ -32,7 +33,10 @@
     <add_ai type="CHASE_AI_SHIP" value1="3000" value2="500" name="GS20k" />
     <add_ai type="FOLLOW_COMMS_ORDERS" name="GS20k" />
     <add_ai type="DEFEND" value1="3000" value2="1500" name="GS20k" />
-    <create type="enemy" x="17168.0" y="0.0" z="24576.0" angle="0" name="Enemy1" hullID="2000" sideValue="1" fleetnumber="-1" />
+    <create type="enemy" x="17168.0" y="0.0" z="24576.0" angle="0" name="Enemy1" hullID="5001" sideValue="1" fleetnumber="-1" />
+    <set_special name="Enemy1" ability="Stealth" />
+    <set_special name="Enemy1" ability="LowVis" />
+    <set_special name="Enemy1" ability="Cloak" />
     <create type="enemy" x="17894.0" y="0.0" z="15423.0" angle="0" name="Enemy2" hullID="2000" sideValue="2" fleetnumber="-1" />
     <create count="1" type="nebulas" nebType="1" startX="58838.0" startY="0.0" startZ="10000.0" radius="1" />
     <create count="1" type="nebulas" nebType="2" startX="48838.0" startY="0.0" startZ="10000.0" radius="1" />
@@ -63,32 +67,37 @@
     <set_variable name="NebulasCreated" value="1.0" />
   </disabled_event>
   <folder_arme name="Show value" id_arme="511219bf-0cc7-4027-8d16-f85359aee992" />
-  <disabled_event name="Decrease Min" id_arme="00d1a448-3fba-4687-b142-de0a1c232f3c" parent_id_arme="511219bf-0cc7-4027-8d16-f85359aee992">
-    <if_object_property property="turnRate" name="Artemis" comparator="LESS" value="Min" />
-    <set_variable name="Min" value="Min * 2.0" />
+  <event name="Decrease Min" id_arme="00d1a448-3fba-4687-b142-de0a1c232f3c" parent_id_arme="511219bf-0cc7-4027-8d16-f85359aee992">
+    <if_object_property property="turnRate" name="Enemy1" comparator="LESS" value="Min" />
+    <set_variable name="Min" value="Min / 2.0" />
     <log text="Decreased Min to |Min|" />
-  </disabled_event>
-  <disabled_event name="Increase Max" id_arme="87631d7d-7107-428a-8664-d61008a4bd9a" parent_id_arme="511219bf-0cc7-4027-8d16-f85359aee992">
-    <if_object_property property="turnRate" name="Artemis" comparator="GREATER" value="Max" />
+  </event>
+  <event name="Increase Max" id_arme="87631d7d-7107-428a-8664-d61008a4bd9a" parent_id_arme="511219bf-0cc7-4027-8d16-f85359aee992">
+    <if_object_property property="turnRate" name="Enemy1" comparator="GREATER" value="Max" />
     <set_variable name="Max" value="Max * 2.0" />
     <log text="Increased Max to |Max|" />
-  </disabled_event>
-  <disabled_event name="Guess is high" id_arme="8a9d5651-a4bc-431c-81dc-a921dff5df2b" parent_id_arme="511219bf-0cc7-4027-8d16-f85359aee992">
-    <if_object_property property="turnRate" name="Artemis" comparator="LESS" value="Guess" />
+  </event>
+  <event name="Guess is high" id_arme="8a9d5651-a4bc-431c-81dc-a921dff5df2b" parent_id_arme="511219bf-0cc7-4027-8d16-f85359aee992">
+    <if_object_property property="turnRate" name="Enemy1" comparator="LESS" value="Guess" />
     <set_variable name="Max" value="Guess" />
     <log text="Decreased Max to |Max|" />
-  </disabled_event>
-  <disabled_event name="Guess is low" id_arme="4c701183-769e-437b-af46-565dbf963551" parent_id_arme="511219bf-0cc7-4027-8d16-f85359aee992">
-    <if_object_property property="turnRate" name="Artemis" comparator="GREATER" value="Guess" />
+  </event>
+  <event name="Guess is low" id_arme="4c701183-769e-437b-af46-565dbf963551" parent_id_arme="511219bf-0cc7-4027-8d16-f85359aee992">
+    <if_object_property property="turnRate" name="Enemy1" comparator="GREATER" value="Guess" />
     <set_variable name="Min" value="Guess" />
     <log text="Increased Min to |Min|" />
-  </disabled_event>
-  <disabled_event name="Recalc Guess" id_arme="2f2e4bfa-c62d-42e8-b856-9f4dd4a6244e" parent_id_arme="511219bf-0cc7-4027-8d16-f85359aee992">
-    <if_object_property property="turnRate" name="Artemis" comparator="NOT" value="Guess" />
+  </event>
+  <event name="Recalc Guess" id_arme="2f2e4bfa-c62d-42e8-b856-9f4dd4a6244e" parent_id_arme="511219bf-0cc7-4027-8d16-f85359aee992">
+    <if_object_property property="turnRate" name="Enemy1" comparator="NOT" value="Guess" />
     <set_variable name="Guess" value="(Min + Max) / 2.0" />
     <log text="New Guess is |Guess|" />
-  </disabled_event>
+  </event>
   <folder_arme name="addto_object_property" id_arme="1225be4f-30f7-433c-af7d-82e8bb7f4622" />
+  <event name="add GM buttons" id_arme="4f2dc6ae-91fd-41dc-a317-f2e569969edf" parent_id_arme="1225be4f-30f7-433c-af7d-82e8bb7f4622">
+    <if_variable name="AddtoPropertyButtonsAdded" comparator="EQUALS" value="0.0" />
+    <set_gm_button text="AddtoProperty/GM selection" />
+    <set_variable name="AddtoPropertyButtonsAdded" value="1.0" />
+  </event>
   <disabled_event name="Negative" id_arme="71c963ad-dbc4-4df0-b9d1-496cc9571952" parent_id_arme="1225be4f-30f7-433c-af7d-82e8bb7f4622">
     <if_object_property property="sensorSetting" comparator="GREATER" value="2.0" />
     <set_variable name="Delta" value="-1.0" />
@@ -97,6 +106,10 @@
     <set_object_property property="sensorSetting" value="-Delta+1" />
     <addto_object_property value="-Delta+1" property="sensorSetting" />
   </disabled_event>
+  <event name="GM selection" id_arme="d205007f-177a-438b-a131-cd0b932f0ee3" parent_id_arme="1225be4f-30f7-433c-af7d-82e8bb7f4622">
+    <if_gm_button text="AddtoProperty/GM selection" />
+    <addto_object_property value="1.0" property="angle" use_gm_selection="" />
+  </event>
   <folder_arme name="big_message" id_arme="a0fd47eb-2d81-42b9-a7e1-324d52aabd19" />
   <disabled_event name="no side" id_arme="b785b71c-e0f2-46da-ba91-03958f643776" parent_id_arme="a0fd47eb-2d81-42b9-a7e1-324d52aabd19">
     <if_variable name="BigMessageSide" comparator="EQUALS" value="0.0" />
@@ -192,17 +205,18 @@
     <set_variable name="Slot1TooClose" value="0.0" />
   </disabled_event>
   <folder_arme name="if_docked" id_arme="8af2c2f2-f053-4c2d-a4ce-f5d8f64a5e6c" />
-  <disabled_event name="Empty is not docked to DS2" id_arme="5f078a42-b0d1-4f2f-8f19-ff6edbaf3efb" parent_id_arme="8af2c2f2-f053-4c2d-a4ce-f5d8f64a5e6c">
-    <if_docked name="DS2" />
-    <!--<if_variable name="EmptyIsDockedToDS2" comparator="EQUALS" value="1.0" />-->
-    <set_variable name="EmptyIsDockedToDS2" value="0.0" />
-    <incoming_comms_text from="Test" type="STATION">Player ship not docked to DS2</incoming_comms_text>
-  </disabled_event>
   <disabled_event name="Empty is docked to DS2" id_arme="99dcc43a-c209-490e-9f5f-f9103b79a361" parent_id_arme="8af2c2f2-f053-4c2d-a4ce-f5d8f64a5e6c">
     <if_docked name="DS2" />
     <if_variable name="EmptyIsDockedToDS2" comparator="EQUALS" value="0.0" />
     <set_variable name="EmptyIsDockedToDS2" value="1.0" />
     <incoming_comms_text from="Test" type="STATION">Player ship docked to DS2</incoming_comms_text>
+  </disabled_event>
+  <disabled_event name="Empty is not docked to DS2" id_arme="5f078a42-b0d1-4f2f-8f19-ff6edbaf3efb" parent_id_arme="8af2c2f2-f053-4c2d-a4ce-f5d8f64a5e6c">
+    <if_docked not="1" name="DS2" />
+    <if_variable name="EmptyIsDockedToDS2" comparator="NOT" value="0.0" />
+    <!--<if_variable name="EmptyIsDockedToDS2" comparator="EQUALS" value="1.0" />-->
+    <set_variable name="EmptyIsDockedToDS2" value="0.0" />
+    <incoming_comms_text from="Test" type="STATION">Player ship not docked to DS2</incoming_comms_text>
   </disabled_event>
   <disabled_event name="Artemis is docked to DS2" id_arme="ed76717a-b459-4381-b45b-639a787b515c" parent_id_arme="8af2c2f2-f053-4c2d-a4ce-f5d8f64a5e6c">
     <if_exists name="Artemis" />
@@ -213,7 +227,8 @@
   </disabled_event>
   <disabled_event name="Artemis is not docked to DS2" id_arme="8d1159a8-96e2-4d6b-b8aa-f0940bc1ea21" parent_id_arme="8af2c2f2-f053-4c2d-a4ce-f5d8f64a5e6c">
     <if_exists name="Artemis" />
-    <if_docked player_name="Artemis" name="DS2" />
+    <if_docked player_name="Artemis" not="1" name="DS2" />
+    <if_variable name="ArtemisIsDockedToDS2" comparator="NOT" value="0.0" />
     <!--<if_variable name="ArtemisIsDockedToDS2" comparator="EQUALS" value="1.0" />-->
     <set_variable name="ArtemisIsDockedToDS2" value="0.0" />
     <incoming_comms_text from="Test" type="STATION">Artemis not docked to DS2</incoming_comms_text>
@@ -227,43 +242,46 @@
   </disabled_event>
   <disabled_event name="Intrepid is not docked to DS2" id_arme="e487be36-a91b-4488-b9e5-bb8e50b808e3" parent_id_arme="8af2c2f2-f053-4c2d-a4ce-f5d8f64a5e6c">
     <if_exists name="Intrepid" />
-    <if_docked player_name="Intrepid" name="DS2" />
+    <if_docked player_name="Intrepid" not="1" name="DS2" />
+    <if_variable name="IntrepidIsDockedToDS2" comparator="NOT" value="0.0" />
     <!--<if_variable name="IntrepidIsDockedToDS2" comparator="EQUALS" value="1.0" />-->
     <set_variable name="IntrepidIsDockedToDS2" value="0.0" />
     <incoming_comms_text from="Test" type="STATION">Intrepid not docked to DS2</incoming_comms_text>
   </disabled_event>
   <disabled_event name="Slot0 is docked to DS2" id_arme="f4a4fd88-a095-4f03-9a44-8934d4a80c6d" parent_id_arme="8af2c2f2-f053-4c2d-a4ce-f5d8f64a5e6c">
-    <if_docked name="DS2" />
+    <if_docked player_slot="0" name="DS2" />
     <if_variable name="Slot0IsDockedToDS2" comparator="EQUALS" value="0.0" />
     <set_variable name="Slot0IsDockedToDS2" value="1.0" />
     <incoming_comms_text from="Test" type="STATION">Slot0 docked to DS2</incoming_comms_text>
   </disabled_event>
   <disabled_event name="Slot0 is not docked to DS2" id_arme="e305a429-47f0-4e02-9f86-3ee0f45ca347" parent_id_arme="8af2c2f2-f053-4c2d-a4ce-f5d8f64a5e6c">
-    <if_docked name="DS2" />
+    <if_docked player_slot="0" not="1" name="DS2" />
+    <if_variable name="Slot0IsDockedToDS2" comparator="NOT" value="0.0" />
     <!--<if_variable name="Slot0IsDockedToDS2" comparator="EQUALS" value="1.0" />-->
     <set_variable name="Slot0IsDockedToDS2" value="0.0" />
     <incoming_comms_text from="Test" type="STATION">Slot0 not docked to DS2</incoming_comms_text>
   </disabled_event>
-  <disabled_event name="Slot1 is docked to DS2" id_arme="9841164e-de86-4211-81e0-d0840d2870d2" parent_id_arme="8af2c2f2-f053-4c2d-a4ce-f5d8f64a5e6c">
-    <if_docked name="DS2" />
+  <disabled_event name="BROKEN: Slot1 is docked to DS2" id_arme="9841164e-de86-4211-81e0-d0840d2870d2" parent_id_arme="8af2c2f2-f053-4c2d-a4ce-f5d8f64a5e6c">
+    <if_docked player_slot="1" name="DS2" />
     <if_variable name="Slot1IsDockedToDS2" comparator="EQUALS" value="0.0" />
     <set_variable name="Slot1IsDockedToDS2" value="1.0" />
     <incoming_comms_text from="Test" type="STATION">Slot1 docked to DS2</incoming_comms_text>
   </disabled_event>
-  <disabled_event name="Slot1 is not docked to DS2" id_arme="4a98bbe9-621c-4571-ade0-e2228cd11739" parent_id_arme="8af2c2f2-f053-4c2d-a4ce-f5d8f64a5e6c">
-    <if_docked name="DS2" />
+  <disabled_event name="BROKEN: Slot1 is not docked to DS2" id_arme="4a98bbe9-621c-4571-ade0-e2228cd11739" parent_id_arme="8af2c2f2-f053-4c2d-a4ce-f5d8f64a5e6c">
+    <if_docked player_slot="1" not="1" name="DS2" />
+    <if_variable name="Slot1IsDockedToDS2" comparator="NOT" value="0.0" />
     <!--<if_variable name="Slot1IsDockedToDS2" comparator="EQUALS" value="1.0" />-->
     <set_variable name="Slot1IsDockedToDS2" value="0.0" />
     <incoming_comms_text from="Test" type="STATION">Slot1 now docked to DS2</incoming_comms_text>
   </disabled_event>
-  <folder_arme name="if_exists" id_arme="2bb6d3ea-e052-4480-9ac7-ac2ac0bc9b33" expanded_arme="" />
+  <folder_arme name="if_exists" id_arme="2bb6d3ea-e052-4480-9ac7-ac2ac0bc9b33" />
   <event name="slot 1 exists" id_arme="d0dc08e1-3c83-4d38-a111-016ba9e93bcf" parent_id_arme="2bb6d3ea-e052-4480-9ac7-ac2ac0bc9b33">
     <if_exists player_slot="1" />
     <if_variable name="Slot1Exists" comparator="EQUALS" value="0.0" />
     <set_variable name="Slot1Exists" value="1.0" />
   </event>
   <event name="slot 1 not exist" id_arme="cfdaefbb-b806-42e3-8743-0e25edf30d43" parent_id_arme="2bb6d3ea-e052-4480-9ac7-ac2ac0bc9b33">
-    <if_not_exists player_slot="1" />
+    <if_not_exists />
     <if_variable name="Slot1Exists" comparator="EQUALS" value="1.0" />
     <set_variable name="Slot1Exists" value="2.0" />
   </event>
@@ -593,6 +611,28 @@
     <if_object_property property="sideValue" name="Intrepid" comparator="NOT" value="3.0" />
     <set_side_value value="3" name="Intrepid">Welcome to side 3</set_side_value>
   </disabled_event>
+  <folder_arme name="play_sound_now" id_arme="be987873-d9c8-40a8-bed1-b94bfa201053" />
+  <disabled_event name="Add buttons" id_arme="e1e130f6-5221-4c9e-8465-7ed023364103" parent_id_arme="be987873-d9c8-40a8-bed1-b94bfa201053">
+    <if_variable name="SoundButtonsAdded" comparator="EQUALS" value="0.0" />
+    <set_comms_button text="alarm1" />
+    <set_comms_button text="DianaUndocked" />
+    <set_comms_button text="tractor" />
+    <set_variable name="SoundButtonsAdded" value="1.0" />
+  </disabled_event>
+  <disabled_event name="alarm1" id_arme="0cf07411-a1ea-417f-8c9e-0ee2668b66d6" parent_id_arme="be987873-d9c8-40a8-bed1-b94bfa201053">
+    <if_comms_button text="alarm1" />
+    <!--Relative to the Artemis folder-->
+    <play_sound_now filename="dat/alarm1.wav" />
+  </disabled_event>
+  <disabled_event name="DianaUndocked" id_arme="792e25ff-fd1a-4c8c-9a3e-20a4c4a5a447" parent_id_arme="be987873-d9c8-40a8-bed1-b94bfa201053">
+    <if_comms_button text="DianaUndocked" />
+    <play_sound_now filename="./dat/Missions/MISS_StatementTester/DianaUndocked.wav" />
+  </disabled_event>
+  <disabled_event name="tractor" id_arme="1d8366c5-d10e-41f8-a024-8b8ec79b1780" parent_id_arme="be987873-d9c8-40a8-bed1-b94bfa201053">
+    <if_comms_button text="tractor" />
+    <!--Relative to the Artemis folder-->
+    <play_sound_now filename="dat\tractor.wav" />
+  </disabled_event>
   <folder_arme name="set_damcon_members" id_arme="e172b15b-457c-42c2-a5a8-608b6e526a8e" />
   <disabled_event name="add GM buttons" id_arme="4b3c058b-6c86-4b5d-afd0-1eec38542202" parent_id_arme="e172b15b-457c-42c2-a5a8-608b6e526a8e">
     <if_variable name="DamConButtonsAdded" comparator="EQUALS" value="0.0" />
@@ -634,6 +674,42 @@
     <set_named_object_tag_state name="GenericMesh" tagSourceSide="2" />
     <set_variable name="snots_init" value="1.0" />
   </disabled_event>
+  <folder_arme name="set_object_property" id_arme="2caf4ce9-d5c3-43fa-9bca-a6705f1c1e0a" />
+  <event name="add GM buttons" id_arme="49a7dc9c-c627-4a47-b103-88007744941a" parent_id_arme="2caf4ce9-d5c3-43fa-9bca-a6705f1c1e0a">
+    <if_variable name="SetPropertyButtonsAdded" comparator="EQUALS" value="0.0" />
+    <set_gm_button text="SetFriendly/GM selection" />
+    <set_gm_button text="SetEnemy/GM selection" />
+    <set_variable name="SetPropertyButtonsAdded" value="1.0" />
+  </event>
+  <disabled_event name="Turn on special abilities" id_arme="ebc811d0-e6b5-4aaa-b7ef-337ea94e5562" parent_id_arme="2caf4ce9-d5c3-43fa-9bca-a6705f1c1e0a">
+    <if_timer_finished name="EliteTimer" />
+    <if_object_property property="specialAbilityState" name="Enemy1" comparator="EQUALS" value="0" />
+    <set_object_property property="specialAbilityState" value="7" name="Enemy1" />
+    <set_timer name="EliteTimer" seconds="3" />
+  </disabled_event>
+  <disabled_event name="Turn off special abilities" id_arme="c832a16c-5696-42e4-b0bb-cf87f8c2e9a2" parent_id_arme="2caf4ce9-d5c3-43fa-9bca-a6705f1c1e0a">
+    <if_timer_finished name="EliteTimer" />
+    <if_object_property property="specialAbilityState" name="Enemy1" comparator="NOT" value="0.0" />
+    <set_object_property property="specialAbilityState" value="0.0" name="Enemy1" />
+    <set_timer name="EliteTimer" seconds="3" />
+  </disabled_event>
+  <disabled_event name="BROKEN: slot 1" id_arme="0401f0b0-f2dd-439a-ace8-2ce0d44e6882" parent_id_arme="2caf4ce9-d5c3-43fa-9bca-a6705f1c1e0a">
+    <if_exists name="Intrepid" />
+    <if_variable name="updatedCoolant" comparator="EQUALS" value="0.0" />
+    <set_variable name="updatedCoolant" value="1.0" />
+    <set_object_property property="totalCoolant" value="10" name="Intrepid" />
+    <set_object_property property="countNuke" value="0" name="Intrepid" />
+  </disabled_event>
+  <event name="GM selection" id_arme="5d9ea3ae-fd9e-46cd-ba1e-2380dc2ac713" parent_id_arme="2caf4ce9-d5c3-43fa-9bca-a6705f1c1e0a">
+    <if_gm_button text="SetFriendly/GM selection" />
+    <set_object_property property="sideValue" value="2" use_gm_selection="" />
+    <set_object_property property="angle" value="2.0" use_gm_selection="" />
+  </event>
+  <event name="GM selection" id_arme="a7b30f7b-18d1-4697-b4f6-bfc6047dd2af" parent_id_arme="2caf4ce9-d5c3-43fa-9bca-a6705f1c1e0a">
+    <if_gm_button text="SetEnemy/GM selection" />
+    <set_object_property property="sideValue" value="1" use_gm_selection="" />
+    <set_object_property property="angle" value="1" use_gm_selection="" />
+  </event>
   <folder_arme name="set_player_grid_damage" id_arme="7c8e9f55-373a-48b3-aa0d-f6e9a4ed3349" />
   <disabled_event name="damage" id_arme="648c4eac-5126-49cd-b8ba-fe33552ebfe1" parent_id_arme="7c8e9f55-373a-48b3-aa0d-f6e9a4ed3349">
     <!--works-->
@@ -718,5 +794,27 @@
     <warning_popup_message message="Slot1" consoles="MH" />
     <set_variable name="IntrepidSentPopups" value="1.0" />
   </disabled_event>
+  <folder_arme name="if_timer" id_arme="0d6a329f-7021-4c36-a7f2-6c67896d950e" expanded_arme="" />
+  <event name="Set timer to 1 second" id_arme="4b2c3162-ba14-479d-866e-7e656bfcb9cd" parent_id_arme="0d6a329f-7021-4c36-a7f2-6c67896d950e">
+    <!--This test verifies that "timer expired" is not a one-shot event, but continues to be true after it's expired-->
+    <if_variable name="TimerStarted" comparator="EQUALS" value="0.0" />
+    <set_timer name="TestTimer" seconds="1" />
+    <set_variable name="TimerStarted" value="1.0" />
+  </event>
+  <event name="Timer expired 1" id_arme="c3cdc3f7-63cc-4547-9b6f-4c422324f948" parent_id_arme="0d6a329f-7021-4c36-a7f2-6c67896d950e">
+    <if_variable name="TimerTestDone" comparator="EQUALS" value="0.0" />
+    <if_timer_finished name="TestTimer" />
+    <set_variable name="TimerExpired" value="TimerExpired+1" />
+  </event>
+  <event name="Timer expired 2" id_arme="51daa3c5-cbb1-4370-bf15-19651bde76e7" parent_id_arme="0d6a329f-7021-4c36-a7f2-6c67896d950e">
+    <if_variable name="TimerTestDone" comparator="EQUALS" value="0.0" />
+    <if_timer_finished name="TestTimer" />
+    <set_variable name="TimerExpired" value="TimerExpired+1" />
+    <set_variable name="TimerTestDone" value="1.0" />
+  </event>
+  <event name="Test unset timer" id_arme="7a51eaaa-5c33-48d3-9217-dd2206761a82" parent_id_arme="0d6a329f-7021-4c36-a7f2-6c67896d950e">
+    <if_timer_finished name="UnsetTimer" />
+    <set_variable name="UnsetTimerExpired" value="UnsetTimerExpired+1" />
+  </event>
 </mission_data>
 <!--This is a commentary after the mission node.-->
