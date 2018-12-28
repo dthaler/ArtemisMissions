@@ -16,7 +16,7 @@
     <set_variable name="EnableDestroyCloak" value="0.0" integer="yes" />
     <set_variable name="TsnCommandGaveArtemisMission" value="0.0" integer="yes" />
     <set_variable name="TsnCommandGaveDianaMission" value="0.0" integer="yes" />
-    <set_variable name="BeaconSerialNumber" value="0.0" integer="yes" />
+    <set_variable name="NextBeaconNumber" value="1.0" integer="yes" />
     <set_variable name="BeaTimeout1" value="0.0" integer="yes" />
     <set_variable name="BeaTimeout2" value="0.0" integer="yes" />
     <set_variable name="BeaTimeout3" value="0.0" integer="yes" />
@@ -150,7 +150,7 @@
     <set_variable name="firstnumber" value="0.0" integer="yes" />
     <set_variable name="secondnumber" value="0.0" integer="yes" />
   </start>
-  <folder_arme name="Debug Mode" id_arme="27459883-7153-49dc-8cdc-060a039bd7af" expanded_arme="" />
+  <folder_arme name="Debug Mode" id_arme="27459883-7153-49dc-8cdc-060a039bd7af" />
   <event name="GM break up alliance" id_arme="eb357c88-b858-4397-a28f-174f8ab8f543" parent_id_arme="27459883-7153-49dc-8cdc-060a039bd7af">
     <if_gm_button text="GM/Break up alliance" />
     <log text="GM broke up Arvonian/Torgoth alliance" />
@@ -404,7 +404,7 @@
   <event name="Houston Outpost gives instruction 2" id_arme="b38bc5af-2597-463b-8eec-cb66b6a854c4" parent_id_arme="228e7479-d78c-43b9-8d36-67cc88f26a4b">
     <if_variable name="TsnCommandGaveDianaMission" comparator="EQUALS" value="2.0" />
     <if_timer_finished name="DianaMoreInstructionTimer" />
-    <incoming_comms_text from="TSN Command" type="ALERT">However, the mission failed when both the Diana and the planet suddenly vanished into a newly appeared wormhole, which then disappeared as quickly as it appeared.  Months laster, the wormhole reopened and an Artemis Away Team took a shuttle into the wormhole and recovered the crippled Diana from the planet Elysia still inside the wormhole, and returned the Diana to TSN space, after discovering that generations had passed on Elysia due to the time differential inside.</incoming_comms_text>
+    <incoming_comms_text from="TSN Command" type="ALERT">However, the mission failed when both the Diana and the planet suddenly vanished into a newly appeared wormhole, which then disappeared as quickly as it appeared.  Months later, the wormhole reopened and an Artemis Away Team took a shuttle into the wormhole and recovered the crippled Diana from the planet Elysia still inside the wormhole, and returned the Diana to TSN space, after discovering that generations had passed on Elysia due to the time differential inside.</incoming_comms_text>
     <set_timer name="DianaMoreInstructionTimer" seconds="30" />
     <set_variable name="TsnCommandGaveDianaMission" value="3.0" />
   </event>
@@ -485,7 +485,7 @@
   </event>
   <event name="SB01 gives instruction" id_arme="902bcf6e-6856-47d7-b62c-0a6ac838c953" parent_id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed">
     <if_variable name="TsnCommandGaveArtemisMission" comparator="EQUALS" value="1.0" />
-    <incoming_comms_text from="TSN Command" type="ALERT">Artemis, we have retrofitted your shuttle bay with an experimental holographic beacon deployment system.  Beacons deployed by this experimental system will generate holographic signals that will appear to sensors and viewscreens as if they were space whales.  Intelligence indicates that all Arvonians will attempt to steer clear of space whales by at least 5000m, while Torgoths are known to actively hunt them down if within 5000m, even in preference to attacking our ships.  It is hoped that, if you use them intelligently, these can give you key tactical advantages. Your Comms officer can direct them to be deployed out your rear shuttle bay door, similar to mines.</incoming_comms_text>
+    <incoming_comms_text from="TSN Command" type="ALERT">Artemis, we have retrofitted your shuttle bay with an experimental holographic beacon deployment system.  Beacons deployed by this experimental system will generate holographic signals that will appear to sensors and viewscreens as if they were space whales.  Intelligence indicates that all Arvonians will attempt to steer clear of space whales by at least 5000m, while Torgoths are known to actively hunt them down if within 5000m, even in preference to attacking our ships.  It is hoped that, if you use them intelligently, these can give you key tactical advantages. Your Comms officer can direct them to be deployed out your rear shuttle bay door, similar to mines.  You may have up to 9 deployed at a time.</incoming_comms_text>
     <set_variable name="TsnCommandGaveArtemisMission" value="2.0" />
     <set_object_property property="missileStoresBeacon" value="8" name="SB01" />
     <set_timer name="CommsButtonRefreshTimer" seconds="60" />
@@ -1392,7 +1392,7 @@
     <set_timer name="CloakCooldownTimer" seconds="10" />
   </event>
   <folder_arme name="Handle ship-specific buttons" id_arme="690c5f35-7bda-4380-9187-9a32d8d25c24" />
-  <folder_arme name="Artemis: Phantom whale beacon" id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96" parent_id_arme="690c5f35-7bda-4380-9187-9a32d8d25c24" />
+  <folder_arme name="Artemis: Phantom whale beacon" id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96" parent_id_arme="690c5f35-7bda-4380-9187-9a32d8d25c24" expanded_arme="" />
   <event name="Start refreshing button" id_arme="3cac636d-7052-4857-bef8-fe8b53d4ad85" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
     <if_variable name="TsnCommandGaveArtemisMission" comparator="EQUALS" value="2.0" />
     <if_timer_finished name="CommsButtonRefreshTimer" />
@@ -1405,6 +1405,8 @@
     <if_variable name="BeaconButtonShown" comparator="EQUALS" value="1.0" />
     <if_object_property property="sideValue" name="Artemis" comparator="NOT" value="2" />
     <if_object_property property="countBea" name="Artemis" comparator="GREATER" value="0" />
+    <if_not_exists name="Bea|NextBeaconNumber|" />
+    <if_not_exists name="Pha|NextBeaconNumber|" />
     <log text="Showing &quot;Drop whale beacon&quot; button" />
     <set_comms_button text="Drop whale beacon" sideValue="3" />
     <set_variable name="BeaconButtonShown" value="2.0" />
@@ -1417,6 +1419,8 @@
   <event name="Change Artemis side" id_arme="36d1ebf2-17ef-4ad2-9940-92f23b430c7b" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
     <if_variable name="TsnCommandGaveArtemisMission" comparator="EQUALS" value="2.0" />
     <if_variable name="BeaconButtonRefreshed" comparator="EQUALS" value="0.0" />
+    <if_not_exists name="Bea|NextBeaconNumber|" />
+    <if_not_exists name="Pha|NextBeaconNumber|" />
     <if_object_property property="sideValue" name="Artemis" comparator="EQUALS" value="2" />
     <if_object_property property="countBea" name="Artemis" comparator="GREATER" value="0" />
     <set_object_property property="sideValue" value="3" name="Artemis" />
@@ -1435,15 +1439,26 @@
     <if_comms_button text="Drop whale beacon" />
     <log text="Dropping a phantom whale beacon" />
     <play_sound_now filename="dat/weapon1.wav" />
-    <set_variable name="BeaconSerialNumber" value="BeaconSerialNumber+1" />
     <addto_object_property value="-1.0" property="countBea" name="Artemis" />
-    <create type="Anomaly" pickupType="8" beaconEffect="0" beaconMonsterType="1" x="0.0" y="0.0" z="0.0" name="Bea|BeaconSerialNumber|" />
-    <set_relative_position name2="Bea|BeaconSerialNumber|" distance="650" angle="180" name1="Artemis" />
-    <create type="monster" monsterType="1" age="1" podnumber="9" x="0.0" y="0.0" z="0.0" name="Pha|BeaconSerialNumber|" />
-    <clear_ai name="Pha|BeaconSerialNumber|" />
-    <set_monster_tag_data tag_slot="0" name="Pha|BeaconSerialNumber|" sourcetext="Artemis" datetext="Phantom image" />
-    <add_ai type="CHASE_SIGNAL" value1="6.0" name="Pha|BeaconSerialNumber|" />
-    <set_variable name="BeaTimeout|BeaconSerialNumber|" value="0.0" integer="yes" />
+    <create type="Anomaly" pickupType="8" beaconEffect="0" beaconMonsterType="1" x="0.0" y="0.0" z="0.0" name="Bea|NextBeaconNumber|" />
+    <set_relative_position name2="Bea|NextBeaconNumber|" distance="650" angle="180" name1="Artemis" />
+    <create type="monster" monsterType="1" age="1" podnumber="9" x="0.0" y="0.0" z="0.0" name="Pha|NextBeaconNumber|" />
+    <clear_ai name="Pha|NextBeaconNumber|" />
+    <set_monster_tag_data tag_slot="0" name="Pha|NextBeaconNumber|" sourcetext="Artemis" datetext="Phantom image" />
+    <add_ai type="CHASE_SIGNAL" value1="6.0" name="Pha|NextBeaconNumber|" />
+    <set_variable name="BeaTimeout|NextBeaconNumber|" value="0.0" integer="yes" />
+    <set_variable name="NextBeaconNumber" value="NextBeaconNumber+1" />
+    <clear_comms_button text="Drop whale beacon" />
+    <set_variable name="BeaconButtonShown" value="0.0" />
+    <set_variable name="BeaconButtonRefreshed" value="0.0" />
+  </event>
+  <event name="Skip NextBeaconNumber if already exists" id_arme="7456c88b-08fb-4735-83d0-67195919a0ce" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
+    <if_variable name="NextBeaconNumber" comparator="GREATER" value="9.0" />
+    <set_variable name="NextBeaconNumber" value="1.0" />
+  </event>
+  <event name="Skip NextBeaconNumber if already exists" id_arme="2923ea57-fe98-4f4c-a245-4545f50716d2" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
+    <if_exists name="Bea|NextBeaconNumber|" />
+    <set_variable name="NextBeaconNumber" value="NextBeaconNumber+1" />
   </event>
   <event name="Destroy whale if beacon destroyed" id_arme="67eddf09-e045-48e9-abe5-af933f1d283e" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
     <if_exists name="Pha|firstnumber|" />
@@ -1546,7 +1561,7 @@
     <if_exists name="Pha|firstnumber|" />
     <set_relative_position name2="Pha|firstnumber|" distance="0" angle="0" name1="Bea|firstnumber|" />
   </event>
-  <folder_arme name="Diana: Cloak button" id_arme="948f2be4-0ffd-4f56-84a9-a671ed0df671" parent_id_arme="690c5f35-7bda-4380-9187-9a32d8d25c24" expanded_arme="" />
+  <folder_arme name="Diana: Cloak button" id_arme="948f2be4-0ffd-4f56-84a9-a671ed0df671" parent_id_arme="690c5f35-7bda-4380-9187-9a32d8d25c24" />
   <event name="Position Unstable" id_arme="00ac3523-feaf-4d86-8649-82cc2c37827d" parent_id_arme="948f2be4-0ffd-4f56-84a9-a671ed0df671">
     <if_variable name="DianaPositionStable" comparator="EQUALS" value="0.0" />
     <if_variable name="CloakEngaged" comparator="EQUALS" value="0.0" />
@@ -1687,10 +1702,10 @@
   <event name="Send Elysia rescue plan" id_arme="a31eee16-4f0f-412a-99f4-ea4ff3a34503" parent_id_arme="a0939c52-af8b-45c2-9131-86a14e6ea566">
     <if_gm_button text="GM/Away Team/Send Elysia rescue plan" />
     <log text="Away Team sent Elysia rescue plan to Diana" />
-    <incoming_comms_text from="Diana Away Team" type="PLAYER">Diana, Elysia Mainframe analysis indicates that reversing the polarity of the cloaking device while in the proximity of Elysia's magnetic Cetrocite field will repair the rift in the space/time continuum that caused the wormhole.  This would return Elysia to normal space, but would likely destroy the cloaking device in the process.</incoming_comms_text>
+    <incoming_comms_text from="Diana Away Team" type="PLAYER">Diana, Elysia Mainframe analysis indicates that reversing the polarity of the cloaking device while in the proximity of Elysia's magnetic Cetrocite field should repair the rift in the space/time continuum that caused the wormhole.  This would return Elysia to normal space, but would likely destroy the cloaking device in the process.</incoming_comms_text>
     <set_variable name="EnableDestroyCloak" value="1.0" />
   </event>
-  <folder_arme name="Break up alliance" id_arme="8804c4f9-925d-4740-8e06-e036def95c7b" />
+  <folder_arme name="Break up alliance" id_arme="8804c4f9-925d-4740-8e06-e036def95c7b" expanded_arme="" />
   <event name="Switch side for AB" id_arme="db56dd59-8390-4c24-bcac-e2d165591bd3" parent_id_arme="8804c4f9-925d-4740-8e06-e036def95c7b">
     <if_exists name="AB0|firstnumber|" />
     <if_variable name="BreakupAlliance" comparator="GREATER" value="0.0" />
@@ -1878,7 +1893,7 @@
     <big_message title="MISSION FAILED" subtitle1="All player ships have been destroyed" />
     <incoming_comms_text from="Main Screen" type="ALERT">Mission Failed^All player ships have been destroyed</incoming_comms_text>
   </event>
-  <event name="Success: Elysia restored, no one has plans" id_arme="ff7a7998-0269-4deb-aa90-e4893a11eee7" parent_id_arme="b6599e90-34a0-45b3-a71a-979f3ea4fc5d">
+  <event name="Success: Elysia restored, no one has plans, Alliance broken" id_arme="ff7a7998-0269-4deb-aa90-e4893a11eee7" parent_id_arme="b6599e90-34a0-45b3-a71a-979f3ea4fc5d">
     <if_not_exists name="TB01" />
     <if_not_exists name="TB02" />
     <if_not_exists name="TB03" />
@@ -1886,11 +1901,92 @@
     <if_fleet_count comparator="EQUALS" value="0.0" sideValue="1" />
     <if_variable name="CloakDestroyed" comparator="GREATER" value="0.0" />
     <if_variable name="DeathStationPlansDestroyed" comparator="GREATER" value="0.0" />
+    <if_variable name="BreakupAlliance" comparator="GREATER" value="0.0" />
+    <log text="MISSION SUCCEEDED, Arvonian/Torgoth alliance broken, Elysia restored, and Death Station plans destroyed" />
+    <incoming_comms_text from="TSN Command" type="ALERT">Good work!  The Torgoths have been defeated and the Arvonians are retreating, leaving Elysia to the TSN.  It looks like the war will soon be over!  Congratulations!</incoming_comms_text>
+    <big_message title="MISSION SUCCEEDED" subtitle1="Arvonian/Torgoth alliance broken and all remaining enemies destroyed" subtitle2="Elysia rescued and Death Station plans destroyed!" />
+  </event>
+  <event name="Success: Elysia restored, TSN has plans, Alliance broken" id_arme="69f6f523-21be-4559-9da6-83f1c0ecf178" parent_id_arme="b6599e90-34a0-45b3-a71a-979f3ea4fc5d">
+    <if_not_exists name="TB01" />
+    <if_not_exists name="TB02" />
+    <if_not_exists name="TB03" />
+    <if_variable name="GameOver" comparator="EQUALS" value="0.0" />
+    <if_fleet_count comparator="EQUALS" value="0.0" sideValue="1" />
+    <if_variable name="CloakDestroyed" comparator="GREATER" value="0.0" />
+    <if_variable name="TsnHasDeathStationPlans" comparator="GREATER" value="0.0" />
+    <if_variable name="BreakupAlliance" comparator="GREATER" value="0.0" />
+    <log text="MISSION SUCCEEDED, Arvonian/Torgoth alliance broken, Elysia restored, and TSN has Death Station plans" />
+    <incoming_comms_text from="TSN Command" type="ALERT">Good work!  The Torgoths have been defeated and the Arvonians are retreating from Elysia.  The TSN will now begin construction using the Death Station plans you sent...  It looks like the war will soon be over!</incoming_comms_text>
+    <big_message title="MISSION SUCCEEDED" subtitle1="Arvonian/Torgoth alliance broken and all remaining enemies destroyed" subtitle2="Elysia rescued, and Death Station plans acquired" />
+  </event>
+  <event name="Success: Elysia restored, Elysia has plans, Alliance broken" id_arme="ed4f46f6-f868-4401-91a9-ba171f343b80" parent_id_arme="b6599e90-34a0-45b3-a71a-979f3ea4fc5d">
+    <if_not_exists name="TB01" />
+    <if_not_exists name="TB02" />
+    <if_not_exists name="TB03" />
+    <if_variable name="GameOver" comparator="EQUALS" value="0.0" />
+    <if_fleet_count comparator="EQUALS" value="0.0" sideValue="1" />
+    <if_variable name="CloakDestroyed" comparator="GREATER" value="0.0" />
+    <if_variable name="DeathStationPlansDestroyed" comparator="EQUALS" value="0.0" />
+    <if_variable name="TsnHasDeathStationPlans" comparator="EQUALS" value="0.0" />
+    <if_variable name="BreakupAlliance" comparator="GREATER" value="0.0" />
+    <log text="MISSION SUCCEEDED, Arvonian/Torgoth alliance broken, Elysia restored and has Death Station plans" />
+    <incoming_comms_text from="TSN Command" type="ALERT">Good work!  The Torgoths have been defeated and the Arvonians are retreating, leaving Elysia to the TSN.  It looks like the war will soon be over!  Congratulations!</incoming_comms_text>
+    <big_message title="MISSION SUCCEEDED" subtitle1="Arvonian/Torgoth alliance broken and all remaining enemies destroyed" subtitle2="Elysia rescued with Death Station plans still in Elysia Mainframe" />
+  </event>
+  <event name="Success: Elysia disappeared, no one has plans, Alliance broken" id_arme="8ba97808-d376-4944-9033-8581e3d36049" parent_id_arme="b6599e90-34a0-45b3-a71a-979f3ea4fc5d">
+    <if_not_exists name="TB01" />
+    <if_not_exists name="TB02" />
+    <if_not_exists name="TB03" />
+    <if_variable name="GameOver" comparator="EQUALS" value="0.0" />
+    <if_fleet_count comparator="EQUALS" value="0.0" sideValue="1" />
+    <if_variable name="CloakDestroyed" comparator="EQUALS" value="0.0" />
+    <if_variable name="DeathStationPlansDestroyed" comparator="GREATER" value="0.0" />
+    <if_variable name="BreakupAlliance" comparator="GREATER" value="0.0" />
+    <log text="MISSION SUCCEEDED, Arvonian/Torgoth alliance broken, Elysia gone again, and Death Station plans destroyed" />
+    <incoming_comms_text from="TSN Command" type="ALERT">Good work!  The Torgoths have been defeated and the Arvonians are retreating.  It looks like the war will soon be over!  Congratulations!</incoming_comms_text>
+    <big_message title="MISSION SUCCEEDED" subtitle1="Arvonian/Torgoth alliance broken and all remaining enemies destroyed" subtitle2="Elysia disappeared but Death Station plans destroyed" />
+  </event>
+  <event name="Success: Elysia disappeared, TSN has plans, Alliance broken" id_arme="b4ac7f8f-39a5-4ad3-ba8c-cbc61a2432e3" parent_id_arme="b6599e90-34a0-45b3-a71a-979f3ea4fc5d">
+    <if_not_exists name="TB01" />
+    <if_not_exists name="TB02" />
+    <if_not_exists name="TB03" />
+    <if_variable name="GameOver" comparator="EQUALS" value="0.0" />
+    <if_fleet_count comparator="EQUALS" value="0.0" sideValue="1" />
+    <if_variable name="CloakDestroyed" comparator="EQUALS" value="0.0" />
+    <if_variable name="TsnHasDeathStationPlans" comparator="GREATER" value="0.0" />
+    <if_variable name="BreakupAlliance" comparator="GREATER" value="0.0" />
+    <log text="MISSION SUCCEEDED, Arvonian/Torgoth alliance broken, Elysia gone again, and TSN has Death Station plans" />
+    <incoming_comms_text from="TSN Command" type="ALERT">Good work!  The Torgoths have been defeated and the Arvonians are retreating.  The TSN will now begin construction using the Death Station plans you sent...  It looks like the war will soon be over!</incoming_comms_text>
+    <big_message title="MISSION SUCCEEDED" subtitle1="Arvonian/Torgoth alliance broken and all remaining enemies destroyed" subtitle2="Elysia disappeared but Death Station plans acquired" />
+  </event>
+  <event name="Success: Elysia disappeared, Elysia has plans, Alliance broken" id_arme="4ea0e263-9e9d-4369-9387-e9cf2784b6d2" parent_id_arme="b6599e90-34a0-45b3-a71a-979f3ea4fc5d">
+    <if_not_exists name="TB01" />
+    <if_not_exists name="TB02" />
+    <if_not_exists name="TB03" />
+    <if_variable name="GameOver" comparator="EQUALS" value="0.0" />
+    <if_fleet_count comparator="EQUALS" value="0.0" sideValue="1" />
+    <if_variable name="CloakDestroyed" comparator="EQUALS" value="0.0" />
+    <if_variable name="DeathStationPlansDestroyed" comparator="EQUALS" value="0.0" />
+    <if_variable name="TsnHasDeathStationPlans" comparator="EQUALS" value="0.0" />
+    <if_variable name="BreakupAlliance" comparator="GREATER" value="0.0" />
+    <log text="MISSION SUCCEEDED, Arvonian/Torgoth alliance broken, Elysia still has Death Station plans but is gone again" />
+    <incoming_comms_text from="TSN Command" type="ALERT">Good work!  The Torgoths have been defeated and the Arvonians are retreating.  It looks like the war will soon be over!  Congratulations!</incoming_comms_text>
+    <big_message title="MISSION SUCCEEDED" subtitle1="Arvonian/Torgoth alliance broken and all remaining enemies destroyed" subtitle2="Elysia disappeared with Death Station plans still in Elysia Mainframe" />
+  </event>
+  <event name="Success: Elysia restored, no one has plans" id_arme="9a69b776-b9ee-46e0-acc5-92b46ca1b6d3" parent_id_arme="b6599e90-34a0-45b3-a71a-979f3ea4fc5d">
+    <if_not_exists name="TB01" />
+    <if_not_exists name="TB02" />
+    <if_not_exists name="TB03" />
+    <if_variable name="GameOver" comparator="EQUALS" value="0.0" />
+    <if_fleet_count comparator="EQUALS" value="0.0" sideValue="1" />
+    <if_variable name="CloakDestroyed" comparator="GREATER" value="0.0" />
+    <if_variable name="DeathStationPlansDestroyed" comparator="GREATER" value="0.0" />
+    <if_variable name="BreakupAlliance" comparator="EQUALS" value="0.0" />
     <log text="MISSION SUCCEEDED, with Elysia restored and Death Station plans destroyed" />
     <incoming_comms_text from="TSN Command" type="ALERT">Good work!  The Torgoths have been defeated and the Arvonians are retreating, leaving Elysia to the TSN.  It looks like the war will soon be over!  Congratulations!</incoming_comms_text>
     <big_message title="MISSION SUCCEEDED" subtitle1="All enemies have been destroyed" subtitle2="Elysia rescued and Death Station plans destroyed" />
   </event>
-  <event name="Success: Elysia restored, TSN has plans" id_arme="69f6f523-21be-4559-9da6-83f1c0ecf178" parent_id_arme="b6599e90-34a0-45b3-a71a-979f3ea4fc5d">
+  <event name="Success: Elysia restored, TSN has plans" id_arme="06867443-1a9a-43c5-8885-4fecebaf2433" parent_id_arme="b6599e90-34a0-45b3-a71a-979f3ea4fc5d">
     <if_not_exists name="TB01" />
     <if_not_exists name="TB02" />
     <if_not_exists name="TB03" />
@@ -1898,11 +1994,12 @@
     <if_fleet_count comparator="EQUALS" value="0.0" sideValue="1" />
     <if_variable name="CloakDestroyed" comparator="GREATER" value="0.0" />
     <if_variable name="TsnHasDeathStationPlans" comparator="GREATER" value="0.0" />
+    <if_variable name="BreakupAlliance" comparator="EQUALS" value="0.0" />
     <log text="MISSION SUCCEEDED, with Elysia restored and TSN has Death Station plans" />
     <incoming_comms_text from="TSN Command" type="ALERT">Good work!  The Torgoths have been defeated and the Arvonians are retreating from Elysia.  The TSN will now begin construction using the Death Station plans you sent...  It looks like the war will soon be over!</incoming_comms_text>
     <big_message title="MISSION SUCCEEDED" subtitle1="All enemies have been destroyed" subtitle2="Elysia rescued and Death Station plans acquired" />
   </event>
-  <event name="Success: Elysia restored, Elysia has plans" id_arme="ed4f46f6-f868-4401-91a9-ba171f343b80" parent_id_arme="b6599e90-34a0-45b3-a71a-979f3ea4fc5d">
+  <event name="Success: Elysia restored, Elysia has plans" id_arme="0890fce7-c149-43ac-91a7-da87418e438c" parent_id_arme="b6599e90-34a0-45b3-a71a-979f3ea4fc5d">
     <if_not_exists name="TB01" />
     <if_not_exists name="TB02" />
     <if_not_exists name="TB03" />
@@ -1911,11 +2008,12 @@
     <if_variable name="CloakDestroyed" comparator="GREATER" value="0.0" />
     <if_variable name="DeathStationPlansDestroyed" comparator="EQUALS" value="0.0" />
     <if_variable name="TsnHasDeathStationPlans" comparator="EQUALS" value="0.0" />
+    <if_variable name="BreakupAlliance" comparator="EQUALS" value="0.0" />
     <log text="MISSION SUCCEEDED, with Elysia restored and has Death Station plans" />
     <incoming_comms_text from="TSN Command" type="ALERT">Good work!  The Torgoths have been defeated and the Arvonians are retreating, leaving Elysia to the TSN.  It looks like the war will soon be over!  Congratulations!</incoming_comms_text>
     <big_message title="MISSION SUCCEEDED" subtitle1="All enemies have been destroyed" subtitle2="Elysia rescued but Death Station plans still in Elysia Mainframe" />
   </event>
-  <event name="Success: Elysia disappeared, no one has plans" id_arme="8ba97808-d376-4944-9033-8581e3d36049" parent_id_arme="b6599e90-34a0-45b3-a71a-979f3ea4fc5d">
+  <event name="Success: Elysia disappeared, no one has plans" id_arme="e0cc2754-376a-4572-bb9c-91f7fb1bd954" parent_id_arme="b6599e90-34a0-45b3-a71a-979f3ea4fc5d">
     <if_not_exists name="TB01" />
     <if_not_exists name="TB02" />
     <if_not_exists name="TB03" />
@@ -1923,11 +2021,12 @@
     <if_fleet_count comparator="EQUALS" value="0.0" sideValue="1" />
     <if_variable name="CloakDestroyed" comparator="EQUALS" value="0.0" />
     <if_variable name="DeathStationPlansDestroyed" comparator="GREATER" value="0.0" />
+    <if_variable name="BreakupAlliance" comparator="EQUALS" value="0.0" />
     <log text="MISSION SUCCEEDED, with Elysia gone and Death Station plans destroyed" />
     <incoming_comms_text from="TSN Command" type="ALERT">Good work!  The Torgoths have been defeated and the Arvonians are retreating.  It looks like the war will soon be over!  Congratulations!</incoming_comms_text>
     <big_message title="MISSION SUCCEEDED" subtitle1="All enemies have been destroyed" subtitle2="Elysia disappeared but Death Station plans destroyed" />
   </event>
-  <event name="Success: Elysia disappeared, TSN has plans" id_arme="b4ac7f8f-39a5-4ad3-ba8c-cbc61a2432e3" parent_id_arme="b6599e90-34a0-45b3-a71a-979f3ea4fc5d">
+  <event name="Success: Elysia disappeared, TSN has plans" id_arme="4ad2104b-aa0f-497a-9013-ccebf54c3361" parent_id_arme="b6599e90-34a0-45b3-a71a-979f3ea4fc5d">
     <if_not_exists name="TB01" />
     <if_not_exists name="TB02" />
     <if_not_exists name="TB03" />
@@ -1935,11 +2034,12 @@
     <if_fleet_count comparator="EQUALS" value="0.0" sideValue="1" />
     <if_variable name="CloakDestroyed" comparator="EQUALS" value="0.0" />
     <if_variable name="TsnHasDeathStationPlans" comparator="GREATER" value="0.0" />
+    <if_variable name="BreakupAlliance" comparator="EQUALS" value="0.0" />
     <log text="MISSION SUCCEEDED, with Elysia gone and TSN has Death Station plans" />
     <incoming_comms_text from="TSN Command" type="ALERT">Good work!  The Torgoths have been defeated and the Arvonians are retreating.  The TSN will now begin construction using the Death Station plans you sent...  It looks like the war will soon be over!</incoming_comms_text>
     <big_message title="MISSION SUCCEEDED" subtitle1="All enemies have been destroyed" subtitle2="Elysia disappeared but Death Station plans acquired" />
   </event>
-  <event name="Success: Elysia disappeared, Elysia has plans" id_arme="4ea0e263-9e9d-4369-9387-e9cf2784b6d2" parent_id_arme="b6599e90-34a0-45b3-a71a-979f3ea4fc5d">
+  <event name="Success: Elysia disappeared, Elysia has plans" id_arme="2103f1f3-06ad-4582-a0b5-40394e22a40e" parent_id_arme="b6599e90-34a0-45b3-a71a-979f3ea4fc5d">
     <if_not_exists name="TB01" />
     <if_not_exists name="TB02" />
     <if_not_exists name="TB03" />
@@ -1948,6 +2048,7 @@
     <if_variable name="CloakDestroyed" comparator="EQUALS" value="0.0" />
     <if_variable name="DeathStationPlansDestroyed" comparator="EQUALS" value="0.0" />
     <if_variable name="TsnHasDeathStationPlans" comparator="EQUALS" value="0.0" />
+    <if_variable name="BreakupAlliance" comparator="EQUALS" value="0.0" />
     <log text="MISSION SUCCEEDED, with Elysia gone and has Death Station plans" />
     <incoming_comms_text from="TSN Command" type="ALERT">Good work!  The Torgoths have been defeated and the Arvonians are retreating.  It looks like the war will soon be over!  Congratulations!</incoming_comms_text>
     <big_message title="MISSION SUCCEEDED" subtitle1="All enemies have been destroyed" subtitle2="Elysia disappeared with Death Station plans still in Elysia Mainframe" />
