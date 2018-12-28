@@ -141,12 +141,6 @@
     <create type="neutral" x="19492.0" y="0.0" z="91259.0" angle="315" name="Es-04" raceKeys="Terran friendly" hullKeys="small warship" sideValue="2" />
     <add_ai type="AVOID_BLACK_HOLE" value1="WormholeGravityRadius" name="Es-04" />
     <add_ai type="FOLLOW_COMMS_ORDERS" name="Es-04" />
-    <create type="neutral" x="11211.0" y="0.0" z="92130.0" angle="315" name="Mariner" raceKeys="Terran friendly" hullKeys="cargo" sideValue="2" />
-    <add_ai type="AVOID_BLACK_HOLE" value1="WormholeGravityRadius" name="Mariner" />
-    <add_ai type="FOLLOW_COMMS_ORDERS" name="Mariner" />
-    <create type="neutral" x="4528.0" y="0.0" z="87481.0" angle="315" name="Cassini" raceKeys="Terran friendly" hullKeys="science" sideValue="2" />
-    <add_ai type="AVOID_BLACK_HOLE" value1="WormholeGravityRadius" name="Cassini" />
-    <add_ai type="FOLLOW_COMMS_ORDERS" name="Cassini" />
     <set_variable name="firstnumber" value="0.0" integer="yes" />
     <set_variable name="secondnumber" value="0.0" integer="yes" />
   </start>
