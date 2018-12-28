@@ -18,6 +18,7 @@
 12/27/18     No since: repairs sensor damage as a side effect
 12/28/18 ADD: make end screen also show whether alliance was broken up
 12/28/18 ADD: can we allow replenishing phantom whale beacons
+12/28/18 FIX: set scan text for Elysia
 
 ---
 {
@@ -49,10 +50,6 @@
 
 ---
 
-2/2 ADD: make Diana have to relay message from Away Team to TSN Command, unless Wormhole destroyed first
-              GM button: Away Team/Send plans to TSN
-              GM button: Away Team/Send false message to Arvonians about Torgoths
-
 2/2 ADD: Mark's idea...
          Maybe Diana has to spend a cumulative amount of time in the vicinity of the colony, but there are 
          regular patrols that pass close that Diana should avoid.  
@@ -63,15 +60,17 @@
 
 ---
 
-3/2 DEL: whale pod
+3/2 ADD: make Diana have to relay message from Away Team to TSN Command, unless Wormhole destroyed first
+              GM button: Away Team/Send plans to TSN
+              GM button: Away Team/Send false message to Arvonians about Torgoths
+         disadvantage is comms officer might not notice it, and harder to explain when there are two player ships
 
-3/2 Q: is there a way to Scan a generic mesh, to scan Elysia?
+3/2 DEL: whale pod
 
 3/2 BUG: when GM destroys death station plans, GM button doesn't disappear
 
 3/2 ADD: video instructions on how phantom whale beacons work
 
 3/2 Q: can there be "shield" frequencies of a black hole?
-
 
 }

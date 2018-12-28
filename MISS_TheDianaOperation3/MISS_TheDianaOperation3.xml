@@ -646,6 +646,7 @@
     <set_object_property property="rollDelta" value="0.000" name="Elysia" />
     <set_object_property property="pitchDelta" value="0.000" name="Elysia" />
     <set_object_property property="artScale" value="5.0" name="Elysia" />
+    <set_ship_text name="Elysia" desc="Initial readings indicate a population of humans on the planet." scan_desc="Scans indicate a population of humans on the planet, with an Arvonian mainframe located in the colony's control tower." />
     <log text="Diana entered wormhole (done)" />
   </event>
   <folder_arme name="Realm: Diana inside Wormhole" id_arme="d728922c-ff39-419c-afc5-83af1b0b1651" />
@@ -1705,7 +1706,7 @@
     <incoming_comms_text from="Diana Away Team" type="PLAYER">Diana, Elysia Mainframe analysis indicates that reversing the polarity of the cloaking device while in the proximity of Elysia's magnetic Cetrocite field should repair the rift in the space/time continuum that caused the wormhole.  This would return Elysia to normal space, but would likely destroy the cloaking device in the process.</incoming_comms_text>
     <set_variable name="EnableDestroyCloak" value="1.0" />
   </event>
-  <folder_arme name="Break up alliance" id_arme="8804c4f9-925d-4740-8e06-e036def95c7b" expanded_arme="" />
+  <folder_arme name="Break up alliance" id_arme="8804c4f9-925d-4740-8e06-e036def95c7b" />
   <event name="Switch side for AB" id_arme="db56dd59-8390-4c24-bcac-e2d165591bd3" parent_id_arme="8804c4f9-925d-4740-8e06-e036def95c7b">
     <if_exists name="AB0|firstnumber|" />
     <if_variable name="BreakupAlliance" comparator="GREATER" value="0.0" />
@@ -1881,7 +1882,7 @@
     <set_variable name="BreakupAlliance" value="2.0" />
     <incoming_comms_text from="Arvonian command" sideValue="2" type="ALERT">Because the traitorous Torgoths have ruthlessly destroyed the innocent whale Pha|secondnumber|, we refuse to further participate in an alliance with those infidels!  Let us destroy them!</incoming_comms_text>
   </event>
-  <folder_arme name="End Game Events" id_arme="b6599e90-34a0-45b3-a71a-979f3ea4fc5d" expanded_arme="" />
+  <folder_arme name="End Game Events" id_arme="b6599e90-34a0-45b3-a71a-979f3ea4fc5d" />
   <event name="All Player Ships Destroyed" id_arme="e67595c8-6d92-4877-9593-839e1aee8765" parent_id_arme="b6599e90-34a0-45b3-a71a-979f3ea4fc5d">
     <if_not_exists name="Artemis" />
     <if_not_exists name="Diana" />
