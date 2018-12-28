@@ -1303,7 +1303,7 @@
   <folder_arme name="Decloak to fire" id_arme="e85cee3c-d933-48b3-b430-c0d43aa7f2cf" />
   <event name="Increase Bea" id_arme="b13c7003-2cf7-42c1-83fc-0936b07370cb" parent_id_arme="e85cee3c-d933-48b3-b430-c0d43aa7f2cf">
     <if_object_property property="countBea" name="Diana" comparator="GREATER" value="DianaCountBea" />
-    <set_variable name="DianaMissilesChanged" value="0.0" />
+    <set_variable name="DianaMissilesChanged" value="1.0" />
     <set_variable name="DianaCountBea" value="DianaCountBea+1" />
   </event>
   <event name="Decrease Bea" id_arme="67df7bd9-ecd9-4360-9692-347a160f3187" parent_id_arme="e85cee3c-d933-48b3-b430-c0d43aa7f2cf">

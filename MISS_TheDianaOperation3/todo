@@ -12,15 +12,13 @@
 12/26/18 ADD: explain cloaking device mechanics to Diana
 12/27/18 ADD: give mission to Diana
 12/27/18 ADD: GM logic for result of Away Team
+12/27/18 NO: disable sensors while cloaked
+12/27/18     No since: ship-to-ship comms are unreliable
+12/27/18     No since: need to allow stations (other than Helm) something to do while cloaked
+12/27/18     No since: repairs sensor damage as a side effect
 
 ---
 {
-
-1/2 ADD: Mark's idea.. Artemis has to direct Diana away from enemy ships as well as draw enemy ships off Diana. 
-         (limited sensor ranges and nebula clouds?)
-         Though I like the idea, I hesitate to rely on ship-to-ship comms since its been unreliable and 
-        difficult to use in a noisy environment.
-            * When cloaking device is engaged, set sensor power to very low/off
 
 1/2 ADD: Mark's idea...
          Maybe Diana has to spend a cumulative amount of time in the vicinity of the colony, but there are 
