@@ -22,6 +22,7 @@
 12/28/18 FIX: turn off log spew
 -------- sent copy to Mark
 12/28/18 FIX: get rid of civilian vessels
+12/28/18 ADD: Arvonian/Torgoth message exchange
 
 ---
 {
@@ -46,24 +47,19 @@
             dormant since the crash, and the Dianas records were too damaged in the crash for the AI to 
             figure out anything similar after reawakening.)
           * During the mission, the Away Team will learn the truth from the mainframe AI, and maybe even get 
-            the plans to create this super weapon (you know a death star).  Will they:
+            the plans to create this super weapon (Death Station).  Will they:
                 a)  Try to provide the super-weapon plans to TSN command? or
                 b)  Destroy them so no one gets them?
-            Planet Exterminator?
 
 ---
 
 2/2 ADD: Mark's idea...
          Maybe Diana has to spend a cumulative amount of time in the vicinity of the colony, but there are 
          regular patrols that pass close that Diana should avoid.  
+            * make the setup match M1 a little less in terms of stations, NPC ships
+                maybe put an arvonian base closer to Elysia?
 
-2/2 FIX: side missions
-
-2/2 FIX: make the setup match M1 a little less in terms of stations, NPC ships
-
-2/2 FIX: maybe have a Comms msg come from Arvonian to Torgoth when warned
-         and have the Torgoth respond something like "Any whales outside of your territory are none of your business"
-         and then tell the regular message to the Diana about alliance breakup ready
+2/2 ADD: side missions to keep Comms busy
 
 ---
 
