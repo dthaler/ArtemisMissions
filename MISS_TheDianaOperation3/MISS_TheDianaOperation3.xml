@@ -398,7 +398,7 @@
   <event name="Houston Outpost gives instruction 2" id_arme="b38bc5af-2597-463b-8eec-cb66b6a854c4" parent_id_arme="228e7479-d78c-43b9-8d36-67cc88f26a4b">
     <if_variable name="TsnCommandGaveDianaMission" comparator="EQUALS" value="2.0" />
     <if_timer_finished name="DianaMoreInstructionTimer" />
-    <incoming_comms_text from="TSN Command" type="ALERT">However, the mission failed when both the Diana and the planet suddenly vanished into a newly appeared wormhole, which then disappeared as quickly as it appeared.  Months later, the wormhole reopened and an Artemis Away Team took a shuttle into the wormhole and recovered the crippled Diana from the planet Elysia still inside the wormhole, and returned the Diana to TSN space, after discovering that generations had passed on Elysia due to the time differential inside.</incoming_comms_text>
+    <incoming_comms_text from="TSN Command" type="ALERT">However, the mission failed when both the Diana and the planet suddenly vanished into a newly appeared wormhole, which then disappeared as quickly as it appeared.  Months later, the wormhole reopened and a TSN Away Team took a shuttle into the wormhole and recovered the crippled Diana from the planet Elysia still inside the wormhole, and returned the Diana to TSN space, after discovering that generations had passed on Elysia due to the time differential inside.</incoming_comms_text>
     <set_timer name="DianaMoreInstructionTimer" seconds="30" />
     <set_variable name="TsnCommandGaveDianaMission" value="3.0" />
   </event>
@@ -1371,7 +1371,7 @@
     <set_variable name="CloakButtonShown" value="0.0" />
     <set_timer name="CloakCooldownTimer" seconds="10" />
   </event>
-  <folder_arme name="Handle ship-specific buttons" id_arme="690c5f35-7bda-4380-9187-9a32d8d25c24" expanded_arme="" />
+  <folder_arme name="Handle ship-specific buttons" id_arme="690c5f35-7bda-4380-9187-9a32d8d25c24" />
   <folder_arme name="Artemis: Phantom whale beacon" id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96" parent_id_arme="690c5f35-7bda-4380-9187-9a32d8d25c24" expanded_arme="" />
   <event name="Start refreshing button" id_arme="3cac636d-7052-4857-bef8-fe8b53d4ad85" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
     <if_variable name="TsnCommandGaveArtemisMission" comparator="EQUALS" value="2.0" />
@@ -1649,7 +1649,7 @@
     <warning_popup_message message="The Wormhole has disappeared, leaving Elysia in normal space!" consoles="S" />
     <incoming_comms_text from="Elysia" type="SIDE">TSN command, this is the planet Elysia.  We are descendants of the original Diana crew.  Please help us fend off attacks from the enemy!</incoming_comms_text>
   </event>
-  <folder_arme name="Away Team results" id_arme="a0939c52-af8b-45c2-9131-86a14e6ea566" expanded_arme="" />
+  <folder_arme name="Away Team results" id_arme="a0939c52-af8b-45c2-9131-86a14e6ea566" />
   <event name="Blame Torgoths 1" id_arme="edfd5f57-2d97-4146-9e4d-a38f035b97eb" parent_id_arme="a0939c52-af8b-45c2-9131-86a14e6ea566">
     <if_gm_button text="GM/Away Team/Blame Torgoths" />
     <log text="Mainframe sent message warning Arvonians about Torgoths" />

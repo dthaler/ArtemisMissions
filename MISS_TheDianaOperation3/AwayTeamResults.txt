@@ -1,0 +1,194 @@
+10-12 pieces revealed during normal mission + pre-scavenger hunt, not Away Team:
+-----------------------------------------------------------------------------
+0) For years, the enemy Arvonian/Torgoth alliance has waged war against the United Space Faring Planets (USFP),
+   defended by Terran Stellar Navy (TSN) ships such as the TSN Artemis and the TSN Intrepid.
+
+1) Two years ago, TSN researchers began formulating a plan to try to break up the Arvonian/Torgoth alliance
+   [, with whom the TSN has been at war for years].  This plan relied on constructing a device that was merely
+   theoretical at the time, and to fully design and develop would require large amounts of a rare mineral
+   known as Cetrocite, and so the Diana was sent on a secret mission into enemy territory to a planet that
+   probes indicated had virtually unlimited deposits of Cetrocite.
+
+2) However, the mission failed when both the Diana and the planet suddenly vanished into a newly appeared
+   wormhole, which then disappeared as quickly as it appeared.  
+
+   Months later, the wormhole reopened and a TSN Away Team took a shuttle into the wormhole and recovered
+   the crippled Diana from the planet Elysia still inside the wormhole, and returned the Diana to TSN space,
+   after discovering that generations had passed on Elysia due to the time differential inside.
+
+2b) [FIND COLIN CHICK RECORD]
+
+3) Repairs on the heavily damaged Diana continued for many months, until its computer banks were finally
+   fully restored, whereupon it was discovered that it had been infected with an Arvonian AI that had been
+   dormant in damaged memory banks and had been reawakened when the memory was repaired.  The AI was
+   eventually neutralized and interrogated.
+
+4) We have now learned from interrogating the Arvonian AI that it originated from a mainframe on Elysia
+   and had infected the Diana when the Diana began scanning the planet.  
+
+   For its secret mission into enemy space, the Diana had been outfitted with an experimental cloaking device,
+   cobbled together from parts salvaged from a Skaraan wreck.
+
+   The AI discovered the cloaking device and had attempted to sabotage it, but in so doing caused the Diana
+   to crash on the planet and much of the computer record was lost as a result.  The AI does not know
+   what caused the wormhole to appear.
+
+5) Now that the Diana is restored to normal operation and scientists predict that another opening of the
+   wormhole is imminent, we must resume the original mission.
+
+   The Artemis must defend TSN space while the Diana heads back to Elysia to retrieve a cargo of Cetrocite
+   and investigate the mainframe.
+
+   If the mainframe contains a record of the plan to break up the enemy alliance, it is critical that the
+   records be deleted or the mainframe destroyed to prevent Arvonian command from learning of the plan.
+
+The Away Team can learn/do the following things:
+------------------------------------------------
+LOCATION/TARGET IMAGES:
+* Station comms
+* Station science
+* Station history
+* Station cargo bay
+* Station mainframe core
+
+   [LOCATION: STATION COMMS?]
+0) INFO: When the Diana originally approached Elysia and started scanning the planet, the Arvonian mainframe
+   infected the Diana with the AI via the Diana's comms/sensor systems.
+   [THIS IS A DUP OF ABOVE]
+   POSSIBLE ACTION: establish communication link to Diana?
+
+   [LOCATION: STATION SCIENCE?]
+1) INFO: Analysis of the wormhole creation:
+   When the experimental cloaking device was sabotaged, it caused strange power fluctuations that
+   interacted with Elysia's magnetic Cetrocite field, creating a rift in the space/time continuum.
+   The rift caused the wormhole to appear, and the Elysia and Diana to get drawn into it, and the Diana
+   then crashed on Elysia.
+
+   [LOCATION: STATION SCIENCE?]
+1b) Subsequent analysis indicates a theory of how to repair the rift in the space/time continuum:
+
+   [LOCATION: STATION COMMS? after pre-req of #1]
+   POSSIBLE ACTION: send to the Diana:
+      "Diana, Elysia Mainframe analysis indicates that reversing the polarity of the cloaking device
+       while in the proximity of Elysia's magnetic Cetrocite field should repair the rift in the
+       space/time continuum that caused the wormhole.  This would return Elysia to normal space,
+       but would likely destroy the cloaking device in the process."
+
+   [LOCATION: STATION HISTORY (not CORE?)]
+2) The Arvonian mainframe contains a record of the TSN plan to break up the Arvonian/Torgoth alliance.
+
+   [LOCATION: STATION COMMS? after pre-req of #2]
+   POSSIBLE ACTION: hack it to send a message to Arvonian command saying:
+      "Arvonian Command, sensors report that the Torgoth are preparing an assault on the space whales
+       in this sector!"
+   POSSIBLE ACTION: open channel to Arvonian command before hacking it and before destroying the records
+      (make sure this isn't too easy)
+      [prereq: open channel to Diana]
+   POSSIBLE ACTION: delete the records
+   POSSIBLE ACTION: destroy the mainframe (make sure this isn't too easy)
+   POSSIBLE ACTION: do nothing
+
+   [LOCATION: STATION CORE (not HISTORY?)]
+3) The Arvonian AI in the Elysia mainframe has figured this out, analyzed what happened (remember generations
+   have passed due to the time differential) and thinks it might be able to recreate this effect, and use
+   it as a weapon to destroy (or at least neutralize) other entire planets like Earth, thus winning the war.
+
+   POSSIBLE ACTION: destroy Death Station plans so no one can get them
+   POSSIBLE ACTION: transmit Death Station plans to TSN command for analysis [LOCATION: STATION COMMS?]
+      [prereq: open channel to Diana]
+   POSSIBLE ACTION: open channel to Arvonian command before hacking it and before destroying the records
+      [prereq: open channel to Diana]
+   POSSIBLE ACTION: do neither
+
+   [LOCATION: STATION CARGO BAY?]
+5) Cetrocite cargo
+
+   POSSIBLE ACTION: get it
+
+---- SUMMARY OF LOCATIONS AND ACTIONS
+
+LOCATION: Station comms
+	ACTION: establish communication link to Diana
+	PREREQ: -
+	RESULT: (flavortext)
+
+	ACTION: establish communication link to Arvonian command (safe)
+	PREREQ: establish communication link to Diana
+	PREREQ: hack mainframe to take control
+	RESULT: (flavortext)
+
+	ACTION: establish communication link to Arvonian command (unsafe)
+	PREREQ: establish communication link to Diana
+	PREREQ: NOT hack mainframe to take control
+	PREREQ: NOT delete record of TSN plan
+	RESULT: plans leak [don't make this too easy]
+
+	ACTION: establish communication link to Arvonian command (unsafe)
+	PREREQ: establish communication link to Diana
+	PREREQ: NOT hack mainframe to take control
+	PREREQ: NOT destroy Death Station plans so no one can get them
+	RESULT: plans leak [don't make this too easy]
+
+	ACTION: send fake report to Arvonian command
+	PREREQ: establish communication link to Arvonian command
+	PREREQ: hack mainframe to take control
+	RESULT: 
+           "Arvonian Command, sensors report that the Torgoth are preparing an assault on the space whales
+            in this sector!"
+
+LOCATION: Station science
+	ACTION: look up wormhole creation
+	PREREQ: -
+	RESULT: learn info:
+	   When the experimental cloaking device was sabotaged, it caused strange power fluctuations that
+	   interacted with Elysia's magnetic Cetrocite field, creating a rift in the space/time continuum.
+	   The rift caused the wormhole to appear, and the Elysia and Diana to get drawn into it, and the Diana
+	   then crashed on Elysia.
+
+	ACTION: look up rift
+	PREREQ: look up wormhole creation
+	RESULT: learn info:
+	   "analysis indicates that reversing the polarity of the cloaking device
+           while in the proximity of Elysia's magnetic Cetrocite field should repair the rift in the
+           space/time continuum that caused the wormhole.  This would return Elysia to normal space,
+           but would likely destroy the cloaking device in the process."
+
+LOCATION: Station memory banks (history/library/records)
+	ACTION: look up TSN plan
+	PREREQ: -
+	RESULT: learn info:
+	   "The Arvonian mainframe contains a record of the TSN plan to break up the Arvonian/Torgoth alliance."
+
+	ACTION: delete record of TSN plan
+	PREREQ: look up TSN plan
+	RESULT: (flavortext)
+
+LOCATION: Station cargo bay
+	ACTION: get Cetrocite cargo
+	PREREQ: -
+	RESULT: (flavortext)
+	RESULT: affect main mission by giving Cetrocite crystals when brought back
+
+LOCATION: Station mainframe core
+	ACTION: hack mainframe to take control
+	PREREQ: -
+	RESULT: (flavortext)
+
+	ACTION: interrogate mainframe
+	PREREQ: -
+	RESULT: learn info:
+	    The Arvonian AI in the Elysia mainframe has figured this out, analyzed what happened 
+            (remember generations have passed due to the time differential) and thinks it might be
+            able to recreate this effect, and use it as a weapon to destroy (or at least neutralize)
+            other entire planet like Earth, thus winning the war."
+            It has stored Death Station plans in the core.  You must choose whether to try to destroy
+            them, or transmit them to TSN command for analysis, or neither.
+
+	ACTION: destroy Death Station plans so no one can get them
+	PREREQ: interrogate mainframe
+	PREREQ: hack mainframe to take control
+	RESULT: deleted
+
+	ACTION: transmit Death Station plans to TSN command for analysis
+	PREREQ: establish communication link to Diana
+	RESULT: TSN gets plans
