@@ -17,15 +17,6 @@
     <set_variable name="TsnCommandGaveArtemisMission" value="0.0" integer="yes" />
     <set_variable name="TsnCommandGaveDianaMission" value="0.0" integer="yes" />
     <set_variable name="NextBeaconNumber" value="1.0" integer="yes" />
-    <set_variable name="BeaTimeout1" value="0.0" integer="yes" />
-    <set_variable name="BeaTimeout2" value="0.0" integer="yes" />
-    <set_variable name="BeaTimeout3" value="0.0" integer="yes" />
-    <set_variable name="BeaTimeout4" value="0.0" integer="yes" />
-    <set_variable name="BeaTimeout5" value="0.0" integer="yes" />
-    <set_variable name="BeaTimeout6" value="0.0" integer="yes" />
-    <set_variable name="BeaTimeout7" value="0.0" integer="yes" />
-    <set_variable name="BeaTimeout8" value="0.0" integer="yes" />
-    <set_variable name="BeaTimeout9" value="0.0" integer="yes" />
     <set_variable name="CanDestroyPlans" value="1.0" />
     <!--The radius of a single nebula cloud is about 3000m, the beam range of a Ximni battleship is 2600-->
     <set_variable name="InNebulaDetectionRange" value="3000.0" />
@@ -100,6 +91,7 @@
     <set_gm_button text="GM/Away Team/Blame Torgoths" />
     <set_gm_button text="GM/Break up alliance" />
     <set_gm_button text="GM/Destroy all enemies" />
+    <set_gm_button text="GM/Destroy all Torgoth ships" />
     <set_timer name="GMButtonRefreshTimer" seconds="30" />
     <!--.....-->
     <!--..... Anomalies-->
@@ -165,6 +157,7 @@
     <clear_gm_button text="GM/Away Team/Send Elysia rescue plan" />
     <clear_gm_button text="GM/Break up alliance" />
     <clear_gm_button text="GM/Destroy all enemies" />
+    <clear_gm_button text="GM/Destroy all Torgoth ships" />
   </event>
   <event name="Refresh Destroy plans GM button" id_arme="8be10a5a-4364-40ef-8c9f-76117eab5775" parent_id_arme="27459883-7153-49dc-8cdc-060a039bd7af">
     <if_variable name="CanDestroyPlans" comparator="EQUALS" value="1.0" />
@@ -185,9 +178,10 @@
     <set_gm_button text="GM/Away Team/Send Elysia rescue plan" />
     <set_gm_button text="GM/Break up alliance" />
     <set_gm_button text="GM/Destroy all enemies" />
+    <set_gm_button text="GM/Destroy all Torgoth ships" />
     <set_timer name="GMButtonRefreshTimer" seconds="30" />
   </event>
-  <event name="GM destroy all enemies" id_arme="e728c76b-6f29-499b-897b-63cd12a21e70" parent_id_arme="27459883-7153-49dc-8cdc-060a039bd7af">
+  <event name="GM destroy all enemies" id_arme="2eb837ad-a2ce-47e8-98d7-a1df2c29f1a2" parent_id_arme="27459883-7153-49dc-8cdc-060a039bd7af">
     <if_gm_button text="GM/Destroy all enemies" />
     <log text="GM destroyed all enemies" />
     <destroy name="TG01" />
@@ -208,6 +202,16 @@
     <destroy name="TB01" />
     <destroy name="TB02" />
     <destroy name="TB03" />
+  </event>
+  <event name="GM destroy all Torgoth ships" id_arme="e728c76b-6f29-499b-897b-63cd12a21e70" parent_id_arme="27459883-7153-49dc-8cdc-060a039bd7af">
+    <if_gm_button text="GM/Destroy all Torgoth ships" />
+    <log text="GM destroyed all Torgoth ships" />
+    <destroy name="TG01" />
+    <destroy name="TG02" />
+    <destroy name="TG03" />
+    <destroy name="TG04" />
+    <destroy name="TG05" />
+    <destroy name="TG06" />
   </event>
   <folder_arme name="Create Additional Enemy Ships" id_arme="2ad003b4-66f9-451a-93cb-c6f44284c63c" />
   <event name="Difficulty 3+: Large Torgoths" id_arme="36a7fe10-fe2b-449a-ac99-5ec1b72f6390" parent_id_arme="2ad003b4-66f9-451a-93cb-c6f44284c63c">
@@ -355,7 +359,7 @@
     <if_variable name="TsnCommandSummonedDiana" comparator="EQUALS" value="1.0" />
     <if_timer_finished name="DianaStartupDelayBeforeOrders" />
     <log text="TSN Command summoned Diana" />
-    <warning_popup_message message="Message from TSN Command on Comms" consoles="M" name="Diana" />
+    <warning_popup_message message="Incoming Comms message!" consoles="M" name="Diana" />
     <incoming_comms_text from="TSN Command" sideValue="2" type="ALERT">Diana, please dock at Houston Outpost immediately to receive new mission orders.</incoming_comms_text>
     <set_variable name="TsnCommandSummonedDiana" value="2.0" />
     <set_timer name="DianaStartupDelayBeforeOrders" seconds="120" />
@@ -366,14 +370,14 @@
     <if_variable name="TsnCommandSummonedDiana" comparator="EQUALS" value="2.0" />
     <if_timer_finished name="DianaStartupDelayBeforeOrders" />
     <log text="TSN Command summoned Diana again" />
-    <warning_popup_message message="Message from TSN Command on Comms" consoles="M" name="Diana" />
+    <warning_popup_message message="Incoming Comms message!" consoles="M" name="Diana" />
     <incoming_comms_text from="TSN Command" type="ALERT">Diana, we repeat, you are instructed to dock at Houston Outpost immediately to receive new mission orders!</incoming_comms_text>
     <set_variable name="TsnCommandSummonedDiana" value="3.0" />
   </event>
   <event name="GM summons Diana again" id_arme="f2f7b4ef-3f5b-4bfe-9ef7-21acce223130" parent_id_arme="228e7479-d78c-43b9-8d36-67cc88f26a4b">
     <if_gm_button text="GM/Resend Comms/Houston Resummon Diana" />
     <log text="GM summoned Diana again" />
-    <warning_popup_message message="Message from TSN Command on Comms" consoles="M" name="Diana" />
+    <warning_popup_message message="Incoming Comms message!" consoles="M" name="Diana" />
     <incoming_comms_text from="TSN Command" type="ALERT">Diana, We repeat, you are instructed to dock at Houston Outpost immediately to receive new mission orders!</incoming_comms_text>
     <set_variable name="TsnCommandSummonedDiana" value="3.0" />
   </event>
@@ -443,7 +447,7 @@
     <if_variable name="TsnCommandSummonedArtemis" comparator="EQUALS" value="1.0" />
     <if_timer_finished name="ArtemisStartupDelayBeforeOrders" />
     <log text="TSN Command summoned Artemis" />
-    <warning_popup_message message="Message from TSN Command on Comms" consoles="M" name="Artemis" />
+    <warning_popup_message message="Incoming Comms message!" consoles="M" name="Artemis" />
     <incoming_comms_text from="TSN Command" sideValue="2" type="ALERT">Artemis, please dock at SB01 immediately to receive new mission orders.</incoming_comms_text>
     <set_variable name="TsnCommandSummonedArtemis" value="2.0" />
     <set_timer name="ArtemisStartupDelayBeforeOrders" seconds="120" />
@@ -454,14 +458,14 @@
     <if_variable name="TsnCommandSummonedArtemis" comparator="EQUALS" value="2.0" />
     <if_timer_finished name="ArtemisStartupDelayBeforeOrders" />
     <log text="TSN Command summoned Artemis again" />
-    <warning_popup_message message="Message from TSN Command on Comms" consoles="M" name="Artemis" />
+    <warning_popup_message message="Incoming Comms message!" consoles="M" name="Artemis" />
     <incoming_comms_text from="TSN Command" type="ALERT">Artemis, we repeat, you are instructed to dock at SB01 immediately to receive new mission orders!</incoming_comms_text>
     <set_variable name="TsnCommandSummonedArtemis" value="3.0" />
   </event>
   <event name="GM summons Artemis again" id_arme="92f4ecc2-d839-4ba1-b5f4-8d35ddfeeac1" parent_id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed">
     <if_gm_button text="GM/Resend Comms/SB01 Resummon Artemis" />
     <log text="GM summoned Artemis again" />
-    <warning_popup_message message="Message from TSN Command on Comms" consoles="M" name="Artemis" />
+    <warning_popup_message message="Incoming Comms message!" consoles="M" name="Artemis" />
     <incoming_comms_text from="TSN Command" type="ALERT">Artemis, We repeat, you are instructed to dock at Houston Outpost immediately to receive new mission orders!</incoming_comms_text>
     <set_variable name="TsnCommandSummonedArtemis" value="3.0" />
   </event>
@@ -705,6 +709,14 @@
     <if_distance name1="Diana" name2="Elysia" comparator="LESS" value="ElysiaGravityRadius" />
     <if_object_property property="positionY" name="Diana" comparator="GREATER" value="ElysiaY" />
     <addto_object_property value="-ElysiaGravity" property="positionY" name="Diana" />
+  </event>
+  <event name="Landed on Elysia" id_arme="109ae391-d95d-4306-8dc5-1eb80d25e1c0" parent_id_arme="d728922c-ff39-419c-afc5-83af1b0b1651">
+    <if_distance name1="Diana" name2="Elysia" comparator="LESS" value="ElysiaRadius" />
+    <if_variable name="DianaLandedOnElysia" comparator="EQUALS" value="0.0" />
+    <log text="Diana landed on Elysia" />
+    <warning_popup_message message="Diana: Gravity well hazard. Proceed cautiously." consoles="S" />
+    <incoming_comms_text from="Diana - Internal Comms" type="ALERT PLAYER">We have landed on Elysia in a populated city.  An Away Team can now disembark.</incoming_comms_text>
+    <set_variable name="DianaLandedOnElysia" value="1.0" />
   </event>
   <event name="Emerge" id_arme="8360d84d-382f-4f94-88d1-f2a152a12773" parent_id_arme="d728922c-ff39-419c-afc5-83af1b0b1651">
     <if_distance name1="Diana" name2="Wormhole" comparator="GREATER" value="WormholeRadius" />
@@ -1377,7 +1389,7 @@
     <if_variable name="TsnCommandGaveArtemisMission" comparator="EQUALS" value="2.0" />
     <if_timer_finished name="CommsButtonRefreshTimer" />
     <set_variable name="BeaconButtonRefreshed" value="0.0" />
-    <set_timer name="CommsButtonRefreshTimer" seconds="30" />
+    <set_timer name="CommsButtonRefreshTimer" seconds="60" />
     <clear_comms_button text="Drop whale beacon" />
     <set_variable name="BeaconButtonShown" value="0.0" />
   </event>
@@ -1426,7 +1438,6 @@
     <clear_ai name="Pha|NextBeaconNumber|" />
     <set_monster_tag_data tag_slot="0" name="Pha|NextBeaconNumber|" sourcetext="Artemis" datetext="Phantom image" />
     <add_ai type="CHASE_SIGNAL" value1="6.0" name="Pha|NextBeaconNumber|" />
-    <set_variable name="BeaTimeout|NextBeaconNumber|" value="0.0" integer="yes" />
     <set_variable name="NextBeaconNumber" value="NextBeaconNumber+1" />
     <clear_comms_button text="Drop whale beacon" />
     <set_variable name="BeaconButtonShown" value="0.0" />
@@ -1440,129 +1451,131 @@
     <if_exists name="Bea|NextBeaconNumber|" />
     <set_variable name="NextBeaconNumber" value="NextBeaconNumber+1" />
   </event>
-  <event name="Destroy whale if beacon destroyed" id_arme="67eddf09-e045-48e9-abe5-af933f1d283e" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
+  <event name="Destroy whale N if beacon destroyed" id_arme="67eddf09-e045-48e9-abe5-af933f1d283e" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
     <if_exists name="Pha|firstnumber|" />
     <if_not_exists name="Bea|firstnumber|" />
     <log text="Destroying phantom whale beacause beacon |firstnumber| destroyed" />
     <destroy name="Pha|firstnumber|" />
   </event>
-  <event name="Torgoth destroyed whale" id_arme="1f7ac695-ab03-45f0-963c-9841b2af80a3" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
+  <folder_arme name="Destroy beacon N if whale is destroyed" id_arme="9f7d4129-c2ac-4061-b7a0-0b111db7d867" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96" />
+  <event name="Initialize checks if players are close" id_arme="cb9ff1c0-0bf8-40f5-8711-8ad4cc7c6441" parent_id_arme="9f7d4129-c2ac-4061-b7a0-0b111db7d867">
+    <!--If the ships don't exist, then they're not close-->
+    <set_variable name="DianaCloseToDestroyedBeacon" value="0.0" />
+    <set_variable name="ArtemisCloseToDestroyedBeacon" value="0.0" />
+  </event>
+  <event name="Check whether Artemis is close" id_arme="a39f71bf-12cd-41bc-965e-65b7568fa89e" parent_id_arme="9f7d4129-c2ac-4061-b7a0-0b111db7d867">
+    <!--If Artemis does not exist, this condition will be false-->
+    <if_distance name1="Artemis" name2="Bea|firstnumber|" comparator="LESS" value="5000.0" />
+    <set_variable name="ArtemisCloseToDestroyedBeacon" value="1.0" />
+  </event>
+  <event name="Check whether Diana is close" id_arme="8d08c3e0-9623-4484-ad29-cc308cd081c5" parent_id_arme="9f7d4129-c2ac-4061-b7a0-0b111db7d867">
+    <!--If Diana does not exist, this condition will be false-->
+    <if_distance name1="Diana" name2="Bea|firstnumber|" comparator="LESS" value="5000.0" />
+    <set_variable name="DianaCloseToDestroyedBeacon" value="1.0" />
+  </event>
+  <event name="TG01 destroyed whale" id_arme="f48b6f2f-180d-4923-b792-9c90a1a94695" parent_id_arme="9f7d4129-c2ac-4061-b7a0-0b111db7d867">
     <if_variable name="ArvoniansWarned" comparator="GREATER" value="2.0" />
     <if_variable name="BreakupAlliance" comparator="EQUALS" value="0.0" />
     <if_not_exists name="Pha|firstnumber|" />
-    <if_distance name1="TG0|secondnumber|" name2="Bea|firstnumber|" comparator="LESS" value="5000.0" />
-    <if_distance name1="Artemis" name2="Bea|firstnumber|" comparator="GREATER" value="5000.0" />
-    <if_distance name1="Diana" name2="Bea|firstnumber|" comparator="GREATER" value="5000.0" />
-    <log text="TG0|secondnumber| destroyed whale Pha|firstnumber|" />
+    <if_distance name1="TG01" name2="Bea|firstnumber|" comparator="LESS" value="5000.0" />
+    <if_variable name="ArtemisCloseToDestroyedBeacon" comparator="EQUALS" value="0.0" />
+    <if_variable name="DianaCloseToDestroyedBeacon" comparator="EQUALS" value="0.0" />
+    <log text="TG01 destroyed whale Pha|firstnumber|" />
     <set_variable name="BreakupAlliance" value="1.0" />
   </event>
-  <event name="Torgoth destroyed whale" id_arme="dc16250e-bded-49d4-ad67-63505e6896ac" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
+  <event name="TG02 destroyed whale" id_arme="0d2d361a-d968-49b4-96b2-65add84d53b9" parent_id_arme="9f7d4129-c2ac-4061-b7a0-0b111db7d867">
     <if_variable name="ArvoniansWarned" comparator="GREATER" value="2.0" />
     <if_variable name="BreakupAlliance" comparator="EQUALS" value="0.0" />
     <if_not_exists name="Pha|firstnumber|" />
-    <if_distance name1="TG0|secondnumber|" name2="Bea|firstnumber|" comparator="LESS" value="5000.0" />
-    <if_not_exists name="Artemis" />
-    <if_distance name1="Diana" name2="Bea|firstnumber|" comparator="GREATER" value="5000.0" />
-    <log text="TG0|secondnumber| destroyed whale Pha|firstnumber|" />
+    <if_distance name1="TG02" name2="Bea|firstnumber|" comparator="LESS" value="5000.0" />
+    <if_variable name="ArtemisCloseToDestroyedBeacon" comparator="EQUALS" value="0.0" />
+    <if_variable name="DianaCloseToDestroyedBeacon" comparator="EQUALS" value="0.0" />
+    <log text="TG02 destroyed whale Pha|firstnumber|" />
     <set_variable name="BreakupAlliance" value="1.0" />
   </event>
-  <event name="Torgoth destroyed whale" id_arme="d8e7ccab-7328-4d84-8891-fe413b389f45" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
+  <event name="TG03 destroyed whale" id_arme="42196f8c-e803-4196-99f4-c4a7b7806019" parent_id_arme="9f7d4129-c2ac-4061-b7a0-0b111db7d867">
     <if_variable name="ArvoniansWarned" comparator="GREATER" value="2.0" />
     <if_variable name="BreakupAlliance" comparator="EQUALS" value="0.0" />
     <if_not_exists name="Pha|firstnumber|" />
-    <if_distance name1="TG0|secondnumber|" name2="Bea|firstnumber|" comparator="LESS" value="5000.0" />
-    <if_distance name1="Artemis" name2="Bea|firstnumber|" comparator="GREATER" value="5000.0" />
-    <if_not_exists name="Diana" />
-    <log text="TG0|secondnumber| destroyed whale Pha|firstnumber|" />
+    <if_distance name1="TG03" name2="Bea|firstnumber|" comparator="LESS" value="5000.0" />
+    <if_variable name="ArtemisCloseToDestroyedBeacon" comparator="EQUALS" value="0.0" />
+    <if_variable name="DianaCloseToDestroyedBeacon" comparator="EQUALS" value="0.0" />
+    <log text="TG03 destroyed whale Pha|firstnumber|" />
     <set_variable name="BreakupAlliance" value="1.0" />
   </event>
-  <event name="Torgoth base destroyed whale" id_arme="7767ee1d-17db-4f89-99d3-2109c07288b3" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
+  <event name="TG04 destroyed whale" id_arme="f28eea7f-1857-4601-8139-6930fddff950" parent_id_arme="9f7d4129-c2ac-4061-b7a0-0b111db7d867">
     <if_variable name="ArvoniansWarned" comparator="GREATER" value="2.0" />
     <if_variable name="BreakupAlliance" comparator="EQUALS" value="0.0" />
     <if_not_exists name="Pha|firstnumber|" />
-    <if_distance name1="TB0|secondnumber|" name2="Bea|firstnumber|" comparator="LESS" value="5000.0" />
-    <if_distance name1="Artemis" name2="Bea|firstnumber|" comparator="GREATER" value="5000.0" />
-    <if_distance name1="Diana" name2="Bea|firstnumber|" comparator="GREATER" value="5000.0" />
-    <log text="TB0|secondnumber| destroyed whale Pha|firstnumber|" />
+    <if_distance name1="TG04" name2="Bea|firstnumber|" comparator="LESS" value="5000.0" />
+    <if_variable name="ArtemisCloseToDestroyedBeacon" comparator="EQUALS" value="0.0" />
+    <if_variable name="DianaCloseToDestroyedBeacon" comparator="EQUALS" value="0.0" />
+    <log text="TG04 destroyed whale Pha|firstnumber|" />
     <set_variable name="BreakupAlliance" value="1.0" />
   </event>
-  <event name="Torgoth base destroyed whale" id_arme="1b04eb6b-2ad2-4cb3-8748-fc6a8c3cc4f4" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
+  <event name="TG05 destroyed whale" id_arme="0c56d626-c34c-4324-8544-196cbb65d241" parent_id_arme="9f7d4129-c2ac-4061-b7a0-0b111db7d867">
     <if_variable name="ArvoniansWarned" comparator="GREATER" value="2.0" />
     <if_variable name="BreakupAlliance" comparator="EQUALS" value="0.0" />
     <if_not_exists name="Pha|firstnumber|" />
-    <if_distance name1="TB0|secondnumber|" name2="Bea|firstnumber|" comparator="LESS" value="5000.0" />
-    <if_not_exists name="Artemis" />
-    <if_distance name1="Diana" name2="Bea|firstnumber|" comparator="GREATER" value="5000.0" />
-    <log text="TB0|secondnumber| destroyed whale Pha|firstnumber|" />
+    <if_distance name1="TG05" name2="Bea|firstnumber|" comparator="LESS" value="5000.0" />
+    <if_variable name="ArtemisCloseToDestroyedBeacon" comparator="EQUALS" value="0.0" />
+    <if_variable name="DianaCloseToDestroyedBeacon" comparator="EQUALS" value="0.0" />
+    <log text="TG05 destroyed whale Pha|firstnumber|" />
     <set_variable name="BreakupAlliance" value="1.0" />
   </event>
-  <event name="Torgoth base destroyed whale" id_arme="94bda36f-1b36-4fb7-896a-e3899f660a32" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
+  <event name="TG06 destroyed whale" id_arme="c0fad3fd-a590-447e-bb40-4311e80d5927" parent_id_arme="9f7d4129-c2ac-4061-b7a0-0b111db7d867">
     <if_variable name="ArvoniansWarned" comparator="GREATER" value="2.0" />
     <if_variable name="BreakupAlliance" comparator="EQUALS" value="0.0" />
     <if_not_exists name="Pha|firstnumber|" />
-    <if_distance name1="TB0|secondnumber|" name2="Bea|firstnumber|" comparator="LESS" value="5000.0" />
-    <if_distance name1="Artemis" name2="Bea|firstnumber|" comparator="GREATER" value="5000.0" />
-    <if_not_exists name="Diana" />
-    <log text="TB0|secondnumber| destroyed whale Pha|firstnumber|" />
+    <if_distance name1="TG06" name2="Bea|firstnumber|" comparator="LESS" value="5000.0" />
+    <if_variable name="ArtemisCloseToDestroyedBeacon" comparator="EQUALS" value="0.0" />
+    <if_variable name="DianaCloseToDestroyedBeacon" comparator="EQUALS" value="0.0" />
+    <log text="TG06 destroyed whale Pha|firstnumber|" />
     <set_variable name="BreakupAlliance" value="1.0" />
   </event>
-  <event name="Schedule destroying beacon 1" id_arme="b60d6210-8884-4d07-a61c-273bb0af29d2" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
-    <if_exists name="Bea1" />
-    <if_not_exists name="Pha1" />
-    <set_variable name="BeaTimeout1" value="BeaTimeout1+1" integer="yes" />
-    <log text="Scheduling destroying beacon 1..." />
+  <event name="TG07 destroyed whale" id_arme="0db15b6b-0f5c-403a-bfba-7b6342c80b1f" parent_id_arme="9f7d4129-c2ac-4061-b7a0-0b111db7d867">
+    <if_variable name="ArvoniansWarned" comparator="GREATER" value="2.0" />
+    <if_variable name="BreakupAlliance" comparator="EQUALS" value="0.0" />
+    <if_not_exists name="Pha|firstnumber|" />
+    <if_distance name1="TG07" name2="Bea|firstnumber|" comparator="LESS" value="5000.0" />
+    <if_variable name="ArtemisCloseToDestroyedBeacon" comparator="EQUALS" value="0.0" />
+    <if_variable name="DianaCloseToDestroyedBeacon" comparator="EQUALS" value="0.0" />
+    <log text="TG07 destroyed whale Pha|firstnumber|" />
+    <set_variable name="BreakupAlliance" value="1.0" />
   </event>
-  <event name="Schedule destroying beacon 2" id_arme="a2a1a729-24ee-45b5-95b6-57df23c06fa7" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
-    <if_exists name="Bea2" />
-    <if_not_exists name="Pha2" />
-    <set_variable name="BeaTimeout2" value="BeaTimeout2+1" integer="yes" />
-    <log text="Scheduling destroying beacon 2..." />
+  <event name="TB01 destroyed whale" id_arme="1c0c6ec4-ee98-47ae-8e40-34b5f0bdbdb1" parent_id_arme="9f7d4129-c2ac-4061-b7a0-0b111db7d867">
+    <if_variable name="ArvoniansWarned" comparator="GREATER" value="2.0" />
+    <if_variable name="BreakupAlliance" comparator="EQUALS" value="0.0" />
+    <if_not_exists name="Pha|firstnumber|" />
+    <if_distance name1="TB01" name2="Bea|firstnumber|" comparator="LESS" value="5000.0" />
+    <if_variable name="ArtemisCloseToDestroyedBeacon" comparator="EQUALS" value="0.0" />
+    <if_variable name="DianaCloseToDestroyedBeacon" comparator="EQUALS" value="0.0" />
+    <log text="TB01 destroyed whale Pha|firstnumber|" />
+    <set_variable name="BreakupAlliance" value="1.0" />
   </event>
-  <event name="Schedule destroying beacon 3" id_arme="a22b8aef-a365-4e02-b7cf-270a0bed3ae5" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
-    <if_exists name="Bea3" />
-    <if_not_exists name="Pha3" />
-    <set_variable name="BeaTimeout3" value="BeaTimeout3+1" integer="yes" />
-    <log text="Scheduling destroying beacon 3..." />
+  <event name="TB02 destroyed whale" id_arme="8aff01f9-4701-4dfc-9306-9ff9ba535d0a" parent_id_arme="9f7d4129-c2ac-4061-b7a0-0b111db7d867">
+    <if_variable name="ArvoniansWarned" comparator="GREATER" value="2.0" />
+    <if_variable name="BreakupAlliance" comparator="EQUALS" value="0.0" />
+    <if_not_exists name="Pha|firstnumber|" />
+    <if_distance name1="TB02" name2="Bea|firstnumber|" comparator="LESS" value="5000.0" />
+    <if_variable name="ArtemisCloseToDestroyedBeacon" comparator="EQUALS" value="0.0" />
+    <if_variable name="DianaCloseToDestroyedBeacon" comparator="EQUALS" value="0.0" />
+    <log text="TB02 destroyed whale Pha|firstnumber|" />
+    <set_variable name="BreakupAlliance" value="1.0" />
   </event>
-  <event name="Schedule destroying beacon 4" id_arme="3491adf1-d8fb-4103-8d89-10779c933e5a" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
-    <if_exists name="Bea4" />
-    <if_not_exists name="Pha4" />
-    <set_variable name="BeaTimeout4" value="BeaTimeout4+1" integer="yes" />
-    <log text="Scheduling destroying beacon 4..." />
+  <event name="TB03 destroyed whale" id_arme="1f7ac695-ab03-45f0-963c-9841b2af80a3" parent_id_arme="9f7d4129-c2ac-4061-b7a0-0b111db7d867">
+    <if_variable name="ArvoniansWarned" comparator="GREATER" value="2.0" />
+    <if_variable name="BreakupAlliance" comparator="EQUALS" value="0.0" />
+    <if_not_exists name="Pha|firstnumber|" />
+    <if_distance name1="TB03" name2="Bea|firstnumber|" comparator="LESS" value="5000.0" />
+    <if_variable name="ArtemisCloseToDestroyedBeacon" comparator="EQUALS" value="0.0" />
+    <if_variable name="DianaCloseToDestroyedBeacon" comparator="EQUALS" value="0.0" />
+    <log text="TB03 destroyed whale Pha|firstnumber|" />
+    <set_variable name="BreakupAlliance" value="1.0" />
   </event>
-  <event name="Schedule destroying beacon 5" id_arme="16ad979d-7cc2-4f27-b31a-f97e23ee8ab6" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
-    <if_exists name="Bea5" />
-    <if_not_exists name="Pha5" />
-    <set_variable name="BeaTimeout5" value="BeaTimeout5+1" integer="yes" />
-    <log text="Scheduling destroying beacon 5..." />
-  </event>
-  <event name="Schedule destroying beacon 6" id_arme="89c316ad-88bc-4c1b-9c34-683b9bc6ef8d" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
-    <if_exists name="Bea6" />
-    <if_not_exists name="Pha6" />
-    <set_variable name="BeaTimeout6" value="BeaTimeout6+1" integer="yes" />
-    <log text="Scheduling destroying beacon 6..." />
-  </event>
-  <event name="Schedule destroying beacon 7" id_arme="1c1719b6-616e-4ca2-9efd-1df5e373ef6d" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
-    <if_exists name="Bea7" />
-    <if_not_exists name="Pha7" />
-    <set_variable name="BeaTimeout7" value="BeaTimeout7+1" integer="yes" />
-    <log text="Scheduling destroying beacon 7..." />
-  </event>
-  <event name="Schedule destroying beacon 8" id_arme="190cf25d-a10f-4c17-b5f8-11afb64abae3" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
-    <if_exists name="Bea8" />
-    <if_not_exists name="Pha8" />
-    <set_variable name="BeaTimeout8" value="BeaTimeout8+1" integer="yes" />
-    <log text="Scheduling destroying beacon 8..." />
-  </event>
-  <event name="Schedule destroying beacon 9" id_arme="c65190e9-e21c-4e9d-8cf0-2aa33ff89e12" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
-    <if_exists name="Bea9" />
-    <if_not_exists name="Pha9" />
-    <set_variable name="BeaTimeout9" value="BeaTimeout9+1" integer="yes" />
-    <log text="Scheduling destroying beacon 9..." />
-  </event>
-  <event name="Destroy beacon after whale destroyed" id_arme="2cb53011-ec6f-4e69-ac58-c23ae694e287" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
+  <event name="Destroy beacon after whale destroyed" id_arme="2cb53011-ec6f-4e69-ac58-c23ae694e287" parent_id_arme="9f7d4129-c2ac-4061-b7a0-0b111db7d867">
     <if_exists name="Bea|firstnumber|" />
-    <if_variable name="BeaTimeout|firstnumber|" comparator="GREATER" value="10.0" />
+    <if_not_exists name="Pha|firstnumber|" />
     <log text="Scheduling destroying beacon beacause phantom whale |firstnumber| was destroyed" />
     <destroy name="Bea|firstnumber|" />
   </event>
@@ -1571,7 +1584,7 @@
     <if_exists name="Pha|firstnumber|" />
     <set_relative_position name2="Pha|firstnumber|" distance="0" angle="0" name1="Bea|firstnumber|" />
   </event>
-  <folder_arme name="Diana: Cloak button" id_arme="948f2be4-0ffd-4f56-84a9-a671ed0df671" parent_id_arme="690c5f35-7bda-4380-9187-9a32d8d25c24" expanded_arme="" />
+  <folder_arme name="Diana: Cloak button" id_arme="948f2be4-0ffd-4f56-84a9-a671ed0df671" parent_id_arme="690c5f35-7bda-4380-9187-9a32d8d25c24" />
   <event name="Position Unstable" id_arme="00ac3523-feaf-4d86-8649-82cc2c37827d" parent_id_arme="948f2be4-0ffd-4f56-84a9-a671ed0df671">
     <if_variable name="DianaPositionStable" comparator="EQUALS" value="0.0" />
     <if_variable name="CloakEngaged" comparator="EQUALS" value="0.0" />
@@ -1598,14 +1611,14 @@
     <if_object_property property="positionX" name="Diana" comparator="EQUALS" value="DianaX" />
     <if_object_property property="positionY" name="Diana" comparator="EQUALS" value="DianaY" />
     <if_object_property property="positionZ" name="Diana" comparator="EQUALS" value="DianaZ" />
-    <set_comms_button text="Engage Cloak" sideValue="3" />
+    <set_comms_button text="Engage Cloak" sideValue="4" />
     <set_variable name="CloakButtonShown" value="2.0" />
     <set_variable name="DianaPositionStable" value="1.0" />
   </event>
   <event name="Show &quot;Disengage Cloak&quot; button" id_arme="15cc5c75-e6ce-487f-ba02-9bce4b4f6a4d" parent_id_arme="948f2be4-0ffd-4f56-84a9-a671ed0df671">
     <if_variable name="CloakButtonShown" comparator="EQUALS" value="3.0" />
     <if_object_property property="sideValue" name="Diana" comparator="NOT" value="2" />
-    <set_comms_button text="Disengage Cloak" sideValue="3" />
+    <set_comms_button text="Disengage Cloak" sideValue="4" />
     <set_variable name="CloakButtonShown" value="4.0" />
   </event>
   <event name="Show &quot;Reverse Cloak Polarity&quot; button" id_arme="ea38cbdb-181d-4731-a125-fec7dca2291b" parent_id_arme="948f2be4-0ffd-4f56-84a9-a671ed0df671">
@@ -1613,7 +1626,7 @@
     <if_variable name="EnableDestroyCloak" comparator="EQUALS" value="1.0" />
     <if_object_property property="sideValue" name="Diana" comparator="NOT" value="2" />
     <if_distance name1="Diana" name2="Elysia" comparator="LESS" value="5000.0" />
-    <set_comms_button text="Reverse Cloak Polarity" sideValue="3" />
+    <set_comms_button text="Reverse Cloak Polarity" sideValue="4" />
     <set_variable name="DestroyCloakButtonShown" value="2.0" />
   </event>
   <event name="Restore Diana side" id_arme="83bf8361-6c19-4d51-b37a-02b23ff9e5b3" parent_id_arme="948f2be4-0ffd-4f56-84a9-a671ed0df671">
@@ -1628,7 +1641,7 @@
     <if_object_property property="positionX" name="Diana" comparator="EQUALS" value="DianaX" />
     <if_object_property property="positionY" name="Diana" comparator="EQUALS" value="DianaY" />
     <if_object_property property="positionZ" name="Diana" comparator="EQUALS" value="DianaZ" />
-    <set_object_property property="sideValue" value="3" name="Diana" />
+    <set_object_property property="sideValue" value="4" name="Diana" />
     <set_variable name="CloakButtonShown" value="1.0" />
     <set_variable name="DianaPositionStable" value="1.0" />
   </event>
@@ -1638,7 +1651,7 @@
     <if_object_property property="sideValue" name="Diana" comparator="EQUALS" value="2" />
     <if_variable name="DestroyCloakButtonShown" comparator="EQUALS" value="0.0" />
     <if_distance name1="Diana" name2="Elysia" comparator="LESS" value="5000.0" />
-    <set_object_property property="sideValue" value="3" name="Diana" />
+    <set_object_property property="sideValue" value="4" name="Diana" />
     <set_variable name="DestroyCloakButtonShown" value="1.0" />
   </event>
   <event name="Diana leaves Elysia" id_arme="4ffb9c86-2369-45fc-94b6-b93e09aa466f" parent_id_arme="948f2be4-0ffd-4f56-84a9-a671ed0df671">
@@ -1654,7 +1667,7 @@
     <create count="1" type="nebulas" nebType="1" startX="DianaX" startY="DianaY" startZ="DianaZ" radius="1" randomRange="0" />
     <set_variable name="CloakEngaged" value="1.0" />
     <!--Change Diana side for "Disengage Cloak" button-->
-    <set_object_property property="sideValue" value="3" name="Diana" />
+    <set_object_property property="sideValue" value="4" name="Diana" />
     <set_variable name="CloakButtonShown" value="3.0" />
   </event>
   <event name="Disengage Cloak" id_arme="a8b25189-1c6d-498e-9ab2-6a00b9f0ed0f" parent_id_arme="948f2be4-0ffd-4f56-84a9-a671ed0df671">
