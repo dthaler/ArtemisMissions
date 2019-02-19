@@ -230,12 +230,12 @@
   <event name="GM respawn Torgoth" id_arme="4e5d369e-b8e4-45b5-b2b1-3e4ce0c9f395" parent_id_arme="2ad003b4-66f9-451a-93cb-c6f44284c63c">
     <if_gm_button text="GM/Respawn/Torgoth" />
     <log text="GM respawned a Torgoth ship" />
-    <create type="enemy" use_gm_position="" raceKeys="enemy whalehater" hullKeys="small" />
+    <create type="enemy" x="62059.0" y="0.0" z="88000.0" name="TG07" raceKeys="enemy whalehater" hullKeys="small" />
   </event>
   <event name="GM respawn Arvonian" id_arme="f4daae2e-ce08-4e14-8dce-26b4c7020b22" parent_id_arme="2ad003b4-66f9-451a-93cb-c6f44284c63c">
     <if_gm_button text="GM/Respawn/Arvonian" />
     <log text="GM respawned an Arvonian ship" />
-    <create type="enemy" use_gm_position="" raceKeys="enemy whalelover" hullKeys="small" />
+    <create type="enemy" x="1000.0" y="0.0" z="20000.0" name="AC09" raceKeys="enemy whalelover" hullKeys="small" />
   </event>
   <folder_arme name="Start Game Events" id_arme="950df5cb-1770-486e-93bc-2cb61e3ceffb" />
   <event name="Limit sensor range" id_arme="51449eef-be71-441f-90b7-d3a39fe8ae40" parent_id_arme="950df5cb-1770-486e-93bc-2cb61e3ceffb">
@@ -355,7 +355,7 @@
     <if_variable name="TsnCommandSummonedDiana" comparator="EQUALS" value="1.0" />
     <if_timer_finished name="DianaStartupDelayBeforeOrders" />
     <log text="TSN Command summoned Diana" />
-    <warning_popup_message message="Message from TSN Command" consoles="M" name="Diana" />
+    <warning_popup_message message="Message from TSN Command on Comms" consoles="M" name="Diana" />
     <incoming_comms_text from="TSN Command" sideValue="2" type="ALERT">Diana, please dock at Houston Outpost immediately to receive new mission orders.</incoming_comms_text>
     <set_variable name="TsnCommandSummonedDiana" value="2.0" />
     <set_timer name="DianaStartupDelayBeforeOrders" seconds="120" />
@@ -366,14 +366,14 @@
     <if_variable name="TsnCommandSummonedDiana" comparator="EQUALS" value="2.0" />
     <if_timer_finished name="DianaStartupDelayBeforeOrders" />
     <log text="TSN Command summoned Diana again" />
-    <warning_popup_message message="Message from TSN Command" consoles="M" name="Diana" />
+    <warning_popup_message message="Message from TSN Command on Comms" consoles="M" name="Diana" />
     <incoming_comms_text from="TSN Command" type="ALERT">Diana, we repeat, you are instructed to dock at Houston Outpost immediately to receive new mission orders!</incoming_comms_text>
     <set_variable name="TsnCommandSummonedDiana" value="3.0" />
   </event>
   <event name="GM summons Diana again" id_arme="f2f7b4ef-3f5b-4bfe-9ef7-21acce223130" parent_id_arme="228e7479-d78c-43b9-8d36-67cc88f26a4b">
     <if_gm_button text="GM/Resend Comms/Houston Resummon Diana" />
     <log text="GM summoned Diana again" />
-    <warning_popup_message message="Message from TSN Command" consoles="M" name="Diana" />
+    <warning_popup_message message="Message from TSN Command on Comms" consoles="M" name="Diana" />
     <incoming_comms_text from="TSN Command" type="ALERT">Diana, We repeat, you are instructed to dock at Houston Outpost immediately to receive new mission orders!</incoming_comms_text>
     <set_variable name="TsnCommandSummonedDiana" value="3.0" />
   </event>
@@ -443,7 +443,7 @@
     <if_variable name="TsnCommandSummonedArtemis" comparator="EQUALS" value="1.0" />
     <if_timer_finished name="ArtemisStartupDelayBeforeOrders" />
     <log text="TSN Command summoned Artemis" />
-    <warning_popup_message message="Message from TSN Command" consoles="M" name="Artemis" />
+    <warning_popup_message message="Message from TSN Command on Comms" consoles="M" name="Artemis" />
     <incoming_comms_text from="TSN Command" sideValue="2" type="ALERT">Artemis, please dock at SB01 immediately to receive new mission orders.</incoming_comms_text>
     <set_variable name="TsnCommandSummonedArtemis" value="2.0" />
     <set_timer name="ArtemisStartupDelayBeforeOrders" seconds="120" />
@@ -454,14 +454,14 @@
     <if_variable name="TsnCommandSummonedArtemis" comparator="EQUALS" value="2.0" />
     <if_timer_finished name="ArtemisStartupDelayBeforeOrders" />
     <log text="TSN Command summoned Artemis again" />
-    <warning_popup_message message="Message from TSN Command" consoles="M" name="Artemis" />
+    <warning_popup_message message="Message from TSN Command on Comms" consoles="M" name="Artemis" />
     <incoming_comms_text from="TSN Command" type="ALERT">Artemis, we repeat, you are instructed to dock at SB01 immediately to receive new mission orders!</incoming_comms_text>
     <set_variable name="TsnCommandSummonedArtemis" value="3.0" />
   </event>
   <event name="GM summons Artemis again" id_arme="92f4ecc2-d839-4ba1-b5f4-8d35ddfeeac1" parent_id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed">
     <if_gm_button text="GM/Resend Comms/SB01 Resummon Artemis" />
     <log text="GM summoned Artemis again" />
-    <warning_popup_message message="Message from TSN Command" consoles="M" name="Artemis" />
+    <warning_popup_message message="Message from TSN Command on Comms" consoles="M" name="Artemis" />
     <incoming_comms_text from="TSN Command" type="ALERT">Artemis, We repeat, you are instructed to dock at Houston Outpost immediately to receive new mission orders!</incoming_comms_text>
     <set_variable name="TsnCommandSummonedArtemis" value="3.0" />
   </event>
@@ -1372,7 +1372,7 @@
     <set_timer name="CloakCooldownTimer" seconds="10" />
   </event>
   <folder_arme name="Handle ship-specific buttons" id_arme="690c5f35-7bda-4380-9187-9a32d8d25c24" />
-  <folder_arme name="Artemis: Phantom whale beacon" id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96" parent_id_arme="690c5f35-7bda-4380-9187-9a32d8d25c24" expanded_arme="" />
+  <folder_arme name="Artemis: Phantom whale beacon" id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96" parent_id_arme="690c5f35-7bda-4380-9187-9a32d8d25c24" />
   <event name="Start refreshing button" id_arme="3cac636d-7052-4857-bef8-fe8b53d4ad85" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
     <if_variable name="TsnCommandGaveArtemisMission" comparator="EQUALS" value="2.0" />
     <if_timer_finished name="CommsButtonRefreshTimer" />
@@ -1446,7 +1446,7 @@
     <log text="Destroying phantom whale beacause beacon |firstnumber| destroyed" />
     <destroy name="Pha|firstnumber|" />
   </event>
-  <event name="Torgoth destroyed whale" id_arme="7767ee1d-17db-4f89-99d3-2109c07288b3" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
+  <event name="Torgoth destroyed whale" id_arme="1f7ac695-ab03-45f0-963c-9841b2af80a3" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
     <if_variable name="ArvoniansWarned" comparator="GREATER" value="2.0" />
     <if_variable name="BreakupAlliance" comparator="EQUALS" value="0.0" />
     <if_not_exists name="Pha|firstnumber|" />
@@ -1456,7 +1456,7 @@
     <log text="TG0|secondnumber| destroyed whale Pha|firstnumber|" />
     <set_variable name="BreakupAlliance" value="1.0" />
   </event>
-  <event name="Torgoth destroyed whale" id_arme="1b04eb6b-2ad2-4cb3-8748-fc6a8c3cc4f4" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
+  <event name="Torgoth destroyed whale" id_arme="dc16250e-bded-49d4-ad67-63505e6896ac" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
     <if_variable name="ArvoniansWarned" comparator="GREATER" value="2.0" />
     <if_variable name="BreakupAlliance" comparator="EQUALS" value="0.0" />
     <if_not_exists name="Pha|firstnumber|" />
@@ -1466,7 +1466,7 @@
     <log text="TG0|secondnumber| destroyed whale Pha|firstnumber|" />
     <set_variable name="BreakupAlliance" value="1.0" />
   </event>
-  <event name="Torgoth destroyed whale" id_arme="94bda36f-1b36-4fb7-896a-e3899f660a32" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
+  <event name="Torgoth destroyed whale" id_arme="d8e7ccab-7328-4d84-8891-fe413b389f45" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
     <if_variable name="ArvoniansWarned" comparator="GREATER" value="2.0" />
     <if_variable name="BreakupAlliance" comparator="EQUALS" value="0.0" />
     <if_not_exists name="Pha|firstnumber|" />
@@ -1474,6 +1474,36 @@
     <if_distance name1="Artemis" name2="Bea|firstnumber|" comparator="GREATER" value="5000.0" />
     <if_not_exists name="Diana" />
     <log text="TG0|secondnumber| destroyed whale Pha|firstnumber|" />
+    <set_variable name="BreakupAlliance" value="1.0" />
+  </event>
+  <event name="Torgoth base destroyed whale" id_arme="7767ee1d-17db-4f89-99d3-2109c07288b3" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
+    <if_variable name="ArvoniansWarned" comparator="GREATER" value="2.0" />
+    <if_variable name="BreakupAlliance" comparator="EQUALS" value="0.0" />
+    <if_not_exists name="Pha|firstnumber|" />
+    <if_distance name1="TB0|secondnumber|" name2="Bea|firstnumber|" comparator="LESS" value="5000.0" />
+    <if_distance name1="Artemis" name2="Bea|firstnumber|" comparator="GREATER" value="5000.0" />
+    <if_distance name1="Diana" name2="Bea|firstnumber|" comparator="GREATER" value="5000.0" />
+    <log text="TB0|secondnumber| destroyed whale Pha|firstnumber|" />
+    <set_variable name="BreakupAlliance" value="1.0" />
+  </event>
+  <event name="Torgoth base destroyed whale" id_arme="1b04eb6b-2ad2-4cb3-8748-fc6a8c3cc4f4" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
+    <if_variable name="ArvoniansWarned" comparator="GREATER" value="2.0" />
+    <if_variable name="BreakupAlliance" comparator="EQUALS" value="0.0" />
+    <if_not_exists name="Pha|firstnumber|" />
+    <if_distance name1="TB0|secondnumber|" name2="Bea|firstnumber|" comparator="LESS" value="5000.0" />
+    <if_not_exists name="Artemis" />
+    <if_distance name1="Diana" name2="Bea|firstnumber|" comparator="GREATER" value="5000.0" />
+    <log text="TB0|secondnumber| destroyed whale Pha|firstnumber|" />
+    <set_variable name="BreakupAlliance" value="1.0" />
+  </event>
+  <event name="Torgoth base destroyed whale" id_arme="94bda36f-1b36-4fb7-896a-e3899f660a32" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
+    <if_variable name="ArvoniansWarned" comparator="GREATER" value="2.0" />
+    <if_variable name="BreakupAlliance" comparator="EQUALS" value="0.0" />
+    <if_not_exists name="Pha|firstnumber|" />
+    <if_distance name1="TB0|secondnumber|" name2="Bea|firstnumber|" comparator="LESS" value="5000.0" />
+    <if_distance name1="Artemis" name2="Bea|firstnumber|" comparator="GREATER" value="5000.0" />
+    <if_not_exists name="Diana" />
+    <log text="TB0|secondnumber| destroyed whale Pha|firstnumber|" />
     <set_variable name="BreakupAlliance" value="1.0" />
   </event>
   <event name="Schedule destroying beacon 1" id_arme="b60d6210-8884-4d07-a61c-273bb0af29d2" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
@@ -1541,7 +1571,7 @@
     <if_exists name="Pha|firstnumber|" />
     <set_relative_position name2="Pha|firstnumber|" distance="0" angle="0" name1="Bea|firstnumber|" />
   </event>
-  <folder_arme name="Diana: Cloak button" id_arme="948f2be4-0ffd-4f56-84a9-a671ed0df671" parent_id_arme="690c5f35-7bda-4380-9187-9a32d8d25c24" />
+  <folder_arme name="Diana: Cloak button" id_arme="948f2be4-0ffd-4f56-84a9-a671ed0df671" parent_id_arme="690c5f35-7bda-4380-9187-9a32d8d25c24" expanded_arme="" />
   <event name="Position Unstable" id_arme="00ac3523-feaf-4d86-8649-82cc2c37827d" parent_id_arme="948f2be4-0ffd-4f56-84a9-a671ed0df671">
     <if_variable name="DianaPositionStable" comparator="EQUALS" value="0.0" />
     <if_variable name="CloakEngaged" comparator="EQUALS" value="0.0" />
@@ -1676,7 +1706,7 @@
   <event name="Blame Torgoths 4" id_arme="5ce06727-c237-4f90-9f71-87ab35649581" parent_id_arme="a0939c52-af8b-45c2-9131-86a14e6ea566">
     <if_timer_finished name="ArvoniansWarnedTimer" />
     <if_variable name="ArvoniansWarned" comparator="EQUALS" value="3.0" />
-    <incoming_comms_text from="Artemis - Internal Comms" type="ALERT">Based on the Arvonian and Torgoth communication, we now believe that a Torgoth attack on one of our phantom whale beacons could be detected by Arvonian sensors as an attack that could break up the enemy alliance.  It's time to provoke such an attack, and make sure we're not in the vicinity when it's destroyed!</incoming_comms_text>
+    <incoming_comms_text from="Artemis - Internal Comms" type="ALERT">Based on the Arvonian and Torgoth communication, we now believe that a Torgoth attack on one of our phantom whale beacons could be detected by Arvonian sensors as an attack that could break up the enemy alliance.  It's time to provoke such an attack, and make sure we're not in the vicinity when it's destroyed!  A Torgoth must be within 5000 of the beacon when it's destroyed and our ships must be more than 5000 away.</incoming_comms_text>
     <set_variable name="ArvoniansWarned" value="4.0" />
   </event>
   <event name="Destroy Death Station plans" id_arme="6e4b7adc-f296-4179-b969-69a1a96af602" parent_id_arme="a0939c52-af8b-45c2-9131-86a14e6ea566">
@@ -1698,7 +1728,7 @@
   <event name="Send Elysia rescue plan" id_arme="a31eee16-4f0f-412a-99f4-ea4ff3a34503" parent_id_arme="a0939c52-af8b-45c2-9131-86a14e6ea566">
     <if_gm_button text="GM/Away Team/Send Elysia rescue plan" />
     <log text="Away Team sent Elysia rescue plan to Diana" />
-    <incoming_comms_text from="Diana Away Team" type="PLAYER">Diana, Elysia Mainframe analysis indicates that reversing the polarity of the cloaking device while in the proximity of Elysia's magnetic Cetrocite field should repair the rift in the space/time continuum that caused the wormhole.  This would return Elysia to normal space, but would likely destroy the cloaking device in the process.</incoming_comms_text>
+    <incoming_comms_text from="Diana Away Team" type="ALERT PLAYER">Diana, Elysia Mainframe analysis indicates that reversing the polarity of the cloaking device while in the proximity of Elysia's magnetic Cetrocite field should repair the rift in the space/time continuum that caused the wormhole.  This would return Elysia to normal space, but would likely destroy the cloaking device in the process.</incoming_comms_text>
     <set_variable name="EnableDestroyCloak" value="1.0" />
   </event>
   <folder_arme name="Break up alliance" id_arme="8804c4f9-925d-4740-8e06-e036def95c7b" />

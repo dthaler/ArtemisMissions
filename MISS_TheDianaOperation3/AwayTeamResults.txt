@@ -190,5 +190,6 @@ LOCATION: Station mainframe core
 	RESULT: deleted
 
 	ACTION: transmit Death Station plans to TSN command for analysis
+	PREREQ: interrogate mainframe
 	PREREQ: establish communication link to Diana
 	RESULT: TSN gets plans

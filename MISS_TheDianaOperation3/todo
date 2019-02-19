@@ -23,9 +23,52 @@
 -------- sent copy to Mark
 12/28/18 FIX: get rid of civilian vessels
 12/28/18 ADD: Arvonian/Torgoth message exchange
+02/18/19 BUG: Away Team message about wormhole analysis should be of type Alert+Player to draw attention
 
 ---
 {
+
+1/2 FIX: initial popup msgs should mention comms
+         DNTT
+
+1/2 FIX: Respawn Torgoth on GM screen doesn't seem to work
+            explanation: needs GM coordinates, but can't when using buttons (AME should warn about this)
+            DNTT
+
+1/2 BUG: respawned torgoth ships should be TG0 ships to trigger end condition
+            TG07 TG08 TG09
+        put position south of where TG05 starts
+            TG05: 62059 (W), 0, 79927 (S)
+            TG06: 48838 (W), 0, 79927 (S)
+        put TG07: 62059, 0, 88000
+        put AC10: 1000 W, 20000 S
+            DNTT test if spawn more than one with same name
+
+1/2 BUG: All TG ships gone just a base left, base taking out whale beacon doesn't seem to trigger Arvonians
+            "Torgoth destroyed whale" events test TG0 but not TB0
+            DNTT
+
+1/2 BUG: "vicinity" message should say what range is minimum range
+            conditions: ArvoniansWarned > 2
+                        BreakupAlliance = 0
+                        object not exist with Pha|firstnumber| meaning whale destroyed (but not beacon)
+                        distance TG0 and Bea < 5000 
+                        distance Artemis Bea > 5000
+                        distance Diana   Bea > 5000
+            DNTT
+
+1/2 BUG: Disengage Cloak button appears on Artemis's comms screen
+            but "Engage Cloak" button is fine
+            - "Show Engage Cloak button" sets on side 3
+            - "Show Disengage Cloak button" sets on side 3
+            both ships go to side 3, check logic
+
+1/2 BUG? When Diana arrives at Elysia, there should be a Comms message arrive from the planet that
+         implies Away Team can go now
+
+2/2 FIX? Disallow spawning Intrepid, say should be Diana
+
+---
 
 1/2 ADD: allow option for Diana's shuttle to enter wormhole instead of Diana
 
