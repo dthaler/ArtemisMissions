@@ -91,7 +91,6 @@
     <set_gm_button text="GM/Away Team/Blame Torgoths" />
     <set_gm_button text="GM/Break up alliance" />
     <set_gm_button text="GM/Destroy all enemies" />
-    <set_gm_button text="GM/Destroy all Torgoth ships" />
     <set_timer name="GMButtonRefreshTimer" seconds="30" />
     <!--.....-->
     <!--..... Anomalies-->
@@ -157,7 +156,6 @@
     <clear_gm_button text="GM/Away Team/Send Elysia rescue plan" />
     <clear_gm_button text="GM/Break up alliance" />
     <clear_gm_button text="GM/Destroy all enemies" />
-    <clear_gm_button text="GM/Destroy all Torgoth ships" />
   </event>
   <event name="Refresh Destroy plans GM button" id_arme="8be10a5a-4364-40ef-8c9f-76117eab5775" parent_id_arme="27459883-7153-49dc-8cdc-060a039bd7af">
     <if_variable name="CanDestroyPlans" comparator="EQUALS" value="1.0" />
@@ -178,7 +176,6 @@
     <set_gm_button text="GM/Away Team/Send Elysia rescue plan" />
     <set_gm_button text="GM/Break up alliance" />
     <set_gm_button text="GM/Destroy all enemies" />
-    <set_gm_button text="GM/Destroy all Torgoth ships" />
     <set_timer name="GMButtonRefreshTimer" seconds="30" />
   </event>
   <event name="GM destroy all enemies" id_arme="2eb837ad-a2ce-47e8-98d7-a1df2c29f1a2" parent_id_arme="27459883-7153-49dc-8cdc-060a039bd7af">
@@ -199,19 +196,12 @@
     <destroy name="AC07" />
     <destroy name="AC08" />
     <destroy name="AC09" />
+    <destroy name="AB01" />
+    <destroy name="AB02" />
+    <destroy name="AB03" />
     <destroy name="TB01" />
     <destroy name="TB02" />
     <destroy name="TB03" />
-  </event>
-  <event name="GM destroy all Torgoth ships" id_arme="e728c76b-6f29-499b-897b-63cd12a21e70" parent_id_arme="27459883-7153-49dc-8cdc-060a039bd7af">
-    <if_gm_button text="GM/Destroy all Torgoth ships" />
-    <log text="GM destroyed all Torgoth ships" />
-    <destroy name="TG01" />
-    <destroy name="TG02" />
-    <destroy name="TG03" />
-    <destroy name="TG04" />
-    <destroy name="TG05" />
-    <destroy name="TG06" />
   </event>
   <folder_arme name="Create Additional Enemy Ships" id_arme="2ad003b4-66f9-451a-93cb-c6f44284c63c" />
   <event name="Difficulty 3+: Large Torgoths" id_arme="36a7fe10-fe2b-449a-ac99-5ec1b72f6390" parent_id_arme="2ad003b4-66f9-451a-93cb-c6f44284c63c">
@@ -434,7 +424,7 @@
     <incoming_comms_text from="TSN Command" type="ALERT">Houston Outpost was destroyed!</incoming_comms_text>
     <set_variable name="GameStatus" value="0" />
   </event>
-  <folder_arme name="Task: Artemis to dock with SB01 to get beacons" id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed" />
+  <folder_arme name="Task: Artemis to dock with SB01 to get beacons" id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed" expanded_arme="" />
   <event name="Prepare to summon Artemis" id_arme="8a457d0e-c6d9-420c-9968-8cda224e9d6e" parent_id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed">
     <if_exists name="Artemis" />
     <if_variable name="TsnCommandSummonedArtemis" comparator="EQUALS" value="0.0" />
@@ -1383,8 +1373,8 @@
     <set_variable name="CloakButtonShown" value="0.0" />
     <set_timer name="CloakCooldownTimer" seconds="10" />
   </event>
-  <folder_arme name="Handle ship-specific buttons" id_arme="690c5f35-7bda-4380-9187-9a32d8d25c24" />
-  <folder_arme name="Artemis: Phantom whale beacon" id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96" parent_id_arme="690c5f35-7bda-4380-9187-9a32d8d25c24" />
+  <folder_arme name="Handle ship-specific buttons" id_arme="690c5f35-7bda-4380-9187-9a32d8d25c24" expanded_arme="" />
+  <folder_arme name="Artemis: Phantom whale beacon" id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96" parent_id_arme="690c5f35-7bda-4380-9187-9a32d8d25c24" expanded_arme="" />
   <event name="Start refreshing button" id_arme="3cac636d-7052-4857-bef8-fe8b53d4ad85" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
     <if_variable name="TsnCommandGaveArtemisMission" comparator="EQUALS" value="2.0" />
     <if_timer_finished name="CommsButtonRefreshTimer" />
@@ -1607,7 +1597,6 @@
   <event name="Show &quot;Engage Cloak&quot; button" id_arme="ca57f4e0-a634-48d5-8881-1fd65535b1da" parent_id_arme="948f2be4-0ffd-4f56-84a9-a671ed0df671">
     <if_variable name="CloakButtonShown" comparator="EQUALS" value="1.0" />
     <if_object_property property="sideValue" name="Diana" comparator="NOT" value="2" />
-    <if_timer_finished name="CloakCooldownTimer" />
     <if_object_property property="positionX" name="Diana" comparator="EQUALS" value="DianaX" />
     <if_object_property property="positionY" name="Diana" comparator="EQUALS" value="DianaY" />
     <if_object_property property="positionZ" name="Diana" comparator="EQUALS" value="DianaZ" />
@@ -1634,7 +1623,7 @@
     <if_object_property property="sideValue" name="Diana" comparator="NOT" value="2" />
     <set_object_property property="sideValue" value="2" name="Diana" />
   </event>
-  <event name="Change Diana side for &quot;Engage Cloak&quot; button" id_arme="67860200-b7d1-4239-83f0-648de0ac8c22" parent_id_arme="948f2be4-0ffd-4f56-84a9-a671ed0df671">
+  <event name="Change Diana side for &quot;Engage Cloak&quot; button" id_arme="2e9fecfa-cca3-4eb3-9e69-8d0fa5708237" parent_id_arme="948f2be4-0ffd-4f56-84a9-a671ed0df671">
     <if_variable name="CloakDestroyed" comparator="EQUALS" value="0.0" />
     <if_timer_finished name="CloakCooldownTimer" />
     <if_variable name="CloakButtonShown" comparator="EQUALS" value="0.0" />
@@ -1644,6 +1633,13 @@
     <set_object_property property="sideValue" value="4" name="Diana" />
     <set_variable name="CloakButtonShown" value="1.0" />
     <set_variable name="DianaPositionStable" value="1.0" />
+  </event>
+  <event name="Change Diana side for &quot;Disengage Cloak&quot; button" id_arme="67860200-b7d1-4239-83f0-648de0ac8c22" parent_id_arme="948f2be4-0ffd-4f56-84a9-a671ed0df671">
+    <if_variable name="CloakEngaged" comparator="EQUALS" value="1.0" />
+    <if_timer_finished name="CloakCooldownTimer" />
+    <if_variable name="CloakButtonShown" comparator="EQUALS" value="0.0" />
+    <set_object_property property="sideValue" value="4" name="Diana" />
+    <set_variable name="CloakButtonShown" value="3.0" />
   </event>
   <event name="Change Diana side for &quot;Reverse Cloak Polarity&quot; button" id_arme="57265ed2-c5c6-465a-b5f9-c84002000d9a" parent_id_arme="948f2be4-0ffd-4f56-84a9-a671ed0df671">
     <if_variable name="EnableDestroyCloak" comparator="EQUALS" value="1.0" />
@@ -1663,7 +1659,6 @@
   <event name="Engage Cloak" id_arme="15fdcfef-4236-4c57-bc37-87ed3afc61c1" parent_id_arme="948f2be4-0ffd-4f56-84a9-a671ed0df671">
     <if_comms_button text="Engage Cloak" />
     <clear_comms_button text="Engage Cloak" />
-    <set_comms_button text="Disengage Cloak" />
     <create count="1" type="nebulas" nebType="1" startX="DianaX" startY="DianaY" startZ="DianaZ" radius="1" randomRange="0" />
     <set_variable name="CloakEngaged" value="1.0" />
     <!--Change Diana side for "Disengage Cloak" button-->
