@@ -81,6 +81,7 @@
     <set_gm_button text="GM/Respawn/Arvonian" />
     <set_gm_button text="GM/Respawn/Torgoth" />
     <set_gm_button text="GM/Respawn/Whale Pod 1" />
+    <set_gm_button text="GM/Resend Comms/Refresh Buttons" />
     <set_gm_button text="GM/Resend Comms/Houston Resummon Diana" />
     <set_gm_button text="GM/Resend Comms/SB01 Resummon Artemis" />
     <set_gm_button text="GM/Resend Comms/Give Artemis Mission" />
@@ -146,6 +147,7 @@
     <clear_gm_button text="GM/Respawn/Arvonian" />
     <clear_gm_button text="GM/Respawn/Torgoth" />
     <clear_gm_button text="GM/Respawn/Whale Pod 1" />
+    <clear_gm_button text="GM/Resend Comms/Refresh Buttons" />
     <clear_gm_button text="GM/Resend Comms/Houston Resummon Diana" />
     <clear_gm_button text="GM/Resend Comms/SB01 Resummon Artemis" />
     <clear_gm_button text="GM/Resend Comms/Give Artemis Mission" />
@@ -163,11 +165,12 @@
     <set_gm_button text="GM/Away Team/Destroy Death Station plans" />
     <set_gm_button text="GM/Away Team/Send Death Station plans to TSN" />
   </event>
-  <event name="Refresh GM buttons" id_arme="476c9cc2-9ca8-4c1a-8e80-4e259b5be3c3" parent_id_arme="27459883-7153-49dc-8cdc-060a039bd7af">
+  <event name="Refresh GM buttons" id_arme="a6717e9d-d0d4-4914-94ee-1511e7f79a27" parent_id_arme="27459883-7153-49dc-8cdc-060a039bd7af">
     <if_timer_finished name="GMButtonRefreshTimer" />
     <set_gm_button text="GM/Respawn/Arvonian" />
     <set_gm_button text="GM/Respawn/Torgoth" />
     <set_gm_button text="GM/Respawn/Whale Pod 1" />
+    <set_gm_button text="GM/Resend Comms/Refresh Buttons" />
     <set_gm_button text="GM/Resend Comms/Houston Resummon Diana" />
     <set_gm_button text="GM/Resend Comms/SB01 Resummon Artemis" />
     <set_gm_button text="GM/Resend Comms/Give Artemis Mission" />
@@ -177,6 +180,13 @@
     <set_gm_button text="GM/Break up alliance" />
     <set_gm_button text="GM/Destroy all enemies" />
     <set_timer name="GMButtonRefreshTimer" seconds="30" />
+  </event>
+  <event name="GM refresh comms buttons" id_arme="476c9cc2-9ca8-4c1a-8e80-4e259b5be3c3" parent_id_arme="27459883-7153-49dc-8cdc-060a039bd7af">
+    <if_gm_button text="GM/Resend Comms/Refresh Buttons" />
+    <log text="GM triggered refresh of comms buttons" />
+    <set_variable name="BeaconButtonRefreshed" value="0.0" />
+    <clear_comms_button text="Drop whale beacon" />
+    <set_variable name="BeaconButtonShown" value="0.0" />
   </event>
   <event name="GM destroy all enemies" id_arme="2eb837ad-a2ce-47e8-98d7-a1df2c29f1a2" parent_id_arme="27459883-7153-49dc-8cdc-060a039bd7af">
     <if_gm_button text="GM/Destroy all enemies" />
@@ -424,7 +434,7 @@
     <incoming_comms_text from="TSN Command" type="ALERT">Houston Outpost was destroyed!</incoming_comms_text>
     <set_variable name="GameStatus" value="0" />
   </event>
-  <folder_arme name="Task: Artemis to dock with SB01 to get beacons" id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed" expanded_arme="" />
+  <folder_arme name="Task: Artemis to dock with SB01 to get beacons" id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed" />
   <event name="Prepare to summon Artemis" id_arme="8a457d0e-c6d9-420c-9968-8cda224e9d6e" parent_id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed">
     <if_exists name="Artemis" />
     <if_variable name="TsnCommandSummonedArtemis" comparator="EQUALS" value="0.0" />
@@ -476,7 +486,7 @@
     <incoming_comms_text from="TSN Command" type="ALERT">Artemis, we have retrofitted your shuttle bay with an experimental holographic beacon deployment system.  Beacons deployed by this experimental system will generate holographic signals that will appear to sensors and viewscreens as if they were space whales.  Intelligence indicates that all Arvonians will attempt to steer clear of space whales by at least 5000m, while Torgoths are known to actively hunt them down if within 5000m, even in preference to attacking our ships.  It is hoped that, if you use them intelligently, these can give you key tactical advantages. Your Comms officer can direct them to be deployed out your rear shuttle bay door, similar to mines.  You may have up to 9 deployed at a time.</incoming_comms_text>
     <set_variable name="TsnCommandGaveArtemisMission" value="2.0" />
     <set_object_property property="missileStoresBeacon" value="8" name="SB01" />
-    <set_timer name="CommsButtonRefreshTimer" seconds="60" />
+    <!--<set_timer name="CommsButtonRefreshTimer" seconds="60" />-->
   </event>
   <event name="Mission Failed - SB01 Destroyed" id_arme="a179a5ff-c09e-45d6-b572-786529a3e479" parent_id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed">
     <if_variable name="GameStatus" comparator="EQUALS" value="1" />
@@ -1373,16 +1383,18 @@
     <set_variable name="CloakButtonShown" value="0.0" />
     <set_timer name="CloakCooldownTimer" seconds="10" />
   </event>
-  <folder_arme name="Handle ship-specific buttons" id_arme="690c5f35-7bda-4380-9187-9a32d8d25c24" expanded_arme="" />
-  <folder_arme name="Artemis: Phantom whale beacon" id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96" parent_id_arme="690c5f35-7bda-4380-9187-9a32d8d25c24" expanded_arme="" />
-  <event name="Start refreshing button" id_arme="3cac636d-7052-4857-bef8-fe8b53d4ad85" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
+  <folder_arme name="Handle ship-specific buttons" id_arme="690c5f35-7bda-4380-9187-9a32d8d25c24" />
+  <folder_arme name="Artemis: Phantom whale beacon" id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96" parent_id_arme="690c5f35-7bda-4380-9187-9a32d8d25c24" />
+  <disabled_event name="Start refreshing button" id_arme="3cac636d-7052-4857-bef8-fe8b53d4ad85" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
     <if_variable name="TsnCommandGaveArtemisMission" comparator="EQUALS" value="2.0" />
     <if_timer_finished name="CommsButtonRefreshTimer" />
+    <if_variable name="BeaconButtonRefreshed" comparator="NOT" value="0.0" />
+    <log text="Starting to refresh comms buttons..." />
     <set_variable name="BeaconButtonRefreshed" value="0.0" />
-    <set_timer name="CommsButtonRefreshTimer" seconds="60" />
+    <!--<set_timer name="CommsButtonRefreshTimer" seconds="60" />-->
     <clear_comms_button text="Drop whale beacon" />
     <set_variable name="BeaconButtonShown" value="0.0" />
-  </event>
+  </disabled_event>
   <event name="Show button" id_arme="483b8827-f8cb-44fb-aa4a-320ef2327272" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
     <if_variable name="BeaconButtonShown" comparator="EQUALS" value="1.0" />
     <if_object_property property="sideValue" name="Artemis" comparator="NOT" value="2" />
@@ -1396,6 +1408,7 @@
   <event name="Restore Artemis side" id_arme="2565f472-5deb-4f4e-be74-832ab73dce67" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
     <if_exists name="Artemis" />
     <if_object_property property="sideValue" name="Artemis" comparator="NOT" value="2" />
+    <log text="Restoring Artemis side to 2" />
     <set_object_property property="sideValue" value="2" name="Artemis" />
   </event>
   <event name="Change Artemis side" id_arme="36d1ebf2-17ef-4ad2-9940-92f23b430c7b" parent_id_arme="5f4da031-8a9b-4211-b4ca-db1851446c96">
@@ -1405,6 +1418,7 @@
     <if_not_exists name="Pha|NextBeaconNumber|" />
     <if_object_property property="sideValue" name="Artemis" comparator="EQUALS" value="2" />
     <if_object_property property="countBea" name="Artemis" comparator="GREATER" value="0" />
+    <log text="Changing Artemis side to 3" />
     <set_object_property property="sideValue" value="3" name="Artemis" />
     <set_variable name="BeaconButtonRefreshed" value="1.0" />
     <set_variable name="BeaconButtonShown" value="1.0" />

@@ -31,22 +31,13 @@
 02/21/19 BUG: "vicinity" message should say what range is minimum range
 02/21/19 BUG: All TG ships gone just a base left, base taking out whale beacon doesn't seem to trigger Arvonians
 02/21/19 BUG: Disengage Cloak button appears on Artemis's comms screen
+02/22/19 FIX: remove auto comms refresh to prevent button blinking
+02/22/19      workaround is GM/Resend Comms/Refresh Buttons
 
 ---
 {
 
 investigate client crashing bug!
-
-1/2 FIX? Lessen button popup to 60 seconds or remove comms refresh?
-            "Handle ship-specific buttons"
-            CommsButtonRefreshTimer
-        * engage cloak, verify Disengage is shown to Diana, log out, log back in, Disengage is never shown
-            CommsButtonRefreshTimer is never started
-                set to 60 when Artemis docks at SB01
-                reset to 60 when expires and TsnCommandGaveArtemisMission==2 (after Artemis docks at SB01)
-        * check logic of when it's set up
-        * add a GM function to set it
-     DNTT remove GM function to delete Torgoth ships
 
 2/2 FIX? Disallow spawning Intrepid, say should be Diana
 
