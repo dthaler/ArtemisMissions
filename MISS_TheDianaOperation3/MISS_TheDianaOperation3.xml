@@ -393,39 +393,44 @@
     <log text="GM gave Diana mission" />
     <set_variable name="TsnCommandGaveDianaMission" value="1.0" />
   </event>
-  <event name="Houston Outpost gives instruction 1" id_arme="e97d35b9-9f1e-4c08-935a-57417691421b" parent_id_arme="228e7479-d78c-43b9-8d36-67cc88f26a4b">
+  <event name="Houston Outpost gives instruction" id_arme="fbb6c897-e9e3-4a4f-b2d5-797be7803214" parent_id_arme="228e7479-d78c-43b9-8d36-67cc88f26a4b">
+    <if_variable name="TsnCommandGaveDianaMission" comparator="EQUALS" value="1.0" />
+    <incoming_comms_text from="TSN Command" type="ALERT">Diana, we must resume the original mission.  You are instructed to travel back into the wormhole to the planet Elysia, retrieve a cargo of Cetrocite, and investigate the mainframe there.  If the mainframe contains a record of our plan to break up the Arvonian/Torgoth alliance, it is critical that the records be deleted or the mainframe destroyed to prevent Arvonian command from learning of the plan.</incoming_comms_text>
+    <set_variable name="TsnCommandGaveDianaMission" value="2.0" />
+  </event>
+  <disabled_event name="Houston Outpost gives instruction 1" id_arme="e97d35b9-9f1e-4c08-935a-57417691421b" parent_id_arme="228e7479-d78c-43b9-8d36-67cc88f26a4b">
     <if_variable name="TsnCommandGaveDianaMission" comparator="EQUALS" value="1.0" />
     <incoming_comms_text from="TSN Command" type="ALERT">Two years ago, TSN researchers began formulating a plan to try to break up the Arvonian/Torgoth alliance, with whom the TSN has been at war for years.  This plan relied on constructing a device that was merely theoretical at the time, and to fully design and develop would require large amounts of a rare mineral known as Cetrocite, and so the Diana was sent on a secret mission into enemy territory to a planet that probes indicated had virtually unlimited deposits of Cetrocite.</incoming_comms_text>
     <set_timer name="DianaMoreInstructionTimer" seconds="30" />
     <set_variable name="TsnCommandGaveDianaMission" value="2.0" />
-  </event>
-  <event name="Houston Outpost gives instruction 2" id_arme="b38bc5af-2597-463b-8eec-cb66b6a854c4" parent_id_arme="228e7479-d78c-43b9-8d36-67cc88f26a4b">
+  </disabled_event>
+  <disabled_event name="Houston Outpost gives instruction 2" id_arme="b38bc5af-2597-463b-8eec-cb66b6a854c4" parent_id_arme="228e7479-d78c-43b9-8d36-67cc88f26a4b">
     <if_variable name="TsnCommandGaveDianaMission" comparator="EQUALS" value="2.0" />
     <if_timer_finished name="DianaMoreInstructionTimer" />
     <incoming_comms_text from="TSN Command" type="ALERT">However, the mission failed when both the Diana and the planet suddenly vanished into a newly appeared wormhole, which then disappeared as quickly as it appeared.  Months later, the wormhole reopened and a TSN Away Team took a shuttle into the wormhole and recovered the crippled Diana from the planet Elysia still inside the wormhole, and returned the Diana to TSN space, after discovering that generations had passed on Elysia due to the time differential inside.</incoming_comms_text>
     <set_timer name="DianaMoreInstructionTimer" seconds="30" />
     <set_variable name="TsnCommandGaveDianaMission" value="3.0" />
-  </event>
-  <event name="Houston Outpost gives instruction 3" id_arme="324a33f2-179d-461e-b220-ba01afe0e70c" parent_id_arme="228e7479-d78c-43b9-8d36-67cc88f26a4b">
+  </disabled_event>
+  <disabled_event name="Houston Outpost gives instruction 3" id_arme="324a33f2-179d-461e-b220-ba01afe0e70c" parent_id_arme="228e7479-d78c-43b9-8d36-67cc88f26a4b">
     <if_variable name="TsnCommandGaveDianaMission" comparator="EQUALS" value="3.0" />
     <if_timer_finished name="DianaMoreInstructionTimer" />
     <incoming_comms_text from="TSN Command" type="ALERT">Repairs on the heavily damaged Diana continued for many months, until its computer banks were finally fully restored, whereupon it was discovered that it had been infected with an Arvonian AI that had been dormant in damaged memory banks and had been reawakened when the memory was repaired.  The AI was eventually neutralized and interrogated.</incoming_comms_text>
     <set_timer name="DianaMoreInstructionTimer" seconds="30" />
     <set_variable name="TsnCommandGaveDianaMission" value="4.0" />
-  </event>
-  <event name="Houston Outpost gives instruction 4" id_arme="009e773b-0a69-4aa7-96ce-4c8ba54071c9" parent_id_arme="228e7479-d78c-43b9-8d36-67cc88f26a4b">
+  </disabled_event>
+  <disabled_event name="Houston Outpost gives instruction 4" id_arme="009e773b-0a69-4aa7-96ce-4c8ba54071c9" parent_id_arme="228e7479-d78c-43b9-8d36-67cc88f26a4b">
     <if_variable name="TsnCommandGaveDianaMission" comparator="EQUALS" value="4.0" />
     <if_timer_finished name="DianaMoreInstructionTimer" />
     <incoming_comms_text from="TSN Command" type="ALERT">We have now learned that the AI originated from a mainframe on Elysia and had infected the Diana when the Diana began scanning the planet.  For its secret mission into enemy space, the Diana had been outfitted with an experimental cloaking device, cobbled together from parts salvaged from a Skaraan wreck.  The AI had attempted to sabotage this device, but in so doing caused the Diana to crash on the planet and much of the computer record was lost as a result.</incoming_comms_text>
     <set_timer name="DianaMoreInstructionTimer" seconds="30" />
     <set_variable name="TsnCommandGaveDianaMission" value="5.0" />
-  </event>
-  <event name="Houston Outpost gives instruction 5" id_arme="7b1202cf-4d8e-43fd-921c-80ba473fb5d5" parent_id_arme="228e7479-d78c-43b9-8d36-67cc88f26a4b">
+  </disabled_event>
+  <disabled_event name="Houston Outpost gives instruction 5" id_arme="7b1202cf-4d8e-43fd-921c-80ba473fb5d5" parent_id_arme="228e7479-d78c-43b9-8d36-67cc88f26a4b">
     <if_variable name="TsnCommandGaveDianaMission" comparator="EQUALS" value="5.0" />
     <if_timer_finished name="DianaMoreInstructionTimer" />
     <incoming_comms_text from="TSN Command" type="ALERT">Now that the Diana is restored to normal operation and scientists predict another opening of the wormhole is imminent, we must resume the original mission.  The Artemis must defend TSN space while the Diana heads back to Elysia to retrieve a cargo of Cetrocite, and investigate the mainframe.  If the mainframe contains a record of the plan to break up the enemy alliance, it is critical that the records be deleted or the mainframe destroyed to prevent Arvonian command from learning of the plan.</incoming_comms_text>
     <set_variable name="TsnCommandGaveDianaMission" value="6.0" />
-  </event>
+  </disabled_event>
   <event name="Mission Failed - Houston Outpost Destroyed" id_arme="80b4f834-f162-4dd3-a00f-a164b4756db9" parent_id_arme="228e7479-d78c-43b9-8d36-67cc88f26a4b">
     <if_variable name="GameStatus" comparator="EQUALS" value="1" />
     <if_variable name="TsnCommandGaveDianaMission" comparator="EQUALS" value="0" />
@@ -714,7 +719,7 @@
     <if_distance name1="Diana" name2="Elysia" comparator="LESS" value="ElysiaRadius" />
     <if_variable name="DianaLandedOnElysia" comparator="EQUALS" value="0.0" />
     <log text="Diana landed on Elysia" />
-    <warning_popup_message message="Diana: Gravity well hazard. Proceed cautiously." consoles="S" />
+    <warning_popup_message message="Diana: Landed on Elysia." consoles="S" />
     <incoming_comms_text from="Diana - Internal Comms" type="ALERT PLAYER">We have landed on Elysia in a populated city.  An Away Team can now disembark.</incoming_comms_text>
     <set_variable name="DianaLandedOnElysia" value="1.0" />
   </event>

@@ -33,43 +33,29 @@
 02/21/19 BUG: Disengage Cloak button appears on Artemis's comms screen
 02/22/19 FIX: remove auto comms refresh to prevent button blinking
 02/22/19      workaround is GM/Resend Comms/Refresh Buttons
+03/21/19 ADD: away team app/investigation
 
 ---
 {
 
-investigate client crashing bug!
+1/2 FIX: turn off excess intro messages inside the mission and get to the point quickly
+            Task: Diana to dock with Houston Outpost
+                Houston Outpost gives instruction 1-5
+            see DianaMoreInstructionTimer
+         DNTT
+
+1/2 FIX: add a "landed on Elysia" message if one doesn't already exist, to send Away Team
+         DNTT
+
+1/2 FIX: create non-placeholder images for the away team mission, using images from Mark
+
+---
 
 2/2 FIX? Disallow spawning Intrepid, say should be Diana
 
----
+2/2 FIX? disallow cloaking device with jump drive
 
-1/2 ADD: allow option for Diana's shuttle to enter wormhole instead of Diana
-
-1/2 ADD: away team app/investigation
-         P2 have to learn there's a master AI in the mainframe
-          * Secretly, the motivation is to create a blackhole/wormhole construction device
-            scientists need to analyze the cetrocite field around Elysia to try to recreate it
-          * can we somehow use HID lamps as a console to interact with?
-               CRUX is output only, but could be paired with a regular keyboard
-               keyboard is input/output
-          * When the Diana approached Elysia and started scanning the planet, the Arvonian AI
-            already on Elysia infected the Diana via the comms/sensor systems, and tried to sabotage
-            the Diana's cloaking device.  However in doing so, something went wrong with the experimental device
-            due to the interaction between the experimental system, the sabotage, and Elysia's gravity/magnetic field,
-            and it created a rift in the space/time, which caused the wormhole to appear, and the Elysia and Diana
-                    to get stuck in it, and the Diana then crashed on Elysia.
-          * The master AI in the Elysia mainframe has analyzed what happened (remember generations have passed 
-            due to the time differential) and thinks it might be able to recreate this effect, and use it as 
-            a weapon to destroy (or at least neutralize) other entire planets like Earth, thus
-            winning the war.   (The AI that infected the Diana does not have the details since it was 
-            dormant since the crash, and the Dianas records were too damaged in the crash for the AI to 
-            figure out anything similar after reawakening.)
-          * During the mission, the Away Team will learn the truth from the mainframe AI, and maybe even get 
-            the plans to create this super weapon (Death Station).  Will they:
-                a)  Try to provide the super-weapon plans to TSN command? or
-                b)  Destroy them so no one gets them?
-
----
+2/2 ADD: allow option for Diana's shuttle to enter wormhole instead of Diana
 
 2/2 ADD: Mark's idea...
          Maybe Diana has to spend a cumulative amount of time in the vicinity of the colony, but there are 
