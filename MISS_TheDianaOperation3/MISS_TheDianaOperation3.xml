@@ -359,7 +359,7 @@
     <if_variable name="TsnCommandSummonedDiana" comparator="EQUALS" value="1.0" />
     <if_timer_finished name="DianaStartupDelayBeforeOrders" />
     <log text="TSN Command summoned Diana" />
-    <warning_popup_message message="Incoming Comms message!" consoles="M" name="Diana" />
+    <warning_popup_message message="Incoming Comms message!" consoles="M" />
     <incoming_comms_text from="TSN Command" sideValue="2" type="ALERT">Diana, please dock at Houston Outpost immediately to receive new mission orders.</incoming_comms_text>
     <set_variable name="TsnCommandSummonedDiana" value="2.0" />
     <set_timer name="DianaStartupDelayBeforeOrders" seconds="120" />
@@ -370,14 +370,14 @@
     <if_variable name="TsnCommandSummonedDiana" comparator="EQUALS" value="2.0" />
     <if_timer_finished name="DianaStartupDelayBeforeOrders" />
     <log text="TSN Command summoned Diana again" />
-    <warning_popup_message message="Incoming Comms message!" consoles="M" name="Diana" />
+    <warning_popup_message message="Incoming Comms message!" consoles="M" />
     <incoming_comms_text from="TSN Command" type="ALERT">Diana, we repeat, you are instructed to dock at Houston Outpost immediately to receive new mission orders!</incoming_comms_text>
     <set_variable name="TsnCommandSummonedDiana" value="3.0" />
   </event>
   <event name="GM summons Diana again" id_arme="f2f7b4ef-3f5b-4bfe-9ef7-21acce223130" parent_id_arme="228e7479-d78c-43b9-8d36-67cc88f26a4b">
     <if_gm_button text="GM/Resend Comms/Houston Resummon Diana" />
     <log text="GM summoned Diana again" />
-    <warning_popup_message message="Incoming Comms message!" consoles="M" name="Diana" />
+    <warning_popup_message message="Incoming Comms message!" consoles="M" />
     <incoming_comms_text from="TSN Command" type="ALERT">Diana, We repeat, you are instructed to dock at Houston Outpost immediately to receive new mission orders!</incoming_comms_text>
     <set_variable name="TsnCommandSummonedDiana" value="3.0" />
   </event>
@@ -640,8 +640,7 @@
     <log text="Diana entered wormhole" />
     <!--DianaLocation: 0.0=not created, 200=Launched, 300=ThroughWormhole-->
     <set_variable name="DianaLocation" value="300.0" />
-    <warning_popup_message message="Diana has entered the wormhole.  Gravity is normal." consoles="MHWESCO" name="Diana" />
-    <warning_popup_message message="The Diana has entered the wormhole." consoles="S" />
+    <warning_popup_message message="Diana has entered the wormhole." consoles="MS" />
     <!-- ..... Realm Advanced: Planet Elysia -->
     <create type="genericMesh" x="ElysiaX" y="ElysiaY" z="ElysiaZ" angle="0" name="Elysia" meshFileName="dat\asteroid.dxs" textureFileName="dat\roundA_specular.png" colorRed="0.5" colorGreen="0.5" colorBlue="1.0" />
     <set_object_property property="pushRadius" value="ElysiaRadius" name="Elysia" />
@@ -719,7 +718,7 @@
     <if_distance name1="Diana" name2="Elysia" comparator="LESS" value="ElysiaRadius" />
     <if_variable name="DianaLandedOnElysia" comparator="EQUALS" value="0.0" />
     <log text="Diana landed on Elysia" />
-    <warning_popup_message message="Diana: Landed on Elysia." consoles="S" />
+    <warning_popup_message message="Diana landed on Elysia." consoles="MSO" />
     <incoming_comms_text from="Diana - Internal Comms" type="ALERT PLAYER">We have landed on Elysia in a populated city.  An Away Team can now disembark.</incoming_comms_text>
     <set_variable name="DianaLandedOnElysia" value="1.0" />
   </event>
@@ -727,8 +726,7 @@
     <if_distance name1="Diana" name2="Wormhole" comparator="GREATER" value="WormholeRadius" />
     <if_variable name="DianaLocation" comparator="EQUALS" value="300.0" />
     <log text="Diana emerged from wormhole" />
-    <warning_popup_message message="Diana has exited the wormhole." consoles="MHWESCO" name="Diana" />
-    <warning_popup_message message="The Diana has exited the wormhole." consoles="S" />
+    <warning_popup_message message="Diana has exited the wormhole." consoles="MS" />
     <destroy name="Elysia" />
     <set_variable name="DianaLocation" value="200.0" />
   </event>

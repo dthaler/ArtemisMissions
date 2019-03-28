@@ -34,20 +34,15 @@
 02/22/19 FIX: remove auto comms refresh to prevent button blinking
 02/22/19      workaround is GM/Resend Comms/Refresh Buttons
 03/21/19 ADD: away team app/investigation
+03/28/19 FIX: turn off excess intro messages inside the mission and get to the point quickly
+03/28/19 FIX: add a "landed on Elysia" message if one doesn't already exist, to send Away Team
 
 ---
 {
 
-1/2 FIX: turn off excess intro messages inside the mission and get to the point quickly
-            Task: Diana to dock with Houston Outpost
-                Houston Outpost gives instruction 1-5
-            see DianaMoreInstructionTimer
-         DNTT
-
-1/2 FIX: add a "landed on Elysia" message if one doesn't already exist, to send Away Team
-         DNTT
-
 1/2 FIX: create non-placeholder images for the away team mission, using images from Mark
+
+1/1 COPY: mission to server
 
 ---
 
