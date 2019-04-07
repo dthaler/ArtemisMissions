@@ -1,4 +1,4 @@
-<mission_data version="2.7" background_id_arme="84327810-6e7d-41e7-9e71-391649f5b452" playerShipNames_arme="Artemis\Intrepid\Aegis\Horatio\Excalibur\Hera\Ceres\Diana">
+<mission_data version="2.7.1" background_id_arme="84327810-6e7d-41e7-9e71-391649f5b452" playerShipNames_arme="Artemis\Intrepid\Aegis\Horatio\Excalibur\Hera\Ceres\Diana">
   <mission_description>The crippled TSN Diana is now undergoing reconstruction at DS1, but the recent mission to recover it has attracted unwanted attention from the Arvonian fleets which are now advancing on DS1.  Your mission is to protect both DS1 and the Diana from the Arvonian invasion.^^This mission is a sequel to "The Diana Operation".</mission_description>
   <start id_arme="84327810-6e7d-41e7-9e71-391649f5b452">
     <big_message title="The Diana Operation II: A Spanner in the Works" subtitle1="by Dave Thaler" subtitle2="An adventure for one or two ships for Artemis 2.6 or 2.7" />
@@ -246,7 +246,7 @@
     <if_fleet_count comparator="EQUALS" value="0.0" sideValue="1" />
     <if_variable name="BombsSet" comparator="EQUALS" value="BombsDefused" />
     <log text="MISSION SUCCEEDED" />
-    <incoming_comms_text from="TSN Command" type="STATION">Good work!  The Arvonians have abandoned their attack on DS1, at least for now.  The TSN Diana is also safe and we can now complete the renovations on her to prepare to return her to service again.^^The AI that took over the Diana seems to be of Arvonian origin, and was apparently dormant in a damaged memory bank long before the Diana was towed here to DS1.  Recent repairs to the Diana must have reawakened it.  It seems possible that it was somehow connected to the Diana's original fate from which it was rescued during the recent Diana Operation.</incoming_comms_text>
+    <incoming_comms_text from="TSN Command" type="ALERT STATION">Good work!  The Arvonians have abandoned their attack on DS1, at least for now.  The TSN Diana is also safe and we can now complete the renovations on her to prepare to return her to service again.^^The AI that took over the Diana seems to be of Arvonian origin, and was apparently dormant in a damaged memory bank long before the Diana was towed here to DS1.  Recent repairs to the Diana must have reawakened it.  It seems possible that it was somehow connected to the Diana's original fate from which it was rescued during the recent Diana Operation.</incoming_comms_text>
     <set_variable name="GameOver" value="1.0" />
     <set_timer name="GameFinishedTimer" seconds="15" />
     <big_message title="MISSION SUCCEEDED" subtitle1="All enemies have been destroyed" />
@@ -426,7 +426,7 @@
     <if_variable name="TsnCommandGaveMission" comparator="EQUALS" value="1.0" />
     <log text="Gave mission" />
     <incoming_comms_text from="TSN Command" type="ALERT STATION">As a result of the recent Diana Operation, the Torgoth have moved their fleets elsewhere in the conflict with the TSN.  The Arvonians, however, have advanced and taken Houston Outpost, but not before we managed to tow the crippled TSN Diana back here to DS1 where it is now undergoing reconstruction.  A scout ship reported that an Arvonian base has just appeared in the asteroid belt, presumably in preparation for an assault on DS1.  We are sending their position to your ship now.  Your primary mission is to protect both DS1 and the Diana from the Arvonian invasion.  It is imperative that we not lose either one.</incoming_comms_text>
-    <incoming_comms_text from="TSN Command" type="STATION">Most Terran ships have already evacuated, but a few stragglers remain for whatever reason.  Your secondary mission is to protect the remaining friendly ships as much as possible without compromising your primary mission.</incoming_comms_text>
+    <incoming_comms_text from="TSN Command" type="SIDE STATION">Most Terran ships have already evacuated, but a few stragglers remain for whatever reason.  Your secondary mission is to protect the remaining friendly ships as much as possible without compromising your primary mission.</incoming_comms_text>
     <set_variable name="TsnCommandGaveMission" value="2.0" />
     <set_timer name="SabotageDelay" seconds="SabotageDelaySeconds" />
     <clear_gm_button text="GM/Resend Comms/Give Mission" />
@@ -1142,7 +1142,7 @@
     <clear_gm_button text="Bomb detonated" />
     <set_object_property property="canBuild" value="1" name="DS1" />
     <set_variable name="BombsDefused" value="BombsDefused + 1" />
-    <incoming_comms_text from="DS1" type="STATION">Congratulations, the bomb has been defused and our production facility has resumed operation!</incoming_comms_text>
+    <incoming_comms_text from="DS1" type="ALERT STATION">Congratulations, the bomb has been defused and our production facility has resumed operation!</incoming_comms_text>
     <set_variable name="DS1NukeMissionDelay" randomIntLow="60" randomIntHigh="180" />
     <set_timer name="DS1NukeMissionTimer" seconds="DS1NukeMissionDelay" />
     <!---->
@@ -1326,7 +1326,7 @@
     <warning_popup_message message="The Diana's energy signature has changed" consoles="S">Unauthorized undocking of the Diana detected!  The saboteur must be trying to escape!</warning_popup_message>
     <set_variable name="HackResult" value="0.0" />
     <set_variable name="HackStepsSucceeded" value="0.0" integer="yes" />
-    <incoming_comms_text from="Internal Comms" type="FRIEND">Inorrect, all computer defenses have been reset.</incoming_comms_text>
+    <incoming_comms_text from="Internal Comms" type="ALERT FRIEND">Inorrect, all computer defenses have been reset.</incoming_comms_text>
   </event>
   <event name="Hack step succeeded" id_arme="cfa626be-a329-4fcf-bbbd-e18591ecf4a1" parent_id_arme="a587676a-7998-4d34-80cd-cee990ddefc1">
     <if_variable name="HackResult" comparator="EQUALS" value="1.0" />
@@ -1335,7 +1335,7 @@
     <warning_popup_message message="The Diana's energy signature has changed" consoles="S">Unauthorized undocking of the Diana detected!  The saboteur must be trying to escape!</warning_popup_message>
     <set_variable name="HackResult" value="0.0" />
     <set_variable name="HackStepsSucceeded" value="HackStepsSucceeded + 1" integer="yes" />
-    <incoming_comms_text from="Internal Comms" type="FRIEND">Correct, we have now gotten through |HackStepsSucceeded| levels of the saboteur's^computer defenses!</incoming_comms_text>
+    <incoming_comms_text from="Internal Comms" type="ALERT FRIEND">Correct, we have now gotten through |HackStepsSucceeded| levels of the saboteur's^computer defenses!</incoming_comms_text>
   </event>
   <event name="BS1: Hack complete" id_arme="97d7d08e-7507-4173-bacf-f69a8c4683a4" parent_id_arme="a587676a-7998-4d34-80cd-cee990ddefc1">
     <if_variable name="HackStepsSucceeded" comparator="EQUALS" value="HackSuccessesNeeded" />
@@ -1670,7 +1670,7 @@
     <clear_comms_button text="Send DamCon team 2 " />
     <clear_comms_button text="Send DamCon team 3 " />
     <set_timer name="ReclaimDianaTimer" seconds="30" />
-    <incoming_comms_text from="TSN Diana" type="FRIEND">Artemis DamCon team |DamConTeamSent| reporting in.  We are now on board the TSN Diana.  The AI seems to be Arvonian!  We're working on regaining manual control...</incoming_comms_text>
+    <incoming_comms_text from="TSN Diana" type="ALERT FRIEND">Artemis DamCon team |DamConTeamSent| reporting in.  We are now on board the TSN Diana.  The AI seems to be Arvonian!  We're working on regaining manual control...</incoming_comms_text>
     <set_variable name="BoardingState" value="3.0" />
     <!--If there were a way to remove the shuttlecraft from bay 0, we would do that here too, but there appears to be no way to do that.-->
   </event>
@@ -1685,7 +1685,7 @@
     <clear_comms_button text="Send DamCon team 2 " />
     <clear_comms_button text="Send DamCon team 3 " />
     <set_timer name="ReclaimDianaTimer" seconds="30" />
-    <incoming_comms_text from="TSN Diana" type="FRIEND">Intrepid DamCon team |DamConTeamSent| reporting in.  We are now on board the TSN Diana.  The AI seems to be Arvonian!  We're working on regaining manual control...</incoming_comms_text>
+    <incoming_comms_text from="TSN Diana" type="ALERT FRIEND">Intrepid DamCon team |DamConTeamSent| reporting in.  We are now on board the TSN Diana.  The AI seems to be Arvonian!  We're working on regaining manual control...</incoming_comms_text>
     <set_variable name="BoardingState" value="3.0" />
     <!--If there were a way to remove the shuttlecraft from bay 0, we would do that here too, but there appears to be no way to do that.-->
   </event>
@@ -1699,8 +1699,8 @@
     <clear_ai name="Diana" />
     <add_ai type="POINT_THROTTLE" value1="StationX" value2="0.0" value3="StationZ" value4="1.0" name="Diana" />
     <set_ship_text name="Diana" scan_desc="Artemis DamCon team |DamConTeamSent| is on board taking her back to DS1." hailtext="We are taking the Diana back to DS1." />
-    <incoming_comms_text from="TSN Diana" type="FRIEND">Artemis DamCon team |DamConTeamSent| reporting in... From what we can tell, the AI must have been on the Diana for ages but only recently reawakened during repairs.  We have now regained control of the Diana and have set a course back to DS1!</incoming_comms_text>
-    <incoming_comms_text from="DS1" type="STATION">Artemis, great work recapturing the Diana!  We'll take it from here, and interrogate the AI once the ship is safely back and locked down.</incoming_comms_text>
+    <incoming_comms_text from="TSN Diana" type="ALERT FRIEND">Artemis DamCon team |DamConTeamSent| reporting in... From what we can tell, the AI must have been on the Diana for ages but only recently reawakened during repairs.  We have now regained control of the Diana and have set a course back to DS1!</incoming_comms_text>
+    <incoming_comms_text from="DS1" type="ALERT STATION">Artemis, great work recapturing the Diana!  We'll take it from here, and interrogate the AI once the ship is safely back and locked down.</incoming_comms_text>
     <set_variable name="BoardingState" value="4.0" />
   </event>
   <event name="BS4: Intrepid DamCon complete" id_arme="7b453dce-f524-41cb-94f7-c9a5fb54d680" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
@@ -1713,8 +1713,8 @@
     <clear_ai name="Diana" />
     <add_ai type="POINT_THROTTLE" value1="StationX" value2="0.0" value3="StationZ" value4="1.0" name="Diana" />
     <set_ship_text name="Diana" scan_desc="Intrepid DamCon team |DamConTeamSent| is on board taking her back to DS1." hailtext="We are taking the Diana back to DS1." />
-    <incoming_comms_text from="TSN Diana" type="FRIEND">Intrepid DamCon team |DamConTeamSent| reporting in... From what we can tell, the AI must have been on the Diana for ages but only recently reawakened during repairs.  We have now regained control of the Diana and have set a course back to DS1!</incoming_comms_text>
-    <incoming_comms_text from="DS1" type="STATION">Intrepid, great work recapturing the Diana!  We'll take it from here, and interrogate the AI once the ship is safely back and locked down.</incoming_comms_text>
+    <incoming_comms_text from="TSN Diana" type="ALERT FRIEND">Intrepid DamCon team |DamConTeamSent| reporting in... From what we can tell, the AI must have been on the Diana for ages but only recently reawakened during repairs.  We have now regained control of the Diana and have set a course back to DS1!</incoming_comms_text>
+    <incoming_comms_text from="DS1" type="ALERT STATION">Intrepid, great work recapturing the Diana!  We'll take it from here, and interrogate the AI once the ship is safely back and locked down.</incoming_comms_text>
     <set_variable name="BoardingState" value="4.0" />
   </event>
   <event name="DS1 Tractoring Diana +X" id_arme="665b8c6f-2ba0-4f01-8d40-9739ec0ad02d" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
@@ -1759,7 +1759,7 @@
     <log text="Diana back at DS1" />
     <set_variable name="BoardingState" value="5.0" />
     <set_comms_button text="Play DS1 report audio" />
-    <incoming_comms_text from="DS1" type="STATION">We're interrogating the AI that took over the Diana.  It seems to be of Arvonian origin, and was apparently dormant in a damaged memory bank long before the Diana was towed here to DS1.  Recent repairs to the Diana must have reawakened it.  It seems possible that it was somehow connected to the Diana's original fate from which it was rescued during the recent Diana Operation.  More details will likely not be available until after you complete this mission, however.</incoming_comms_text>
+    <incoming_comms_text from="DS1" type="ALERT STATION">We're interrogating the AI that took over the Diana.  It seems to be of Arvonian origin, and was apparently dormant in a damaged memory bank long before the Diana was towed here to DS1.  Recent repairs to the Diana must have reawakened it.  It seems possible that it was somehow connected to the Diana's original fate from which it was rescued during the recent Diana Operation.  More details will likely not be available until after you complete this mission, however.</incoming_comms_text>
   </event>
   <event name="Disable Diana impulse and turning" id_arme="994e81e4-ff2f-48c8-90e8-092bec8a176b" parent_id_arme="f1a464ed-43b1-44cf-9ec8-9bf40059f284">
     <if_exists name="Diana" />
