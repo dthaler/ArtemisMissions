@@ -1086,7 +1086,7 @@
     <play_sound_now filename="./dat/missions/MISS_TheDianaOperation2/Ds1DistressCall.wav" />
     <clear_comms_button text="Play DS1 distress call audio" />
   </event>
-  <event name="Bomb detonated since no one docked" id_arme="644f8ef2-c329-4cd5-97e1-5b3977cd3b61" parent_id_arme="06783d9d-3423-44f3-b6e3-28e8f836b4fd">
+  <disabled_event name="Bomb detonated since no one docked" id_arme="644f8ef2-c329-4cd5-97e1-5b3977cd3b61" parent_id_arme="06783d9d-3423-44f3-b6e3-28e8f836b4fd">
     <if_exists name="DS1" />
     <if_object_property property="canBuild" name="DS1" comparator="EQUALS" value="0.0" />
     <if_timer_finished name="SabotageDelay" />
@@ -1097,7 +1097,7 @@
     <clear_gm_button text="Bomb defused" />
     <destroy name="DS1" />
     <warning_popup_message message="DS1 has been destroyed in an explosion!" consoles="M" />
-  </event>
+  </disabled_event>
   <event name="Artemis docked" id_arme="8aaa2492-326c-413c-a6ff-b38102c6a092" parent_id_arme="06783d9d-3423-44f3-b6e3-28e8f836b4fd">
     <if_exists name="Artemis" />
     <if_docked player_name="Artemis" name="DS1" />
