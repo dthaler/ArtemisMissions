@@ -1,0 +1,67 @@
+There will be two ships: Artemis (a Carrier, Dreadnought, or Battleship), and Diana (Light Cruiser)
+
+Just before beginning the game:
+* Make sure one or more members of the Diana crew have the Tricord-AR app on
+  some device.  Multiple devices are preferred.
+* Make sure a GM console is connected.
+* Welcome the players and reiterate the backstory, for flavor
+* Remind the Comms officers to watch for Alert type messages, which are essential to the mission
+* Tell them an Away Team will be needed on this mission, and we recommend
+  that the Away Team take a communicator with them when they go.
+* Remind them that sensor range is 16k
+* Optionally tell them that this mission might involve some highly experimental equipment.
+  If your ship is equipped with such equipment and notice any sensor glitches now and then,
+  it's probably due to the fact that they're still experimental prototypes.
+
+Main flow of events:
+
+* When the Artemis starts, it gets (via Comms) orders to dock at science base SB01.
+  When it does so, the Artemis is given phantom-whale beacons (controllable by Comms).
+  Initially the ship will be given 8, and more can be picked up later.  Most ships
+  have a capacity of 2 beacons, so once the initial supply is used up, only 2 more at
+  a time can be obtained.
+
+* When the Diana starts, it gets (via Comms) orders to dock at Houston Outpost.
+  When it does so, the Diana is given a cloaking device (controllable by Comms),
+  and Comms gets instructions to head into the wormhole:
+
+   "Diana, we must resume the original mission.  You are instructed to travel back
+    into the wormhole to the planet Elysia, retrieve a cargo of Cetrocite, and investigate
+    the mainframe there.  If the mainframe contains a record of our plan to break up
+    the Arvonian/Torgoth alliance, it is critical that the records be deleted or the
+    mainframe destroyed to prevent Arvonian command from learning of the plan."
+
+* When the Diana enters the wormhole, the planet Elysia appears.  The Diana should
+  run into it to "land" on it, at which point a Comms alert indicates it has landed
+  in a populated city and an Away Team can now disembark.
+ 
+  The GM should point the Away Team at the "Cargo Bay" (the photo backdrop) and make
+  sure they can scan it.  Tell them scans indicate that the mainframe seems to be
+  somewhere up high in the city (hint at Maxis area).
+
+* The Artemis crew should try to figure out how to use the beacons to optimum advantage.
+  One great tactic is to use them to keep the Arvonians away from the bases.
+
+* For a GM to tell what critical actions the Away Team did:
+    a) Could just rely on the communicators and texts from another GM
+    b) Could watch https://tricordarserver.azurewebsites.net/MissionStateView/Details/Diana3
+    c) IFTTT can send a notification through the IFTTT App on a phone.  Enable it at
+        https://ifttt.com/applets/94268014d-if-maker-event-my_test_event-then-send-a-notification-from-the-ifttt-app
+
+* If/when the Away Team sends the fake message to the Torgoths, click the
+  "GM->Away Team->Blame Torgoths" button on the GM console.
+
+* If/when the Away Team destroys the Death Station plans, click the
+  "GM->Away Team->Destroy Death Station plans" button on the GM console.
+
+* If/when the Away Team sends the Death Station plans to the TSN, click the
+  "GM->Away Team->Send Death Station plans to TSN" button on the GM console.
+
+* Once the Torgoths have been blamed, the crews should try to get a Torgoth
+  to destroy a whale (a fake one from a beacon is the easiest way) while not
+  having a TSN ship around.  (More real whales or Torgoth ships can be
+  spawned from the GM console, but this should not be needed.)  Once that
+  happens, all Arvonians should switch sides to be friendly.
+
+* The mission is successful once Arvonians have switched sides, and all Torgoths
+  are defeated.

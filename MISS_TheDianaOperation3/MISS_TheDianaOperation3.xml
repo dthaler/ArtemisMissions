@@ -491,6 +491,7 @@
     <incoming_comms_text from="TSN Command" type="ALERT">Artemis, we have retrofitted your shuttle bay with an experimental holographic beacon deployment system.  Beacons deployed by this experimental system will generate holographic signals that will appear to sensors and viewscreens as if they were space whales.  Intelligence indicates that all Arvonians will attempt to steer clear of space whales by at least 5000m, while Torgoths are known to actively hunt them down if within 5000m, even in preference to attacking our ships.  It is hoped that, if you use them intelligently, these can give you key tactical advantages. Your Comms officer can direct them to be deployed out your rear shuttle bay door, similar to mines.  You may have up to 9 deployed at a time.</incoming_comms_text>
     <set_variable name="TsnCommandGaveArtemisMission" value="2.0" />
     <set_object_property property="missileStoresBeacon" value="8" name="SB01" />
+    <set_object_property property="countBea" value="8" name="Artemis" />
     <!--<set_timer name="CommsButtonRefreshTimer" seconds="60" />-->
   </event>
   <event name="Mission Failed - SB01 Destroyed" id_arme="a179a5ff-c09e-45d6-b572-786529a3e479" parent_id_arme="2b98443e-71fb-4aad-b6cd-916ff49e70ed">
