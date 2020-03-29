@@ -1,55 +1,90 @@
-<mission_data version="1.0" background_id_arme="2e949b92-fa5c-4c26-a157-dae7b1b314d2" playerShipNames_arme="Artemis\Intrepid\Aegis\Horatio\Excalibur\Hera\Ceres\Diana">
+<mission_data version="2.7.5" background_id_arme="2e949b92-fa5c-4c26-a157-dae7b1b314d2" playerShipNames_arme="Artemis\Intrepid\Aegis\Horatio\Excalibur\Hera\Ceres\Diana">
+  <mission_description>Two-bridge mission where one bridge plays a TSN station under attack, and the other bridge plays a Pirate ship.</mission_description>
   <start id_arme="2e949b92-fa5c-4c26-a157-dae7b1b314d2">
-    <set_player_carried_type player_slot="0" bay_slot="0" raceKeys="TSN player" hullKeys="singleseat Shuttle" name="Red-5" />
-    <create type="neutral" x="97652.0" y="0.0" z="97796.0" angle="0" name="Miner" raceKeys="TSN" hullKeys="Mine Layer" />
-    <create count="100" type="asteroids" startX="100000.0" startY="0.0" startZ="0.0" endX="0.0" endY="0.0" endZ="100000.0" />
-    <create count="150" type="mines" startX="100000.0" startY="500.0" startZ="80000.0" endX="80000.0" endY="500.0" endZ="100000.0" randomRange="25" />
-    <create count="150" type="mines" startX="100000.0" startY="-500.0" startZ="80000.0" endX="80000.0" endY="-500.0" endZ="100000.0" randomRange="25" />
-    <create type="player" player_slot="0" x="95182.0" y="0.0" z="93874.0" angle="0" sideValue="2" raceKeys="TSN" hullKeys="carrier" warp="yes" jump="no" />
-    <create count="150" type="mines" startX="100000.0" startY="167.0" startZ="80000.0" endX="80000.0" endY="167.0" endZ="100000.0" randomRange="25" />
-    <create type="player" player_slot="1" x="10000.0" y="0.0" z="20000.0" angle="0" sideValue="3" raceKeys="Pirate" hullKeys="Strongbow" warp="yes" jump="no" />
-    <create count="150" type="mines" startX="100000.0" startY="-167.0" startZ="80000.0" endX="80000.0" endY="-167.0" endZ="100000.0" randomRange="25" />
-    <create type="station" x="95182.0" y="0.0" z="93874.0" angle="0" name="Helms Deep" raceKeys="Terran" hullKeys="Command Base Base" />
-    <create count="10" type="nebulas" startX="95327.0" startY="0.0" startZ="93874.0" endX="95327.0" endY="0.0" endZ="93874.0" />
+    <!---->
+    <!--Game Setup-->
+    <!---->
     <set_difficulty_level value="5" />
-    <set_variable name="MinerMines" value="25.0" integer="yes" />
     <set_skybox_index index="10" />
     <set_object_property property="nebulaIsOpaque" value="0" />
     <set_object_property property="sensorSetting" value="2" />
-    <big_message title="Unnamed mission" subtitle1="by Unknown Author" subtitle2="adventure for Artemis 2.7.5" />
-    <set_timer name="start_mission_timer_1" seconds="10" />
-    <set_variable name="ReadyToCreateWall" value="1.0" integer="yes" />
-    <set_object_property property="triggersMines" value="0.0" player_slot="0" />
-    <start_getting_keypresses_from consoles="SF" />
+    <get_object_property property="networkTickSpeed" variable="NetworkTickSpeed" />
+    <big_message title="Helms Deep" subtitle1="by Dave Thaler and Colin Chick" subtitle2="a two-bridge adventure for Artemis 2.7.5" />
+    <!---->
+    <!--Space Map Setup-->
+    <!---->
+    <create count="100" type="asteroids" startX="100000.0" startY="0.0" startZ="0.0" endX="0.0" endY="0.0" endZ="100000.0" />
+    <create count="150" type="mines" startX="100000.0" startY="500.0" startZ="80000.0" endX="80000.0" endY="500.0" endZ="100000.0" randomRange="25" />
+    <create count="150" type="mines" startX="100000.0" startY="-500.0" startZ="80000.0" endX="80000.0" endY="-500.0" endZ="100000.0" randomRange="25" />
+    <create count="150" type="mines" startX="100000.0" startY="167.0" startZ="80000.0" endX="80000.0" endY="167.0" endZ="100000.0" randomRange="25" />
+    <create count="150" type="mines" startX="100000.0" startY="-167.0" startZ="80000.0" endX="80000.0" endY="-167.0" endZ="100000.0" randomRange="25" />
+    <!--<create type="nebulas" startX="95327.0" startY="0.0" startZ="93874.0" endX="95327.0" endY="0.0" endZ="93874.0" count="10" />-->
+    <create type="monster" monsterType="8" x="80000.0" y="0.0" z="60000.0" angle="0" name="SG1" />
+    <create type="monster" monsterType="8" x="20000.0" y="0.0" z="60000.0" angle="0" name="SG2" />
+    <!---->
+    <!--TSN Setup-->
+    <!---->
+    <create type="station" x="95182.0" y="0.0" z="93874.0" angle="0" name="Helms Deep" raceKeys="Terran" hullKeys="Command Base Base" />
+    <set_player_carried_type player_slot="0" bay_slot="0" raceKeys="TSN player" hullKeys="singleseat Shuttle" name="Red-5" />
+    <create type="player" player_slot="0" x="95182.0" y="0.0" z="93874.0" angle="0" sideValue="2" warp="yes" jump="no" />
+    <!--AI Miner-->
+    <create type="neutral" x="97652.0" y="0.0" z="97796.0" angle="0" name="MineLayer" raceKeys="TSN" hullKeys="Mine Layer" />
+    <set_object_property property="topSpeed" value="6.0" name="MineLayer" />
+    <add_ai type="FOLLOW_COMMS_ORDERS" name="MineLayer" />
+    <set_variable name="MinerMines" value="25.0" integer="yes" />
+    <!--Planet-->
     <create type="genericMesh" x="93148.0" y="0.0" z="95907.0" angle="0" name="Shield" meshFileName="dat\Missions\MISS_HelmsDeep\Object.dxs" textureFileName="dat/electricNoise2.png" fakeShieldsFront="1000" colorRed="1.0" colorGreen="0.0" colorBlue="1.0" />
     <set_object_property property="pushRadius" value="1000.0" name="Shield" />
     <set_object_property property="blocksShotFlag" value="1000.0" name="Shield" />
-    <create type="enemy" x="88790.0" y="0.0" z="86610.0" angle="200" name="T1" raceKeys="Torgoth" hullKeys="large" fleetnumber="-1" />
-    <create type="neutral" x="16732.0" y="0.0" z="12808.0" angle="0" raceKeys="Pirate" hullKeys="Strongbow" sideValue="3" />
-    <create type="enemy" x="16296.0" y="0.0" z="21525.0" angle="0" raceKeys="Torgoth" hullKeys="large" fleetnumber="-1" />
-    <create type="monster" monsterType="8" x="80000.0" y="0.0" z="60000.0" name="SG1" />
-    <set_timer name="ResetKeys" seconds="30" />
-  </start>
-  <event name="Ship1 exists" id_arme="64982b23-719e-4d78-a74c-086ce6d8365c">
-    <if_variable name="Ship1Configured" comparator="EQUALS" value="0.0" />
-    <if_exists player_slot="1" />
-    <set_object_property property="sideValue" value="3" player_slot="1" />
-    <set_variable name="Ship1Configured" value="1.0" integer="yes" />
-  </event>
-  <event name="Miner exists" id_arme="b96e8f4e-ca54-4c1b-aa0a-0dde3129a6df">
-    <if_variable name="MinerConfigured" comparator="EQUALS" value="0.0" />
-    <if_exists name="Miner" />
-    <set_object_property property="topSpeed" value="6.0" name="Miner" />
-    <set_variable name="MinerConfigured" value="1.0" integer="yes" />
+    <set_variable name="TsnScore" value="0.0" integer="yes" />
+    <!---->
+    <!--Pirate Setup-->
+    <!---->
+    <!--<create type="player" player_slot="1" x="10000.0" y="0.0" z="20000.0" angle="0" sideValue="3" raceKeys="Pirate" hullKeys="Strongbow" warp="yes" jump="no" />-->
+    <create type="neutral" x="16732.0" y="0.0" z="12808.0" angle="0" name="Miner" raceKeys="Pirate" hullKeys="Strongbow" sideValue="3" />
     <add_ai type="FOLLOW_COMMS_ORDERS" name="Miner" />
+    <set_variable name="PirateScore" value="0.0" integer="yes" />
+    <!---->
+    <!--Torgoth Armada Setup-->
+    <!---->
+    <create type="enemy" x="88790.0" y="0.0" z="86610.0" angle="200" name="T1" raceKeys="Torgoth" hullKeys="large" fleetnumber="-1" />
+    <!--Enemy-->
+    <create type="enemy" x="16296.0" y="0.0" z="21525.0" angle="0" raceKeys="Torgoth" hullKeys="large" fleetnumber="-1" />
+  </start>
+  <folder_arme name="TSN Events" id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa" expanded_arme="" />
+  <event name="Player ship 0 created" id_arme="353b89a6-114f-48a6-b74d-4244cc91307b" parent_id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa">
+    <if_exists player_slot="0" />
+    <if_variable name="Ship0Initialized" comparator="EQUALS" value="0.0" />
+    <log text="Player ship 0 created" />
+    <set_variable name="Ship0Initialized" value="1.0" />
+    <set_player_grid_damage value="1.0" player_slot="0" index="0" systemType="systemWarp" countFrom="front" />
+    <set_player_grid_damage value="1.0" player_slot="0" index="1" systemType="systemWarp" countFrom="front" />
+    <set_player_grid_damage value="1.0" player_slot="0" index="2" systemType="systemWarp" countFrom="front" />
+    <set_player_grid_damage value="1.0" player_slot="0" index="3" systemType="systemWarp" countFrom="front" />
+    <set_player_grid_damage value="1.0" player_slot="0" index="0" systemType="systemImpulse" countFrom="front" />
+    <set_player_grid_damage value="1.0" player_slot="0" index="1" systemType="systemImpulse" countFrom="front" />
+    <set_player_grid_damage value="1.0" player_slot="0" index="2" systemType="systemImpulse" countFrom="front" />
+    <set_player_grid_damage value="1.0" player_slot="0" index="3" systemType="systemImpulse" countFrom="front" />
+    <set_damcon_members value="0.0" team_index="0" player_slot="0" />
+    <set_damcon_members value="0.0" team_index="1" player_slot="0" />
+    <set_damcon_members value="0.0" team_index="2" player_slot="0" />
+    <set_timer name="TsnIntroTimer" seconds="15" />
   </event>
-  <event name="Put mines on a button" id_arme="8910f7e4-1cb5-4e8c-985c-ab8687e8d1e8">
-    <if_variable name="MinerMines" comparator="NOT" value="MineCountDisplayed" />
+  <event name="TSN Intro" id_arme="afbe13c5-681c-4a1a-9420-ed284814d82d" parent_id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa">
+    <if_variable name="TsnIntroSent" comparator="EQUALS" value="0.0" />
+    <if_timer_finished name="TsnIntroTimer" />
+    <log text="TSN Intro" />
+    <incoming_comms_text from="TSN Command" sideValue="2" type="ALERT">The enemy armada is approaching DS1!  You will have to hold it on your own, unless you can get those pirates out there somewhere to assist.</incoming_comms_text>
+    <set_variable name="TsnIntroSent" value="1.0" integer="yes" />
+  </event>
+  <folder_arme name="AI miner" id_arme="4af61a28-62d1-43d1-b58a-f8c906389594" parent_id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa" expanded_arme="" />
+  <event name="Put mines on a Comms button" id_arme="8910f7e4-1cb5-4e8c-985c-ab8687e8d1e8" parent_id_arme="4af61a28-62d1-43d1-b58a-f8c906389594">
+    <if_variable name="MineCountDisplayed" comparator="NOT" value="MinerMines" />
     <set_comms_button text="Drop Mine" sideValue="2" />
     <set_comms_button text="Mines: |MinerMines|" sideValue="2" />
     <set_variable name="MineCountDisplayed" value="MinerMines" integer="yes" />
   </event>
-  <event name="Drop mine" id_arme="a6b3acb9-8835-4a7e-af84-9293200f41cb">
+  <event name="Drop mine" id_arme="a6b3acb9-8835-4a7e-af84-9293200f41cb" parent_id_arme="4af61a28-62d1-43d1-b58a-f8c906389594">
     <if_variable name="MinerMines" comparator="GREATER" value="0.0" />
     <if_comms_button text="Drop Mine" />
     <get_object_property property="positionX" name="Miner" variable="MinerX" />
@@ -58,15 +93,59 @@
     <get_object_property property="angle" name="Miner" variable="MinerRadians" />
     <set_variable name="MinerDegrees" value="(MinerRadians * 57.2957795)" />
     <create count="1" type="mines" startAngle="MinerDegrees" endAngle="MinerDegrees" startX="MinerX" startY="MinerY" startZ="MinerZ" radius="1000" />
-    <incoming_comms_text from="Miner" type="FRIEND">We have |MinerMines| remaining.</incoming_comms_text>
     <clear_comms_button text="Mines: |MinerMines|" sideValue="2" />
     <set_variable name="MinerMines" value="MinerMines-1" integer="yes" />
+    <incoming_comms_text from="Miner" type="FRIEND">We have |MinerMines| remaining.</incoming_comms_text>
     <set_comms_button text="Mines: |MinerMines|" sideValue="2" />
   </event>
-  <event name="SG1 scanned" id_arme="7c977483-744d-4d4a-a3ab-bf8972e4a5b4">
+  <event name="SG1 scanned" id_arme="7c977483-744d-4d4a-a3ab-bf8972e4a5b4" parent_id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa">
     <if_variable name="ProbeSucceeded" comparator="EQUALS" value="0.0" />
     <if_scan_level name="SG1" side="2" comparator="GREATER" value="0" />
     <set_variable name="ProbeSucceeded" value="1.0" integer="yes" />
     <incoming_comms_text from="SG1" sideValue="2" type="ALERT">Probe successful</incoming_comms_text>
+  </event>
+  <folder_arme name="Pirate Events" id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1" />
+  <folder_arme name="Player ship initialization" id_arme="0a737b19-47ab-4ccb-a2bb-a072ad49ee0b" parent_id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1" />
+  <event name="Create Wrong Player Ship 1" id_arme="daa23853-f417-45c6-8be2-5fc5f23625a9" parent_id_arme="0a737b19-47ab-4ccb-a2bb-a072ad49ee0b">
+    <if_exists player_slot="1" />
+    <if_object_property property="sideValue" player_slot="1" comparator="NOT" value="3" />
+    <if_object_property property="shieldMaxStateFront" player_slot="1" comparator="NOT" value="100" />
+    <log text="Ship 1 spawned as something other than a Strongbow" />
+    <warning_popup_message message="Second player ship must be a Pirate Strongbow" consoles="M" player_slot="1" />
+    <destroy player_slot="1" />
+  </event>
+  <event name="Player ship 1 created" id_arme="64982b23-719e-4d78-a74c-086ce6d8365c" parent_id_arme="0a737b19-47ab-4ccb-a2bb-a072ad49ee0b">
+    <if_exists player_slot="1" />
+    <if_object_property property="sideValue" player_slot="1" comparator="NOT" value="3" />
+    <log text="Player ship 1 created" />
+    <set_object_property property="sideValue" value="3" player_slot="1" />
+    <set_object_property property="positionX" value="10000.0" player_slot="1" />
+    <set_object_property property="positionY" value="0.0" player_slot="1" />
+    <set_object_property property="positionZ" value="20000.0" player_slot="1" />
+    <set_object_property property="angle" value="0.0" player_slot="1" />
+    <set_timer name="PirateIntroTimer" seconds="15" />
+  </event>
+  <event name="Pirate Intro" id_arme="6775c6d5-37a2-48d7-8e3d-7db5d3a99805" parent_id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1">
+    <if_variable name="PirateIntroSent" comparator="EQUALS" value="0.0" />
+    <if_timer_finished name="PirateIntroTimer" />
+    <log text="Pirate Intro" />
+    <incoming_comms_text sideValue="3" type="ALERT">Your pirate ship will be scored based on how much Latinum you can collect, whether from mining or looting or any other means.</incoming_comms_text>
+    <set_variable name="PirateIntroSent" value="1.0" integer="yes" />
+  </event>
+  <folder_arme name="Joint Events" id_arme="f3d012a5-0f1e-4f91-b16d-d0bb1745ad7e" expanded_arme="" />
+  <event name="Victory" id_arme="eb3be434-5c3e-4a60-8e12-a795ca6ce334" parent_id_arme="f3d012a5-0f1e-4f91-b16d-d0bb1745ad7e">
+    <if_timer_finished name="TsnIntroTimer" />
+    <if_variable name="GameOver" comparator="EQUALS" value="0.0" />
+    <!--<if_fleet_count comparator="EQUALS" countSurrendered="0" value="0.0" sideValue="1" />-->
+    <log text="Victory" />
+    <log text="Pirate score: |PirateScore|" />
+    <incoming_comms_text from="Game Server" sideValue="2" type="ALERT">TSN Score: |PirateScore|^Pirate Score: |PirateScore|</incoming_comms_text>
+    <big_message title="MISSION COMPLETE" subtitle1="TSN Score: |TsnScore|" subtitle2="Pirate Score: |PirateScore|" />
+    <set_variable name="GameOver" value="1.0" integer="yes" />
+    <set_timer name="EndGameTimer" seconds="5" />
+  </event>
+  <event name="End Game" id_arme="16f1cad4-24ad-4c3a-809b-50da4af15c28" parent_id_arme="f3d012a5-0f1e-4f91-b16d-d0bb1745ad7e">
+    <if_timer_finished name="EndGameTimer" />
+    <end_mission />
   </event>
 </mission_data>

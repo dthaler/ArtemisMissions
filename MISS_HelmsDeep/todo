@@ -1,38 +1,42 @@
 Ship 1 (TSN):
 DONE Create a station and a carrier
-   * Permanently disable the carrier
-   * Allow consoles for fighters, sensors (limited), and comms
-   * Add a comms button to (re)play incoming message
-   * Start a timer and allow for placing defenses?  (how?)
-      * fighters cant drop things, maybe fighter locations are where wall goes?
-DNTT create a wall of asteroids that fighters can fit through but not
-     capital ships
+DNTT Permanently disable the carrier's warp & impulse
+DNTT Disallow creating a non-Strongbow
+  OK Allow consoles for fighters, sensors (limited), and comms
+DNTT Send an initial mission button after 15 seconds
+ NO? Add a comms button to (re)play incoming message
+DONE Start a timer and allow for placing defenses?  (how?)
+DNTT create wall of asteroids where fighters can pass but not capital ships
    * create (say) torgoth or arvonian ships on the outside to siege
    * make wall be possible to shoot through
+        Q: What else can be targeted by enemies besides players?
    * allow sending a "help" message via probes
    * goal is to hold out until reinforcements arrive
-   * make sure station has ~infinite supply of fighters
+DNTT make sure station has ~infinite supply of fighters
+        this may be automatic now per release notes?
 
 Ship 2 (Pirate or Ximni or whatever)
 
 Generic mesh
 -----
-Will not block missiles
-But can block travel (pushRadius)
-Can see out of it (texture not rendered if inside)
-Cannot see into it (see texture)
-Can have a huge DXS file
+ Will not block missiles
+ But can block travel in a sphere (pushRadius)
+ Can see out of it (texture not rendered if inside)
+ Cannot see into it (see texture)
+ Can have a huge DXS file
 
 Asteroids
 ---------
-Can't block enemy ships from going through it
-
-What else can be targeted by enemies besides players?
+ Can't block enemy ships from going through it
 
 - Use mines
 - AI Miner Layer(s)
 - Fighters
 - Gate
+
+Anomalies
+---------
+Problem: anomaly shows up beyond range of sensors, and is scannable
 
 Pirates farm resources from either asteroids (mine them)
  or loot other miners like Kralien miners
@@ -41,5 +45,3 @@ Help request can come with a value
     is it fixed or does side 1 need to pick?
 Ending screen shows pirate score
 How build jump gate?
-
-Problem: anomaly shows up beyond range of sensors, and is scannable
