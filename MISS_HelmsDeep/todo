@@ -8,10 +8,9 @@
 03/30/20 FIX: clear tags on SG1/2 to hide them from other science if possible
 03/30/20 ADD: TSN: refresh Comms button if Comms joins late
 03/30/20 FIX: make MineLayer not immediately attack
+03/30/20 BUG: minelayer doesn't actually drop mines
 
 {
-
-1/2 BUG: minelayer doesn't actually drop mines
 
 1/2 ADD: TSN: allow sending a "help" message via probes
 

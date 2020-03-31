@@ -107,15 +107,15 @@
   <folder_arme name="AI miner" id_arme="4af61a28-62d1-43d1-b58a-f8c906389594" parent_id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa" expanded_arme="" />
   <event name="Drop mine" id_arme="a6b3acb9-8835-4a7e-af84-9293200f41cb" parent_id_arme="4af61a28-62d1-43d1-b58a-f8c906389594">
     <if_comms_button text="Lay Mine" />
-    <get_object_property property="positionX" name="Miner" variable="MinerX" />
-    <get_object_property property="positionY" name="Miner" variable="MinerY" />
-    <get_object_property property="positionZ" name="Miner" variable="MinerZ" />
-    <get_object_property property="angle" name="Miner" variable="MinerRadians" />
-    <log text="Drop mine at (|MinerX|, |MinerY|, |MinerZ|) at |MinerDegrees| degrees" />
-    <set_variable name="MinerDegrees" value="(MinerRadians * 57.2957795)" />
-    <create count="1" type="mines" startAngle="MinerDegrees" endAngle="MinerDegrees" startX="MinerX" startY="MinerY" startZ="MinerZ" radius="1000" />
+    <get_object_property property="positionX" name="MineLayer" variable="MineLayerX" />
+    <get_object_property property="positionY" name="MineLayer" variable="MineLayerY" />
+    <get_object_property property="positionZ" name="MineLayer" variable="MineLayerZ" />
+    <get_object_property property="angle" name="MineLayer" variable="MineLayerRadians" />
+    <set_variable name="MineLayerDegrees" value="(MineLayerRadians * 57.2957795)" />
+    <log text="Drop mine at (|MineLayerX|, |MineLayerY|, |MineLayerZ|) at |MineLayerDegrees| degrees" />
+    <create count="1" type="mines" startAngle="MineLayerDegrees" endAngle="MineLayerDegrees" startX="MineLayerX" startY="MineLayerY" startZ="MineLayerZ" radius="1000" />
     <set_variable name="MineLayerMines" value="MineLayerMines-1" integer="yes" />
-    <incoming_comms_text from="Miner" type="FRIEND">We have |MineLayerMines| remaining.</incoming_comms_text>
+    <incoming_comms_text from="MineLayer" sideValue="2" type="FRIEND">We have |MineLayerMines| remaining.</incoming_comms_text>
   </event>
   <event name="Clear mines left if minelayer destroyed" id_arme="a6cdb39e-ccd3-447c-958f-c959d64b7256" parent_id_arme="4af61a28-62d1-43d1-b58a-f8c906389594">
     <if_variable name="MineLayerMines" comparator="GREATER" value="0.0" />
