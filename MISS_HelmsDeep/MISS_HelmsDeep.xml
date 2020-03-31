@@ -10,6 +10,8 @@
     <set_object_property property="nebulaIsOpaque" value="0" />
     <set_object_property property="sensorSetting" value="2" />
     <big_message title="Helms Deep" subtitle1="by Dave Thaler and Colin Chick" subtitle2="a two-bridge adventure for Artemis 2.7.5" />
+    <!--Debug properties.  Set these to non-zero for debugging purposes.-->
+    <set_variable name="DisableContinualEvents" value="0.0" integer="yes" />
     <!---->
     <!--Space Map Setup-->
     <!---->
@@ -93,20 +95,15 @@
     <if_variable name="TsnIntroSent" comparator="EQUALS" value="0.0" />
     <if_timer_finished name="TsnIntroTimer" />
     <log text="TSN Intro" />
-    <incoming_comms_text from="TSN Command" sideValue="2" type="ALERT">The enemy armada is approaching DS1!  You will have to hold it on your own, unless you can get those pirates out there somewhere to assist.^^You have an AI MineLayer at your command with |MineLayerMines|.</incoming_comms_text>
+    <incoming_comms_text from="TSN Command" sideValue="2" type="ALERT">The enemy armada is approaching DS1!  You will have to hold it on your own, unless you can get those pirates out there somewhere to assist.^^You have an AI MineLayer at your command with |MineLayerMines| mines.</incoming_comms_text>
+    <set_timer name="RefreshCommsButtons" seconds="30" />
     <set_variable name="TsnIntroSent" value="1.0" integer="yes" />
+    <set_comms_button text="Lay Mine" sideValue="2" />
+    <set_variable name="DropMinesButtonPresent" value="1.0" integer="yes" />
   </event>
   <folder_arme name="AI miner" id_arme="4af61a28-62d1-43d1-b58a-f8c906389594" parent_id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa" expanded_arme="" />
-  <event name="Put mines on a Comms button" id_arme="8910f7e4-1cb5-4e8c-985c-ab8687e8d1e8" parent_id_arme="4af61a28-62d1-43d1-b58a-f8c906389594">
-    <if_variable name="MineCountDisplayed" comparator="NOT" value="MineLayerMines" />
-    <log text="Put mines on a Comms button" />
-    <set_comms_button text="Drop Mine" sideValue="2" />
-    <set_comms_button text="Mines: |MineLayerMines|" sideValue="2" />
-    <set_variable name="MineCountDisplayed" value="MineLayerMines" integer="yes" />
-  </event>
   <event name="Drop mine" id_arme="a6b3acb9-8835-4a7e-af84-9293200f41cb" parent_id_arme="4af61a28-62d1-43d1-b58a-f8c906389594">
-    <if_variable name="MineLayerMines" comparator="GREATER" value="0.0" />
-    <if_comms_button text="Drop Mine" />
+    <if_comms_button text="Lay Mine" />
     <log text="Drop mine" />
     <get_object_property property="positionX" name="Miner" variable="MinerX" />
     <get_object_property property="positionY" name="Miner" variable="MinerY" />
@@ -114,10 +111,28 @@
     <get_object_property property="angle" name="Miner" variable="MinerRadians" />
     <set_variable name="MinerDegrees" value="(MinerRadians * 57.2957795)" />
     <create count="1" type="mines" startAngle="MinerDegrees" endAngle="MinerDegrees" startX="MinerX" startY="MinerY" startZ="MinerZ" radius="1000" />
-    <clear_comms_button text="Mines: |MineLayerMines|" sideValue="2" />
     <set_variable name="MineLayerMines" value="MineLayerMines-1" integer="yes" />
-    <incoming_comms_text from="Miner" type="FRIEND">We have |MinerMines| remaining.</incoming_comms_text>
-    <set_comms_button text="Mines: |MineLayerMines|" sideValue="2" />
+    <incoming_comms_text from="Miner" type="FRIEND">We have |MineLayerMines| remaining.</incoming_comms_text>
+  </event>
+  <event name="Clear mines left if minelayer destroyed" id_arme="a6cdb39e-ccd3-447c-958f-c959d64b7256" parent_id_arme="4af61a28-62d1-43d1-b58a-f8c906389594">
+    <if_variable name="MineLayerMines" comparator="GREATER" value="0.0" />
+    <if_not_exists name="MineLayer" />
+    <log text="Clear mines left if minelayer destroyed" />
+    <set_variable name="MineLayerMines" value="0.0" integer="yes" />
+  </event>
+  <event name="Clear mine layer button when empty" id_arme="9d7fa2bb-8223-482b-8fa1-d51fef07b1eb" parent_id_arme="4af61a28-62d1-43d1-b58a-f8c906389594">
+    <if_variable name="MineLayerMines" comparator="EQUALS" value="0.0" />
+    <if_variable name="DropMinesButtonPresent" comparator="EQUALS" value="1.0" />
+    <log text="Clear mine layer button when empty" />
+    <set_variable name="DropMinesButtonPresent" value="0.0" integer="yes" />
+    <clear_comms_button text="Lay Mine" sideValue="2" />
+  </event>
+  <event name="Refresh Comms buttons" id_arme="99b48c24-23df-442e-aa14-19b9b778514e" parent_id_arme="4af61a28-62d1-43d1-b58a-f8c906389594">
+    <if_timer_finished name="RefreshCommsButtons" />
+    <if_variable name="DropMinesButtonPresent" comparator="EQUALS" value="1.0" />
+    <clear_comms_button text="Lay Mine" sideValue="2" />
+    <set_comms_button text="Lay Mine" sideValue="2" />
+    <set_timer name="RefreshCommsButtons" seconds="30" />
   </event>
   <event name="SG1 scanned" id_arme="7c977483-744d-4d4a-a3ab-bf8972e4a5b4" parent_id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa">
     <if_variable name="ProbeSucceeded" comparator="EQUALS" value="0.0" />
@@ -126,10 +141,10 @@
     <set_variable name="ProbeSucceeded" value="1.0" integer="yes" />
     <incoming_comms_text from="SG1" sideValue="2" type="ALERT">Probe successful</incoming_comms_text>
   </event>
-  <event name="Restock bombers" id_arme="c901179e-a9a5-4fc2-8047-c926dc337215" parent_id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa">
-    <if_object_property property="angle" comparator="EQUALS" />
+  <disabled_event name="Restock bombers" id_arme="c901179e-a9a5-4fc2-8047-c926dc337215" parent_id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa">
     <if_not_exists name="Red-1" />
-  </event>
+    <log text="Restock bombers" />
+  </disabled_event>
   <disabled_event name="Prevent fighters from crossing diagonal" id_arme="31f89d38-0143-4298-af2d-39e9cb4d35a4" parent_id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa">
     <if_difficulty comparator="EQUALS" value="7" />
     <log text="Prevent fighters from crossing diagonal" />

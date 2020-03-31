@@ -6,35 +6,20 @@
 03/30/20 NO?  Pirate: Add a comms button to (re)play incoming message
 03/30/20 ADD: TSN: send comms message explaining AI MineLayer
 03/30/20 FIX: clear tags on SG1/2 to hide them from other science if possible
+03/30/20 ADD: TSN: refresh Comms button if Comms joins late
 
 {
 
-Ship 1 (TSN):
---------------
-DNTT create wall of mines where fighters can pass but not capital ships
-  OK make wall be possible to get through (mines)
+1/2 ADD: TSN: allow sending a "help" message via probes
+
+1/2 ADD: TSN: create wall of mines where fighters can pass but not capital ships
+  OK make mine wall be possible to get through (mines)
         Q: What else can be targeted by enemies besides players?
-   * allow sending a "help" message via probes
-   * make sure station has ~infinite supply of fighters
+    DNTT
+
+1/2 ADD: TSN: make sure station has ~infinite supply of fighters
         this may be automatic now per release notes?
-        * how load fighters onto carrier?
+        * TSN: how load fighters onto carrier?
           can't programmatically force dock (and can't use weapons to fire)
-
-Ship 2 (Pirate):
-------------------------------------
-DONE Force creating a Pirate Strongbow with Warp drive
-DNTT Send an initial mission message 15 seconds after it spawns
-   * test ship creation
-  https://artemis.forumchitchat.com/post/scripting-multiplayer-missions-8480239
-     says it should work in Start block
-
-                except that enemy stations show up beyond sensor range
-                and so do named generic meshes
-  DONE test Intrepid main screen joining after start
-        DONE verify that Artemis comms message is received as expected
-        DONE verify that Intrepid comms message is received as expected
-        DONE verify that Artemis science looks as expected
-        DONE verify that Intrepid science looks as expected
-        DONE verify that GM view looks as expected
 
 }
