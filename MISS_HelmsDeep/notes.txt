@@ -1,0 +1,44 @@
+Ship 1 (TSN):
+--------------
+  OK Allow consoles for fighters, sensors (limited), and comms
+
+Generic mesh
+-----
+ Will not block missiles
+ But can block travel in a sphere (pushRadius)
+ Can see out of it (texture not rendered if inside)
+ Cannot see into it (see texture) unless transparent texture?
+ Can have a huge DXS file
+
+Anomalies
+---------
+Problem: anomaly shows up beyond range of sensors, and is scannable
+
+Asteroids
+---------
+ Can't block enemy ships from going through it
+
+- Use mines
+- AI Miner Layer(s)
+- Fighters
+- Gate
+
+Pirates farm resources from either asteroids (mine them)
+ or loot other miners like Kralien miners
+Get a score based on value of loot
+Help request can come with a value
+    is it fixed or does side 1 need to pick?
+Ending screen shows pirate score
+How build jump gate?
+
+Script limitations:
+    Can't programmatically Request Dock
+    Can't test if ship is warp or jump drive
+
+The only way to force a ship to be warp vs jump is to call create player on it
+    even for slot 1
+Doing that for slot 1 will cause if_object_exists to be true
+    but won't show on GM map if no consoles
+
+https://artemis.forumchitchat.com/post/scripting-multiplayer-missions-8480239
+    says it should work in Start block

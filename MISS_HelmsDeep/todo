@@ -1,47 +1,40 @@
+03/28/20 ADD: TSN: Create a station and a player ship 
+03/28/20 FIX: TSN: Make the player ship be a TSN carrier
+03/28/20 FIX: TSN: Permanently disable the carrier's warp & impulse
+03/28/20 ADD: TSN: Send an initial mission message after 15 seconds
+03/30/20 NO?  TSN: Add a comms button to (re)play incoming message
+03/30/20 NO?  Pirate: Add a comms button to (re)play incoming message
+03/30/20 ADD: TSN: send comms message explaining AI MineLayer
+03/30/20 FIX: clear tags on SG1/2 to hide them from other science if possible
+
+{
+
 Ship 1 (TSN):
-DONE Create a station and a carrier
-DNTT Permanently disable the carrier's warp & impulse
-DNTT Disallow creating a non-Strongbow
-  OK Allow consoles for fighters, sensors (limited), and comms
-DNTT Send an initial mission button after 15 seconds
- NO? Add a comms button to (re)play incoming message
-DONE Start a timer and allow for placing defenses?  (how?)
-DNTT create wall of asteroids where fighters can pass but not capital ships
-   * create (say) torgoth or arvonian ships on the outside to siege
-   * make wall be possible to shoot through
+--------------
+DNTT create wall of mines where fighters can pass but not capital ships
+  OK make wall be possible to get through (mines)
         Q: What else can be targeted by enemies besides players?
    * allow sending a "help" message via probes
-   * goal is to hold out until reinforcements arrive
-DNTT make sure station has ~infinite supply of fighters
+   * make sure station has ~infinite supply of fighters
         this may be automatic now per release notes?
+        * how load fighters onto carrier?
+          can't programmatically force dock (and can't use weapons to fire)
 
-Ship 2 (Pirate or Ximni or whatever)
+Ship 2 (Pirate):
+------------------------------------
+DONE Force creating a Pirate Strongbow with Warp drive
+DNTT Send an initial mission message 15 seconds after it spawns
+   * test ship creation
+  https://artemis.forumchitchat.com/post/scripting-multiplayer-missions-8480239
+     says it should work in Start block
 
-Generic mesh
------
- Will not block missiles
- But can block travel in a sphere (pushRadius)
- Can see out of it (texture not rendered if inside)
- Cannot see into it (see texture)
- Can have a huge DXS file
+                except that enemy stations show up beyond sensor range
+                and so do named generic meshes
+  DONE test Intrepid main screen joining after start
+        DONE verify that Artemis comms message is received as expected
+        DONE verify that Intrepid comms message is received as expected
+        DONE verify that Artemis science looks as expected
+        DONE verify that Intrepid science looks as expected
+        DONE verify that GM view looks as expected
 
-Asteroids
----------
- Can't block enemy ships from going through it
-
-- Use mines
-- AI Miner Layer(s)
-- Fighters
-- Gate
-
-Anomalies
----------
-Problem: anomaly shows up beyond range of sensors, and is scannable
-
-Pirates farm resources from either asteroids (mine them)
- or loot other miners like Kralien miners
-Get a score based on value of loot
-Help request can come with a value
-    is it fixed or does side 1 need to pick?
-Ending screen shows pirate score
-How build jump gate?
+}
