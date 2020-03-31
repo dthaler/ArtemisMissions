@@ -48,6 +48,8 @@
     <!--AI Miner-->
     <create type="neutral" x="97652.0" y="0.0" z="97796.0" angle="0" name="MineLayer" raceKeys="TSN" hullKeys="Mine Layer" />
     <set_object_property property="topSpeed" value="6.0" name="MineLayer" />
+    <clear_ai name="MineLayer" />
+    <add_ai type="TARGET_THROTTLE" value1="1.0" targetName="Helms Deep" value2="1" name="MineLayer" />
     <add_ai type="FOLLOW_COMMS_ORDERS" name="MineLayer" />
     <set_variable name="MineLayerMines" value="25.0" integer="yes" />
     <!--Planet-->
@@ -70,12 +72,23 @@
     <create type="enemy" x="16296.0" y="0.0" z="21525.0" angle="0" raceKeys="Torgoth" hullKeys="large" fleetnumber="-1" />
   </start>
   <folder_arme name="TSN Events" id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa" expanded_arme="" />
-  <event name="Player ship 0 created" id_arme="353b89a6-114f-48a6-b74d-4244cc91307b" parent_id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa">
+  <folder_arme name="Start" id_arme="63b761a1-37ab-42f5-afaf-a627617557e5" parent_id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa" />
+  <event name="Player ship 0 created" id_arme="353b89a6-114f-48a6-b74d-4244cc91307b" parent_id_arme="63b761a1-37ab-42f5-afaf-a627617557e5">
     <if_exists player_slot="0" />
     <if_variable name="Ship0Initialized" comparator="EQUALS" value="0.0" />
     <log text="Player ship 0 created" />
     <set_variable name="Ship0Initialized" value="1.0" />
     <set_timer name="TsnIntroTimer" seconds="15" />
+  </event>
+  <event name="TSN Intro" id_arme="afbe13c5-681c-4a1a-9420-ed284814d82d" parent_id_arme="63b761a1-37ab-42f5-afaf-a627617557e5">
+    <if_variable name="TsnIntroSent" comparator="EQUALS" value="0.0" />
+    <if_timer_finished name="TsnIntroTimer" />
+    <log text="TSN Intro" />
+    <incoming_comms_text from="TSN Command" sideValue="2" type="ALERT">The enemy armada is approaching DS1!  You will have to hold it on your own, unless you can get those pirates out there somewhere to assist.^^You have an AI MineLayer at your command with |MineLayerMines| mines.</incoming_comms_text>
+    <set_timer name="RefreshCommsButtons" seconds="30" />
+    <set_variable name="TsnIntroSent" value="1.0" integer="yes" />
+    <set_comms_button text="Lay Mine" sideValue="2" />
+    <set_variable name="DropMinesButtonPresent" value="1.0" integer="yes" />
   </event>
   <event name="Force no impulse or warp" id_arme="64786996-651f-4a98-8687-d0d319bb741d" parent_id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa">
     <if_variable name="DisableContinualEvents" comparator="EQUALS" value="0.0" />
@@ -91,24 +104,14 @@
     <set_player_grid_damage value="1.0" player_slot="0" index="4" systemType="systemImpulse" countFrom="front" />
     <set_player_grid_damage value="1.0" player_slot="0" index="5" systemType="systemImpulse" countFrom="front" />
   </event>
-  <event name="TSN Intro" id_arme="afbe13c5-681c-4a1a-9420-ed284814d82d" parent_id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa">
-    <if_variable name="TsnIntroSent" comparator="EQUALS" value="0.0" />
-    <if_timer_finished name="TsnIntroTimer" />
-    <log text="TSN Intro" />
-    <incoming_comms_text from="TSN Command" sideValue="2" type="ALERT">The enemy armada is approaching DS1!  You will have to hold it on your own, unless you can get those pirates out there somewhere to assist.^^You have an AI MineLayer at your command with |MineLayerMines| mines.</incoming_comms_text>
-    <set_timer name="RefreshCommsButtons" seconds="30" />
-    <set_variable name="TsnIntroSent" value="1.0" integer="yes" />
-    <set_comms_button text="Lay Mine" sideValue="2" />
-    <set_variable name="DropMinesButtonPresent" value="1.0" integer="yes" />
-  </event>
   <folder_arme name="AI miner" id_arme="4af61a28-62d1-43d1-b58a-f8c906389594" parent_id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa" expanded_arme="" />
   <event name="Drop mine" id_arme="a6b3acb9-8835-4a7e-af84-9293200f41cb" parent_id_arme="4af61a28-62d1-43d1-b58a-f8c906389594">
     <if_comms_button text="Lay Mine" />
-    <log text="Drop mine" />
     <get_object_property property="positionX" name="Miner" variable="MinerX" />
     <get_object_property property="positionY" name="Miner" variable="MinerY" />
     <get_object_property property="positionZ" name="Miner" variable="MinerZ" />
     <get_object_property property="angle" name="Miner" variable="MinerRadians" />
+    <log text="Drop mine at (|MinerX|, |MinerY|, |MinerZ|) at |MinerDegrees| degrees" />
     <set_variable name="MinerDegrees" value="(MinerRadians * 57.2957795)" />
     <create count="1" type="mines" startAngle="MinerDegrees" endAngle="MinerDegrees" startX="MinerX" startY="MinerY" startZ="MinerZ" radius="1000" />
     <set_variable name="MineLayerMines" value="MineLayerMines-1" integer="yes" />
@@ -134,13 +137,6 @@
     <set_comms_button text="Lay Mine" sideValue="2" />
     <set_timer name="RefreshCommsButtons" seconds="30" />
   </event>
-  <event name="SG1 scanned" id_arme="7c977483-744d-4d4a-a3ab-bf8972e4a5b4" parent_id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa">
-    <if_variable name="ProbeSucceeded" comparator="EQUALS" value="0.0" />
-    <if_scan_level name="SG1" side="2" comparator="GREATER" value="0" />
-    <log text="SG1 scanned" />
-    <set_variable name="ProbeSucceeded" value="1.0" integer="yes" />
-    <incoming_comms_text from="SG1" sideValue="2" type="ALERT">Probe successful</incoming_comms_text>
-  </event>
   <disabled_event name="Restock bombers" id_arme="c901179e-a9a5-4fc2-8047-c926dc337215" parent_id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa">
     <if_not_exists name="Red-1" />
     <log text="Restock bombers" />
@@ -150,8 +146,18 @@
     <log text="Prevent fighters from crossing diagonal" />
     <!--TODO: fill this in-->
   </disabled_event>
+  <folder_arme name="SG1" id_arme="6ca69197-bc61-4c9a-aa63-7c8f81e26a9a" parent_id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa" expanded_arme="" />
+  <event name="SG1 scanned" id_arme="38462fb4-d21e-4b0a-abbd-c572b9adcb2c" parent_id_arme="6ca69197-bc61-4c9a-aa63-7c8f81e26a9a">
+    <if_variable name="SG1ProbeSucceeded" comparator="EQUALS" value="0.0" />
+    <if_scan_level name="SG1" side="2" comparator="GREATER" value="0" />
+    <log text="SG1 scanned" />
+    <set_variable name="SG1ProbeSucceeded" value="1.0" integer="yes" />
+    <incoming_comms_text from="SG1" sideValue="2" type="ALERT">Probe successful</incoming_comms_text>
+    <incoming_comms_text from="SG1" sideValue="3" type="ALERT">Incoming distress call from Helms Deep</incoming_comms_text>
+    <set_monster_tag_data tag_slot="0" name="SG2" sourcetext="Distress call from Helms Deep" />
+  </event>
   <folder_arme name="Pirate Events" id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1" expanded_arme="" />
-  <folder_arme name="Player ship initialization" id_arme="0a737b19-47ab-4ccb-a2bb-a072ad49ee0b" parent_id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1" expanded_arme="" />
+  <folder_arme name="Start" id_arme="0a737b19-47ab-4ccb-a2bb-a072ad49ee0b" parent_id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1" />
   <event name="Player ship 1 created" id_arme="64982b23-719e-4d78-a74c-086ce6d8365c" parent_id_arme="0a737b19-47ab-4ccb-a2bb-a072ad49ee0b">
     <if_exists player_slot="1" />
     <if_variable name="Ship1Initialized" comparator="EQUALS" value="0.0" />
@@ -163,14 +169,22 @@
     <set_object_property property="angle" value="0.0" player_slot="1" />
     <set_timer name="PirateIntroTimer" seconds="15" />
   </event>
-  <event name="Pirate Intro" id_arme="6775c6d5-37a2-48d7-8e3d-7db5d3a99805" parent_id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1">
+  <event name="Pirate Intro" id_arme="6775c6d5-37a2-48d7-8e3d-7db5d3a99805" parent_id_arme="0a737b19-47ab-4ccb-a2bb-a072ad49ee0b">
     <if_variable name="PirateIntroSent" comparator="EQUALS" value="0.0" />
     <if_timer_finished name="PirateIntroTimer" />
     <log text="Pirate Intro" />
     <incoming_comms_text from="GAME SERVER" sideValue="3" type="ALERT">Your pirate ship will be scored based on how much Latinum you can collect, whether from mining or looting or any other means.</incoming_comms_text>
     <set_variable name="PirateIntroSent" value="1.0" integer="yes" />
   </event>
-  <folder_arme name="Joint Events" id_arme="f3d012a5-0f1e-4f91-b16d-d0bb1745ad7e" expanded_arme="" />
+  <folder_arme name="SG2" id_arme="26f190ad-4fbe-4e36-84d5-02e17b293e4f" parent_id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1" expanded_arme="" />
+  <event name="SG2 scanned" id_arme="a875072d-d164-4204-862f-8752b7f24f3b" parent_id_arme="26f190ad-4fbe-4e36-84d5-02e17b293e4f">
+    <if_variable name="SG2ProbeSucceeded" comparator="EQUALS" value="0.0" />
+    <if_scan_level name="SG2" side="3" comparator="GREATER" value="0" />
+    <log text="SG2 scanned" />
+    <set_variable name="SG2ProbeSucceeded" value="1.0" integer="yes" />
+    <incoming_comms_text from="SG2" sideValue="3" type="ALERT">Probe successful</incoming_comms_text>
+  </event>
+  <folder_arme name="Joint Events" id_arme="f3d012a5-0f1e-4f91-b16d-d0bb1745ad7e" />
   <event name="Victory" id_arme="dcab75b6-8026-4f2a-9c42-303b41dce749" parent_id_arme="f3d012a5-0f1e-4f91-b16d-d0bb1745ad7e">
     <if_fleet_count comparator="EQUALS" value="0.0" sideValue="1" />
     <if_variable name="GameOver" comparator="EQUALS" value="0.0" />
