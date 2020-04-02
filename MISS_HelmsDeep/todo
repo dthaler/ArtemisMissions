@@ -9,15 +9,9 @@
 03/30/20 ADD: TSN: refresh Comms button if Comms joins late
 03/30/20 FIX: make MineLayer not immediately attack
 03/30/20 BUG: minelayer doesn't actually drop mines
+04/01/20 ADD: "sector" border impenetrable to ships, fighters, and probes
 
 {
-
-1/2 ADD: prevent probes from crossing the map, if possible
-         one way would be to prevent any probes from existing
-         which means some other way to send for help
-         DONE write script to compute black hole death radius abt 500
-         DONE add black holes to border
-            * add generic meshes with pushRadius to border
 
 1/2 ADD: TSN: allow sending a "help" message e.g., via probes
          could require a fighter to go out to it
