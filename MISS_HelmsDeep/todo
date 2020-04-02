@@ -12,7 +12,16 @@
 
 {
 
-1/2 ADD: TSN: allow sending a "help" message via probes
+1/2 ADD: prevent probes from crossing the map, if possible
+         one way would be to prevent any probes from existing
+         which means some other way to send for help
+         DONE write script to compute black hole death radius abt 500
+         DONE add black holes to border
+            * add generic meshes with pushRadius to border
+
+1/2 ADD: TSN: allow sending a "help" message e.g., via probes
+         could require a fighter to go out to it
+         what is the range of a tag?
 
 1/2 ADD: TSN: create wall of mines where fighters can pass but not capital ships
   OK make mine wall be possible to get through (mines)
@@ -23,5 +32,7 @@
         this may be automatic now per release notes?
         * TSN: how load fighters onto carrier?
           can't programmatically force dock (and can't use weapons to fire)
+        Only way seems to be to dock and undock, do we need a Helm
+            console only to resupply?
 
 }

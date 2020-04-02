@@ -4,11 +4,17 @@ Ship 1 (TSN):
 
 Generic mesh
 -----
- Will not block missiles
+ Will NOT block missiles, including probes
+    Bug was pointed out by Darrin in
+    https://artemis.forumchitchat.com/post/show_single_post?pid=1303998068&postcount=118&forum=309504
  But can block travel in a sphere (pushRadius)
  Can see out of it (texture not rendered if inside)
  Cannot see into it (see texture) unless transparent texture?
  Can have a huge DXS file
+
+Black holes
+-----
+Can block probes and other missiles
 
 Anomalies
 ---------
@@ -46,3 +52,6 @@ https://artemis.forumchitchat.com/post/scripting-multiplayer-missions-8480239
 except that enemy stations show up beyond sensor range
     and so do named generic meshes?
     so do mines, asteroids, etc.
+
+There is no way to make hangar bay contents be empty, either on creation
+or afterwards

@@ -13,14 +13,112 @@
     <!--Debug properties.  Set these to non-zero for debugging purposes.-->
     <set_variable name="DisableContinualEvents" value="0.0" integer="yes" />
     <!---->
-    <!--Space Map Setup-->
+    <!--"Sector" border-->
     <!---->
-    <create count="100" type="asteroids" startX="100000.0" startY="0.0" startZ="0.0" endX="0.0" endY="0.0" endZ="100000.0" />
-    <create count="150" type="mines" startX="100000.0" startY="500.0" startZ="80000.0" endX="80000.0" endY="500.0" endZ="100000.0" randomRange="25" />
-    <create count="150" type="mines" startX="100000.0" startY="-500.0" startZ="80000.0" endX="80000.0" endY="-500.0" endZ="100000.0" randomRange="25" />
-    <create count="150" type="mines" startX="100000.0" startY="167.0" startZ="80000.0" endX="80000.0" endY="167.0" endZ="100000.0" randomRange="25" />
-    <create count="150" type="mines" startX="100000.0" startY="-167.0" startZ="80000.0" endX="80000.0" endY="-167.0" endZ="100000.0" randomRange="25" />
-    <!--<create type="nebulas" startX="95327.0" startY="0.0" startZ="93874.0" endX="95327.0" endY="0.0" endZ="93874.0" count="10" />-->
+    <create type="blackHole" x="50000.0" y="0.0" z="0.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="1000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="2000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="3000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="4000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="5000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="6000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="7000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="8000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="9000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="10000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="11000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="12000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="13000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="14000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="15000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="16000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="17000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="18000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="19000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="20000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="21000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="22000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="23000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="24000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="25000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="26000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="27000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="28000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="29000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="30000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="31000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="32000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="33000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="34000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="35000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="36000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="37000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="38000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="39000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="40000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="41000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="42000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="43000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="44000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="45000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="46000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="47000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="48000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="49000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="50000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="51000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="52000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="53000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="54000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="55000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="56000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="57000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="58000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="59000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="60000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="61000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="62000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="63000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="64000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="65000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="66000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="67000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="68000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="69000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="70000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="71000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="72000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="73000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="74000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="75000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="76000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="77000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="78000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="79000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="80000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="81000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="82000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="83000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="84000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="85000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="86000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="87000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="88000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="89000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="90000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="91000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="92000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="93000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="94000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="95000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="96000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="97000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="98000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="99000.0" />
+    <create type="blackHole" x="50000.0" y="0.0" z="100000.0" />
+    <!---->
+    <!--Stargates-->
+    <!---->
     <create type="monster" monsterType="8" x="80000.0" y="0.0" z="60000.0" angle="0" name="SG1" />
     <set_monster_tag_data tag_slot="0" name="SG1" />
     <set_monster_tag_data tag_slot="1" name="SG1" />
@@ -31,36 +129,36 @@
     <set_monster_tag_data tag_slot="1" name="SG2" />
     <set_monster_tag_data tag_slot="2" name="SG2" />
     <set_monster_tag_data tag_slot="3" name="SG2" />
+    <create count="150" type="mines" startX="100000.0" startY="500.0" startZ="80000.0" endX="80000.0" endY="500.0" endZ="100000.0" randomRange="25" />
     <!---->
+    <create count="150" type="mines" startX="100000.0" startY="-500.0" startZ="80000.0" endX="80000.0" endY="-500.0" endZ="100000.0" randomRange="25" />
     <!--TSN Setup-->
+    <create count="150" type="mines" startX="100000.0" startY="167.0" startZ="80000.0" endX="80000.0" endY="167.0" endZ="100000.0" randomRange="25" />
     <!---->
+    <create count="150" type="mines" startX="100000.0" startY="-167.0" startZ="80000.0" endX="80000.0" endY="-167.0" endZ="100000.0" randomRange="25" />
     <create type="station" x="95182.0" y="0.0" z="93874.0" angle="0" name="Helms Deep" raceKeys="Terran" hullKeys="Command Base Base" />
     <clear_player_station_carried name="Helms Deep" />
     <set_player_carried_type player_slot="0" bay_slot="0" raceKeys="TSN player" hullKeys="TSN LR Shuttle" name="Red-0" />
     <set_player_carried_type player_slot="0" bay_slot="1" raceKeys="TSN player" hullKeys="TSN Bomber" name="Red-1" />
-    <set_player_carried_type player_slot="0" bay_slot="2" raceKeys="TSN player" hullKeys="TSN Bomber" name="Red-1" />
+    <set_player_carried_type player_slot="0" bay_slot="2" raceKeys="TSN player" hullKeys="TSN Bomber" name="Red-2" />
     <set_player_carried_type player_slot="0" bay_slot="3" raceKeys="TSN player" hullKeys="TSN Bomber" name="Red-3" />
     <set_player_carried_type player_slot="0" bay_slot="4" raceKeys="TSN player" hullKeys="TSN Bomber" name="Red-4" />
     <set_player_carried_type player_slot="0" bay_slot="5" raceKeys="TSN player" hullKeys="TSN Bomber" name="Red-5" />
     <set_player_station_carried name="Helms Deep" raceKeys="TSN" hullKeys="TSN Bomber" singleSeatName="Red-6" />
     <set_variable name="FightersManufactured" value="6.0" integer="yes" />
-    <create type="player" player_slot="0" x="95182.0" y="0.0" z="93874.0" angle="0" sideValue="2" raceKeys="TSN player" hullKeys="carrier" warp="yes" jump="no" />
+    <create type="player" player_slot="0" x="95182.0" y="0.0" z="93874.0" angle="0" sideValue="2" warp="yes" jump="no" />
     <!--AI Miner-->
     <create type="neutral" x="97652.0" y="0.0" z="97796.0" angle="0" name="MineLayer" raceKeys="TSN" hullKeys="Mine Layer" />
-    <set_object_property property="topSpeed" value="6.0" name="MineLayer" />
-    <clear_ai name="MineLayer" />
-    <add_ai type="TARGET_THROTTLE" value1="1.0" targetName="Helms Deep" value2="1" name="MineLayer" />
-    <add_ai type="FOLLOW_COMMS_ORDERS" name="MineLayer" />
-    <set_variable name="MineLayerMines" value="25.0" integer="yes" />
     <!--Planet-->
-    <create type="genericMesh" x="93148.0" y="0.0" z="95907.0" angle="0" name="Shield" meshFileName="dat\Missions\MISS_HelmsDeep\Object.dxs" textureFileName="dat/electricNoise2.png" fakeShieldsFront="1000" colorRed="1.0" colorGreen="0.0" colorBlue="1.0" />
-    <set_object_property property="pushRadius" value="1000.0" name="Shield" />
-    <set_object_property property="blocksShotFlag" value="1000.0" name="Shield" />
+    <set_timer name="RefreshBorder" seconds="1" />
+    <!--<create type="genericMesh" x="93148.0" y="0.0" z="95907.0" angle="0" name="Planet" meshFileName="dat\Missions\MISS_HelmsDeep\Object.dxs" textureFileName="dat/electricNoise2.png" fakeShieldsFront="1000" colorRed="1.0" colorGreen="0.0" colorBlue="1.0" />-->
+    <!--<set_object_property property="pushRadius" value="1000.0" name="Planet" />-->
+    <!--<set_object_property property="blocksShotFlag" value="1000.0" name="Planet" />-->
     <set_variable name="TsnScore" value="0.0" integer="yes" />
     <!---->
     <!--Pirate Setup-->
     <!---->
-    <create type="player" player_slot="1" x="10000.0" y="0.0" z="20000.0" angle="0" sideValue="3" raceKeys="Pirate" hullKeys="Strongbow" warp="yes" jump="no" />
+    <create type="player" player_slot="1" x="10000.0" y="0.0" z="20000.0" angle="0" sideValue="3" warp="yes" jump="no" />
     <create type="neutral" x="16732.0" y="0.0" z="12808.0" angle="0" name="Miner" raceKeys="Pirate" hullKeys="Strongbow" sideValue="3" />
     <add_ai type="FOLLOW_COMMS_ORDERS" name="Miner" />
     <set_variable name="PirateScore" value="0.0" integer="yes" />
@@ -72,7 +170,7 @@
     <create type="enemy" x="16296.0" y="0.0" z="21525.0" angle="0" raceKeys="Torgoth" hullKeys="large" fleetnumber="-1" />
   </start>
   <folder_arme name="TSN Events" id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa" expanded_arme="" />
-  <folder_arme name="Start" id_arme="63b761a1-37ab-42f5-afaf-a627617557e5" parent_id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa" />
+  <folder_arme name="Start" id_arme="63b761a1-37ab-42f5-afaf-a627617557e5" parent_id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa" expanded_arme="" />
   <event name="Player ship 0 created" id_arme="353b89a6-114f-48a6-b74d-4244cc91307b" parent_id_arme="63b761a1-37ab-42f5-afaf-a627617557e5">
     <if_exists player_slot="0" />
     <if_variable name="Ship0Initialized" comparator="EQUALS" value="0.0" />
@@ -105,6 +203,16 @@
     <set_player_grid_damage value="1.0" player_slot="0" index="5" systemType="systemImpulse" countFrom="front" />
   </event>
   <folder_arme name="AI miner" id_arme="4af61a28-62d1-43d1-b58a-f8c906389594" parent_id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa" expanded_arme="" />
+  <event name="Initialize" id_arme="137cb245-17f0-46b5-8867-4de01c7b325c" parent_id_arme="4af61a28-62d1-43d1-b58a-f8c906389594">
+    <if_variable name="MineLayerInitialized" comparator="EQUALS" value="0.0" />
+    <log text="Initializing mine layer" />
+    <set_object_property property="topSpeed" value="6.0" name="MineLayer" />
+    <clear_ai name="MineLayer" />
+    <add_ai type="TARGET_THROTTLE" value1="1.0" targetName="Helms Deep" value2="1" name="MineLayer" />
+    <add_ai type="FOLLOW_COMMS_ORDERS" name="MineLayer" />
+    <set_variable name="MineLayerMines" value="25.0" integer="yes" />
+    <set_variable name="MineLayerInitialized" value="1.0" integer="yes" />
+  </event>
   <event name="Drop mine" id_arme="a6b3acb9-8835-4a7e-af84-9293200f41cb" parent_id_arme="4af61a28-62d1-43d1-b58a-f8c906389594">
     <if_comms_button text="Lay Mine" />
     <get_object_property property="positionX" name="MineLayer" variable="MineLayerX" />
@@ -157,7 +265,7 @@
     <set_monster_tag_data tag_slot="0" name="SG2" sourcetext="Distress call from Helms Deep" />
   </event>
   <folder_arme name="Pirate Events" id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1" expanded_arme="" />
-  <folder_arme name="Start" id_arme="0a737b19-47ab-4ccb-a2bb-a072ad49ee0b" parent_id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1" />
+  <folder_arme name="Start" id_arme="0a737b19-47ab-4ccb-a2bb-a072ad49ee0b" parent_id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1" expanded_arme="" />
   <event name="Player ship 1 created" id_arme="64982b23-719e-4d78-a74c-086ce6d8365c" parent_id_arme="0a737b19-47ab-4ccb-a2bb-a072ad49ee0b">
     <if_exists player_slot="1" />
     <if_variable name="Ship1Initialized" comparator="EQUALS" value="0.0" />
@@ -184,7 +292,7 @@
     <set_variable name="SG2ProbeSucceeded" value="1.0" integer="yes" />
     <incoming_comms_text from="SG2" sideValue="3" type="ALERT">Probe successful</incoming_comms_text>
   </event>
-  <folder_arme name="Joint Events" id_arme="f3d012a5-0f1e-4f91-b16d-d0bb1745ad7e" />
+  <folder_arme name="Joint Events" id_arme="f3d012a5-0f1e-4f91-b16d-d0bb1745ad7e" expanded_arme="" />
   <event name="Victory" id_arme="dcab75b6-8026-4f2a-9c42-303b41dce749" parent_id_arme="f3d012a5-0f1e-4f91-b16d-d0bb1745ad7e">
     <if_fleet_count comparator="EQUALS" value="0.0" sideValue="1" />
     <if_variable name="GameOver" comparator="EQUALS" value="0.0" />
