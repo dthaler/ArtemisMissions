@@ -55,3 +55,6 @@ except that enemy stations show up beyond sensor range
 
 There is no way to make hangar bay contents be empty, either on creation
 or afterwards
+
+What else can be targeted by enemies besides players?
+    ATTACK: any named object (supposedly)

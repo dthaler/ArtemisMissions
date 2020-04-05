@@ -165,12 +165,10 @@
     <set_player_carried_type player_slot="0" bay_slot="4" raceKeys="TSN player" hullKeys="TSN Bomber" name="Red-4" />
     <set_player_carried_type player_slot="0" bay_slot="5" raceKeys="TSN player" hullKeys="TSN Bomber" name="Red-5" />
     <set_player_station_carried name="Helms Deep" raceKeys="TSN" hullKeys="TSN Bomber" singleSeatName="Red-6" />
-    <set_variable name="FightersManufactured" value="6.0" integer="yes" />
-    <create type="player" player_slot="0" x="95182.0" y="0.0" z="93874.0" angle="0" sideValue="2" warp="yes" jump="no" />
+    <create type="player" player_slot="0" x="95182.0" y="0.0" z="93874.0" angle="0" sideValue="2" raceKeys="player" hullKeys="Carrier" warp="yes" jump="no" />
     <!--AI Miner-->
     <create type="neutral" x="97652.0" y="0.0" z="97796.0" angle="0" name="MineLayer" raceKeys="TSN" hullKeys="Mine Layer" />
     <!--Planet-->
-    <set_timer name="RefreshBorder" seconds="1" />
     <!--<create type="genericMesh" x="93148.0" y="0.0" z="95907.0" angle="0" name="Planet" meshFileName="dat\Missions\MISS_HelmsDeep\Object.dxs" textureFileName="dat/electricNoise2.png" fakeShieldsFront="1000" colorRed="1.0" colorGreen="0.0" colorBlue="1.0" />-->
     <!--<set_object_property property="pushRadius" value="1000.0" name="Planet" />-->
     <!--<set_object_property property="blocksShotFlag" value="1000.0" name="Planet" />-->
@@ -190,12 +188,13 @@
     <create type="enemy" x="16296.0" y="0.0" z="21525.0" angle="0" raceKeys="Torgoth" hullKeys="large" fleetnumber="-1" />
   </start>
   <folder_arme name="TSN Events" id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa" expanded_arme="" />
-  <folder_arme name="Start" id_arme="63b761a1-37ab-42f5-afaf-a627617557e5" parent_id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa" expanded_arme="" />
+  <folder_arme name="Start" id_arme="63b761a1-37ab-42f5-afaf-a627617557e5" parent_id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa" />
   <event name="Player ship 0 created" id_arme="353b89a6-114f-48a6-b74d-4244cc91307b" parent_id_arme="63b761a1-37ab-42f5-afaf-a627617557e5">
     <if_exists player_slot="0" />
     <if_variable name="Ship0Initialized" comparator="EQUALS" value="0.0" />
     <log text="Player ship 0 created" />
     <set_variable name="Ship0Initialized" value="1.0" />
+    <set_variable name="TsnFighterNeeded" value="0.0" integer="yes" />
     <set_timer name="TsnIntroTimer" seconds="15" />
   </event>
   <event name="TSN Intro" id_arme="afbe13c5-681c-4a1a-9420-ed284814d82d" parent_id_arme="63b761a1-37ab-42f5-afaf-a627617557e5">
@@ -208,7 +207,8 @@
     <set_comms_button text="Lay Mine" sideValue="2" />
     <set_variable name="DropMinesButtonPresent" value="1.0" integer="yes" />
   </event>
-  <event name="Force no impulse or warp" id_arme="64786996-651f-4a98-8687-d0d319bb741d" parent_id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa">
+  <folder_arme name="Simulate station" id_arme="3b306dca-cb67-4794-b022-dc265f43f0b7" parent_id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa" expanded_arme="" />
+  <event name="Force no impulse or warp" id_arme="64786996-651f-4a98-8687-d0d319bb741d" parent_id_arme="3b306dca-cb67-4794-b022-dc265f43f0b7">
     <if_variable name="DisableContinualEvents" comparator="EQUALS" value="0.0" />
     <set_player_grid_damage value="1.0" player_slot="0" index="0" systemType="systemWarp" countFrom="front" />
     <set_player_grid_damage value="1.0" player_slot="0" index="1" systemType="systemWarp" countFrom="front" />
@@ -222,7 +222,16 @@
     <set_player_grid_damage value="1.0" player_slot="0" index="4" systemType="systemImpulse" countFrom="front" />
     <set_player_grid_damage value="1.0" player_slot="0" index="5" systemType="systemImpulse" countFrom="front" />
   </event>
-  <folder_arme name="AI miner" id_arme="4af61a28-62d1-43d1-b58a-f8c906389594" parent_id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa" expanded_arme="" />
+  <event name="Handle fighter request" id_arme="2a246c6e-1785-4664-9f08-2f36565f1dc3" parent_id_arme="3b306dca-cb67-4794-b022-dc265f43f0b7">
+    <if_object_property property="throttle" player_slot="0" comparator="GREATER" value="0.0" />
+    <if_object_property property="throttle" player_slot="0" comparator="LESS" value="1.0" />
+    <get_object_property property="throttle" player_slot="0" variable="TsnThrottleFloat" />
+    <set_variable name="TsnFighterNeeded" value="100 * TsnThrottleFloat" integer="yes" />
+    <log text="TSN player needs Red-|TsnFighterNeeded|" />
+    <set_player_station_carried name="Helms Deep" raceKeys="TSN player" hullKeys="TSN Bomber" singleSeatName="Red-|TsnFighterNeeded|" />
+    <set_object_property property="throttle" value="1.0" player_slot="0" />
+  </event>
+  <folder_arme name="AI miner" id_arme="4af61a28-62d1-43d1-b58a-f8c906389594" parent_id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa" />
   <event name="Initialize" id_arme="137cb245-17f0-46b5-8867-4de01c7b325c" parent_id_arme="4af61a28-62d1-43d1-b58a-f8c906389594">
     <if_variable name="MineLayerInitialized" comparator="EQUALS" value="0.0" />
     <log text="Initializing mine layer" />
@@ -265,15 +274,6 @@
     <set_comms_button text="Lay Mine" sideValue="2" />
     <set_timer name="RefreshCommsButtons" seconds="30" />
   </event>
-  <disabled_event name="Restock bombers" id_arme="c901179e-a9a5-4fc2-8047-c926dc337215" parent_id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa">
-    <if_not_exists name="Red-1" />
-    <log text="Restock bombers" />
-  </disabled_event>
-  <disabled_event name="Prevent fighters from crossing diagonal" id_arme="31f89d38-0143-4298-af2d-39e9cb4d35a4" parent_id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa">
-    <if_difficulty comparator="EQUALS" value="7" />
-    <log text="Prevent fighters from crossing diagonal" />
-    <!--TODO: fill this in-->
-  </disabled_event>
   <folder_arme name="SG1" id_arme="6ca69197-bc61-4c9a-aa63-7c8f81e26a9a" parent_id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa" expanded_arme="" />
   <event name="SG1 scanned" id_arme="38462fb4-d21e-4b0a-abbd-c572b9adcb2c" parent_id_arme="6ca69197-bc61-4c9a-aa63-7c8f81e26a9a">
     <if_variable name="SG1ProbeSucceeded" comparator="EQUALS" value="0.0" />
