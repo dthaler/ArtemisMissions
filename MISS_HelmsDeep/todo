@@ -10,18 +10,12 @@
 03/30/20 FIX: make MineLayer not immediately attack
 03/30/20 BUG: minelayer doesn't actually drop mines
 04/01/20 ADD: "sector" border impenetrable to ships, fighters, and probes
+04/05/20 ADD: TSN: make sure station has ~infinite supply of fighters
 
 {
 
 1/2 ADD: TSN: allow sending a "help" message e.g., via probes
          could require a fighter to go out to it
          what is the range of a tag?
-
-1/2 ADD: TSN: make sure station has ~infinite supply of fighters
-        this may be automatic now per release notes?
-        * TSN: how load fighters onto carrier?
-          can't programmatically force dock (and can't use weapons to fire)
-        Only way seems to be to dock and undock, do we need a Helm
-            console only to resupply?
 
 }

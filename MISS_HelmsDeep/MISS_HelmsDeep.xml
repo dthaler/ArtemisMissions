@@ -164,7 +164,7 @@
     <set_player_carried_type player_slot="0" bay_slot="3" raceKeys="TSN player" hullKeys="TSN Bomber" name="Red-3" />
     <set_player_carried_type player_slot="0" bay_slot="4" raceKeys="TSN player" hullKeys="TSN Bomber" name="Red-4" />
     <set_player_carried_type player_slot="0" bay_slot="5" raceKeys="TSN player" hullKeys="TSN Bomber" name="Red-5" />
-    <set_player_station_carried name="Helms Deep" raceKeys="TSN" hullKeys="TSN Bomber" singleSeatName="Red-6" />
+    <clear_player_station_carried name="Helms Deep" />
     <create type="player" player_slot="0" x="95182.0" y="0.0" z="93874.0" angle="0" sideValue="2" raceKeys="player" hullKeys="Carrier" warp="yes" jump="no" />
     <!--AI Miner-->
     <create type="neutral" x="97652.0" y="0.0" z="97796.0" angle="0" name="MineLayer" raceKeys="TSN" hullKeys="Mine Layer" />
@@ -228,6 +228,7 @@
     <get_object_property property="throttle" player_slot="0" variable="TsnThrottleFloat" />
     <set_variable name="TsnFighterNeeded" value="100 * TsnThrottleFloat" integer="yes" />
     <log text="TSN player needs Red-|TsnFighterNeeded|" />
+    <clear_player_station_carried name="Helms Deep" />
     <set_player_station_carried name="Helms Deep" raceKeys="TSN player" hullKeys="TSN Bomber" singleSeatName="Red-|TsnFighterNeeded|" />
     <set_object_property property="throttle" value="1.0" player_slot="0" />
   </event>
