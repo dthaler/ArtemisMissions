@@ -96,6 +96,7 @@
     <create type="blackHole" x="50000.0" y="0.0" z="78000.0" />
     <create type="blackHole" x="50000.0" y="0.0" z="79000.0" />
     <create type="blackHole" x="50000.0" y="0.0" z="80000.0" />
+    <create count="150" type="asteroids" startX="23000.0" startY="0.0" startZ="20000.0" endX="23000.0" endY="0.0" endZ="80000.0" randomRange="22000" />
     <create type="blackHole" x="50000.0" y="0.0" z="81000.0" />
     <create type="blackHole" x="50000.0" y="0.0" z="82000.0" />
     <create type="blackHole" x="50000.0" y="0.0" z="83000.0" />
@@ -116,45 +117,45 @@
     <create type="blackHole" x="50000.0" y="0.0" z="98000.0" />
     <create type="blackHole" x="50000.0" y="0.0" z="99000.0" />
     <create type="blackHole" x="50000.0" y="0.0" z="100000.0" />
-    <create type="genericMesh" x="50000.0" y="0.0" z="5000.0" name="B0" meshFileName="dat/mine.dxs" textureFileName="dat/black32.png" />
+    <create type="genericMesh" x="50000.0" y="0.0" z="5000.0" angle="0" name="B0" meshFileName="dat/mine.dxs" textureFileName="dat/black32.png" colorRed="1.0" colorGreen="0.0" colorBlue="1.0" />
     <set_object_property property="pushRadius" value="7500.0" name="B0" />
-    <create type="genericMesh" x="50000.0" y="0.0" z="15000.0" name="B1" meshFileName="dat/mine.dxs" textureFileName="dat/black32.png" />
+    <create type="genericMesh" x="50000.0" y="0.0" z="15000.0" angle="0" name="B1" meshFileName="dat/mine.dxs" textureFileName="dat/black32.png" colorRed="1.0" colorGreen="0.0" colorBlue="1.0" />
     <set_object_property property="pushRadius" value="7500.0" name="B1" />
-    <create type="genericMesh" x="50000.0" y="0.0" z="25000.0" name="B2" meshFileName="dat/mine.dxs" textureFileName="dat/black32.png" />
+    <create type="genericMesh" x="50000.0" y="0.0" z="25000.0" angle="0" name="B2" meshFileName="dat/mine.dxs" textureFileName="dat/black32.png" colorRed="1.0" colorGreen="0.0" colorBlue="1.0" />
     <set_object_property property="pushRadius" value="7500.0" name="B2" />
-    <create type="genericMesh" x="50000.0" y="0.0" z="35000.0" name="B3" meshFileName="dat/mine.dxs" textureFileName="dat/black32.png" />
+    <create type="genericMesh" x="50000.0" y="0.0" z="35000.0" angle="0" name="B3" meshFileName="dat/mine.dxs" textureFileName="dat/black32.png" colorRed="1.0" colorGreen="0.0" colorBlue="1.0" />
     <set_object_property property="pushRadius" value="7500.0" name="B3" />
-    <create type="genericMesh" x="50000.0" y="0.0" z="45000.0" name="B4" meshFileName="dat/mine.dxs" textureFileName="dat/black32.png" />
+    <create type="genericMesh" x="50000.0" y="0.0" z="45000.0" angle="0" name="B4" meshFileName="dat/mine.dxs" textureFileName="dat/black32.png" colorRed="1.0" colorGreen="0.0" colorBlue="1.0" />
     <set_object_property property="pushRadius" value="7500.0" name="B4" />
-    <create type="genericMesh" x="50000.0" y="0.0" z="55000.0" name="B5" meshFileName="dat/mine.dxs" textureFileName="dat/black32.png" />
+    <create type="genericMesh" x="50000.0" y="0.0" z="55000.0" angle="0" name="B5" meshFileName="dat/mine.dxs" textureFileName="dat/black32.png" colorRed="1.0" colorGreen="0.0" colorBlue="1.0" />
     <set_object_property property="pushRadius" value="7500.0" name="B5" />
-    <create type="genericMesh" x="50000.0" y="0.0" z="65000.0" name="B6" meshFileName="dat/mine.dxs" textureFileName="dat/black32.png" />
+    <create type="genericMesh" x="50000.0" y="0.0" z="65000.0" angle="0" name="B6" meshFileName="dat/mine.dxs" textureFileName="dat/black32.png" colorRed="1.0" colorGreen="0.0" colorBlue="1.0" />
     <set_object_property property="pushRadius" value="7500.0" name="B6" />
-    <create type="genericMesh" x="50000.0" y="0.0" z="75000.0" name="B7" meshFileName="dat/mine.dxs" textureFileName="dat/black32.png" />
+    <create type="genericMesh" x="50000.0" y="0.0" z="75000.0" angle="0" name="B7" meshFileName="dat/mine.dxs" textureFileName="dat/black32.png" colorRed="1.0" colorGreen="0.0" colorBlue="1.0" />
     <set_object_property property="pushRadius" value="7500.0" name="B7" />
-    <create type="genericMesh" x="50000.0" y="0.0" z="85000.0" name="B8" meshFileName="dat/mine.dxs" textureFileName="dat/black32.png" />
+    <create type="genericMesh" x="50000.0" y="0.0" z="85000.0" angle="0" name="B8" meshFileName="dat/mine.dxs" textureFileName="dat/black32.png" colorRed="1.0" colorGreen="0.0" colorBlue="1.0" />
     <set_object_property property="pushRadius" value="7500.0" name="B8" />
-    <create type="genericMesh" x="50000.0" y="0.0" z="95000.0" name="B9" meshFileName="dat/mine.dxs" textureFileName="dat/black32.png" />
+    <create type="genericMesh" x="50000.0" y="0.0" z="95000.0" angle="0" name="B9" meshFileName="dat/mine.dxs" textureFileName="dat/black32.png" colorRed="1.0" colorGreen="0.0" colorBlue="1.0" />
     <set_object_property property="pushRadius" value="7500.0" name="B9" />
     <!---->
     <!--Stargates-->
     <!---->
-    <create type="monster" monsterType="8" x="80000.0" y="0.0" z="60000.0" angle="0" name="SG1" />
+    <create type="monster" monsterType="8" x="69420.0" y="0.0" z="30178.0" angle="0" name="SG1" />
     <set_monster_tag_data tag_slot="0" name="SG1" />
     <set_monster_tag_data tag_slot="1" name="SG1" />
     <set_monster_tag_data tag_slot="2" name="SG1" />
     <set_monster_tag_data tag_slot="3" name="SG1" />
-    <create type="monster" monsterType="8" x="20000.0" y="0.0" z="60000.0" angle="0" name="SG2" />
+    <create type="monster" monsterType="8" x="29509.0" y="0.0" z="74107.0" angle="0" name="SG2" />
     <set_monster_tag_data tag_slot="0" name="SG2" />
     <set_monster_tag_data tag_slot="1" name="SG2" />
     <set_monster_tag_data tag_slot="2" name="SG2" />
     <set_monster_tag_data tag_slot="3" name="SG2" />
-    <create count="150" type="mines" startX="100000.0" startY="500.0" startZ="80000.0" endX="80000.0" endY="500.0" endZ="100000.0" randomRange="25" />
     <!---->
-    <create count="150" type="mines" startX="100000.0" startY="-500.0" startZ="80000.0" endX="80000.0" endY="-500.0" endZ="100000.0" randomRange="25" />
     <!--TSN Setup-->
-    <create count="150" type="mines" startX="100000.0" startY="167.0" startZ="80000.0" endX="80000.0" endY="167.0" endZ="100000.0" randomRange="25" />
     <!---->
+    <create count="150" type="mines" startX="100000.0" startY="500.0" startZ="80000.0" endX="80000.0" endY="500.0" endZ="100000.0" randomRange="25" />
+    <create count="150" type="mines" startX="100000.0" startY="-500.0" startZ="80000.0" endX="80000.0" endY="-500.0" endZ="100000.0" randomRange="25" />
+    <create count="150" type="mines" startX="100000.0" startY="167.0" startZ="80000.0" endX="80000.0" endY="167.0" endZ="100000.0" randomRange="25" />
     <create count="150" type="mines" startX="100000.0" startY="-167.0" startZ="80000.0" endX="80000.0" endY="-167.0" endZ="100000.0" randomRange="25" />
     <create type="station" x="95182.0" y="0.0" z="93874.0" angle="0" name="Helms Deep" raceKeys="Terran" hullKeys="Command Base Base" />
     <clear_player_station_carried name="Helms Deep" />
@@ -165,7 +166,7 @@
     <set_player_carried_type player_slot="0" bay_slot="4" raceKeys="TSN player" hullKeys="TSN Bomber" name="Red-4" />
     <set_player_carried_type player_slot="0" bay_slot="5" raceKeys="TSN player" hullKeys="TSN Bomber" name="Red-5" />
     <clear_player_station_carried name="Helms Deep" />
-    <create type="player" player_slot="0" x="95182.0" y="0.0" z="93874.0" angle="0" sideValue="2" raceKeys="player" hullKeys="Carrier" warp="yes" jump="no" />
+    <create type="player" player_slot="0" x="95182.0" y="0.0" z="93874.0" angle="0" sideValue="2" warp="yes" jump="no" />
     <!--AI Miner-->
     <create type="neutral" x="97652.0" y="0.0" z="97796.0" angle="0" name="MineLayer" raceKeys="TSN" hullKeys="Mine Layer" />
     <!--Planet-->
@@ -180,6 +181,65 @@
     <create type="neutral" x="16732.0" y="0.0" z="12808.0" angle="0" name="Miner" raceKeys="Pirate" hullKeys="Strongbow" sideValue="3" />
     <add_ai type="FOLLOW_COMMS_ORDERS" name="Miner" />
     <set_variable name="PirateScore" value="0.0" integer="yes" />
+    <!--Asteroids to be mined-->
+    <create type="genericMesh" x="13438.0" y="0.0" z="18660.0" angle="0" name="A0" meshFileName="dat/asteroid.dxs" textureFileName="dat/asteroidTexture.png" fakeShieldsFront="0" colorRed="0.8" colorGreen="0.4" colorBlue="0.2" />
+    <set_variable name="A0HitPointsLeft" value="5.0" integer="yes" />
+    <set_ship_text name="A0" scan_desc="Minerals left: |A0HitPointsLeft|" />
+    <create type="monster" monsterType="8" age="1" x="13438.0" y="0.0" z="18660.0" angle="0" name="A0 " />
+    <!---->
+    <create type="genericMesh" x="4733.0" y="0.0" z="34732.0" angle="0" name="A1" meshFileName="dat/asteroid.dxs" textureFileName="dat/asteroidTexture.png" fakeShieldsFront="0" colorRed="0.8" colorGreen="0.4" colorBlue="0.2" />
+    <set_variable name="A1HitPointsLeft" value="6.0" integer="yes" />
+    <set_ship_text name="A1" scan_desc="Minerals left: |A0HitPointsLeft|" />
+    <create type="monster" monsterType="8" age="1" x="0.0" y="0.0" z="0.0" angle="0" name="A1 " />
+    <set_relative_position name2="A1 " distance="0" angle="0" name1="A1" />
+    <!---->
+    <create type="genericMesh" x="34063.0" y="0.0" z="45312.0" angle="0" name="A2" meshFileName="dat/asteroid.dxs" textureFileName="dat/asteroidTexture.png" fakeShieldsFront="0" colorRed="0.8" colorGreen="0.4" colorBlue="0.2" />
+    <set_variable name="A2HitPointsLeft" value="9.0" integer="yes" />
+    <set_ship_text name="A2" scan_desc="Minerals left: |A0HitPointsLeft|" />
+    <create type="monster" monsterType="8" age="1" x="0.0" y="0.0" z="0.0" angle="0" name="A2 " />
+    <set_relative_position name2="A2 " distance="0" angle="0" name1="A2" />
+    <!---->
+    <create type="genericMesh" x="8483.0" y="0.0" z="73437.0" angle="0" name="A3" meshFileName="dat/asteroid.dxs" textureFileName="dat/asteroidTexture.png" fakeShieldsFront="0" colorRed="0.8" colorGreen="0.4" colorBlue="0.2" />
+    <set_variable name="A3HitPointsLeft" value="9.0" integer="yes" />
+    <set_ship_text name="A3" scan_desc="Minerals left: |A0HitPointsLeft|" />
+    <create type="monster" monsterType="8" age="1" x="0.0" y="0.0" z="0.0" angle="0" name="A3 " />
+    <set_relative_position name2="A3 " distance="0" angle="0" name1="A3" />
+    <!---->
+    <create type="genericMesh" x="24554.0" y="0.0" z="87767.0" angle="0" name="A4" meshFileName="dat/asteroid.dxs" textureFileName="dat/asteroidTexture.png" fakeShieldsFront="0" colorRed="0.8" colorGreen="0.4" colorBlue="0.2" />
+    <set_variable name="A4HitPointsLeft" value="11.0" integer="yes" />
+    <set_ship_text name="A4" scan_desc="Minerals left: |A0HitPointsLeft|" />
+    <create type="monster" monsterType="8" age="1" x="0.0" y="0.0" z="0.0" angle="0" name="A4 " />
+    <set_relative_position name2="A4 " distance="0" angle="0" name1="A4" />
+    <!---->
+    <create type="genericMesh" x="33393.0" y="0.0" z="11160.0" angle="0" name="A5" meshFileName="dat/asteroid.dxs" textureFileName="dat/asteroidTexture.png" fakeShieldsFront="0" colorRed="0.8" colorGreen="0.4" colorBlue="0.2" />
+    <set_variable name="A5HitPointsLeft" value="6.0" integer="yes" />
+    <set_ship_text name="A5" scan_desc="Minerals left: |A0HitPointsLeft|" />
+    <create type="monster" monsterType="8" age="1" x="0.0" y="0.0" z="0.0" angle="0" name="A5 " />
+    <set_relative_position name2="A5 " distance="0" angle="0" name1="A5" />
+    <!---->
+    <create type="genericMesh" x="22411.0" y="0.0" z="56428.0" angle="0" name="A6" meshFileName="dat/asteroid.dxs" textureFileName="dat/asteroidTexture.png" fakeShieldsFront="0" colorRed="0.8" colorGreen="0.4" colorBlue="0.2" />
+    <set_variable name="A6HitPointsLeft" value="8.0" integer="yes" />
+    <set_ship_text name="A6" scan_desc="Minerals left: |A0HitPointsLeft|" />
+    <create type="monster" monsterType="8" age="1" x="0.0" y="0.0" z="0.0" angle="0" name="A6 " />
+    <set_relative_position name2="A6 " distance="0" angle="0" name1="A6" />
+    <!---->
+    <create type="genericMesh" x="42768.0" y="0.0" z="71964.0" angle="0" name="A7" meshFileName="dat/asteroid.dxs" textureFileName="dat/asteroidTexture.png" fakeShieldsFront="0" colorRed="0.8" colorGreen="0.4" colorBlue="0.2" />
+    <set_variable name="A7HitPointsLeft" value="10.0" integer="yes" />
+    <set_ship_text name="A7" scan_desc="Minerals left: |A0HitPointsLeft|" />
+    <create type="monster" monsterType="8" age="1" x="0.0" y="0.0" z="0.0" angle="0" name="A7 " />
+    <set_relative_position name2="A7 " distance="0" angle="0" name1="A7" />
+    <!---->
+    <create type="genericMesh" x="25492.0" y="0.0" z="31651.0" angle="0" name="A8" meshFileName="dat/asteroid.dxs" textureFileName="dat/asteroidTexture.png" fakeShieldsFront="0" colorRed="0.8" colorGreen="0.4" colorBlue="0.2" />
+    <set_variable name="A8HitPointsLeft" value="7.0" integer="yes" />
+    <set_ship_text name="A8" scan_desc="Minerals left: |A0HitPointsLeft|" />
+    <create type="monster" monsterType="8" age="1" x="0.0" y="0.0" z="0.0" angle="0" name="A8 " />
+    <set_relative_position name2="A8 " distance="0" angle="0" name1="A8" />
+    <!---->
+    <create type="genericMesh" x="1652.0" y="0.0" z="52812.0" angle="0" name="A9" meshFileName="dat/asteroid.dxs" textureFileName="dat/asteroidTexture.png" fakeShieldsFront="0" colorRed="0.8" colorGreen="0.4" colorBlue="0.2" />
+    <set_variable name="A9HitPointsLeft" value="7.0" integer="yes" />
+    <set_ship_text name="A9" scan_desc="Minerals left: |A0HitPointsLeft|" />
+    <create type="monster" monsterType="8" age="1" x="0.0" y="0.0" z="0.0" angle="0" name="A9 " />
+    <set_relative_position name2="A9 " distance="0" angle="0" name1="A9" />
     <!---->
     <!--Torgoth Armada Setup-->
     <!---->
@@ -187,7 +247,7 @@
     <!--Enemy-->
     <create type="enemy" x="16296.0" y="0.0" z="21525.0" angle="0" raceKeys="Torgoth" hullKeys="large" fleetnumber="-1" />
   </start>
-  <folder_arme name="TSN Events" id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa" expanded_arme="" />
+  <folder_arme name="TSN Events" id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa" />
   <folder_arme name="Start" id_arme="63b761a1-37ab-42f5-afaf-a627617557e5" parent_id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa" />
   <event name="Player ship 0 created" id_arme="353b89a6-114f-48a6-b74d-4244cc91307b" parent_id_arme="63b761a1-37ab-42f5-afaf-a627617557e5">
     <if_exists player_slot="0" />
@@ -286,7 +346,7 @@
     <set_monster_tag_data tag_slot="0" name="SG2" sourcetext="Distress call from Helms Deep" />
   </event>
   <folder_arme name="Pirate Events" id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1" expanded_arme="" />
-  <folder_arme name="Start" id_arme="0a737b19-47ab-4ccb-a2bb-a072ad49ee0b" parent_id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1" expanded_arme="" />
+  <folder_arme name="Start" id_arme="0a737b19-47ab-4ccb-a2bb-a072ad49ee0b" parent_id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1" />
   <event name="Player ship 1 created" id_arme="64982b23-719e-4d78-a74c-086ce6d8365c" parent_id_arme="0a737b19-47ab-4ccb-a2bb-a072ad49ee0b">
     <if_exists player_slot="1" />
     <if_variable name="Ship1Initialized" comparator="EQUALS" value="0.0" />
@@ -305,13 +365,174 @@
     <incoming_comms_text from="GAME SERVER" sideValue="3" type="ALERT">Your pirate ship will be scored based on how much Latinum you can collect, whether from mining or looting or any other means.</incoming_comms_text>
     <set_variable name="PirateIntroSent" value="1.0" integer="yes" />
   </event>
-  <folder_arme name="SG2" id_arme="26f190ad-4fbe-4e36-84d5-02e17b293e4f" parent_id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1" expanded_arme="" />
+  <folder_arme name="SG2" id_arme="26f190ad-4fbe-4e36-84d5-02e17b293e4f" parent_id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1" />
   <event name="SG2 scanned" id_arme="a875072d-d164-4204-862f-8752b7f24f3b" parent_id_arme="26f190ad-4fbe-4e36-84d5-02e17b293e4f">
     <if_variable name="SG2ProbeSucceeded" comparator="EQUALS" value="0.0" />
     <if_scan_level name="SG2" side="3" comparator="GREATER" value="0" />
     <log text="SG2 scanned" />
     <set_variable name="SG2ProbeSucceeded" value="1.0" integer="yes" />
     <incoming_comms_text from="SG2" sideValue="3" type="ALERT">Probe successful</incoming_comms_text>
+  </event>
+  <folder_arme name="Mining" id_arme="8dec4ba3-35f1-4afe-92c1-1cb88f97cc83" parent_id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1" expanded_arme="" />
+  <event name="A0  gone" id_arme="65f70993-6dc0-4cca-a267-a52da3af6654" parent_id_arme="8dec4ba3-35f1-4afe-92c1-1cb88f97cc83">
+    <if_not_exists name="A0 " />
+    <if_variable name="A0HitPointsLeft" comparator="GREATER" value="0.0" />
+    <create type="monster" monsterType="8" x="0.0" y="0.0" z="0.0" angle="0" name="A0 " />
+    <set_relative_position name2="A0 " distance="0" angle="0" name1="A0" />
+    <log text="Replenish A0  when HPL starts at |A0HitPointsLeft|" />
+    <set_variable name="A0HitPointsLeft" value="A0HitPointsLeft - 1" integer="yes" />
+    <set_variable name="PirateScore" value="PirateScore + 1" integer="yes" />
+    <log text="Replenish A0  with |A0HitPointsLeft| points left" />
+    <set_ship_text name="A0" scan_desc="Minerals left: |A0HitPointsLeft|" />
+    <destroy name="A0" />
+    <!--Recreate the mesh so that the scan level can be reset.  This is because the scan text shown will only be updated in the client when a scan completes.-->
+    <create type="genericMesh" x="0.0" y="0.0" z="0.0" angle="0" name="A0" meshFileName="dat/asteroid.dxs" textureFileName="dat/asteroidTexture.png" fakeShieldsFront="0" colorRed="0.8" colorGreen="0.4" colorBlue="0.2" />
+    <set_relative_position name2="A0" distance="0" angle="0" name1="A0 " />
+    <set_ship_text name="A0" scan_desc="Minerals left: |A0HitPointsLeft|" />
+  </event>
+  <event name="A1  gone" id_arme="d7bbbdca-ab6e-40e4-92d4-76082f7a70a7" parent_id_arme="8dec4ba3-35f1-4afe-92c1-1cb88f97cc83">
+    <if_not_exists name="A1 " />
+    <if_variable name="A1HitPointsLeft" comparator="GREATER" value="0.0" />
+    <create type="monster" monsterType="8" x="0.0" y="0.0" z="0.0" angle="0" name="A1 " />
+    <set_relative_position name2="A1 " distance="0" angle="0" name1="A1" />
+    <log text="Replenish A1  when HPL starts at |A1HitPointsLeft|" />
+    <set_variable name="A1HitPointsLeft" value="A1HitPointsLeft - 1" integer="yes" />
+    <set_variable name="PirateScore" value="PirateScore + 1" integer="yes" />
+    <log text="Replenish A1  with |A1HitPointsLeft| points left" />
+    <set_ship_text name="A1" scan_desc="Minerals left: |A1HitPointsLeft|" />
+    <destroy name="A1" />
+    <!--Recreate the mesh so that the scan level can be reset.  This is because the scan text shown will only be updated in the client when a scan completes.-->
+    <create type="genericMesh" x="0.0" y="0.0" z="0.0" angle="0" name="A1" meshFileName="dat/asteroid.dxs" textureFileName="dat/asteroidTexture.png" fakeShieldsFront="0" colorRed="0.8" colorGreen="0.4" colorBlue="0.2" />
+    <set_relative_position name2="A1" distance="0" angle="0" name1="A1 " />
+    <set_ship_text name="A1" scan_desc="Minerals left: |A1HitPointsLeft|" />
+  </event>
+  <event name="A2  gone" id_arme="7facef06-c7b3-4649-ae2a-ee2832bffff1" parent_id_arme="8dec4ba3-35f1-4afe-92c1-1cb88f97cc83">
+    <if_not_exists name="A2 " />
+    <if_variable name="A2HitPointsLeft" comparator="GREATER" value="0.0" />
+    <create type="monster" monsterType="8" x="0.0" y="0.0" z="0.0" angle="0" name="A2 " />
+    <set_relative_position name2="A2 " distance="0" angle="0" name1="A2" />
+    <log text="Replenish A2  when HPL starts at |A2HitPointsLeft|" />
+    <set_variable name="A2HitPointsLeft" value="A2HitPointsLeft - 1" integer="yes" />
+    <set_variable name="PirateScore" value="PirateScore + 1" integer="yes" />
+    <log text="Replenish A2  with |A2HitPointsLeft| points left" />
+    <set_ship_text name="A2" scan_desc="Minerals left: |A2HitPointsLeft|" />
+    <destroy name="A2" />
+    <!--Recreate the mesh so that the scan level can be reset.  This is because the scan text shown will only be updated in the client when a scan completes.-->
+    <create type="genericMesh" x="0.0" y="0.0" z="0.0" angle="0" name="A2" meshFileName="dat/asteroid.dxs" textureFileName="dat/asteroidTexture.png" fakeShieldsFront="0" colorRed="0.8" colorGreen="0.4" colorBlue="0.2" />
+    <set_relative_position name2="A2" distance="0" angle="0" name1="A2 " />
+    <set_ship_text name="A2" scan_desc="Minerals left: |A2HitPointsLeft|" />
+  </event>
+  <event name="A3  gone" id_arme="4967ff46-27e9-4379-b53f-223815c02eeb" parent_id_arme="8dec4ba3-35f1-4afe-92c1-1cb88f97cc83">
+    <if_not_exists name="A3 " />
+    <if_variable name="A3HitPointsLeft" comparator="GREATER" value="0.0" />
+    <create type="monster" monsterType="8" x="0.0" y="0.0" z="0.0" angle="0" name="A3 " />
+    <set_relative_position name2="A3 " distance="0" angle="0" name1="A3" />
+    <log text="Replenish A3  when HPL starts at |A3HitPointsLeft|" />
+    <set_variable name="A3HitPointsLeft" value="A3HitPointsLeft - 1" integer="yes" />
+    <set_variable name="PirateScore" value="PirateScore + 1" integer="yes" />
+    <log text="Replenish A3  with |A3HitPointsLeft| points left" />
+    <set_ship_text name="A3" scan_desc="Minerals left: |A3HitPointsLeft|" />
+    <destroy name="A3" />
+    <!--Recreate the mesh so that the scan level can be reset.  This is because the scan text shown will only be updated in the client when a scan completes.-->
+    <create type="genericMesh" x="0.0" y="0.0" z="0.0" angle="0" name="A3" meshFileName="dat/asteroid.dxs" textureFileName="dat/asteroidTexture.png" fakeShieldsFront="0" colorRed="0.8" colorGreen="0.4" colorBlue="0.2" />
+    <set_relative_position name2="A3" distance="0" angle="0" name1="A3 " />
+    <set_ship_text name="A3" scan_desc="Minerals left: |A3HitPointsLeft|" />
+  </event>
+  <event name="A4  gone" id_arme="fb396c87-afff-47cb-bf3a-ce9c07878328" parent_id_arme="8dec4ba3-35f1-4afe-92c1-1cb88f97cc83">
+    <if_not_exists name="A4 " />
+    <if_variable name="A4HitPointsLeft" comparator="GREATER" value="0.0" />
+    <create type="monster" monsterType="8" x="0.0" y="0.0" z="0.0" angle="0" name="A4 " />
+    <set_relative_position name2="A4 " distance="0" angle="0" name1="A4" />
+    <log text="Replenish A4  when HPL starts at |A4HitPointsLeft|" />
+    <set_variable name="A4HitPointsLeft" value="A4HitPointsLeft - 1" integer="yes" />
+    <set_variable name="PirateScore" value="PirateScore + 1" integer="yes" />
+    <log text="Replenish A4  with |A4HitPointsLeft| points left" />
+    <set_ship_text name="A4" scan_desc="Minerals left: |A4HitPointsLeft|" />
+    <destroy name="A4" />
+    <!--Recreate the mesh so that the scan level can be reset.  This is because the scan text shown will only be updated in the client when a scan completes.-->
+    <create type="genericMesh" x="0.0" y="0.0" z="0.0" angle="0" name="A4" meshFileName="dat/asteroid.dxs" textureFileName="dat/asteroidTexture.png" fakeShieldsFront="0" colorRed="0.8" colorGreen="0.4" colorBlue="0.2" />
+    <set_relative_position name2="A4" distance="0" angle="0" name1="A4 " />
+    <set_ship_text name="A4" scan_desc="Minerals left: |A4HitPointsLeft|" />
+  </event>
+  <event name="A5  gone" id_arme="f79c6627-e54a-48c3-b382-674e8b20a58e" parent_id_arme="8dec4ba3-35f1-4afe-92c1-1cb88f97cc83">
+    <if_not_exists name="A5 " />
+    <if_variable name="A5HitPointsLeft" comparator="GREATER" value="0.0" />
+    <create type="monster" monsterType="8" x="0.0" y="0.0" z="0.0" angle="0" name="A5 " />
+    <set_relative_position name2="A5 " distance="0" angle="0" name1="A5" />
+    <log text="Replenish A5  when HPL starts at |A5HitPointsLeft|" />
+    <set_variable name="A5HitPointsLeft" value="A5HitPointsLeft - 1" integer="yes" />
+    <set_variable name="PirateScore" value="PirateScore + 1" integer="yes" />
+    <log text="Replenish A5  with |A5HitPointsLeft| points left" />
+    <set_ship_text name="A5" scan_desc="Minerals left: |A5HitPointsLeft|" />
+    <destroy name="A5" />
+    <!--Recreate the mesh so that the scan level can be reset.  This is because the scan text shown will only be updated in the client when a scan completes.-->
+    <create type="genericMesh" x="0.0" y="0.0" z="0.0" angle="0" name="A5" meshFileName="dat/asteroid.dxs" textureFileName="dat/asteroidTexture.png" fakeShieldsFront="0" colorRed="0.8" colorGreen="0.4" colorBlue="0.2" />
+    <set_relative_position name2="A5" distance="0" angle="0" name1="A5 " />
+    <set_ship_text name="A5" scan_desc="Minerals left: |A5HitPointsLeft|" />
+  </event>
+  <event name="A6  gone" id_arme="f22823ed-9291-478e-bb52-86abdb025b98" parent_id_arme="8dec4ba3-35f1-4afe-92c1-1cb88f97cc83">
+    <if_not_exists name="A6 " />
+    <if_variable name="A6HitPointsLeft" comparator="GREATER" value="0.0" />
+    <create type="monster" monsterType="8" x="0.0" y="0.0" z="0.0" angle="0" name="A6 " />
+    <set_relative_position name2="A6 " distance="0" angle="0" name1="A6" />
+    <log text="Replenish A6  when HPL starts at |A6HitPointsLeft|" />
+    <set_variable name="A6HitPointsLeft" value="A6HitPointsLeft - 1" integer="yes" />
+    <set_variable name="PirateScore" value="PirateScore + 1" integer="yes" />
+    <log text="Replenish A6  with |A6HitPointsLeft| points left" />
+    <set_ship_text name="A6" scan_desc="Minerals left: |A6HitPointsLeft|" />
+    <destroy name="A6" />
+    <!--Recreate the mesh so that the scan level can be reset.  This is because the scan text shown will only be updated in the client when a scan completes.-->
+    <create type="genericMesh" x="0.0" y="0.0" z="0.0" angle="0" name="A6" meshFileName="dat/asteroid.dxs" textureFileName="dat/asteroidTexture.png" fakeShieldsFront="0" colorRed="0.8" colorGreen="0.4" colorBlue="0.2" />
+    <set_relative_position name2="A6" distance="0" angle="0" name1="A6 " />
+    <set_ship_text name="A6" scan_desc="Minerals left: |A6HitPointsLeft|" />
+  </event>
+  <event name="A7  gone" id_arme="a84ac4c5-7e3e-4ee4-af11-388ff2f0b4dd" parent_id_arme="8dec4ba3-35f1-4afe-92c1-1cb88f97cc83">
+    <if_not_exists name="A7 " />
+    <if_variable name="A7HitPointsLeft" comparator="GREATER" value="0.0" />
+    <create type="monster" monsterType="8" x="0.0" y="0.0" z="0.0" angle="0" name="A7 " />
+    <set_relative_position name2="A7 " distance="0" angle="0" name1="A7" />
+    <log text="Replenish A7  when HPL starts at |A7HitPointsLeft|" />
+    <set_variable name="A7HitPointsLeft" value="A7HitPointsLeft - 1" integer="yes" />
+    <set_variable name="PirateScore" value="PirateScore + 1" integer="yes" />
+    <log text="Replenish A7  with |A7HitPointsLeft| points left" />
+    <set_ship_text name="A7" scan_desc="Minerals left: |A7HitPointsLeft|" />
+    <destroy name="A7" />
+    <!--Recreate the mesh so that the scan level can be reset.  This is because the scan text shown will only be updated in the client when a scan completes.-->
+    <create type="genericMesh" x="0.0" y="0.0" z="0.0" angle="0" name="A7" meshFileName="dat/asteroid.dxs" textureFileName="dat/asteroidTexture.png" fakeShieldsFront="0" colorRed="0.8" colorGreen="0.4" colorBlue="0.2" />
+    <set_relative_position name2="A7" distance="0" angle="0" name1="A7 " />
+    <set_ship_text name="A7" scan_desc="Minerals left: |A7HitPointsLeft|" />
+  </event>
+  <event name="A8  gone" id_arme="8e723382-4af7-4d95-8dab-31ea86d0e46a" parent_id_arme="8dec4ba3-35f1-4afe-92c1-1cb88f97cc83">
+    <if_not_exists name="A8 " />
+    <if_variable name="A8HitPointsLeft" comparator="GREATER" value="0.0" />
+    <create type="monster" monsterType="8" x="0.0" y="0.0" z="0.0" angle="0" name="A8 " />
+    <set_relative_position name2="A8 " distance="0" angle="0" name1="A8" />
+    <log text="Replenish A8  when HPL starts at |A8HitPointsLeft|" />
+    <set_variable name="A8HitPointsLeft" value="A8HitPointsLeft - 1" integer="yes" />
+    <set_variable name="PirateScore" value="PirateScore + 1" integer="yes" />
+    <log text="Replenish A8  with |A8HitPointsLeft| points left" />
+    <set_ship_text name="A8" scan_desc="Minerals left: |A8HitPointsLeft|" />
+    <destroy name="A8" />
+    <!--Recreate the mesh so that the scan level can be reset.  This is because the scan text shown will only be updated in the client when a scan completes.-->
+    <create type="genericMesh" x="0.0" y="0.0" z="0.0" angle="0" name="A8" meshFileName="dat/asteroid.dxs" textureFileName="dat/asteroidTexture.png" fakeShieldsFront="0" colorRed="0.8" colorGreen="0.4" colorBlue="0.2" />
+    <set_relative_position name2="A8" distance="0" angle="0" name1="A8 " />
+    <set_ship_text name="A8" scan_desc="Minerals left: |A8HitPointsLeft|" />
+  </event>
+  <event name="A9  gone" id_arme="c64b0d35-d871-405a-80d3-043a50696da9" parent_id_arme="8dec4ba3-35f1-4afe-92c1-1cb88f97cc83">
+    <if_not_exists name="A9 " />
+    <if_variable name="A9HitPointsLeft" comparator="GREATER" value="0.0" />
+    <create type="monster" monsterType="8" x="0.0" y="0.0" z="0.0" angle="0" name="A9 " />
+    <set_relative_position name2="A9 " distance="0" angle="0" name1="A9" />
+    <log text="Replenish A9  when HPL starts at |A9HitPointsLeft|" />
+    <set_variable name="A9HitPointsLeft" value="A9HitPointsLeft - 1" integer="yes" />
+    <set_variable name="PirateScore" value="PirateScore + 1" integer="yes" />
+    <log text="Replenish A9  with |A9HitPointsLeft| points left" />
+    <set_ship_text name="A9" scan_desc="Minerals left: |A9HitPointsLeft|" />
+    <destroy name="A9" />
+    <!--Recreate the mesh so that the scan level can be reset.  This is because the scan text shown will only be updated in the client when a scan completes.-->
+    <create type="genericMesh" x="0.0" y="0.0" z="0.0" angle="0" name="A9" meshFileName="dat/asteroid.dxs" textureFileName="dat/asteroidTexture.png" fakeShieldsFront="0" colorRed="0.8" colorGreen="0.4" colorBlue="0.2" />
+    <set_relative_position name2="A9" distance="0" angle="0" name1="A9 " />
+    <set_ship_text name="A9" scan_desc="Minerals left: |A9HitPointsLeft|" />
   </event>
   <folder_arme name="Joint Events" id_arme="f3d012a5-0f1e-4f91-b16d-d0bb1745ad7e" expanded_arme="" />
   <event name="Victory" id_arme="dcab75b6-8026-4f2a-9c42-303b41dce749" parent_id_arme="f3d012a5-0f1e-4f91-b16d-d0bb1745ad7e">

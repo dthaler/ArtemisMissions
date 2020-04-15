@@ -11,6 +11,9 @@ Generic mesh
  Can see out of it (texture not rendered if inside)
  Cannot see into it (see texture) unless transparent texture?
  Can have a huge DXS file
+ Scan text won't be updated on screen until scan again
+    and no way to set scan level, can only destroy and recreate the mesh to
+    force players to do another scan
 
 Black holes
 -----
@@ -19,6 +22,11 @@ Can block probes and other missiles
 Anomalies
 ---------
 Problem: anomaly shows up beyond range of sensors, and is scannable
+
+Wrecks
+------
+Any way to prevent them from spawning anomalies when destroyed?
+    or to control what they spawn?
 
 Asteroids
 ---------
@@ -58,3 +66,35 @@ or afterwards
 
 What else can be targeted by enemies besides players?
     ATTACK: any named object (supposedly)
+
+What can be targeted by players to "mine"?
+    Mike Substelny posted 2/22/18:
+        At last the Science Console can interact with a Generic Mesh!
+
+        You should be able to use fields (I think ship_text?) for Generic
+        Meshes. Science can scan them just like enemy ships. In addition to a
+        name they should have a scan_level, a race, a class, a scan_text . . .
+        I believe Generic Meshes have everything but a hail_text. If you want
+        players to communicate with a Generic Mesh you must use the Comms
+        buttons.
+
+        This will be very powerful!
+
+        Weapons cannot target a Generic Mesh, but I think you can simulate it
+        by pinning a Wreck inside the Mesh. Alternatively, if you want players
+        to be able to shoot at a Generic Mesh that absorbs tons of damage, pin
+        an unarmed cargo or luxury liner inside the Mesh, name it
+        appropriately, and boost its shields to 1,000.
+
+        The disadvantage is that the longer the "ship" exists the more                  likely it is that Communications will realize he/she can talk                   to the asteroid. :-)
+
+https://artemis.forumchitchat.com/post/generic-meshes-acting-strange-on-lrs-7953926?pid=1291100587&highlight=generic
+<create type="genericMesh" x="37940" y="0" z="43705" name="Mining Prospect 1" meshFileName="dat/asteroid.dxs" textureFileName="dat/asteroidTexture.png" colorRed="0.804" colorGreen="0.439" colorBlue="0.196"/>
+<set_object_property property="artScale" value="1.5" name="Mining Prospect 1"/>
+<set_object_property property="pushRadius" value="900" name="Mining Prospect 1"/>
+
+ Q: do they BOTH need to be named? A: yes
+ Q: which one is the main one for scanning purposes?
+ A: WithWreck is clickable, and shows minerals left
+    Wr1 can still be selected with 'i' key
+ Q: Can we name then "A0" and "A0_" or something?
