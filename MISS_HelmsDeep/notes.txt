@@ -98,3 +98,24 @@ https://artemis.forumchitchat.com/post/generic-meshes-acting-strange-on-lrs-7953
  A: WithWreck is clickable, and shows minerals left
     Wr1 can still be selected with 'i' key
  Q: Can we name then "A0" and "A0_" or something?
+
+Non-side ships, neutral vs enemy
+                                Miner4
+Miner1: TRY_TO_BECOME_LEADER    FleetIndex is invalid
+        CHASE_PLAYER
+        CHASE_STATION           FleetIndex is invalid
+        CHASE_AI_SHIP
+        CHASE_PLAYER
+        CHASE_ANGER
+        LEADER_LEADS
+        FOLLOW_LEADER
+        SPCL_AI
+
+Miner1: 120/100
+Miner2: 156/130
+Miner3: 120/100
+Miner4: 84/70
+
+Pirate Score:
+    100 for each converted miner
+     10 for each astroid piece mined

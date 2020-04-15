@@ -13,26 +13,32 @@
 04/05/20 ADD: TSN: make sure station has ~infinite supply of fighters
 04/05/20 BUG: Pirate ship type is not a battleship
 04/14/20 ADD: basic asteroid mining on pirate side
+04/18/20 ADD: enemy miners to convert
 
 {
 
-1/2 ADD: Pirate: asteroid mining
-            * increase Pirate score for every minable wreck destroyed
-                    HiDens Power Cell is pickupType 0
-                    Cetrocite Crystal is pickupType 2
-                    Space Junk is pickupType        9
-
-1/2 ADD: enemy miners to loot
+1/2 ADD: Pirate: ability to see current score somewhere
 
 1/2 ADD: TSN: allow sending a "help" message e.g., via probes
          could require a fighter to go out to it
          what is the range of a tag?
 
+1/2 ADD: ability for pirate player to use stargate
+
+1/2 ADD: ability for pirate NPC ships to use stargate
+
+---
+
 2/2 FIX: change border object names to whitespaces (1-10 spaces)
+
+---
 
 3/2 ADD: advanced pirate asteroid mining
             * create a small asteroid (single hit) with a name A##
                 set variable A##Exists
+                    HiDens Power Cell is pickupType 0
+                    Cetrocite Crystal is pickupType 2
+                    Space Junk is pickupType        9
             * when A## is destroyed and A##Exists is set:
                 create a couple of anomalies nearby
                 increase pirate score
