@@ -14,10 +14,9 @@
 04/05/20 BUG: Pirate ship type is not a battleship
 04/14/20 ADD: basic asteroid mining on pirate side
 04/18/20 ADD: enemy miners to convert
+04/18/20 ADD: score display on LRS
 
 {
-
-1/2 ADD: Pirate: ability to see current score somewhere
 
 1/2 ADD: TSN: allow sending a "help" message e.g., via probes
          could require a fighter to go out to it
