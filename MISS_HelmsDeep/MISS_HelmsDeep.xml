@@ -286,7 +286,82 @@
     <create type="genericMesh" x="70000.0" y="0.0" z="100000.0" name="TSN Score: 0" meshFileName="dat/asteroid.dxs" textureFileName="dat/asteroidTexture.png" colorRed="0.5" colorGreen="0.5" colorBlue="0.5" />
     <set_object_property property="artScale" value="0.0" name="TSN Score: 0" />
   </start>
-  <folder_arme name="TSN Events" id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa" expanded_arme="" />
+  <folder_arme name="GM Controls" id_arme="1257aab7-c7dc-42a4-946c-0d5c1384470a" />
+  <event name="Refresh recruit miner1 button" id_arme="e0dc9703-ff4c-4706-a301-e1a10e85120d" parent_id_arme="1257aab7-c7dc-42a4-946c-0d5c1384470a">
+    <if_timer_finished name="RefreshGMButtons" />
+    <clear_gm_button text="Recruit/Miner1" />
+    <clear_gm_button text="Recruit/Miner2" />
+    <clear_gm_button text="Recruit/Miner3" />
+    <clear_gm_button text="Recruit/Miner4" />
+    <clear_gm_button text="Recruit/Miner5" />
+    <clear_gm_button text="Recruit/Miner6" />
+    <set_gm_button text="Recruit/Miner1" />
+    <set_gm_button text="Recruit/Miner2" />
+    <set_gm_button text="Recruit/Miner3" />
+    <set_gm_button text="Recruit/Miner4" />
+    <set_gm_button text="Recruit/Miner5" />
+    <set_gm_button text="Recruit/Miner6" />
+  </event>
+  <event name="Refresh GM enable stargates button" id_arme="818c7095-fb17-4c43-b9b0-629537125ac9" parent_id_arme="1257aab7-c7dc-42a4-946c-0d5c1384470a">
+    <if_timer_finished name="RefreshGMButtons" />
+    <if_variable name="StargatesEnabled" comparator="EQUALS" value="0.0" />
+    <clear_gm_button text="Enable Stargates" />
+    <set_gm_button text="Enable Stargates" />
+  </event>
+  <event name="Restart GM refresh timer" id_arme="f1f9d2eb-5322-491e-8a3a-75d29e1efe4d" parent_id_arme="1257aab7-c7dc-42a4-946c-0d5c1384470a">
+    <if_timer_finished name="RefreshGMButtons" />
+    <set_timer name="RefreshGMButtons" seconds="30" />
+  </event>
+  <event name="GM Enable Stargates" id_arme="d06a7a15-f0de-4715-a100-8c94bf3dbfe8" parent_id_arme="1257aab7-c7dc-42a4-946c-0d5c1384470a">
+    <if_gm_button text="Enable Stargates" />
+    <log text="GM enabled stargates" />
+    <clear_gm_button text="Enable Stargates" />
+    <!--Set enabled to 1 to tell the stargates event to do its thing-->
+    <set_variable name="StargatesEnabled" value="1.0" integer="yes" />
+  </event>
+  <event name="GM recruit Miner1" id_arme="3afc774f-ec0c-4972-8247-6657ab9f96b6" parent_id_arme="1257aab7-c7dc-42a4-946c-0d5c1384470a">
+    <if_gm_button text="Recruit/Miner1" />
+    <if_exists name="Miner1" />
+    <if_object_property property="hasSurrendered" name="Miner1" comparator="EQUALS" value="0" />
+    <log text="GM recruited Miner1" />
+    <set_object_property property="hasSurrendered" value="1" name="Miner1" />
+  </event>
+  <event name="GM recruit Miner2" id_arme="6e2ec1b4-172a-44dd-a410-953c1d416b6d" parent_id_arme="1257aab7-c7dc-42a4-946c-0d5c1384470a">
+    <if_gm_button text="Recruit/Miner2" />
+    <if_exists name="Miner2" />
+    <if_object_property property="hasSurrendered" name="Miner2" comparator="EQUALS" value="0" />
+    <log text="GM recruited Miner2" />
+    <set_object_property property="hasSurrendered" value="1" name="Miner2" />
+  </event>
+  <event name="GM recruit Miner3" id_arme="9e2904c1-5b62-4429-a496-7970e62086f7" parent_id_arme="1257aab7-c7dc-42a4-946c-0d5c1384470a">
+    <if_gm_button text="Recruit/Miner3" />
+    <if_exists name="Miner3" />
+    <if_object_property property="hasSurrendered" name="Miner3" comparator="EQUALS" value="0" />
+    <log text="GM recruited Miner3" />
+    <set_object_property property="hasSurrendered" value="1" name="Miner3" />
+  </event>
+  <event name="GM recruit Miner4" id_arme="21876eec-64c9-4616-ab1e-9f631cc9100e" parent_id_arme="1257aab7-c7dc-42a4-946c-0d5c1384470a">
+    <if_gm_button text="Recruit/Miner4" />
+    <if_exists name="Miner4" />
+    <if_object_property property="hasSurrendered" name="Miner4" comparator="EQUALS" value="0" />
+    <log text="GM recruited Miner4" />
+    <set_object_property property="hasSurrendered" value="1" name="Miner4" />
+  </event>
+  <event name="GM recruit Miner5" id_arme="3c57905e-4d06-4f85-927d-343990e95b1f" parent_id_arme="1257aab7-c7dc-42a4-946c-0d5c1384470a">
+    <if_gm_button text="Recruit/Miner5" />
+    <if_exists name="Miner5" />
+    <if_object_property property="hasSurrendered" name="Miner5" comparator="EQUALS" value="0" />
+    <log text="GM recruited Miner5" />
+    <set_object_property property="hasSurrendered" value="1" name="Miner5" />
+  </event>
+  <event name="GM recruit Miner6" id_arme="0a711a24-29cb-4030-b2bd-5e02f07ed4e8" parent_id_arme="1257aab7-c7dc-42a4-946c-0d5c1384470a">
+    <if_gm_button text="Recruit/Miner6" />
+    <if_exists name="Miner6" />
+    <if_object_property property="hasSurrendered" name="Miner6" comparator="EQUALS" value="0" />
+    <log text="GM recruited Miner6" />
+    <set_object_property property="hasSurrendered" value="1" name="Miner6" />
+  </event>
+  <folder_arme name="TSN Events" id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa" />
   <folder_arme name="Start" id_arme="63b761a1-37ab-42f5-afaf-a627617557e5" parent_id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa" />
   <event name="Player ship 0 created" id_arme="353b89a6-114f-48a6-b74d-4244cc91307b" parent_id_arme="63b761a1-37ab-42f5-afaf-a627617557e5">
     <if_exists player_slot="0" />
@@ -331,7 +406,7 @@
     <set_player_station_carried name="Helms Deep" raceKeys="TSN player" hullKeys="TSN Bomber" singleSeatName="Red-|TsnFighterNeeded|" />
     <set_object_property property="throttle" value="1.0" player_slot="0" />
   </event>
-  <folder_arme name="AI miner" id_arme="4af61a28-62d1-43d1-b58a-f8c906389594" parent_id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa" />
+  <folder_arme name="AI mine layer" id_arme="4af61a28-62d1-43d1-b58a-f8c906389594" parent_id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa" />
   <event name="Initialize" id_arme="137cb245-17f0-46b5-8867-4de01c7b325c" parent_id_arme="4af61a28-62d1-43d1-b58a-f8c906389594">
     <if_variable name="MineLayerInitialized" comparator="EQUALS" value="0.0" />
     <log text="Initializing mine layer" />
@@ -342,7 +417,7 @@
     <set_variable name="MineLayerMines" value="25.0" integer="yes" />
     <set_variable name="MineLayerInitialized" value="1.0" integer="yes" />
   </event>
-  <event name="Drop mine" id_arme="a6b3acb9-8835-4a7e-af84-9293200f41cb" parent_id_arme="4af61a28-62d1-43d1-b58a-f8c906389594">
+  <event name="Lay mine" id_arme="a6b3acb9-8835-4a7e-af84-9293200f41cb" parent_id_arme="4af61a28-62d1-43d1-b58a-f8c906389594">
     <if_comms_button text="Lay Mine" />
     <get_object_property property="positionX" name="MineLayer" variable="MineLayerX" />
     <get_object_property property="positionY" name="MineLayer" variable="MineLayerY" />
@@ -384,12 +459,12 @@
     <incoming_comms_text from="SG1" sideValue="3" type="ALERT">Incoming distress call from Helms Deep</incoming_comms_text>
     <set_monster_tag_data tag_slot="0" name="SG2" sourcetext="Distress call from Helms Deep" />
   </event>
-  <event name="Score" id_arme="c0f38e91-547a-498a-8687-9bfa03a2afa7" parent_id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa">
+  <event name="Display Score" id_arme="c0f38e91-547a-498a-8687-9bfa03a2afa7" parent_id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa">
     <if_variable name="TsnScoreDisplayed" comparator="NOT" value="TsnScore" />
     <set_ship_text name="TSN Score: |TsnScoreDisplayed|" newname="TSN Score: |TsnScore|" />
     <set_variable name="TsnScoreDisplayed" value="TsnScore" integer="yes" />
   </event>
-  <folder_arme name="Pirate Events" id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1" expanded_arme="" />
+  <folder_arme name="Pirate Events" id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1" />
   <folder_arme name="Start" id_arme="0a737b19-47ab-4ccb-a2bb-a072ad49ee0b" parent_id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1" />
   <event name="Player ship 1 created" id_arme="64982b23-719e-4d78-a74c-086ce6d8365c" parent_id_arme="0a737b19-47ab-4ccb-a2bb-a072ad49ee0b">
     <if_exists player_slot="1" />
@@ -409,7 +484,7 @@
     <incoming_comms_text from="GAME SERVER" sideValue="3" type="ALERT">Your pirate ship will be scored based on how much Latinum you can collect, whether from mining or looting or any other means.</incoming_comms_text>
     <set_variable name="PirateIntroSent" value="1.0" integer="yes" />
   </event>
-  <folder_arme name="Stargates" id_arme="26f190ad-4fbe-4e36-84d5-02e17b293e4f" parent_id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1" expanded_arme="" />
+  <folder_arme name="Stargates" id_arme="26f190ad-4fbe-4e36-84d5-02e17b293e4f" parent_id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1" />
   <event name="SG2 scanned" id_arme="a875072d-d164-4204-862f-8752b7f24f3b" parent_id_arme="26f190ad-4fbe-4e36-84d5-02e17b293e4f">
     <if_variable name="SG2ProbeSucceeded" comparator="EQUALS" value="0.0" />
     <if_scan_level name="SG2" side="3" comparator="GREATER" value="0" />
@@ -642,7 +717,7 @@
     <set_relative_position name2="A9" distance="0" angle="0" name1="A9 " />
     <set_ship_text name="A9" scan_desc="Minerals left: |A9HitPointsLeft|" />
   </event>
-  <folder_arme name="Recruiting Miners" id_arme="94dfe34b-f3fc-4090-b79e-4c2659d9d863" parent_id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1" expanded_arme="" />
+  <folder_arme name="Recruiting Miners" id_arme="94dfe34b-f3fc-4090-b79e-4c2659d9d863" parent_id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1" />
   <event name="Recruit Miner1" id_arme="cde167fa-87ba-42c3-bc9b-fe38bf7995bc" parent_id_arme="94dfe34b-f3fc-4090-b79e-4c2659d9d863">
     <if_exists name="Miner1" />
     <if_object_property property="hasSurrendered" name="Miner1" comparator="EQUALS" value="1" />
@@ -709,12 +784,12 @@
     <set_variable name="PirateScore" value="PirateScore + 100" integer="yes" />
     <add_ai type="FOLLOW_COMMS_ORDERS" name="Miner6" />
   </event>
-  <event name="Score" id_arme="8483457d-bb42-4848-8aac-e2a16761bb6c" parent_id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1">
+  <event name="Display Score" id_arme="8483457d-bb42-4848-8aac-e2a16761bb6c" parent_id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1">
     <if_variable name="PirateScoreDisplayed" comparator="NOT" value="PirateScore" />
     <set_ship_text name="Pirate Score: |PirateScoreDisplayed|" newname="Pirate Score: |PirateScore|" />
     <set_variable name="PirateScoreDisplayed" value="PirateScore" integer="yes" />
   </event>
-  <folder_arme name="Joint Events" id_arme="f3d012a5-0f1e-4f91-b16d-d0bb1745ad7e" expanded_arme="" />
+  <folder_arme name="Joint Events" id_arme="f3d012a5-0f1e-4f91-b16d-d0bb1745ad7e" />
   <event name="Victory with pirates" id_arme="0902d234-84b0-4097-b15d-0e44e33ef2c1" parent_id_arme="f3d012a5-0f1e-4f91-b16d-d0bb1745ad7e">
     <if_fleet_count comparator="EQUALS" value="0.0" sideValue="1" />
     <if_variable name="GameOver" comparator="EQUALS" value="0.0" />
@@ -752,80 +827,5 @@
     <if_timer_finished name="EndGameTimer" />
     <log text="End Game" />
     <end_mission />
-  </event>
-  <folder_arme name="GM Controls" id_arme="1257aab7-c7dc-42a4-946c-0d5c1384470a" expanded_arme="" />
-  <event name="Refresh recruit miner1 button" id_arme="e0dc9703-ff4c-4706-a301-e1a10e85120d" parent_id_arme="1257aab7-c7dc-42a4-946c-0d5c1384470a">
-    <if_timer_finished name="RefreshGMButtons" />
-    <clear_gm_button text="Recruit/Miner1" />
-    <clear_gm_button text="Recruit/Miner2" />
-    <clear_gm_button text="Recruit/Miner3" />
-    <clear_gm_button text="Recruit/Miner4" />
-    <clear_gm_button text="Recruit/Miner5" />
-    <clear_gm_button text="Recruit/Miner6" />
-    <set_gm_button text="Recruit/Miner1" />
-    <set_gm_button text="Recruit/Miner2" />
-    <set_gm_button text="Recruit/Miner3" />
-    <set_gm_button text="Recruit/Miner4" />
-    <set_gm_button text="Recruit/Miner5" />
-    <set_gm_button text="Recruit/Miner6" />
-  </event>
-  <event name="Refresh GM enable stargates button" id_arme="818c7095-fb17-4c43-b9b0-629537125ac9" parent_id_arme="1257aab7-c7dc-42a4-946c-0d5c1384470a">
-    <if_timer_finished name="RefreshGMButtons" />
-    <if_variable name="StargatesEnabled" comparator="EQUALS" value="0.0" />
-    <clear_gm_button text="Enable Stargates" />
-    <set_gm_button text="Enable Stargates" />
-  </event>
-  <event name="Restart GM refresh timer" id_arme="f1f9d2eb-5322-491e-8a3a-75d29e1efe4d" parent_id_arme="1257aab7-c7dc-42a4-946c-0d5c1384470a">
-    <if_timer_finished name="RefreshGMButtons" />
-    <set_timer name="RefreshGMButtons" seconds="30" />
-  </event>
-  <event name="GM Enable Stargates" id_arme="d06a7a15-f0de-4715-a100-8c94bf3dbfe8" parent_id_arme="1257aab7-c7dc-42a4-946c-0d5c1384470a">
-    <if_gm_button text="Enable Stargates" />
-    <log text="GM enabled stargates" />
-    <clear_gm_button text="Enable Stargates" />
-    <!--Set enabled to 1 to tell the stargates event to do its thing-->
-    <set_variable name="StargatesEnabled" value="1.0" integer="yes" />
-  </event>
-  <event name="GM recruit Miner1" id_arme="3afc774f-ec0c-4972-8247-6657ab9f96b6" parent_id_arme="1257aab7-c7dc-42a4-946c-0d5c1384470a">
-    <if_gm_button text="Recruit/Miner1" />
-    <if_exists name="Miner1" />
-    <if_object_property property="hasSurrendered" name="Miner1" comparator="EQUALS" value="0" />
-    <log text="GM recruited Miner1" />
-    <set_object_property property="hasSurrendered" value="1" name="Miner1" />
-  </event>
-  <event name="GM recruit Miner2" id_arme="6e2ec1b4-172a-44dd-a410-953c1d416b6d" parent_id_arme="1257aab7-c7dc-42a4-946c-0d5c1384470a">
-    <if_gm_button text="Recruit/Miner2" />
-    <if_exists name="Miner2" />
-    <if_object_property property="hasSurrendered" name="Miner2" comparator="EQUALS" value="0" />
-    <log text="GM recruited Miner2" />
-    <set_object_property property="hasSurrendered" value="1" name="Miner2" />
-  </event>
-  <event name="GM recruit Miner3" id_arme="9e2904c1-5b62-4429-a496-7970e62086f7" parent_id_arme="1257aab7-c7dc-42a4-946c-0d5c1384470a">
-    <if_gm_button text="Recruit/Miner3" />
-    <if_exists name="Miner3" />
-    <if_object_property property="hasSurrendered" name="Miner3" comparator="EQUALS" value="0" />
-    <log text="GM recruited Miner3" />
-    <set_object_property property="hasSurrendered" value="1" name="Miner3" />
-  </event>
-  <event name="GM recruit Miner4" id_arme="21876eec-64c9-4616-ab1e-9f631cc9100e" parent_id_arme="1257aab7-c7dc-42a4-946c-0d5c1384470a">
-    <if_gm_button text="Recruit/Miner4" />
-    <if_exists name="Miner4" />
-    <if_object_property property="hasSurrendered" name="Miner4" comparator="EQUALS" value="0" />
-    <log text="GM recruited Miner4" />
-    <set_object_property property="hasSurrendered" value="1" name="Miner4" />
-  </event>
-  <event name="GM recruit Miner5" id_arme="3c57905e-4d06-4f85-927d-343990e95b1f" parent_id_arme="1257aab7-c7dc-42a4-946c-0d5c1384470a">
-    <if_gm_button text="Recruit/Miner5" />
-    <if_exists name="Miner5" />
-    <if_object_property property="hasSurrendered" name="Miner5" comparator="EQUALS" value="0" />
-    <log text="GM recruited Miner5" />
-    <set_object_property property="hasSurrendered" value="1" name="Miner5" />
-  </event>
-  <event name="GM recruit Miner6" id_arme="0a711a24-29cb-4030-b2bd-5e02f07ed4e8" parent_id_arme="1257aab7-c7dc-42a4-946c-0d5c1384470a">
-    <if_gm_button text="Recruit/Miner6" />
-    <if_exists name="Miner6" />
-    <if_object_property property="hasSurrendered" name="Miner6" comparator="EQUALS" value="0" />
-    <log text="GM recruited Miner6" />
-    <set_object_property property="hasSurrendered" value="1" name="Miner6" />
   </event>
 </mission_data>

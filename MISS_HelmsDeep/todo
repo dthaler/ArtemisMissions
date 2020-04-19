@@ -20,10 +20,6 @@
 
 {
 
-1/2 ADD: TSN: allow sending a "help" message e.g., via probes
-         could require a fighter to go out to it
-         what is the range of a tag?
-
 1/2 ADD: ability for pirate NPC ships to use stargate
             * if pirate ship is in TSN territory
               AND if NPC ship is on pirate side
@@ -32,6 +28,10 @@
                 else if NPC ship is in pirate territory
                 AND destination not already set
                    set destination of pirate stargate
+
+1/2 ADD: TSN: allow sending a "help" message e.g., via probes
+         could require a fighter to go out to it
+         what is the range of a tag?
 
 1/2 ADD: TSN scoring info
             maybe it counts down?
