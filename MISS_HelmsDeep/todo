@@ -17,17 +17,9 @@
 04/18/20 ADD: score display on LRS
 04/18/20 ADD: ability for pirate player to use SG1 and SG2
 04/18/20 ADD: GM buttons to convert each miner to pirate side
+04/18/20 ADD: ability for pirate NPC ships to use stargate
 
 {
-
-1/2 ADD: ability for pirate NPC ships to use stargate
-            * if pirate ship is in TSN territory
-              AND if NPC ship is on pirate side
-                if NPC ship is near pirate stargate
-                   move to TSN stargate
-                else if NPC ship is in pirate territory
-                AND destination not already set
-                   set destination of pirate stargate
 
 1/2 ADD: TSN: allow sending a "help" message e.g., via probes
          could require a fighter to go out to it
@@ -40,6 +32,7 @@
 
 1/2 BUG: stargates can be destroyed by weapons
          if destroyed, respawn them in place
+         make sure any AI miners heading there will still head there
 
 1/2 ADD: bonus for pirates helping TSN on victory
          DNTT

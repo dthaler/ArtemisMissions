@@ -160,6 +160,8 @@
     <set_monster_tag_data tag_slot="1" name="SG2" />
     <set_monster_tag_data tag_slot="2" name="SG2" />
     <set_monster_tag_data tag_slot="3" name="SG2" />
+    <get_object_property property="positionX" name="SG2" variable="SG2X" />
+    <get_object_property property="positionZ" name="SG2" variable="SG2Z" />
     <!---->
     <!--TSN Setup-->
     <!---->
@@ -302,6 +304,11 @@
     <set_gm_button text="Recruit/Miner5" />
     <set_gm_button text="Recruit/Miner6" />
   </event>
+  <event name="Refresh GM ally button" id_arme="292218e2-c0e1-4a43-a988-c3dc04dfac8f" parent_id_arme="1257aab7-c7dc-42a4-946c-0d5c1384470a">
+    <if_timer_finished name="RefreshGMButtons" />
+    <clear_gm_button text="Ally with TSN" />
+    <set_gm_button text="Ally with TSN" />
+  </event>
   <event name="Refresh GM enable stargates button" id_arme="818c7095-fb17-4c43-b9b0-629537125ac9" parent_id_arme="1257aab7-c7dc-42a4-946c-0d5c1384470a">
     <if_timer_finished name="RefreshGMButtons" />
     <if_variable name="StargatesEnabled" comparator="EQUALS" value="0.0" />
@@ -360,6 +367,20 @@
     <if_object_property property="hasSurrendered" name="Miner6" comparator="EQUALS" value="0" />
     <log text="GM recruited Miner6" />
     <set_object_property property="hasSurrendered" value="1" name="Miner6" />
+  </event>
+  <event name="GM Ally with TSN" id_arme="eb040a27-5b63-47e2-9573-3bd614d28422" parent_id_arme="1257aab7-c7dc-42a4-946c-0d5c1384470a">
+    <if_exists player_slot="1" />
+    <if_gm_button text="Ally with TSN" />
+    <log text="GM forced TSN/pirate alliance" />
+    <clear_comms_button text="Use SG2" sideValue="PirateSide" />
+    <set_variable name="UseSG2Displayed" value="0.0" integer="yes" />
+    <!---->
+    <!--// Move to SG1-->
+    <set_relative_position player_slot2="1" distance="600" angle="180" name1="SG1" />
+    <!---->
+    <!--// Switch pirate ship to TSN side (if not already done). Other events will switch any recruited miners.-->
+    <set_side_value value="2" player_slot="1" />
+    <set_variable name="PirateSide" value="2.0" integer="yes" />
   </event>
   <folder_arme name="TSN Events" id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa" />
   <folder_arme name="Start" id_arme="63b761a1-37ab-42f5-afaf-a627617557e5" parent_id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa" />
@@ -464,7 +485,7 @@
     <set_ship_text name="TSN Score: |TsnScoreDisplayed|" newname="TSN Score: |TsnScore|" />
     <set_variable name="TsnScoreDisplayed" value="TsnScore" integer="yes" />
   </event>
-  <folder_arme name="Pirate Events" id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1" />
+  <folder_arme name="Pirate Events" id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1" expanded_arme="" />
   <folder_arme name="Start" id_arme="0a737b19-47ab-4ccb-a2bb-a072ad49ee0b" parent_id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1" />
   <event name="Player ship 1 created" id_arme="64982b23-719e-4d78-a74c-086ce6d8365c" parent_id_arme="0a737b19-47ab-4ccb-a2bb-a072ad49ee0b">
     <if_exists player_slot="1" />
@@ -717,72 +738,402 @@
     <set_relative_position name2="A9" distance="0" angle="0" name1="A9 " />
     <set_ship_text name="A9" scan_desc="Minerals left: |A9HitPointsLeft|" />
   </event>
-  <folder_arme name="Recruiting Miners" id_arme="94dfe34b-f3fc-4090-b79e-4c2659d9d863" parent_id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1" />
+  <folder_arme name="AI miners" id_arme="94dfe34b-f3fc-4090-b79e-4c2659d9d863" parent_id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1" />
   <event name="Recruit Miner1" id_arme="cde167fa-87ba-42c3-bc9b-fe38bf7995bc" parent_id_arme="94dfe34b-f3fc-4090-b79e-4c2659d9d863">
     <if_exists name="Miner1" />
     <if_object_property property="hasSurrendered" name="Miner1" comparator="EQUALS" value="1" />
-    <if_object_property property="sideValue" name="Miner1" comparator="NOT" value="PirateSide" />
     <log text="Pirate ship recruited Miner1" />
-    <set_side_value value="PirateSide" name="Miner1" />
+    <set_variable name="RecruitedMiner1" value="1.0" integer="yes" />
     <!--Only send message to side 3 so that we'll only see this once-->
     <incoming_comms_text from="Miner1" sideValue="3" type="FRIEND">Ok, we agree to join you.</incoming_comms_text>
+    <!--// Since the existing ship surrendered, its brain stack is ignored.-->
+    <!--// Create a replacement ship that will follow comms orders.-->
+    <get_object_property property="positionX" name="Miner1" variable="tempX" />
+    <get_object_property property="positionY" name="Miner1" variable="tempY" />
+    <get_object_property property="positionZ" name="Miner1" variable="tempZ" />
+    <set_object_property property="positionX" value="0.0" name="Miner1" />
+    <set_object_property property="positionZ" value="0.0" name="Miner1" />
+    <create type="neutral" x="tempX" y="tempY" z="tempZ" name="tempName" raceKeys="Terran" hullKeys="Destroyer" sideValue="PirateSide" />
+    <copy_object_property property="angle" name1="Miner1" name2="tempName" />
+    <copy_object_property property="shieldStateBack" name1="Miner1" name2="tempName" />
+    <copy_object_property property="shieldStateFront" name1="Miner1" name2="tempName" />
+    <copy_object_property property="topSpeed" name1="Miner1" name2="tempName" />
+    <destroy name="Miner1" />
+    <set_object_property property="positionX" value="tempX" name="tempName" />
+    <set_object_property property="positionY" value="tempY" name="tempName" />
+    <set_object_property property="positionZ" value="tempZ" name="tempName" />
+    <clear_ai name="tempName" />
+    <add_ai type="CHASE_AI_SHIP" value1="3000" value2="500" name="tempName" />
+    <add_ai type="FOLLOW_COMMS_ORDERS" name="tempName" />
+    <add_ai type="DEFEND" value1="1000" value2="3000" name="tempName" />
+    <add_ai type="CHASE_ANGER" name="tempName" />
+    <set_ship_text name="tempName" newname="Miner1" />
     <set_variable name="PirateScore" value="PirateScore + 100" integer="yes" />
-    <add_ai type="FOLLOW_COMMS_ORDERS" name="Miner1" />
   </event>
   <event name="Recruit Miner2" id_arme="83d44950-d1de-458d-bc1a-552437232681" parent_id_arme="94dfe34b-f3fc-4090-b79e-4c2659d9d863">
     <if_exists name="Miner2" />
     <if_object_property property="hasSurrendered" name="Miner2" comparator="EQUALS" value="1" />
-    <if_object_property property="sideValue" name="Miner2" comparator="NOT" value="PirateSide" />
     <log text="Pirate ship recruited Miner2" />
-    <set_side_value value="PirateSide" name="Miner2" />
+    <set_variable name="RecruitedMiner2" value="1.0" integer="yes" />
     <!--Only send message to side 3 so that we'll only see this once-->
     <incoming_comms_text from="Miner2" sideValue="3" type="FRIEND">Ok, we agree to join you.</incoming_comms_text>
+    <!--// Since the existing ship surrendered, its brain stack is ignored.-->
+    <!--// Create a replacement ship that will follow comms orders.-->
+    <get_object_property property="positionX" name="Miner2" variable="tempX" />
+    <get_object_property property="positionY" name="Miner2" variable="tempY" />
+    <get_object_property property="positionZ" name="Miner2" variable="tempZ" />
+    <set_object_property property="positionX" value="0.0" name="Miner2" />
+    <set_object_property property="positionZ" value="0.0" name="Miner2" />
+    <create type="neutral" x="tempX" y="tempY" z="tempZ" name="tempName" raceKeys="Terran" hullKeys="Destroyer" sideValue="PirateSide" />
+    <copy_object_property property="angle" name1="Miner2" name2="tempName" />
+    <copy_object_property property="shieldStateBack" name1="Miner2" name2="tempName" />
+    <copy_object_property property="shieldStateFront" name1="Miner2" name2="tempName" />
+    <copy_object_property property="topSpeed" name1="Miner2" name2="tempName" />
+    <destroy name="Miner2" />
+    <set_object_property property="positionX" value="tempX" name="tempName" />
+    <set_object_property property="positionY" value="tempY" name="tempName" />
+    <set_object_property property="positionZ" value="tempZ" name="tempName" />
+    <clear_ai name="tempName" />
+    <add_ai type="CHASE_AI_SHIP" value1="3000" value2="500" name="tempName" />
+    <add_ai type="FOLLOW_COMMS_ORDERS" name="tempName" />
+    <add_ai type="DEFEND" value1="1000" value2="3000" name="tempName" />
+    <add_ai type="CHASE_ANGER" name="tempName" />
+    <set_ship_text name="tempName" newname="Miner2" />
     <set_variable name="PirateScore" value="PirateScore + 100" integer="yes" />
-    <add_ai type="FOLLOW_COMMS_ORDERS" name="Miner2" />
   </event>
   <event name="Recruit Miner3" id_arme="a0295e15-a580-48a4-9893-541af39a6566" parent_id_arme="94dfe34b-f3fc-4090-b79e-4c2659d9d863">
     <if_exists name="Miner3" />
     <if_object_property property="hasSurrendered" name="Miner3" comparator="EQUALS" value="1" />
-    <if_object_property property="sideValue" name="Miner3" comparator="NOT" value="PirateSide" />
     <log text="Pirate ship recruited Miner3" />
-    <set_side_value value="PirateSide" name="Miner3" />
+    <set_variable name="RecruitedMiner3" value="1.0" integer="yes" />
     <!--Only send message to side 3 so that we'll only see this once-->
     <incoming_comms_text from="Miner3" sideValue="3" type="FRIEND">Ok, we agree to join you.</incoming_comms_text>
+    <!--// Since the existing ship surrendered, its brain stack is ignored.-->
+    <!--// Create a replacement ship that will follow comms orders.-->
+    <get_object_property property="positionX" name="Miner3" variable="tempX" />
+    <get_object_property property="positionY" name="Miner3" variable="tempY" />
+    <get_object_property property="positionZ" name="Miner3" variable="tempZ" />
+    <set_object_property property="positionX" value="0.0" name="Miner3" />
+    <set_object_property property="positionZ" value="0.0" name="Miner3" />
+    <create type="neutral" x="tempX" y="tempY" z="tempZ" name="tempName" raceKeys="Terran" hullKeys="Destroyer" sideValue="PirateSide" />
+    <copy_object_property property="angle" name1="Miner3" name2="tempName" />
+    <copy_object_property property="shieldStateBack" name1="Miner3" name2="tempName" />
+    <copy_object_property property="shieldStateFront" name1="Miner3" name2="tempName" />
+    <copy_object_property property="topSpeed" name1="Miner3" name2="tempName" />
+    <destroy name="Miner3" />
+    <set_object_property property="positionX" value="tempX" name="tempName" />
+    <set_object_property property="positionY" value="tempY" name="tempName" />
+    <set_object_property property="positionZ" value="tempZ" name="tempName" />
+    <clear_ai name="tempName" />
+    <add_ai type="CHASE_AI_SHIP" value1="3000" value2="500" name="tempName" />
+    <add_ai type="FOLLOW_COMMS_ORDERS" name="tempName" />
+    <add_ai type="DEFEND" value1="1000" value2="3000" name="tempName" />
+    <add_ai type="CHASE_ANGER" name="tempName" />
+    <set_ship_text name="tempName" newname="Miner3" />
     <set_variable name="PirateScore" value="PirateScore + 100" integer="yes" />
-    <add_ai type="FOLLOW_COMMS_ORDERS" name="Miner3" />
   </event>
   <event name="Recruit Miner4" id_arme="542aac50-0f65-4ad8-baaf-b1b26fb05a76" parent_id_arme="94dfe34b-f3fc-4090-b79e-4c2659d9d863">
     <if_exists name="Miner4" />
     <if_object_property property="hasSurrendered" name="Miner4" comparator="EQUALS" value="1" />
-    <if_object_property property="sideValue" name="Miner4" comparator="NOT" value="PirateSide" />
     <log text="Pirate ship recruited Miner4" />
-    <set_side_value value="PirateSide" name="Miner4" />
+    <set_variable name="RecruitedMiner4" value="1.0" integer="yes" />
     <!--Only send message to side 3 so that we'll only see this once-->
     <incoming_comms_text from="Miner4" sideValue="3" type="FRIEND">Ok, we agree to join you.</incoming_comms_text>
+    <!--// Since the existing ship surrendered, its brain stack is ignored.-->
+    <!--// Create a replacement ship that will follow comms orders.-->
+    <get_object_property property="positionX" name="Miner4" variable="tempX" />
+    <get_object_property property="positionY" name="Miner4" variable="tempY" />
+    <get_object_property property="positionZ" name="Miner4" variable="tempZ" />
+    <set_object_property property="positionX" value="0.0" name="Miner4" />
+    <set_object_property property="positionZ" value="0.0" name="Miner4" />
+    <create type="neutral" x="tempX" y="tempY" z="tempZ" name="tempName" raceKeys="Terran" hullKeys="Destroyer" sideValue="PirateSide" />
+    <copy_object_property property="angle" name1="Miner4" name2="tempName" />
+    <copy_object_property property="shieldStateBack" name1="Miner4" name2="tempName" />
+    <copy_object_property property="shieldStateFront" name1="Miner4" name2="tempName" />
+    <copy_object_property property="topSpeed" name1="Miner4" name2="tempName" />
+    <destroy name="Miner4" />
+    <set_object_property property="positionX" value="tempX" name="tempName" />
+    <set_object_property property="positionY" value="tempY" name="tempName" />
+    <set_object_property property="positionZ" value="tempZ" name="tempName" />
+    <clear_ai name="tempName" />
+    <add_ai type="CHASE_AI_SHIP" value1="3000" value2="500" name="tempName" />
+    <add_ai type="FOLLOW_COMMS_ORDERS" name="tempName" />
+    <add_ai type="DEFEND" value1="1000" value2="3000" name="tempName" />
+    <add_ai type="CHASE_ANGER" name="tempName" />
+    <set_ship_text name="tempName" newname="Miner4" />
     <set_variable name="PirateScore" value="PirateScore + 100" integer="yes" />
-    <add_ai type="FOLLOW_COMMS_ORDERS" name="Miner4" />
   </event>
   <event name="Recruit Miner5" id_arme="bf35f61c-cfef-4c99-86ca-434d8995d335" parent_id_arme="94dfe34b-f3fc-4090-b79e-4c2659d9d863">
     <if_exists name="Miner5" />
     <if_object_property property="hasSurrendered" name="Miner5" comparator="EQUALS" value="1" />
-    <if_object_property property="sideValue" name="Miner5" comparator="NOT" value="PirateSide" />
     <log text="Pirate ship recruited Miner5" />
-    <set_side_value value="PirateSide" name="Miner5" />
+    <set_variable name="RecruitedMiner5" value="1.0" integer="yes" />
     <!--Only send message to side 3 so that we'll only see this once-->
     <incoming_comms_text from="Miner5" sideValue="3" type="FRIEND">Ok, we agree to join you.</incoming_comms_text>
+    <!--// Since the existing ship surrendered, its brain stack is ignored.-->
+    <!--// Create a replacement ship that will follow comms orders.-->
+    <get_object_property property="positionX" name="Miner5" variable="tempX" />
+    <get_object_property property="positionY" name="Miner5" variable="tempY" />
+    <get_object_property property="positionZ" name="Miner5" variable="tempZ" />
+    <set_object_property property="positionX" value="0.0" name="Miner5" />
+    <set_object_property property="positionZ" value="0.0" name="Miner5" />
+    <create type="neutral" x="tempX" y="tempY" z="tempZ" name="tempName" raceKeys="Terran" hullKeys="Destroyer" sideValue="PirateSide" />
+    <copy_object_property property="angle" name1="Miner5" name2="tempName" />
+    <copy_object_property property="shieldStateBack" name1="Miner5" name2="tempName" />
+    <copy_object_property property="shieldStateFront" name1="Miner5" name2="tempName" />
+    <copy_object_property property="topSpeed" name1="Miner5" name2="tempName" />
+    <destroy name="Miner5" />
+    <set_object_property property="positionX" value="tempX" name="tempName" />
+    <set_object_property property="positionY" value="tempY" name="tempName" />
+    <set_object_property property="positionZ" value="tempZ" name="tempName" />
+    <clear_ai name="tempName" />
+    <add_ai type="CHASE_AI_SHIP" value1="3000" value2="500" name="tempName" />
+    <add_ai type="FOLLOW_COMMS_ORDERS" name="tempName" />
+    <add_ai type="DEFEND" value1="1000" value2="3000" name="tempName" />
+    <add_ai type="CHASE_ANGER" name="tempName" />
+    <set_ship_text name="tempName" newname="Miner5" />
     <set_variable name="PirateScore" value="PirateScore + 100" integer="yes" />
-    <add_ai type="FOLLOW_COMMS_ORDERS" name="Miner5" />
   </event>
   <event name="Recruit Miner6" id_arme="9b02c2f5-bbba-401d-abf4-af507ba9ced9" parent_id_arme="94dfe34b-f3fc-4090-b79e-4c2659d9d863">
     <if_exists name="Miner6" />
     <if_object_property property="hasSurrendered" name="Miner6" comparator="EQUALS" value="1" />
-    <if_object_property property="sideValue" name="Miner6" comparator="NOT" value="PirateSide" />
     <log text="Pirate ship recruited Miner6" />
-    <set_side_value value="PirateSide" name="Miner6" />
+    <set_variable name="RecruitedMiner6" value="1.0" integer="yes" />
     <!--Only send message to side 3 so that we'll only see this once-->
     <incoming_comms_text from="Miner6" sideValue="3" type="FRIEND">Ok, we agree to join you.</incoming_comms_text>
+    <!--// Since the existing ship surrendered, its brain stack is ignored.-->
+    <!--// Create a replacement ship that will follow comms orders.-->
+    <get_object_property property="positionX" name="Miner6" variable="tempX" />
+    <get_object_property property="positionY" name="Miner6" variable="tempY" />
+    <get_object_property property="positionZ" name="Miner6" variable="tempZ" />
+    <set_object_property property="positionX" value="0.0" name="Miner6" />
+    <set_object_property property="positionZ" value="0.0" name="Miner6" />
+    <create type="neutral" x="tempX" y="tempY" z="tempZ" name="tempName" raceKeys="Terran" hullKeys="Destroyer" sideValue="PirateSide" />
+    <copy_object_property property="angle" name1="Miner6" name2="tempName" />
+    <copy_object_property property="shieldStateBack" name1="Miner6" name2="tempName" />
+    <copy_object_property property="shieldStateFront" name1="Miner6" name2="tempName" />
+    <copy_object_property property="topSpeed" name1="Miner6" name2="tempName" />
+    <destroy name="Miner6" />
+    <set_object_property property="positionX" value="tempX" name="tempName" />
+    <set_object_property property="positionY" value="tempY" name="tempName" />
+    <set_object_property property="positionZ" value="tempZ" name="tempName" />
+    <clear_ai name="tempName" />
+    <add_ai type="CHASE_AI_SHIP" value1="3000" value2="500" name="tempName" />
+    <add_ai type="FOLLOW_COMMS_ORDERS" name="tempName" />
+    <add_ai type="DEFEND" value1="1000" value2="3000" name="tempName" />
+    <add_ai type="CHASE_ANGER" name="tempName" />
+    <set_ship_text name="tempName" newname="Miner6" />
     <set_variable name="PirateScore" value="PirateScore + 100" integer="yes" />
+  </event>
+  <event name="Miner1 switching side" id_arme="c9c80b67-22e2-4b2a-aa9f-7671d27599f3" parent_id_arme="94dfe34b-f3fc-4090-b79e-4c2659d9d863">
+    <if_exists name="Miner1" />
+    <if_variable name="RecruitedMiner1" comparator="EQUALS" value="1.0" />
+    <if_object_property property="sideValue" name="Miner1" comparator="NOT" value="PirateSide" />
+    <log text="Miner1 switching side to TSN" />
+    <set_side_value value="PirateSide" name="Miner1" />
+  </event>
+  <event name="Miner2 switching side" id_arme="9a79168f-8535-4dc3-a1f1-84184441c315" parent_id_arme="94dfe34b-f3fc-4090-b79e-4c2659d9d863">
+    <if_exists name="Miner2" />
+    <if_variable name="RecruitedMiner2" comparator="EQUALS" value="1.0" />
+    <if_object_property property="sideValue" name="Miner2" comparator="NOT" value="PirateSide" />
+    <log text="Miner2 switching side to TSN" />
+    <set_side_value value="PirateSide" name="Miner2" />
+  </event>
+  <event name="Miner3 switching side" id_arme="c97431d3-5005-4c63-a0b9-e1151fab8fe3" parent_id_arme="94dfe34b-f3fc-4090-b79e-4c2659d9d863">
+    <if_exists name="Miner3" />
+    <if_variable name="RecruitedMiner3" comparator="EQUALS" value="1.0" />
+    <if_object_property property="sideValue" name="Miner3" comparator="NOT" value="PirateSide" />
+    <log text="Miner3 switching side to TSN" />
+    <set_side_value value="PirateSide" name="Miner3" />
+  </event>
+  <event name="Miner4 switching side" id_arme="52d91f8b-0cde-4810-9c5e-fa78b28cf917" parent_id_arme="94dfe34b-f3fc-4090-b79e-4c2659d9d863">
+    <if_exists name="Miner4" />
+    <if_variable name="RecruitedMiner4" comparator="EQUALS" value="1.0" />
+    <if_object_property property="sideValue" name="Miner4" comparator="NOT" value="PirateSide" />
+    <log text="Miner4 switching side to TSN" />
+    <set_side_value value="PirateSide" name="Miner4" />
+  </event>
+  <event name="Miner5 switching side" id_arme="2e7230cd-d4a0-409d-8cbc-b3cac06b118f" parent_id_arme="94dfe34b-f3fc-4090-b79e-4c2659d9d863">
+    <if_exists name="Miner5" />
+    <if_variable name="RecruitedMiner5" comparator="EQUALS" value="1.0" />
+    <if_object_property property="sideValue" name="Miner5" comparator="NOT" value="PirateSide" />
+    <log text="Miner5 switching side to TSN" />
+    <set_side_value value="PirateSide" name="Miner5" />
+  </event>
+  <event name="Miner6 switching side" id_arme="1ced38a0-e751-438a-b244-787295bf5f08" parent_id_arme="94dfe34b-f3fc-4090-b79e-4c2659d9d863">
+    <if_exists name="Miner6" />
+    <if_variable name="RecruitedMiner6" comparator="EQUALS" value="1.0" />
+    <if_object_property property="sideValue" name="Miner6" comparator="NOT" value="PirateSide" />
+    <log text="Miner6 switching side to TSN" />
+    <set_side_value value="PirateSide" name="Miner6" />
+  </event>
+  <event name="Miner1 to SG2" id_arme="22932f76-6356-4602-8d4c-250672428ebe" parent_id_arme="94dfe34b-f3fc-4090-b79e-4c2659d9d863">
+    <if_exists player_slot="1" />
+    <if_exists name="Miner1" />
+    <if_object_property property="sideValue" name="Miner1" comparator="EQUALS" value="PirateSide" />
+    <if_outside_box player_slot="1" leastX="0.0" leastZ="0.0" mostX="50000.0" mostZ="100000.0" />
+    <if_inside_box name="Miner1" leastX="0.0" leastZ="0.0" mostX="50000.0" mostZ="100000.0" />
+    <if_outside_sphere name="Miner1" centerX="SG2X" centerY="0.0" centerZ="SG2Z" radius="500" />
+    <if_variable name="Miner1AIType" comparator="EQUALS" value="0.0" />
+    <log text="Miner1 heading to SG2" />
+    <clear_ai name="Miner1" />
+    <add_ai type="POINT_THROTTLE" value1="SG2X" value2="0.0" value3="SG2Z" value4="1.0" name="Miner1" />
+    <set_variable name="Miner1AIType" value="1.0" integer="yes" />
+  </event>
+  <event name="Miner2 to SG2" id_arme="094e24fc-727a-4d99-bb8a-cc0b58eb79e6" parent_id_arme="94dfe34b-f3fc-4090-b79e-4c2659d9d863">
+    <if_exists player_slot="1" />
+    <if_exists name="Miner2" />
+    <if_object_property property="sideValue" name="Miner2" comparator="EQUALS" value="PirateSide" />
+    <if_outside_box player_slot="1" leastX="0.0" leastZ="0.0" mostX="50000.0" mostZ="100000.0" />
+    <if_inside_box name="Miner2" leastX="0.0" leastZ="0.0" mostX="50000.0" mostZ="100000.0" />
+    <if_outside_sphere name="Miner2" centerX="SG2X" centerY="0.0" centerZ="SG2Z" radius="500" />
+    <if_variable name="Miner2AIType" comparator="EQUALS" value="0.0" />
+    <log text="Miner2 heading to SG2" />
+    <clear_ai name="Miner2" />
+    <add_ai type="POINT_THROTTLE" value1="SG2X" value2="0.0" value3="SG2Z" value4="1.0" name="Miner2" />
+    <set_variable name="Miner2AIType" value="1.0" integer="yes" />
+  </event>
+  <event name="Miner3 to SG2" id_arme="2c2aeb1e-7b1a-4d0c-af9e-c3b2c72ca5c4" parent_id_arme="94dfe34b-f3fc-4090-b79e-4c2659d9d863">
+    <if_exists player_slot="1" />
+    <if_exists name="Miner3" />
+    <if_object_property property="sideValue" name="Miner3" comparator="EQUALS" value="PirateSide" />
+    <if_outside_box player_slot="1" leastX="0.0" leastZ="0.0" mostX="50000.0" mostZ="100000.0" />
+    <if_inside_box name="Miner3" leastX="0.0" leastZ="0.0" mostX="50000.0" mostZ="100000.0" />
+    <if_outside_sphere name="Miner3" centerX="SG2X" centerY="0.0" centerZ="SG2Z" radius="500" />
+    <if_variable name="Miner3AIType" comparator="EQUALS" value="0.0" />
+    <log text="Miner3 heading to SG2" />
+    <clear_ai name="Miner3" />
+    <add_ai type="POINT_THROTTLE" value1="SG2X" value2="0.0" value3="SG2Z" value4="1.0" name="Miner3" />
+    <set_variable name="Miner3AIType" value="1.0" integer="yes" />
+  </event>
+  <event name="Miner4 to SG2" id_arme="50c0760f-2061-4d1c-9a0d-9aedcfc9cc3f" parent_id_arme="94dfe34b-f3fc-4090-b79e-4c2659d9d863">
+    <if_exists player_slot="1" />
+    <if_exists name="Miner4" />
+    <if_object_property property="sideValue" name="Miner4" comparator="EQUALS" value="PirateSide" />
+    <if_outside_box player_slot="1" leastX="0.0" leastZ="0.0" mostX="50000.0" mostZ="100000.0" />
+    <if_inside_box name="Miner4" leastX="0.0" leastZ="0.0" mostX="50000.0" mostZ="100000.0" />
+    <if_outside_sphere name="Miner4" centerX="SG2X" centerY="0.0" centerZ="SG2Z" radius="500" />
+    <if_variable name="Miner4AIType" comparator="EQUALS" value="0.0" />
+    <log text="Miner4 heading to SG2" />
+    <clear_ai name="Miner4" />
+    <add_ai type="POINT_THROTTLE" value1="SG2X" value2="0.0" value3="SG2Z" value4="1.0" name="Miner4" />
+    <set_variable name="Miner4AIType" value="1.0" integer="yes" />
+  </event>
+  <event name="Miner5 to SG2" id_arme="c8565eaa-901f-4ebc-8818-118ddb2dabd9" parent_id_arme="94dfe34b-f3fc-4090-b79e-4c2659d9d863">
+    <if_exists player_slot="1" />
+    <if_exists name="Miner5" />
+    <if_object_property property="sideValue" name="Miner5" comparator="EQUALS" value="PirateSide" />
+    <if_outside_box player_slot="1" leastX="0.0" leastZ="0.0" mostX="50000.0" mostZ="100000.0" />
+    <if_inside_box name="Miner5" leastX="0.0" leastZ="0.0" mostX="50000.0" mostZ="100000.0" />
+    <if_outside_sphere name="Miner5" centerX="SG2X" centerY="0.0" centerZ="SG2Z" radius="500" />
+    <if_variable name="Miner5AIType" comparator="EQUALS" value="0.0" />
+    <log text="Miner5 heading to SG2" />
+    <clear_ai name="Miner5" />
+    <add_ai type="POINT_THROTTLE" value1="SG2X" value2="0.0" value3="SG2Z" value4="1.0" name="Miner5" />
+    <set_variable name="Miner5AIType" value="1.0" integer="yes" />
+  </event>
+  <event name="Miner6 to SG2" id_arme="e7523360-2754-4363-baa5-71e8cf84537c" parent_id_arme="94dfe34b-f3fc-4090-b79e-4c2659d9d863">
+    <if_exists player_slot="1" />
+    <if_exists name="Miner6" />
+    <if_object_property property="sideValue" name="Miner6" comparator="EQUALS" value="PirateSide" />
+    <if_outside_box player_slot="1" leastX="0.0" leastZ="0.0" mostX="50000.0" mostZ="100000.0" />
+    <if_inside_box name="Miner6" leastX="0.0" leastZ="0.0" mostX="50000.0" mostZ="100000.0" />
+    <if_outside_sphere name="Miner6" centerX="SG2X" centerY="0.0" centerZ="SG2Z" radius="500" />
+    <if_variable name="Miner6AIType" comparator="EQUALS" value="0.0" />
+    <log text="Miner6 heading to SG2" />
+    <clear_ai name="Miner6" />
+    <add_ai type="POINT_THROTTLE" value1="SG2X" value2="0.0" value3="SG2Z" value4="1.0" name="Miner6" />
+    <set_variable name="Miner6AIType" value="1.0" integer="yes" />
+  </event>
+  <event name="Miner1 to SG1" id_arme="eb711411-953a-4548-9693-90039d1a9226" parent_id_arme="94dfe34b-f3fc-4090-b79e-4c2659d9d863">
+    <if_exists player_slot="1" />
+    <if_exists name="Miner1" />
+    <if_object_property property="sideValue" name="Miner1" comparator="EQUALS" value="PirateSide" />
+    <if_outside_box player_slot="1" leastX="0.0" leastZ="0.0" mostX="50000.0" mostZ="100000.0" />
+    <if_inside_sphere name="Miner1" centerX="SG2X" centerY="0.0" centerZ="SG2Z" radius="500" />
+    <log text="Miner1 took stargate" />
+    <set_relative_position name2="Miner1" distance="600" angle="50" name1="SG1" />
+    <clear_ai name="Miner1" />
+    <add_ai type="TARGET_THROTTLE" value1="0.0" targetName="Helms Deep" value2="1" name="Miner1" />
+    <add_ai type="CHASE_AI_SHIP" value1="3000" value2="500" name="Miner1" />
+    <add_ai type="FOLLOW_COMMS_ORDERS" name="Miner1" />
+    <add_ai type="DEFEND" value1="1000" value2="3000" name="Miner1" />
+    <add_ai type="CHASE_ANGER" name="Miner1" />
+  </event>
+  <event name="Miner2 to SG1" id_arme="6d6e92ae-85b1-4809-ba7b-d447fb49a00f" parent_id_arme="94dfe34b-f3fc-4090-b79e-4c2659d9d863">
+    <if_exists player_slot="1" />
+    <if_exists name="Miner2" />
+    <if_object_property property="sideValue" name="Miner2" comparator="EQUALS" value="PirateSide" />
+    <if_outside_box player_slot="1" leastX="0.0" leastZ="0.0" mostX="50000.0" mostZ="100000.0" />
+    <if_inside_sphere name="Miner2" centerX="SG2X" centerY="0.0" centerZ="SG2Z" radius="500" />
+    <log text="Miner2 took stargate" />
+    <set_relative_position name2="Miner2" distance="600" angle="50" name1="SG1" />
+    <clear_ai name="Miner2" />
+    <add_ai type="TARGET_THROTTLE" value1="0.0" targetName="Helms Deep" value2="1" name="Miner2" />
+    <add_ai type="CHASE_AI_SHIP" value1="3000" value2="500" name="Miner2" />
+    <add_ai type="FOLLOW_COMMS_ORDERS" name="Miner2" />
+    <add_ai type="DEFEND" value1="1000" value2="3000" name="Miner2" />
+    <add_ai type="CHASE_ANGER" name="Miner2" />
+  </event>
+  <event name="Miner3 to SG1" id_arme="3e3dd305-f720-4efa-bf8d-91f64296a322" parent_id_arme="94dfe34b-f3fc-4090-b79e-4c2659d9d863">
+    <if_exists player_slot="1" />
+    <if_exists name="Miner3" />
+    <if_object_property property="sideValue" name="Miner3" comparator="EQUALS" value="PirateSide" />
+    <if_outside_box player_slot="1" leastX="0.0" leastZ="0.0" mostX="50000.0" mostZ="100000.0" />
+    <if_inside_sphere name="Miner3" centerX="SG2X" centerY="0.0" centerZ="SG2Z" radius="500" />
+    <log text="Miner3 took stargate" />
+    <set_relative_position name2="Miner3" distance="600" angle="50" name1="SG1" />
+    <clear_ai name="Miner3" />
+    <add_ai type="TARGET_THROTTLE" value1="0.0" targetName="Helms Deep" value2="1" name="Miner3" />
+    <add_ai type="CHASE_AI_SHIP" value1="3000" value2="500" name="Miner3" />
+    <add_ai type="FOLLOW_COMMS_ORDERS" name="Miner3" />
+    <add_ai type="DEFEND" value1="1000" value2="3000" name="Miner3" />
+    <add_ai type="CHASE_ANGER" name="Miner3" />
+  </event>
+  <event name="Miner4 to SG1" id_arme="1a478c9a-deaf-430d-9265-6aa9b08f52ef" parent_id_arme="94dfe34b-f3fc-4090-b79e-4c2659d9d863">
+    <if_exists player_slot="1" />
+    <if_exists name="Miner4" />
+    <if_object_property property="sideValue" name="Miner4" comparator="EQUALS" value="PirateSide" />
+    <if_outside_box player_slot="1" leastX="0.0" leastZ="0.0" mostX="50000.0" mostZ="100000.0" />
+    <if_inside_sphere name="Miner4" centerX="SG2X" centerY="0.0" centerZ="SG2Z" radius="500" />
+    <log text="Miner4 took stargate" />
+    <set_relative_position name2="Miner4" distance="600" angle="50" name1="SG1" />
+    <clear_ai name="Miner4" />
+    <add_ai type="TARGET_THROTTLE" value1="0.0" targetName="Helms Deep" value2="1" name="Miner4" />
+    <add_ai type="CHASE_AI_SHIP" value1="3000" value2="500" name="Miner4" />
+    <add_ai type="FOLLOW_COMMS_ORDERS" name="Miner4" />
+    <add_ai type="DEFEND" value1="1000" value2="3000" name="Miner4" />
+    <add_ai type="CHASE_ANGER" name="Miner4" />
+  </event>
+  <event name="Miner5 to SG1" id_arme="6bec44dc-d7b8-4c76-9a9e-e29865d9cee8" parent_id_arme="94dfe34b-f3fc-4090-b79e-4c2659d9d863">
+    <if_exists player_slot="1" />
+    <if_exists name="Miner5" />
+    <if_object_property property="sideValue" name="Miner5" comparator="EQUALS" value="PirateSide" />
+    <if_outside_box player_slot="1" leastX="0.0" leastZ="0.0" mostX="50000.0" mostZ="100000.0" />
+    <if_inside_sphere name="Miner5" centerX="SG2X" centerY="0.0" centerZ="SG2Z" radius="500" />
+    <log text="Miner5 took stargate" />
+    <set_relative_position name2="Miner5" distance="600" angle="50" name1="SG1" />
+    <clear_ai name="Miner5" />
+    <add_ai type="TARGET_THROTTLE" value1="0.0" targetName="Helms Deep" value2="1" name="Miner5" />
+    <add_ai type="CHASE_AI_SHIP" value1="3000" value2="500" name="Miner5" />
+    <add_ai type="FOLLOW_COMMS_ORDERS" name="Miner5" />
+    <add_ai type="DEFEND" value1="1000" value2="3000" name="Miner5" />
+    <add_ai type="CHASE_ANGER" name="Miner5" />
+  </event>
+  <event name="Miner6 to SG1" id_arme="a5a58430-e715-4801-b8a1-f7831ece78db" parent_id_arme="94dfe34b-f3fc-4090-b79e-4c2659d9d863">
+    <if_exists player_slot="1" />
+    <if_exists name="Miner6" />
+    <if_object_property property="sideValue" name="Miner6" comparator="EQUALS" value="PirateSide" />
+    <if_outside_box player_slot="1" leastX="0.0" leastZ="0.0" mostX="50000.0" mostZ="100000.0" />
+    <if_inside_sphere name="Miner6" centerX="SG2X" centerY="0.0" centerZ="SG2Z" radius="500" />
+    <log text="Miner6 took stargate" />
+    <set_relative_position name2="Miner6" distance="600" angle="50" name1="SG1" />
+    <clear_ai name="Miner6" />
+    <add_ai type="TARGET_THROTTLE" value1="0.0" targetName="Helms Deep" value2="1" name="Miner6" />
+    <add_ai type="CHASE_AI_SHIP" value1="3000" value2="500" name="Miner6" />
     <add_ai type="FOLLOW_COMMS_ORDERS" name="Miner6" />
+    <add_ai type="DEFEND" value1="1000" value2="3000" name="Miner6" />
+    <add_ai type="CHASE_ANGER" name="Miner6" />
   </event>
   <event name="Display Score" id_arme="8483457d-bb42-4848-8aac-e2a16761bb6c" parent_id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1">
     <if_variable name="PirateScoreDisplayed" comparator="NOT" value="PirateScore" />

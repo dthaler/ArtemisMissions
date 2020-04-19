@@ -123,3 +123,29 @@ Miner4: 84/70
 Pirate Score:
     100 for each converted miner
      10 for each astroid piece mined
+
+AI Miner blocks:
+---------------
+Enemy of player:
+    TRY_TO_BECOME_LEADER (n/a)
+    CHASE_PLAYER 0 0
+    CHASE_STATION 0
+    CHASE_AI_SHIP 3000 500
+    CHASE_PLAYER 3000 500
+    CHASE_ANGER
+    LEADER_LEADS (n/a)
+    FOLLOW_LEADER (n/a)
+    SPCL_AI (n/a)
+
+Under player control:
+    CHASE_AI_SHIP 3000 500
+    FOLLOW_COMMS_ORDERS
+    DEFEND 1000 3000
+    CHASE_ANGER
+
+Heading to stargate:
+    POINT_THROTTLE (SG2X, 0, SG2Z)
+
+Brain stacks for surrendered ships don't work, even if set hasSurrendered
+    back to no.  Have to recreate the ship to un-surrender and re-enable
+    brain stack
