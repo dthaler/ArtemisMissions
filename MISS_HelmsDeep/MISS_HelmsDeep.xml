@@ -1,13 +1,15 @@
 <mission_data version="2.7.5" background_id_arme="2e949b92-fa5c-4c26-a157-dae7b1b314d2" playerShipNames_arme="Artemis\Intrepid\Aegis\Horatio\Excalibur\Hera\Ceres\Diana">
   <mission_description>Two-bridge mission where one bridge plays a TSN station under attack, and the other bridge plays a Pirate ship.  Will they cooperate?</mission_description>
   <start id_arme="2e949b92-fa5c-4c26-a157-dae7b1b314d2">
+    <!--Constants:-->
     <!--Side values:-->
     <!--* side 1 is the armada attacking Helms Deep-->
     <!--* side 2 is the TSN (Helms Deep)-->
     <!--* side 3 is the Pirate ship-->
     <!--* side 4 are the independent miners-->
-    <set_variable name="MinerSpeed" value="6.0" />
-    <set_variable name="PirateSide" value="3.0" integer="yes" />
+    <set_variable name="MINER_SPEED" value="6.0" />
+    <set_variable name="ORIGINAL_PIRATE_SIDE" value="3.0" integer="yes" />
+    <set_variable name="ASSISTANCE_REWARD" value="2400.0" integer="yes" />
     <!---->
     <!--Game Setup-->
     <!---->
@@ -19,6 +21,7 @@
     <big_message title="Helms Deep" subtitle1="by Dave Thaler and Colin Chick" subtitle2="a two-bridge adventure for Artemis 2.7.5" />
     <!--Debug properties.  Set these to non-zero for debugging purposes.-->
     <set_variable name="DisableContinualEvents" value="0.0" integer="yes" />
+    <set_timer name="RefreshGMButtons" seconds="0" />
     <!---->
     <!--"Sector" border-->
     <!---->
@@ -146,6 +149,7 @@
     <!---->
     <!--Stargates-->
     <!---->
+    <set_variable name="StargatesEnabled" value="0.0" integer="yes" />
     <create type="monster" monsterType="8" x="69420.0" y="0.0" z="30178.0" angle="0" name="SG1" />
     <set_monster_tag_data tag_slot="0" name="SG1" />
     <set_monster_tag_data tag_slot="1" name="SG1" />
@@ -183,26 +187,28 @@
     <!---->
     <!--Pirate Setup-->
     <!---->
+    <set_variable name="PirateSide" value="ORIGINAL_PIRATE_SIDE" integer="yes" />
     <create type="player" player_slot="1" x="10000.0" y="0.0" z="20000.0" angle="0" sideValue="PirateSide" raceKeys="Pirate" hullKeys="Strongbow" warp="yes" jump="no" />
     <set_variable name="PirateScore" value="0.0" integer="yes" />
     <create type="enemy" x="27902.0" y="0.0" z="5803.0" angle="0" name="Miner1" raceKeys="Terran" hullKeys="Destroyer" sideValue="4" fleetnumber="-1" />
     <set_object_property property="surrenderChance" value="100" name="Miner1" />
-    <set_object_property property="topSpeed" value="MinerSpeed" name="Miner1" />
+    <set_object_property property="topSpeed" value="MINER_SPEED" name="Miner1" />
     <create type="enemy" x="5134.0" y="0.0" z="79196.0" angle="0" name="Miner2" raceKeys="Terran" hullKeys="Destroyer" sideValue="4" fleetnumber="-1" />
     <set_object_property property="surrenderChance" value="100" name="Miner2" />
-    <set_object_property property="topSpeed" value="MinerSpeed" name="Miner2" />
+    <set_object_property property="topSpeed" value="MINER_SPEED" name="Miner2" />
     <create type="enemy" x="32054.0" y="0.0" z="87901.0" angle="0" name="Miner3" raceKeys="Terran" hullKeys="Destroyer" sideValue="4" fleetnumber="-1" />
     <set_object_property property="surrenderChance" value="100" name="Miner3" />
-    <set_object_property property="topSpeed" value="MinerSpeed" name="Miner3" />
+    <set_object_property property="topSpeed" value="MINER_SPEED" name="Miner3" />
     <create type="enemy" x="34599.0" y="0.0" z="54955.0" angle="0" name="Miner4" raceKeys="Terran" hullKeys="Destroyer" sideValue="4" fleetnumber="-1" />
     <set_object_property property="surrenderChance" value="100" name="Miner4" />
-    <set_object_property property="topSpeed" value="MinerSpeed" name="Miner4" />
+    <set_object_property property="topSpeed" value="MINER_SPEED" name="Miner4" />
     <create type="enemy" x="34197.0" y="0.0" z="25223.0" angle="0" name="Miner5" raceKeys="Terran" hullKeys="Destroyer" sideValue="4" fleetnumber="-1" />
     <set_object_property property="surrenderChance" value="100" name="Miner5" />
-    <set_object_property property="topSpeed" value="MinerSpeed" name="Miner5" />
+    <set_object_property property="topSpeed" value="MINER_SPEED" name="Miner5" />
     <create type="enemy" x="10759.0" y="0.0" z="39285.0" angle="0" name="Miner6" raceKeys="Terran" hullKeys="Destroyer" sideValue="4" fleetnumber="-1" />
     <set_object_property property="surrenderChance" value="100" name="Miner6" />
-    <set_object_property property="topSpeed" value="MinerSpeed" name="Miner6" />
+    <set_object_property property="topSpeed" value="MINER_SPEED" name="Miner6" />
+    <set_variable name="UseStargateDisplayed" value="0.0" integer="yes" />
     <!---->
     <!--Asteroids to be mined-->
     <!---->
@@ -276,11 +282,11 @@
     <set_variable name="PirateScoreDisplayed" value="0.0" integer="yes" />
     <create type="genericMesh" x="30000.0" y="0.0" z="100000.0" name="Pirate Score: 0" meshFileName="dat/asteroid.dxs" textureFileName="dat/asteroidTexture.png" colorRed="0.5" colorGreen="0.5" colorBlue="0.5" />
     <set_object_property property="artScale" value="0.0" name="Pirate Score: 0" />
-    <set_variable name="TSNScoreDisplayed" value="0.0" integer="yes" />
+    <set_variable name="TsnScoreDisplayed" value="0.0" integer="yes" />
     <create type="genericMesh" x="70000.0" y="0.0" z="100000.0" name="TSN Score: 0" meshFileName="dat/asteroid.dxs" textureFileName="dat/asteroidTexture.png" colorRed="0.5" colorGreen="0.5" colorBlue="0.5" />
     <set_object_property property="artScale" value="0.0" name="TSN Score: 0" />
   </start>
-  <folder_arme name="TSN Events" id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa" />
+  <folder_arme name="TSN Events" id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa" expanded_arme="" />
   <folder_arme name="Start" id_arme="63b761a1-37ab-42f5-afaf-a627617557e5" parent_id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa" />
   <event name="Player ship 0 created" id_arme="353b89a6-114f-48a6-b74d-4244cc91307b" parent_id_arme="63b761a1-37ab-42f5-afaf-a627617557e5">
     <if_exists player_slot="0" />
@@ -379,11 +385,11 @@
     <set_monster_tag_data tag_slot="0" name="SG2" sourcetext="Distress call from Helms Deep" />
   </event>
   <event name="Score" id_arme="c0f38e91-547a-498a-8687-9bfa03a2afa7" parent_id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa">
-    <if_variable name="TSNScoreDisplayed" comparator="NOT" value="TsnScore" />
-    <set_ship_text name="TSN Score: |TSNScoreDisplayed|" newname="TSN Score: |TsnScore|" />
-    <set_variable name="TSNScoreDisplayed" value="TsnScore" integer="yes" />
+    <if_variable name="TsnScoreDisplayed" comparator="NOT" value="TsnScore" />
+    <set_ship_text name="TSN Score: |TsnScoreDisplayed|" newname="TSN Score: |TsnScore|" />
+    <set_variable name="TsnScoreDisplayed" value="TsnScore" integer="yes" />
   </event>
-  <folder_arme name="Pirate Events" id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1" />
+  <folder_arme name="Pirate Events" id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1" expanded_arme="" />
   <folder_arme name="Start" id_arme="0a737b19-47ab-4ccb-a2bb-a072ad49ee0b" parent_id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1" />
   <event name="Player ship 1 created" id_arme="64982b23-719e-4d78-a74c-086ce6d8365c" parent_id_arme="0a737b19-47ab-4ccb-a2bb-a072ad49ee0b">
     <if_exists player_slot="1" />
@@ -403,13 +409,51 @@
     <incoming_comms_text from="GAME SERVER" sideValue="3" type="ALERT">Your pirate ship will be scored based on how much Latinum you can collect, whether from mining or looting or any other means.</incoming_comms_text>
     <set_variable name="PirateIntroSent" value="1.0" integer="yes" />
   </event>
-  <folder_arme name="SG2" id_arme="26f190ad-4fbe-4e36-84d5-02e17b293e4f" parent_id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1" />
+  <folder_arme name="SG2" id_arme="26f190ad-4fbe-4e36-84d5-02e17b293e4f" parent_id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1" expanded_arme="" />
   <event name="SG2 scanned" id_arme="a875072d-d164-4204-862f-8752b7f24f3b" parent_id_arme="26f190ad-4fbe-4e36-84d5-02e17b293e4f">
     <if_variable name="SG2ProbeSucceeded" comparator="EQUALS" value="0.0" />
     <if_scan_level name="SG2" side="3" comparator="GREATER" value="0" />
     <log text="SG2 scanned" />
     <set_variable name="SG2ProbeSucceeded" value="1.0" integer="yes" />
     <incoming_comms_text from="SG2" sideValue="3" type="ALERT">Probe successful</incoming_comms_text>
+  </event>
+  <event name="Enable Stargates" id_arme="3ca17a5d-a2cd-4147-ad25-e684d646bd63" parent_id_arme="26f190ad-4fbe-4e36-84d5-02e17b293e4f">
+    <if_variable name="StargatesEnabled" comparator="EQUALS" value="1.0" />
+    <log text="Enabling stargates..." />
+    <incoming_comms_text from="Helms Deep" sideValue="PirateSide" type="ALERT">Mayday! Mayday! We are under attack and are in need of assistance from anyone available! If you assist us, we will give you |ASSISTANCE_REWARD| credits. To accept, use this code at the stargate nearest you.</incoming_comms_text>
+    <set_variable name="StargatesEnabled" value="2.0" integer="yes" />
+  </event>
+  <event name="Show use stargate button" id_arme="f404f41c-8327-484a-89d6-b117bb356ec2" parent_id_arme="26f190ad-4fbe-4e36-84d5-02e17b293e4f">
+    <if_variable name="StargatesEnabled" comparator="EQUALS" value="2.0" />
+    <if_exists player_slot="1" />
+    <if_object_property property="sideValue" player_slot="1" comparator="EQUALS" value="ORIGINAL_PIRATE_SIDE" />
+    <if_distance player_slot1="1" name2="SG2" comparator="LESS" value="500.0" />
+    <if_variable name="UseStargateDisplayed" comparator="EQUALS" value="0.0" />
+    <log text="Pirate player approached SG2" />
+    <set_comms_button text="Use Stargate" sideValue="ORIGINAL_PIRATE_SIDE" />
+    <set_variable name="UseStargateDisplayed" value="1.0" integer="yes" />
+  </event>
+  <event name="Clear use stargate button" id_arme="7eb1db27-2e2f-484f-8c50-2960618c39ef" parent_id_arme="26f190ad-4fbe-4e36-84d5-02e17b293e4f">
+    <if_variable name="StargatesEnabled" comparator="EQUALS" value="2.0" />
+    <if_exists player_slot="1" />
+    <if_object_property property="sideValue" player_slot="1" comparator="EQUALS" value="ORIGINAL_PIRATE_SIDE" />
+    <if_distance player_slot1="1" name2="SG2" comparator="GREATER" value="600.0" />
+    <if_variable name="UseStargateDisplayed" comparator="EQUALS" value="1.0" />
+    <log text="Pirate player left SG2" />
+    <clear_comms_button text="Use Stargate" sideValue="ORIGINAL_PIRATE_SIDE" />
+    <set_variable name="UseStargateDisplayed" value="0.0" integer="yes" />
+  </event>
+  <event name="Use stargate" id_arme="7c79c4e2-0d28-4905-81bf-25574e6b932a" parent_id_arme="26f190ad-4fbe-4e36-84d5-02e17b293e4f">
+    <if_comms_button text="Use Stargate" />
+    <log text="Pirate player used stargate" />
+    <clear_comms_button text="Use Stargate" sideValue="ORIGINAL_PIRATE_SIDE" />
+    <set_variable name="UseStargateDisplayed" value="0.0" integer="yes" />
+    <!---->
+    <!--// Move to SG1-->
+    <set_relative_position player_slot2="1" distance="500" angle="180" name1="SG1" />
+    <!---->
+    <!--// Switch pirate ship to TSN side. Other events will switch any recruited miners.-->
+    <set_side_value value="2" player_slot="1" />
   </event>
   <folder_arme name="Mining" id_arme="8dec4ba3-35f1-4afe-92c1-1cb88f97cc83" parent_id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1" />
   <event name="A0  gone" id_arme="65f70993-6dc0-4cca-a267-a52da3af6654" parent_id_arme="8dec4ba3-35f1-4afe-92c1-1cb88f97cc83">
@@ -572,7 +616,7 @@
     <set_relative_position name2="A9" distance="0" angle="0" name1="A9 " />
     <set_ship_text name="A9" scan_desc="Minerals left: |A9HitPointsLeft|" />
   </event>
-  <folder_arme name="Recruitment" id_arme="94dfe34b-f3fc-4090-b79e-4c2659d9d863" parent_id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1" />
+  <folder_arme name="Recruiting Miners" id_arme="94dfe34b-f3fc-4090-b79e-4c2659d9d863" parent_id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1" />
   <event name="Recruit Miner1" id_arme="cde167fa-87ba-42c3-bc9b-fe38bf7995bc" parent_id_arme="94dfe34b-f3fc-4090-b79e-4c2659d9d863">
     <if_exists name="Miner1" />
     <if_object_property property="hasSurrendered" name="Miner1" comparator="EQUALS" value="1" />
@@ -644,7 +688,15 @@
     <set_ship_text name="Pirate Score: |PirateScoreDisplayed|" newname="Pirate Score: |PirateScore|" />
     <set_variable name="PirateScoreDisplayed" value="PirateScore" integer="yes" />
   </event>
-  <folder_arme name="Joint Events" id_arme="f3d012a5-0f1e-4f91-b16d-d0bb1745ad7e" />
+  <folder_arme name="Joint Events" id_arme="f3d012a5-0f1e-4f91-b16d-d0bb1745ad7e" expanded_arme="" />
+  <event name="Victory with pirates" id_arme="0902d234-84b0-4097-b15d-0e44e33ef2c1" parent_id_arme="f3d012a5-0f1e-4f91-b16d-d0bb1745ad7e">
+    <if_fleet_count comparator="EQUALS" value="0.0" sideValue="1" />
+    <if_variable name="GameOver" comparator="EQUALS" value="0.0" />
+    <if_exists player_slot="1" />
+    <if_object_property property="sideValue" player_slot="1" comparator="EQUALS" value="2" />
+    <log text="Giving pirates |ASSISTANCE_REWARD| bonus for helping TSN succeed" />
+    <set_variable name="PirateScore" value="PirateScore + ASSISTANCE_REWARD" integer="yes" />
+  </event>
   <event name="Victory" id_arme="dcab75b6-8026-4f2a-9c42-303b41dce749" parent_id_arme="f3d012a5-0f1e-4f91-b16d-d0bb1745ad7e">
     <if_fleet_count comparator="EQUALS" value="0.0" sideValue="1" />
     <if_variable name="GameOver" comparator="EQUALS" value="0.0" />
@@ -673,5 +725,20 @@
     <if_timer_finished name="EndGameTimer" />
     <log text="End Game" />
     <end_mission />
+  </event>
+  <folder_arme name="GM Controls" id_arme="1257aab7-c7dc-42a4-946c-0d5c1384470a" expanded_arme="" />
+  <event name="Refresh GM enable stargates button" id_arme="818c7095-fb17-4c43-b9b0-629537125ac9" parent_id_arme="1257aab7-c7dc-42a4-946c-0d5c1384470a">
+    <if_timer_finished name="RefreshGMButtons" />
+    <if_variable name="StargatesEnabled" comparator="EQUALS" value="0.0" />
+    <clear_gm_button text="Enable Stargates" />
+    <set_gm_button text="Enable Stargates" />
+    <set_timer name="RefreshGMButtons" seconds="30" />
+  </event>
+  <event name="GM Enable Stargates" id_arme="d06a7a15-f0de-4715-a100-8c94bf3dbfe8" parent_id_arme="1257aab7-c7dc-42a4-946c-0d5c1384470a">
+    <if_gm_button text="Enable Stargates" />
+    <log text="GM enabled stargates" />
+    <clear_gm_button text="Enable Stargates" />
+    <!--Set enabled to 1 to tell the stargates event to do its thing-->
+    <set_variable name="StargatesEnabled" value="1.0" integer="yes" />
   </event>
 </mission_data>

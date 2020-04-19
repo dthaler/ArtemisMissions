@@ -15,16 +15,34 @@
 04/14/20 ADD: basic asteroid mining on pirate side
 04/18/20 ADD: enemy miners to convert
 04/18/20 ADD: score display on LRS
+04/18/20 ADD: ability for pirate player to use SG2
 
 {
+
+1/2 ADD: ability for pirate player to use SG1
 
 1/2 ADD: TSN: allow sending a "help" message e.g., via probes
          could require a fighter to go out to it
          what is the range of a tag?
 
-1/2 ADD: ability for pirate player to use stargate
-
 1/2 ADD: ability for pirate NPC ships to use stargate
+            * if pirate ship is in TSN territory
+              AND if NPC ship is on pirate side
+                if NPC ship is near pirate stargate
+                   move to TSN stargate
+                else if NPC ship is in pirate territory
+                AND destination not already set
+                   set destination of pirate stargate
+
+1/2 ADD: TSN scoring info
+            maybe it counts down?
+
+1/2 FIX: make NPC miners "defend" the minable asteroids?
+
+1/2 BUG: SG2 can be destroyed by weapons
+
+1/2 ADD: bonus for pirates helping TSN
+            DNTT add bonus on victory
 
 ---
 
