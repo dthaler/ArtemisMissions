@@ -15,11 +15,9 @@
 04/14/20 ADD: basic asteroid mining on pirate side
 04/18/20 ADD: enemy miners to convert
 04/18/20 ADD: score display on LRS
-04/18/20 ADD: ability for pirate player to use SG2
+04/18/20 ADD: ability for pirate player to use SG1 and SG2
 
 {
-
-1/2 ADD: ability for pirate player to use SG1
 
 1/2 ADD: TSN: allow sending a "help" message e.g., via probes
          could require a fighter to go out to it

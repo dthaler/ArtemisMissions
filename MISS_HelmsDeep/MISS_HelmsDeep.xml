@@ -208,7 +208,7 @@
     <create type="enemy" x="10759.0" y="0.0" z="39285.0" angle="0" name="Miner6" raceKeys="Terran" hullKeys="Destroyer" sideValue="4" fleetnumber="-1" />
     <set_object_property property="surrenderChance" value="100" name="Miner6" />
     <set_object_property property="topSpeed" value="MINER_SPEED" name="Miner6" />
-    <set_variable name="UseStargateDisplayed" value="0.0" integer="yes" />
+    <set_variable name="UseSG2Displayed" value="0.0" integer="yes" />
     <!---->
     <!--Asteroids to be mined-->
     <!---->
@@ -409,7 +409,7 @@
     <incoming_comms_text from="GAME SERVER" sideValue="3" type="ALERT">Your pirate ship will be scored based on how much Latinum you can collect, whether from mining or looting or any other means.</incoming_comms_text>
     <set_variable name="PirateIntroSent" value="1.0" integer="yes" />
   </event>
-  <folder_arme name="SG2" id_arme="26f190ad-4fbe-4e36-84d5-02e17b293e4f" parent_id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1" expanded_arme="" />
+  <folder_arme name="Stargates" id_arme="26f190ad-4fbe-4e36-84d5-02e17b293e4f" parent_id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1" expanded_arme="" />
   <event name="SG2 scanned" id_arme="a875072d-d164-4204-862f-8752b7f24f3b" parent_id_arme="26f190ad-4fbe-4e36-84d5-02e17b293e4f">
     <if_variable name="SG2ProbeSucceeded" comparator="EQUALS" value="0.0" />
     <if_scan_level name="SG2" side="3" comparator="GREATER" value="0" />
@@ -423,37 +423,63 @@
     <incoming_comms_text from="Helms Deep" sideValue="PirateSide" type="ALERT">Mayday! Mayday! We are under attack and are in need of assistance from anyone available! If you assist us, we will give you |ASSISTANCE_REWARD| credits. To accept, use this code at the stargate nearest you.</incoming_comms_text>
     <set_variable name="StargatesEnabled" value="2.0" integer="yes" />
   </event>
-  <event name="Show use stargate button" id_arme="f404f41c-8327-484a-89d6-b117bb356ec2" parent_id_arme="26f190ad-4fbe-4e36-84d5-02e17b293e4f">
+  <event name="Show use SG2 button" id_arme="f404f41c-8327-484a-89d6-b117bb356ec2" parent_id_arme="26f190ad-4fbe-4e36-84d5-02e17b293e4f">
     <if_variable name="StargatesEnabled" comparator="EQUALS" value="2.0" />
     <if_exists player_slot="1" />
-    <if_object_property property="sideValue" player_slot="1" comparator="EQUALS" value="ORIGINAL_PIRATE_SIDE" />
     <if_distance player_slot1="1" name2="SG2" comparator="LESS" value="500.0" />
-    <if_variable name="UseStargateDisplayed" comparator="EQUALS" value="0.0" />
+    <if_variable name="UseSG2Displayed" comparator="EQUALS" value="0.0" />
     <log text="Pirate player approached SG2" />
-    <set_comms_button text="Use Stargate" sideValue="ORIGINAL_PIRATE_SIDE" />
-    <set_variable name="UseStargateDisplayed" value="1.0" integer="yes" />
+    <set_comms_button text="Use SG2" sideValue="PirateSide" />
+    <set_variable name="UseSG2Displayed" value="1.0" integer="yes" />
   </event>
-  <event name="Clear use stargate button" id_arme="7eb1db27-2e2f-484f-8c50-2960618c39ef" parent_id_arme="26f190ad-4fbe-4e36-84d5-02e17b293e4f">
+  <event name="Clear use SG2 button" id_arme="7eb1db27-2e2f-484f-8c50-2960618c39ef" parent_id_arme="26f190ad-4fbe-4e36-84d5-02e17b293e4f">
     <if_variable name="StargatesEnabled" comparator="EQUALS" value="2.0" />
     <if_exists player_slot="1" />
-    <if_object_property property="sideValue" player_slot="1" comparator="EQUALS" value="ORIGINAL_PIRATE_SIDE" />
     <if_distance player_slot1="1" name2="SG2" comparator="GREATER" value="600.0" />
-    <if_variable name="UseStargateDisplayed" comparator="EQUALS" value="1.0" />
+    <if_variable name="UseSG2Displayed" comparator="EQUALS" value="1.0" />
     <log text="Pirate player left SG2" />
-    <clear_comms_button text="Use Stargate" sideValue="ORIGINAL_PIRATE_SIDE" />
-    <set_variable name="UseStargateDisplayed" value="0.0" integer="yes" />
+    <clear_comms_button text="Use SG2" sideValue="PirateSide" />
+    <set_variable name="UseSG2Displayed" value="0.0" integer="yes" />
   </event>
-  <event name="Use stargate" id_arme="7c79c4e2-0d28-4905-81bf-25574e6b932a" parent_id_arme="26f190ad-4fbe-4e36-84d5-02e17b293e4f">
-    <if_comms_button text="Use Stargate" />
-    <log text="Pirate player used stargate" />
-    <clear_comms_button text="Use Stargate" sideValue="ORIGINAL_PIRATE_SIDE" />
-    <set_variable name="UseStargateDisplayed" value="0.0" integer="yes" />
+  <event name="Use SG2" id_arme="7c79c4e2-0d28-4905-81bf-25574e6b932a" parent_id_arme="26f190ad-4fbe-4e36-84d5-02e17b293e4f">
+    <if_comms_button text="Use SG2" />
+    <log text="Pirate player used SG2" />
+    <clear_comms_button text="Use SG2" sideValue="PirateSide" />
+    <set_variable name="UseSG2Displayed" value="0.0" integer="yes" />
     <!---->
     <!--// Move to SG1-->
-    <set_relative_position player_slot2="1" distance="500" angle="180" name1="SG1" />
+    <set_relative_position player_slot2="1" distance="600" angle="180" name1="SG1" />
     <!---->
-    <!--// Switch pirate ship to TSN side. Other events will switch any recruited miners.-->
+    <!--// Switch pirate ship to TSN side (if not already done). Other events will switch any recruited miners.-->
     <set_side_value value="2" player_slot="1" />
+    <set_variable name="PirateSide" value="2.0" integer="yes" />
+  </event>
+  <event name="Show use SG1 button" id_arme="2588c26d-7f04-4c1e-af87-d0dae7ac4b21" parent_id_arme="26f190ad-4fbe-4e36-84d5-02e17b293e4f">
+    <if_variable name="StargatesEnabled" comparator="EQUALS" value="2.0" />
+    <if_exists player_slot="1" />
+    <if_distance player_slot1="1" name2="SG1" comparator="LESS" value="500.0" />
+    <if_variable name="UseSG1Displayed" comparator="EQUALS" value="0.0" />
+    <log text="Pirate player approached SG1" />
+    <set_comms_button text="Use SG1" sideValue="PirateSide" />
+    <set_variable name="UseSG1Displayed" value="1.0" integer="yes" />
+  </event>
+  <event name="Clear use SG1 button" id_arme="4757182e-36e6-48de-870a-8458a46e4d28" parent_id_arme="26f190ad-4fbe-4e36-84d5-02e17b293e4f">
+    <if_variable name="StargatesEnabled" comparator="EQUALS" value="2.0" />
+    <if_exists player_slot="1" />
+    <if_distance player_slot1="1" name2="SG1" comparator="GREATER" value="600.0" />
+    <if_variable name="UseSG1Displayed" comparator="EQUALS" value="1.0" />
+    <log text="Pirate player left SG1" />
+    <clear_comms_button text="Use SG1" sideValue="PirateSide" />
+    <set_variable name="UseSG1Displayed" value="0.0" integer="yes" />
+  </event>
+  <event name="Use SG1" id_arme="16efab43-b1f0-4e56-a3bb-9050a3d3ec7d" parent_id_arme="26f190ad-4fbe-4e36-84d5-02e17b293e4f">
+    <if_comms_button text="Use SG1" />
+    <log text="Pirate player used SG1" />
+    <clear_comms_button text="Use SG1" sideValue="PirateSide" />
+    <set_variable name="UseSG1Displayed" value="0.0" integer="yes" />
+    <!---->
+    <!--// Move to SG2-->
+    <set_relative_position player_slot2="1" distance="600" angle="180" name1="SG2" />
   </event>
   <folder_arme name="Mining" id_arme="8dec4ba3-35f1-4afe-92c1-1cb88f97cc83" parent_id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1" />
   <event name="A0  gone" id_arme="65f70993-6dc0-4cca-a267-a52da3af6654" parent_id_arme="8dec4ba3-35f1-4afe-92c1-1cb88f97cc83">
