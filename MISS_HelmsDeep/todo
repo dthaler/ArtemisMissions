@@ -16,6 +16,7 @@
 04/18/20 ADD: enemy miners to convert
 04/18/20 ADD: score display on LRS
 04/18/20 ADD: ability for pirate player to use SG1 and SG2
+04/18/20 ADD: GM buttons to convert each miner to pirate side
 
 {
 
@@ -37,14 +38,17 @@
 
 1/2 FIX: make NPC miners "defend" the minable asteroids?
 
-1/2 BUG: SG2 can be destroyed by weapons
+1/2 BUG: stargates can be destroyed by weapons
+         if destroyed, respawn them in place
 
-1/2 ADD: bonus for pirates helping TSN
-            DNTT add bonus on victory
+1/2 ADD: bonus for pirates helping TSN on victory
+         DNTT
 
 ---
 
 2/2 FIX: change border object names to whitespaces (1-10 spaces)
+
+2/2 DOC: add wiki table with object properties from notes.txt
 
 ---
 

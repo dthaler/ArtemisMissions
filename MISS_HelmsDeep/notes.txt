@@ -4,6 +4,7 @@ Ship 1 (TSN):
 
 Generic mesh
 -----
+Shows up beyond range of sensors
  Will NOT block missiles, including probes
     Bug was pointed out by Darrin in
     https://artemis.forumchitchat.com/post/show_single_post?pid=1303998068&postcount=118&forum=309504
@@ -17,6 +18,7 @@ Generic mesh
 
 Black holes
 -----
+Shows up beyond range of sensors
 Can block probes and other missiles
 
 Anomalies
@@ -25,11 +27,13 @@ Problem: anomaly shows up beyond range of sensors, and is scannable
 
 Wrecks
 ------
+Does NOT show up beyond range of sensors
 Any way to prevent them from spawning anomalies when destroyed?
     or to control what they spawn?
 
 Asteroids
 ---------
+Shows up beyond range of sensors
  Can't block enemy ships from going through it
 
 - Use mines
