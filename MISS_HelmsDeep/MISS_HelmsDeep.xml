@@ -155,6 +155,8 @@
     <set_monster_tag_data tag_slot="1" name="SG1" />
     <set_monster_tag_data tag_slot="2" name="SG1" />
     <set_monster_tag_data tag_slot="3" name="SG1" />
+    <get_object_property property="positionX" name="SG1" variable="SG1X" />
+    <get_object_property property="positionZ" name="SG1" variable="SG1Z" />
     <create type="monster" monsterType="8" x="29509.0" y="0.0" z="74107.0" angle="0" name="SG2" />
     <set_monster_tag_data tag_slot="0" name="SG2" />
     <set_monster_tag_data tag_slot="1" name="SG2" />
@@ -316,7 +318,7 @@
     <set_object_property property="artScale" value="0.0" name="TSN Score: 0" />
     <set_object_property property="pushRadius" value="0.0" name="TSN Score: 0" />
   </start>
-  <folder_arme name="GM Controls" id_arme="1257aab7-c7dc-42a4-946c-0d5c1384470a" expanded_arme="" />
+  <folder_arme name="GM Controls" id_arme="1257aab7-c7dc-42a4-946c-0d5c1384470a" />
   <event name="Refresh recruit miner1 button" id_arme="e0dc9703-ff4c-4706-a301-e1a10e85120d" parent_id_arme="1257aab7-c7dc-42a4-946c-0d5c1384470a">
     <if_timer_finished name="RefreshGMButtons" />
     <clear_gm_button text="Recruit/Miner1" />
@@ -410,7 +412,24 @@
     <set_side_value value="2" player_slot="1" />
     <set_variable name="PirateSide" value="2.0" integer="yes" />
   </event>
-  <folder_arme name="TSN Events" id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa" expanded_arme="" />
+  <folder_arme name="Terrain Events" id_arme="927988fc-4d8d-4ee7-a141-764e4bf81025" />
+  <event name="Respawn SG1" id_arme="8c14582f-2215-402e-8ddf-744ec58ae732" parent_id_arme="927988fc-4d8d-4ee7-a141-764e4bf81025">
+    <if_not_exists name="SG1" />
+    <create type="monster" monsterType="8" x="SG1X" y="0.0" z="SG1Z" angle="0" name="SG1" />
+    <set_monster_tag_data tag_slot="0" name="SG1" />
+    <set_monster_tag_data tag_slot="1" name="SG1" />
+    <set_monster_tag_data tag_slot="2" name="SG1" />
+    <set_monster_tag_data tag_slot="3" name="SG1" />
+  </event>
+  <event name="Respawn SG2" id_arme="3fae8c75-6ad6-4862-a9f1-68f97b6b920d" parent_id_arme="927988fc-4d8d-4ee7-a141-764e4bf81025">
+    <if_not_exists name="SG2" />
+    <create type="monster" monsterType="8" x="SG2X" y="0.0" z="SG2Z" angle="0" name="SG2" />
+    <set_monster_tag_data tag_slot="0" name="SG2" />
+    <set_monster_tag_data tag_slot="1" name="SG2" />
+    <set_monster_tag_data tag_slot="2" name="SG2" />
+    <set_monster_tag_data tag_slot="3" name="SG2" />
+  </event>
+  <folder_arme name="TSN Events" id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa" />
   <folder_arme name="Start" id_arme="63b761a1-37ab-42f5-afaf-a627617557e5" parent_id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa" />
   <event name="Player ship 0 created" id_arme="353b89a6-114f-48a6-b74d-4244cc91307b" parent_id_arme="63b761a1-37ab-42f5-afaf-a627617557e5">
     <if_exists player_slot="0" />
@@ -522,7 +541,7 @@
     <set_variable name="GotTsnScoreEasterEggPoints" value="50.0" integer="yes" />
     <set_variable name="TsnScore" value="TsnScore + 50" integer="yes" />
   </event>
-  <folder_arme name="Pirate Events" id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1" expanded_arme="" />
+  <folder_arme name="Pirate Events" id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1" />
   <folder_arme name="Start" id_arme="0a737b19-47ab-4ccb-a2bb-a072ad49ee0b" parent_id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1" />
   <event name="Player ship 1 created" id_arme="64982b23-719e-4d78-a74c-086ce6d8365c" parent_id_arme="0a737b19-47ab-4ccb-a2bb-a072ad49ee0b">
     <if_exists player_slot="1" />

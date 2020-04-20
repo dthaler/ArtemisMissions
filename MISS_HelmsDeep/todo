@@ -20,12 +20,9 @@
 04/18/20 ADD: ability for pirate NPC ships to use stargate
 04/19/20 FIX: make NPC miners "defend" minable asteroids
 04/19/20 ADD: easter egg ways to get more points from score displays
+04/19/20 BUG: stargates can be destroyed by weapons
 
 {
-
-1/2 BUG: stargates can be destroyed by weapons
-         if destroyed, respawn them in place
-         make sure any AI miners heading there will still head there
 
 1/2 ADD: TSN: allow sending a "help" message e.g., via probes
          could require a fighter to go out to it
