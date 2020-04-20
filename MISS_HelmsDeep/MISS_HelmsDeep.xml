@@ -318,7 +318,7 @@
     <set_object_property property="artScale" value="0.0" name="TSN Score: 0" />
     <set_object_property property="pushRadius" value="0.0" name="TSN Score: 0" />
   </start>
-  <folder_arme name="GM Controls" id_arme="1257aab7-c7dc-42a4-946c-0d5c1384470a" />
+  <folder_arme name="GM Controls" id_arme="1257aab7-c7dc-42a4-946c-0d5c1384470a" expanded_arme="" />
   <event name="Refresh recruit miner1 button" id_arme="e0dc9703-ff4c-4706-a301-e1a10e85120d" parent_id_arme="1257aab7-c7dc-42a4-946c-0d5c1384470a">
     <if_timer_finished name="RefreshGMButtons" />
     <clear_gm_button text="Recruit/Miner1" />
@@ -333,6 +333,11 @@
     <set_gm_button text="Recruit/Miner4" />
     <set_gm_button text="Recruit/Miner5" />
     <set_gm_button text="Recruit/Miner6" />
+  </event>
+  <event name="Refresh Victory button" id_arme="4e048be0-382d-4747-8da5-926bd77eea45" parent_id_arme="1257aab7-c7dc-42a4-946c-0d5c1384470a">
+    <if_timer_finished name="RefreshGMButtons" />
+    <clear_gm_button text="Victory" />
+    <set_gm_button text="Victory" />
   </event>
   <event name="Refresh GM ally button" id_arme="292218e2-c0e1-4a43-a988-c3dc04dfac8f" parent_id_arme="1257aab7-c7dc-42a4-946c-0d5c1384470a">
     <if_timer_finished name="RefreshGMButtons" />
@@ -411,6 +416,12 @@
     <!--// Switch pirate ship to TSN side (if not already done). Other events will switch any recruited miners.-->
     <set_side_value value="2" player_slot="1" />
     <set_variable name="PirateSide" value="2.0" integer="yes" />
+  </event>
+  <event name="GM victory" id_arme="cbd7dfbc-f65b-4a0c-91a5-21837ca2a563" parent_id_arme="1257aab7-c7dc-42a4-946c-0d5c1384470a">
+    <if_gm_button text="Victory" />
+    <log text="GM declared victory" />
+    <destroy name="T1" />
+    <destroy name="T2" />
   </event>
   <folder_arme name="Terrain Events" id_arme="927988fc-4d8d-4ee7-a141-764e4bf81025" />
   <event name="Respawn SG1" id_arme="8c14582f-2215-402e-8ddf-744ec58ae732" parent_id_arme="927988fc-4d8d-4ee7-a141-764e4bf81025">
@@ -1205,7 +1216,7 @@
     <set_variable name="GotPirateScoreEasterEggPoints" value="50.0" integer="yes" />
     <set_variable name="PirateScore" value="PirateScore + 50" integer="yes" />
   </event>
-  <folder_arme name="Joint Events" id_arme="f3d012a5-0f1e-4f91-b16d-d0bb1745ad7e" />
+  <folder_arme name="Joint Events" id_arme="f3d012a5-0f1e-4f91-b16d-d0bb1745ad7e" expanded_arme="" />
   <event name="Victory with pirates" id_arme="0902d234-84b0-4097-b15d-0e44e33ef2c1" parent_id_arme="f3d012a5-0f1e-4f91-b16d-d0bb1745ad7e">
     <if_fleet_count comparator="EQUALS" value="0.0" sideValue="1" />
     <if_variable name="GameOver" comparator="EQUALS" value="0.0" />
@@ -1225,7 +1236,7 @@
     <incoming_comms_text from="Game Server" sideValue="3" type="ALERT">TSN Score: |PirateScore|^Pirate Score: |PirateScore|</incoming_comms_text>
     <big_message title="MISSION COMPLETE" subtitle1="TSN Score: |TsnScore|" subtitle2="Pirate Score: |PirateScore|" />
     <set_variable name="GameOver" value="1.0" integer="yes" />
-    <set_timer name="EndGameTimer" seconds="5" />
+    <set_timer name="EndGameTimer" seconds="30" />
   </event>
   <event name="Helms Deep Lost" id_arme="eb3be434-5c3e-4a60-8e12-a795ca6ce334" parent_id_arme="f3d012a5-0f1e-4f91-b16d-d0bb1745ad7e">
     <if_not_exists name="Helms Deep" />

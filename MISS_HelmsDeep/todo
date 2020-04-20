@@ -21,6 +21,7 @@
 04/19/20 FIX: make NPC miners "defend" minable asteroids
 04/19/20 ADD: easter egg ways to get more points from score displays
 04/19/20 BUG: stargates can be destroyed by weapons
+04/19/20 ADD: bonus for pirates helping TSN on victory
 
 {
 
@@ -30,10 +31,6 @@
 
 1/2 ADD: TSN scoring info
             maybe it counts down?
-
-1/2 ADD: bonus for pirates helping TSN on victory
-         DNTT bonus on victory
-            * add GM button to force victory
 
 ---
 
