@@ -1,4 +1,4 @@
-03/28/20 ADD: TSN: Create a station and a player ship 
+03/28/20 ADD: TSN: Create a station and a player ship
 03/28/20 FIX: TSN: Make the player ship be a TSN carrier
 03/28/20 FIX: TSN: Permanently disable the carrier's warp & impulse
 03/28/20 ADD: TSN: Send an initial mission message after 15 seconds
@@ -18,8 +18,14 @@
 04/18/20 ADD: ability for pirate player to use SG1 and SG2
 04/18/20 ADD: GM buttons to convert each miner to pirate side
 04/18/20 ADD: ability for pirate NPC ships to use stargate
+04/19/20 FIX: make NPC miners "defend" minable asteroids
+04/19/20 ADD: easter egg ways to get more points from score displays
 
 {
+
+1/2 BUG: stargates can be destroyed by weapons
+         if destroyed, respawn them in place
+         make sure any AI miners heading there will still head there
 
 1/2 ADD: TSN: allow sending a "help" message e.g., via probes
          could require a fighter to go out to it
@@ -28,14 +34,9 @@
 1/2 ADD: TSN scoring info
             maybe it counts down?
 
-1/2 FIX: make NPC miners "defend" the minable asteroids?
-
-1/2 BUG: stargates can be destroyed by weapons
-         if destroyed, respawn them in place
-         make sure any AI miners heading there will still head there
-
 1/2 ADD: bonus for pirates helping TSN on victory
-         DNTT
+         DNTT bonus on victory
+            * add GM button to force victory
 
 ---
 

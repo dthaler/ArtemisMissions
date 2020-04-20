@@ -15,6 +15,8 @@ Shows up beyond range of sensors
  Scan text won't be updated on screen until scan again
     and no way to set scan level, can only destroy and recreate the mesh to
     force players to do another scan
+Scan text 1 shows up when clicking on
+Single scan shows scan text 2, at scan level 1
 
 Black holes
 -----
@@ -30,6 +32,7 @@ Wrecks
 Does NOT show up beyond range of sensors
 Any way to prevent them from spawning anomalies when destroyed?
     or to control what they spawn?
+Does not show scan text 1 or 2, always shows fixed text
 
 Asteroids
 ---------

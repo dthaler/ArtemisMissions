@@ -187,31 +187,6 @@
     <!--<set_object_property property="blocksShotFlag" value="1000.0" name="Planet" />-->
     <set_variable name="TsnScore" value="0.0" integer="yes" />
     <!---->
-    <!--Pirate Setup-->
-    <!---->
-    <set_variable name="PirateSide" value="ORIGINAL_PIRATE_SIDE" integer="yes" />
-    <create type="player" player_slot="1" x="10000.0" y="0.0" z="20000.0" angle="0" sideValue="PirateSide" raceKeys="Pirate" hullKeys="Strongbow" warp="yes" jump="no" />
-    <set_variable name="PirateScore" value="0.0" integer="yes" />
-    <create type="enemy" x="27902.0" y="0.0" z="5803.0" angle="0" name="Miner1" raceKeys="Terran" hullKeys="Destroyer" sideValue="4" fleetnumber="-1" />
-    <set_object_property property="surrenderChance" value="100" name="Miner1" />
-    <set_object_property property="topSpeed" value="MINER_SPEED" name="Miner1" />
-    <create type="enemy" x="5134.0" y="0.0" z="79196.0" angle="0" name="Miner2" raceKeys="Terran" hullKeys="Destroyer" sideValue="4" fleetnumber="-1" />
-    <set_object_property property="surrenderChance" value="100" name="Miner2" />
-    <set_object_property property="topSpeed" value="MINER_SPEED" name="Miner2" />
-    <create type="enemy" x="32054.0" y="0.0" z="87901.0" angle="0" name="Miner3" raceKeys="Terran" hullKeys="Destroyer" sideValue="4" fleetnumber="-1" />
-    <set_object_property property="surrenderChance" value="100" name="Miner3" />
-    <set_object_property property="topSpeed" value="MINER_SPEED" name="Miner3" />
-    <create type="enemy" x="34599.0" y="0.0" z="54955.0" angle="0" name="Miner4" raceKeys="Terran" hullKeys="Destroyer" sideValue="4" fleetnumber="-1" />
-    <set_object_property property="surrenderChance" value="100" name="Miner4" />
-    <set_object_property property="topSpeed" value="MINER_SPEED" name="Miner4" />
-    <create type="enemy" x="34197.0" y="0.0" z="25223.0" angle="0" name="Miner5" raceKeys="Terran" hullKeys="Destroyer" sideValue="4" fleetnumber="-1" />
-    <set_object_property property="surrenderChance" value="100" name="Miner5" />
-    <set_object_property property="topSpeed" value="MINER_SPEED" name="Miner5" />
-    <create type="enemy" x="10759.0" y="0.0" z="39285.0" angle="0" name="Miner6" raceKeys="Terran" hullKeys="Destroyer" sideValue="4" fleetnumber="-1" />
-    <set_object_property property="surrenderChance" value="100" name="Miner6" />
-    <set_object_property property="topSpeed" value="MINER_SPEED" name="Miner6" />
-    <set_variable name="UseSG2Displayed" value="0.0" integer="yes" />
-    <!---->
     <!--Asteroids to be mined-->
     <!---->
     <create count="150" type="asteroids" startX="23000.0" startY="0.0" startZ="20000.0" endX="23000.0" endY="0.0" endZ="80000.0" randomRange="22000" />
@@ -274,6 +249,55 @@
     <create type="monster" monsterType="8" age="1" x="0.0" y="0.0" z="0.0" angle="0" name="A9 " />
     <set_relative_position name2="A9 " distance="0" angle="0" name1="A9" />
     <!---->
+    <!--Pirate Setup-->
+    <!---->
+    <set_variable name="PirateSide" value="ORIGINAL_PIRATE_SIDE" integer="yes" />
+    <create type="player" player_slot="1" x="10000.0" y="0.0" z="20000.0" angle="0" sideValue="PirateSide" raceKeys="Pirate" hullKeys="Strongbow" warp="yes" jump="no" />
+    <set_variable name="PirateScore" value="0.0" integer="yes" />
+    <create type="enemy" x="27902.0" y="0.0" z="5803.0" angle="0" name="Miner1" raceKeys="Terran" hullKeys="Destroyer" sideValue="4" fleetnumber="-1" />
+    <set_object_property property="surrenderChance" value="100" name="Miner1" />
+    <set_object_property property="topSpeed" value="MINER_SPEED" name="Miner1" />
+    <clear_ai name="Miner1" />
+    <add_ai type="TARGET_THROTTLE" value1="1.0" targetName="A5" value2="1" name="Miner1" />
+    <add_ai type="CHASE_PLAYER" value1="3000" value2="500" name="Miner1" />
+    <add_ai type="CHASE_ANGER" name="Miner1" />
+    <create type="enemy" x="5134.0" y="0.0" z="79196.0" angle="0" name="Miner2" raceKeys="Terran" hullKeys="Destroyer" sideValue="4" fleetnumber="-1" />
+    <set_object_property property="surrenderChance" value="100" name="Miner2" />
+    <set_object_property property="topSpeed" value="MINER_SPEED" name="Miner2" />
+    <clear_ai name="Miner2" />
+    <add_ai type="TARGET_THROTTLE" value1="1.0" targetName="A3" value2="1" name="Miner2" />
+    <add_ai type="CHASE_PLAYER" value1="3000" value2="500" name="Miner2" />
+    <add_ai type="CHASE_ANGER" name="Miner2" />
+    <create type="enemy" x="32054.0" y="0.0" z="87901.0" angle="0" name="Miner3" raceKeys="Terran" hullKeys="Destroyer" sideValue="4" fleetnumber="-1" />
+    <set_object_property property="surrenderChance" value="100" name="Miner3" />
+    <set_object_property property="topSpeed" value="MINER_SPEED" name="Miner3" />
+    <clear_ai name="Miner3" />
+    <add_ai type="TARGET_THROTTLE" value1="1.0" targetName="A4" value2="1" name="Miner3" />
+    <add_ai type="CHASE_PLAYER" value1="3000" value2="500" name="Miner3" />
+    <add_ai type="CHASE_ANGER" name="Miner3" />
+    <create type="enemy" x="34599.0" y="0.0" z="54955.0" angle="0" name="Miner4" raceKeys="Terran" hullKeys="Destroyer" sideValue="4" fleetnumber="-1" />
+    <set_object_property property="surrenderChance" value="100" name="Miner4" />
+    <set_object_property property="topSpeed" value="MINER_SPEED" name="Miner4" />
+    <clear_ai name="Miner4" />
+    <add_ai type="TARGET_THROTTLE" value1="1.0" targetName="A2" value2="1" name="Miner4" />
+    <add_ai type="CHASE_PLAYER" value1="3000" value2="500" name="Miner4" />
+    <add_ai type="CHASE_ANGER" name="Miner4" />
+    <create type="enemy" x="34197.0" y="0.0" z="25223.0" angle="0" name="Miner5" raceKeys="Terran" hullKeys="Destroyer" sideValue="4" fleetnumber="-1" />
+    <set_object_property property="surrenderChance" value="100" name="Miner5" />
+    <set_object_property property="topSpeed" value="MINER_SPEED" name="Miner5" />
+    <clear_ai name="Miner5" />
+    <add_ai type="TARGET_THROTTLE" value1="1.0" targetName="A8" value2="1" name="Miner5" />
+    <add_ai type="CHASE_PLAYER" value1="3000" value2="500" name="Miner5" />
+    <add_ai type="CHASE_ANGER" name="Miner5" />
+    <create type="enemy" x="10759.0" y="0.0" z="39285.0" angle="0" name="Miner6" raceKeys="Terran" hullKeys="Destroyer" sideValue="4" fleetnumber="-1" />
+    <set_object_property property="surrenderChance" value="100" name="Miner6" />
+    <set_object_property property="topSpeed" value="MINER_SPEED" name="Miner6" />
+    <clear_ai name="Miner6" />
+    <add_ai type="TARGET_THROTTLE" value1="1.0" targetName="A1" value2="1" name="Miner6" />
+    <add_ai type="CHASE_PLAYER" value1="3000" value2="500" name="Miner6" />
+    <add_ai type="CHASE_ANGER" name="Miner6" />
+    <set_variable name="UseSG2Displayed" value="0.0" integer="yes" />
+    <!---->
     <!--Torgoth Armada Setup-->
     <!---->
     <create type="enemy" x="88790.0" y="0.0" z="86610.0" angle="200" name="T1" raceKeys="Torgoth" hullKeys="large" fleetnumber="-1" />
@@ -283,12 +307,16 @@
     <!---->
     <set_variable name="PirateScoreDisplayed" value="0.0" integer="yes" />
     <create type="genericMesh" x="30000.0" y="0.0" z="100000.0" name="Pirate Score: 0" meshFileName="dat/asteroid.dxs" textureFileName="dat/asteroidTexture.png" colorRed="0.5" colorGreen="0.5" colorBlue="0.5" />
+    <set_ship_text name="Pirate Score: 0" desc="+10 for each asteroid piece mined^+ # credits earned via any other mechanism^+ unknown for other special actions" scan_desc="You'll just have to try things to see what else might affect your score." />
     <set_object_property property="artScale" value="0.0" name="Pirate Score: 0" />
+    <set_object_property property="pushRadius" value="0.0" name="Pirate Score: 0" />
     <set_variable name="TsnScoreDisplayed" value="0.0" integer="yes" />
     <create type="genericMesh" x="70000.0" y="0.0" z="100000.0" name="TSN Score: 0" meshFileName="dat/asteroid.dxs" textureFileName="dat/asteroidTexture.png" colorRed="0.5" colorGreen="0.5" colorBlue="0.5" />
+    <set_ship_text name="TSN Score: 0" desc="TBD" scan_desc="You'll just have to try things to see what else might affect your score." />
     <set_object_property property="artScale" value="0.0" name="TSN Score: 0" />
+    <set_object_property property="pushRadius" value="0.0" name="TSN Score: 0" />
   </start>
-  <folder_arme name="GM Controls" id_arme="1257aab7-c7dc-42a4-946c-0d5c1384470a" />
+  <folder_arme name="GM Controls" id_arme="1257aab7-c7dc-42a4-946c-0d5c1384470a" expanded_arme="" />
   <event name="Refresh recruit miner1 button" id_arme="e0dc9703-ff4c-4706-a301-e1a10e85120d" parent_id_arme="1257aab7-c7dc-42a4-946c-0d5c1384470a">
     <if_timer_finished name="RefreshGMButtons" />
     <clear_gm_button text="Recruit/Miner1" />
@@ -382,7 +410,7 @@
     <set_side_value value="2" player_slot="1" />
     <set_variable name="PirateSide" value="2.0" integer="yes" />
   </event>
-  <folder_arme name="TSN Events" id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa" />
+  <folder_arme name="TSN Events" id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa" expanded_arme="" />
   <folder_arme name="Start" id_arme="63b761a1-37ab-42f5-afaf-a627617557e5" parent_id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa" />
   <event name="Player ship 0 created" id_arme="353b89a6-114f-48a6-b74d-4244cc91307b" parent_id_arme="63b761a1-37ab-42f5-afaf-a627617557e5">
     <if_exists player_slot="0" />
@@ -484,6 +512,15 @@
     <if_variable name="TsnScoreDisplayed" comparator="NOT" value="TsnScore" />
     <set_ship_text name="TSN Score: |TsnScoreDisplayed|" newname="TSN Score: |TsnScore|" />
     <set_variable name="TsnScoreDisplayed" value="TsnScore" integer="yes" />
+  </event>
+  <event name="TSN Score Easter Egg points" id_arme="d23579f4-55cd-4b41-a46f-6cb3955105f1" parent_id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa">
+    <if_exists player_slot="0" />
+    <if_scan_level name="TSN Score: |TsnScoreDisplayed|" side="2" comparator="GREATER" value="0" />
+    <if_variable name="GotTsnScoreEasterEggPoints" comparator="EQUALS" value="0.0" />
+    <log text="TSN Score scanned" />
+    <set_ship_text name="TSN Score: |TsnScoreDisplayed|" desc="TBD" scan_desc="You'll just have to try things to see what else might affect your score, but the TSN got 50 points for finding this message!" />
+    <set_variable name="GotTsnScoreEasterEggPoints" value="50.0" integer="yes" />
+    <set_variable name="TsnScore" value="TsnScore + 50" integer="yes" />
   </event>
   <folder_arme name="Pirate Events" id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1" expanded_arme="" />
   <folder_arme name="Start" id_arme="0a737b19-47ab-4ccb-a2bb-a072ad49ee0b" parent_id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1" />
@@ -1139,6 +1176,15 @@
     <if_variable name="PirateScoreDisplayed" comparator="NOT" value="PirateScore" />
     <set_ship_text name="Pirate Score: |PirateScoreDisplayed|" newname="Pirate Score: |PirateScore|" />
     <set_variable name="PirateScoreDisplayed" value="PirateScore" integer="yes" />
+  </event>
+  <event name="Pirate Score Easter Egg points" id_arme="0474bdad-349a-48fb-9f10-a7d508320103" parent_id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1">
+    <if_exists player_slot="1" />
+    <if_scan_level name="Pirate Score: |PirateScoreDisplayed|" side="ORIGINAL_PIRATE_SIDE" comparator="GREATER" value="0" />
+    <if_variable name="GotPirateScoreEasterEggPoints" comparator="EQUALS" value="0.0" />
+    <log text="Pirate Score scanned" />
+    <set_ship_text name="Pirate Score: |PirateScoreDisplayed|" desc="+10 for each asteroid piece mined^+ # credits earned via any other mechanism^+ unknown for other special actions" scan_desc="You'll just have to try things to see what else might affect your score, but the pirates got 50 points for finding this message!" />
+    <set_variable name="GotPirateScoreEasterEggPoints" value="50.0" integer="yes" />
+    <set_variable name="PirateScore" value="PirateScore + 50" integer="yes" />
   </event>
   <folder_arme name="Joint Events" id_arme="f3d012a5-0f1e-4f91-b16d-d0bb1745ad7e" />
   <event name="Victory with pirates" id_arme="0902d234-84b0-4097-b15d-0e44e33ef2c1" parent_id_arme="f3d012a5-0f1e-4f91-b16d-d0bb1745ad7e">
