@@ -23,20 +23,16 @@
 04/19/20 BUG: stargates can be destroyed by weapons
 04/19/20 ADD: bonus for pirates helping TSN on victory
 04/23/20 ADD: science vessel to scan stargate
+04/23/20 ADD: science vessel hail text about stargate direction
 
 {
 
 1/2 ADD: TSN: allow sending a "help" message e.g., via probes
-         could require a fighter to go out to it
-         what is the range of a tag?
-            NPC Science Vessel?
-            can you shoot a probe if AI has control of helm?
-         DNTT add a Science Vessel in north end
+         DONE add a Science Vessel in north end
             * add a way to scan the stargate
                 send science vessel
-                send probe (but might not be aimable?)
-                 SG1Scanned?
-                 SG1ProbeSucceeded?
+                send probe out
+                send fighter all the way out
             * provide a message from the Science Vessel of result of analysis?
                 what if it's destroyed?
                 1) get message from Explorer about unusual readings at a

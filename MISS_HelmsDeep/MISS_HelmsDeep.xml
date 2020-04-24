@@ -184,6 +184,7 @@
     <create type="neutral" x="97813.0" y="0.0" z="9955.0" angle="90" name="Explorer" raceKeys="Terran" hullKeys="Science Vessel" />
     <set_object_property property="topSpeed" value="MINER_SPEED" name="Explorer" />
     <add_ai type="FOLLOW_COMMS_ORDERS" name="Explorer" />
+    <set_timer name="ExplorerScanTimer" seconds="1" />
     <create type="neutral" x="97652.0" y="0.0" z="97796.0" angle="0" name="MineLayer" raceKeys="TSN" hullKeys="Mine Layer" />
     <!--Planet-->
     <!--<create type="genericMesh" x="93148.0" y="0.0" z="95907.0" angle="0" name="Planet" meshFileName="dat\Missions\MISS_HelmsDeep\Object.dxs" textureFileName="dat/electricNoise2.png" fakeShieldsFront="1000" colorRed="1.0" colorGreen="0.0" colorBlue="1.0" />-->
@@ -462,9 +463,12 @@
     <set_comms_button text="Lay Mine" sideValue="2" />
     <set_variable name="DropMinesButtonPresent" value="1.0" integer="yes" />
   </event>
-  <folder_arme name="Simulate station" id_arme="3b306dca-cb67-4794-b022-dc265f43f0b7" parent_id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa" />
+  <folder_arme name="Simulate station" id_arme="3b306dca-cb67-4794-b022-dc265f43f0b7" parent_id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa" expanded_arme="" />
   <event name="Force no impulse or warp" id_arme="64786996-651f-4a98-8687-d0d319bb741d" parent_id_arme="3b306dca-cb67-4794-b022-dc265f43f0b7">
     <if_variable name="DisableContinualEvents" comparator="EQUALS" value="0.0" />
+    <!--Force direction to point to SG1-->
+    <set_object_property property="angle" value="3.526" player_slot="0" />
+    <!--Force no impulse or warp-->
     <set_player_grid_damage value="1.0" player_slot="0" index="0" systemType="systemWarp" countFrom="front" />
     <set_player_grid_damage value="1.0" player_slot="0" index="1" systemType="systemWarp" countFrom="front" />
     <set_player_grid_damage value="1.0" player_slot="0" index="2" systemType="systemWarp" countFrom="front" />
@@ -487,11 +491,12 @@
     <set_player_station_carried name="Helms Deep" raceKeys="TSN player" hullKeys="TSN Bomber" singleSeatName="Red-|TsnFighterNeeded|" />
     <set_object_property property="throttle" value="1.0" player_slot="0" />
   </event>
-  <folder_arme name="Stargates" id_arme="23661d47-b177-4204-9508-5e74de58c391" parent_id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa" />
+  <folder_arme name="Stargates" id_arme="23661d47-b177-4204-9508-5e74de58c391" parent_id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa" expanded_arme="" />
   <event name="SG1 scanned" id_arme="df9d063e-4560-4c40-baff-fbbbd28c28df" parent_id_arme="23661d47-b177-4204-9508-5e74de58c391">
     <if_scan_level name="SG1" side="2" comparator="GREATER" value="0" />
     <if_variable name="SG1Scanned" comparator="EQUALS" value="0.0" />
-    <log text="SG1 was scanned" />
+    <!--TODO: this is a test event and actually does nothing but generate a popup-->
+    <log text="SG1 scan level is now &gt; 0" />
     <warning_popup_message message="SG1 scanned" consoles="M" player_slot="0" />
     <set_variable name="SG1Scanned" value="1.0" integer="yes" />
   </event>
@@ -515,6 +520,64 @@
     <set_variable name="EnableDistressSignal" value="2.0" integer="yes" />
     <set_variable name="StargatesEnabled" value="1.0" integer="yes" />
     <clear_comms_button text="Send Distress Signal" sideValue="2" />
+    <set_monster_tag_data tag_slot="0" name="SG2" sourcetext="Distress call from Helms Deep" />
+  </event>
+  <folder_arme name="AI science vessel" id_arme="8206d61f-37ce-447b-bf64-a0e34f7c4e89" parent_id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa" expanded_arme="" />
+  <event name="Update hail text when SG1 is SE" id_arme="db14a0a0-7f6b-4b81-b512-e667f7ea14ad" parent_id_arme="8206d61f-37ce-447b-bf64-a0e34f7c4e89">
+    <if_exists name="Explorer" />
+    <if_timer_finished name="ExplorerScanTimer" />
+    <if_inside_box name="Explorer" leastX="SG1X" leastZ="0.0" mostX="100000.0" mostZ="SG1Z" />
+    <!--SG1 is SE-->
+    <get_object_property property="positionX" name="Explorer" variable="temp1" />
+    <set_variable name="temp2" value="(temp1 - SG1X) / 100" integer="yes" />
+    <set_variable name="ExplorerDeltaX" value="temp2 * 100" integer="yes" />
+    <get_object_property property="positionZ" name="Explorer" variable="temp1" />
+    <set_variable name="temp2" value="(SG1Z - temp1) / 100" integer="yes" />
+    <set_variable name="ExplorerDeltaZ" value="100 * temp2" integer="yes" />
+    <set_ship_text name="Explorer" hailtext="We are detecting unusual signals coming from |ExplorerDeltaZ|m south and |ExplorerDeltaX|m east of us." />
+    <set_timer name="ExplorerScanTimer" seconds="1" />
+  </event>
+  <event name="Update hail text when SG1 is SW" id_arme="fb2ebf36-a626-49c7-9b3d-8071101e4405" parent_id_arme="8206d61f-37ce-447b-bf64-a0e34f7c4e89">
+    <if_exists name="Explorer" />
+    <if_timer_finished name="ExplorerScanTimer" />
+    <if_inside_box name="Explorer" leastX="50000.0" leastZ="0.0" mostX="SG1X" mostZ="SG1Z" />
+    <!--SG1 is SW-->
+    <get_object_property property="positionX" name="Explorer" variable="temp1" />
+    <set_variable name="temp2" value="(SG1X - temp1) / 100" integer="yes" />
+    <set_variable name="ExplorerDeltaX" value="temp2 * 100" integer="yes" />
+    <get_object_property property="positionZ" name="Explorer" variable="temp1" />
+    <set_variable name="temp2" value="(SG1Z - temp1) / 100" integer="yes" />
+    <set_variable name="ExplorerDeltaZ" value="100 * temp2" integer="yes" />
+    <set_ship_text name="Explorer" hailtext="We are detecting unusual signals coming from |ExplorerDeltaZ|m south and |ExplorerDeltaX|m west of us." />
+    <set_timer name="ExplorerScanTimer" seconds="1" />
+  </event>
+  <event name="Update hail text when SG1 is NW" id_arme="b5bd633f-80de-4fb0-8067-2ac5e4d28b37" parent_id_arme="8206d61f-37ce-447b-bf64-a0e34f7c4e89">
+    <if_exists name="Explorer" />
+    <if_timer_finished name="ExplorerScanTimer" />
+    <if_inside_box name="Explorer" leastX="50000.0" leastZ="SG1Z" mostX="SG1X" mostZ="100000.0" />
+    <!--SG1 is NW-->
+    <get_object_property property="positionX" name="Explorer" variable="temp1" />
+    <set_variable name="temp2" value="(SG1X - temp1) / 100" integer="yes" />
+    <set_variable name="ExplorerDeltaX" value="temp2 * 100" integer="yes" />
+    <get_object_property property="positionZ" name="Explorer" variable="temp1" />
+    <set_variable name="temp2" value="(temp1 - SG1Z) / 100" integer="yes" />
+    <set_variable name="ExplorerDeltaZ" value="100 * temp2" integer="yes" />
+    <set_ship_text name="Explorer" hailtext="We are detecting unusual signals coming from |ExplorerDeltaZ|m north and |ExplorerDeltaX|m west of us." />
+    <set_timer name="ExplorerScanTimer" seconds="1" />
+  </event>
+  <event name="Update hail text when SG1 is NE" id_arme="dd41a5d2-066b-4c7e-b67a-c11fd87546a8" parent_id_arme="8206d61f-37ce-447b-bf64-a0e34f7c4e89">
+    <if_exists name="Explorer" />
+    <if_timer_finished name="ExplorerScanTimer" />
+    <if_inside_box name="Explorer" leastX="50000.0" leastZ="SG1Z" mostX="SG1X" mostZ="100000.0" />
+    <!--SG1 is NE-->
+    <get_object_property property="positionX" name="Explorer" variable="temp1" />
+    <set_variable name="temp2" value="(temp1 - SG1X) / 100" integer="yes" />
+    <set_variable name="ExplorerDeltaX" value="temp2 * 100" integer="yes" />
+    <get_object_property property="positionZ" name="Explorer" variable="temp1" />
+    <set_variable name="temp2" value="(temp1 - SG1Z) / 100" integer="yes" />
+    <set_variable name="ExplorerDeltaZ" value="100 * temp2" integer="yes" />
+    <set_ship_text name="Explorer" hailtext="We are detecting unusual signals coming from |ExplorerDeltaZ|m north and |ExplorerDeltaX|m east of us" />
+    <set_timer name="ExplorerScanTimer" seconds="1" />
   </event>
   <folder_arme name="AI mine layer" id_arme="4af61a28-62d1-43d1-b58a-f8c906389594" parent_id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa" expanded_arme="" />
   <event name="Initialize" id_arme="137cb245-17f0-46b5-8867-4de01c7b325c" parent_id_arme="4af61a28-62d1-43d1-b58a-f8c906389594">
@@ -558,16 +621,6 @@
     <clear_comms_button text="Lay Mine" sideValue="2" />
     <set_comms_button text="Lay Mine" sideValue="2" />
     <set_timer name="RefreshCommsButtons" seconds="30" />
-  </event>
-  <folder_arme name="SG1" id_arme="6ca69197-bc61-4c9a-aa63-7c8f81e26a9a" parent_id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa" />
-  <event name="SG1 scanned" id_arme="38462fb4-d21e-4b0a-abbd-c572b9adcb2c" parent_id_arme="6ca69197-bc61-4c9a-aa63-7c8f81e26a9a">
-    <if_variable name="SG1ProbeSucceeded" comparator="EQUALS" value="0.0" />
-    <if_scan_level name="SG1" side="2" comparator="GREATER" value="0" />
-    <log text="SG1 scanned" />
-    <set_variable name="SG1ProbeSucceeded" value="1.0" integer="yes" />
-    <incoming_comms_text from="SG1" sideValue="2" type="ALERT">Probe successful</incoming_comms_text>
-    <incoming_comms_text from="SG1" sideValue="3" type="ALERT">Incoming distress call from Helms Deep</incoming_comms_text>
-    <set_monster_tag_data tag_slot="0" name="SG2" sourcetext="Distress call from Helms Deep" />
   </event>
   <event name="Display Score" id_arme="c0f38e91-547a-498a-8687-9bfa03a2afa7" parent_id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa">
     <if_variable name="TsnScoreDisplayed" comparator="NOT" value="TsnScore" />
