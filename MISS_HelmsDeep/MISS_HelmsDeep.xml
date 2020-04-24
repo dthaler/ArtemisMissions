@@ -179,7 +179,7 @@
     <set_player_carried_type player_slot="0" bay_slot="4" raceKeys="TSN player" hullKeys="TSN Bomber" name="Red-4" />
     <set_player_carried_type player_slot="0" bay_slot="5" raceKeys="TSN player" hullKeys="TSN Bomber" name="Red-5" />
     <clear_player_station_carried name="Helms Deep" />
-    <create type="player" player_slot="0" x="95182.0" y="0.0" z="93874.0" angle="0" sideValue="2" warp="yes" jump="no" />
+    <create type="player" player_slot="0" x="95182.0" y="0.0" z="93874.0" angle="0" sideValue="2" raceKeys="TSN" hullKeys="Carrier" warp="yes" jump="no" />
     <!--Terran Ships-->
     <create type="neutral" x="97813.0" y="0.0" z="9955.0" angle="90" name="Explorer" raceKeys="Terran" hullKeys="Science Vessel" />
     <set_object_property property="topSpeed" value="MINER_SPEED" name="Explorer" />
