@@ -24,25 +24,32 @@
 04/19/20 ADD: bonus for pirates helping TSN on victory
 04/23/20 ADD: science vessel to scan stargate
 04/23/20 ADD: science vessel hail text about stargate direction
+04/23/20 ADD: science vessel can scan SG1
 
 {
 
 1/2 ADD: TSN: allow sending a "help" message e.g., via probes
          DONE add a Science Vessel in north end
-            * add a way to scan the stargate
+         DNTT add a way to scan the stargate
                 send science vessel
+                   Q: will it show up on science and main screen?
                 send probe out
+                   Shows on science until probe goes out of range
+                   Maybe add a generic mesh around it when discovered?
                 send fighter all the way out
-            * provide a message from the Science Vessel of result of analysis?
-                what if it's destroyed?
-                1) get message from Explorer about unusual readings at a
+         DONE provide a message from the Science Vessel of result of analysis?
+         DONE   1) get message from Explorer about unusual readings at a
                    location in space
-                2) when Explorer approaches, message about scanning now
-                3) after time expires, count it as scanned
-         DNTT allow a choice to radio for help at expense of points
+         DONE   2) when Explorer approaches, message about scanning now
+         DONE   3) after time expires, count it as scanned
+         DONE allow a choice to radio for help at expense of points
                 e.g. 1/3 of whatever points TSN has at end?
                 "Send Distress Signal"
+            * provide an alternate means to get stargate codes if science
+              vessel is ignored or destroyed
+                what if it's destroyed?
          DNTT use the radio-for-help to trigger existing pirate event
+                set EnableDistressSignal = 1 to enable comms button
                 set StargatesEnabled = 1
 
 1/2 ADD: TSN scoring info

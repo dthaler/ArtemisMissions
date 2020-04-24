@@ -33,6 +33,7 @@ Does NOT show up beyond range of sensors
 Any way to prevent them from spawning anomalies when destroyed?
     or to control what they spawn?
 Does not show scan text 1 or 2, always shows fixed text
+if_scan_level does work
 
 Asteroids
 ---------
