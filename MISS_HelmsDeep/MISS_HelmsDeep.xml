@@ -9,7 +9,6 @@
     <!--* side 4 are the independent miners-->
     <set_variable name="MINER_SPEED" value="6.0" />
     <set_variable name="ORIGINAL_PIRATE_SIDE" value="3.0" integer="yes" />
-    <set_variable name="ASSISTANCE_REWARD" value="2400.0" integer="yes" />
     <!---->
     <!--Game Setup-->
     <!---->
@@ -318,7 +317,7 @@
     <set_object_property property="artScale" value="0.0" name="TSN Score: 0" />
     <set_object_property property="pushRadius" value="0.0" name="TSN Score: 0" />
   </start>
-  <folder_arme name="GM Controls" id_arme="1257aab7-c7dc-42a4-946c-0d5c1384470a" expanded_arme="" />
+  <folder_arme name="GM Controls" id_arme="1257aab7-c7dc-42a4-946c-0d5c1384470a" />
   <event name="Refresh recruit miner1 button" id_arme="e0dc9703-ff4c-4706-a301-e1a10e85120d" parent_id_arme="1257aab7-c7dc-42a4-946c-0d5c1384470a">
     <if_timer_finished name="RefreshGMButtons" />
     <clear_gm_button text="Recruit/Miner1" />
@@ -552,7 +551,7 @@
     <set_variable name="GotTsnScoreEasterEggPoints" value="50.0" integer="yes" />
     <set_variable name="TsnScore" value="TsnScore + 50" integer="yes" />
   </event>
-  <folder_arme name="Pirate Events" id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1" />
+  <folder_arme name="Pirate Events" id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1" expanded_arme="" />
   <folder_arme name="Start" id_arme="0a737b19-47ab-4ccb-a2bb-a072ad49ee0b" parent_id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1" />
   <event name="Player ship 1 created" id_arme="64982b23-719e-4d78-a74c-086ce6d8365c" parent_id_arme="0a737b19-47ab-4ccb-a2bb-a072ad49ee0b">
     <if_exists player_slot="1" />
@@ -572,7 +571,7 @@
     <incoming_comms_text from="GAME SERVER" sideValue="3" type="ALERT">Your pirate ship will be scored based on how much Latinum you can collect, whether from mining or looting or any other means.</incoming_comms_text>
     <set_variable name="PirateIntroSent" value="1.0" integer="yes" />
   </event>
-  <folder_arme name="Stargates" id_arme="26f190ad-4fbe-4e36-84d5-02e17b293e4f" parent_id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1" />
+  <folder_arme name="Stargates" id_arme="26f190ad-4fbe-4e36-84d5-02e17b293e4f" parent_id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1" expanded_arme="" />
   <event name="SG2 scanned" id_arme="a875072d-d164-4204-862f-8752b7f24f3b" parent_id_arme="26f190ad-4fbe-4e36-84d5-02e17b293e4f">
     <if_variable name="SG2ProbeSucceeded" comparator="EQUALS" value="0.0" />
     <if_scan_level name="SG2" side="3" comparator="GREATER" value="0" />
@@ -583,7 +582,7 @@
   <event name="Enable Stargates" id_arme="3ca17a5d-a2cd-4147-ad25-e684d646bd63" parent_id_arme="26f190ad-4fbe-4e36-84d5-02e17b293e4f">
     <if_variable name="StargatesEnabled" comparator="EQUALS" value="1.0" />
     <log text="Enabling stargates..." />
-    <incoming_comms_text from="Helms Deep" sideValue="PirateSide" type="ALERT">Mayday! Mayday! We are under attack and are in need of assistance from anyone available! If you assist us, we will give you |ASSISTANCE_REWARD| credits. To accept, use this code at the stargate nearest you.</incoming_comms_text>
+    <incoming_comms_text from="Helms Deep" sideValue="PirateSide" type="ALERT">Mayday! Mayday! We are under attack and are in need of assistance from anyone available! If you assist us, we will give you 1/3 of our credits (score) at the end. To accept, use this code at the stargate nearest you.</incoming_comms_text>
     <set_variable name="StargatesEnabled" value="2.0" integer="yes" />
   </event>
   <event name="Show use SG2 button" id_arme="f404f41c-8327-484a-89d6-b117bb356ec2" parent_id_arme="26f190ad-4fbe-4e36-84d5-02e17b293e4f">
@@ -1222,9 +1221,11 @@
     <if_variable name="GameOver" comparator="EQUALS" value="0.0" />
     <if_exists player_slot="1" />
     <if_object_property property="sideValue" player_slot="1" comparator="EQUALS" value="2" />
-    <log text="Giving pirates |ASSISTANCE_REWARD| bonus for helping TSN succeed" />
-    <incoming_comms_text from="Helms Deep" type="FRIEND">We thank you, pirates, for your assistance. Here are the |ASSISTANCE_REWARD| credits we promised.</incoming_comms_text>
-    <set_variable name="PirateScore" value="PirateScore + ASSISTANCE_REWARD" integer="yes" />
+    <set_variable name="AssistanceReward" value="TsnScore / 3" integer="yes" />
+    <log text="Giving pirates |AssistanceReward| bonus for helping TSN succeed" />
+    <incoming_comms_text from="Helms Deep" type="FRIEND">We thank you, pirates, for your assistance. Here are the |AssistanceReward| credits we promised.</incoming_comms_text>
+    <set_variable name="PirateScore" value="PirateScore + AssistanceReward" integer="yes" />
+    <set_variable name="TsnScore" value="TsnScore - AssistanceReward" integer="yes" />
   </event>
   <event name="Victory" id_arme="dcab75b6-8026-4f2a-9c42-303b41dce749" parent_id_arme="f3d012a5-0f1e-4f91-b16d-d0bb1745ad7e">
     <if_fleet_count comparator="EQUALS" value="0.0" sideValue="1" />

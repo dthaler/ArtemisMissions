@@ -28,15 +28,50 @@
 1/2 ADD: TSN: allow sending a "help" message e.g., via probes
          could require a fighter to go out to it
          what is the range of a tag?
+            NPC Science Vessel?
+            can you shoot a probe if AI has control of helm?
+            * add a Science Vessel in north end
+            * add a way to scan the stargate
+            * provide a message from the Science Vessel of result of analysis
+            * allow a choice to radio for help at expense of points
+                e.g. 1/3 of whatever points TSN has at end?
+            * use the radio-for-help to trigger existing pirate event
 
 1/2 ADD: TSN scoring info
-            maybe it counts down?
+            maybe it counts down? no?
+            + for each enemy vessel destroyed (even if by pirates)
+                OR surrendered
+                set points to Back shield strength
+                K.Cruiser     = 40
+                K.Battleship  = 80
+                K.Dreadnought = 120
+                T.Goliath     = 350
+                T.Leviathan   = 400
+                T.Behemoth    = 600
+            + for scanning stargate
+       DNTT - at end to give to pirates (e.g., 1/3 of final TSN points)
+            - for losing science vessel
+            - for losing minelayer
+            - for losing a fighter
+            - for losing Helms Deep
+
+1/2 ADD: update enemy armada
+            want a bunch of Kraliens so can get higher score and plenty
+            of things to get to surrender
 
 ---
+
+2/2 FIX: use difficulty level to set size of enemy armada
+         and NPC miner fleet
 
 2/2 FIX: change border object names to whitespaces (1-10 spaces)
 
 2/2 DOC: add wiki table with object properties from notes.txt
+
+2/2 ADD: can minelayer also be a minesweeper to replenish supply?
+         but would require tracking locations of mines dropped
+
+2/2 FIX: set pirateRepWithStations=1 on pirate after agreeing to help?
 
 ---
 
