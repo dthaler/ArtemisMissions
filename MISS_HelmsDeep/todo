@@ -22,6 +22,7 @@
 04/19/20 ADD: easter egg ways to get more points from score displays
 04/19/20 BUG: stargates can be destroyed by weapons
 04/19/20 ADD: bonus for pirates helping TSN on victory
+04/23/20 ADD: science vessel to scan stargate
 
 {
 
@@ -30,12 +31,23 @@
          what is the range of a tag?
             NPC Science Vessel?
             can you shoot a probe if AI has control of helm?
-            * add a Science Vessel in north end
+         DNTT add a Science Vessel in north end
             * add a way to scan the stargate
-            * provide a message from the Science Vessel of result of analysis
-            * allow a choice to radio for help at expense of points
+                send science vessel
+                send probe (but might not be aimable?)
+                 SG1Scanned?
+                 SG1ProbeSucceeded?
+            * provide a message from the Science Vessel of result of analysis?
+                what if it's destroyed?
+                1) get message from Explorer about unusual readings at a
+                   location in space
+                2) when Explorer approaches, message about scanning now
+                3) after time expires, count it as scanned
+         DNTT allow a choice to radio for help at expense of points
                 e.g. 1/3 of whatever points TSN has at end?
-            * use the radio-for-help to trigger existing pirate event
+                "Send Distress Signal"
+         DNTT use the radio-for-help to trigger existing pirate event
+                set StargatesEnabled = 1
 
 1/2 ADD: TSN scoring info
             maybe it counts down? no?

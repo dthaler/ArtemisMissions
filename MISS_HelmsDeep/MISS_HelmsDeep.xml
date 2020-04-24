@@ -166,10 +166,10 @@
     <!---->
     <!--TSN Setup-->
     <!---->
-    <create count="150" type="mines" startX="100000.0" startY="500.0" startZ="80000.0" endX="80000.0" endY="500.0" endZ="100000.0" randomRange="25" />
-    <create count="150" type="mines" startX="100000.0" startY="-500.0" startZ="80000.0" endX="80000.0" endY="-500.0" endZ="100000.0" randomRange="25" />
-    <create count="150" type="mines" startX="100000.0" startY="167.0" startZ="80000.0" endX="80000.0" endY="167.0" endZ="100000.0" randomRange="25" />
-    <create count="150" type="mines" startX="100000.0" startY="-167.0" startZ="80000.0" endX="80000.0" endY="-167.0" endZ="100000.0" randomRange="25" />
+    <create count="150" type="mines" startAngle="0" endAngle="90" startX="100000.0" startY="500.0" startZ="100000.0" radius="20000" randomRange="25" />
+    <create count="150" type="mines" startAngle="0" endAngle="90" startX="100000.0" startY="-500.0" startZ="100000.0" radius="20000" randomRange="25" />
+    <create count="150" type="mines" startAngle="0" endAngle="90" startX="100000.0" startY="167.0" startZ="100000.0" radius="20000" randomRange="25" />
+    <create count="150" type="mines" startAngle="0" endAngle="90" startX="100000.0" startY="-167.0" startZ="100000.0" radius="20000" randomRange="25" />
     <create type="station" x="95182.0" y="0.0" z="93874.0" angle="0" name="Helms Deep" raceKeys="Terran" hullKeys="Command Base Base" />
     <clear_player_station_carried name="Helms Deep" />
     <set_player_carried_type player_slot="0" bay_slot="0" raceKeys="TSN player" hullKeys="TSN LR Shuttle" name="Red-0" />
@@ -180,7 +180,10 @@
     <set_player_carried_type player_slot="0" bay_slot="5" raceKeys="TSN player" hullKeys="TSN Bomber" name="Red-5" />
     <clear_player_station_carried name="Helms Deep" />
     <create type="player" player_slot="0" x="95182.0" y="0.0" z="93874.0" angle="0" sideValue="2" warp="yes" jump="no" />
-    <!--AI Miner-->
+    <!--Terran Ships-->
+    <create type="neutral" x="97813.0" y="0.0" z="9955.0" angle="90" name="Explorer" raceKeys="Terran" hullKeys="Science Vessel" />
+    <set_object_property property="topSpeed" value="MINER_SPEED" name="Explorer" />
+    <add_ai type="FOLLOW_COMMS_ORDERS" name="Explorer" />
     <create type="neutral" x="97652.0" y="0.0" z="97796.0" angle="0" name="MineLayer" raceKeys="TSN" hullKeys="Mine Layer" />
     <!--Planet-->
     <!--<create type="genericMesh" x="93148.0" y="0.0" z="95907.0" angle="0" name="Planet" meshFileName="dat\Missions\MISS_HelmsDeep\Object.dxs" textureFileName="dat/electricNoise2.png" fakeShieldsFront="1000" colorRed="1.0" colorGreen="0.0" colorBlue="1.0" />-->
@@ -301,18 +304,18 @@
     <!---->
     <!--Torgoth Armada Setup-->
     <!---->
-    <create type="enemy" x="88790.0" y="0.0" z="86610.0" angle="200" name="T1" raceKeys="Torgoth" hullKeys="large" fleetnumber="-1" />
-    <create type="enemy" x="86965.0" y="0.0" z="73973.0" angle="0" name="T2" raceKeys="Torgoth" hullKeys="large" fleetnumber="-1" />
+    <create type="enemy" x="70759.0" y="0.0" z="62991.0" angle="220" name="T1" raceKeys="Torgoth" hullKeys="large" fleetnumber="-1" />
+    <create type="enemy" x="85625.0" y="0.0" z="59375.0" angle="200" name="T2" raceKeys="Torgoth" hullKeys="large" fleetnumber="-1" />
     <!---->
     <!--Score Display-->
     <!---->
     <set_variable name="PirateScoreDisplayed" value="0.0" integer="yes" />
-    <create type="genericMesh" x="30000.0" y="0.0" z="100000.0" name="Pirate Score: 0" meshFileName="dat/asteroid.dxs" textureFileName="dat/asteroidTexture.png" colorRed="0.5" colorGreen="0.5" colorBlue="0.5" />
+    <create type="genericMesh" x="30000.0" y="0.0" z="100000.0" angle="0" name="Pirate Score: 0" meshFileName="dat/asteroid.dxs" textureFileName="dat/asteroidTexture.png" colorRed="0.5" colorGreen="0.5" colorBlue="0.5" />
     <set_ship_text name="Pirate Score: 0" desc="+10 for each asteroid piece mined^+ # credits earned via any other mechanism^+ unknown for other special actions" scan_desc="You'll just have to try things to see what else might affect your score." />
     <set_object_property property="artScale" value="0.0" name="Pirate Score: 0" />
     <set_object_property property="pushRadius" value="0.0" name="Pirate Score: 0" />
     <set_variable name="TsnScoreDisplayed" value="0.0" integer="yes" />
-    <create type="genericMesh" x="70000.0" y="0.0" z="100000.0" name="TSN Score: 0" meshFileName="dat/asteroid.dxs" textureFileName="dat/asteroidTexture.png" colorRed="0.5" colorGreen="0.5" colorBlue="0.5" />
+    <create type="genericMesh" x="70000.0" y="0.0" z="100000.0" angle="0" name="TSN Score: 0" meshFileName="dat/asteroid.dxs" textureFileName="dat/asteroidTexture.png" colorRed="0.5" colorGreen="0.5" colorBlue="0.5" />
     <set_ship_text name="TSN Score: 0" desc="TBD" scan_desc="You'll just have to try things to see what else might affect your score." />
     <set_object_property property="artScale" value="0.0" name="TSN Score: 0" />
     <set_object_property property="pushRadius" value="0.0" name="TSN Score: 0" />
@@ -439,7 +442,7 @@
     <set_monster_tag_data tag_slot="2" name="SG2" />
     <set_monster_tag_data tag_slot="3" name="SG2" />
   </event>
-  <folder_arme name="TSN Events" id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa" />
+  <folder_arme name="TSN Events" id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa" expanded_arme="" />
   <folder_arme name="Start" id_arme="63b761a1-37ab-42f5-afaf-a627617557e5" parent_id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa" />
   <event name="Player ship 0 created" id_arme="353b89a6-114f-48a6-b74d-4244cc91307b" parent_id_arme="63b761a1-37ab-42f5-afaf-a627617557e5">
     <if_exists player_slot="0" />
@@ -484,11 +487,40 @@
     <set_player_station_carried name="Helms Deep" raceKeys="TSN player" hullKeys="TSN Bomber" singleSeatName="Red-|TsnFighterNeeded|" />
     <set_object_property property="throttle" value="1.0" player_slot="0" />
   </event>
-  <folder_arme name="AI mine layer" id_arme="4af61a28-62d1-43d1-b58a-f8c906389594" parent_id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa" />
+  <folder_arme name="Stargates" id_arme="23661d47-b177-4204-9508-5e74de58c391" parent_id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa" />
+  <event name="SG1 scanned" id_arme="df9d063e-4560-4c40-baff-fbbbd28c28df" parent_id_arme="23661d47-b177-4204-9508-5e74de58c391">
+    <if_scan_level name="SG1" side="2" comparator="GREATER" value="0" />
+    <if_variable name="SG1Scanned" comparator="EQUALS" value="0.0" />
+    <log text="SG1 was scanned" />
+    <warning_popup_message message="SG1 scanned" consoles="M" player_slot="0" />
+    <set_variable name="SG1Scanned" value="1.0" integer="yes" />
+  </event>
+  <event name="Explorer near SG1" id_arme="3418c2cc-49ae-4ea4-8965-058b9dd829c8" parent_id_arme="23661d47-b177-4204-9508-5e74de58c391">
+    <if_exists name="Explorer" />
+    <if_distance name1="Explorer" name2="SG1" comparator="LESS" value="10000.0" />
+    <if_variable name="EnableDistressSignal" comparator="EQUALS" value="0.0" />
+    <log text="Explorer scanned SG1" />
+    <set_variable name="EnableDistressSignal" value="1.0" integer="yes" />
+    <incoming_comms_text from="Explorer">SG1 appears to be a stargate of some sort, with a wormhole to another part of space.</incoming_comms_text>
+  </event>
+  <event name="Refresh distress signal button" id_arme="12c9a2e2-f971-45e8-b0c5-1a9e62890eee" parent_id_arme="23661d47-b177-4204-9508-5e74de58c391">
+    <if_variable name="EnableDistressSignal" comparator="EQUALS" value="1.0" />
+    <if_timer_finished name="RefreshCommsButtons" />
+    <clear_comms_button text="Send Distress Signal" sideValue="2" />
+    <set_comms_button text="Send Distress Signal" sideValue="2" />
+  </event>
+  <event name="Send distress signal" id_arme="1d5b90ec-0094-4f9a-b128-784195a2f175" parent_id_arme="23661d47-b177-4204-9508-5e74de58c391">
+    <if_comms_button text="Send Distress Signal" />
+    <log text="Helms Deep sent distress signal" />
+    <set_variable name="EnableDistressSignal" value="2.0" integer="yes" />
+    <set_variable name="StargatesEnabled" value="1.0" integer="yes" />
+    <clear_comms_button text="Send Distress Signal" sideValue="2" />
+  </event>
+  <folder_arme name="AI mine layer" id_arme="4af61a28-62d1-43d1-b58a-f8c906389594" parent_id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa" expanded_arme="" />
   <event name="Initialize" id_arme="137cb245-17f0-46b5-8867-4de01c7b325c" parent_id_arme="4af61a28-62d1-43d1-b58a-f8c906389594">
     <if_variable name="MineLayerInitialized" comparator="EQUALS" value="0.0" />
     <log text="Initializing mine layer" />
-    <set_object_property property="topSpeed" value="6.0" name="MineLayer" />
+    <set_object_property property="topSpeed" value="MINER_SPEED" name="MineLayer" />
     <clear_ai name="MineLayer" />
     <add_ai type="TARGET_THROTTLE" value1="1.0" targetName="Helms Deep" value2="1" name="MineLayer" />
     <add_ai type="FOLLOW_COMMS_ORDERS" name="MineLayer" />
@@ -520,7 +552,7 @@
     <set_variable name="DropMinesButtonPresent" value="0.0" integer="yes" />
     <clear_comms_button text="Lay Mine" sideValue="2" />
   </event>
-  <event name="Refresh Comms buttons" id_arme="99b48c24-23df-442e-aa14-19b9b778514e" parent_id_arme="4af61a28-62d1-43d1-b58a-f8c906389594">
+  <event name="Refresh Lay Mine button" id_arme="99b48c24-23df-442e-aa14-19b9b778514e" parent_id_arme="4af61a28-62d1-43d1-b58a-f8c906389594">
     <if_timer_finished name="RefreshCommsButtons" />
     <if_variable name="DropMinesButtonPresent" comparator="EQUALS" value="1.0" />
     <clear_comms_button text="Lay Mine" sideValue="2" />
@@ -551,7 +583,7 @@
     <set_variable name="GotTsnScoreEasterEggPoints" value="50.0" integer="yes" />
     <set_variable name="TsnScore" value="TsnScore + 50" integer="yes" />
   </event>
-  <folder_arme name="Pirate Events" id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1" expanded_arme="" />
+  <folder_arme name="Pirate Events" id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1" />
   <folder_arme name="Start" id_arme="0a737b19-47ab-4ccb-a2bb-a072ad49ee0b" parent_id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1" />
   <event name="Player ship 1 created" id_arme="64982b23-719e-4d78-a74c-086ce6d8365c" parent_id_arme="0a737b19-47ab-4ccb-a2bb-a072ad49ee0b">
     <if_exists player_slot="1" />
@@ -571,7 +603,7 @@
     <incoming_comms_text from="GAME SERVER" sideValue="3" type="ALERT">Your pirate ship will be scored based on how much Latinum you can collect, whether from mining or looting or any other means.</incoming_comms_text>
     <set_variable name="PirateIntroSent" value="1.0" integer="yes" />
   </event>
-  <folder_arme name="Stargates" id_arme="26f190ad-4fbe-4e36-84d5-02e17b293e4f" parent_id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1" expanded_arme="" />
+  <folder_arme name="Stargates" id_arme="26f190ad-4fbe-4e36-84d5-02e17b293e4f" parent_id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1" />
   <event name="SG2 scanned" id_arme="a875072d-d164-4204-862f-8752b7f24f3b" parent_id_arme="26f190ad-4fbe-4e36-84d5-02e17b293e4f">
     <if_variable name="SG2ProbeSucceeded" comparator="EQUALS" value="0.0" />
     <if_scan_level name="SG2" side="3" comparator="GREATER" value="0" />
@@ -1215,7 +1247,7 @@
     <set_variable name="GotPirateScoreEasterEggPoints" value="50.0" integer="yes" />
     <set_variable name="PirateScore" value="PirateScore + 50" integer="yes" />
   </event>
-  <folder_arme name="Joint Events" id_arme="f3d012a5-0f1e-4f91-b16d-d0bb1745ad7e" expanded_arme="" />
+  <folder_arme name="Joint Events" id_arme="f3d012a5-0f1e-4f91-b16d-d0bb1745ad7e" />
   <event name="Victory with pirates" id_arme="0902d234-84b0-4097-b15d-0e44e33ef2c1" parent_id_arme="f3d012a5-0f1e-4f91-b16d-d0bb1745ad7e">
     <if_fleet_count comparator="EQUALS" value="0.0" sideValue="1" />
     <if_variable name="GameOver" comparator="EQUALS" value="0.0" />
