@@ -126,7 +126,13 @@ Miner4: 84/70
 
 Pirate Score:
     100 for each converted miner
+     50 for scanning the scoreboard
      10 for each astroid piece mined
+
+TSN Score:
+   1000 when Explorer finishes scanning stargate
+   -100 for each time the Science Vessel is lost
+    -10 for each fighter replacement needed
 
 AI Miner blocks:
 ---------------
@@ -153,3 +159,9 @@ Heading to stargate:
 Brain stacks for surrendered ships don't work, even if set hasSurrendered
     back to no.  Have to recreate the ship to un-surrender and re-enable
     brain stack
+
+Scanning stargate
+-----------------
+Can send a probe
+Can send science vessel
+Can send a fighter

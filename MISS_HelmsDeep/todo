@@ -25,32 +25,14 @@
 04/23/20 ADD: science vessel to scan stargate
 04/23/20 ADD: science vessel hail text about stargate direction
 04/23/20 ADD: science vessel can scan SG1
+04/25/20 ADD: TSN: allow sending a "help" message once SG1 is analyzed
 
 {
 
-1/2 ADD: TSN: allow sending a "help" message e.g., via probes
-         DONE add a Science Vessel in north end
-         DNTT add a way to scan the stargate
-                send science vessel
-                   Q: will it show up on science and main screen?
-                send probe out
-                   Shows on science until probe goes out of range
-                   Maybe add a generic mesh around it when discovered?
-                send fighter all the way out
-         DONE provide a message from the Science Vessel of result of analysis?
-         DONE   1) get message from Explorer about unusual readings at a
-                   location in space
-         DONE   2) when Explorer approaches, message about scanning now
-         DONE   3) after time expires, count it as scanned
-         DONE allow a choice to radio for help at expense of points
-                e.g. 1/3 of whatever points TSN has at end?
-                "Send Distress Signal"
-            * provide an alternate means to get stargate codes if science
-              vessel is ignored or destroyed
-                what if it's destroyed?
-         DNTT use the radio-for-help to trigger existing pirate event
-                set EnableDistressSignal = 1 to enable comms button
-                set StargatesEnabled = 1
+
+1/2 ADD: update enemy armada
+            want a bunch of Kraliens so can get higher score and plenty
+            of things to get to surrender
 
 1/2 ADD: TSN scoring info
             maybe it counts down? no?
@@ -63,16 +45,11 @@
                 T.Goliath     = 350
                 T.Leviathan   = 400
                 T.Behemoth    = 600
-            + for scanning stargate
-       DNTT - at end to give to pirates (e.g., 1/3 of final TSN points)
-            - for losing science vessel
-            - for losing minelayer
-            - for losing a fighter
-            - for losing Helms Deep
-
-1/2 ADD: update enemy armada
-            want a bunch of Kraliens so can get higher score and plenty
-            of things to get to surrender
+       DNTT + 1000 for scanning stargate
+       DNTT - 1/3  at end to give to pirates (e.g., 1/3 of final TSN points)
+            - 100  for respawning science vessel
+            -      for losing minelayer
+       DNTT - 10   for respawning a fighter
 
 ---
 
