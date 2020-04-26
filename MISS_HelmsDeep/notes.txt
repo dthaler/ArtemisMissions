@@ -131,8 +131,16 @@ Pirate Score:
 
 TSN Score:
    1000 when Explorer finishes scanning stargate
+     50 for scanning the scoreboard
    -100 for each time the Science Vessel is lost
     -10 for each fighter replacement needed
+    600 for destroying T11 (Torgoth Behemoth) or getting it to surrender
+            (based on back shield strength)
+    400 for destroying T21 (Torgoth Leviathan)   "
+    350 for destroying T31 (Torgoth Goliath)     "
+    120 for destroying T41 (Kralien Dreadnought) "
+     80 for destroying T51 (Kralien Battleship)  "
+     40 for destroying a Kralien Cruiser         "
 
 AI Miner blocks:
 ---------------

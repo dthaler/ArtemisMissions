@@ -304,10 +304,28 @@
     <add_ai type="CHASE_ANGER" name="Miner6" />
     <set_variable name="UseSG2Displayed" value="0.0" integer="yes" />
     <!---->
-    <!--Torgoth Armada Setup-->
+    <!--Enemy Armada Setup-->
     <!---->
-    <create type="enemy" x="70759.0" y="0.0" z="62991.0" angle="220" name="T1" raceKeys="Torgoth" hullKeys="large" fleetnumber="-1" />
-    <create type="enemy" x="85625.0" y="0.0" z="59375.0" angle="200" name="T2" raceKeys="Torgoth" hullKeys="large" fleetnumber="-1" />
+    <create type="enemy" x="58862.0" y="0.0" z="47530.0" angle="210" name="T11" raceKeys="Torgoth" hullKeys="large" fleetnumber="1" />
+    <create type="enemy" x="58281.0" y="0.0" z="49564.0" angle="210" name="K12" raceKeys="Kralien" hullKeys="small" fleetnumber="1" />
+    <create type="enemy" x="63947.0" y="0.0" z="45205.0" angle="210" name="T21" raceKeys="Torgoth" hullKeys="medium" fleetnumber="2" />
+    <create type="enemy" x="66562.0" y="0.0" z="45496.0" angle="210" name="K22" raceKeys="Kralien" hullKeys="small" fleetnumber="2" />
+    <create type="enemy" x="65691.0" y="0.0" z="47675.0" angle="210" name="K23" raceKeys="Kralien" hullKeys="small" fleetnumber="2" />
+    <create type="enemy" x="68741.0" y="0.0" z="63801.0" angle="210" name="T31" raceKeys="Torgoth" hullKeys="small" fleetnumber="3" />
+    <create type="enemy" x="65836.0" y="0.0" z="63656.0" angle="210" name="K32" raceKeys="Kralien" hullKeys="small" fleetnumber="3" />
+    <create type="enemy" x="71647.0" y="0.0" z="62639.0" angle="210" name="K33" raceKeys="Torgoth" hullKeys="small" fleetnumber="3" />
+    <create type="enemy" x="67870.0" y="0.0" z="61912.0" angle="210" name="K34" raceKeys="Torgoth" hullKeys="small" fleetnumber="3" />
+    <create type="enemy" x="92277.0" y="0.0" z="37360.0" angle="210" name="K41" raceKeys="Kralien" hullKeys="large" fleetnumber="4" />
+    <create type="enemy" x="92131.0" y="0.0" z="42009.0" angle="210" name="K42" raceKeys="Kralien" hullKeys="small" fleetnumber="4" />
+    <create type="enemy" x="90969.0" y="0.0" z="40266.0" angle="210" name="K43" raceKeys="Kralien" hullKeys="small" fleetnumber="4" />
+    <create type="enemy" x="95037.0" y="0.0" z="39249.0" angle="210" name="K44" raceKeys="Kralien" hullKeys="small" fleetnumber="4" />
+    <create type="enemy" x="94165.0" y="0.0" z="37651.0" angle="210" name="K45" raceKeys="Kralien" hullKeys="small" fleetnumber="4" />
+    <create type="enemy" x="86175.0" y="0.0" z="64382.0" angle="210" name="K51" raceKeys="Kralien" hullKeys="medium" fleetnumber="5" />
+    <create type="enemy" x="88209.0" y="0.0" z="67433.0" angle="210" name="K52" raceKeys="Kralien" hullKeys="small" fleetnumber="5" />
+    <create type="enemy" x="83705.0" y="0.0" z="65544.0" angle="210" name="K53" raceKeys="Kralien" hullKeys="small" fleetnumber="5" />
+    <create type="enemy" x="85303.0" y="0.0" z="68450.0" angle="210" name="K54" raceKeys="Kralien" hullKeys="small" fleetnumber="5" />
+    <create type="enemy" x="89662.0" y="0.0" z="63365.0" angle="210" name="K55" raceKeys="Kralien" hullKeys="small" fleetnumber="5" />
+    <create type="enemy" x="92131.0" y="0.0" z="66707.0" angle="210" name="K56" raceKeys="Kralien" hullKeys="small" fleetnumber="5" />
     <!---->
     <!--Score Display-->
     <!---->
@@ -424,8 +442,26 @@
   <event name="GM victory" id_arme="cbd7dfbc-f65b-4a0c-91a5-21837ca2a563" parent_id_arme="1257aab7-c7dc-42a4-946c-0d5c1384470a">
     <if_gm_button text="Victory" />
     <log text="GM declared victory" />
-    <destroy name="T1" />
-    <destroy name="T2" />
+    <destroy name="T11" />
+    <destroy name="K12" />
+    <destroy name="T21" />
+    <destroy name="K22" />
+    <destroy name="K23" />
+    <destroy name="T31" />
+    <destroy name="K32" />
+    <destroy name="K33" />
+    <destroy name="K34" />
+    <destroy name="K41" />
+    <destroy name="K42" />
+    <destroy name="K43" />
+    <destroy name="K44" />
+    <destroy name="K45" />
+    <destroy name="K51" />
+    <destroy name="K52" />
+    <destroy name="K53" />
+    <destroy name="K54" />
+    <destroy name="K55" />
+    <destroy name="K56" />
   </event>
   <folder_arme name="Terrain Events" id_arme="927988fc-4d8d-4ee7-a141-764e4bf81025" />
   <event name="Respawn SG1" id_arme="8c14582f-2215-402e-8ddf-744ec58ae732" parent_id_arme="927988fc-4d8d-4ee7-a141-764e4bf81025">
@@ -522,7 +558,7 @@
     <clear_comms_button text="Send Distress Signal" sideValue="2" />
     <set_monster_tag_data tag_slot="0" name="SG2" sourcetext="Distress call from Helms Deep" />
   </event>
-  <folder_arme name="AI science vessel" id_arme="8206d61f-37ce-447b-bf64-a0e34f7c4e89" parent_id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa" expanded_arme="" />
+  <folder_arme name="AI science vessel" id_arme="8206d61f-37ce-447b-bf64-a0e34f7c4e89" parent_id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa" />
   <event name="Explorer first reports" id_arme="29de5cfb-e9a6-4342-a7c1-5b23e0d7a366" parent_id_arme="8206d61f-37ce-447b-bf64-a0e34f7c4e89">
     <if_exists name="Explorer-|ExplorerId|" />
     <if_timer_finished name="ExplorerScanTimer" />
@@ -675,21 +711,322 @@
     <set_comms_button text="Lay Mine" sideValue="2" />
     <set_timer name="RefreshCommsButtons" seconds="30" />
   </event>
-  <event name="Display Score" id_arme="c0f38e91-547a-498a-8687-9bfa03a2afa7" parent_id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa">
-    <if_variable name="TsnScoreDisplayed" comparator="NOT" value="TsnScore" />
-    <set_ship_text name="TSN Score: |TsnScoreDisplayed|" newname="TSN Score: |TsnScore|" />
-    <set_variable name="TsnScoreDisplayed" value="TsnScore" integer="yes" />
+  <folder_arme name="Score" id_arme="490adef6-88a2-4dd8-9269-1f0ece91815f" parent_id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa" expanded_arme="" />
+  <event name="T11 killed" id_arme="aaf3982d-0250-4df8-8a86-30016fa8e8e8" parent_id_arme="490adef6-88a2-4dd8-9269-1f0ece91815f">
+    <if_not_exists name="T11" />
+    <if_variable name="ScoredT11" comparator="EQUALS" value="0.0" />
+    <log text="Killed T11" />
+    <set_variable name="TsnScore" value="TsnScore + 600" integer="yes" />
+    <set_variable name="ScoredT11" value="1.0" integer="yes" />
   </event>
-  <event name="TSN Score Easter Egg points" id_arme="d23579f4-55cd-4b41-a46f-6cb3955105f1" parent_id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa">
+  <event name="T11 surrendered" id_arme="19a5a545-981b-4ad1-92dc-e8cf77b16aba" parent_id_arme="490adef6-88a2-4dd8-9269-1f0ece91815f">
+    <if_exists name="T11" />
+    <if_object_property property="hasSurrendered" name="T11" comparator="EQUALS" value="1" />
+    <if_variable name="ScoredT11" comparator="EQUALS" value="0.0" />
+    <log text="T11 surrendered" />
+    <set_variable name="TsnScore" value="TsnScore + 600" integer="yes" />
+    <set_variable name="ScoredT11" value="1.0" integer="yes" />
+  </event>
+  <event name="K12 killed" id_arme="74dc7022-f5aa-417f-be9c-325a06c93b7e" parent_id_arme="490adef6-88a2-4dd8-9269-1f0ece91815f">
+    <if_not_exists name="K12" />
+    <if_variable name="ScoredK12" comparator="EQUALS" value="0.0" />
+    <log text="Killed K12" />
+    <set_variable name="TsnScore" value="TsnScore + 40" integer="yes" />
+    <set_variable name="ScoredK12" value="1.0" integer="yes" />
+  </event>
+  <event name="K12 surrendered" id_arme="c3e1ca82-a0ed-42af-84cc-c95edb07727b" parent_id_arme="490adef6-88a2-4dd8-9269-1f0ece91815f">
+    <if_exists name="K12" />
+    <if_object_property property="hasSurrendered" name="K12" comparator="EQUALS" value="1" />
+    <if_variable name="ScoredK12" comparator="EQUALS" value="0.0" />
+    <log text="K12 surrendered" />
+    <set_variable name="TsnScore" value="TsnScore + 40" integer="yes" />
+    <set_variable name="ScoredK12" value="1.0" integer="yes" />
+  </event>
+  <event name="T21 killed" id_arme="c186eaed-7d44-4db8-a969-a6f088995e72" parent_id_arme="490adef6-88a2-4dd8-9269-1f0ece91815f">
+    <if_not_exists name="T21" />
+    <if_variable name="ScoredT21" comparator="EQUALS" value="0.0" />
+    <log text="Killed T21" />
+    <set_variable name="TsnScore" value="TsnScore + 400" integer="yes" />
+    <set_variable name="ScoredT21" value="1.0" integer="yes" />
+  </event>
+  <event name="T21 surrendered" id_arme="a7b77d5e-8fb9-4121-9c5e-05c91ddde1d2" parent_id_arme="490adef6-88a2-4dd8-9269-1f0ece91815f">
+    <if_exists name="T21" />
+    <if_object_property property="hasSurrendered" name="T21" comparator="EQUALS" value="1" />
+    <if_variable name="ScoredT21" comparator="EQUALS" value="0.0" />
+    <log text="T21 surrendered" />
+    <set_variable name="TsnScore" value="TsnScore + 400" integer="yes" />
+    <set_variable name="ScoredT21" value="1.0" integer="yes" />
+  </event>
+  <event name="K22 killed" id_arme="4d5121de-3784-4297-90df-cf2d999f3bcb" parent_id_arme="490adef6-88a2-4dd8-9269-1f0ece91815f">
+    <if_not_exists name="K22" />
+    <if_variable name="ScoredK22" comparator="EQUALS" value="0.0" />
+    <log text="Killed K22" />
+    <set_variable name="TsnScore" value="TsnScore + 40" integer="yes" />
+    <set_variable name="ScoredK22" value="1.0" integer="yes" />
+  </event>
+  <event name="K22 surrendered" id_arme="e7fba254-8a4b-44fa-90e5-138b3e97e8ee" parent_id_arme="490adef6-88a2-4dd8-9269-1f0ece91815f">
+    <if_exists name="K22" />
+    <if_object_property property="hasSurrendered" name="K22" comparator="EQUALS" value="1" />
+    <if_variable name="ScoredK22" comparator="EQUALS" value="0.0" />
+    <log text="K22 surrendered" />
+    <set_variable name="TsnScore" value="TsnScore + 40" integer="yes" />
+    <set_variable name="ScoredK22" value="1.0" integer="yes" />
+  </event>
+  <event name="K23 killed" id_arme="11690669-f326-4685-a856-f273028daedb" parent_id_arme="490adef6-88a2-4dd8-9269-1f0ece91815f">
+    <if_not_exists name="K23" />
+    <if_variable name="ScoredK23" comparator="EQUALS" value="0.0" />
+    <log text="Killed K23" />
+    <set_variable name="TsnScore" value="TsnScore + 40" integer="yes" />
+    <set_variable name="ScoredK23" value="1.0" integer="yes" />
+  </event>
+  <event name="K23 surrendered" id_arme="5ba62bc8-a201-4204-b898-0833774a85a2" parent_id_arme="490adef6-88a2-4dd8-9269-1f0ece91815f">
+    <if_exists name="K23" />
+    <if_object_property property="hasSurrendered" name="K23" comparator="EQUALS" value="1" />
+    <if_variable name="ScoredK23" comparator="EQUALS" value="0.0" />
+    <log text="K23 surrendered" />
+    <set_variable name="TsnScore" value="TsnScore + 40" integer="yes" />
+    <set_variable name="ScoredK23" value="1.0" integer="yes" />
+  </event>
+  <event name="T31 killed" id_arme="807b3efe-f324-4413-a08f-31c8814f9011" parent_id_arme="490adef6-88a2-4dd8-9269-1f0ece91815f">
+    <if_not_exists name="T31" />
+    <if_variable name="ScoredT31" comparator="EQUALS" value="0.0" />
+    <log text="Killed T31" />
+    <set_variable name="TsnScore" value="TsnScore + 350" integer="yes" />
+    <set_variable name="ScoredT31" value="1.0" integer="yes" />
+  </event>
+  <event name="T31 surrendered" id_arme="d1e98a6c-70ef-41b7-8b07-58e0faa1f438" parent_id_arme="490adef6-88a2-4dd8-9269-1f0ece91815f">
+    <if_exists name="T31" />
+    <if_object_property property="hasSurrendered" name="T31" comparator="EQUALS" value="1" />
+    <if_variable name="ScoredT31" comparator="EQUALS" value="0.0" />
+    <log text="T31 surrendered" />
+    <set_variable name="TsnScore" value="TsnScore + 350" integer="yes" />
+    <set_variable name="ScoredT31" value="1.0" integer="yes" />
+  </event>
+  <event name="K32 killed" id_arme="f37fd545-bbbe-4b40-a87e-f2cb98d36cf5" parent_id_arme="490adef6-88a2-4dd8-9269-1f0ece91815f">
+    <if_not_exists name="K32" />
+    <if_variable name="ScoredK32" comparator="EQUALS" value="0.0" />
+    <log text="Killed K32" />
+    <set_variable name="TsnScore" value="TsnScore + 40" integer="yes" />
+    <set_variable name="ScoredK32" value="1.0" integer="yes" />
+  </event>
+  <event name="K32 surrendered" id_arme="6760e1f3-761e-4968-acab-9258d433cb04" parent_id_arme="490adef6-88a2-4dd8-9269-1f0ece91815f">
+    <if_exists name="K32" />
+    <if_object_property property="hasSurrendered" name="K32" comparator="EQUALS" value="1" />
+    <if_variable name="ScoredK32" comparator="EQUALS" value="0.0" />
+    <log text="K32 surrendered" />
+    <set_variable name="TsnScore" value="TsnScore + 40" integer="yes" />
+    <set_variable name="ScoredK32" value="1.0" integer="yes" />
+  </event>
+  <event name="K33 killed" id_arme="7b04a0e2-36ec-413f-9e62-f2eba4173600" parent_id_arme="490adef6-88a2-4dd8-9269-1f0ece91815f">
+    <if_not_exists name="K33" />
+    <if_variable name="ScoredK33" comparator="EQUALS" value="0.0" />
+    <log text="Killed K33" />
+    <set_variable name="TsnScore" value="TsnScore + 40" integer="yes" />
+    <set_variable name="ScoredK33" value="1.0" integer="yes" />
+  </event>
+  <event name="K33 surrendered" id_arme="f04dc78c-fde4-4ed6-b2a1-967109d294db" parent_id_arme="490adef6-88a2-4dd8-9269-1f0ece91815f">
+    <if_exists name="K33" />
+    <if_object_property property="hasSurrendered" name="K33" comparator="EQUALS" value="1" />
+    <if_variable name="ScoredK33" comparator="EQUALS" value="0.0" />
+    <log text="K33 surrendered" />
+    <set_variable name="TsnScore" value="TsnScore + 40" integer="yes" />
+    <set_variable name="ScoredK33" value="1.0" integer="yes" />
+  </event>
+  <event name="K34 killed" id_arme="053f8552-b63b-4eef-92c0-e65997fdcf91" parent_id_arme="490adef6-88a2-4dd8-9269-1f0ece91815f">
+    <if_not_exists name="K34" />
+    <if_variable name="ScoredK34" comparator="EQUALS" value="0.0" />
+    <log text="Killed K34" />
+    <set_variable name="TsnScore" value="TsnScore + 40" integer="yes" />
+    <set_variable name="ScoredK34" value="1.0" integer="yes" />
+  </event>
+  <event name="K34 surrendered" id_arme="0c5b1339-e68f-48d4-a204-7f9378010943" parent_id_arme="490adef6-88a2-4dd8-9269-1f0ece91815f">
+    <if_exists name="K34" />
+    <if_object_property property="hasSurrendered" name="K34" comparator="EQUALS" value="1" />
+    <if_variable name="ScoredK34" comparator="EQUALS" value="0.0" />
+    <log text="K34 surrendered" />
+    <set_variable name="TsnScore" value="TsnScore + 40" integer="yes" />
+    <set_variable name="ScoredK34" value="1.0" integer="yes" />
+  </event>
+  <event name="K41 killed" id_arme="ef67183c-8317-4d0f-ab75-b5b10346e762" parent_id_arme="490adef6-88a2-4dd8-9269-1f0ece91815f">
+    <if_not_exists name="K41" />
+    <if_variable name="ScoredK41" comparator="EQUALS" value="0.0" />
+    <log text="Killed K41" />
+    <set_variable name="TsnScore" value="TsnScore + 120" integer="yes" />
+    <set_variable name="ScoredK41" value="1.0" integer="yes" />
+  </event>
+  <event name="K41 surrendered" id_arme="239a4b62-bfe3-4fe1-8907-aa0268bf3629" parent_id_arme="490adef6-88a2-4dd8-9269-1f0ece91815f">
+    <if_exists name="K41" />
+    <if_object_property property="hasSurrendered" name="K41" comparator="EQUALS" value="1" />
+    <if_variable name="ScoredK41" comparator="EQUALS" value="0.0" />
+    <log text="K41 surrendered" />
+    <set_variable name="TsnScore" value="TsnScore + 120" integer="yes" />
+    <set_variable name="ScoredK41" value="1.0" integer="yes" />
+  </event>
+  <event name="K42 killed" id_arme="89557a7b-291f-4471-b30c-1d91bda98a9c" parent_id_arme="490adef6-88a2-4dd8-9269-1f0ece91815f">
+    <if_not_exists name="K42" />
+    <if_variable name="ScoredK42" comparator="EQUALS" value="0.0" />
+    <log text="Killed K42" />
+    <set_variable name="TsnScore" value="TsnScore + 40" integer="yes" />
+    <set_variable name="ScoredK42" value="1.0" integer="yes" />
+  </event>
+  <event name="K42 surrendered" id_arme="000acdfe-d9c2-493f-830d-eb2df06bb3d0" parent_id_arme="490adef6-88a2-4dd8-9269-1f0ece91815f">
+    <if_exists name="K42" />
+    <if_object_property property="hasSurrendered" name="K42" comparator="EQUALS" value="1" />
+    <if_variable name="ScoredK42" comparator="EQUALS" value="0.0" />
+    <log text="K42 surrendered" />
+    <set_variable name="TsnScore" value="TsnScore + 40" integer="yes" />
+    <set_variable name="ScoredK42" value="1.0" integer="yes" />
+  </event>
+  <event name="K43 killed" id_arme="3b38f81d-d0b0-4aca-93bb-654edca7edb9" parent_id_arme="490adef6-88a2-4dd8-9269-1f0ece91815f">
+    <if_not_exists name="K43" />
+    <if_variable name="ScoredK43" comparator="EQUALS" value="0.0" />
+    <log text="Killed K43" />
+    <set_variable name="TsnScore" value="TsnScore + 40" integer="yes" />
+    <set_variable name="ScoredK43" value="1.0" integer="yes" />
+  </event>
+  <event name="K43 surrendered" id_arme="eacc83c2-1e48-4a7b-88b1-7ca77f24538f" parent_id_arme="490adef6-88a2-4dd8-9269-1f0ece91815f">
+    <if_exists name="K43" />
+    <if_object_property property="hasSurrendered" name="K43" comparator="EQUALS" value="1" />
+    <if_variable name="ScoredK43" comparator="EQUALS" value="0.0" />
+    <log text="K43 surrendered" />
+    <set_variable name="TsnScore" value="TsnScore + 40" integer="yes" />
+    <set_variable name="ScoredK43" value="1.0" integer="yes" />
+  </event>
+  <event name="K44 killed" id_arme="3cf5a474-81e0-4d0a-98cb-2b2ea1c104af" parent_id_arme="490adef6-88a2-4dd8-9269-1f0ece91815f">
+    <if_not_exists name="K44" />
+    <if_variable name="ScoredK44" comparator="EQUALS" value="0.0" />
+    <log text="Killed K44" />
+    <set_variable name="TsnScore" value="TsnScore + 40" integer="yes" />
+    <set_variable name="ScoredK44" value="1.0" integer="yes" />
+  </event>
+  <event name="K44 surrendered" id_arme="f3f74191-bb86-4e5d-9982-51c5682b83e1" parent_id_arme="490adef6-88a2-4dd8-9269-1f0ece91815f">
+    <if_exists name="K44" />
+    <if_object_property property="hasSurrendered" name="K44" comparator="EQUALS" value="1" />
+    <if_variable name="ScoredK44" comparator="EQUALS" value="0.0" />
+    <log text="K44 surrendered" />
+    <set_variable name="TsnScore" value="TsnScore + 40" integer="yes" />
+    <set_variable name="ScoredK44" value="1.0" integer="yes" />
+  </event>
+  <event name="K45 killed" id_arme="0352b67b-a17c-498b-ac7e-cbe6e1ce3347" parent_id_arme="490adef6-88a2-4dd8-9269-1f0ece91815f">
+    <if_not_exists name="K45" />
+    <if_variable name="ScoredK45" comparator="EQUALS" value="0.0" />
+    <log text="Killed K45" />
+    <set_variable name="TsnScore" value="TsnScore + 40" integer="yes" />
+    <set_variable name="ScoredK45" value="1.0" integer="yes" />
+  </event>
+  <event name="K45 surrendered" id_arme="c63ec824-f745-407f-96d6-7987fde4a766" parent_id_arme="490adef6-88a2-4dd8-9269-1f0ece91815f">
+    <if_exists name="K45" />
+    <if_object_property property="hasSurrendered" name="K45" comparator="EQUALS" value="1" />
+    <if_variable name="ScoredK45" comparator="EQUALS" value="0.0" />
+    <log text="K45 surrendered" />
+    <set_variable name="TsnScore" value="TsnScore + 40" integer="yes" />
+    <set_variable name="ScoredK45" value="1.0" integer="yes" />
+  </event>
+  <event name="K51 killed" id_arme="7859a341-9dc4-42e4-95b0-27a20770cd48" parent_id_arme="490adef6-88a2-4dd8-9269-1f0ece91815f">
+    <if_not_exists name="K51" />
+    <if_variable name="ScoredK51" comparator="EQUALS" value="0.0" />
+    <log text="Killed K51" />
+    <set_variable name="TsnScore" value="TsnScore + 80" integer="yes" />
+    <set_variable name="ScoredK51" value="1.0" integer="yes" />
+  </event>
+  <event name="K51 surrendered" id_arme="dce6db2d-482f-4fbf-8ad0-89b7ff4fa6b6" parent_id_arme="490adef6-88a2-4dd8-9269-1f0ece91815f">
+    <if_exists name="K51" />
+    <if_object_property property="hasSurrendered" name="K51" comparator="EQUALS" value="1" />
+    <if_variable name="ScoredK51" comparator="EQUALS" value="0.0" />
+    <log text="K51 surrendered" />
+    <set_variable name="TsnScore" value="TsnScore + 80" integer="yes" />
+    <set_variable name="ScoredK51" value="1.0" integer="yes" />
+  </event>
+  <event name="K52 killed" id_arme="206ebd22-d7f4-4119-8a0b-0535e3437e36" parent_id_arme="490adef6-88a2-4dd8-9269-1f0ece91815f">
+    <if_not_exists name="K52" />
+    <if_variable name="ScoredK52" comparator="EQUALS" value="0.0" />
+    <log text="Killed K52" />
+    <set_variable name="TsnScore" value="TsnScore + 40" integer="yes" />
+    <set_variable name="ScoredK52" value="1.0" integer="yes" />
+  </event>
+  <event name="K52 surrendered" id_arme="11f8bced-7ba7-4645-b6ab-91c827bb8818" parent_id_arme="490adef6-88a2-4dd8-9269-1f0ece91815f">
+    <if_exists name="K52" />
+    <if_object_property property="hasSurrendered" name="K52" comparator="EQUALS" value="1" />
+    <if_variable name="ScoredK52" comparator="EQUALS" value="0.0" />
+    <log text="K52 surrendered" />
+    <set_variable name="TsnScore" value="TsnScore + 40" integer="yes" />
+    <set_variable name="ScoredK52" value="1.0" integer="yes" />
+  </event>
+  <event name="K53 killed" id_arme="06835bd0-f3bc-43a4-92d8-dc39d2b1365e" parent_id_arme="490adef6-88a2-4dd8-9269-1f0ece91815f">
+    <if_not_exists name="K53" />
+    <if_variable name="ScoredK53" comparator="EQUALS" value="0.0" />
+    <log text="Killed K53" />
+    <set_variable name="TsnScore" value="TsnScore + 40" integer="yes" />
+    <set_variable name="ScoredK53" value="1.0" integer="yes" />
+  </event>
+  <event name="K53 surrendered" id_arme="4b497c3d-772c-4d60-acfb-6450ffeaf3bc" parent_id_arme="490adef6-88a2-4dd8-9269-1f0ece91815f">
+    <if_exists name="K53" />
+    <if_object_property property="hasSurrendered" name="K53" comparator="EQUALS" value="1" />
+    <if_variable name="ScoredK53" comparator="EQUALS" value="0.0" />
+    <log text="K53 surrendered" />
+    <set_variable name="TsnScore" value="TsnScore + 40" integer="yes" />
+    <set_variable name="ScoredK53" value="1.0" integer="yes" />
+  </event>
+  <event name="K54 killed" id_arme="b0f71f00-1c9f-4c49-9306-cd753a1f34e4" parent_id_arme="490adef6-88a2-4dd8-9269-1f0ece91815f">
+    <if_not_exists name="K54" />
+    <if_variable name="ScoredK54" comparator="EQUALS" value="0.0" />
+    <log text="Killed K54" />
+    <set_variable name="TsnScore" value="TsnScore + 40" integer="yes" />
+    <set_variable name="ScoredK54" value="1.0" integer="yes" />
+  </event>
+  <event name="K54 surrendered" id_arme="53f23f08-d50a-427b-bc61-ef112865431f" parent_id_arme="490adef6-88a2-4dd8-9269-1f0ece91815f">
+    <if_exists name="K54" />
+    <if_object_property property="hasSurrendered" name="K54" comparator="EQUALS" value="1" />
+    <if_variable name="ScoredK54" comparator="EQUALS" value="0.0" />
+    <log text="K54 surrendered" />
+    <set_variable name="TsnScore" value="TsnScore + 40" integer="yes" />
+    <set_variable name="ScoredK54" value="1.0" integer="yes" />
+  </event>
+  <event name="K55 killed" id_arme="6c84e773-bb2b-4e3a-864f-b42f14204782" parent_id_arme="490adef6-88a2-4dd8-9269-1f0ece91815f">
+    <if_not_exists name="K55" />
+    <if_variable name="ScoredK55" comparator="EQUALS" value="0.0" />
+    <log text="Killed K55" />
+    <set_variable name="TsnScore" value="TsnScore + 40" integer="yes" />
+    <set_variable name="ScoredK55" value="1.0" integer="yes" />
+  </event>
+  <event name="K55 surrendered" id_arme="fb6374a9-9e51-4d5a-8c97-b1a49eee39cd" parent_id_arme="490adef6-88a2-4dd8-9269-1f0ece91815f">
+    <if_exists name="K55" />
+    <if_object_property property="hasSurrendered" name="K55" comparator="EQUALS" value="1" />
+    <if_variable name="ScoredK55" comparator="EQUALS" value="0.0" />
+    <log text="K55 surrendered" />
+    <set_variable name="TsnScore" value="TsnScore + 40" integer="yes" />
+    <set_variable name="ScoredK55" value="1.0" integer="yes" />
+  </event>
+  <event name="K56 killed" id_arme="676cb9bb-1b51-4cda-9cbf-63ceb5d52103" parent_id_arme="490adef6-88a2-4dd8-9269-1f0ece91815f">
+    <if_not_exists name="K56" />
+    <if_variable name="ScoredK56" comparator="EQUALS" value="0.0" />
+    <log text="Killed K56" />
+    <set_variable name="TsnScore" value="TsnScore + 40" integer="yes" />
+    <set_variable name="ScoredK56" value="1.0" integer="yes" />
+  </event>
+  <event name="K56 surrendered" id_arme="3447d1a0-7440-4d2a-8201-a520fe873ee3" parent_id_arme="490adef6-88a2-4dd8-9269-1f0ece91815f">
+    <if_exists name="K56" />
+    <if_object_property property="hasSurrendered" name="K56" comparator="EQUALS" value="1" />
+    <if_variable name="ScoredK56" comparator="EQUALS" value="0.0" />
+    <log text="K56 surrendered" />
+    <set_variable name="TsnScore" value="TsnScore + 40" integer="yes" />
+    <set_variable name="ScoredK56" value="1.0" integer="yes" />
+  </event>
+  <event name="TSN Score Easter Egg points" id_arme="d23579f4-55cd-4b41-a46f-6cb3955105f1" parent_id_arme="490adef6-88a2-4dd8-9269-1f0ece91815f">
     <if_exists player_slot="0" />
     <if_scan_level name="TSN Score: |TsnScoreDisplayed|" side="2" comparator="GREATER" value="0" />
     <if_variable name="GotTsnScoreEasterEggPoints" comparator="EQUALS" value="0.0" />
     <log text="TSN Score scanned" />
-    <set_ship_text name="TSN Score: |TsnScoreDisplayed|" desc="TBD" scan_desc="You'll just have to try things to see what else might affect your score, but the TSN got 50 points for finding this message!" />
+    <set_ship_text name="TSN Score: |TsnScoreDisplayed|" desc="+EnemyMaxShieldStrength for destroying an enemy ship or getting it to surrender^-100 for losing the science vessel^-10 for losing a fighter^+ unknown for other special actions" scan_desc="You'll just have to try things to see what else might affect your score, but the TSN got 50 points for finding this message!" />
     <set_variable name="GotTsnScoreEasterEggPoints" value="50.0" integer="yes" />
     <set_variable name="TsnScore" value="TsnScore + 50" integer="yes" />
   </event>
-  <folder_arme name="Pirate Events" id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1" />
+  <event name="Display Score" id_arme="c0f38e91-547a-498a-8687-9bfa03a2afa7" parent_id_arme="490adef6-88a2-4dd8-9269-1f0ece91815f">
+    <if_variable name="TsnScoreDisplayed" comparator="NOT" value="TsnScore" />
+    <set_ship_text name="TSN Score: |TsnScoreDisplayed|" newname="TSN Score: |TsnScore|" />
+    <set_variable name="TsnScoreDisplayed" value="TsnScore" integer="yes" />
+  </event>
+  <folder_arme name="Pirate Events" id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1" expanded_arme="" />
   <folder_arme name="Start" id_arme="0a737b19-47ab-4ccb-a2bb-a072ad49ee0b" parent_id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1" />
   <event name="Player ship 1 created" id_arme="64982b23-719e-4d78-a74c-086ce6d8365c" parent_id_arme="0a737b19-47ab-4ccb-a2bb-a072ad49ee0b">
     <if_exists player_slot="1" />
@@ -1339,12 +1676,8 @@
     <add_ai type="DEFEND" value1="1000" value2="3000" name="Miner6" />
     <add_ai type="CHASE_ANGER" name="Miner6" />
   </event>
-  <event name="Display Score" id_arme="8483457d-bb42-4848-8aac-e2a16761bb6c" parent_id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1">
-    <if_variable name="PirateScoreDisplayed" comparator="NOT" value="PirateScore" />
-    <set_ship_text name="Pirate Score: |PirateScoreDisplayed|" newname="Pirate Score: |PirateScore|" />
-    <set_variable name="PirateScoreDisplayed" value="PirateScore" integer="yes" />
-  </event>
-  <event name="Pirate Score Easter Egg points" id_arme="0474bdad-349a-48fb-9f10-a7d508320103" parent_id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1">
+  <folder_arme name="Score" id_arme="d0305304-6dee-436e-9e4f-7cba44bf50af" parent_id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1" expanded_arme="" />
+  <event name="Pirate Score Easter Egg points" id_arme="0474bdad-349a-48fb-9f10-a7d508320103" parent_id_arme="d0305304-6dee-436e-9e4f-7cba44bf50af">
     <if_exists player_slot="1" />
     <if_scan_level name="Pirate Score: |PirateScoreDisplayed|" side="ORIGINAL_PIRATE_SIDE" comparator="GREATER" value="0" />
     <if_variable name="GotPirateScoreEasterEggPoints" comparator="EQUALS" value="0.0" />
@@ -1352,6 +1685,11 @@
     <set_ship_text name="Pirate Score: |PirateScoreDisplayed|" desc="+10 for each asteroid piece mined^+ # credits earned via any other mechanism^+ unknown for other special actions" scan_desc="You'll just have to try things to see what else might affect your score, but the pirates got 50 points for finding this message!" />
     <set_variable name="GotPirateScoreEasterEggPoints" value="50.0" integer="yes" />
     <set_variable name="PirateScore" value="PirateScore + 50" integer="yes" />
+  </event>
+  <event name="Display Score" id_arme="8483457d-bb42-4848-8aac-e2a16761bb6c" parent_id_arme="d0305304-6dee-436e-9e4f-7cba44bf50af">
+    <if_variable name="PirateScoreDisplayed" comparator="NOT" value="PirateScore" />
+    <set_ship_text name="Pirate Score: |PirateScoreDisplayed|" newname="Pirate Score: |PirateScore|" />
+    <set_variable name="PirateScoreDisplayed" value="PirateScore" integer="yes" />
   </event>
   <folder_arme name="Joint Events" id_arme="f3d012a5-0f1e-4f91-b16d-d0bb1745ad7e" />
   <event name="Victory with pirates" id_arme="0902d234-84b0-4097-b15d-0e44e33ef2c1" parent_id_arme="f3d012a5-0f1e-4f91-b16d-d0bb1745ad7e">

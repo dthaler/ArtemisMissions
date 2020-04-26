@@ -26,32 +26,45 @@
 04/23/20 ADD: science vessel hail text about stargate direction
 04/23/20 ADD: science vessel can scan SG1
 04/25/20 ADD: TSN: allow sending a "help" message once SG1 is analyzed
+04/25/20 ADD: update enemy armada
+04/25/20 ADD: TSN scoring info
+04/25/20 FIX: TSN scoring easter egg text
 
 {
 
+1/2 FIX: maybe increase top speed of enemies?
+            ATK enemies   0.3         -> 1.0
 
-1/2 ADD: update enemy armada
-            want a bunch of Kraliens so can get higher score and plenty
-            of things to get to surrender
+1/2 FIX: can we increase topSpeed of TSN bombers?
+            A.fighter     1.2
+            T.destroyer   0.9 -> 6.0
+            skaraan       0.8
+            science       0.7 -> 6.0
+            TSN.minelayer 0.6 -> 6.0
+            fighter       0.6
+            bomber        0.5         -> 5.0
 
-1/2 ADD: TSN scoring info
-            maybe it counts down? no?
-            + for each enemy vessel destroyed (even if by pirates)
-                OR surrendered
-                set points to Back shield strength
-                K.Cruiser     = 40
-                K.Battleship  = 80
-                K.Dreadnought = 120
-                T.Goliath     = 350
-                T.Leviathan   = 400
-                T.Behemoth    = 600
-       DNTT + 1000 for scanning stargate
-       DNTT - 1/3  at end to give to pirates (e.g., 1/3 of final TSN points)
-            - 100  for respawning science vessel
-            -      for losing minelayer
-       DNTT - 10   for respawning a fighter
+1/2 FIX? maybe increase strength of enemies (and scores for them)
+         and/or decrease mine count
+
+1/2 FIX: remove BRAIN_CHASE_PLAYER from enemies and instead chase station
+            TRY_TO_BECOME_LEADER
+         NO CHASE_PLAYER 0 0
+            CHASE_STATION 0
+            CHASE_AI_SHIP 3000 500
+         NO CHASE_PLAYER 3000 500
+            CHASE_ANGER
+            LEADER_LEADS
+            FOLLOW_LEADER
+            SPCL_AI 
+
+1/2 CHECK: what is max score for TSN and max score for pirate?
+
+1/2 FIX: handle losing Artemis and respawning it (as a carrier)
 
 ---
+
+2/2 FIX: AI block of science vessel to investigate anomaly
 
 2/2 FIX: use difficulty level to set size of enemy armada
          and NPC miner fleet
