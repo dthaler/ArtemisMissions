@@ -29,11 +29,31 @@
 04/25/20 ADD: update enemy armada
 04/25/20 ADD: TSN scoring info
 04/25/20 FIX: TSN scoring easter egg text
+04/25/20 FIX: GM buttons to all be drop-menus like Recruit is
+
 
 {
 
+1/2 FIX: increase strength of enemies (and scores for them)
+         put a torgoth Goliath in every fleet
+           K41 -> T41
+           K51 -> T51
+           K42 -> large
+           K43 -> medium
+           K22 -> medium
+         DNTT
+
+1/2 FIX: decrease mine count
+         DNTT
+
 1/2 FIX: maybe increase top speed of enemies?
-            ATK enemies   0.3         -> 1.0
+         DNTT 5:56 using T=1, K=2...
+                    was 0.3 for all enemy
+             fleet 5 -> 4 mins (all destroyed on mines) too soon
+             fleet 3 -> 5 mins (one makes it through)
+             fleet 1 -> 6 mins (1 makes it through)
+             fleet 2
+             fleet 4
 
 1/2 FIX: can we increase topSpeed of TSN bombers?
             A.fighter     1.2
@@ -44,9 +64,6 @@
             fighter       0.6
             bomber        0.5         -> 5.0
 
-1/2 FIX? maybe increase strength of enemies (and scores for them)
-         and/or decrease mine count
-
 1/2 FIX: remove BRAIN_CHASE_PLAYER from enemies and instead chase station
             TRY_TO_BECOME_LEADER
          NO CHASE_PLAYER 0 0
@@ -56,13 +73,17 @@
             CHASE_ANGER
             LEADER_LEADS
             FOLLOW_LEADER
-            SPCL_AI 
+         NO SPCL_AI
 
 1/2 CHECK: what is max score for TSN and max score for pirate?
 
 1/2 FIX: handle losing Artemis and respawning it (as a carrier)
 
+1/2 FIX: acknowledge Colin for creative ideas somewhere
+
 ---
+
+2/2 FIX: rename mission
 
 2/2 FIX: AI block of science vessel to investigate anomaly
 
