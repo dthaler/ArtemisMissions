@@ -173,3 +173,35 @@ Scanning stargate
 Can send a probe
 Can send science vessel
 Can send a fighter
+
+Speeds
+increased topSpeeds...
+    A.fighter     1.2
+    T.destroyer   0.9 -> 6.0
+    skaraan       0.8
+    science       0.7 -> 6.0
+    TSN.minelayer 0.6 -> 6.0
+    fighter       0.6
+    bomber        0.5         -> 2.0
+
+Times to minefield based on different torgoth/kralien speeds:
+   Test using T=1, K=2...
+                    was 0.3 for all enemy
+             fleet 5 -> 4 mins (all destroyed on mines) too soon
+             fleet 3 -> 5 mins (one makes it through)
+             fleet 1 -> 6 mins (1 makes it through)
+             fleet 2
+             fleet 4
+   Test using T=0.5, K=1...
+             fleet 5 -> more than 11 mins (too slow)
+             fleet 3 ->
+             fleet 1 ->
+             fleet 2
+             fleet 4
+            Torgoths seem to be faster than Kraliens
+   Test using T=0.75 K=1.5...
+             fleet 5 -> 5 mins, all K destroyed on mines, T makes it through
+             fleet 3 -> 7 mins, all K destroyed on mines, T makes it through
+             fleet 4 -> 11 mins, K42, 43, T41
+             fleet 2 -> 11 mins, K23, T21 through
+             fleet 1 -> 12 mins, T11 through

@@ -8,8 +8,9 @@
     <!--* side 3 is the Pirate ship-->
     <!--* side 4 are the independent miners-->
     <set_variable name="MINER_SPEED" value="6.0" />
-    <set_variable name="KRALIEN_SPEED" value="1.0" integer="yes" />
-    <set_variable name="TORGOTH_SPEED" value="0.5" integer="yes" />
+    <set_variable name="KRALIEN_SPEED" value="1.5" />
+    <set_variable name="TORGOTH_SPEED" value="0.75" />
+    <set_variable name="BOMBER_SPEED" value="3.0" />
     <set_variable name="ORIGINAL_PIRATE_SIDE" value="3.0" integer="yes" />
     <!---->
     <!--Game Setup-->
@@ -310,44 +311,184 @@
     <!---->
     <create type="enemy" x="58862.0" y="0.0" z="47530.0" angle="210" name="T11" raceKeys="Torgoth" hullKeys="large" fleetnumber="1" />
     <set_object_property property="topSpeed" value="TORGOTH_SPEED" name="T11" />
+    <clear_ai name="T11" />
+    <add_ai type="TRY_TO_BECOME_LEADER" name="T11" />
+    <add_ai type="CHASE_STATION" name="T11" />
+    <add_ai type="CHASE_AI_SHIP" value1="3000" value2="500" name="T11" />
+    <add_ai type="CHASE_ANGER" name="T11" />
+    <add_ai type="LEADER_LEADS" name="T11" />
+    <add_ai type="FOLLOW_LEADER" name="T11" />
     <create type="enemy" x="58281.0" y="0.0" z="49564.0" angle="210" name="K12" raceKeys="Kralien" hullKeys="small" fleetnumber="1" />
     <set_object_property property="topSpeed" value="KRALIEN_SPEED" name="K12" />
+    <clear_ai name="K12" />
+    <add_ai type="TRY_TO_BECOME_LEADER" name="K12" />
+    <add_ai type="CHASE_STATION" name="K12" />
+    <add_ai type="CHASE_AI_SHIP" value1="3000" value2="500" name="K12" />
+    <add_ai type="CHASE_ANGER" name="K12" />
+    <add_ai type="LEADER_LEADS" name="K12" />
+    <add_ai type="FOLLOW_LEADER" name="K12" />
     <create type="enemy" x="63947.0" y="0.0" z="45205.0" angle="210" name="T21" raceKeys="Torgoth" hullKeys="medium" fleetnumber="2" />
     <set_object_property property="topSpeed" value="TORGOTH_SPEED" name="T21" />
+    <clear_ai name="T21" />
+    <add_ai type="TRY_TO_BECOME_LEADER" name="T21" />
+    <add_ai type="CHASE_STATION" name="T21" />
+    <add_ai type="CHASE_AI_SHIP" value1="3000" value2="500" name="T21" />
+    <add_ai type="CHASE_ANGER" name="T21" />
+    <add_ai type="LEADER_LEADS" name="T21" />
+    <add_ai type="FOLLOW_LEADER" name="T21" />
     <create type="enemy" x="66562.0" y="0.0" z="45496.0" angle="210" name="K22" raceKeys="Kralien" hullKeys="medium" fleetnumber="2" />
     <set_object_property property="topSpeed" value="KRALIEN_SPEED" name="K22" />
+    <clear_ai name="K22" />
+    <add_ai type="TRY_TO_BECOME_LEADER" name="K22" />
+    <add_ai type="CHASE_STATION" name="K22" />
+    <add_ai type="CHASE_AI_SHIP" value1="3000" value2="500" name="K22" />
+    <add_ai type="CHASE_ANGER" name="K22" />
+    <add_ai type="LEADER_LEADS" name="K22" />
+    <add_ai type="FOLLOW_LEADER" name="K22" />
     <create type="enemy" x="65691.0" y="0.0" z="47675.0" angle="210" name="K23" raceKeys="Kralien" hullKeys="small" fleetnumber="2" />
     <set_object_property property="topSpeed" value="KRALIEN_SPEED" name="K23" />
+    <clear_ai name="K23" />
+    <add_ai type="TRY_TO_BECOME_LEADER" name="K23" />
+    <add_ai type="CHASE_STATION" name="K23" />
+    <add_ai type="CHASE_AI_SHIP" value1="3000" value2="500" name="K23" />
+    <add_ai type="CHASE_ANGER" name="K23" />
+    <add_ai type="LEADER_LEADS" name="K23" />
+    <add_ai type="FOLLOW_LEADER" name="K23" />
     <create type="enemy" x="68741.0" y="0.0" z="63801.0" angle="210" name="T31" raceKeys="Torgoth" hullKeys="small" fleetnumber="3" />
     <set_object_property property="topSpeed" value="TORGOTH_SPEED" name="T31" />
+    <clear_ai name="T31" />
+    <add_ai type="TRY_TO_BECOME_LEADER" name="T31" />
+    <add_ai type="CHASE_STATION" name="T31" />
+    <add_ai type="CHASE_AI_SHIP" value1="3000" value2="500" name="T31" />
+    <add_ai type="CHASE_ANGER" name="T31" />
+    <add_ai type="LEADER_LEADS" name="T31" />
+    <add_ai type="FOLLOW_LEADER" name="T31" />
     <create type="enemy" x="65836.0" y="0.0" z="63656.0" angle="210" name="K32" raceKeys="Kralien" hullKeys="small" fleetnumber="3" />
     <set_object_property property="topSpeed" value="KRALIEN_SPEED" name="K32" />
+    <clear_ai name="K32" />
+    <add_ai type="TRY_TO_BECOME_LEADER" name="K32" />
+    <add_ai type="CHASE_STATION" name="K32" />
+    <add_ai type="CHASE_AI_SHIP" value1="3000" value2="500" name="K32" />
+    <add_ai type="CHASE_ANGER" name="K32" />
+    <add_ai type="LEADER_LEADS" name="K32" />
+    <add_ai type="FOLLOW_LEADER" name="K32" />
     <create type="enemy" x="71647.0" y="0.0" z="62639.0" angle="210" name="K33" raceKeys="Kralien" hullKeys="small" fleetnumber="3" />
     <set_object_property property="topSpeed" value="KRALIEN_SPEED" name="K33" />
+    <clear_ai name="K33" />
+    <add_ai type="TRY_TO_BECOME_LEADER" name="K33" />
+    <add_ai type="CHASE_STATION" name="K33" />
+    <add_ai type="CHASE_AI_SHIP" value1="3000" value2="500" name="K33" />
+    <add_ai type="CHASE_ANGER" name="K33" />
+    <add_ai type="LEADER_LEADS" name="K33" />
+    <add_ai type="FOLLOW_LEADER" name="K33" />
     <create type="enemy" x="67870.0" y="0.0" z="61912.0" angle="210" name="K34" raceKeys="Kralien" hullKeys="small" fleetnumber="3" />
     <set_object_property property="topSpeed" value="KRALIEN_SPEED" name="K34" />
+    <clear_ai name="K34" />
+    <add_ai type="TRY_TO_BECOME_LEADER" name="K34" />
+    <add_ai type="CHASE_STATION" name="K34" />
+    <add_ai type="CHASE_AI_SHIP" value1="3000" value2="500" name="K34" />
+    <add_ai type="CHASE_ANGER" name="K34" />
+    <add_ai type="LEADER_LEADS" name="K34" />
+    <add_ai type="FOLLOW_LEADER" name="K34" />
     <create type="enemy" x="92277.0" y="0.0" z="37360.0" angle="210" name="T41" raceKeys="Torgoth" hullKeys="small" fleetnumber="4" />
     <set_object_property property="topSpeed" value="TORGOTH_SPEED" name="T41" />
+    <clear_ai name="T41" />
+    <add_ai type="TRY_TO_BECOME_LEADER" name="T41" />
+    <add_ai type="CHASE_STATION" name="T41" />
+    <add_ai type="CHASE_AI_SHIP" value1="3000" value2="500" name="T41" />
+    <add_ai type="CHASE_ANGER" name="T41" />
+    <add_ai type="LEADER_LEADS" name="T41" />
+    <add_ai type="FOLLOW_LEADER" name="T41" />
     <create type="enemy" x="92131.0" y="0.0" z="42009.0" angle="210" name="K42" raceKeys="Kralien" hullKeys="large" fleetnumber="4" />
     <set_object_property property="topSpeed" value="KRALIEN_SPEED" name="K42" />
+    <clear_ai name="K42" />
+    <add_ai type="TRY_TO_BECOME_LEADER" name="K42" />
+    <add_ai type="CHASE_STATION" name="K42" />
+    <add_ai type="CHASE_AI_SHIP" value1="3000" value2="500" name="K42" />
+    <add_ai type="CHASE_ANGER" name="K42" />
+    <add_ai type="LEADER_LEADS" name="K42" />
+    <add_ai type="FOLLOW_LEADER" name="K42" />
     <create type="enemy" x="90969.0" y="0.0" z="40266.0" angle="210" name="K43" raceKeys="Kralien" hullKeys="medium" fleetnumber="4" />
     <set_object_property property="topSpeed" value="KRALIEN_SPEED" name="K43" />
+    <clear_ai name="K43" />
+    <add_ai type="TRY_TO_BECOME_LEADER" name="K43" />
+    <add_ai type="CHASE_STATION" name="K43" />
+    <add_ai type="CHASE_AI_SHIP" value1="3000" value2="500" name="K43" />
+    <add_ai type="CHASE_ANGER" name="K43" />
+    <add_ai type="LEADER_LEADS" name="K43" />
+    <add_ai type="FOLLOW_LEADER" name="K43" />
     <create type="enemy" x="95037.0" y="0.0" z="39249.0" angle="210" name="K44" raceKeys="Kralien" hullKeys="small" fleetnumber="4" />
     <set_object_property property="topSpeed" value="KRALIEN_SPEED" name="K44" />
+    <clear_ai name="K44" />
+    <add_ai type="TRY_TO_BECOME_LEADER" name="K44" />
+    <add_ai type="CHASE_STATION" name="K44" />
+    <add_ai type="CHASE_AI_SHIP" value1="3000" value2="500" name="K44" />
+    <add_ai type="CHASE_ANGER" name="K44" />
+    <add_ai type="LEADER_LEADS" name="K44" />
+    <add_ai type="FOLLOW_LEADER" name="K44" />
     <create type="enemy" x="94165.0" y="0.0" z="37651.0" angle="210" name="K45" raceKeys="Kralien" hullKeys="small" fleetnumber="4" />
     <set_object_property property="topSpeed" value="KRALIEN_SPEED" name="K45" />
+    <clear_ai name="K45" />
+    <add_ai type="TRY_TO_BECOME_LEADER" name="K45" />
+    <add_ai type="CHASE_STATION" name="K45" />
+    <add_ai type="CHASE_AI_SHIP" value1="3000" value2="500" name="K45" />
+    <add_ai type="CHASE_ANGER" name="K45" />
+    <add_ai type="LEADER_LEADS" name="K45" />
+    <add_ai type="FOLLOW_LEADER" name="K45" />
     <create type="enemy" x="86175.0" y="0.0" z="64382.0" angle="210" name="T51" raceKeys="Torgoth" hullKeys="small" fleetnumber="5" />
     <set_object_property property="topSpeed" value="TORGOTH_SPEED" name="T51" />
+    <clear_ai name="T51" />
+    <add_ai type="TRY_TO_BECOME_LEADER" name="T51" />
+    <add_ai type="CHASE_STATION" name="T51" />
+    <add_ai type="CHASE_AI_SHIP" value1="3000" value2="500" name="T51" />
+    <add_ai type="CHASE_ANGER" name="T51" />
+    <add_ai type="LEADER_LEADS" name="T51" />
+    <add_ai type="FOLLOW_LEADER" name="T51" />
     <create type="enemy" x="88209.0" y="0.0" z="67433.0" angle="210" name="K52" raceKeys="Kralien" hullKeys="small" fleetnumber="5" />
     <set_object_property property="topSpeed" value="KRALIEN_SPEED" name="K52" />
+    <clear_ai name="K52" />
+    <add_ai type="TRY_TO_BECOME_LEADER" name="K52" />
+    <add_ai type="CHASE_STATION" name="K52" />
+    <add_ai type="CHASE_AI_SHIP" value1="3000" value2="500" name="K52" />
+    <add_ai type="CHASE_ANGER" name="K52" />
+    <add_ai type="LEADER_LEADS" name="K52" />
+    <add_ai type="FOLLOW_LEADER" name="K52" />
     <create type="enemy" x="83705.0" y="0.0" z="65544.0" angle="210" name="K53" raceKeys="Kralien" hullKeys="small" fleetnumber="5" />
     <set_object_property property="topSpeed" value="KRALIEN_SPEED" name="K53" />
+    <clear_ai name="K53" />
+    <add_ai type="TRY_TO_BECOME_LEADER" name="K53" />
+    <add_ai type="CHASE_STATION" name="K53" />
+    <add_ai type="CHASE_AI_SHIP" value1="3000" value2="500" name="K53" />
+    <add_ai type="CHASE_ANGER" name="K53" />
+    <add_ai type="LEADER_LEADS" name="K53" />
+    <add_ai type="FOLLOW_LEADER" name="K53" />
     <create type="enemy" x="85303.0" y="0.0" z="68450.0" angle="210" name="K54" raceKeys="Kralien" hullKeys="small" fleetnumber="5" />
     <set_object_property property="topSpeed" value="KRALIEN_SPEED" name="K54" />
+    <clear_ai name="K54" />
+    <add_ai type="TRY_TO_BECOME_LEADER" name="K54" />
+    <add_ai type="CHASE_STATION" name="K54" />
+    <add_ai type="CHASE_AI_SHIP" value1="3000" value2="500" name="K54" />
+    <add_ai type="CHASE_ANGER" name="K54" />
+    <add_ai type="LEADER_LEADS" name="K54" />
+    <add_ai type="FOLLOW_LEADER" name="K54" />
     <create type="enemy" x="89662.0" y="0.0" z="63365.0" angle="210" name="K55" raceKeys="Kralien" hullKeys="small" fleetnumber="5" />
     <set_object_property property="topSpeed" value="KRALIEN_SPEED" name="K55" />
+    <clear_ai name="K55" />
+    <add_ai type="TRY_TO_BECOME_LEADER" name="K55" />
+    <add_ai type="CHASE_STATION" name="K55" />
+    <add_ai type="CHASE_AI_SHIP" value1="3000" value2="500" name="K55" />
+    <add_ai type="CHASE_ANGER" name="K55" />
+    <add_ai type="LEADER_LEADS" name="K55" />
+    <add_ai type="FOLLOW_LEADER" name="K55" />
     <create type="enemy" x="92131.0" y="0.0" z="66707.0" angle="210" name="K56" raceKeys="Kralien" hullKeys="small" fleetnumber="5" />
     <set_object_property property="topSpeed" value="KRALIEN_SPEED" name="K56" />
+    <clear_ai name="K56" />
+    <add_ai type="TRY_TO_BECOME_LEADER" name="K56" />
+    <add_ai type="CHASE_STATION" name="K56" />
+    <add_ai type="CHASE_AI_SHIP" value1="3000" value2="500" name="K56" />
+    <add_ai type="CHASE_ANGER" name="K56" />
+    <add_ai type="LEADER_LEADS" name="K56" />
+    <add_ai type="FOLLOW_LEADER" name="K56" />
     <!---->
     <!--Score Display-->
     <!---->
@@ -362,7 +503,7 @@
     <set_object_property property="artScale" value="0.0" name="TSN Score: 0" />
     <set_object_property property="pushRadius" value="0.0" name="TSN Score: 0" />
   </start>
-  <folder_arme name="GM Controls" id_arme="1257aab7-c7dc-42a4-946c-0d5c1384470a" expanded_arme="" />
+  <folder_arme name="GM Controls" id_arme="1257aab7-c7dc-42a4-946c-0d5c1384470a" />
   <event name="Refresh recruit miner1 button" id_arme="e0dc9703-ff4c-4706-a301-e1a10e85120d" parent_id_arme="1257aab7-c7dc-42a4-946c-0d5c1384470a">
     <if_timer_finished name="RefreshGMButtons" />
     <clear_gm_button text="Pirate/Recruit Miner1" />
@@ -504,6 +645,13 @@
   </event>
   <folder_arme name="TSN Events" id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa" expanded_arme="" />
   <folder_arme name="Start" id_arme="63b761a1-37ab-42f5-afaf-a627617557e5" parent_id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa" />
+  <event name="Respawn player ship 0" id_arme="75340e59-f6c1-4a8b-bcdb-6edc46b310f5" parent_id_arme="63b761a1-37ab-42f5-afaf-a627617557e5">
+    <if_not_exists player_slot="0" />
+    <log text="Respawned player ship 0" />
+    <create type="player" player_slot="0" x="95182.0" y="0.0" z="93874.0" angle="0" sideValue="2" raceKeys="TSN" hullKeys="Carrier" warp="yes" jump="no" />
+    <set_variable name="Ship0Initialized" value="0.0" />
+    <set_variable name="TsnScore" value="TsnScore - 1000" integer="yes" />
+  </event>
   <event name="Player ship 0 created" id_arme="353b89a6-114f-48a6-b74d-4244cc91307b" parent_id_arme="63b761a1-37ab-42f5-afaf-a627617557e5">
     <if_exists player_slot="0" />
     <if_variable name="Ship0Initialized" comparator="EQUALS" value="0.0" />
@@ -550,6 +698,7 @@
     <set_player_station_carried name="Helms Deep" raceKeys="TSN player" hullKeys="TSN Bomber" singleSeatName="Red-|TsnFighterNeeded|" />
     <set_object_property property="throttle" value="1.0" player_slot="0" />
     <set_variable name="TsnScore" value="TsnScore - 10" integer="yes" />
+    <set_variable name="InitializedRed|TsnFighterNeeded|" value="0.0" integer="yes" />
   </event>
   <folder_arme name="Stargates" id_arme="23661d47-b177-4204-9508-5e74de58c391" parent_id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa" />
   <event name="SG1 scanned by player" id_arme="df9d063e-4560-4c40-baff-fbbbd28c28df" parent_id_arme="23661d47-b177-4204-9508-5e74de58c391">
@@ -732,6 +881,49 @@
     <clear_comms_button text="Lay Mine" sideValue="2" />
     <set_comms_button text="Lay Mine" sideValue="2" />
     <set_timer name="RefreshCommsButtons" seconds="30" />
+  </event>
+  <folder_arme name="Fighters" id_arme="9d0e4633-2e1c-48c4-a573-8aebffb9d8ae" parent_id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa" expanded_arme="" />
+  <event name="Red-0" id_arme="cdb9e4a8-4b70-4f39-913b-188ac9a936ab" parent_id_arme="9d0e4633-2e1c-48c4-a573-8aebffb9d8ae">
+    <if_exists name="Red-0" />
+    <if_variable name="InitializedRed0" comparator="EQUALS" value="0.0" />
+    <log text="Initializing Red-0" />
+    <set_object_property property="topSpeed" value="BOMBER_SPEED" name="Red-0" />
+    <set_variable name="InitializedRed0" value="1.0" integer="yes" />
+  </event>
+  <event name="Red-1" id_arme="a9ab70b7-6f2c-4424-8036-b35d91b5785f" parent_id_arme="9d0e4633-2e1c-48c4-a573-8aebffb9d8ae">
+    <if_exists name="Red-1" />
+    <if_variable name="InitializedRed1" comparator="EQUALS" value="0.0" />
+    <log text="Initializing Red-1" />
+    <set_object_property property="topSpeed" value="BOMBER_SPEED" name="Red-1" />
+    <set_variable name="InitializedRed1" value="1.0" integer="yes" />
+  </event>
+  <event name="Red-2" id_arme="43a3f015-8ee8-4237-a656-ea160374b0d0" parent_id_arme="9d0e4633-2e1c-48c4-a573-8aebffb9d8ae">
+    <if_exists name="Red-2" />
+    <if_variable name="InitializedRed2" comparator="EQUALS" value="0.0" />
+    <log text="Initializing Red-2" />
+    <set_object_property property="topSpeed" value="BOMBER_SPEED" name="Red-2" />
+    <set_variable name="InitializedRed2" value="1.0" integer="yes" />
+  </event>
+  <event name="Red-3" id_arme="627e4cea-9966-42d8-afd3-6a11265f997d" parent_id_arme="9d0e4633-2e1c-48c4-a573-8aebffb9d8ae">
+    <if_exists name="Red-3" />
+    <if_variable name="InitializedRed3" comparator="EQUALS" value="0.0" />
+    <log text="Initializing Red-3" />
+    <set_object_property property="topSpeed" value="BOMBER_SPEED" name="Red-3" />
+    <set_variable name="InitializedRed3" value="1.0" integer="yes" />
+  </event>
+  <event name="Red-4" id_arme="77e2e644-eaf7-4e4d-b98d-e2af4bf64fc0" parent_id_arme="9d0e4633-2e1c-48c4-a573-8aebffb9d8ae">
+    <if_exists name="Red-4" />
+    <if_variable name="InitializedRed4" comparator="EQUALS" value="0.0" />
+    <log text="Initializing Red-4" />
+    <set_object_property property="topSpeed" value="BOMBER_SPEED" name="Red-4" />
+    <set_variable name="InitializedRed4" value="1.0" integer="yes" />
+  </event>
+  <event name="Red-5" id_arme="67229f31-003e-4055-b13c-11fbe34d27cc" parent_id_arme="9d0e4633-2e1c-48c4-a573-8aebffb9d8ae">
+    <if_exists name="Red-5" />
+    <if_variable name="InitializedRed5" comparator="EQUALS" value="0.0" />
+    <log text="Initializing Red-5" />
+    <set_object_property property="topSpeed" value="BOMBER_SPEED" name="Red-5" />
+    <set_variable name="InitializedRed5" value="1.0" integer="yes" />
   </event>
   <folder_arme name="Score" id_arme="490adef6-88a2-4dd8-9269-1f0ece91815f" parent_id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa" />
   <event name="T11 killed" id_arme="aaf3982d-0250-4df8-8a86-30016fa8e8e8" parent_id_arme="490adef6-88a2-4dd8-9269-1f0ece91815f">
@@ -1050,6 +1242,13 @@
   </event>
   <folder_arme name="Pirate Events" id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1" />
   <folder_arme name="Start" id_arme="0a737b19-47ab-4ccb-a2bb-a072ad49ee0b" parent_id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1" />
+  <event name="Respawn player ship 1" id_arme="df11e51b-b5dc-49b5-8d3f-f18ea413ec59" parent_id_arme="0a737b19-47ab-4ccb-a2bb-a072ad49ee0b">
+    <if_not_exists player_slot="1" />
+    <log text="Respawned player ship 1" />
+    <create type="player" player_slot="1" x="10000.0" y="0.0" z="20000.0" angle="0" sideValue="PirateSide" raceKeys="Pirate" hullKeys="Strongbow" warp="yes" jump="no" />
+    <set_variable name="Ship1Initialized" value="0.0" />
+    <set_variable name="PirateScore" value="PirateScore - 1000" integer="yes" />
+  </event>
   <event name="Player ship 1 created" id_arme="64982b23-719e-4d78-a74c-086ce6d8365c" parent_id_arme="0a737b19-47ab-4ccb-a2bb-a072ad49ee0b">
     <if_exists player_slot="1" />
     <if_variable name="Ship1Initialized" comparator="EQUALS" value="0.0" />

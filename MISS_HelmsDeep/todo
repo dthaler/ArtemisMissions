@@ -30,56 +30,22 @@
 04/25/20 ADD: TSN scoring info
 04/25/20 FIX: TSN scoring easter egg text
 04/25/20 FIX: GM buttons to all be drop-menus like Recruit is
-
+04/25/20 FIX: remove BRAIN_CHASE_PLAYER from enemies and instead chase station
+04/25/20 FIX: increase strength of enemies (and scores for them)
+04/25/20 FIX: decrease mine count
+04/25/20 FIX: acknowledge Colin for creative ideas somewhere
+04/26/20 FIX: handle losing Artemis/Intrepid and respawning it
+04/26/20 FIX: increase topSpeed of TSN bombers from 0.5 to 2.0 
+04/26/20 FIX: increase top speed of enemies
 
 {
 
-1/2 FIX: increase strength of enemies (and scores for them)
-         put a torgoth Goliath in every fleet
-           K41 -> T41
-           K51 -> T51
-           K42 -> large
-           K43 -> medium
-           K22 -> medium
-         DNTT
-
-1/2 FIX: decrease mine count
-         DNTT
-
-1/2 FIX: maybe increase top speed of enemies?
-         DNTT 5:56 using T=1, K=2...
-                    was 0.3 for all enemy
-             fleet 5 -> 4 mins (all destroyed on mines) too soon
-             fleet 3 -> 5 mins (one makes it through)
-             fleet 1 -> 6 mins (1 makes it through)
-             fleet 2
-             fleet 4
-
-1/2 FIX: can we increase topSpeed of TSN bombers?
-            A.fighter     1.2
-            T.destroyer   0.9 -> 6.0
-            skaraan       0.8
-            science       0.7 -> 6.0
-            TSN.minelayer 0.6 -> 6.0
-            fighter       0.6
-            bomber        0.5         -> 5.0
-
-1/2 FIX: remove BRAIN_CHASE_PLAYER from enemies and instead chase station
-            TRY_TO_BECOME_LEADER
-         NO CHASE_PLAYER 0 0
-            CHASE_STATION 0
-            CHASE_AI_SHIP 3000 500
-         NO CHASE_PLAYER 3000 500
-            CHASE_ANGER
-            LEADER_LEADS
-            FOLLOW_LEADER
-         NO SPCL_AI
+1/2 FIX: suggest fleet 5 be split into non-fleets to hit separately
+            and all be kralien
 
 1/2 CHECK: what is max score for TSN and max score for pirate?
 
-1/2 FIX: handle losing Artemis and respawning it (as a carrier)
-
-1/2 FIX: acknowledge Colin for creative ideas somewhere
+1/2 CHECK: for issues
 
 ---
 
