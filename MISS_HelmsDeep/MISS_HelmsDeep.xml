@@ -435,7 +435,7 @@
     <add_ai type="CHASE_ANGER" name="K45" />
     <add_ai type="LEADER_LEADS" name="K45" />
     <add_ai type="FOLLOW_LEADER" name="K45" />
-    <create type="enemy" x="86175.0" y="0.0" z="64382.0" angle="210" name="T51" raceKeys="Torgoth" hullKeys="small" fleetnumber="5" />
+    <create type="enemy" x="86175.0" y="0.0" z="64382.0" angle="210" name="T51" raceKeys="Torgoth" hullKeys="small" fleetnumber="-1" />
     <set_object_property property="topSpeed" value="TORGOTH_SPEED" name="T51" />
     <clear_ai name="T51" />
     <add_ai type="TRY_TO_BECOME_LEADER" name="T51" />
@@ -444,7 +444,7 @@
     <add_ai type="CHASE_ANGER" name="T51" />
     <add_ai type="LEADER_LEADS" name="T51" />
     <add_ai type="FOLLOW_LEADER" name="T51" />
-    <create type="enemy" x="88209.0" y="0.0" z="67433.0" angle="210" name="K52" raceKeys="Kralien" hullKeys="small" fleetnumber="5" />
+    <create type="enemy" x="88209.0" y="0.0" z="67433.0" angle="210" name="K52" raceKeys="Kralien" hullKeys="small" fleetnumber="-1" />
     <set_object_property property="topSpeed" value="KRALIEN_SPEED" name="K52" />
     <clear_ai name="K52" />
     <add_ai type="TRY_TO_BECOME_LEADER" name="K52" />
@@ -453,7 +453,7 @@
     <add_ai type="CHASE_ANGER" name="K52" />
     <add_ai type="LEADER_LEADS" name="K52" />
     <add_ai type="FOLLOW_LEADER" name="K52" />
-    <create type="enemy" x="83705.0" y="0.0" z="65544.0" angle="210" name="K53" raceKeys="Kralien" hullKeys="small" fleetnumber="5" />
+    <create type="enemy" x="83705.0" y="0.0" z="65544.0" angle="210" name="K53" raceKeys="Kralien" hullKeys="small" fleetnumber="-1" />
     <set_object_property property="topSpeed" value="KRALIEN_SPEED" name="K53" />
     <clear_ai name="K53" />
     <add_ai type="TRY_TO_BECOME_LEADER" name="K53" />
@@ -462,7 +462,7 @@
     <add_ai type="CHASE_ANGER" name="K53" />
     <add_ai type="LEADER_LEADS" name="K53" />
     <add_ai type="FOLLOW_LEADER" name="K53" />
-    <create type="enemy" x="85303.0" y="0.0" z="68450.0" angle="210" name="K54" raceKeys="Kralien" hullKeys="small" fleetnumber="5" />
+    <create type="enemy" x="85303.0" y="0.0" z="68450.0" angle="210" name="K54" raceKeys="Kralien" hullKeys="small" fleetnumber="-1" />
     <set_object_property property="topSpeed" value="KRALIEN_SPEED" name="K54" />
     <clear_ai name="K54" />
     <add_ai type="TRY_TO_BECOME_LEADER" name="K54" />
@@ -471,7 +471,7 @@
     <add_ai type="CHASE_ANGER" name="K54" />
     <add_ai type="LEADER_LEADS" name="K54" />
     <add_ai type="FOLLOW_LEADER" name="K54" />
-    <create type="enemy" x="89662.0" y="0.0" z="63365.0" angle="210" name="K55" raceKeys="Kralien" hullKeys="small" fleetnumber="5" />
+    <create type="enemy" x="89662.0" y="0.0" z="63365.0" angle="210" name="K55" raceKeys="Kralien" hullKeys="small" fleetnumber="-1" />
     <set_object_property property="topSpeed" value="KRALIEN_SPEED" name="K55" />
     <clear_ai name="K55" />
     <add_ai type="TRY_TO_BECOME_LEADER" name="K55" />
@@ -480,7 +480,7 @@
     <add_ai type="CHASE_ANGER" name="K55" />
     <add_ai type="LEADER_LEADS" name="K55" />
     <add_ai type="FOLLOW_LEADER" name="K55" />
-    <create type="enemy" x="92131.0" y="0.0" z="66707.0" angle="210" name="K56" raceKeys="Kralien" hullKeys="small" fleetnumber="5" />
+    <create type="enemy" x="92131.0" y="0.0" z="66707.0" angle="210" name="K56" raceKeys="Kralien" hullKeys="small" fleetnumber="-1" />
     <set_object_property property="topSpeed" value="KRALIEN_SPEED" name="K56" />
     <clear_ai name="K56" />
     <add_ai type="TRY_TO_BECOME_LEADER" name="K56" />
@@ -643,7 +643,7 @@
     <set_monster_tag_data tag_slot="2" name="SG2" />
     <set_monster_tag_data tag_slot="3" name="SG2" />
   </event>
-  <folder_arme name="TSN Events" id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa" expanded_arme="" />
+  <folder_arme name="TSN Events" id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa" />
   <folder_arme name="Start" id_arme="63b761a1-37ab-42f5-afaf-a627617557e5" parent_id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa" />
   <event name="Respawn player ship 0" id_arme="75340e59-f6c1-4a8b-bcdb-6edc46b310f5" parent_id_arme="63b761a1-37ab-42f5-afaf-a627617557e5">
     <if_not_exists player_slot="0" />
@@ -882,7 +882,7 @@
     <set_comms_button text="Lay Mine" sideValue="2" />
     <set_timer name="RefreshCommsButtons" seconds="30" />
   </event>
-  <folder_arme name="Fighters" id_arme="9d0e4633-2e1c-48c4-a573-8aebffb9d8ae" parent_id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa" expanded_arme="" />
+  <folder_arme name="Fighters" id_arme="9d0e4633-2e1c-48c4-a573-8aebffb9d8ae" parent_id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa" />
   <event name="Red-0" id_arme="cdb9e4a8-4b70-4f39-913b-188ac9a936ab" parent_id_arme="9d0e4633-2e1c-48c4-a573-8aebffb9d8ae">
     <if_exists name="Red-0" />
     <if_variable name="InitializedRed0" comparator="EQUALS" value="0.0" />

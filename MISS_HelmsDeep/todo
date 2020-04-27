@@ -37,11 +37,9 @@
 04/26/20 FIX: handle losing Artemis/Intrepid and respawning it
 04/26/20 FIX: increase topSpeed of TSN bombers from 0.5 to 2.0 
 04/26/20 FIX: increase top speed of enemies
+04/26/20 FIX: make fleet 5 be split into non-fleets to hit separately
 
 {
-
-1/2 FIX: suggest fleet 5 be split into non-fleets to hit separately
-            and all be kralien
 
 1/2 CHECK: what is max score for TSN and max score for pirate?
 
