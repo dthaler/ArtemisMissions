@@ -125,22 +125,29 @@ Miner3: 120/100
 Miner4: 84/70
 
 Pirate Score:
-    100 for each converted miner
-     50 for scanning the scoreboard
-     10 for each astroid piece mined
+    100 for each converted miner     = max 600 (100 * 6 miners)
+     50 for scanning the scoreboard  = max  50
+     10 for each astroid piece mined = max 780 (10 * sum asteroid hit points)
+           10 * (A0HitPointsLeft + ... + A9HitPointsLeft)
+           10 * (5 + 6 + 9 + 9 + 11 + 6 + 8 + 10 + 7 + 7) 
+           10 * 78
+   Max score = 1430 + (MaxOrigTsnScore / 3) = 2716 (usu much less)
 
 TSN Score:
-   1000 when Explorer finishes scanning stargate
-     50 for scanning the scoreboard
+   1000 when Explorer finishes scanning stargate        = max 1000
+     50 for scanning the scoreboard                     = max   50
    -100 for each time the Science Vessel is lost
     -10 for each fighter replacement needed
-    600 for destroying T11 (Torgoth Behemoth) or getting it to surrender
+    600 for destroying T11 (Torgoth Behemoth) or        = max  600
+            getting it to surrender
             (based on back shield strength)
-    400 for destroying T21 (Torgoth Leviathan)   "
-    350 for destroying T31 (Torgoth Goliath)     "
-    120 for destroying T41 (Kralien Dreadnought) "
-     80 for destroying T51 (Kralien Battleship)  "
-     40 for destroying a Kralien Cruiser         "
+    400 for destroying T21 (Torgoth Leviathan)   "      = max  400
+    350 for destroying T31 (Torgoth Goliath)     "  x3  = max 1050
+    120 for destroying T41 (Kralien Dreadnought) "      = max  120
+     80 for destroying T51 (Kralien Battleship)  "  x2  = max  160
+     40 for destroying a Kralien Cruiser         " x12  = max  480
+   MaxOrigTsnScore = 3860 (usually 200 or so less)
+   Max score = 2/3 * MaxOrigTsnScore = 2573
 
 AI Miner blocks:
 ---------------
