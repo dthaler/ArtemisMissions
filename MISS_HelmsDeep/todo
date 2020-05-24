@@ -41,7 +41,36 @@
 
 {
 
-1/2 CHECK: for issues
+1/2 FIX: copy stargate dxs/png from the TSN sandbox or elsewhere
+            tsn sandbox 4.1 references:
+               meshFileName="dat\GenericMesh\TSNGate.dxs"
+               textureFileName="dat\GenericMesh\shipHull17.png" 
+            armada sandbox references:
+                create type="genericMesh" x="14844.0" y="0.0" z="12132.0"
+                angle="0" name="Krisenda Gate"
+                meshFileName="dat\stationWings.dxs"
+                textureFileName="dat\player_station_spec_04.png"
+                colorRed="1.0" colorGreen="0.5" colorBlue="0.0" />
+         DNTT
+
+1/2 FIX: when go through stargate, update miner AI to go to stargate
+         DNTT (should have already been done)
+
+1/2 FIX: allow getting 500 energy from surrendered miners
+            make them drop a hidens power cell when they surrender
+         DNTT
+
+1/2 FIX: for issues
+         DNTT
+
+1/2 FIX: when distress signal comes, make SG1 show up like SG2 as scanned
+         and explain stargate briefly, like the SG1 message is to TSN side
+         copy to  : Pirate Events -> Stargates -> Enable Stargates
+         copy from: TSN Events -> Stargates -> Reveal stargate
+         DNTT
+
+1/2 FIX: sensor range note (e.g. popup message)
+         DNTT
 
 ---
 
