@@ -1,5 +1,5 @@
 <mission_data version="2.7.5" background_id_arme="2e949b92-fa5c-4c26-a157-dae7b1b314d2" playerShipNames_arme="Artemis\Intrepid\Aegis\Horatio\Excalibur\Hera\Ceres\Diana">
-  <mission_description>Two-bridge mission where one bridge plays a TSN station under attack, and the other bridge plays a distant Pirate ship.  Will they cooperate?</mission_description>
+  <mission_description>Two-bridge mission where one bridge plays a TSN station under attack, and the other bridge plays a distant Pirate ship.  Will they cooperate?^^Bridge 1 (TSN): Helm is unused.  Other consoles can double as fighters.^^Bridge 2 (Pirate): All consoles used except fighters.</mission_description>
   <start id_arme="2e949b92-fa5c-4c26-a157-dae7b1b314d2">
     <!--Constants:-->
     <!--Side values:-->
@@ -503,7 +503,7 @@
     <set_object_property property="artScale" value="0.0" name="TSN Score: 0" />
     <set_object_property property="pushRadius" value="0.0" name="TSN Score: 0" />
   </start>
-  <folder_arme name="GM Controls" id_arme="1257aab7-c7dc-42a4-946c-0d5c1384470a" expanded_arme="" />
+  <folder_arme name="GM Controls" id_arme="1257aab7-c7dc-42a4-946c-0d5c1384470a" />
   <event name="Refresh recruit miner1 button" id_arme="bf7de45d-c9d0-4b77-9f52-43671ed21837" parent_id_arme="1257aab7-c7dc-42a4-946c-0d5c1384470a">
     <if_timer_finished name="RefreshGMButtons" />
     <if_exists name="Miner1" />
@@ -682,7 +682,7 @@
     <set_monster_tag_data tag_slot="2" name="SG2" />
     <set_monster_tag_data tag_slot="3" name="SG2" />
   </event>
-  <folder_arme name="TSN Events" id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa" expanded_arme="" />
+  <folder_arme name="TSN Events" id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa" />
   <folder_arme name="Start" id_arme="63b761a1-37ab-42f5-afaf-a627617557e5" parent_id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa" />
   <event name="Respawn player ship 0" id_arme="75340e59-f6c1-4a8b-bcdb-6edc46b310f5" parent_id_arme="63b761a1-37ab-42f5-afaf-a627617557e5">
     <if_not_exists player_slot="0" />
@@ -1280,7 +1280,7 @@
     <set_ship_text name="TSN Score: |TsnScoreDisplayed|" newname="TSN Score: |TsnScore|" />
     <set_variable name="TsnScoreDisplayed" value="TsnScore" integer="yes" />
   </event>
-  <folder_arme name="Pirate Events" id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1" expanded_arme="" />
+  <folder_arme name="Pirate Events" id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1" />
   <folder_arme name="Start" id_arme="0a737b19-47ab-4ccb-a2bb-a072ad49ee0b" parent_id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1" />
   <event name="Respawn player ship 1" id_arme="df11e51b-b5dc-49b5-8d3f-f18ea413ec59" parent_id_arme="0a737b19-47ab-4ccb-a2bb-a072ad49ee0b">
     <if_not_exists player_slot="1" />
@@ -1977,7 +1977,7 @@
     <set_ship_text name="Pirate Score: |PirateScoreDisplayed|" newname="Pirate Score: |PirateScore|" />
     <set_variable name="PirateScoreDisplayed" value="PirateScore" integer="yes" />
   </event>
-  <folder_arme name="Joint Events" id_arme="f3d012a5-0f1e-4f91-b16d-d0bb1745ad7e" expanded_arme="" />
+  <folder_arme name="Joint Events" id_arme="f3d012a5-0f1e-4f91-b16d-d0bb1745ad7e" />
   <event name="Victory with pirates" id_arme="0902d234-84b0-4097-b15d-0e44e33ef2c1" parent_id_arme="f3d012a5-0f1e-4f91-b16d-d0bb1745ad7e">
     <if_fleet_count comparator="EQUALS" value="0.0" sideValue="1" />
     <if_variable name="GameOver" comparator="EQUALS" value="0.0" />
