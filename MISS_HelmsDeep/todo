@@ -44,15 +44,12 @@
 05/24/20 ADD: pirate message when SG2 scanned
 05/24/20 FIX: when distress signal comes, make SG1 show up like SG2 as scanned
 05/24/20      and explain stargate briefly, like the SG1 message is to TSN side
+05/24/20 FIX: allow getting 500 energy from surrendered miners
 
 {
 
 1/2 FIX: when go through stargate, update miner AI to go to stargate
          DNTT (should have already been done)
-
-1/2 FIX: allow getting 500 energy from surrendered miners
-            make them drop a hidden power cell when they surrender
-         DNTT
 
 ---
 

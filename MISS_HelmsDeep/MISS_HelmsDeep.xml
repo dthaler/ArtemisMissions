@@ -1242,7 +1242,7 @@
     <set_variable name="TsnScoreDisplayed" value="TsnScore" integer="yes" />
   </event>
   <folder_arme name="Pirate Events" id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1" expanded_arme="" />
-  <folder_arme name="Start" id_arme="0a737b19-47ab-4ccb-a2bb-a072ad49ee0b" parent_id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1" expanded_arme="" />
+  <folder_arme name="Start" id_arme="0a737b19-47ab-4ccb-a2bb-a072ad49ee0b" parent_id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1" />
   <event name="Respawn player ship 1" id_arme="df11e51b-b5dc-49b5-8d3f-f18ea413ec59" parent_id_arme="0a737b19-47ab-4ccb-a2bb-a072ad49ee0b">
     <if_not_exists player_slot="1" />
     <log text="Respawned player ship 1" />
@@ -1269,7 +1269,7 @@
     <set_variable name="PirateIntroSent" value="1.0" integer="yes" />
     <warning_popup_message message="Sensor range limited to 16K" consoles="M" player_slot="1" />
   </event>
-  <folder_arme name="Stargates" id_arme="26f190ad-4fbe-4e36-84d5-02e17b293e4f" parent_id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1" expanded_arme="" />
+  <folder_arme name="Stargates" id_arme="26f190ad-4fbe-4e36-84d5-02e17b293e4f" parent_id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1" />
   <event name="SG2 scanned" id_arme="a875072d-d164-4204-862f-8752b7f24f3b" parent_id_arme="26f190ad-4fbe-4e36-84d5-02e17b293e4f">
     <if_variable name="SG2ProbeSucceeded" comparator="EQUALS" value="0.0" />
     <if_scan_level name="SG2" side="3" comparator="GREATER" value="0" />
@@ -1539,7 +1539,7 @@
     <add_ai type="CHASE_ANGER" name="tempName" />
     <set_ship_text name="tempName" newname="Miner1" />
     <set_variable name="PirateScore" value="PirateScore + 100" integer="yes" />
-    <create type="Anomaly" pickupType="0" x="positionX" y="positionY" z="positionZ" />
+    <create type="Anomaly" pickupType="0" x="tempX" y="tempY" z="tempZ" />
   </event>
   <event name="Recruit Miner2" id_arme="83d44950-d1de-458d-bc1a-552437232681" parent_id_arme="94dfe34b-f3fc-4090-b79e-4c2659d9d863">
     <if_exists name="Miner2" />
@@ -1571,7 +1571,7 @@
     <add_ai type="CHASE_ANGER" name="tempName" />
     <set_ship_text name="tempName" newname="Miner2" />
     <set_variable name="PirateScore" value="PirateScore + 100" integer="yes" />
-    <create type="Anomaly" pickupType="0" x="positionX" y="positionY" z="positionZ" />
+    <create type="Anomaly" pickupType="0" x="tempX" y="tempY" z="tempZ" />
   </event>
   <event name="Recruit Miner3" id_arme="a0295e15-a580-48a4-9893-541af39a6566" parent_id_arme="94dfe34b-f3fc-4090-b79e-4c2659d9d863">
     <if_exists name="Miner3" />
@@ -1603,7 +1603,7 @@
     <add_ai type="CHASE_ANGER" name="tempName" />
     <set_ship_text name="tempName" newname="Miner3" />
     <set_variable name="PirateScore" value="PirateScore + 100" integer="yes" />
-    <create type="Anomaly" pickupType="0" x="positionX" y="positionY" z="positionZ" />
+    <create type="Anomaly" pickupType="0" x="tempX" y="tempY" z="tempZ" />
   </event>
   <event name="Recruit Miner4" id_arme="542aac50-0f65-4ad8-baaf-b1b26fb05a76" parent_id_arme="94dfe34b-f3fc-4090-b79e-4c2659d9d863">
     <if_exists name="Miner4" />
@@ -1635,7 +1635,7 @@
     <add_ai type="CHASE_ANGER" name="tempName" />
     <set_ship_text name="tempName" newname="Miner4" />
     <set_variable name="PirateScore" value="PirateScore + 100" integer="yes" />
-    <create type="Anomaly" pickupType="0" x="positionX" y="positionY" z="positionZ" />
+    <create type="Anomaly" pickupType="0" x="tempX" y="tempY" z="tempZ" />
   </event>
   <event name="Recruit Miner5" id_arme="bf35f61c-cfef-4c99-86ca-434d8995d335" parent_id_arme="94dfe34b-f3fc-4090-b79e-4c2659d9d863">
     <if_exists name="Miner5" />
@@ -1667,7 +1667,7 @@
     <add_ai type="CHASE_ANGER" name="tempName" />
     <set_ship_text name="tempName" newname="Miner5" />
     <set_variable name="PirateScore" value="PirateScore + 100" integer="yes" />
-    <create type="Anomaly" pickupType="0" x="positionX" y="positionY" z="positionZ" />
+    <create type="Anomaly" pickupType="0" x="tempX" y="tempY" z="tempZ" />
   </event>
   <event name="Recruit Miner6" id_arme="9b02c2f5-bbba-401d-abf4-af507ba9ced9" parent_id_arme="94dfe34b-f3fc-4090-b79e-4c2659d9d863">
     <if_exists name="Miner6" />
@@ -1699,7 +1699,7 @@
     <add_ai type="CHASE_ANGER" name="tempName" />
     <set_ship_text name="tempName" newname="Miner6" />
     <set_variable name="PirateScore" value="PirateScore + 100" integer="yes" />
-    <create type="Anomaly" pickupType="0" x="positionX" y="positionY" z="positionZ" />
+    <create type="Anomaly" pickupType="0" x="tempX" y="tempY" z="tempZ" />
   </event>
   <event name="Miner1 switching side" id_arme="c9c80b67-22e2-4b2a-aa9f-7671d27599f3" parent_id_arme="94dfe34b-f3fc-4090-b79e-4c2659d9d863">
     <if_exists name="Miner1" />
