@@ -45,11 +45,13 @@
 05/24/20 FIX: when distress signal comes, make SG1 show up like SG2 as scanned
 05/24/20      and explain stargate briefly, like the SG1 message is to TSN side
 05/24/20 FIX: allow getting 500 energy from surrendered miners
+05/25/20 FIX: update miner hail text when change AI
 
 {
 
-1/2 FIX: when go through stargate, update miner AI to go to stargate
-         DNTT (should have already been done)
+1/2 BUG: when recruit a miner, the angle changes
+
+1/2 FIX: update description to say what consoles to use
 
 ---
 
