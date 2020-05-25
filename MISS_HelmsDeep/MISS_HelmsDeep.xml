@@ -730,7 +730,7 @@
     <clear_comms_button text="Send Distress Signal" sideValue="2" />
     <set_monster_tag_data tag_slot="0" name="SG2" sourcetext="Distress call from Helms Deep" />
   </event>
-  <folder_arme name="AI science vessel" id_arme="8206d61f-37ce-447b-bf64-a0e34f7c4e89" parent_id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa" />
+  <folder_arme name="AI science vessel" id_arme="8206d61f-37ce-447b-bf64-a0e34f7c4e89" parent_id_arme="c13bd7e0-f4b1-4dd0-98ba-109f7e8ac6fa" expanded_arme="" />
   <event name="Explorer first reports" id_arme="29de5cfb-e9a6-4342-a7c1-5b23e0d7a366" parent_id_arme="8206d61f-37ce-447b-bf64-a0e34f7c4e89">
     <if_exists name="Explorer-|ExplorerId|" />
     <if_timer_finished name="ExplorerScanTimer" />
@@ -1269,13 +1269,15 @@
     <set_variable name="PirateIntroSent" value="1.0" integer="yes" />
     <warning_popup_message message="Sensor range limited to 16K" consoles="M" player_slot="1" />
   </event>
-  <folder_arme name="Stargates" id_arme="26f190ad-4fbe-4e36-84d5-02e17b293e4f" parent_id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1" />
+  <folder_arme name="Stargates" id_arme="26f190ad-4fbe-4e36-84d5-02e17b293e4f" parent_id_arme="58c2f639-2e5d-44ea-8ab5-10cb136a0cb1" expanded_arme="" />
   <event name="SG2 scanned" id_arme="a875072d-d164-4204-862f-8752b7f24f3b" parent_id_arme="26f190ad-4fbe-4e36-84d5-02e17b293e4f">
     <if_variable name="SG2ProbeSucceeded" comparator="EQUALS" value="0.0" />
     <if_scan_level name="SG2" side="3" comparator="GREATER" value="0" />
     <log text="SG2 scanned" />
     <set_variable name="SG2ProbeSucceeded" value="1.0" integer="yes" />
-    <incoming_comms_text from="SG2" sideValue="3" type="ALERT">Probe successful</incoming_comms_text>
+    <destroy name="SG2" />
+    <create type="genericMesh" x="SG2X" y="0.0" z="SG2Z" name="SG2" meshFileName="dat/stationWings.dxs" textureFileName="dat/player_station_spec_04.png" colorRed="1.0" colorGreen="1.0" colorBlue="1.0" />
+    <set_ship_text name="SG2" desc="It appears to be some sort of alien technology, perhaps a portal to another part of space. It seems to require some complex code to activate it.">SG2 appears to be some sort of alien technology, perhaps a portal to another sector of space, but it is unclear how to activate it.</set_ship_text>
   </event>
   <event name="Enable Stargates" id_arme="3ca17a5d-a2cd-4147-ad25-e684d646bd63" parent_id_arme="26f190ad-4fbe-4e36-84d5-02e17b293e4f">
     <if_variable name="StargatesEnabled" comparator="EQUALS" value="1.0" />
@@ -1285,6 +1287,7 @@
     <destroy name="SG2" />
     <create type="genericMesh" x="SG2X" y="0.0" z="SG2Z" name="SG2" meshFileName="dat/stationWings.dxs" textureFileName="dat/player_station_spec_04.png" colorRed="1.0" colorGreen="1.0" colorBlue="1.0" />
     <warning_popup_message message="Stargate activated" consoles="M" player_slot="1" />
+    <set_ship_text name="SG2" desc="It appears to be some sort of portal to another part of space. It can be activated from the Comms console when within 500m.">SG2 appears to be some sort of alien technology, perhaps a portal to another sector of space, but it is unclear how to activate it.</set_ship_text>
   </event>
   <event name="Show use SG2 button" id_arme="f404f41c-8327-484a-89d6-b117bb356ec2" parent_id_arme="26f190ad-4fbe-4e36-84d5-02e17b293e4f">
     <if_variable name="StargatesEnabled" comparator="EQUALS" value="2.0" />
