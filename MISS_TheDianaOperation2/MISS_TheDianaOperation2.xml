@@ -1,7 +1,7 @@
-<mission_data version="2.7.1" background_id_arme="84327810-6e7d-41e7-9e71-391649f5b452" playerShipNames_arme="Artemis\Intrepid\Aegis\Horatio\Excalibur\Hera\Ceres\Diana">
+<mission_data version="2.8" background_id_arme="84327810-6e7d-41e7-9e71-391649f5b452" playerShipNames_arme="Artemis\Intrepid\Aegis\Horatio\Excalibur\Hera\Ceres\Diana">
   <mission_description>The crippled TSN Diana is now undergoing reconstruction at DS1, but the recent mission to recover it has attracted unwanted attention from the Arvonian fleets which are now advancing on DS1.  Your mission is to protect both DS1 and the Diana from the Arvonian invasion.^^This mission is a sequel to "The Diana Operation".</mission_description>
   <start id_arme="84327810-6e7d-41e7-9e71-391649f5b452">
-    <big_message title="The Diana Operation II: A Spanner in the Works" subtitle1="by Dave Thaler" subtitle2="An adventure for one or two ships for Artemis 2.6 or 2.7" />
+    <big_message title="The Diana Operation II: A Spanner in the Works" subtitle1="by Dave Thaler" subtitle2="An adventure for one or two ships for Artemis 2.6 to 2.8" />
     <set_skybox_index index="10" />
     <set_object_property property="musicObjectMasterVolume" value="0.0" />
     <set_variable name="RapierHelpStage" value="0.0" />
@@ -23,7 +23,7 @@
     <set_variable name="StationX" value="27764.0" />
     <set_variable name="StationY" value="0.0" />
     <set_variable name="StationZ" value="73016.0" />
-    <create type="station" x="StationX" y="StationY" z="StationZ" angle="0" name="DS1" raceKeys="friendly" hullKeys="Deep Space Base base" />
+    <create type="station" x="StationX" y="StationY" z="StationZ" name="DS1" raceKeys="friendly" hullKeys="Deep Space Base base" />
     <set_variable name="TractorStrength" value="2.0" />
     <set_variable name="DS1UpgradeMissionDelay" randomIntLow="150" randomIntHigh="300" />
     <set_timer name="DS1UpgradeMissionTimer" seconds="DS1UpgradeMissionDelay" />
@@ -163,7 +163,7 @@
   </event>
   <event name="Create Skaraan" id_arme="454afe64-1060-451d-8b4f-94d9363b2ed2" parent_id_arme="6ef97816-b707-4333-8e81-c10c250bf89b">
     <if_difficulty comparator="GREATER" value="SkaraanCount + 1" />
-    <set_variable name="SkaraanCount" value="SkaraanCount + 1" />
+    <set_variable name="SkaraanCount" value="SkaraanCount + 1" integer="yes" />
     <set_variable name="RandomX" randomFloatLow="20000.0" randomFloatHigh="90000.0" />
     <set_variable name="RandomZ" value="RandomZpiece + ((RandomX - 20000) / 8)" />
     <set_variable name="RandomZpiece" randomIntLow="(MonsterZStart - 15000)" randomIntHigh="(MonsterZStart + 15000)" />
@@ -173,7 +173,7 @@
   <event name="Create NSect" id_arme="a7bad8c2-290c-4d64-9120-63678039a259" parent_id_arme="6ef97816-b707-4333-8e81-c10c250bf89b">
     <if_variable name="NSectCount" comparator="LESS" value="PlayerShipCount * 2" />
     <!--Add some more NSECT monsters-->
-    <set_variable name="NSectCount" value="NSectCount + 1" />
+    <set_variable name="NSectCount" value="NSectCount + 1" integer="yes" />
     <set_variable name="RandomX" randomFloatLow="20000.0" randomFloatHigh="90000.0" />
     <set_variable name="RandomZ" value="RandomZpiece + ((RandomX - 20000) / 8)" />
     <set_variable name="RandomZpiece" randomIntLow="(MonsterZStart - 15000)" randomIntHigh="(MonsterZStart + 15000)" />
@@ -431,7 +431,7 @@
     <set_timer name="SabotageDelay" seconds="SabotageDelaySeconds" />
     <clear_gm_button text="GM/Resend Comms/Give Mission" />
     <clear_gm_button text="GM/Resend Comms/DS1 Resummon Ships" />
-    <create type="station" x="68960.0" y="0.0" z="20741.0" angle="0" name="AB1" raceKeys="enemy whalelover" hullKeys="base" sideValue="1" />
+    <create type="station" x="68960.0" y="0.0" z="20741.0" name="AB1" raceKeys="enemy whalelover" hullKeys="base" sideValue="1" />
     <create type="enemy" x="83996.0" y="0.0" z="20217.0" angle="180" hullID="3002" fleetnumber="1" />
     <create type="enemy" x="34630.0" y="0.0" z="33068.0" angle="180" hullID="3002" fleetnumber="2" />
     <create type="enemy" x="62494.0" y="0.0" z="33292.0" angle="180" hullID="3002" fleetnumber="3" />
@@ -723,7 +723,7 @@
     <if_variable name="DS1UpgradeMissionStage" comparator="EQUALS" value="4.0" />
     <set_variable name="DS1UpgradeMissionStage" value="99.0" />
     <!--Rename DS1 so we can replace it-->
-    <create type="station" x="0.0" y="0.0" z="0.0" angle="0" name="DS1Copy" raceKeys="friendly" hullKeys="Deep Space Base base" />
+    <create type="station" x="0.0" y="0.0" z="0.0" name="DS1Copy" raceKeys="friendly" hullKeys="Deep Space Base base" />
     <copy_object_property property="shieldState" name1="DS1" name2="DS1Copy" />
     <copy_object_property property="canBuild" name1="DS1" name2="DS1Copy" />
     <copy_object_property property="missileStoresHoming" name1="DS1" name2="DS1Copy" />
@@ -737,7 +737,7 @@
     <copy_object_property property="angle" name1="DS1" name2="DS1Copy" />
     <destroy name="DS1" />
     <!--Create an Industrial Base to replace DS1-->
-    <create type="station" x="StationX" y="StationY" z="StationZ" angle="0" name="DS1" raceKeys="friendly" hullKeys="Command Base base" />
+    <create type="station" x="StationX" y="StationY" z="StationZ" name="DS1" raceKeys="friendly" hullKeys="Command Base base" />
     <copy_object_property property="shieldState" name1="DS1Copy" name2="DS1" />
     <copy_object_property property="canBuild" name1="DS1Copy" name2="DS1" />
     <copy_object_property property="missileStoresHoming" name1="DS1Copy" name2="DS1" />
@@ -1615,7 +1615,7 @@
     <if_variable name="BoardingState" comparator="EQUALS" value="1.0" />
     <if_comms_button text="Send DamCon team 1" />
     <set_variable name="DamConShipSent" value="1.0" />
-    <set_variable name="DamConTeamSent" value="1.0" />
+    <set_variable name="DamConTeamSent" value="1.0" integer="yes" />
     <set_damcon_members value="0.0" team_index="0" name="Artemis" />
     <set_variable name="BoardingState" value="2.0" />
   </event>
@@ -1623,7 +1623,7 @@
     <if_variable name="BoardingState" comparator="EQUALS" value="1.0" />
     <if_comms_button text="Send DamCon team 2" />
     <set_variable name="DamConShipSent" value="1.0" />
-    <set_variable name="DamConTeamSent" value="2.0" />
+    <set_variable name="DamConTeamSent" value="2.0" integer="yes" />
     <set_damcon_members value="0.0" team_index="1" name="Artemis" />
     <set_variable name="BoardingState" value="2.0" />
   </event>
@@ -1631,7 +1631,7 @@
     <if_variable name="BoardingState" comparator="EQUALS" value="1.0" />
     <if_comms_button text="Send DamCon team 3" />
     <set_variable name="DamConShipSent" value="1.0" />
-    <set_variable name="DamConTeamSent" value="3.0" />
+    <set_variable name="DamConTeamSent" value="3.0" integer="yes" />
     <set_damcon_members value="0.0" team_index="2" name="Artemis" />
     <set_variable name="BoardingState" value="2.0" />
   </event>
@@ -1639,7 +1639,7 @@
     <if_variable name="BoardingState" comparator="EQUALS" value="1.0" />
     <if_comms_button text="Send DamCon team 1 " />
     <set_variable name="DamConShipSent" value="2.0" />
-    <set_variable name="DamConTeamSent" value="1.0" />
+    <set_variable name="DamConTeamSent" value="1.0" integer="yes" />
     <set_damcon_members value="0.0" team_index="0" name="Intrepid" />
     <set_variable name="BoardingState" value="2.0" />
   </event>
@@ -1647,7 +1647,7 @@
     <if_variable name="BoardingState" comparator="EQUALS" value="1.0" />
     <if_comms_button text="Send DamCon team 2 " />
     <set_variable name="DamConShipSent" value="2.0" />
-    <set_variable name="DamConTeamSent" value="2.0" />
+    <set_variable name="DamConTeamSent" value="2.0" integer="yes" />
     <set_damcon_members value="0.0" team_index="1" name="Intrepid" />
     <set_variable name="BoardingState" value="2.0" />
   </event>
@@ -1655,7 +1655,7 @@
     <if_variable name="BoardingState" comparator="EQUALS" value="1.0" />
     <if_comms_button text="Send DamCon team 3 " />
     <set_variable name="DamConShipSent" value="2.0" />
-    <set_variable name="DamConTeamSent" value="3.0" />
+    <set_variable name="DamConTeamSent" value="3.0" integer="yes" />
     <set_damcon_members value="0.0" team_index="2" name="Intrepid" />
     <set_variable name="BoardingState" value="2.0" />
   </event>
