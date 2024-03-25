@@ -478,6 +478,32 @@
     <set_gm_button text="GM/Resend Comms/DS1 Resummon Ships" />
     <set_gm_button text="GM/Resend Comms/Give Mission" />
   </event>
+  <folder_arme name="Task: Eliminate remaining enemies" id_arme="0a3cc5db-a46d-4e15-81c1-2aa48416e2ec" />
+  <event name="TSN Command gives final orders" id_arme="f77b91e5-bb85-4d21-b96f-fbb06b470025" parent_id_arme="0a3cc5db-a46d-4e15-81c1-2aa48416e2ec">
+    <if_variable name="BoardingState" comparator="GREATER_EQUAL" value="4.0" />
+    <if_variable name="BombsSet" comparator="EQUALS" value="BombsDefused" />
+    <if_variable name="GameOver" comparator="EQUALS" value="0.0" />
+    <if_variable name="TsnCommandGaveMission" comparator="GREATER" value="1.0" />
+    <if_exists name="AB1" />
+    <if_variable name="TsnCommandGaveFinalOrders" comparator="EQUALS" value="0.0" />
+    <log text="TSN Command gave order to destroy AB1" />
+    <incoming_comms_text from="TSN Command" type="ALERT">Your final orders to complete this mission are to eliminate the Arvonian station and any enemy ships you find.</incoming_comms_text>
+    <warning_popup_message message="Message from TSN Command" consoles="M" />
+    <set_variable name="TsnCommandGaveFinalOrders" value="1.0" integer="yes" />
+  </event>
+  <event name="TSN Command gives final orders" id_arme="33fc7af4-3cc6-48e9-a079-50dc389fc3af" parent_id_arme="0a3cc5db-a46d-4e15-81c1-2aa48416e2ec">
+    <if_variable name="BoardingState" comparator="GREATER_EQUAL" value="4.0" />
+    <if_variable name="BombsSet" comparator="EQUALS" value="BombsDefused" />
+    <if_variable name="GameOver" comparator="EQUALS" value="0.0" />
+    <if_variable name="TsnCommandGaveMission" comparator="GREATER" value="1.0" />
+    <if_not_exists name="AB1" />
+    <if_fleet_count comparator="GREATER" value="0.0" sideValue="1" />
+    <if_variable name="TsnCommandGaveFinalOrders" comparator="EQUALS" value="0.0" />
+    <log text="TSN Command gave orders to destroy enemy ships" />
+    <incoming_comms_text from="TSN Command" type="ALERT">Your final orders to complete this mission are to eliminate any enemy ships you find.</incoming_comms_text>
+    <warning_popup_message message="Message from TSN Command" consoles="M" />
+    <set_variable name="TsnCommandGaveFinalOrders" value="2.0" integer="yes" />
+  </event>
   <folder_arme name="Side missions" id_arme="9b774b87-1030-4c79-bf55-a32cfc834264" />
   <folder_arme name="Side mission: Rapier" id_arme="a7e826ad-d40c-4a39-8248-01183453befa" parent_id_arme="9b774b87-1030-4c79-bf55-a32cfc834264" />
   <event name="Refresh GM button" id_arme="20765da5-aadc-47af-b6b3-d1e74038966a" parent_id_arme="a7e826ad-d40c-4a39-8248-01183453befa">
@@ -1080,6 +1106,18 @@
     <set_variable name="WelcomedIntrepidAwayTeam" value="0.0" />
     <set_variable name="WelcomedAegisAwayTeam" value="0.0" />
     <set_timer name="RefreshGMBombButtons" seconds="3" />
+    <set_timer name="BombAlertReminderTimer" seconds="60" />
+  </event>
+  <event name="Bomb Reminder" id_arme="bfea3768-1e99-4c31-8f54-ed6537aec2ad" parent_id_arme="06783d9d-3423-44f3-b6e3-28e8f836b4fd">
+    <if_exists name="DS1" />
+    <if_timer_finished name="BombAlertReminderTimer" />
+    <if_variable name="WelcomedArtemisAwayTeam" comparator="EQUALS" value="0.0" />
+    <if_variable name="WelcomedIntrepidAwayTeam" comparator="EQUALS" value="0.0" />
+    <if_variable name="WelcomedAegisAwayTeam" comparator="EQUALS" value="0.0" />
+    <log text="Bomb reminder" />
+    <warning_popup_message message="DS1 needs immediate assistance!" consoles="M" />
+    <incoming_comms_text from="DS1" type="ALERT STATION">URGENT: Immediate assistance needed at DS1!  We must have a sabotaur at work.  We just discovered a bomb on our station in the production facility!  We need you to dock with us as soon as possible and send a team of explosives experts who can deal with it before it detonates and destroys this station!  We have deactivated our final step in building more missiles so no more will be produced until the bomb is deactivated.</incoming_comms_text>
+    <set_timer name="BombAlertReminderTimer" seconds="60" />
   </event>
   <event name="Play DS1 distress call audio" id_arme="a8012a3f-504c-4abf-b14c-cf196e7b46c0" parent_id_arme="06783d9d-3423-44f3-b6e3-28e8f836b4fd">
     <if_comms_button text="Play DS1 distress call audio" />
