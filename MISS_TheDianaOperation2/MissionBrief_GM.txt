@@ -25,8 +25,7 @@ To play this mission:
   Ship names must be as follows (spelling/case sensitive):
     Ship 1: Artemis
     Ship 2: Intrepid
-    Ship 3: Aegis
-    ... (ships 4-8 are unused)
+    ... (ships 3-8 are unused)
 
   7. Have the other officers (Tactical/Weapons, Engineering, Science, Communications, Captain, Observer, Game Master)
      connect and select their ships and stations.
